@@ -1,0 +1,8 @@
+# Vercel upload ignores .gitignore automatically; this trims a few more MB
+# so the large-blob deploy is more likely to survive a flaky uplink.
+tools/exe_strings.txt
+web_app/.uvicorn.log
+*.log
+.workbuddy/
+.vercel/
+__pycache__/
