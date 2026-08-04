@@ -16,14 +16,38 @@ import json
 import sqlite3
 
 HERE = os.path.dirname(os.path.abspath(__file__))          # web_app dir
-DATA_DB = os.path.join(HERE, "data.db")
+DEFAULT_DB = os.path.join(HERE, "data.db")
 # 原始 .mdb 仍保留在「原始文件目录」下（保持原始文件目录），仅转换期回退用。
 BASE = r"E:\Soft\倪海夏三套学习系统\QQ频道号talktyph0id\医学论文医案查询系统"
 DB = os.path.join(BASE, "Data", "LILUN.mdb")
 KEY = 0x0F
 PWD = "JiSkS92A30"
 
-USE_SQLITE = os.path.exists(DATA_DB)
+# On platforms where the large SQLite blob is NOT bundled (e.g. Vercel), fetch it
+# once into a writable cache at import time. Override via env DATA_DB_URL.
+REMOTE_DB_URL = os.environ.get(
+    "DATA_DB_URL",
+    "https://raw.githubusercontent.com/dmych1989/finalhopes-Learning-System/main/web_app/data.db",
+)
+
+
+def _resolve_db_path():
+    """Return a usable SQLite path: local file if present, else a downloaded cache."""
+    if os.path.exists(DEFAULT_DB):
+        return DEFAULT_DB
+    cache = os.path.join("/tmp", "finalhopes_data.db")
+    if os.path.exists(cache):
+        return cache
+    try:
+        import urllib.request as _urllib
+        _urllib.urlretrieve(REMOTE_DB_URL, cache)
+        return cache
+    except Exception:
+        return None
+
+
+DATA_DB = _resolve_db_path()
+USE_SQLITE = DATA_DB is not None
 
 
 def _sqlite_json(table, key):
