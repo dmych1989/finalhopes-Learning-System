@@ -115,6 +115,21 @@ for _v in ARTICLE_MAP.values():
 for _r in ARTICLES:
     _r["_art_cat"] = ARTICLE_MAP.get(str(_r.get("ID", "")), "")
 
+# ---- 黄帝外经（外经微言，陈士铎本）独立模块 ---------------------------------
+# 原 EXE(医案论文内部查询系统V2022c61.exe) 菜单含独立的「黄帝外经」节点，其下即
+# 《外经微言》八十一篇（雷公问·岐伯曰 体例）。这些篇章在源库中存于 nhxlwj 表，
+# MZ 字段为篇章名（如「任督死生篇」），NR 为全文（XOR-0x0F 解密后）。
+# 注：「黄帝内经篇」「跟诊案例研究篇」「醒世篇」是倪师本人的随笔/教学笔记，
+# 在原 EXE 中各有独立节点，不属于《外经微言》，故排除。
+HDWJ_EXCLUDE = {"黄帝内经篇", "跟诊案例研究篇", "醒世篇"}
+_seen_hdwj = set()
+HDWJ = []
+for _r in ARTICLES:
+    _mz = str(_r.get("MZ", ""))
+    if _mz.endswith("篇") and _mz not in HDWJ_EXCLUDE and _mz not in _seen_hdwj:
+        _seen_hdwj.add(_mz)
+        HDWJ.append(_r)
+
 # yaotu 中药图（JPEG，XOR-0x0F 解密后存入 SQLite；无 data.db 时回退直连 .mdb）
 YAOTU_IMG = common.get_yaotu_images()
 YAOTU_NAMES = sorted(YAOTU_IMG.keys())
@@ -237,6 +252,7 @@ MODULES = [
     {"key": "hantang", "name": "汉唐方剂",        "table": "hantang", "desc": f"{len(HANTANG)} 首汉唐方剂（含倪师100方剂补全）"},
     {"key": "acu",     "name": "子午流注·灵龟八法", "table": "",       "desc": "纳甲/纳子/灵龟八法开穴"},
     {"key": "articles","name": "倪海厦论文",      "table": "nhxlwj",  "desc": "3499 篇文章/讲记"},
+    {"key": "hdwj",    "name": "黄帝外经",        "table": "",       "desc": f"《外经微言》(陈士铎本) 共 {len(HDWJ)} 篇黄帝外经全文"},
     {"key": "yaotu",   "name": "药图",            "table": "yaotu",   "desc": f"{len(YAOTU_NAMES)+HERB_IMGS['total']} 张中药图（形态 + 功效分类）"},
     {"key": "xuewei",  "name": "穴位查询",        "table": "",       "desc": f"{XUEWEI['total']} 个穴位/图文（按经络分类）"},
 ]
@@ -376,6 +392,26 @@ def api_article(aid: str):
     for r in ARTICLES:
         if str(r.get("ID", "")) == str(aid):
             return r
+    raise HTTPException(404, "not found")
+
+
+# ---- 黄帝外经（外经微言）模块：nhxlwj 中以篇章名为 MZ 的 78 篇 ----
+@app.get("/api/hdwj")
+def api_hdwj(q: str = "", page: int = 1, size: int = 20):
+    data = HDWJ
+    if q:
+        ql = q.lower()
+        data = [r for r in data
+                if ql in str(r.get("MZ", "")).lower()
+                or ql in str(r.get("NR", "")).lower()]
+    items, total = paginate(data, page, size)
+    return {"total": total, "page": page, "size": size, "items": items}
+
+
+@app.get("/api/hdwj/{idx}")
+def api_hdwj_item(idx: int):
+    if 0 <= idx < len(HDWJ):
+        return HDWJ[idx]
     raise HTTPException(404, "not found")
 
 

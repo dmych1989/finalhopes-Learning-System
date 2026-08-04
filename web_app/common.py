@@ -95,6 +95,12 @@ def clean_text(s):
     s = re.sub(r"https?://[^\s]*gujizhai[^\s]*", "", s, flags=re.I)
     s = re.sub(r"www\.gujizhai[^\s]*", "", s, flags=re.I)
     s = re.sub(r"gujizhai\.com[^\s]*", "", s, flags=re.I)
+    # 移除 Word/RTF 转换残留的版式标记（非医学内容）
+    s = re.sub(r"Normalheading\s*\d*\s*heading\s*\d+", "", s)
+    s = re.sub(r"heading\s+\d+", "", s)
+    # 移除商业水印（微信公众号 / 400 电话）——非倪师内容
+    s = re.sub(r"^\s*微信公众号[:：].*$", "", s, flags=re.M)
+    s = re.sub(r"^\s*官方\s*400\s*电话[:：]?\s*400-188-2625.*$", "", s, flags=re.M)
     s = re.sub(r"\n{2,}", "\n", s)
     s = re.sub(r"[ \t]+\n", "\n", s)
     s = re.sub(r"^\s+|\s+$", "", s)
@@ -170,10 +176,23 @@ def text_of(col, val, table=None):
     return clean_text(val) if isinstance(val, str) else val
 
 
+def _clean_row(v):
+    """Recursively apply display-layer cleaning to string values (idempotent)."""
+    if isinstance(v, dict):
+        return {k: _clean_row(x) for k, x in v.items()}
+    if isinstance(v, list):
+        return [_clean_row(x) for x in v]
+    if isinstance(v, str):
+        return clean_text(v)
+    return v
+
+
 def load_table(table, cipher_table=None):
     if USE_SQLITE:
         rows = _sqlite_json("main_table", table)
-        return rows if rows is not None else []
+        # SQLite 模式在转换期已做过一次 clean_text；此处再跑一遍以应用
+        # 后续新增的版式/水印清理规则（Normalheading、微信公众号等），幂等。
+        return [_clean_row(r) for r in rows] if rows is not None else []
     conn = connect()
     cur = conn.cursor()
     cur.execute("SELECT * FROM [%s]" % table)

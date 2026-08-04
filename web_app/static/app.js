@@ -171,6 +171,7 @@ function endpointFor(q) {
   if (k === "cases") return `/api/cases?cat=${enc(state.caseCat || "")}&q=${enc(q)}&page=${state.page}&size=${state.size}`;
   if (k === "herbs") return `/api/herbs?q=${enc(q)}&cat=${enc(state.herbCat)}&page=${state.page}&size=${state.size}`;
   if (k === "articles") return `/api/articles?cat=${enc(state.articleCat || "")}&q=${enc(q)}&page=${state.page}&size=${state.size}`;
+  if (k === "hdwj") return `/api/hdwj?q=${enc(q)}&page=${state.page}&size=${state.size}`;
   if (REF_TABLES[k]) return `/api/ref/${REF_TABLES[k]}?q=${enc(q)}&page=${state.page}&size=${state.size}`;
   return null;
 }
@@ -278,6 +279,7 @@ function itemTitleSub(k, rec) {
   }
   if (k === "herbs") return [rec.MZ || "", rec["【功效】"] || rec["【古籍摘要】"] || rec["【简述】"] || ""];
   if (k === "articles") return [rec.MZ || "(无标题)", (rec.NR || "").slice(0, 80)];
+  if (k === "hdwj") return [rec.MZ || "(无标题)", (rec.NR || "").slice(0, 80)];
   if (k === "yaotu") return [rec.name, ""];
   if (k === "xuewei") return [rec.name, [rec.cat_name, rec.sub].filter(Boolean).join(" · ")];
   return refTitleSub(rec);
@@ -331,6 +333,7 @@ function showDetail(k, rec) {
   if (k === "cases") return showCase(rec);
   if (k === "herbs") return showHerb(rec);
   if (k === "articles") return showArticle(rec);
+  if (k === "hdwj") return showArticle(rec);
   if (k === "hantang") return showHantang(rec);
   return showGeneric(rec, k);
 }
