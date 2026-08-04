@@ -1,0 +1,28 @@
+Total tables: 13
+
+=== 1234567 | rows=1475 | cols=14 ===
+  MZ | 【姓名】 [BIN] | 【性别】 [BIN] | 【年龄及体型】 [BIN] | 【来诊日期】 [BIN] | 【来诊原因】 [BIN] | 【问诊】 [BIN] | 【脉诊】 [BIN] | 【望诊】 [BIN] | 【诊断】 [BIN] | 【中药处方】 [BIN] | 【解说】 [BIN] | 【备注】 [BIN] | 【针灸处方】 [BIN]
+=== 1234567 的副本 | rows=1269 | cols=14 ===
+  MZ | 【姓名】 [BIN] | 【性别】 [BIN] | 【年龄及体型】 [BIN] | 【来诊日期】 [BIN] | 【来诊原因】 [BIN] | 【问诊】 [BIN] | 【脉诊】 [BIN] | 【望诊】 [BIN] | 【诊断】 [BIN] | 【中药处方】 [BIN] | 【解说】 [BIN] | 【备注】 [BIN] | 【针灸处方】 [BIN]
+=== BBXX | rows=206 | cols=3 ===
+  No1 | MZ | NR
+=== BZDZ | rows=50 | cols=3 ===
+  No1 | MZ | NR
+=== ZFBZ | rows=30 | cols=4 ===
+  No1 | MZ | NR1 | NR2
+=== ZJDCJL | rows=27 | cols=4 ===
+  No1 | MZ | NR1 | NR2
+=== ZYX | rows=469 | cols=9 ===
+  MZ | 【出自】 | 【简述】 | 【性能】 | 【功效】 | 【用法用量】 | 【使用注意】 | 【古籍摘要】 | 【现代研究】
+=== hantang | rows=99 | cols=4 ===
+  ID | XM | XB | zygn
+=== linggui | rows=60 | cols=13 ===
+  time | 子 | 丑 | 寅 | 卯 | 辰 | 巳 | 午 | 未 | 申 | 酉 | 戌 | 亥
+=== najia | rows=12 | cols=6 ===
+  time | nazi_1 | nazi_2 | nazi_3 | nazi_4 | nazi_5
+=== nazi | rows=120 | cols=4 ===
+  time | naja_1 | naja_2 | naja_3
+=== nhxlwj | rows=3499 | cols=3 ===
+  ID | MZ | NR [BIN]
+=== yaotu | rows=980 | cols=2 ===
+  MZ | NR [BIN]

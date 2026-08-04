@@ -1,0 +1,11 @@
+﻿ODBC: Driver do Microsoft Access (*.mdb) [32-bit]
+ODBC: Microsoft Access Driver (*.mdb) [32-bit]
+ODBC: Microsoft Access-Treiber (*.mdb) [32-bit]
+ODBC: Microsoft Access Driver (*.mdb, *.accdb) [64-bit]
+ODBC: Microsoft Access Text Driver (*.txt, *.csv) [64-bit]
+64bit OLEDB: Microsoft.ACE.OLEDB.16.0 已注册
+32bit OLEDB: Microsoft.ACE.OLEDB.16.0 未注册
+64bit OLEDB: Microsoft.ACE.OLEDB.12.0 已注册
+32bit OLEDB: Microsoft.ACE.OLEDB.12.0 未注册
+64bit OLEDB: Microsoft.Jet.OLEDB.4.0 已注册
+32bit OLEDB: Microsoft.Jet.OLEDB.4.0 未注册

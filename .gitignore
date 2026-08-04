@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+
+# Local / secrets
+.env
+*.log
+
+# Vercel build artifacts (regenerated)
+.vercel
+
+# Project memory (not part of the app)
+.workbuddy/
+
+# Original Access MDB databases are NOT committed (huge, licensed, Windows-only).
+# The app instead uses web_app/data.db (SQLite), which IS committed.
+*.mdb
+Data/
+
+# Dev/diagnostic scratch inside web_app (not part of the running app).
+web_app/_*.py
+web_app/_carved/
+web_app/_verify/
+web_app/_*.png
+web_app/_uv*
+
+# Exploratory one-off scratch in tools/ — keep only the canonical build scripts
+# (mdb_to_sqlite.py, build_cat_map.py, verify_cats.py, probe_db.py) + reference .txt.
+tools/brute*.py
+tools/cipher_stats.py
+tools/debug*.py
+tools/diag*.py
+tools/exe_features.py
+tools/export_mdb.py
+tools/fix_jet.bat
+tools/run_dism.bat
+tools/run_sfc.bat
+tools/scan*.py
+tools/schema_dump.py
+tools/search_alpha.py
+tools/verify_decrypt.py

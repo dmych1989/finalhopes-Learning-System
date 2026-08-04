@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天纪学习系统 · 网页版</title>
+    <link rel="stylesheet" href="/static/style.css?v=31">
+</head>
+<body>
+<div id="sysBar" class="sysbar"></div>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <img class="brand-logo" src="/static/logo.png" alt="天纪学习系统">
+      <div>
+        <h1>天纪学习系统</h1>
+        <p class="brand-sub">倪海厦汉唐中医馆 · 天纪内部学习系统（完整复刻）</p>
+      </div>
+    </div>
+    <div class="searchbox">
+      <input id="search" type="text" placeholder="搜索天纪：卦名 / 经文 / 干支 / 命例 / 经纬度…" autocomplete="off">
+      <button id="searchBtn">搜索</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar" id="sidebar"></nav>
+    <main class="main">
+      <div class="module-head" id="moduleHead"></div>
+      <div class="workarea">
+        <section class="list-pane" id="listPane">
+          <aside class="cases-catnav" id="casesCatNav" style="display:none"></aside>
+          <div class="list-main" id="listMain">
+            <div class="filter-bar" id="filterBar"></div>
+            <div class="hint" id="listHint">请选择左侧模块，或直接在上方搜索。</div>
+            <ul id="resultList" class="result-list"></ul>
+            <div class="pager" id="pager"></div>
+          </div>
+        </section>
+        <section class="detail-pane" id="detailPane">
+          <div class="hint">点击左侧条目查看详情。</div>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+<script>window.SYSTEM = "tianji";</script>
+<script src="/static/sysbar.js?v=31"></script>
+<script src="/static/app.js?v=33"></script>
+</body>
+</html>

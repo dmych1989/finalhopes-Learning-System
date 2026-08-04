@@ -1,0 +1,438 @@
+/* ===== 设计语言：问止 / 中医大脑 风格 —— 浅色 + 青绿(teal)主色 + Element UI 中性灰 ===== */
+:root{
+  --teal:#45d1b6; --teal-d:#3ebca4; --teal-dd:#49b8a3; --teal-l:#6adac5; --teal-bg:#ecfaf8;
+  --bg:#f5f7fa; --panel:#ffffff; --panel2:#f2f6fc;
+  --ink:#303133; --ink2:#606266; --ink3:#909399;
+  --line:#e4e7ed; --line2:#ebeef5;
+  --gold:#e6a23c; --danger:#f56c6c; --success:#67c23a;
+  --card:#fff; --shadow:0 2px 12px rgba(0,0,0,.06); --shadow-sm:0 1px 6px rgba(0,0,0,.05);
+  --radius:10px; --radius-sm:8px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:"PingFang SC","Microsoft YaHei","PingFangTC-Regular","Noto Sans CJK SC",system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);font-size:14px;line-height:1.7;-webkit-font-smoothing:antialiased}
+/* 滚动条美化（贴近参考站细滚动条） */
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-thumb{background:#d4dce3;border-radius:8px}
+::-webkit-scrollbar-thumb:hover{background:#c0c9d1}
+::-webkit-scrollbar-track{background:transparent}
+
+.app{min-height:100vh;display:flex;flex-direction:column}
+
+/* ===== 顶栏 ===== */
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:18px;
+  padding:0 22px;height:64px;background:var(--panel);border-bottom:1px solid var(--line);
+  box-shadow:var(--shadow-sm);position:sticky;top:46px;z-index:20}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-logo{height:48px;width:auto;display:block;filter:drop-shadow(0 1px 3px rgba(0,0,0,.12))}
+.seal{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;
+  border-radius:10px;background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#fff;
+  font-size:22px;font-weight:700;box-shadow:0 2px 8px rgba(69,209,182,.35)}
+.topbar h1{margin:0;font-size:18px;font-weight:600;letter-spacing:1px;color:var(--ink)}
+.topbar p{display:none}
+.searchbox{display:flex;gap:10px;flex:1;max-width:560px}
+.searchbox input{flex:1;padding:9px 16px;border:1px solid var(--line);border-radius:20px;
+  background:var(--panel2);color:var(--ink);font-size:14px;outline:none;transition:.15s}
+.searchbox input::placeholder{color:var(--ink3)}
+.searchbox input:focus{border-color:var(--teal);background:#fff;box-shadow:0 0 0 3px rgba(69,209,182,.12)}
+.searchbox button{padding:9px 22px;border:none;border-radius:20px;
+  background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#fff;font-size:14px;font-weight:600;
+  cursor:pointer;transition:.15s;box-shadow:0 2px 8px rgba(69,209,182,.25)}
+.searchbox button:hover{filter:brightness(1.05);box-shadow:0 4px 12px rgba(69,209,182,.35)}
+.searchbox button:active{transform:translateY(1px)}
+
+/* ===== 布局 ===== */
+.layout{display:flex;flex:1;min-height:0}
+.sidebar{width:226px;background:var(--panel);border-right:1px solid var(--line);
+  padding:12px 12px;overflow:auto}
+.sidebar .nav-item{padding:11px 14px;margin:4px 0;border-radius:var(--radius-sm);cursor:pointer;
+  color:var(--ink2);font-size:14px;border-left:3px solid transparent;transition:.15s;user-select:none}
+.sidebar .nav-item:hover{background:var(--panel2);color:var(--ink)}
+.sidebar .nav-item.active{background:var(--teal-bg);border-left-color:var(--teal);
+  color:var(--teal-dd);font-weight:600}
+.sidebar .nav-item small{display:block;font-size:11px;color:var(--ink3);font-weight:400;margin-top:2px}
+.main{flex:1;display:flex;flex-direction:column;min-width:0}
+.module-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:14px 22px;
+  border-bottom:1px solid var(--line);background:var(--panel)}
+.mh-left{min-width:0}
+.mh-left h2{margin:0;font-size:17px;color:var(--ink);font-weight:600}
+.mh-left p{margin:3px 0 0;font-size:13px;color:var(--ink3)}
+
+/* ===== 穴位配对关系 ===== */
+.lg-pairs{margin-top:18px}
+.lg-pairs-h{margin:0 0 10px;color:var(--teal-dd);font-size:17px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:10px;display:flex;align-items:center;gap:8px}
+.lg-pairs-ico{color:var(--teal);font-weight:400}
+.lg-pairs-note{color:var(--ink2);font-size:13.5px;line-height:1.9;margin:0 0 14px}
+.lg-pairs-note b{color:var(--teal-dd)}
+.lg-pairs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:12px}
+.pair-card{border:1px solid var(--line);border-radius:var(--radius);padding:14px;background:var(--panel);transition:.15s;position:relative;overflow:hidden}
+.pair-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:transparent;transition:.15s}
+.pair-card:hover{box-shadow:var(--shadow);border-color:var(--teal-l)}
+.pair-card.active{border-color:var(--teal);box-shadow:0 0 0 2px rgba(69,209,182,.18);background:linear-gradient(180deg,#fff,var(--teal-bg))}
+.pair-card.active::before{background:var(--teal)}
+.pair-card-head{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:10px}
+.pair-x{font-size:18px;font-weight:800;color:var(--teal-dd)}
+.pair-link{color:var(--teal);font-weight:700;font-size:16px}
+.pair-scope{font-size:13px;color:var(--ink2);line-height:1.7;text-align:center}
+.pair-scope-k{display:inline-block;color:var(--teal);font-weight:600;margin-right:5px}
+.pair-now{font-size:12.5px;color:var(--teal-dd);margin-top:10px;line-height:1.6;text-align:center;display:none;border-top:1px dashed var(--line);padding-top:9px}
+.pair-card.active .pair-now{display:block}
+.pair-now b{color:var(--teal-dd)}
+
+/* 灵龟八法 实时开穴 */
+.lg-clock{font-size:15px;font-weight:600;color:var(--teal);font-variant-numeric:tabular-nums;letter-spacing:.5px;margin-bottom:6px}
+.lg-grid{display:flex;gap:10px;margin-bottom:4px}
+.lg-cell{flex:1;min-width:0}
+.lg-k{display:block;color:var(--ink3);font-size:11px;margin-bottom:1px}
+.lg-v{display:block;color:var(--ink);font-weight:600;font-size:13px}
+.lg-v em{font-style:normal;color:var(--teal-dd);font-size:11px;font-weight:400}
+.lg-result{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;padding:6px 0;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);margin:4px 0}
+.lg-key{color:var(--ink3);font-size:12px}
+.lg-acu{font-size:21px;font-weight:800;color:var(--teal-dd)}
+.lg-meta{color:var(--teal);font-size:12px}
+.lg-detail{margin-top:6px}
+.lg-detail>div{margin-bottom:3px}
+.lg-detail .lg-k{display:inline;margin:0 4px 0 0}
+.lg-formula{margin-top:5px;color:var(--ink3);font-size:11.5px;font-variant-numeric:tabular-nums}
+/* 算法说明 */
+.lg-ref{margin-top:18px}
+.lg-ref h3{margin:0 0 10px;color:var(--teal-dd);font-size:17px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:10px}
+.lg-song{color:var(--teal);font-style:italic;line-height:1.9;margin:0 0 10px}
+.lg-note{color:var(--ink2);line-height:1.9;margin:0 0 12px}
+.lg-note b{color:var(--teal-dd)}
+.lg-tables{display:flex;flex-wrap:wrap;gap:14px}
+.lg-tbl{flex:0 0 auto}
+.lg-tbl-t{color:var(--teal);font-size:12px;margin-bottom:4px;font-weight:600}
+.lg-tables table{border-collapse:collapse;font-size:12px}
+.lg-tables td{border:1px solid var(--line);padding:3px 9px;text-align:center;color:var(--ink2)}
+/* 八脉交会穴 卡片网格 */
+.lg-conf{margin-top:18px}
+.cf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:6px}
+.cf-card{border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;background:var(--panel);transition:.15s}
+.cf-card:hover{box-shadow:var(--shadow);border-color:var(--teal-l)}
+.cf-top{display:flex;justify-content:space-between;align-items:baseline}
+.cf-name{font-size:17px;font-weight:800;color:var(--teal-dd)}
+.cf-mai{font-size:12px;color:var(--teal);font-weight:600}
+.cf-g{font-size:12px;color:var(--ink3);margin:2px 0 6px}
+.cf-desc{font-size:13px;color:var(--ink2);line-height:1.7;margin-bottom:6px}
+.cf-treat{font-size:13px;color:var(--ink2);line-height:1.7}
+.cf-treat span{color:var(--teal);margin-right:4px;font-weight:600}
+.cf-pair{font-size:12.5px;color:var(--teal-dd);margin-top:6px;border-top:1px dashed var(--line);padding-top:6px}
+
+/* 灵龟八法 · 实时开穴 卡片 */
+.lg-live-card{background:linear-gradient(135deg,rgba(69,209,182,.08),rgba(69,209,182,.02));border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:var(--radius);padding:16px 20px;margin-bottom:18px;box-shadow:var(--shadow-sm)}
+.lg-gender{display:flex;align-items:center;gap:8px;margin-bottom:12px;justify-content:flex-end}
+.lg-gender-k{font-size:12px;color:var(--ink3)}
+.lg-gender button{border:1px solid var(--line);background:var(--panel);color:var(--ink2);font-size:13px;font-weight:600;padding:4px 16px;border-radius:20px;cursor:pointer;transition:.15s;line-height:1.6}
+.lg-gender button:hover{border-color:var(--teal)}
+.lg-gender button.on{background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#fff;border-color:var(--teal);box-shadow:0 2px 8px rgba(69,209,182,.3)}
+.lg-live-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.lg-live-title{display:flex;align-items:center;gap:8px;color:var(--teal-dd);font-weight:600;font-size:15px}
+.lg-live-dot{width:9px;height:9px;border-radius:50%;background:var(--success);box-shadow:0 0 0 3px rgba(103,194,58,.18);animation:lgpulse 1.6s infinite}
+@keyframes lgpulse{0%,100%{opacity:1}50%{opacity:.35}}
+.lg-live-clock{font-variant-numeric:tabular-nums;font-weight:700;color:var(--teal);font-size:15px;letter-spacing:.5px}
+.lg-live-main{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.lg-live-acu-wrap{flex:0 0 auto;text-align:center;padding:2px 20px 2px 4px;border-right:1px dashed var(--line)}
+.lg-live-acu{font-size:36px;font-weight:800;color:var(--teal-dd);line-height:1.05}
+.lg-live-sub{font-size:12.5px;color:var(--ink3);margin-top:4px}
+.lg-live-gz{flex:1;display:flex;gap:16px;flex-wrap:wrap}
+.gz{display:flex;flex-direction:column;min-width:118px}
+.gz-k{font-size:11px;color:var(--ink3);margin-bottom:1px}
+.gz-v{font-size:16px;font-weight:700;color:var(--ink)}
+.gz-v em{font-style:normal;font-size:11.5px;color:var(--teal-dd);font-weight:400;margin-left:5px}
+.lg-live-chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:9px;margin:14px 0 8px}
+.chip{background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius-sm);padding:8px 12px;font-size:13px;line-height:1.6}
+.chip-k{display:inline-block;color:var(--teal);font-weight:600;margin-right:5px}
+.chip-v{color:var(--ink2)}
+.lg-live-formula{font-size:12px;color:var(--ink3);font-variant-numeric:tabular-nums;border-top:1px dashed var(--line);padding-top:9px}
+.lg-live-formula b{color:var(--teal-dd)}
+
+/* ===== 工作区 ===== */
+.workarea{display:flex;flex:1;min-height:0}
+.list-pane{width:38%;max-width:460px;border-right:1px solid var(--line);overflow:auto;padding:12px;
+  background:var(--panel);display:flex;gap:12px;align-items:stretch}
+.list-main{flex:1;min-width:0;display:flex;flex-direction:column}
+/* 医案「按证型浏览」左侧分类侧栏 */
+.cases-catnav{flex:0 0 168px;max-height:100%;overflow:auto;padding-right:4px;
+  border-right:1px dashed var(--line);display:none}
+.cases-catnav .catnav-title{font-size:12px;font-weight:700;color:var(--ink3);
+  letter-spacing:.05em;margin:2px 0 8px;padding-left:4px}
+.catnav-item{display:flex;justify-content:space-between;align-items:center;gap:6px;width:100%;
+  text-align:left;padding:7px 9px;margin:3px 0;border:1px solid var(--line);border-radius:var(--radius-sm);
+  background:var(--panel);cursor:pointer;color:var(--ink);font-size:12.5px;transition:.15s}
+.catnav-item:hover{border-color:var(--teal-l);background:var(--panel2)}
+.catnav-item.active{border-color:var(--teal);background:var(--teal-bg);color:var(--teal-dd);font-weight:600}
+.catnav-item .cn-count{font-style:normal;font-size:11px;color:var(--ink3);background:var(--panel2);
+  border-radius:10px;padding:1px 7px;min-width:22px;text-align:center}
+.catnav-item.active .cn-count{color:var(--teal-dd);background:#fff}
+.detail-pane{flex:1;overflow:auto;padding:20px 24px;background:var(--bg)}
+.hint{color:var(--ink3);font-size:13.5px;padding:20px}
+.result-list{list-style:none;margin:0;padding:0}
+.result-item{padding:12px 14px;margin:8px 0;border:1px solid var(--line);border-radius:var(--radius-sm);
+  background:var(--panel);cursor:pointer;transition:.15s}
+.result-item:hover{border-color:var(--teal-l);box-shadow:var(--shadow-sm)}
+.result-item.active-row{border-left:3px solid var(--teal);background:var(--teal-bg)}
+.result-group-head{list-style:none;padding:10px 14px;margin-top:10px;font-size:13px;
+  font-weight:600;color:var(--teal-dd);background:var(--panel2);border-radius:var(--radius-sm)}
+.filter-bar{display:flex;flex-wrap:wrap;gap:8px;padding:8px 2px 12px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.filter-tab{padding:5px 14px;border:1px solid var(--line);background:var(--panel);border-radius:16px;cursor:pointer;font-size:13px;color:var(--ink3);transition:.15s}
+.filter-tab:hover{border-color:var(--teal);color:var(--teal-dd)}
+.filter-tab.active{background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#fff;border-color:var(--teal)}
+.shennong-badge{display:inline-block;font-size:12px;font-weight:400;color:#fff;background:var(--teal);border-radius:10px;padding:2px 9px;vertical-align:middle;margin-left:6px}
+.result-item .t{font-weight:600;color:var(--ink)}
+.result-item .s{font-size:12.5px;color:var(--ink3);margin-top:4px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pager{display:flex;gap:8px;justify-content:center;padding:16px}
+.pager button{padding:7px 16px;border:1px solid var(--line);background:var(--panel);
+  border-radius:var(--radius-sm);cursor:pointer;color:var(--ink2);transition:.15s}
+.pager button:hover{border-color:var(--teal);color:var(--teal-dd)}
+.pager button:disabled{opacity:.4;cursor:default}
+
+/* ===== 详情 ===== */
+.detail-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;box-shadow:var(--shadow-sm)}
+.detail-card h3{margin:0 0 14px;color:var(--ink);font-size:20px;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:10px}
+.field{margin:10px 0}
+.field .k{display:inline-block;min-width:96px;color:var(--teal-dd);font-weight:600}
+.field .v{white-space:pre-wrap}
+/* 中文小节标题 */
+.sec-h{margin:18px 0 6px;font-size:14.5px;font-weight:600;color:var(--teal-dd);
+  border-left:3px solid var(--teal);padding-left:10px}
+.sec-b{white-space:pre-wrap;line-height:1.85;font-size:14.5px;color:var(--ink2);
+  background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:4px}
+/* 中药神农序号 */
+.seq-badge{display:inline-block;min-width:22px;text-align:center;font-size:12px;font-weight:700;
+  color:#fff;background:var(--teal);border-radius:11px;padding:1px 7px;margin-right:9px;vertical-align:middle}
+.seq-line{font-size:13px;color:var(--ink3);margin:-4px 0 12px;padding:5px 0 8px;border-bottom:1px dashed var(--line)}
+.article-body{white-space:pre-wrap;line-height:1.95;font-size:15px;color:var(--ink);margin-top:4px}
+
+/* ===== 画廊 / 缩略图 ===== */
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.gallery figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-sm);
+  overflow:hidden;cursor:pointer;transition:.15s}
+.gallery figure:hover{box-shadow:var(--shadow);border-color:var(--teal-l)}
+.gallery img{width:100%;height:150px;object-fit:contain;background:#fff}
+.gallery figcaption{padding:6px;text-align:center;font-size:13px;color:var(--ink3)}
+.thumb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px}
+.thumb-item{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden;cursor:pointer;transition:.15s}
+.thumb-item:hover{border-color:var(--teal);box-shadow:var(--shadow-sm);transform:translateY(-2px)}
+.thumb-item img{width:100%;height:96px;object-fit:cover;background:#fff;display:block}
+.thumb-item .thumb-cap{display:block;padding:5px 4px;text-align:center;font-size:12px;color:var(--ink3);line-height:1.3;max-height:34px;overflow:hidden}
+
+/* ===== 穴位查询 ===== */
+.xw-banner{text-align:center}
+.xw-diagram{max-width:100%;max-height:62vh;margin:6px auto 10px;display:block;border:1px solid var(--line);border-radius:var(--radius-sm);background:#fff}
+.xw-sub{display:inline-block;font-size:12px;color:var(--ink3);background:var(--panel2);
+  border:1px solid var(--line);border-radius:10px;padding:1px 8px;vertical-align:middle;margin-left:6px}
+.xw-sec{margin:18px 0 6px;font-size:14.5px;font-weight:600;color:var(--teal-dd);
+  border-left:3px solid var(--teal);padding-left:10px}
+.xw-body{white-space:pre-wrap;line-height:1.85;font-size:14.5px;color:var(--ink2);
+  background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:4px}
+.xw-imgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:14px}
+.xw-img{display:block;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden;transition:.15s}
+.xw-img:hover{border-color:var(--teal);box-shadow:var(--shadow-sm)}
+.xw-img img{width:100%;height:160px;object-fit:contain;background:#fff;display:block}
+
+/* 通用表格 */
+table.acu{border-collapse:collapse;width:100%;background:var(--panel);font-size:14px;border-radius:var(--radius);overflow:hidden}
+table.acu th,table.acu td{border:1px solid var(--line);padding:8px 10px;text-align:center}
+table.acu th{background:var(--panel2);color:var(--teal-dd);font-weight:600}
+
+/* 灯箱 */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.7);display:flex;align-items:center;
+  justify-content:center;z-index:50;cursor:zoom-out}
+.lightbox img{max-width:92%;max-height:92%;background:#fff;padding:10px;border-radius:6px}
+
+/* tabs */
+.tabs{display:flex;gap:8px;margin-bottom:14px}
+.tabs button{padding:7px 18px;border:1px solid var(--line);background:var(--panel);
+  border-radius:18px;cursor:pointer;color:var(--ink2);transition:.15s}
+.tabs button:hover{border-color:var(--teal);color:var(--teal-dd)}
+.tabs button.active{background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#fff;border-color:var(--teal)}
+
+img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;border:1px solid var(--line);border-radius:var(--radius-sm);background:#fff}
+
+@media(max-width:880px){
+  .workarea{flex-direction:column}.list-pane{width:100%;max-width:none;border-right:none;border-bottom:1px solid var(--line);flex-direction:column}
+  .cases-catnav{flex-basis:auto;max-height:172px;border-right:none;border-bottom:1px dashed var(--line);display:none}
+  .sidebar{width:160px}
+  .topbar{height:auto;padding:10px 14px;flex-wrap:wrap}
+}
+
+/* ===== 经络走向动画 ===== */
+.jl-card{max-width:980px}
+.jl-desc{font-size:13px;color:var(--ink3);line-height:1.75;margin:6px 0 16px}
+.jl-wrap{display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap}
+.jl-svg{width:300px;height:auto;max-width:46%;flex:0 0 auto;
+  background:linear-gradient(180deg,#f7faf9,#eaf2ee);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-sm)}
+.jl-body path,.jl-body circle{fill:#e7eee9;stroke:#c6d4cd;stroke-width:2}
+.jl-limb{fill:none;stroke:#c6d4cd;stroke-width:13;stroke-linecap:round;stroke-linejoin:round;opacity:.6}
+.mer-path{fill:none;stroke-width:2.6;stroke-linecap:round;stroke-dasharray:5 7;animation:merflow 1.1s linear infinite}
+.mer-yin{stroke:#2f9e9e}.mer-yang{stroke:#e07b39}.mer-ren{stroke:#8a6fc4}.mer-du{stroke:#c9a23a}
+@keyframes merflow{to{stroke-dashoffset:-24}}
+.mer-path.dim,.mer-bead.dim{opacity:.12}
+.mer-bead{stroke:#fff;stroke-width:1.2}
+.jl-legend{flex:1;min-width:250px;display:grid;grid-template-columns:1fr 1fr;gap:9px;align-content:start}
+.jl-item{display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding:9px 11px;
+  border:1px solid var(--line);border-radius:10px;background:var(--panel);cursor:pointer;text-align:left;transition:.15s}
+.jl-item:hover{border-color:var(--teal-l)}
+.jl-item.active{border-color:var(--teal);background:var(--teal-bg);box-shadow:0 0 0 2px var(--teal-bg)}
+.jl-dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.jl-dot.mer-yin{background:#2f9e9e}.jl-dot.mer-yang{background:#e07b39}.jl-dot.mer-ren{background:#8a6fc4}.jl-dot.mer-du{background:#c9a23a}
+.jl-name{font-weight:600;font-size:13px;color:var(--ink)}
+.jl-meta{font-size:11px;color:var(--ink3)}
+.jl-cnt{font-size:11px;color:var(--teal-dd);font-weight:600}
+.jl-detail{margin-top:16px;padding:14px 16px;border:1px dashed var(--line);border-radius:10px;background:var(--panel2)}
+.jl-det-name{font-size:15px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.jl-det-row{font-size:13.5px;color:var(--ink2);line-height:1.9}
+.jl-det-row b{display:inline-block;min-width:72px;color:var(--ink3);font-weight:600}
+.jl-gobtn{margin-top:12px;padding:8px 16px;border:none;border-radius:18px;cursor:pointer;
+  background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#fff;font-size:13px;font-weight:600}
+.jl-gobtn:hover{filter:brightness(1.05)}
+
+/* ---- 经络走向动画：原版逐帧 GIF 播放器 ---- */
+.jl-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.jl-top h3{margin:0;font-size:18px;color:var(--ink)}
+.jl-nav{display:flex;gap:8px}
+.jl-navbtn{padding:6px 14px;border:1px solid var(--line);border-radius:16px;background:var(--panel);color:var(--ink2);cursor:pointer;font-size:13px;transition:.15s}
+.jl-navbtn:hover{border-color:var(--teal);color:var(--teal-dd);background:var(--teal-bg)}
+.jl-switch{display:flex;align-items:center;justify-content:center;gap:12px;padding:6px 0 10px;margin:4px 0 8px;border-bottom:1px dashed var(--line)}
+.jl-switch-tip{font-size:12.5px;color:var(--ink3);letter-spacing:1px}
+/* 经络条目置于左侧「穴位查询 / 经络走向动画」列表时的样式 */
+.jl-result-list .jl-item{display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding:9px 11px;margin:8px 0;border:1px solid var(--line);border-radius:10px;background:var(--panel);cursor:pointer;text-align:left;transition:.15s}
+.jl-result-list .jl-item:hover{border-color:var(--teal-l)}
+.jl-result-list .jl-item.active{border-color:var(--teal);background:var(--teal-bg);box-shadow:0 0 0 2px var(--teal-bg)}
+.jl-gifwrap{width:100%;display:flex;justify-content:center;background:#fbfdff;border:1px solid var(--line);border-radius:12px;padding:12px;margin:4px 0 16px}
+.jl-gif{max-width:100%;max-height:56vh;height:auto;background:#fbfdff;border-radius:8px}
+.jl-info{flex:1 1 320px;min-width:300px;padding:14px 16px;border:1px dashed var(--line);border-radius:10px;background:var(--panel2)}
+.jl-info .jl-det-name{font-size:15px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.jl-info .jl-det-row{font-size:13.5px;color:var(--ink2);line-height:1.9}
+.jl-info .jl-det-row b{display:inline-block;min-width:72px;color:var(--ink3);font-weight:600}
+.jl-info .jl-gobtn{margin-top:12px}
+
+/* ===== 顶部系统切换器（三套学习系统独立页面） ===== */
+.sysbar{background:linear-gradient(135deg,#1f6f63,#2a8f7e,#45d1b6);
+  box-shadow:0 2px 10px rgba(31,111,99,.28);position:sticky;top:0;z-index:30}
+.sysbar-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:24px;
+  padding:0 22px;height:46px}
+.sysbar-suite{color:#eafff9;font-size:15px;font-weight:700;letter-spacing:2px;white-space:nowrap;
+  text-shadow:0 1px 2px rgba(0,0,0,.18)}
+.sysbar-tabs{display:flex;gap:6px;flex:1;flex-wrap:wrap}
+.sys-tab{padding:7px 16px;border-radius:20px;color:#dffff7;text-decoration:none;font-size:13.5px;
+  font-weight:500;transition:.15s;white-space:nowrap;border:1px solid transparent}
+.sys-tab:hover{background:rgba(255,255,255,.16);color:#fff}
+.sys-tab.active{background:#fff;color:#1f6f63;font-weight:700;
+  box-shadow:0 2px 8px rgba(0,0,0,.18)}
+/* 让 renji/tianji 页面的副标题可见（默认 .topbar p 隐藏） */
+.topbar .brand-sub{display:block;margin:2px 0 0;font-size:12px;font-weight:400;
+  color:var(--ink3);letter-spacing:.5px}
+
+/* ===== 天纪建设中页面 ===== */
+.tj-list{margin:8px 0;padding-left:20px}
+.tj-list li{margin:6px 0;color:var(--ink2)}
+.tj-list b{color:var(--teal-dd)}
+
+/* ===== 人纪学习系统 ===== */
+.renji-map-card{display:flex;flex-direction:column}
+.renji-map-wrap{width:100%;background:linear-gradient(180deg,#fbfdff,#eef6f4);border:1px solid var(--line);border-radius:12px;padding:10px;margin:6px 0 12px;overflow:auto;text-align:center}
+.renji-svg{width:100%;height:auto;max-height:78vh;display:block;margin:0 auto}
+/* 人体穴位图：透明大圆 用于悬停命中区 */
+.renji-pt-h{fill:rgba(255,255,255,0);stroke:none;pointer-events:all;cursor:pointer}
+/* 穴位点（实心圆） */
+.renji-pt{fill:rgba(233,84,32,.85);stroke:#fff;stroke-width:4;transition:.12s;pointer-events:all;cursor:pointer;filter:drop-shadow(0 1px 2px rgba(0,0,0,.4))}
+.renji-pt:hover{fill:rgba(255,180,40,.95);r:30}
+.renji-ptinfo{font-size:14px;color:var(--ink2);padding:8px 12px;border:1px dashed var(--line);border-radius:10px;background:var(--panel2);text-align:left}
+.renji-ptinfo b{color:var(--teal-dd);font-size:15px}
+/* 倪师图缩略图复用 .thumb-grid / .thumb-item（与药图同款） */
+
+/* 天纪：卦图 + 卦象（阴阳爻） */
+.gua-img{ text-align:center; margin:4px 0 14px; }
+.gua-img img{ max-width:220px; max-height:300px; border:1px solid var(--line);
+  border-radius:8px; box-shadow:var(--shadow-sm); background:#fff; }
+.gua-dd{ display:flex; flex-direction:column; gap:6px; align-items:center;
+  margin:10px 0 16px; padding:10px; background:var(--panel2);
+  border:1px solid var(--line); border-radius:10px; }
+.gua-line{ height:15px; border-radius:3px; }
+.gua-line.yang{ width:120px; background:linear-gradient(90deg,#7a6a55,#9b8a6f); }
+.gua-line.yin{ width:120px; display:flex; justify-content:space-between; }
+.gua-line.yin span{ width:48px; height:15px;
+  background:linear-gradient(90deg,#7a6a55,#9b8a6f); border-radius:3px; }
+
+/* ===== 天纪·排盘系统 / 命理系统 ===== */
+:root{
+  --c-lu:#2e9e6b; --c-quan:#d98324; --c-ke:#3a7bd5; --c-ji:#d9534f; --star:#7a5cff;
+}
+.paipan-form{padding:18px 16px;display:flex;flex-direction:column;gap:14px;max-width:340px}
+.paipan-form h3{margin:0 0 4px;font-size:16px;color:var(--teal-dd)}
+.paipan-form label{display:flex;flex-direction:column;gap:5px;font-size:13px;color:var(--ink2)}
+.paipan-form input,.paipan-form select{padding:8px 10px;border:1px solid var(--line);
+  border-radius:8px;background:var(--panel2);color:var(--ink);font-size:14px;outline:none}
+.paipan-form input:focus,.paipan-form select:focus{border-color:var(--teal);background:#fff}
+.paipan-form button{padding:10px 16px;border:none;border-radius:8px;cursor:pointer;
+  background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#fff;font-size:15px;font-weight:600;
+  box-shadow:0 2px 8px rgba(69,209,182,.25)}
+.paipan-form button:hover{filter:brightness(1.05)}
+.pp-tip{font-size:12px;color:var(--ink3);line-height:1.6}
+
+.paipan-result{padding:18px 20px;max-width:980px}
+.pp-summary{display:flex;flex-wrap:wrap;gap:8px 18px;padding:10px 14px;background:var(--panel2);
+  border-radius:10px;margin-bottom:14px;font-size:13px;color:var(--ink2)}
+.pp-summary b{color:var(--ink);font-weight:600}
+.sec-h{font-size:14px;font-weight:600;color:var(--teal-dd);margin:18px 0 8px;
+  padding-left:9px;border-left:3px solid var(--teal)}
+.sec-b{font-size:14px;color:var(--ink);line-height:1.9;padding:4px 2px}
+
+.bazi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.bz-cell{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 8px;
+  text-align:center;box-shadow:var(--shadow-sm)}
+.bz-label{font-size:12px;color:var(--ink3);margin-bottom:4px}
+.bz-gz{font-size:26px;font-weight:700;color:var(--ink);letter-spacing:2px}
+.bz-shi{font-size:13px;color:var(--teal-d);margin-top:2px}
+.bz-nayin{font-size:11px;color:var(--ink3);margin-top:3px}
+
+.wx-bar{display:flex;flex-direction:column;gap:7px;max-width:420px}
+.wx-row{display:flex;align-items:center;gap:10px;font-size:13px}
+.wx-name{width:18px;color:var(--ink2)}
+.wx-track{flex:1;height:12px;background:var(--panel2);border-radius:6px;overflow:hidden}
+.wx-fill{display:block;height:100%;border-radius:6px}
+.wx-val{width:42px;text-align:right;color:var(--ink3)}
+
+.dayun-row{display:flex;gap:8px;flex-wrap:wrap}
+.dy-cell{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 10px;
+  text-align:center;min-width:54px;box-shadow:var(--shadow-sm)}
+.dy-age{font-size:11px;color:var(--ink3)}
+.dy-gz{font-size:18px;font-weight:600;color:var(--ink)}
+.dy-shi{font-size:11px;color:var(--teal-d)}
+
+.ziwei-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.palace-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 10px;
+  box-shadow:var(--shadow-sm);min-height:72px}
+.palace-card.ming{border-color:var(--gold);background:linear-gradient(160deg,#fffaf0,#fff);
+  box-shadow:0 2px 10px rgba(230,162,60,.18)}
+.pc-head{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:5px}
+.pc-zhi{color:var(--ink3);font-weight:400;font-size:12px}
+.pc-stars{display:flex;flex-wrap:wrap;gap:4px}
+.star-chip{font-size:13px;font-weight:600;background:var(--panel2);border-radius:6px;
+  padding:2px 6px;line-height:1.5}
+.star-chip .sihua{font-style:normal;font-size:10px;margin-left:2px;opacity:.9}
+.pc-empty{font-size:12px;color:var(--ink3)}
+
+.sihua-line{display:flex;gap:12px;flex-wrap:wrap}
+.sihua-pill{font-size:14px;font-weight:600}
+
+.gua-box{background:var(--panel2);border-radius:10px;padding:12px 16px;font-size:15px;color:var(--ink)}
+.gua-box b{color:var(--teal-dd);font-size:17px}
+.gua-sub{font-size:12px;color:var(--ink3);margin-top:4px}
+
+.tag-row{display:flex;flex-wrap:wrap;gap:8px}
+.tag{background:var(--teal-bg);color:var(--teal-dd);border-radius:6px;padding:4px 10px;font-size:13px}
+.liuqin-tbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px}
+.liuqin-tbl th,.liuqin-tbl td{border:1px solid var(--line);padding:7px 10px;text-align:left}
+.liuqin-tbl th{background:var(--panel2);color:var(--ink2);font-weight:600}
+.rel-list{list-style:none;padding:0;margin:6px 0;display:flex;flex-direction:column;gap:10px}
+.rel-list li{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:10px 14px;
+  box-shadow:var(--shadow-sm)}
+.rel-zhu{color:var(--ink3);font-size:13px}
+.rel-snip{color:var(--ink2);font-size:13px;margin-top:4px;line-height:1.7}
+.mingli .sec-b{background:var(--panel2);border-radius:8px;padding:10px 14px}
