@@ -2,6 +2,9 @@
 # so the large-blob deploy is more likely to survive a flaky uplink.
 tools/exe_strings.txt
 web_app/.uvicorn.log
+# data.db (97MB) is NOT bundled to Vercel; common.py downloads it at runtime
+# from the GitHub repo (DATA_DB_URL). It is still committed to git normally.
+web_app/data.db
 *.log
 .workbuddy/
 .vercel/
