@@ -7,14 +7,26 @@
 
   // ---------- 注入样式 ----------
   const CSS = `
-  .board-tabs{display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px;background:#15324a;
-    border-bottom:2px solid #0c2236;position:sticky;top:0;z-index:20}
-  .board-tab{padding:8px 14px;border-radius:8px 8px 0 0;color:#cfe3f2;cursor:pointer;
-    font-size:15px;font-weight:600;border:1px solid transparent;white-space:nowrap}
-  .board-tab:hover{background:#1d4a66}
-  .board-tab.active{background:#0c2236;color:#ffd479;border-color:#0c2236;border-bottom:none}
-  .sub-group-title{font-weight:700;color:#9fc1da;padding:8px 12px 4px;font-size:13px;
-    background:#11304a;border-radius:6px;margin:6px 6px 2px}
+  .app{display:flex;flex-direction:column;height:100vh}
+  .layout{flex:1;flex-direction:column;min-height:0}
+  .board-tabs{display:flex;flex-wrap:wrap;align-items:center;gap:4px;padding:8px 16px;
+    background:linear-gradient(135deg,var(--teal),var(--teal-d));
+    border-bottom:2px solid var(--teal-d);position:sticky;top:0;z-index:30}
+  .board-tab{position:relative;padding:9px 16px;border-radius:8px;color:#fff;cursor:pointer;
+    font-size:15px;font-weight:600;white-space:nowrap;user-select:none;transition:.12s}
+  .board-tab:hover{background:rgba(255,255,255,.18)}
+  .board-tab.active{background:#fff;color:var(--teal-dd)}
+  .board-tab .bt-count{opacity:.7;font-size:12px;font-weight:400;margin-left:2px}
+  .board-dropdown{display:none;position:absolute;top:calc(100% + 8px);left:0;
+    min-width:215px;background:var(--panel);border:1px solid var(--line);
+    border-radius:10px;box-shadow:var(--shadow);padding:6px;z-index:40}
+  .board-tab.open .board-dropdown{display:block}
+  .board-dd-group{font-weight:700;color:var(--ink3);font-size:12px;
+    padding:8px 10px 3px;margin-top:2px;letter-spacing:.5px}
+  .board-dd-item{padding:9px 11px;border-radius:7px;color:var(--ink);cursor:pointer;
+    font-size:14px;transition:.12s}
+  .board-dd-item:hover{background:var(--teal-bg);color:var(--teal-dd)}
+  .board-dd-item.active{background:var(--teal-bg);color:var(--teal-dd);font-weight:600}
   .tu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;padding:10px}
   .tu-cell{border:1px solid #245;background:#0f2a40;border-radius:8px;overflow:hidden;cursor:pointer}
   .tu-cell:hover{border-color:#ffd479}
@@ -72,7 +84,7 @@
   }
   function esc(s) { return (s == null ? "" : String(s)).replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c])); }
 
-  const sidebar = $("#sidebar"), boardTabs = $("#boardTabs"),
+  const boardTabs = $("#boardTabs"),
         moduleHead = $("#moduleHead"), listHint = $("#listHint"),
         resultList = $("#resultList"), detailPane = $("#detailPane"),
         filterBar = $("#filterBar"), pager = $("#pager");
@@ -128,33 +140,53 @@
   }
 
   // ---------- 板块 / 子模块 渲染 ----------
+  function closeDropdowns() {
+    [...boardTabs.querySelectorAll(".board-tab.open")].forEach(t => t.classList.remove("open"));
+  }
+  document.addEventListener("click", closeDropdowns);
+
   function renderBoards() {
     boardTabs.innerHTML = "";
     BOARDS.forEach(b => {
-      const t = el("div", "board-tab", esc(b.name) + " <span style='opacity:.6'>(" + b.count + ")</span>");
-      t.onclick = () => selectBoard(b);
-      if (b === CUR_BOARD) t.classList.add("active");
+      const t = el("div", "board-tab" + (b === CUR_BOARD ? " active" : ""));
+      t.innerHTML = esc(b.name) + " <span class='bt-count'>(" + b.count + ")</span>";
+      const dd = el("div", "board-dropdown");
+      const walk = (subs) => subs.forEach(s => {
+        if (s.subs) {
+          dd.appendChild(el("div", "board-dd-group", esc(s.name)));
+          walk(s.subs);
+        } else {
+          const it = el("div", "board-dd-item");
+          if (s === CUR_SUB) it.classList.add("active");
+          it.textContent = s.name;
+          it.onclick = (e) => { e.stopPropagation(); selectSub(s); };
+          dd.appendChild(it);
+        }
+      });
+      walk(b.subs);
+      t.appendChild(dd);
+      t.onclick = (e) => {
+        e.stopPropagation();
+        const wasOpen = t.classList.contains("open");
+        closeDropdowns();
+        if (wasOpen) return;
+        if (b !== CUR_BOARD) {
+          CUR_BOARD = b;
+          [...boardTabs.children].forEach(c => c.classList.remove("active"));
+          t.classList.add("active");
+        }
+        t.classList.add("open");
+      };
       boardTabs.appendChild(t);
     });
   }
-  function selectBoard(b) {
+  function selectBoard(b, autoFirst) {
     CUR_BOARD = b; CUR_SUB = null;
     renderBoards();
-    sidebar.innerHTML = "";
-    const walk = (subs) => subs.forEach(s => {
-      if (s.subs) {
-        sidebar.appendChild(el("div", "sub-group-title", esc(s.name)));
-        walk(s.subs);
-      } else {
-        const it = el("div", "sub-item", esc(s.name));
-        it.onclick = () => selectSub(s);
-        sidebar.appendChild(it);
-      }
-    });
-    walk(b.subs);
-    // 默认选中第一个子模块
-    const first = firstLeaf(b);
-    if (first) selectSub(first);
+    if (autoFirst) {
+      const first = firstLeaf(b);
+      if (first) selectSub(first);
+    }
   }
   function firstLeaf(b) {
     for (const s of b.subs) { if (s.subs) { const f = firstLeaf({ subs: s.subs }); if (f) return f; } else return s; }
@@ -162,19 +194,17 @@
   }
   function selectSub(s) {
     CUR_SUB = s;
-    [...sidebar.querySelectorAll(".sub-item")].forEach(x => x.classList.remove("active"));
-    // 高亮当前
-    const items = [...sidebar.querySelectorAll(".sub-item")];
-    // naive: 重新渲染高亮
-    [...sidebar.children].forEach(c => { if (c.textContent.trim() === s.name) c.classList.add("active"); });
     moduleHead.innerHTML = "<h2>" + esc(s.name) + "</h2><p class='brand-sub'>" + esc(s.desc || "") + "</p>";
     listHint.style.display = "none";
     pager.innerHTML = ""; filterBar.innerHTML = "";
+    [...boardTabs.querySelectorAll(".board-dd-item")].forEach(x =>
+      x.classList.toggle("active", x.textContent.trim() === s.name));
     dispatchSub(s);
+    closeDropdowns();
   }
 
   function dispatchSub(s) {
-    resultList.innerHTML = ""; detailPane.innerHTML = "<div class='hint'>点击左侧条目查看详情。</div>";
+    resultList.innerHTML = ""; detailPane.innerHTML = "<div class='hint'>请从上方导航菜单选择子模块，点击条目查看详情。</div>";
     const k = s.kind;
     if (k === "meridians") return renderMeridians(s);
     if (k === "points") return renderPoints(s);
@@ -577,7 +607,7 @@
     if (si) si.onkeydown = e => { if (e.key === "Enter") doSearch(si.value); };
     getJSON("/api/renji/modules").then(bs => {
       BOARDS = bs;
-      if (BOARDS[0]) selectBoard(BOARDS[0]);
+      if (BOARDS[0]) selectBoard(BOARDS[0], true);
     });
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
