@@ -811,11 +811,11 @@ def _norm_catalog(s):
 
 
 def _build_tianji_catalog():
-    """按天纪目录大纲(tianji_catalog.txt) 构建三层章节树，并把天纪现有文章归入：
-       - 八字理论/紫微星曜(lilun) 按归一化标题匹配到各条目；
-       - 六十四卦(gua)/人间道(rendao) 整体归入「天纪卦象查询」；
-       - 八字命例(mingli) 整体归入「案例查询」；
-       - 匹配不到条目的 lilun 文章收进「未归类」，确保 506 篇全部不丢。"""
+    """按天纪目录大纲(tianji_catalog.txt) 构建三层章节树，并把天纪全部文章按归一化标题归入对应条目：
+       - lilun(八字/紫微理论+断法) → 基础理论/断法细则/子女/时辰效验
+       - gua(六十四卦) / rendao(人间道) → 天纪卦象查询（按子分类名偏好六十四卦/人间道）
+       - mingli(八字命例) → 案例查询（大师案例/收集案例/自断案例）
+       - 每条目录条目直接对应文章标题，确保 506 篇全部不丢（未命中条目者进「未归类」）。"""
     base = os.path.dirname(os.path.abspath(__file__))
     p1 = os.path.join(base, "tianji_catalog.txt")
     p2 = r"E:\Soft\倪海夏三套学习系统\QQ频道号talktyph0id\天纪学习系统\列表.txt"
@@ -862,61 +862,78 @@ def _build_tianji_catalog():
         return [(i, (r.get("name") or "").strip())
                 for i, r in enumerate(src_list)
                 if (r.get("name") or "").strip()]
-    lilun = names(tianji_db.LILUN)
-    gua = names(tianji_db.GUA)
-    rendao = names(tianji_db.RENDAO)
-    mingli = names(tianji_db.MINGLI)
+    SRC = {
+        "lilun": names(tianji_db.LILUN),
+        "gua": names(tianji_db.GUA),
+        "rendao": names(tianji_db.RENDAO),
+        "mingli": names(tianji_db.MINGLI),
+    }
+    # 每个来源允许归入的顶层分类
+    ALLOW = {"lilun": {"基础理论", "断法细则", "子女", "时辰效验"},
+             "gua": {"天纪卦象查询"}, "rendao": {"天纪卦象查询"},
+             "mingli": {"案例查询"}}
+    # 同名条目（如「乾为天」同时存在于六十四卦与人间道）时，按子分类名偏好挑选来源
+    SUBHINT = {"gua": "卦", "rendao": "道"}
 
-    used_lilun = set()
+    # 扁平化所有条目，附带其所属 顶层/子分类 名
+    flat = []
     for cat in tree:
         for sub in cat["subs"]:
             for e in sub["entries"]:
+                flat.append((e, cat["name"], sub["name"]))
+
+    used = {k: set() for k in SRC}
+    for sk, lst in SRC.items():
+        allowed = ALLOW[sk]
+        hint = SUBHINT.get(sk)
+        for (i, n) in lst:
+            nn = _norm_catalog(n)
+            if not nn:
+                continue
+            best = None
+            bestscore = -1
+            for (e, cn, sn) in flat:
+                if cn not in allowed:
+                    continue
                 en = _norm_catalog(e["name"])
                 if not en:
                     continue
-                for (i, n) in lilun:
-                    nn = _norm_catalog(n)
-                    if nn and (nn == en or en in nn or nn in en):
-                        e["articles"].append({"src": "lilun", "i": i, "name": n})
-                        used_lilun.add(i)
+                if nn == en or en in nn or nn in en:
+                    score = 0
+                    if nn == en:
+                        score += 5
+                    if hint and hint in sn:
+                        score += 10
+                    if score > bestscore:
+                        bestscore = score
+                        best = e
+            if best is not None:
+                best["articles"].append({"src": sk, "i": i, "name": n})
+                used[sk].add(i)
 
-    uncat = [{"src": "lilun", "i": i, "name": n}
-             for (i, n) in lilun if i not in used_lilun]
-
+    # 安全网：任何未命中的 gua/rendao/mingli 整体挂载，确保零丢失
     def find_cat(name):
         for c in tree:
             if c["name"] == name:
                 return c
         return None
+    _fallback = {"gua": "天纪卦象查询", "rendao": "天纪卦象查询", "mingli": "案例查询"}
+    for sk in ("gua", "rendao", "mingli"):
+        un = [(i, n) for (i, n) in SRC[sk] if i not in used[sk]]
+        if un:
+            c = find_cat(_fallback[sk])
+            if c is not None:
+                c["subs"].append({
+                    "name": f"{sk}未归类({len(un)})",
+                    "entries": [{"name": n,
+                                 "articles": [{"src": sk, "i": i, "name": n}]}
+                                for i, n in un],
+                })
 
-    gx = find_cat("天纪卦象查询")
-    if gx is not None:
-        rd_sub = next((s for s in gx["subs"] if s["name"] == "人间道"), None)
-        if rd_sub is None:
-            rd_sub = {"name": "人间道", "entries": []}
-            gx["subs"].append(rd_sub)
-        rd_sub["entries"].append({
-            "name": "人间道全集（%d 卦）" % len(rendao),
-            "articles": [{"src": "rendao", "i": i, "name": n} for i, n in rendao],
-        })
-        gx["subs"].append({
-            "name": "六十四卦",
-            "entries": [{
-                "name": "六十四卦全集（%d 卦）" % len(gua),
-                "articles": [{"src": "gua", "i": i, "name": n} for i, n in gua],
-            }],
-        })
-    ca = find_cat("案例查询")
-    if ca is not None:
-        ca["subs"].append({
-            "name": "八字命例",
-            "entries": [{
-                "name": "八字命例全集（%d 例）" % len(mingli),
-                "articles": [{"src": "mingli", "i": i, "name": n} for i, n in mingli],
-            }],
-        })
-    return ({"tree": tree, "uncat": {"name": "未归类", "articles": uncat}},
-            len(lilun) + len(gua) + len(rendao) + len(mingli))
+    uncat = [{"src": "lilun", "i": i, "name": n}
+             for (i, n) in SRC["lilun"] if i not in used["lilun"]]
+    total = sum(len(v) for v in SRC.values())
+    return ({"tree": tree, "uncat": {"name": "未归类", "articles": uncat}}, total)
 
 
 TIANJI_CATALOG, TIANJI_CATALOG_TOTAL = _build_tianji_catalog()
