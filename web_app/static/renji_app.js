@@ -11,7 +11,7 @@
   .layout{flex:1;flex-direction:column;min-height:0}
   .board-tabs{display:flex;flex-wrap:wrap;align-items:center;gap:4px;padding:8px 16px;
     background:linear-gradient(135deg,var(--teal),var(--teal-d));
-    border-bottom:2px solid var(--teal-d);position:sticky;top:0;z-index:30}
+    border-bottom:2px solid var(--teal-d);position:sticky;top:64px;z-index:30}
   .board-tab{position:relative;padding:9px 16px;border-radius:8px;color:#fff;cursor:pointer;
     font-size:15px;font-weight:600;white-space:nowrap;user-select:none;transition:.12s}
   .board-tab:hover{background:rgba(255,255,255,.18)}

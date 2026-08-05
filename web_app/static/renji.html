@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>人纪学习系统 · 网页版</title>
-    <link rel="stylesheet" href="/static/style.css?v=31">
+    <link rel="stylesheet" href="/static/style.css?v=32">
 </head>
 <body>
 <div class="app">
-  <header class="topbar">
+  <header class="topbar renji-bar">
     <div class="brand">
       <img class="brand-logo" src="/static/logo.png" alt="人纪学习系统">
       <div>
@@ -20,9 +20,8 @@
       <input id="search" type="text" placeholder="搜索人纪：穴位 / 方剂 / 医案 / 经络…" autocomplete="off">
       <button id="searchBtn">搜索</button>
     </div>
+    <div id="sysInline" class="sys-inline"></div>
   </header>
-
-  <div id="sysBar" class="sysbar"></div>
 
   <div class="layout">
     <div class="board-tabs" id="boardTabs"></div>
@@ -46,7 +45,7 @@
   </div>
 </div>
 <script>window.SYSTEM = "renji";</script>
-<script src="/static/sysbar.js?v=31"></script>
-<script src="/static/renji_app.js?v=2"></script>
+<script src="/static/sysbar.js?v=32"></script>
+<script src="/static/renji_app.js?v=3"></script>
 </body>
 </html>
