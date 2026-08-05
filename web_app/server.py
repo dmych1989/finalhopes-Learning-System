@@ -115,6 +115,49 @@ for _v in ARTICLE_MAP.values():
 for _r in ARTICLES:
     _r["_art_cat"] = ARTICLE_MAP.get(str(_r.get("ID", "")), "")
 
+# ---- 病症研究（按疾病专论归类）模块 --------------------------------------
+# 原 EXE（医案论文内部查询系统V2022c61.exe）菜单另含一组「疾病专论」栏目
+# （艾滋病专论 / 肺病专论 / 肝癌专论 … 癌症专论 等），其文章分散在 nhxlwj
+# 全库中，源数据无独立病种字段。这里以「病种关键词」对 3499 篇文章做一次性
+# 离线归类：每篇取其标题(MZ) + 正文前 160 字做子串匹配，归入命中的病种；
+# 一篇文章可命中多个病种（如某乳癌文同时归入「乳癌专论」与「癌症专论」），
+# 符合浏览型筛选的直觉。关键词集合参考 tools/文章分类.txt 的病种覆盖度校准。
+BZ_CATS = [
+    {"key": "aids",      "name": "艾滋病专论", "kws": ["艾滋", "爱滋", "AIDS", "HIV", "後天免疫", "后天免疫"]},
+    {"key": "feibing",   "name": "肺病专论",   "kws": ["肺癌", "肺积水", "肺衰竭", "肺气肿", "肺结核", "气喘", "哮喘", "慢性支气管炎", "肺炎", "胸腔", "气管", "肺家阴实", "肺痛", "肺家"]},
+    {"key": "ganai",     "name": "肝癌专论",   "kws": ["肝癌", "肝肿瘤", "肝家阴实", "肝指数", "肝腹水", "肝硬化", "B肝", "C肝", "肝炎", "肝病", "肝衰竭"]},
+    {"key": "guzhi",     "name": "骨质疏松症", "kws": ["骨质疏松", "骨松", "骨质", "骨折", "骨密度", "软骨", "钙"]},
+    {"key": "laonian",   "name": "老年痴呆症", "kws": ["老年", "痴呆", "阿兹海默", "阿尔茨海默", "失智", "记忆", "脑退化"]},
+    {"key": "rubai",     "name": "乳癌专论",   "kws": ["乳癌", "乳房", "乳腺", "乳腺癌"]},
+    {"key": "shenzang",  "name": "肾脏病专论", "kws": ["肾脏", "肾病", "肾衰", "洗肾", "尿毒症", "肾炎", "肾衰竭", "肾臟", "腰子", "肾阳", "肾水"]},
+    {"key": "weitaming", "name": "维他命专论", "kws": ["维他命", "维生素", "Vitamin", "叶酸", "B12", "D3"]},
+    {"key": "xinzang",   "name": "心脏病专论", "kws": ["心脏病", "心衰竭", "心肌梗塞", "冠心病", "心律", "心绞痛", "高血压", "血压", "心脏", "心臟", "心阳", "心血"]},
+    {"key": "yizang",    "name": "胰脏癌专论", "kws": ["胰脏", "胰腺癌", "胰臟", "胰"]},
+    {"key": "zisha",     "name": "自杀案例",   "kws": ["自杀", "轻生", "忧郁", "抑郁", "想死"]},
+    {"key": "dachang",   "name": "大肠癌专论", "kws": ["大肠癌", "肠癌", "直肠癌", "结肠", "直肠"]},
+    {"key": "fuke",      "name": "妇科专论",   "kws": ["妇科", "经期", "月经", "子宫", "卵巢", "女科", "白带", "孕期", "妊娠", "阴道"]},
+    {"key": "ganmao",    "name": "感冒与疫苗", "kws": ["感冒", "疫苗", "流感", "防疫", "预防针", "接种", "病毒", "发烧", "发热", "疫"]},
+    {"key": "hongban",   "name": "红斑狼疮",   "kws": ["红斑", "狼疮", "SLE"]},
+    {"key": "naobing",   "name": "脑病专论",   "kws": ["脑瘤", "脑瘫", "偏头痛", "癫痫", "帕金森", "脑病", "脑神经", "脑膜炎", "脑中风"]},
+    {"key": "shepro",    "name": "摄护腺癌",   "kws": ["摄护腺", "前列腺癌", "PSA", "摄护"]},
+    {"key": "tangniao",  "name": "糖尿病专论", "kws": ["糖尿病", "血糖", "胰岛素", "糖尿", "消渴", "梵帝雅"]},
+    {"key": "weibing",   "name": "胃病区专论", "kws": ["胃病", "胃炎", "胃溃疡", "胃癌", "胃粘膜", "十二指肠溃疡", "胃家", "胃气", "胃"]},
+    {"key": "xueai",     "name": "血癌专论",   "kws": ["血癌", "白血病", "淋巴癌", "骨髓瘤", "淋巴"]},
+    {"key": "zhongfeng", "name": "中风专论",   "kws": ["中风", "脑卒中", "脑血管", "偏瘫", "半身不遂"]},
+    {"key": "aizheng",   "name": "癌症专论",   "kws": ["癌", "肿瘤", "癌症", "恶性肿瘤", "阴实", "肉瘤", "癌末", "癌指", "癌细"]},
+]
+BZ_CAT_SETS = {}
+BZ_CAT_CTR = {}
+for _cat in BZ_CATS:
+    _idxs = set()
+    for _i, _r in enumerate(ARTICLES):
+        _blob = str(_r.get("MZ", "")) + " " + str(_r.get("NR", ""))[:160]
+        if any(_k in _blob for _k in _cat["kws"]):
+            _idxs.add(_i)
+    BZ_CAT_SETS[_cat["key"]] = _idxs
+    BZ_CAT_CTR[_cat["key"]] = len(_idxs)
+BZ_TOTAL = len(set().union(*BZ_CAT_SETS.values())) if BZ_CAT_SETS else 0
+
 # ---- 黄帝外经（外经微言，陈士铎本）独立模块 ---------------------------------
 # 原 EXE(医案论文内部查询系统V2022c61.exe) 菜单含独立的「黄帝外经」节点，其下即
 # 《外经微言》八十一篇（雷公问·岐伯曰 体例）。这些篇章在源库中存于 nhxlwj 表，
@@ -304,6 +347,7 @@ MODULES = [
     {"key": "articles","name": "倪海厦论文",      "table": "nhxlwj",  "desc": "3499 篇文章/讲记（13 栏目 + 全部论文）"},
     {"key": "cases",   "name": "医案查询",        "table": "1234567", "desc": "1475 则临床医案（问诊/脉诊/处方/针灸）"},
     {"key": "hdwj",    "name": "黄帝外经",        "table": "",       "desc": f"《外经微言》(陈士铎本) 共 {len(HDWJ)} 篇黄帝外经全文"},
+    {"key": "bz",      "name": "病症研究",        "table": "",       "desc": f"按 22 类疾病专论归类（艾滋病/肺病/肝癌/乳癌/糖尿病…共 {BZ_TOTAL} 篇）"},
 ]
 
 REF_TABLES = {"BBXX": BBXX, "BZDZ": BZDZ, "ZFBZ": ZFBZ,
@@ -442,6 +486,26 @@ def api_article(aid: str):
         if str(r.get("ID", "")) == str(aid):
             return r
     raise HTTPException(404, "not found")
+
+
+# ---- 病症研究：按疾病专论筛选 nhxlwj 文章 ----
+@app.get("/api/bz/cats")
+def api_bz_cats():
+    """22 个疾病专论栏目及命中文章数，供病症研究模块左侧目录侧栏使用。"""
+    out = [{"key": c["key"], "name": c["name"], "count": BZ_CAT_CTR.get(c["key"], 0)}
+           for c in BZ_CATS]
+    return {"cats": out}
+
+
+@app.get("/api/bz")
+def api_bz(cat: str = "", q: str = "", page: int = 1, size: int = 20):
+    data = ARTICLES
+    if cat and cat in BZ_CAT_SETS:
+        data = [ARTICLES[i] for i in BZ_CAT_SETS[cat]]
+    if q:
+        data = [r for r in data if search_in(r, q)]
+    items, total = paginate(data, page, size)
+    return {"total": total, "page": page, "size": size, "items": items}
 
 
 # ---- 黄帝外经（外经微言）模块：nhxlwj 中以篇章名为 MZ 的 78 篇 ----

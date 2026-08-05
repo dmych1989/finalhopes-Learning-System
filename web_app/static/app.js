@@ -1,5 +1,5 @@
 // -*- coding: utf-8 -*-
-const state = { module: null, page: 1, size: 20, items: [], total: 0, herbCat: "", caseCat: "", articleCat: "" };
+const state = { module: null, page: 1, size: 20, items: [], total: 0, herbCat: "", caseCat: "", articleCat: "", bzCat: "" };
 const REF_TABLES = { bbxx: "BBXX", bzdz: "BZDZ", zfbz: "ZFBZ", zjdcjl: "ZJDCJL", hantang: "hantang" };
 const ACU_TABLES = [
   { key: "lingui", name: "灵龟八法", tbl: "lingui" },
@@ -25,6 +25,7 @@ let lastSearchData = null;
 let yaotuQ = "", yaotuCat = "";
 let casesCatsCache = null;                 // 医案证型分类（缓存）
 let articleCatsCache = null;               // 论文栏目分类（缓存）
+let bzCatsCache = null;                    // 病症研究病种目录（缓存）
 let ARTICLE_TOTAL = 0;                     // 论文总数（全部）
 let xueweiCatsCache = null, xueweiTotal = 0; // 穴位分类（含经络走向动画计数）
 // 子系统（人纪 / 天纪）：子模块列表 / 当前子模块 / 当前子模块的元数据 / 子模块内搜索词
@@ -157,6 +158,7 @@ function selectModule(m, el) {
   state.herbCat = "";
   state.caseCat = "";
   state.articleCat = "";
+  state.bzCat = "";
   const catNav = $("#casesCatNav");
   if (catNav) catNav.style.display = "none";
   const artNav = $("#articleCatNav");
@@ -189,6 +191,7 @@ function endpointFor(q) {
   if (k === "herbs") return `/api/herbs?q=${enc(q)}&cat=${enc(state.herbCat)}&page=${state.page}&size=${state.size}`;
   if (k === "articles") return `/api/articles?cat=${enc(state.articleCat || "")}&q=${enc(q)}&page=${state.page}&size=${state.size}`;
   if (k === "hdwj") return `/api/hdwj?q=${enc(q)}&page=${state.page}&size=${state.size}`;
+  if (k === "bz") return `/api/bz?cat=${enc(state.bzCat || "")}&q=${enc(q)}&page=${state.page}&size=${state.size}`;
   if (REF_TABLES[k]) return `/api/ref/${REF_TABLES[k]}?q=${enc(q)}&page=${state.page}&size=${state.size}`;
   return null;
 }
@@ -203,6 +206,9 @@ async function loadList(q) {
   }
   if (state.module === "articles" && !articleCatsCache) {
     try { articleCatsCache = await api("/api/articles/cats"); } catch (e) { articleCatsCache = { cats: [] }; }
+  }
+  if (state.module === "bz" && !bzCatsCache) {
+    try { bzCatsCache = await api("/api/bz/cats"); } catch (e) { bzCatsCache = { cats: [] }; }
   }
   clearFilterBar();
   let data;
@@ -225,6 +231,8 @@ async function loadList(q) {
     renderCasesCatNav(casesCatsCache.cats, state.caseCat || "all");
   } else if (state.module === "articles" && articleCatsCache) {
     renderArticleCatNav(articleCatsCache.cats, state.articleCat || "");
+  } else if (state.module === "bz" && bzCatsCache) {
+    renderBzCatNav(bzCatsCache.cats, state.bzCat || "");
   } else if (state.module === "herbs" && data.cats) {
     renderHerbTabs(data.cats);
   }
@@ -273,6 +281,30 @@ function renderArticleCatNav(cats, activeKey) {
   });
 }
 
+// 病症研究「按疾病专论浏览」左侧目录侧栏（22 个病种），复用论文栏目的 #articleCatNav 容器。
+function renderBzCatNav(cats, activeKey) {
+  const nav = $("#articleCatNav");
+  if (!nav) return;
+  nav.style.display = "block";
+  nav.innerHTML = "";
+  const title = document.createElement("div");
+  title.className = "catnav-title";
+  title.textContent = "病症分类";
+  nav.appendChild(title);
+  const all = document.createElement("button");
+  all.className = "catnav-item" + (activeKey === "" ? " active" : "");
+  all.innerHTML = `<span class="cn-label">全部病症</span>`;
+  all.onclick = () => { state.bzCat = ""; state.page = 1; loadList($("#search").value); };
+  nav.appendChild(all);
+  (cats || []).forEach((c) => {
+    const b = document.createElement("button");
+    b.className = "catnav-item" + (c.key === activeKey ? " active" : "");
+    b.innerHTML = `<span class="cn-label">${esc(c.name)}</span><em class="cn-count">${c.count}</em>`;
+    b.onclick = () => { state.bzCat = c.key; state.page = 1; loadList($("#search").value); };
+    nav.appendChild(b);
+  });
+}
+
 // Pick a sensible title / subtitle for a record, regardless of which columns
 // the table actually has (e.g. hantang uses ID/zygn, others use MZ/NR).
 function refTitleSub(rec) {
@@ -298,6 +330,7 @@ function itemTitleSub(k, rec) {
   if (k === "articles") return [rec.MZ || "(无标题)", (rec.NR || "").slice(0, 80)];
   // 黄帝外经：左侧列表只显示篇名（不显示正文摘要），篇次序号由列表渲染单独加。
   if (k === "hdwj") return [rec.MZ || "(无标题)", ""];
+  if (k === "bz") return [rec.MZ || "(无标题)", (rec.NR || "").slice(0, 80)];
   if (k === "yaotu") return [rec.name, ""];
   if (k === "xuewei") return [rec.name, [rec.cat_name, rec.sub].filter(Boolean).join(" · ")];
   return refTitleSub(rec);
@@ -355,6 +388,7 @@ function showDetail(k, rec) {
   if (k === "herbs") return showHerb(rec);
   if (k === "articles") return showArticle(rec);
   if (k === "hdwj") return showArticle(rec);
+  if (k === "bz") return showArticle(rec);
   if (k === "hantang") return showHantang(rec);
   return showGeneric(rec, k);
 }
