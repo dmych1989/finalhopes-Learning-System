@@ -14,6 +14,7 @@ import os
 import re
 import json
 import sqlite3
+import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))          # web_app dir
 DEFAULT_DB = os.path.join(HERE, "data.db")
@@ -39,9 +40,17 @@ def _resolve_db_path():
     的实例走 DEFAULT_DB 分支，瞬时返回；否则返回 None，由调用方降级（USE_SQLITE=False）。
     真正的下载在 _ensure_db() 中按需、懒触发（首次访问数据时），不阻塞导入。
     """
-    cache = os.path.join("/tmp", "finalhopes_data.db")
+    cache = os.path.join(tempfile.gettempdir(), "finalhopes_data.db")
     if os.path.exists(DEFAULT_DB):
-        return DEFAULT_DB
+        # Vercel's function FS (/var/task) is read-only; copy to writable /tmp
+        # so sqlite3 can open read-write. Local dev keeps using web_app/data.db.
+        try:
+            import shutil
+            shutil.copyfile(DEFAULT_DB, cache)
+            return cache
+        except Exception as e:  # pragma: no cover - /tmp should be writable
+            print("WARN: copy data.db -> /tmp failed:", repr(e))
+            return DEFAULT_DB
     if os.path.exists(cache) and os.path.getsize(cache) > 1_000_000:
         return cache
     return None
@@ -82,7 +91,7 @@ def _ensure_db():
     if USE_SQLITE and DATA_DB and os.path.exists(DATA_DB):
         return True
     # 本地 /tmp 缓存（同实例复用，避免重复下载）
-    cache = os.path.join("/tmp", "finalhopes_data.db")
+    cache = os.path.join(tempfile.gettempdir(), "finalhopes_data.db")
     if os.path.exists(cache) and os.path.getsize(cache) > 1_000_000:
         DATA_DB, USE_SQLITE = cache, True
         return True

@@ -44,3 +44,11 @@ tools/scan*.py
 tools/schema_dump.py
 tools/search_alpha.py
 tools/verify_decrypt.py
+
+# Local full-size SQLite backup (NOT committed; 96.9 MB). web_app/data.db is the
+# slim committed version. The deploy script reads public/img/** from disk, not git.
+web_app/data_full.db
+
+# Static images are deployed via vercel_deploy.py (reads public/img/** from disk),
+# never committed to git.
+public/
