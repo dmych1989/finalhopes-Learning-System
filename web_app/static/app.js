@@ -82,20 +82,34 @@ async function api(path, opts) {
 
 function buildSidebar(modules) {
   const bar = $("#boardTabs");
-  if (!bar) return;
-  bar.innerHTML = "";
-  modules.forEach((m) => {
-    const d = document.createElement("div");
-    d.className = "board-tab";
-    d.innerHTML = `<span>${esc(m.name)}</span>`;
-    m._el = d;
-    d.onclick = () => selectModule(m, d);
-    bar.appendChild(d);
-  });
+  const side = $("#sidebar");
+  if (bar) {
+    // lilun：模块标签横向排在顶部（与 renji 顶栏一致）
+    bar.innerHTML = "";
+    modules.forEach((m) => {
+      const d = document.createElement("div");
+      d.className = "board-tab";
+      d.innerHTML = `<span>${esc(m.name)}</span>`;
+      m._el = d;
+      d.onclick = () => selectModule(m, d);
+      bar.appendChild(d);
+    });
+  } else if (side) {
+    // tianji：模块列表保留在左侧（原设计），顶部栏只放 logo/搜索/三系统切换
+    side.innerHTML = "";
+    modules.forEach((m) => {
+      const d = document.createElement("div");
+      d.className = "nav-item";
+      d.innerHTML = `${esc(m.name)}<small>${esc(m.desc || "")}</small>`;
+      m._el = d;
+      d.onclick = () => selectModule(m, d);
+      side.appendChild(d);
+    });
+  }
 }
 
 function setActive(el) {
-  document.querySelectorAll(".board-tab").forEach((n) => n.classList.remove("active"));
+  document.querySelectorAll(".board-tab, .nav-item").forEach((n) => n.classList.remove("active"));
   if (el) el.classList.add("active");
 }
 

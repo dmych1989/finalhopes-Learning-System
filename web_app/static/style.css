@@ -63,6 +63,8 @@ body{margin:0;font-family:"PingFang SC","Microsoft YaHei","PingFangTC-Regular","
 
 /* ===== 布局 ===== */
 .layout{display:flex;flex-direction:column;flex:1;min-height:0}
+/* 天纪：保留左侧模块列表，sidebar 在左、main 在右（与 lilun/renji 顶部模块标签不同，按内容需要） */
+.layout--side{flex-direction:row}
 .sidebar{width:226px;background:var(--panel);border-right:1px solid var(--line);
   padding:12px 12px;overflow:auto}
 .sidebar .nav-item{padding:11px 14px;margin:4px 0;border-radius:var(--radius-sm);cursor:pointer;
