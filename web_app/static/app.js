@@ -81,20 +81,21 @@ async function api(path, opts) {
 }
 
 function buildSidebar(modules) {
-  const sb = $("#sidebar");
-  sb.innerHTML = "";
+  const bar = $("#boardTabs");
+  if (!bar) return;
+  bar.innerHTML = "";
   modules.forEach((m) => {
     const d = document.createElement("div");
-    d.className = "nav-item";
-    d.innerHTML = `${m.name}<small>${m.desc}</small>`;
+    d.className = "board-tab";
+    d.innerHTML = `<span>${esc(m.name)}</span>`;
     m._el = d;
     d.onclick = () => selectModule(m, d);
-    sb.appendChild(d);
+    bar.appendChild(d);
   });
 }
 
 function setActive(el) {
-  document.querySelectorAll(".nav-item").forEach((n) => n.classList.remove("active"));
+  document.querySelectorAll(".board-tab").forEach((n) => n.classList.remove("active"));
   if (el) el.classList.add("active");
 }
 

@@ -21,29 +21,48 @@ body{margin:0;font-family:"PingFang SC","Microsoft YaHei","PingFangTC-Regular","
 .app{min-height:100vh;display:flex;flex-direction:column}
 
 /* ===== 顶栏 ===== */
-.topbar{display:flex;justify-content:space-between;align-items:center;gap:18px;
-  padding:0 22px;height:64px;background:var(--panel);border-bottom:1px solid var(--line);
-  box-shadow:var(--shadow-sm);position:sticky;top:46px;z-index:20}
-.brand{display:flex;align-items:center;gap:12px}
-.brand-logo{height:48px;width:auto;display:block;filter:drop-shadow(0 1px 3px rgba(0,0,0,.12))}
-.seal{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:14px;
+  padding:0 18px;height:52px;background:var(--panel);border-bottom:1px solid var(--line);
+  box-shadow:var(--shadow-sm);position:sticky;top:0;z-index:20}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-logo{height:38px;width:auto;display:block;filter:drop-shadow(0 1px 3px rgba(0,0,0,.12))}
+.seal{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;
   border-radius:10px;background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#fff;
-  font-size:22px;font-weight:700;box-shadow:0 2px 8px rgba(69,209,182,.35)}
-.topbar h1{margin:0;font-size:18px;font-weight:600;letter-spacing:1px;color:var(--ink)}
+  font-size:20px;font-weight:700;box-shadow:0 2px 8px rgba(69,209,182,.35)}
+.topbar h1{margin:0;font-size:16px;font-weight:600;letter-spacing:.5px;color:var(--ink)}
 .topbar p{display:none}
 .searchbox{display:flex;gap:10px;flex:1;max-width:560px}
-.searchbox input{flex:1;padding:9px 16px;border:1px solid var(--line);border-radius:20px;
+.searchbox input{flex:1;padding:8px 14px;border:1px solid var(--line);border-radius:20px;
   background:var(--panel2);color:var(--ink);font-size:14px;outline:none;transition:.15s}
 .searchbox input::placeholder{color:var(--ink3)}
 .searchbox input:focus{border-color:var(--teal);background:#fff;box-shadow:0 0 0 3px rgba(69,209,182,.12)}
-.searchbox button{padding:9px 22px;border:none;border-radius:20px;
+.searchbox button{padding:8px 18px;border:none;border-radius:20px;
   background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#fff;font-size:14px;font-weight:600;
   cursor:pointer;transition:.15s;box-shadow:0 2px 8px rgba(69,209,182,.25)}
 .searchbox button:hover{filter:brightness(1.05);box-shadow:0 4px 12px rgba(69,209,182,.35)}
 .searchbox button:active{transform:translateY(1px)}
+/* ===== 顶部板块/模块横向标签（三系统统一） ===== */
+.board-tabs{display:flex;flex-wrap:wrap;align-items:center;gap:4px;padding:6px 16px;
+  background:linear-gradient(135deg,var(--teal),var(--teal-d));
+  border-bottom:2px solid var(--teal-d);position:sticky;top:52px;z-index:18}
+.board-tab{position:relative;padding:6px 15px;border-radius:8px;color:#fff;cursor:pointer;
+  font-size:14px;font-weight:600;white-space:nowrap;user-select:none;transition:.12s}
+.board-tab:hover{background:rgba(255,255,255,.18)}
+.board-tab.active{background:#fff;color:var(--teal-dd)}
+.board-tab .bt-count{opacity:.7;font-size:12px;font-weight:400;margin-left:3px}
+.board-dropdown{display:none;position:absolute;top:calc(100% + 8px);left:0;
+  min-width:215px;background:var(--panel);border:1px solid var(--line);
+  border-radius:10px;box-shadow:var(--shadow);padding:6px;z-index:40}
+.board-tab.open .board-dropdown{display:block}
+.board-dd-group{font-weight:700;color:var(--ink3);font-size:12px;
+  padding:8px 10px 3px;margin-top:2px;letter-spacing:.5px}
+.board-dd-item{padding:9px 11px;border-radius:7px;color:var(--ink);cursor:pointer;
+  font-size:14px;transition:.12s}
+.board-dd-item:hover{background:var(--teal-bg);color:var(--teal-dd)}
+.board-dd-item.active{background:var(--teal-bg);color:var(--teal-dd);font-weight:600}
 
 /* ===== 布局 ===== */
-.layout{display:flex;flex:1;min-height:0}
+.layout{display:flex;flex-direction:column;flex:1;min-height:0}
 .sidebar{width:226px;background:var(--panel);border-right:1px solid var(--line);
   padding:12px 12px;overflow:auto}
 .sidebar .nav-item{padding:11px 14px;margin:4px 0;border-radius:var(--radius-sm);cursor:pointer;

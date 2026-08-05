@@ -4,12 +4,11 @@
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>天纪学习系统 · 网页版</title>
-    <link rel="stylesheet" href="/static/style.css?v=31">
+    <link rel="stylesheet" href="/static/style.css?v=33">
 </head>
 <body>
-<div id="sysBar" class="sysbar"></div>
 <div class="app">
-  <header class="topbar">
+  <header class="topbar renji-bar">
     <div class="brand">
       <img class="brand-logo" src="/static/logo.png" alt="天纪学习系统">
       <div>
@@ -21,10 +20,11 @@
       <input id="search" type="text" placeholder="搜索天纪：卦名 / 经文 / 干支 / 命例 / 经纬度…" autocomplete="off">
       <button id="searchBtn">搜索</button>
     </div>
+    <div id="sysInline" class="sys-inline"></div>
   </header>
 
   <div class="layout">
-    <nav class="sidebar" id="sidebar"></nav>
+    <div class="board-tabs" id="boardTabs"></div>
     <main class="main">
       <div class="module-head" id="moduleHead"></div>
       <div class="workarea">
@@ -32,20 +32,20 @@
           <aside class="cases-catnav" id="casesCatNav" style="display:none"></aside>
           <div class="list-main" id="listMain">
             <div class="filter-bar" id="filterBar"></div>
-            <div class="hint" id="listHint">请选择左侧模块，或直接在上方搜索。</div>
+            <div class="hint" id="listHint">请选择上方标签，或直接在上方搜索。</div>
             <ul id="resultList" class="result-list"></ul>
             <div class="pager" id="pager"></div>
           </div>
         </section>
         <section class="detail-pane" id="detailPane">
-          <div class="hint">点击左侧条目查看详情。</div>
+          <div class="hint">点击条目查看详情。</div>
         </section>
       </div>
     </main>
   </div>
 </div>
 <script>window.SYSTEM = "tianji";</script>
-<script src="/static/sysbar.js?v=31"></script>
-<script src="/static/app.js?v=33"></script>
+<script src="/static/sysbar.js?v=33"></script>
+<script src="/static/app.js?v=36"></script>
 </body>
 </html>

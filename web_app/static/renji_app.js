@@ -9,24 +9,6 @@
   const CSS = `
   .app{display:flex;flex-direction:column;height:100vh}
   .layout{flex:1;flex-direction:column;min-height:0}
-  .board-tabs{display:flex;flex-wrap:wrap;align-items:center;gap:4px;padding:8px 16px;
-    background:linear-gradient(135deg,var(--teal),var(--teal-d));
-    border-bottom:2px solid var(--teal-d);position:sticky;top:64px;z-index:30}
-  .board-tab{position:relative;padding:9px 16px;border-radius:8px;color:#fff;cursor:pointer;
-    font-size:15px;font-weight:600;white-space:nowrap;user-select:none;transition:.12s}
-  .board-tab:hover{background:rgba(255,255,255,.18)}
-  .board-tab.active{background:#fff;color:var(--teal-dd)}
-  .board-tab .bt-count{opacity:.7;font-size:12px;font-weight:400;margin-left:2px}
-  .board-dropdown{display:none;position:absolute;top:calc(100% + 8px);left:0;
-    min-width:215px;background:var(--panel);border:1px solid var(--line);
-    border-radius:10px;box-shadow:var(--shadow);padding:6px;z-index:40}
-  .board-tab.open .board-dropdown{display:block}
-  .board-dd-group{font-weight:700;color:var(--ink3);font-size:12px;
-    padding:8px 10px 3px;margin-top:2px;letter-spacing:.5px}
-  .board-dd-item{padding:9px 11px;border-radius:7px;color:var(--ink);cursor:pointer;
-    font-size:14px;transition:.12s}
-  .board-dd-item:hover{background:var(--teal-bg);color:var(--teal-dd)}
-  .board-dd-item.active{background:var(--teal-bg);color:var(--teal-dd);font-weight:600}
   .tu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;padding:10px}
   .tu-cell{border:1px solid #245;background:#0f2a40;border-radius:8px;overflow:hidden;cursor:pointer}
   .tu-cell:hover{border-color:#ffd479}
