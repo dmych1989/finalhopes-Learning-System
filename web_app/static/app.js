@@ -112,21 +112,17 @@ function buildSidebar(modules) {
 }
 
 function setActive(el) {
-  document.querySelectorAll(".board-tab, .nav-item, .tj-tool").forEach((n) => n.classList.remove("active"));
+  document.querySelectorAll(".board-tab, .nav-item, .tj-tool, .tj-dd-item").forEach((n) => n.classList.remove("active"));
   if (el) el.classList.add("active");
 }
 
-// 天纪：把 tool 类模块（排盘系统/命理系统）渲染为顶部横向菜单
+// 天纪：顶部横向菜单 = 工具类（排盘系统/命理系统）+ 斗数▾ + 四柱▾ 下拉
 function buildTianjiTools(modules) {
   const box = document.getElementById("tjTools");
   if (!box) return;
-  const tools = modules.filter((m) => m.kind === "tool");
   box.innerHTML = "";
-  if (!tools.length) return;
-  const label = document.createElement("span");
-  label.className = "tj-tools-label";
-  label.textContent = "工具";
-  box.appendChild(label);
+  // 工具型（排盘系统 / 命理系统）
+  const tools = modules.filter((m) => m.kind === "tool");
   tools.forEach((m) => {
     const b = document.createElement("button");
     b.type = "button";
@@ -136,6 +132,81 @@ function buildTianjiTools(modules) {
     b.onclick = () => selectModule(m, b);
     box.appendChild(b);
   });
+  // 斗数 / 四柱 下拉菜单（子类文章按规划调整）
+  const TIANJI_DD = [
+    { name: "斗数", items: [
+      { key: "_ds_basic",  name: "基础理论" },
+      { key: "_ds_detail", name: "断法细则" },
+      { tool: "paipan",    name: "汉唐内部工具" },
+      { key: "gua",        name: "天纪卦象查询" },
+    ]},
+    { name: "四柱", items: [
+      { key: "_sz_class",  name: "断法分类" },
+      { key: "_sz_basic",  name: "基础理论" },
+      { key: "_sz_detail", name: "断法细则" },
+      { key: "jingdu",     name: "时辰效验" },
+      { key: "mingli",     name: "案例查询" },
+    ]},
+  ];
+  TIANJI_DD.forEach((grp) => {
+    const tab = document.createElement("button");
+    tab.type = "button";
+    tab.className = "tj-tool has-dd";
+    tab.innerHTML = esc(grp.name) + ' <span class="caret">▾</span>';
+    const dd = document.createElement("div");
+    dd.className = "tj-dropdown";
+    grp.items.forEach((it) => {
+      const di = document.createElement("div");
+      di.className = "tj-dd-item";
+      di.textContent = it.name;
+      di.dataset.key = it.key || "";
+      di.dataset.tool = it.tool || "";
+      di.dataset.name = it.name;
+      di.onclick = (e) => { e.stopPropagation(); onTianjiLeaf(di); };
+      dd.appendChild(di);
+    });
+    tab.appendChild(dd);
+    tab.onclick = (e) => {
+      e.stopPropagation();
+      const wasOpen = tab.classList.contains("open");
+      document.querySelectorAll(".tj-tool.has-dd.open").forEach((t) => t.classList.remove("open"));
+      if (!wasOpen) tab.classList.add("open");
+    };
+    box.appendChild(tab);
+  });
+  // 点击空白处收起所有下拉（仅绑定一次）
+  if (!window.__tjDdClose) {
+    window.__tjDdClose = true;
+    document.addEventListener("click", () => {
+      document.querySelectorAll(".tj-tool.has-dd.open").forEach((t) => t.classList.remove("open"));
+    });
+  }
+}
+
+// 顶部下拉子类点击：工具类跳转排盘系统；其余以虚拟 fields 模块加载列表/详情
+function onTianjiLeaf(el) {
+  const key = el.dataset.key, tool = el.dataset.tool, name = el.dataset.name;
+  document.querySelectorAll(".tj-tool.has-dd.open").forEach((t) => t.classList.remove("open"));
+  document.querySelectorAll(".tj-dd-item").forEach((d) => d.classList.remove("active"));
+  el.classList.add("active");
+  document.querySelectorAll(".nav-item.active").forEach((d) => d.classList.remove("active"));
+  document.querySelectorAll(".tj-tool.active").forEach((d) => {
+    if (!d.classList.contains("has-dd")) d.classList.remove("active");
+  });
+  if (tool) {
+    const m = (subSubs || []).find((x) => x.key === tool);
+    if (m) { selectModule(m, el); return; }
+  }
+  // 虚拟 fields 模块（_sz_*/_ds_*），复用 /api/tianji/list 与 /item
+  subKey = key;
+  subMeta = { key: key, kind: "fields", name: name };
+  state.module = key;
+  setHead({ name: name, desc: "" });
+  $("#detailPane").innerHTML = '<div class="hint">点击左侧条目查看详情。</div>';
+  clearFilterBar();
+  subQ = "";
+  state.page = 1;
+  loadSubList();
 }
 
 function setHead(m) {

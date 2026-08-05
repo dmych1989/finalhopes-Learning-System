@@ -11,6 +11,7 @@ Two backends, auto-selected by data.db presence (see common.USE_SQLITE):
 卦图在磁盘 Data/guatu/ 下（每卦 .jpg / .png）。
 """
 import os
+import ast
 import json
 import sqlite3
 
@@ -247,6 +248,52 @@ _DATA = {
     "mingli": MINGLI, "ziwei": ZIWEI, "yijing": YIJING,
 }
 
+# ---- 斗数 / 四柱 文章分类（从「天纪理论」lilun 分出，供顶部下拉菜单）----
+# lilun 271 篇天然分两块：从名为「紫微」那篇起为紫微斗数理论，其前为八字（四柱）理论。
+# 各块再按关键词归入 基础 / 分类 / 细则。这些虚拟模块仅注入 _DATA，
+# 复用 /api/tianji/list 与 /item（均按 sub 读 _DATA），无需新增端点。
+def _build_dou_siz_sections(lilun):
+    names = [it.get("name", "") for it in lilun]
+    try:
+        split = names.index("紫微")
+    except ValueError:
+        split = len(lilun)
+    bazi = lilun[:split]      # 八字 / 四柱 理论
+    ziwei = lilun[split:]     # 紫微 / 斗数 理论
+
+    def cat_bazi(n):
+        if any(k in n for k in ("八字工作调动", "八字断特殊事", "八字牢狱",
+                                "住房条件", "验证时辰法", "择日", "命理怎样择日")):
+            return "xf"
+        if any(k in n for k in ("大运流年", "命局", "命运年", "吉凶信息",
+                                "如何区分六亲", "八字同六亲", "吉凶应在", "看兄弟排行",
+                                "婚姻", "合婚", "命理断婚外情", "子女", "学业", "财运",
+                                "官运", "工作", "性格", "长相", "相貌", "人体与疾病")):
+            return "fl"
+        return "ll"
+
+    def cat_ziwei(n):
+        if any(k in n for k in ("兄弟宫", "夫妻宫", "子女宫", "财帛宫", "疾厄宫",
+                                "迁移宫", "交友宫", "事业宫", "田宅宫", "福德宫", "父母宫",
+                                "身宫", "灾厄预测", "车祸预测", "坠跌预测", "水祸",
+                                "动物伤害", "药物中毒", "自杀", "火灾", "刑讼",
+                                "失窃破财", "事业", "灾祸", "官司", "六亲", "婚姻")):
+            return "xf"
+        return "ll"
+
+    out = {"_sz_basic": [], "_sz_class": [], "_sz_detail": [],
+           "_ds_basic": [], "_ds_detail": []}
+    bazi_map = {"ll": "_sz_basic", "fl": "_sz_class", "xf": "_sz_detail"}
+    ziwei_map = {"ll": "_ds_basic", "xf": "_ds_detail"}
+    for a in bazi:
+        out[bazi_map[cat_bazi(a.get("name", ""))]].append(a)
+    for a in ziwei:
+        out[ziwei_map[cat_ziwei(a.get("name", ""))]].append(a)
+    return out
+
+_LILUN_SECTIONS = _build_dou_siz_sections(LILUN)
+_DATA.update(_LILUN_SECTIONS)
+
 TABLE_LABELS = {
     "ziweibiao": "紫微斗数·局", "ziweizhuxing01": "紫微诸星",
     "anshixi": "安世袭卦", "dingtianfu": "定天符", "tianshi": "天师",
@@ -278,7 +325,15 @@ def get_item(sub, i):
     except (ValueError, IndexError):
         return None
     if USE_SQLITE:
-        # 转换器已把 riyue/mingli 等密文解码为最终结构，直接返回即可
+        # 转换器已把 riyue/mingli 等密文解码为最终结构；个别旧版本转换器把
+        # fields 存成了 dict 的字符串表示（含 dd 键），这里规整为 dict 以保渲染。
+        rec = dict(rec)
+        f = rec.get("fields")
+        if isinstance(f, str):
+            try:
+                rec["fields"] = ast.literal_eval(f)
+            except Exception:
+                rec["fields"] = {"正文": f}
         return rec
     # ---- mdb 模式：按需解码 ----
     if sub in ("gua", "rendao"):
