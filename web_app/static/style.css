@@ -468,3 +468,29 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
 .rel-zhu{color:var(--ink3);font-size:13px}
 .rel-snip{color:var(--ink2);font-size:13px;margin-top:4px;line-height:1.7}
 .mingli .sec-b{background:var(--panel2);border-radius:8px;padding:10px 14px}
+
+/* 天纪目录：章节树（大类→子类→条目） */
+.catalog-tree{list-style:none;margin:0;padding:0}
+.catalog-tree .cat-node{border-bottom:1px solid var(--line)}
+.catalog-tree .cat-head{cursor:pointer;padding:10px 12px;font-weight:700;color:var(--ink);
+  background:var(--panel2);display:flex;align-items:center;gap:6px;user-select:none}
+.catalog-tree .cat-head:hover{filter:brightness(.97)}
+.catalog-tree .cat-toggle{color:var(--teal-d);font-size:12px;width:12px;display:inline-block;flex:none}
+.catalog-tree .cat-head small{color:var(--ink3);font-weight:400;font-size:12px;margin-left:auto}
+.catalog-tree .cat-subs,.catalog-tree .cat-entries,.catalog-tree .cat-uncat{
+  list-style:none;margin:0;padding:0;display:none}
+.catalog-tree .cat-node.open>.cat-subs,
+.catalog-tree .sub-node.open>.cat-entries,
+.catalog-tree .cat-node.open>.cat-uncat{display:block}
+.catalog-tree .sub-head{cursor:pointer;padding:8px 12px 8px 26px;font-weight:600;color:var(--ink2);
+  background:var(--card);display:flex;align-items:center;gap:6px;user-select:none}
+.catalog-tree .sub-head:hover{filter:brightness(.98)}
+.catalog-tree .sub-toggle{color:var(--teal-d);font-size:11px;width:12px;display:inline-block;flex:none}
+.catalog-tree .sub-head small{color:var(--ink3);font-weight:400;font-size:12px;margin-left:auto}
+.catalog-tree .entry-head{cursor:pointer;padding:7px 12px 7px 42px;color:var(--ink);font-size:14px;user-select:none}
+.catalog-tree .entry-head:hover{background:var(--teal-bg);color:var(--teal-dd)}
+.catalog-tree .entry-head small{color:var(--ink3);font-size:12px;margin-left:4px}
+.catalog-tree .catalog-article{cursor:pointer;padding:6px 12px 6px 54px;color:var(--ink2);
+  font-size:13px;border-top:1px solid var(--line)}
+.catalog-tree .catalog-article:hover{background:var(--teal-bg);color:var(--teal-dd)}
+.catalog-tree .cat-uncat{padding:4px 0}

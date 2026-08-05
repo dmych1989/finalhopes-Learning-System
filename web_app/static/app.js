@@ -1162,6 +1162,7 @@ async function loadSubList() {
   if (!meta) return;
   const kind = meta.kind;
   if (kind === "tool") { renderTool(); return; }
+  if (kind === "catalog") { renderCatalogTree(); return; }
   const my = ++loadSeq;
   const ul = $("#resultList");
   if (ul) { ul.innerHTML = ""; $("#pager").innerHTML = ""; }
@@ -1250,6 +1251,121 @@ function showSubDetail(item) {
   });
   h += `</div>`;
   $("#detailPane").innerHTML = h;
+}
+
+// ---- 天纪目录（catalog 模块）：章节树 + 条目文章 ----
+const CAT_SUB_META = { gua: { hasImg: true }, rendao: { hasImg: false },
+                       lilun: { hasImg: false }, mingli: { hasImg: false } };
+
+async function renderCatalogTree() {
+  const ul = $("#resultList");
+  if (ul) { ul.innerHTML = ""; ul.className = "catalog-tree"; $("#pager").innerHTML = ""; }
+  const hint = $("#listHint"); if (hint) hint.style.display = "none";
+  const dp = $("#detailPane");
+  if (dp) dp.innerHTML = '<div class="hint">点击左侧章节展开，再点条目查看文章。</div>';
+  let data;
+  try { data = await api("/api/tianji/catalog"); }
+  catch (e) {
+    if (hint) { hint.style.display = "block"; hint.textContent = "目录加载失败，请稍后重试。"; }
+    return;
+  }
+  if (!ul) return;
+  ul.innerHTML = "";
+  data.tree.forEach((cat) => {
+    const li = document.createElement("li");
+    li.className = "cat-node";
+    const head = document.createElement("div");
+    head.className = "cat-head";
+    const catCnt = cat.subs.reduce((a, s) => a + s.entries.reduce((b, e) => b + e.articles.length, 0), 0);
+    head.innerHTML = `<span class="cat-toggle">▸</span>${esc(cat.name)}<small>${catCnt ? " " + catCnt : ""}</small>`;
+    head.onclick = () => {
+      li.classList.toggle("open");
+      head.querySelector(".cat-toggle").textContent = li.classList.contains("open") ? "▾" : "▸";
+    };
+    li.appendChild(head);
+    const subUl = document.createElement("ul");
+    subUl.className = "cat-subs";
+    cat.subs.forEach((sub) => {
+      const sli = document.createElement("li");
+      sli.className = "sub-node";
+      const sh = document.createElement("div");
+      sh.className = "sub-head";
+      const subCnt = sub.entries.reduce((a, e) => a + e.articles.length, 0);
+      sh.innerHTML = `<span class="sub-toggle">▸</span>${esc(sub.name)}<small>${subCnt ? " " + subCnt : ""}</small>`;
+      sh.onclick = (ev) => {
+        ev.stopPropagation();
+        sli.classList.toggle("open");
+        sh.querySelector(".sub-toggle").textContent = sli.classList.contains("open") ? "▾" : "▸";
+      };
+      sli.appendChild(sh);
+      const eUl = document.createElement("ul");
+      eUl.className = "cat-entries";
+      sub.entries.forEach((e) => {
+        const eli = document.createElement("li");
+        eli.className = "entry-node";
+        const eh = document.createElement("div");
+        eh.className = "entry-head";
+        eh.innerHTML = `${esc(e.name)}<small>${e.articles.length ? " " + e.articles.length : ""}</small>`;
+        eh.onclick = (ev) => { ev.stopPropagation(); showCatalogEntry(e); };
+        eli.appendChild(eh);
+        eUl.appendChild(eli);
+      });
+      sli.appendChild(eUl);
+      subUl.appendChild(sli);
+    });
+    li.appendChild(subUl);
+    ul.appendChild(li);
+  });
+
+  // 未归类（平铺文章，确保全部不丢）
+  if (data.uncat && data.uncat.articles.length) {
+    const li = document.createElement("li");
+    li.className = "cat-node open";
+    const head = document.createElement("div");
+    head.className = "cat-head";
+    head.innerHTML = `<span class="cat-toggle">▾</span>未归类<small> ${data.uncat.articles.length}</small>`;
+    li.appendChild(head);
+    const wrap = document.createElement("div");
+    wrap.className = "cat-uncat";
+    data.uncat.articles.forEach((a) => {
+      const d = document.createElement("div");
+      d.className = "catalog-article";
+      d.textContent = a.name;
+      d.onclick = () => showCatalogArticle(a);
+      wrap.appendChild(d);
+    });
+    li.appendChild(wrap);
+    ul.appendChild(li);
+  }
+}
+
+function showCatalogEntry(e) {
+  const dp = $("#detailPane");
+  if (!dp) return;
+  if (!e.articles.length) {
+    dp.innerHTML = `<div class="detail-card"><h3>${esc(e.name)}</h3><div class="hint">（本条目暂无收录文章）</div></div>`;
+    return;
+  }
+  let h = `<div class="detail-card"><h3>${esc(e.name)}</h3><div class="sec-h">收录文章（${e.articles.length}）</div>`;
+  e.articles.forEach((a, idx) => {
+    h += `<div class="catalog-article" data-idx="${idx}">${esc(a.name)}</div>`;
+  });
+  h += `</div>`;
+  dp.innerHTML = h;
+  dp.querySelectorAll(".catalog-article").forEach((el) => {
+    el.onclick = () => showCatalogArticle(e.articles[+el.dataset.idx]);
+  });
+}
+
+async function showCatalogArticle(a) {
+  const dp = $("#detailPane");
+  if (!dp) return;
+  dp.innerHTML = '<div class="hint">加载中…</div>';
+  let item;
+  try { item = await api(`${sysCfg.api}/item?sub=${enc(a.src)}&i=${a.i}`); }
+  catch (e) { dp.innerHTML = '<div class="hint">加载失败，请重试。</div>'; return; }
+  subMeta = CAT_SUB_META[a.src] || {};
+  showSubDetail(item);
 }
 
 // ---- image 型：缩略图网格 + 大图 ----

@@ -806,9 +806,134 @@ def renji_img(name: str = ""):
 # ---------------------------------------------------------------------------
 # 天纪学习系统（三库 tianji_db：易经 / 紫微 / 天文 / 八字命例）
 # ---------------------------------------------------------------------------
+def _norm_catalog(s):
+    return re.sub(r"[\s（）()【】\[\]、，。:：·\-]", "", s or "")
+
+
+def _build_tianji_catalog():
+    """按天纪目录大纲(tianji_catalog.txt) 构建三层章节树，并把天纪现有文章归入：
+       - 八字理论/紫微星曜(lilun) 按归一化标题匹配到各条目；
+       - 六十四卦(gua)/人间道(rendao) 整体归入「天纪卦象查询」；
+       - 八字命例(mingli) 整体归入「案例查询」；
+       - 匹配不到条目的 lilun 文章收进「未归类」，确保 506 篇全部不丢。"""
+    base = os.path.dirname(os.path.abspath(__file__))
+    p1 = os.path.join(base, "tianji_catalog.txt")
+    p2 = r"E:\Soft\倪海夏三套学习系统\QQ频道号talktyph0id\天纪学习系统\列表.txt"
+    src = p1 if os.path.exists(p1) else p2
+    try:
+        lines = open(src, encoding="utf-8").read().splitlines()
+    except Exception:
+        lines = []
+
+    cats = {}; order = []
+    cur_cat = None; cur_sub = None
+    for ln in lines:
+        s = ln.strip()
+        if not s:
+            continue
+        if s.startswith("#"):
+            name = s.lstrip("#").strip()
+            if s.startswith("##"):
+                if cur_cat is not None:
+                    exist = next((x for x in cur_cat["subs"] if x["name"] == name), None)
+                    if exist:
+                        cur_sub = exist
+                    else:
+                        cur_sub = {"name": name, "entries": []}
+                        cur_cat["subs"].append(cur_sub)
+            else:
+                if name not in cats:
+                    cats[name] = {"name": name, "subs": []}
+                    order.append(name)
+                cur_cat = cats[name]
+                cur_sub = None
+            continue
+        if re.match(r"^[0-9]+[.．、)]", s):
+            continue
+        if re.match(r"^[一二三四五六七八九十]+[.．、]", s):
+            continue
+        if re.match(r"^\([0-9]+\)", s):
+            continue
+        if cur_sub is not None:
+            cur_sub["entries"].append({"name": s, "articles": []})
+    tree = [cats[n] for n in order]
+
+    def names(src_list):
+        return [(i, (r.get("name") or "").strip())
+                for i, r in enumerate(src_list)
+                if (r.get("name") or "").strip()]
+    lilun = names(tianji_db.LILUN)
+    gua = names(tianji_db.GUA)
+    rendao = names(tianji_db.RENDAO)
+    mingli = names(tianji_db.MINGLI)
+
+    used_lilun = set()
+    for cat in tree:
+        for sub in cat["subs"]:
+            for e in sub["entries"]:
+                en = _norm_catalog(e["name"])
+                if not en:
+                    continue
+                for (i, n) in lilun:
+                    nn = _norm_catalog(n)
+                    if nn and (nn == en or en in nn or nn in en):
+                        e["articles"].append({"src": "lilun", "i": i, "name": n})
+                        used_lilun.add(i)
+
+    uncat = [{"src": "lilun", "i": i, "name": n}
+             for (i, n) in lilun if i not in used_lilun]
+
+    def find_cat(name):
+        for c in tree:
+            if c["name"] == name:
+                return c
+        return None
+
+    gx = find_cat("天纪卦象查询")
+    if gx is not None:
+        rd_sub = next((s for s in gx["subs"] if s["name"] == "人间道"), None)
+        if rd_sub is None:
+            rd_sub = {"name": "人间道", "entries": []}
+            gx["subs"].append(rd_sub)
+        rd_sub["entries"].append({
+            "name": "人间道全集（%d 卦）" % len(rendao),
+            "articles": [{"src": "rendao", "i": i, "name": n} for i, n in rendao],
+        })
+        gx["subs"].append({
+            "name": "六十四卦",
+            "entries": [{
+                "name": "六十四卦全集（%d 卦）" % len(gua),
+                "articles": [{"src": "gua", "i": i, "name": n} for i, n in gua],
+            }],
+        })
+    ca = find_cat("案例查询")
+    if ca is not None:
+        ca["subs"].append({
+            "name": "八字命例",
+            "entries": [{
+                "name": "八字命例全集（%d 例）" % len(mingli),
+                "articles": [{"src": "mingli", "i": i, "name": n} for i, n in mingli],
+            }],
+        })
+    return ({"tree": tree, "uncat": {"name": "未归类", "articles": uncat}},
+            len(lilun) + len(gua) + len(rendao) + len(mingli))
+
+
+TIANJI_CATALOG, TIANJI_CATALOG_TOTAL = _build_tianji_catalog()
+
+
 @app.get("/api/tianji/modules")
 def api_tianji_modules():
-    return tianji_db.modules()
+    return tianji_db.modules() + [{
+        "key": "catalog", "name": "天纪目录", "kind": "catalog",
+        "count": TIANJI_CATALOG_TOTAL,
+        "desc": "按理论体系（基础理论 / 断法细则 / 卦象 / 案例）分章节整理的全部天纪内容",
+    }]
+
+
+@app.get("/api/tianji/catalog")
+def api_tianji_catalog():
+    return TIANJI_CATALOG
 
 
 @app.get("/api/tianji/list")
