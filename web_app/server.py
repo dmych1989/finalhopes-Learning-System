@@ -156,17 +156,29 @@ print("Loaded: cases=%d herbs=%d articles=%d yaotu=%d" %
       (len(CASES), len(HERBS), len(ARTICLES), len(YAOTU_IMG)))
 
 # ---- 外部《中医》资料索引（穴位 / 中药图片，来自 GitHub 仓库，按经络/文件夹分类） ----
+# 优先从预构建的 extra_data.json 加载（生产环境无本地中医目录）；
+# 若 JSON 不存在则尝试扫描本地目录（开发环境）。
+HERE = os.path.dirname(os.path.abspath(__file__))
+_EXTRA_JSON = os.path.join(HERE, "extra_data.json")
+XUEWEI = {"cats": [], "points": [], "total": 0}
+HERB_IMGS = {"cats": [], "items": [], "total": 0}
 try:
-    import extra_index
-    EXTRA = extra_index.build()
-    XUEWEI = EXTRA["xuewei"]
-    HERB_IMGS = EXTRA["herb_imgs"]
-    print("Loaded extra: xuewei=%d herb_imgs=%d" %
-          (XUEWEI["total"], HERB_IMGS["total"]))
+    if os.path.isfile(_EXTRA_JSON):
+        import json as _json
+        _ed = _json.load(open(_EXTRA_JSON, encoding="utf-8"))
+        XUEWEI = _ed["xuewei"]
+        HERB_IMGS = _ed["herb_imgs"]
+        print("Loaded extra (json): xuewei=%d herb_imgs=%d" %
+              (XUEWEI["total"], HERB_IMGS["total"]))
+    else:
+        import extra_index
+        EXTRA = extra_index.build()
+        XUEWEI = EXTRA["xuewei"]
+        HERB_IMGS = EXTRA["herb_imgs"]
+        print("Loaded extra (scan): xuewei=%d herb_imgs=%d" %
+              (XUEWEI["total"], HERB_IMGS["total"]))
 except Exception as _e:
-    print("WARN: failed to build extra index:", _e)
-    XUEWEI = {"cats": [], "points": [], "total": 0}
-    HERB_IMGS = {"cats": [], "items": [], "total": 0}
+    print("WARN: failed to load extra index:", _e)
 
 # ---- 神农本草经 ordering + 补全 (sourced from 神农注解) ----
 HERE = os.path.dirname(os.path.abspath(__file__))
