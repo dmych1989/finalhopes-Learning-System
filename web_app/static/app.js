@@ -1,5 +1,5 @@
 // -*- coding: utf-8 -*-
-const state = { module: null, page: 1, size: 20, items: [], total: 0, herbCat: "", caseCat: "", articleCat: "", bzCat: "" };
+const state = { module: null, page: 1, size: 20, items: [], total: 0, herbCat: "", caseCat: "", articleCat: "", bzCat: "", ssplCat: "" };
 const REF_TABLES = { bbxx: "BBXX", bzdz: "BZDZ", zfbz: "ZFBZ", zjdcjl: "ZJDCJL", hantang: "hantang" };
 const ACU_TABLES = [
   { key: "lingui", name: "灵龟八法", tbl: "lingui" },
@@ -26,6 +26,7 @@ let yaotuQ = "", yaotuCat = "";
 let casesCatsCache = null;                 // 医案证型分类（缓存）
 let articleCatsCache = null;               // 论文栏目分类（缓存）
 let bzCatsCache = null;                    // 病症研究病种目录（缓存）
+let ssplCatsCache = null;                  // 时事评论主题目录（缓存）
 let ARTICLE_TOTAL = 0;                     // 论文总数（全部）
 let xueweiCatsCache = null, xueweiTotal = 0; // 穴位分类（含经络走向动画计数）
 // 子系统（人纪 / 天纪）：子模块列表 / 当前子模块 / 当前子模块的元数据 / 子模块内搜索词
@@ -254,6 +255,7 @@ function selectModule(m, el) {
   state.caseCat = "";
   state.articleCat = "";
   state.bzCat = "";
+  state.ssplCat = "";
   const catNav = $("#casesCatNav");
   if (catNav) catNav.style.display = "none";
   const artNav = $("#articleCatNav");
@@ -287,6 +289,7 @@ function endpointFor(q) {
   if (k === "articles") return `/api/articles?cat=${enc(state.articleCat || "")}&q=${enc(q)}&page=${state.page}&size=${state.size}`;
   if (k === "hdwj") return `/api/hdwj?q=${enc(q)}&page=${state.page}&size=${state.size}`;
   if (k === "bz") return `/api/bz?cat=${enc(state.bzCat || "")}&q=${enc(q)}&page=${state.page}&size=${state.size}`;
+  if (k === "sspl") return `/api/sspl?cat=${enc(state.ssplCat || "")}&q=${enc(q)}&page=${state.page}&size=${state.size}`;
   if (REF_TABLES[k]) return `/api/ref/${REF_TABLES[k]}?q=${enc(q)}&page=${state.page}&size=${state.size}`;
   return null;
 }
@@ -304,6 +307,9 @@ async function loadList(q) {
   }
   if (state.module === "bz" && !bzCatsCache) {
     try { bzCatsCache = await api("/api/bz/cats"); } catch (e) { bzCatsCache = { cats: [] }; }
+  }
+  if (state.module === "sspl" && !ssplCatsCache) {
+    try { ssplCatsCache = await api("/api/sspl/cats"); } catch (e) { ssplCatsCache = { cats: [] }; }
   }
   clearFilterBar();
   let data;
@@ -327,7 +333,9 @@ async function loadList(q) {
   } else if (state.module === "articles" && articleCatsCache) {
     renderArticleCatNav(articleCatsCache.cats, state.articleCat || "");
   } else if (state.module === "bz" && bzCatsCache) {
-    renderBzCatNav(bzCatsCache.cats, state.bzCat || "");
+    renderBzCatNav(bzCatsCache.cats, state.bzCat || "", "bz", "病症分类", "全部病症");
+  } else if (state.module === "sspl" && ssplCatsCache) {
+    renderBzCatNav(ssplCatsCache.cats, state.ssplCat || "", "sspl", "评论分类", "全部评论");
   } else if (state.module === "herbs" && data.cats) {
     renderHerbTabs(data.cats);
   }
@@ -376,26 +384,27 @@ function renderArticleCatNav(cats, activeKey) {
   });
 }
 
-// 病症研究「按疾病专论浏览」左侧目录侧栏（22 个病种），复用论文栏目的 #articleCatNav 容器。
-function renderBzCatNav(cats, activeKey) {
+// 病症研究 / 时事评论 共用「左侧目录侧栏」，复用论文栏目的 #articleCatNav 容器。
+// stateKey 决定点击写入 state 的哪个字段（bz→state.bzCat / sspl→state.ssplCat）。
+function renderBzCatNav(cats, activeKey, stateKey, titleText, allLabel) {
   const nav = $("#articleCatNav");
   if (!nav) return;
   nav.style.display = "block";
   nav.innerHTML = "";
   const title = document.createElement("div");
   title.className = "catnav-title";
-  title.textContent = "病症分类";
+  title.textContent = titleText || "病症分类";
   nav.appendChild(title);
   const all = document.createElement("button");
   all.className = "catnav-item" + (activeKey === "" ? " active" : "");
-  all.innerHTML = `<span class="cn-label">全部病症</span>`;
-  all.onclick = () => { state.bzCat = ""; state.page = 1; loadList($("#search").value); };
+  all.innerHTML = `<span class="cn-label">${allLabel || "全部病症"}</span>`;
+  all.onclick = () => { state[stateKey] = ""; state.page = 1; loadList($("#search").value); };
   nav.appendChild(all);
   (cats || []).forEach((c) => {
     const b = document.createElement("button");
     b.className = "catnav-item" + (c.key === activeKey ? " active" : "");
     b.innerHTML = `<span class="cn-label">${esc(c.name)}</span><em class="cn-count">${c.count}</em>`;
-    b.onclick = () => { state.bzCat = c.key; state.page = 1; loadList($("#search").value); };
+    b.onclick = () => { state[stateKey] = c.key; state.page = 1; loadList($("#search").value); };
     nav.appendChild(b);
   });
 }
@@ -424,6 +433,8 @@ function itemTitleSub(k, rec) {
   if (k === "hdwj") return [rec.MZ || "(无标题)", ""];
   // 病症研究：列表只显示文章标题，不附带正文摘要标签
   if (k === "bz") return [rec.MZ || "(无标题)", ""];
+  // 时事评论：列表同样只显示文章标题
+  if (k === "sspl") return [rec.MZ || "(无标题)", ""];
   if (k === "yaotu") return [rec.name, ""];
   if (k === "xuewei") return [rec.name, [rec.cat_name, rec.sub].filter(Boolean).join(" · ")];
   return refTitleSub(rec);
@@ -482,6 +493,7 @@ function showDetail(k, rec) {
   if (k === "articles") return showArticle(rec);
   if (k === "hdwj") return showArticle(rec);
   if (k === "bz") return showArticle(rec);
+  if (k === "sspl") return showArticle(rec);
   if (k === "hantang") return showHantang(rec);
   return showGeneric(rec, k);
 }

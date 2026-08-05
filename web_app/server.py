@@ -158,6 +158,60 @@ for _cat in BZ_CATS:
     BZ_CAT_CTR[_cat["key"]] = len(_idxs)
 BZ_TOTAL = len(set().union(*BZ_CAT_SETS.values())) if BZ_CAT_SETS else 0
 
+# ---- 时事评论（按「倪师论×」主题归类）模块 ---------------------------------
+# 原 EXE（医案论文内部查询系统V2022c61.exe）菜单含「时事评论」节点，其下为一组
+# 主题专论：倪师论癌症 / 倪师论肝病 / 倪师论流感 / 倪师论感冒 / 倪师论牛奶 /
+# 倪师论肾脏 / 倪师论糖尿 / 倪师论心病 / 倪师论血液 / 倪师论中药 / 倪师论抗生素 /
+# 最新研究成果时事评论 / 倪师论乳癌 / 倪师论忧郁 / 倪师论妇科 / 未归类评论。
+# 源数据无独立「评论」字段，故以主题关键词对 nhxlwj 全库做一次离线归类
+# （每篇取 标题 + 正文前 160 字 做子串匹配），与 病症研究 同源做法一致。
+# 注：用户清单中的「倪师论感自」即「倪师论感冒」、「时倪师论肾脏」即「倪师论肾脏」。
+SSPL_CATS = [
+    {"key": "ai",         "name": "倪师论癌症",   "kws": ["癌", "肿瘤", "阴实", "肉瘤", "恶性肿瘤", "癌末", "癌指"]},
+    {"key": "ganbing",    "name": "倪师论肝病",   "kws": ["肝", "B肝", "C肝", "肝炎", "肝硬化", "肝腹水"]},
+    {"key": "liugan",     "name": "倪师论流感",   "kws": ["流感", "流行性感冒"]},
+    {"key": "ganmao",     "name": "倪师论感冒",   "kws": ["感冒", "伤风", "风寒", "着凉"]},
+    {"key": "niunai",     "name": "倪师论牛奶",   "kws": ["牛奶", "牛乳"]},
+    {"key": "shenzang",   "name": "倪师论肾脏",   "kws": ["肾", "洗肾", "尿毒症", "肾炎", "肾衰竭", "肾臟"]},
+    {"key": "tangniao",   "name": "倪师论糖尿",   "kws": ["糖尿", "血糖", "胰岛素", "消渴"]},
+    {"key": "xinbing",    "name": "倪师论心病",   "kws": ["心脏病", "心血管", "高血压", "心肌梗塞", "冠心病", "心衰竭", "心律", "心臟"]},
+    {"key": "xueye",      "name": "倪师论血液",   "kws": ["血液", "血癌", "贫血", "白血", "淋巴", "骨髓瘤"]},
+    {"key": "zhongyao",   "name": "倪师论中药",   "kws": ["中药", "本草", "经方", "草药", "药材", "汉唐"]},
+    {"key": "kangshengsu", "name": "倪师论抗生素", "kws": ["抗生素", "西药", "类固醇", "消炎", "青霉素"]},
+    {"key": "zuixin",     "name": "最新研究成果时事评论", "kws": ["最新研究", "美最新", "英最新", "研究报告", "研究指出", "最新發現"]},
+    {"key": "ruanai",     "name": "倪师论乳癌",   "kws": ["乳癌", "乳房", "乳腺", "乳腺癌"]},
+    {"key": "youyu",      "name": "倪师论忧郁",   "kws": ["忧郁", "抑郁", "燥郁", "忧"]},
+    {"key": "fuke",       "name": "倪师论妇科",   "kws": ["妇科", "月经", "子宫", "卵巢", "白带", "孕期", "妊娠", "阴道"]},
+    {"key": "weifanlei",  "name": "未归类评论",   "kws": []},  # 特殊：含评论性标记但不归属任一具体主题
+]
+SSPL_CAT_SETS = {}
+SSPL_CAT_CTR = {}
+_SSPL_UNION = set()
+for _cat in SSPL_CATS:
+    if _cat["key"] == "weifanlei":
+        continue
+    _idxs = set()
+    for _i, _r in enumerate(ARTICLES):
+        _blob = str(_r.get("MZ", "")) + " " + str(_r.get("NR", ""))[:160]
+        if any(_k in _blob for _k in _cat["kws"]):
+            _idxs.add(_i)
+    SSPL_CAT_SETS[_cat["key"]] = _idxs
+    SSPL_CAT_CTR[_cat["key"]] = len(_idxs)
+    _SSPL_UNION |= _idxs
+# 未归类评论：含评论性标记但不归属任一具体主题的 article。
+_SSPL_UNC_MARKERS = ["评论", "时事", "专栏", "时评", "杂谈", "有感", "随笔",
+                     "我看", "个人认为", "倪师", "杂文", "随想", "杂感"]
+_SSPL_UNC = set()
+for _i, _r in enumerate(ARTICLES):
+    if _i in _SSPL_UNION:
+        continue
+    _blob = str(_r.get("MZ", "")) + " " + str(_r.get("NR", ""))[:160]
+    if any(_m in _blob for _m in _SSPL_UNC_MARKERS):
+        _SSPL_UNC.add(_i)
+SSPL_CAT_SETS["weifanlei"] = _SSPL_UNC
+SSPL_CAT_CTR["weifanlei"] = len(_SSPL_UNC)
+SSPL_TOTAL = len(_SSPL_UNION | _SSPL_UNC)
+
 # ---- 黄帝外经（外经微言，陈士铎本）独立模块 ---------------------------------
 # 原 EXE(医案论文内部查询系统V2022c61.exe) 菜单含独立的「黄帝外经」节点，其下即
 # 《外经微言》八十一篇（雷公问·岐伯曰 体例）。这些篇章在源库中存于 nhxlwj 表，
@@ -348,6 +402,7 @@ MODULES = [
     {"key": "cases",   "name": "医案查询",        "table": "1234567", "desc": "1475 则临床医案（问诊/脉诊/处方/针灸）"},
     {"key": "hdwj",    "name": "黄帝外经",        "table": "",       "desc": f"《外经微言》(陈士铎本) 共 {len(HDWJ)} 篇黄帝外经全文"},
     {"key": "bz",      "name": "病症研究",        "table": "",       "desc": f"按 22 类疾病专论归类（艾滋病/肺病/肝癌/乳癌/糖尿病…共 {BZ_TOTAL} 篇）"},
+    {"key": "sspl",    "name": "时事评论",        "table": "",       "desc": f"按 16 类倪师论题归类（癌症/肝病/流感/牛奶/肾脏/糖尿/心病/血液/中药/抗生素/乳癌/忧郁/妇科…共 {SSPL_TOTAL} 篇）"},
 ]
 
 REF_TABLES = {"BBXX": BBXX, "BZDZ": BZDZ, "ZFBZ": ZFBZ,
@@ -502,6 +557,26 @@ def api_bz(cat: str = "", q: str = "", page: int = 1, size: int = 20):
     data = ARTICLES
     if cat and cat in BZ_CAT_SETS:
         data = [ARTICLES[i] for i in BZ_CAT_SETS[cat]]
+    if q:
+        data = [r for r in data if search_in(r, q)]
+    items, total = paginate(data, page, size)
+    return {"total": total, "page": page, "size": size, "items": items}
+
+
+# ---- 时事评论：按「倪师论×」主题筛选 nhxlwj 文章 ----
+@app.get("/api/sspl/cats")
+def api_sspl_cats():
+    """16 个主题栏目及命中文章数，供时事评论模块左侧目录侧栏使用。"""
+    out = [{"key": c["key"], "name": c["name"], "count": SSPL_CAT_CTR.get(c["key"], 0)}
+           for c in SSPL_CATS]
+    return {"cats": out}
+
+
+@app.get("/api/sspl")
+def api_sspl(cat: str = "", q: str = "", page: int = 1, size: int = 20):
+    data = ARTICLES
+    if cat and cat in SSPL_CAT_SETS:
+        data = [ARTICLES[i] for i in SSPL_CAT_SETS[cat]]
     if q:
         data = [r for r in data if search_in(r, q)]
     items, total = paginate(data, page, size)
