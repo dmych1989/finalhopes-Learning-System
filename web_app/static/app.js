@@ -148,7 +148,9 @@ function selectModule(m, el) {
   if (artNav) artNav.style.display = "none";
   $("#detailPane").innerHTML = '<div class="hint">点击左侧条目查看详情。</div>';
   // 子系统（人纪 / 天纪）：左侧模块即各子模块，选中后直接加载该子模块列表。
-  if (sysCfg) {
+  // 注：herbs / yaotu / xuewei 三项原属主系统、现已并入人纪，但复用主系统接口
+  // 与渲染逻辑，故在 renji 模式下也走下方主系统分支（跨系统调用 /api/herbs 等）。
+  if (sysCfg && m.key !== "herbs" && m.key !== "yaotu" && m.key !== "xuewei") {
     subKey = m.key;
     clearFilterBar();
     subQ = "";

@@ -241,6 +241,12 @@ MODULES = [
     {"key": "ziwwu",   "name": "子午流注·灵龟八法", "kind": "tables", "count":
      len(ZIWU["lingui"]["rows"]) + len(ZIWU["najia"]["rows"]) + len(ZIWU["nazi"]["rows"]),
      "desc": "灵龟八法 60 / 纳甲 12 / 纳子 120"},
+    # ---- 以下三项原属「医学论文医案查询系统」，现已并入人纪融合 ----
+    # 它们复用主系统接口（/api/herbs、/api/yaotu、/api/xuewei）与渲染逻辑，
+    # 前端在 renji 模式下选中时直接跨系统调用主系统端点，无需重复数据。
+    {"key": "herbs",  "name": "中药查询", "desc": "中药查询（神农本草经序 + 补全），含图谱"},
+    {"key": "yaotu",  "name": "药图",     "desc": "中药图（形态 + 功效分类），含图谱"},
+    {"key": "xuewei", "name": "穴位查询", "desc": "穴位/图文（按经络分类，来自《中医》资料库）"},
 ]
 
 _DATA = {

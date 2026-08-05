@@ -242,19 +242,14 @@ for _n, _e in HANTANG_ENRICH.items():
             "_enriched": True, "_extra": True,
         })
 
+# 医学论文医案查询系统：仅保留三大板块——文章 / 医案 / 黄帝外经。
+# 其余参考模块（中药/穴位/针灸/方剂/八法等）已并入「人纪学习系统」融合，
+# 故从本系统侧栏移除；其后端接口（/api/herbs、/api/ref、/api/yaotu、
+# /api/xuewei、/api/acu 等）保留不动，供人纪页面跨系统调用，数据不丢失。
 MODULES = [
+    {"key": "articles","name": "倪海厦论文",      "table": "nhxlwj",  "desc": "3499 篇文章/讲记（13 栏目 + 全部论文）"},
     {"key": "cases",   "name": "医案查询",        "table": "1234567", "desc": "1475 则临床医案（问诊/脉诊/处方/针灸）"},
-    {"key": "herbs",   "name": "中药查询",        "table": "ZYX",     "desc": f"{len(HERBS)} 味中药（神农本草经序 + 补全）"},
-    {"key": "bbxx",    "name": "病症方剂",        "table": "BBXX",    "desc": "206 条病症对应方剂"},
-    {"key": "bzdz",    "name": "辨证论治",        "table": "BZDZ",    "desc": "50 条辨证思路"},
-    {"key": "zfbz",    "name": "正副辨证",        "table": "ZFBZ",    "desc": "30 条正治与反治"},
-    {"key": "zjdcjl",  "name": "针灸记录",        "table": "ZJDCJL",  "desc": "27 条针灸医案"},
-    {"key": "hantang", "name": "汉唐方剂",        "table": "hantang", "desc": f"{len(HANTANG)} 首汉唐方剂（含倪师100方剂补全）"},
-    {"key": "acu",     "name": "子午流注·灵龟八法", "table": "",       "desc": "纳甲/纳子/灵龟八法开穴"},
-    {"key": "articles","name": "倪海厦论文",      "table": "nhxlwj",  "desc": "3499 篇文章/讲记"},
     {"key": "hdwj",    "name": "黄帝外经",        "table": "",       "desc": f"《外经微言》(陈士铎本) 共 {len(HDWJ)} 篇黄帝外经全文"},
-    {"key": "yaotu",   "name": "药图",            "table": "yaotu",   "desc": f"{len(YAOTU_NAMES)+HERB_IMGS['total']} 张中药图（形态 + 功效分类）"},
-    {"key": "xuewei",  "name": "穴位查询",        "table": "",       "desc": f"{XUEWEI['total']} 个穴位/图文（按经络分类）"},
 ]
 
 REF_TABLES = {"BBXX": BBXX, "BZDZ": BZDZ, "ZFBZ": ZFBZ,
