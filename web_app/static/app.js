@@ -322,12 +322,9 @@ function refTitleSub(rec) {
 
 // Unified title/subtitle for a list item, by module.
 function itemTitleSub(k, rec) {
-  if (k === "cases") {
-    return [rec._title || rec.MZ || "(无名)",
-            [rec["【姓名】"], rec["【来诊日期】"]].filter(Boolean).join(" · ")];
-  }
+  if (k === "cases") return [rec._title || rec.MZ || "(无名)", ""];
   if (k === "herbs") return [rec.MZ || "", rec["【功效】"] || rec["【古籍摘要】"] || rec["【简述】"] || ""];
-  if (k === "articles") return [rec.MZ || "(无标题)", (rec.NR || "").slice(0, 80)];
+  if (k === "articles") return [rec.MZ || "(无标题)", ""];
   // 黄帝外经：左侧列表只显示篇名（不显示正文摘要），篇次序号由列表渲染单独加。
   if (k === "hdwj") return [rec.MZ || "(无标题)", ""];
   if (k === "bz") return [rec.MZ || "(无标题)", (rec.NR || "").slice(0, 80)];
