@@ -296,7 +296,8 @@ function itemTitleSub(k, rec) {
   }
   if (k === "herbs") return [rec.MZ || "", rec["【功效】"] || rec["【古籍摘要】"] || rec["【简述】"] || ""];
   if (k === "articles") return [rec.MZ || "(无标题)", (rec.NR || "").slice(0, 80)];
-  if (k === "hdwj") return [rec.MZ || "(无标题)", (rec.NR || "").slice(0, 80)];
+  // 黄帝外经：左侧列表只显示篇名（不显示正文摘要），篇次序号由列表渲染单独加。
+  if (k === "hdwj") return [rec.MZ || "(无标题)", ""];
   if (k === "yaotu") return [rec.name, ""];
   if (k === "xuewei") return [rec.name, [rec.cat_name, rec.sub].filter(Boolean).join(" · ")];
   return refTitleSub(rec);
@@ -319,9 +320,12 @@ function renderList() {
     const li = document.createElement("li");
     li.className = "result-item";
     const [title, sub] = itemTitleSub(k, rec);
-    const seqBadge = (k === "herbs" && rec._seq != null)
-      ? `<span class="seq-badge">${rec._seq}</span>` : "";
-    li.innerHTML = `<div class="t">${seqBadge}${esc(title)}</div><div class="s">${esc(sub)}</div>`;
+    // 序号徽标：中药用 _seq，《外经微言》用 _idx（原书第 N 篇）。
+    const seqNum = (rec._idx != null) ? rec._idx : (rec._seq != null ? rec._seq : null);
+    const seqBadge = (seqNum != null)
+      ? `<span class="seq-badge">${seqNum}</span>` : "";
+    const subHtml = sub ? `<div class="s">${esc(sub)}</div>` : "";
+    li.innerHTML = `<div class="t">${seqBadge}${esc(title)}</div>${subHtml}`;
     li.onclick = () => showDetail(k, rec);
     ul.appendChild(li);
   });
@@ -434,7 +438,9 @@ function showArticle(rec) {
   if (title && body.startsWith(title)) {
     body = body.slice(title.length).replace(/^\s*[\r\n]+/, "");
   }
-  let h = `<div class="detail-card"><h3>${esc(rec.MZ || "(无标题)")}</h3>`;
+  // 《外经微言》标注原书篇次（第 N 篇），其余文章无 _idx 则不加。
+  const idxTag = (rec._idx != null) ? `<span class="seq-badge">第 ${rec._idx} 篇</span> ` : "";
+  let h = `<div class="detail-card"><h3>${idxTag}${esc(rec.MZ || "(无标题)")}</h3>`;
   h += `<div class="article-body">${esc(body)}</div>`;
   h += `</div>`;
   $("#detailPane").innerHTML = h;

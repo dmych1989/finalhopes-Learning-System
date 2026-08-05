@@ -122,13 +122,55 @@ for _r in ARTICLES:
 # 注：「黄帝内经篇」「跟诊案例研究篇」「醒世篇」是倪师本人的随笔/教学笔记，
 # 在原 EXE 中各有独立节点，不属于《外经微言》，故排除。
 HDWJ_EXCLUDE = {"黄帝内经篇", "跟诊案例研究篇", "醒世篇"}
+# 《外经微言》八十一篇（陈士铎本）权威卷次顺序，用作目录正确排序与篇次序号。
+# 数据源自清·陈士铎《外经微言》通行本目录（九卷·每卷九篇）；本库缺「五行生克篇」
+# 「小心真主篇」「六气分门篇」三篇（非排除项），余 78 篇据此排序并标注原书第 N 篇。
+HDWJ_CANON = [
+    "阴阳颠倒篇", "顺逆探原篇", "回天生育篇", "天人寿夭篇", "命根养生篇", "救母篇",
+    "红铅损益篇", "初生微论篇", "骨阴篇",
+    "媾精受妊篇", "社生篇", "天厌火衰篇", "经脉相行篇", "经脉终始篇", "经气本标篇",
+    "脏腑阐微篇", "考订经脉篇", "包络配腑篇",
+    "胆腑命名篇", "任督死生篇", "阴阳二跷篇", "奇恒篇", "小络篇", "肺金篇", "肝木篇",
+    "肾水篇", "心火篇",
+    "脾土篇", "胃土篇", "包络火篇", "三焦火篇", "胆木篇", "膀胱水篇", "大肠金篇",
+    "小肠火篇", "命门真火篇",
+    "命门经主篇", "五行生克篇", "小心真主篇", "水不克火篇", "三关升降篇", "表微篇",
+    "呼吸篇", "脉动篇", "瞳子散大篇",
+    "诊原篇", "精气引血篇", "天人一气篇", "地气合人篇", "三才并论篇", "五运六气离合篇",
+    "六气分门篇", "六气独胜篇", "三合篇",
+    "四时六气异同篇", "司天在泉分合篇", "从化篇", "冬夏火热篇", "暑火二气篇", "阴阳上下篇",
+    "营卫交重篇", "五脏互根篇", "八风固本篇",
+    "八风命名篇", "太乙篇", "亲阳亲阴篇", "异传篇", "伤寒知变篇", "伤寒同异篇",
+    "风寒殊异篇", "阴寒格阳篇", "春温似疫篇",
+    "补泻阴阳篇", "善养篇", "亡阳亡阴篇", "昼夜轻重篇", "解阳解阴篇", "真假疑似篇",
+    "从逆窥源篇", "移寒篇", "寒热舒肝篇",
+]
+HDWJ_CANON_POS = {_n: _i + 1 for _i, _n in enumerate(HDWJ_CANON)}
+# 源库个别篇章名与通行本略有出入，按原书位置对齐（否则会落到末尾）。
+HDWJ_ALIAS = {"热舒肝篇": "寒热舒肝篇", "六气异同篇": "四时六气异同篇"}
+_HDWJ_UNSORTED = 10 ** 9
+def _hdwj_pos(name):
+    if name in HDWJ_CANON_POS:
+        return HDWJ_CANON_POS[name]
+    if name in HDWJ_ALIAS and HDWJ_ALIAS[name] in HDWJ_CANON_POS:
+        return HDWJ_CANON_POS[HDWJ_ALIAS[name]]
+    return _HDWJ_UNSORTED
 _seen_hdwj = set()
-HDWJ = []
+_HDWJ_RAW = []
 for _r in ARTICLES:
     _mz = str(_r.get("MZ", ""))
     if _mz.endswith("篇") and _mz not in HDWJ_EXCLUDE and _mz not in _seen_hdwj:
         _seen_hdwj.add(_mz)
-        HDWJ.append(_r)
+        _HDWJ_RAW.append(_r)
+# 按《外经微言》原书卷次排序；拷贝避免污染 ARTICLES 共享 dict，并标注篇次序号。
+HDWJ = []
+for _r in sorted(_HDWJ_RAW, key=lambda r: _hdwj_pos(str(r.get("MZ", "")))):
+    _r = dict(_r)
+    _pos = _hdwj_pos(str(_r.get("MZ", "")))
+    if _pos < _HDWJ_UNSORTED:
+        _r["_idx"] = _pos
+    HDWJ.append(_r)
+del _HDWJ_RAW
 
 # yaotu 中药图（JPEG，XOR-0x0F 解密后存入 SQLite；无 data.db 时回退直连 .mdb）
 YAOTU_IMG = common.get_yaotu_images()
