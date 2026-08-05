@@ -32,18 +32,35 @@ REMOTE_DB_URL = os.environ.get(
 
 
 def _resolve_db_path():
-    """Return a usable SQLite path: local file if present, else a downloaded cache."""
+    """Return a usable SQLite path: local file if present, else a downloaded cache.
+
+    下载带重试 + 多镜像（raw.githubusercontent 偶发不可达时回退 jsDelivr），
+    任一次成功即写入 /tmp 缓存，避免冷启动失败导致整个函数崩溃（USE_SQLITE=False）。
+    """
     if os.path.exists(DEFAULT_DB):
         return DEFAULT_DB
     cache = os.path.join("/tmp", "finalhopes_data.db")
     if os.path.exists(cache):
         return cache
-    try:
-        import urllib.request as _urllib
-        _urllib.urlretrieve(REMOTE_DB_URL, cache)
-        return cache
-    except Exception:
-        return None
+    import urllib.request as _urllib
+    mirrors = [REMOTE_DB_URL]
+    jsd = "https://cdn.jsdelivr.net/gh/dmych1989/finalhopes-Learning-System@main/web_app/data.db"
+    if jsd != REMOTE_DB_URL:
+        mirrors.append(jsd)
+    last_err = None
+    for url in mirrors:
+        for attempt in range(4):
+            try:
+                _urllib.urlretrieve(url, cache)
+                if os.path.getsize(cache) > 1_000_000:
+                    return cache
+                last_err = f"too small ({os.path.getsize(cache)})"
+            except Exception as e:  # 超时/网络抖动/5xx 都重试
+                last_err = repr(e)
+            import time
+            time.sleep(1.5 * (attempt + 1))
+    print("WARN: data.db 下载失败：", last_err)
+    return None
 
 
 DATA_DB = _resolve_db_path()
