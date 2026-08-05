@@ -8,12 +8,14 @@
 生成格局 / 十神 / 六亲 / 大运 / 命宫主星 的解读草稿。
 """
 import datetime
+import re
 
 import cnlunar
 
 import bazi
 import ziwei
 import tianji_db
+from tianji_db import clean_text, _dec_rtf_str
 
 # 八卦先天数：1乾 2兑 3离 4震 5巽 6坎 7艮 8坤
 GUA_NUM_CHAR = {1: "乾", 2: "兑", 3: "离", 4: "震", 5: "巽", 6: "坎", 7: "艮", 8: "坤"}
@@ -173,11 +175,124 @@ def _liuqin_mean(ss, gender):
     return note
 
 
+# ---- EXE 逆向：紫微斗数·局 查表（天纪权威落宫数据）-----------------------------
+def _load_ju_table():
+    """从 tianji_db.ZIWEI（ziweibiao 表）构建 {局名: {农历日: 地支序}}。"""
+    try:
+        src = tianji_db.ZIWEI
+        tb = src.get("ziweibiao", {})
+        cols = tb.get("cols", [])
+        rows = tb.get("rows", [])
+        ju = {}
+        for r in rows:
+            name = r[0]
+            m = {}
+            for i in range(1, len(cols)):
+                try:
+                    m[i] = int(r[i])
+                except (ValueError, TypeError):
+                    pass
+            if m:
+                ju[name] = m
+        return ju
+    except Exception:
+        return {}
+
+
+JU_TABLE = _load_ju_table()
+
+
+# ---- 八字命例（MINGLI）归一化与点击排盘 --------------------------------------
+_ZHI = ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"]
+
+
+def _mingli_fields(rec):
+    """归一化命例记录（兼容 SQLite fields 与 mdb raw 两种结构）。"""
+    if "fields" in rec:
+        f = rec["fields"]
+        return {
+            "name": rec.get("name", ""),
+            "gender_raw": f.get("性别", "") or "",
+            "pillars": f.get("四柱（干支）", "") or f.get("四柱", "") or "",
+            "birth": f.get("生辰", "") or "",
+            "birthplace": f.get("出生地", "") or "",
+            "analysis": f.get("命盘分析", "") or "",
+        }
+    r = rec.get("raw", {})
+    def g(k):
+        v = r.get(k, "")
+        return clean_text(str(v)) if v is not None else ""
+    zhu = "　".join(["年柱 " + g("NZ"), "月柱 " + g("YZ"),
+                     "日柱 " + g("RZ"), "时柱 " + g("SZ")])
+    birth = "　".join(["生年 " + g("NN"), "月 " + g("YY"),
+                       "日 " + g("RR"), "时 " + g("FF")])
+    return {
+        "name": rec.get("name", "") or g("XM"),
+        "gender_raw": g("XB"),
+        "pillars": zhu,
+        "birth": birth,
+        "birthplace": g("CSD"),
+        "analysis": _dec_rtf_str(r.get("YCNR")),
+    }
+
+
+def _mingli_dt(f):
+    """由『生辰 + 时柱』重建阳历 datetime（生辰为阳历，已验证 103/107 还原四柱一致）。"""
+    m = re.search(r"时柱\s*([甲乙丙丁戊己庚辛壬癸])([子丑寅卯辰巳午未申酉戌亥])",
+                  f["pillars"])
+    if not m:
+        raise ValueError("命例缺少时柱，无法排盘")
+    sz_zhi = _ZHI.index(m.group(2))
+    hour = sz_zhi * 2                      # 时辰中点（子0/丑2/…/亥22）
+    y = re.search(r"生年\s*(\d+)", f["birth"])
+    mo = re.search(r"月\s*(\d+)", f["birth"])
+    d = re.search(r"日\s*(\d+)", f["birth"])
+    hm = re.search(r"时\s*(\d+)", f["birth"])
+    if not (y and mo and d):
+        raise ValueError("命例缺少生辰")
+    minute = int(hm.group(1)) if (hm and 0 <= int(hm.group(1)) <= 59) else 0
+    return datetime.datetime(int(y.group(1)), int(mo.group(1)),
+                             int(d.group(1)), hour, minute)
+
+
+def mingli_cases():
+    """命例列表（供左侧『命理』面板）。"""
+    out = []
+    for i, rec in enumerate(tianji_db.MINGLI):
+        f = _mingli_fields(rec)
+        gender = "男" if "乾" in f["gender_raw"] else "女"
+        out.append({
+            "i": i, "name": f["name"], "gender": gender,
+            "birth": f["birth"], "pillars": f["pillars"],
+            "birthplace": f["birthplace"],
+            "has_analysis": bool(f["analysis"] and len(f["analysis"]) > 10),
+        })
+    return out
+
+
+def mingli_chart(i):
+    """按命例索引直接排出八字 + 紫微 + 解读，并附带原版命盘分析文本。"""
+    recs = tianji_db.MINGLI
+    if i < 0 or i >= len(recs):
+        raise ValueError("命例索引越界")
+    f = _mingli_fields(recs[i])
+    gender = "男" if "乾" in f["gender_raw"] else "女"
+    dt = _mingli_dt(f)
+    res = paipan(dt, gender, f["birthplace"])
+    res["case"] = {
+        "name": f["name"], "gender": gender, "birth": f["birth"],
+        "pillars": f["pillars"], "birthplace": f["birthplace"],
+        "original_analysis": f["analysis"],
+    }
+    res["solar_used"] = dt.strftime("%Y-%m-%d %H:%M")
+    return res
+
+
 def paipan(solar_dt, gender, birthplace=""):
     if isinstance(solar_dt, str):
         solar_dt = datetime.datetime.strptime(solar_dt, "%Y-%m-%d %H:%M")
     b = bazi.bazi_chart(solar_dt, gender)
-    z = ziwei.ziwei_chart(solar_dt, gender)
+    z = ziwei.ziwei_chart(solar_dt, gender, ju_table=JU_TABLE)
     g = benming_gua(solar_dt)
     a = analyze(b, z, g)
     return {"bazi": b, "ziwei": z, "gua": g, "analysis": a,

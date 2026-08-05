@@ -1005,6 +1005,24 @@ def api_tianji_paipan(payload: dict = Body(default={})):
         raise HTTPException(500, "排盘计算失败：" + str(e))
 
 
+@app.get("/api/tianji/mingli_cases")
+def api_tianji_mingli_cases():
+    """八字命例列表（供排盘系统左侧『命理』面板；点击即排双盘）。"""
+    return {"cases": paipan.mingli_cases()}
+
+
+@app.post("/api/tianji/mingli_chart")
+def api_tianji_mingli_chart(payload: dict = Body(default={})):
+    """按命例索引重建出生时间，排出八字 + 紫微 + 解读，并附带原版命盘分析。"""
+    try:
+        i = int(payload.get("i", -1))
+        return paipan.mingli_chart(i)
+    except ValueError as e:
+        raise HTTPException(400, "命例排盘失败：" + str(e))
+    except Exception as e:
+        raise HTTPException(500, "命例排盘计算失败：" + str(e))
+
+
 # Serve images from the external 《中医》 GitHub repo (穴位 diagrams/photos and
 # 中药图片). `p` is a URL-encoded relative path under EXTRA_BASE; we normalize
 # and reject any path that escapes the base directory (directory traversal).

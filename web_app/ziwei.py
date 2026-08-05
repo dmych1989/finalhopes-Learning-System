@@ -34,9 +34,11 @@ TIANFU_XING = {
     "天府": 0, "太阴": 1, "贪狼": 2, "巨门": 3, "天相": 4, "天梁": 5,
     "七杀": 6, "破军": 10,
 }
-# 天府落宫由紫微落宫决定（紫微地支序 → 天府地支序）
-TIANFU_BY_ZIWEI = {0: 0, 1: 11, 2: 2, 3: 1, 4: 0, 5: 9, 6: 8, 7: 7,
-                    8: 8, 9: 6, 10: 4, 11: 5}
+# 天府落宫由紫微落宫决定（紫微地支序 → 天府地支序）。
+# 修正：原表多项错误；正确对照（寅/申 紫府同宫；子→辰、丑→卯、卯→丑、辰→子、
+# 巳→亥、午→戌、未→酉、酉→未、戌→午、亥→巳）。
+TIANFU_BY_ZIWEI = {0: 4, 1: 3, 2: 2, 3: 1, 4: 0, 5: 11, 6: 10, 7: 8,
+                    8: 8, 9: 7, 10: 6, 11: 5}
 # 五虎遁：年干序 → 寅月天干序
 WUHU_DUN = {0: 2, 1: 4, 2: 6, 3: 8, 4: 0, 5: 2, 6: 4, 7: 6, 8: 8, 9: 0}
 
@@ -77,7 +79,12 @@ def _zhi_at(base_zhi_idx, offset):
     return (base_zhi_idx + offset) % 12
 
 
-def ziwei_chart(solar_dt, gender):
+def ziwei_chart(solar_dt, gender, ju_table=None):
+    """紫微斗数排盘。
+
+    ju_table: EXE 逆向出的「紫微斗数·局」查表 {局名: {农历日: 地支序}}，
+    用于精确确定紫微落宫（替代近似公式）。未提供时回退到通用公式。
+    """
     if isinstance(solar_dt, str):
         solar_dt = datetime.datetime.strptime(solar_dt, "%Y-%m-%d %H:%M")
     l = cnlunar.Lunar(solar_dt, godType="8char")
@@ -106,9 +113,15 @@ def ziwei_chart(solar_dt, gender):
     nayin_wx = _NAYIN[seq][1]
     ju_name, ju_num = NAYIN_JU[nayin_wx]
 
-    # 紫微落宫（寅坐标）：生日数顺数局数
-    ziwei_step = (lunar_day - 1) % ju_num
-    ziwei_zhi = (2 + ziwei_step) % 12
+    # 紫微落宫：优先用 EXE 局表（天纪权威数据），否则用近似公式
+    ziwei_zhi = None
+    if ju_table:
+        _zt = ju_table.get(ju_name)
+        if _zt and lunar_day in _zt:
+            ziwei_zhi = int(_zt[lunar_day]) % 12
+    if ziwei_zhi is None:
+        ziwei_step = (lunar_day - 1) % ju_num
+        ziwei_zhi = (2 + ziwei_step) % 12
 
     # 十四主星落宫
     star_zhi = {}

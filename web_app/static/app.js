@@ -1600,226 +1600,289 @@ async function doGlobalSearch(q) {
 })();
 
 // ===== 天纪 · 排盘系统 / 命理系统（tool 型模块，顶层作用域，供 loadSubList 调用） =====
-let lastPaipan = null;
+let lastPaipan = null;       // 最近一次排盘结果（含 analysis / case）
+let lastCase = null;         // 当前命例（用于导出）
 
 function renderTool() {
-    const isMing = subKey === "mingli_sys";
-    const lm = $("#listMain");
-    if (lm) {
-      lm.innerHTML =
-        '<div class="paipan-form">' +
-        '<h3>' + (isMing ? "命理系统 · 出生信息" : "排盘系统 · 出生信息") + '</h3>' +
-        '<label>阳历出生日期<input type="date" id="ppDate" value="1985-03-12"></label>' +
-        '<label>出生时辰<select id="ppHour">' +
-        '<option value="0">子时 23:00–00:59</option>' +
-        '<option value="1">丑时 01:00–02:59</option>' +
-        '<option value="3" selected>寅时 03:00–04:59</option>' +
-        '<option value="5">卯时 05:00–06:59</option>' +
-        '<option value="7">辰时 07:00–08:59</option>' +
-        '<option value="9">巳时 09:00–10:59</option>' +
-        '<option value="11">午时 11:00–12:59</option>' +
-        '<option value="13">未时 13:00–14:59</option>' +
-        '<option value="15">申时 15:00–16:59</option>' +
-        '<option value="17">酉时 17:00–18:59</option>' +
-        '<option value="19">戌时 19:00–20:59</option>' +
-        '<option value="21">亥时 21:00–22:59</option>' +
-        '</select></label>' +
-        '<label>性别<select id="ppGender"><option value="男" selected>男</option>' +
-        '<option value="女">女</option></select></label>' +
-        '<label>出生地（选填）<input type="text" id="ppPlace" placeholder="如 北京"></label>' +
-        '<button id="ppBtn">' + (isMing ? "排盘并解读" : "开始排盘") + '</button>' +
-        '<div class="pp-tip">时辰按传统 2 小时制；排盘结果仅供学习参考，流派差异以原版为准。</div>' +
-        '</div>';
-    }
-    const fb = $("#filterBar"); if (fb) fb.style.display = "none";
-    const lh = $("#listHint"); if (lh) lh.style.display = "none";
-    const pg = $("#pager"); if (pg) pg.innerHTML = "";
-    const btn = $("#ppBtn"); if (btn) btn.onclick = doPaipan;
-    const dp = $("#detailPane");
-    if (dp) dp.innerHTML = '<div class="hint">填写左侧出生信息后点击「' +
-      (isMing ? "排盘并解读" : "开始排盘") + '」。</div>';
-  }
+  // 左：命理（八字命例列表，点击即排双盘）
+  const lm = $("#listMain");
+  lm.innerHTML =
+    '<div class="pp-mingli">' +
+    '<h3>命理 · 八字命例</h3>' +
+    '<input id="ppSearch" class="pp-search" type="text" placeholder="搜索姓名 / 四柱…">' +
+    '<div id="caseList" class="case-list"></div>' +
+    '</div>';
+  const fb = $("#filterBar"); if (fb) fb.style.display = "none";
+  const lh = $("#listHint"); if (lh) lh.style.display = "none";
+  const pg = $("#pager"); if (pg) pg.innerHTML = "";
+  // 右：命盘 + 解读
+  const dp = $("#detailPane");
+  dp.innerHTML =
+    '<div class="pp-system">' +
+      '<div class="pp-controls">' +
+        '<label>阳历生日<input type="date" id="ppDate" value="1985-03-12"></label>' +
+        '<label>时辰<select id="ppHour">' + hourOptions() + '</select></label>' +
+        '<label>性别<select id="ppGender"><option value="男" selected>男</option><option value="女">女</option></select></label>' +
+        '<label>出生地<input type="text" id="ppPlace" placeholder="如 北京"></label>' +
+        '<button id="ppBtn">开始排盘</button>' +
+        '<button id="ppExport" class="pp-export" style="display:none">导出解读</button>' +
+      '</div>' +
+      '<div class="pp-charts">' +
+        '<div class="pp-plate pp-ziwei"><div class="plate-title">紫微斗数命盘</div><div id="ppZiwei" class="plate-body"><div class="hint">填写左侧出生信息，或点击命例排盘。</div></div></div>' +
+        '<div class="pp-plate pp-bazi"><div class="plate-title">八字四柱</div><div id="ppBazi" class="plate-body"><div class="hint">填写左侧出生信息，或点击命例排盘。</div></div></div>' +
+      '</div>' +
+      '<div class="pp-dujie"><div class="plate-title">命盘解读</div><div id="ppDujie" class="plate-body"><div class="hint">排盘后显示格局 / 十神六亲 / 大运 / 原版命盘分析。</div></div></div>' +
+    '</div>';
+  $("#ppBtn").onclick = doPaipan;
+  $("#ppExport").onclick = exportDujie;
+  const ps = $("#ppSearch"); if (ps) ps.oninput = () => { if (window.__caseCache) renderCaseList(window.__caseCache); };
+  loadCases();
+}
 
-  async function doPaipan() {
-    const date = $("#ppDate").value;
-    const hour = $("#ppHour").value;
-    const gender = $("#ppGender").value;
-    const place = ($("#ppPlace").value || "").trim();
-    if (!date) { alert("请填写出生日期"); return; }
-    const solar = date + " " + String(hour).padStart(2, "0") + ":30";
-    const dp = $("#detailPane");
-    dp.innerHTML = '<div class="hint">排盘中…</div>';
-    let data;
-    try {
-      data = await api("/api/tianji/paipan", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ solar, gender, birthplace: place }),
-      });
-    } catch (e) {
-      dp.innerHTML = '<div class="hint">排盘失败：' + esc(e.message || String(e)) + '</div>';
-      return;
-    }
-    lastPaipan = data;
-    if (subKey === "mingli_sys") renderMingli(data);
-    else renderPaipan(data);
-  }
+function hourOptions() {
+  const arr = [
+    [0,"子时 23:00–00:59"],[1,"丑时 01:00–02:59"],[2,"寅时 03:00–04:59"],
+    [3,"卯时 05:00–06:59"],[4,"辰时 07:00–08:59"],[5,"巳时 09:00–10:59"],
+    [6,"午时 11:00–12:59"],[7,"未时 13:00–14:59"],[8,"申时 15:00–16:59"],
+    [9,"酉时 17:00–18:59"],[10,"戌时 19:00–20:59"],[11,"亥时 21:00–22:59"]
+  ];
+  return arr.map(a => '<option value="' + a[0] + '">' + a[1] + '</option>').join("");
+}
 
-  const SIHUA_COLOR = { "禄": "var(--c-lu)", "权": "var(--c-quan)",
-                         "科": "var(--c-ke)", "忌": "var(--c-ji)" };
+async function loadCases() {
+  const box = $("#caseList"); if (!box) return;
+  box.innerHTML = '<div class="hint">加载命例中…</div>';
+  let data;
+  try { data = await api("/api/tianji/mingli_cases"); }
+  catch (e) { box.innerHTML = '<div class="hint">命例加载失败</div>'; return; }
+  window.__caseCache = data.cases || [];
+  renderCaseList(window.__caseCache);
+}
 
-  function pillarCell(p, label) {
-    return '<div class="bz-cell">' +
-      '<div class="bz-label">' + label + '</div>' +
-      '<div class="bz-gz">' + esc(p.gz) + '</div>' +
-      '<div class="bz-shi">' + esc(p.gan_shi) + '</div>' +
-      '<div class="bz-nayin">' + esc(p.nayin) + '</div>' +
-      '</div>';
-  }
+function renderCaseList(cases) {
+  const box = $("#caseList"); if (!box) return;
+  const q = ($("#ppSearch").value || "").trim();
+  const list = cases.filter(c =>
+    !q || c.name.toLowerCase().includes(q.toLowerCase()) ||
+    (c.pillars || "").includes(q) || (c.birth || "").includes(q));
+  if (!list.length) { box.innerHTML = '<div class="hint">无匹配命例</div>'; return; }
+  box.innerHTML = list.map(c =>
+    '<div class="case-item" data-i="' + c.i + '">' +
+      '<div class="ci-name">' + esc(c.name) + ' <span class="ci-gender">' + esc(c.gender) + '</span></div>' +
+      '<div class="ci-zhu">' + esc(c.pillars) + '</div>' +
+      '<div class="ci-birth">' + esc(c.birth) + (c.birthplace ? (' · ' + esc(c.birthplace)) : '') + '</div>' +
+    '</div>').join("");
+  box.querySelectorAll(".case-item").forEach(el => {
+    el.onclick = () => selectCase(parseInt(el.dataset.i, 10));
+  });
+}
 
-  function renderPaipan(d) {
-    const b = d.bazi, z = d.ziwei, g = d.gua;
-    let h = '<div class="paipan-result">';
-    // 概要
-    h += '<div class="pp-summary">' +
-      '<span>阳历 <b>' + esc(b.solar) + '</b></span>' +
-      '<span>农历 <b>' + esc(b.lunar) + '</b></span>' +
-      '<span>生肖 <b>' + esc(b.zodiac) + '</b></span>' +
-      '<span>性别 <b>' + esc(b.gender) + '</b></span>' +
-      '<span>日主 <b>' + esc(b.ri_gan) + '（' + esc(b.ri_wx) + '）</b></span>' +
-      '<span>强弱 <b>' + esc(b.strength) + '</b></span>' +
-      '</div>';
-    // 八字四柱
-    h += '<div class="sec-h">八字四柱</div><div class="bazi-grid">';
-    const labels = ["年柱", "月柱", "日柱", "时柱"];
-    b.pillars.forEach((p, i) => { h += pillarCell(p, labels[i]); });
-    h += '</div>';
-    // 五行分布条
-    const wx = b.wx_score;
-    h += '<div class="sec-h">五行分布</div><div class="wx-bar">';
-    const wxc = { "木": "#2e8b57", "火": "#d9534f", "土": "#c79a4b",
-                  "金": "#b0b0b0", "水": "#3a7bd5" };
-    const maxv = Math.max.apply(null, Object.values(wx));
-    Object.keys(wx).forEach((k) => {
-      const pct = (wx[k] / maxv * 100).toFixed(0);
-      h += '<div class="wx-row"><span class="wx-name">' + k + '</span>' +
-        '<span class="wx-track"><span class="wx-fill" style="width:' + pct +
-        '%;background:' + wxc[k] + '"></span></span>' +
-        '<span class="wx-val">' + wx[k].toFixed(2) + '</span></div>';
+async function selectCase(i) {
+  const box = $("#caseList");
+  if (box) box.querySelectorAll(".case-item").forEach(e => e.classList.remove("active"));
+  const el = box && box.querySelector('.case-item[data-i="' + i + '"]');
+  if (el) el.classList.add("active");
+  const dp = $("#ppDujie"); if (dp) dp.innerHTML = '<div class="hint">排盘中…</div>';
+  let data;
+  try {
+    data = await api("/api/tianji/mingli_chart", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ i })
     });
-    h += '</div>';
-    // 大运
-    h += '<div class="sec-h">大运（' + (b.dayun.shun ? "顺" : "逆") + '排，' +
-      b.dayun.start_age + '岁' + b.dayun.start_mon + '个月起运）</div>' +
-      '<div class="dayun-row">';
-    b.dayun.list.slice(0, 10).forEach((du) => {
-      h += '<div class="dy-cell"><div class="dy-age">' + du.age + '岁</div>' +
-        '<div class="dy-gz">' + esc(du.gz) + '</div>' +
-        '<div class="dy-shi">' + esc(du.gan_shi) + '</div></div>';
-    });
-    h += '</div>';
-    // 紫微斗数命盘
-    h += '<div class="sec-h">紫微斗数命盘（' + esc(z.ju) + ' · 命宫 ' +
-      esc(z.ming_gong.gz) + ' · 身宫 ' + esc(z.shen_gong.zhi) + '）</div>';
-    h += '<div class="ziwei-grid">';
-    z.palace.forEach((pal) => {
-      const isMing = pal.gong === "命宫";
-      h += '<div class="palace-card' + (isMing ? " ming" : "") + '">';
-      h += '<div class="pc-head">' + esc(pal.gong) + ' <span class="pc-zhi">' +
-        esc(pal.zhi) + '</span></div><div class="pc-stars">';
-      if (!pal.stars.length) h += '<span class="pc-empty">（空宫）</span>';
-      pal.stars.forEach((s) => {
-        const col = SIHUA_COLOR[s.sihua] || "var(--star)";
-        h += '<span class="star-chip" style="color:' + col + '" title="' +
-          (ziweiStarTip(s.name)) + '">' + esc(s.name) +
-          (s.sihua ? '<i class="sihua">' + s.sihua + '</i>' : '') + '</span>';
-      });
-      h += '</div></div>';
-    });
-    h += '</div>';
-    // 四化
-    const sh = z.sihua;
-    h += '<div class="sec-h">生年四化</div><div class="sihua-line">';
-    ["禄", "权", "科", "忌"].forEach((k) => {
-      h += '<span class="sihua-pill" style="color:' + SIHUA_COLOR[k] + '">' +
-        k + '：' + esc(sh[k] || "—") + '</span>';
-    });
-    h += '</div>';
-    // 本命卦
-    h += '<div class="sec-h">本命卦（' + esc(g.method) + '）</div>' +
-      '<div class="gua-box">本卦 <b>' + esc(g.ben) + '</b>（' + esc(g.up) +
-      '上' + esc(g.down) + '下）　动爻 第' + g.dong_yao + '爻　变卦 <b>' +
-      esc(g.bian) + '</b><div class="gua-sub">农历 ' + esc(g.lunar) + '</div></div>';
-    h += '</div>';
-    $("#detailPane").innerHTML = h;
+  } catch (e) {
+    if (dp) dp.innerHTML = '<div class="hint">排盘失败：' + esc(e.message || String(e)) + '</div>';
+    return;
   }
+  lastPaipan = data;
+  lastCase = data.case;
+  fillControlsFromCase(data.case, data.solar_used);
+  renderPaipanSystem(data);
+}
 
-  function ziweiStarTip(name) {
-    const M = {
-      "紫微": "北斗帝星，主尊贵领导权柄", "天机": "智谋，主思辨机变谋略",
-      "太阳": "官禄主，主光明名声父兄", "武曲": "财星，主财富刚毅行动",
-      "天同": "福德主，主福气安逸和缓", "廉贞": "次桃花，主权柄才艺情绪",
-      "天府": "南斗库星，主财富守成稳重", "太阴": "财星，主内敛情感母妻",
-      "贪狼": "桃花星，主欲望交际才艺", "巨门": "口舌星，主是非洞察口才",
-      "天相": "印星，主协调服务掌印", "天梁": "荫星，主解厄长辈学术",
-      "七杀": "将星，主开创决断孤克", "破军": "先锋星，主破耗变革波折",
-    };
-    return M[name] || name;
-  }
+function fillControlsFromCase(c, solar) {
+  const d = $("#ppDate"); if (d && solar) d.value = solar.slice(0, 10);
+  const g = $("#ppGender"); if (g) g.value = c.gender || "男";
+  const p = $("#ppPlace"); if (p) p.value = c.birthplace || "";
+  const m = /时柱\s*[甲乙丙丁戊己庚辛壬癸]([子丑寅卯辰巳午未申酉戌亥])/.exec(c.pillars || "");
+  const hh = $("#ppHour");
+  if (hh && m) { const idx = "子丑寅卯辰巳午未申酉戌亥".indexOf(m[1]); if (idx >= 0) hh.value = String(idx); }
+}
 
-  function renderMingli(d) {
-    const a = d.analysis, b = d.bazi, z = d.ziwei;
-    let h = '<div class="paipan-result mingli">';
-    h += '<div class="sec-h">命主总览</div><div class="pp-summary">' +
-      '<span>日主 <b>' + esc(a.day_master) + '</b></span>' +
-      '<span>强弱 <b>' + esc(a.strength) + '</b></span>' +
-      '<span>命宫主星 <b>' + esc(a.ming_gong_stars.join("、") || "—") + '</b></span>' +
-      '<span>五行局 <b>' + esc(z.ju) + '</b></span></div>';
-    h += '<div class="sec-h">格局分析</div><div class="sec-b">' +
-      esc(a.pattern) + '</div>';
-    h += '<div class="sec-h">大运走势</div><div class="sec-b">' +
-      esc(a.dayun_note) + '</div>';
-    // 十神
-    h += '<div class="sec-h">四柱十神</div><div class="tag-row">';
-    const labels = ["年", "月", "日", "时"];
-    b.pillars.forEach((p, i) => {
-      h += '<span class="tag">' + labels[i] + '·' + esc(p.gan) + '→' +
-        esc(p.gan_shi) + '</span>';
+async function doPaipan() {
+  const date = $("#ppDate").value;
+  const hour = parseInt($("#ppHour").value, 10);
+  const gender = $("#ppGender").value;
+  const place = ($("#ppPlace").value || "").trim();
+  if (!date) { alert("请填写出生日期"); return; }
+  const solar = date + " " + String(hour).padStart(2, "0") + ":30";
+  const dp = $("#ppDujie"); if (dp) dp.innerHTML = '<div class="hint">排盘中…</div>';
+  let data;
+  try {
+    data = await api("/api/tianji/paipan", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ solar, gender, birthplace: place })
     });
-    h += '</div>';
-    // 六亲
-    h += '<div class="sec-h">六亲定位（以日干为我）</div><table class="liuqin-tbl">' +
-      '<tr><th>来源</th><th>天干</th><th>十神</th><th>六亲含义</th></tr>';
-    a.liuqin.forEach((q) => {
-      h += '<tr><td>' + esc(q.from) + '</td><td>' + esc(q.gan) + '</td><td>' +
-        esc(q.shi) + '</td><td>' + esc(q.meaning) + '</td></tr>';
-    });
-    h += '</table>';
-    // 本命卦
-    const g = a.benming_gua;
-    h += '<div class="sec-h">本命卦</div><div class="sec-b">本卦 <b>' + esc(g.ben) +
-      '</b>（' + esc(g.up) + '上' + esc(g.down) + '下），动第' + g.dong_yao +
-      '爻，变卦 <b>' + esc(g.bian) + '</b>。</div>';
-    // 相关命例
-    if (a.related_cases.length) {
-      h += '<div class="sec-h">天纪原有八字命例（日主相同 · ' +
-        a.related_cases.length + '）</div><ul class="rel-list">';
-      a.related_cases.forEach((c) => {
-        h += '<li><b>' + esc(c.name) + '</b>　<span class="rel-zhu">' +
-          esc(c.zhu) + '</span><div class="rel-snip">' + esc(c.snippet) +
-          '</div></li>';
-      });
-      h += '</ul>';
-    }
-    // 相关理论
-    if (a.related_lilun.length) {
-      h += '<div class="sec-h">相关天纪理论（' + a.related_lilun.length +
-        '）</div><div class="tag-row">';
-      a.related_lilun.forEach((x) => {
-        h += '<span class="tag">' + esc(x.name) + '</span>';
-      });
-      h += '</div>';
-    }
-    h += '</div>';
-    $("#detailPane").innerHTML = h;
+  } catch (e) {
+    if (dp) dp.innerHTML = '<div class="hint">排盘失败：' + esc(e.message || String(e)) + '</div>';
+    return;
   }
+  data.case = { name: "手动排盘", gender: gender, birth: "", pillars: "", birthplace: place, original_analysis: "" };
+  data.solar_used = solar;
+  lastPaipan = data; lastCase = data.case;
+  renderPaipanSystem(data);
+}
+
+const SIHUA_COLOR = { "禄": "var(--c-lu)", "权": "var(--c-quan)", "科": "var(--c-ke)", "忌": "var(--c-ji)" };
+
+function pillarCell(p, label) {
+  return '<div class="bz-cell">' +
+    '<div class="bz-label">' + label + '</div>' +
+    '<div class="bz-gz">' + esc(p.gz) + '</div>' +
+    '<div class="bz-shi">' + esc(p.gan_shi) + '</div>' +
+    '<div class="bz-nayin">' + esc(p.nayin) + '</div></div>';
+}
+
+function renderPaipanSystem(d) {
+  const b = d.bazi, z = d.ziwei, g = d.gua;
+  // ---- 紫微盘 ----
+  let zh = '<div class="pp-summary">' +
+    '<span>阳历 <b>' + esc(b.solar) + '</b></span>' +
+    '<span>农历 <b>' + esc(b.lunar) + '</b></span>' +
+    '<span>生肖 <b>' + esc(b.zodiac) + '</b></span>' +
+    '<span>性别 <b>' + esc(b.gender) + '</b></span>' +
+    '<span>五行局 <b>' + esc(z.ju) + '</b></span>' +
+    '<span>命宫 <b>' + esc(z.ming_gong.gz) + '</b></span>' +
+    '<span>身宫 <b>' + esc(z.shen_gong.zhi) + '</b></span></div>';
+  zh += '<div class="ziwei-grid">';
+  z.palace.forEach(pal => {
+    const isMing = pal.gong === "命宫";
+    zh += '<div class="palace-card' + (isMing ? ' ming' : '') + '">';
+    zh += '<div class="pc-head">' + esc(pal.gong) + ' <span class="pc-zhi">' + esc(pal.zhi) + '</span></div><div class="pc-stars">';
+    if (!pal.stars.length) zh += '<span class="pc-empty">（空宫）</span>';
+    pal.stars.forEach(s => {
+      const col = SIHUA_COLOR[s.sihua] || "var(--star)";
+      zh += '<span class="star-chip" style="color:' + col + '" title="' + ziweiStarTip(s.name) + '">' + esc(s.name) + (s.sihua ? '<i class="sihua">' + s.sihua + '</i>' : '') + '</span>';
+    });
+    zh += '</div></div>';
+  });
+  zh += '</div>';
+  const sh = z.sihua;
+  zh += '<div class="sihua-line">';
+  ["禄", "权", "科", "忌"].forEach(k => {
+    zh += '<span class="sihua-pill" style="color:' + SIHUA_COLOR[k] + '">' + k + '：' + esc(sh[k] || "—") + '</span>';
+  });
+  zh += '</div>';
+  $("#ppZiwei").innerHTML = zh;
+  // ---- 八字盘 ----
+  let bh = '<div class="pp-summary">' +
+    '<span>日主 <b>' + esc(b.ri_gan) + '（' + esc(b.ri_wx) + '）</b></span>' +
+    '<span>强弱 <b>' + esc(b.strength) + '</b></span></div>';
+  bh += '<div class="bazi-grid">';
+  const labels = ["年柱", "月柱", "日柱", "时柱"];
+  b.pillars.forEach((p, i) => { bh += pillarCell(p, labels[i]); });
+  bh += '</div>';
+  const wx = b.wx_score;
+  bh += '<div class="sec-h">五行分布</div><div class="wx-bar">';
+  const wxc = { "木": "#2e8b57", "火": "#d9534f", "土": "#c79a4b", "金": "#b0b0b0", "水": "#3a7bd5" };
+  const maxv = Math.max.apply(null, Object.values(wx));
+  Object.keys(wx).forEach(k => {
+    const pct = (wx[k] / maxv * 100).toFixed(0);
+    bh += '<div class="wx-row"><span class="wx-name">' + k + '</span><span class="wx-track"><span class="wx-fill" style="width:' + pct + '%;background:' + wxc[k] + '"></span></span><span class="wx-val">' + wx[k].toFixed(2) + '</span></div>';
+  });
+  bh += '</div>';
+  bh += '<div class="sec-h">大运（' + (b.dayun.shun ? "顺" : "逆") + '排，' + b.dayun.start_age + '岁' + b.dayun.start_mon + '个月起运）</div><div class="dayun-row">';
+  b.dayun.list.slice(0, 10).forEach(du => {
+    bh += '<div class="dy-cell"><div class="dy-age">' + du.age + '岁</div><div class="dy-gz">' + esc(du.gz) + '</div><div class="dy-shi">' + esc(du.gan_shi) + '</div></div>';
+  });
+  bh += '</div>';
+  bh += '<div class="sec-h">本命卦</div><div class="gua-box">本卦 <b>' + esc(g.ben) + '</b>（' + esc(g.up) + '上' + esc(g.down) + '下）　动第' + g.dong_yao + '爻　变卦 <b>' + esc(g.bian) + '</b><div class="gua-sub">' + esc(g.lunar) + '</div></div>';
+  $("#ppBazi").innerHTML = bh;
+  // ---- 解读 ----
+  renderDujie(d);
+  const ex = $("#ppExport"); if (ex) ex.style.display = "";
+}
+
+function renderDujie(d) {
+  const a = d.analysis, b = d.bazi, z = d.ziwei;
+  let h = '<div class="sec-h">命主总览</div><div class="pp-summary">' +
+    '<span>日主 <b>' + esc(a.day_master) + '</b></span>' +
+    '<span>强弱 <b>' + esc(a.strength) + '</b></span>' +
+    '<span>命宫主星 <b>' + esc(a.ming_gong_stars.join("、") || "—") + '</b></span>' +
+    '<span>五行局 <b>' + esc(z.ju) + '</b></span></div>';
+  h += '<div class="sec-h">格局分析</div><div class="sec-b">' + esc(a.pattern) + '</div>';
+  h += '<div class="sec-h">大运走势</div><div class="sec-b">' + esc(a.dayun_note) + '</div>';
+  h += '<div class="sec-h">四柱十神</div><div class="tag-row">';
+  const labels = ["年", "月", "日", "时"];
+  b.pillars.forEach((p, i) => { h += '<span class="tag">' + labels[i] + '·' + esc(p.gan) + '→' + esc(p.gan_shi) + '</span>'; });
+  h += '</div>';
+  h += '<div class="sec-h">六亲定位（以日干为我）</div><table class="liuqin-tbl"><tr><th>来源</th><th>天干</th><th>十神</th><th>六亲含义</th></tr>';
+  a.liuqin.forEach(q => {
+    h += '<tr><td>' + esc(q.from) + '</td><td>' + esc(q.gan) + '</td><td>' + esc(q.shi) + '</td><td>' + esc(q.meaning) + '</td></tr>';
+  });
+  h += '</table>';
+  const oa = (d.case && d.case.original_analysis) || "";
+  if (oa) {
+    h += '<div class="sec-h">倪师原版命盘分析（' + esc((d.case && d.case.name) || "") + '）</div><div class="sec-b orig">' + esc(oa) + '</div>';
+  }
+  if (a.related_cases.length) {
+    h += '<div class="sec-h">天纪原有八字命例（日主相同 · ' + a.related_cases.length + '）</div><ul class="rel-list">';
+    a.related_cases.forEach(c => {
+      h += '<li><b>' + esc(c.name) + '</b>　<span class="rel-zhu">' + esc(c.zhu) + '</span><div class="rel-snip">' + esc(c.snippet) + '</div></li>';
+    });
+    h += '</ul>';
+  }
+  if (a.related_lilun.length) {
+    h += '<div class="sec-h">相关天纪理论（' + a.related_lilun.length + '）</div><div class="tag-row">';
+    a.related_lilun.forEach(x => { h += '<span class="tag">' + esc(x.name) + '</span>'; });
+    h += '</div>';
+  }
+  $("#ppDujie").innerHTML = h;
+}
+
+function ziweiStarTip(name) {
+  const M = {
+    "紫微": "北斗帝星，主尊贵领导权柄", "天机": "智谋，主思辨机变谋略",
+    "太阳": "官禄主，主光明名声父兄", "武曲": "财星，主财富刚毅行动",
+    "天同": "福德主，主福气安逸和缓", "廉贞": "次桃花，主权柄才艺情绪",
+    "天府": "南斗库星，主财富守成稳重", "太阴": "财星，主内敛情感母妻",
+    "贪狼": "桃花星，主欲望交际才艺", "巨门": "口舌星，主是非洞察口才",
+    "天相": "印星，主协调服务掌印", "天梁": "荫星，主解厄长辈学术",
+    "七杀": "将星，主开创决断孤克", "破军": "先锋星，主破耗变革波折"
+  };
+  return M[name] || name;
+}
+
+function exportDujie() {
+  if (!lastPaipan) { alert("请先排盘"); return; }
+  const d = lastPaipan, b = d.bazi, z = d.ziwei, a = d.analysis, c = d.case || {};
+  let t = "倪海厦天纪 · 命盘解读\n";
+  t += "================================\n";
+  t += "命例：" + (c.name || "手动排盘") + "　性别：" + (c.gender || b.gender) + "\n";
+  if (c.birth) t += "生辰：" + c.birth + "\n";
+  if (c.birthplace) t += "出生地：" + c.birthplace + "\n";
+  t += "阳历：" + b.solar + "　农历：" + b.lunar + "　生肖：" + b.zodiac + "\n";
+  t += "八字四柱：" + b.pillars.map(p => p.gz + "(" + p.gan_shi + ")").join(" ") + "\n";
+  t += "日主：" + b.ri_gan + "（" + b.ri_wx + "）　强弱：" + b.strength + "\n";
+  t += "紫微斗数：五行局 " + z.ju + "　命宫 " + z.ming_gong.gz + "　身宫 " + z.shen_gong.zhi + "\n";
+  t += "生年四化：禄" + (z.sihua.禄 || "") + " 权" + (z.sihua.权 || "") + " 科" + (z.sihua.科 || "") + " 忌" + (z.sihua.忌 || "") + "\n";
+  t += "\n【十二宫主星】\n";
+  z.palace.forEach(pal => {
+    const ss = pal.stars.map(s => s.name + (s.sihua ? ("·" + s.sihua) : "")).join("、");
+    t += pal.gong + "(" + pal.zhi + ")：" + (ss || "空宫") + "\n";
+  });
+  t += "\n【格局分析】\n" + a.pattern + "\n";
+  t += "\n【大运】" + a.dayun_note + "\n";
+  t += "\n【六亲】\n";
+  a.liuqin.forEach(q => { t += q.from + " " + q.gan + " " + q.shi + "：" + q.meaning + "\n"; });
+  t += "\n【本命卦】" + d.gua.ben + "（" + d.gua.up + "上" + d.gua.down + "下），动第" + d.gua.dong_yao + "爻，变卦 " + d.gua.bian + "\n";
+  if (c.original_analysis) {
+    t += "\n================================\n【倪师原版命盘分析】\n" + c.original_analysis + "\n";
+  }
+  const blob = new Blob([t], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const aEl = document.createElement("a");
+  aEl.href = url;
+  aEl.download = "命盘解读_" + (c.name || "排盘") + ".txt";
+  document.body.appendChild(aEl); aEl.click(); document.body.removeChild(aEl);
+  URL.revokeObjectURL(url);
+}
