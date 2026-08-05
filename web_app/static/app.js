@@ -213,6 +213,20 @@ function clearFilterBar() {
   if (fb) { fb.innerHTML = ""; fb.style.display = "none"; }
 }
 
+// 乐观 UI：点击分类时立即把高亮切到被点项，不等网络回包，消除「切换慢」的卡顿感。
+function activateNavItem(root, btn) {
+  if (!root) return;
+  root.querySelectorAll(".catnav-item, .filter-tab").forEach((n) => n.classList.remove("active"));
+  if (btn) btn.classList.add("active");
+}
+// 列表区域显示「加载中…」轻提示，被 renderList / 错误分支覆盖。
+function showListLoading() {
+  const ul = $("#resultList");
+  if (ul) ul.innerHTML = "";
+  const hint = $("#listHint");
+  if (hint) { hint.style.display = "block"; hint.textContent = "加载中…"; }
+}
+
 // Render the switchable category tab bar at the top of the list pane.
 function renderFilterBar(tabs, activeKey, onSelect) {
   const fb = $("#filterBar");
@@ -224,7 +238,7 @@ function renderFilterBar(tabs, activeKey, onSelect) {
     const b = document.createElement("button");
     b.className = "filter-tab" + (t.key === activeKey ? " active" : "");
     b.textContent = t.label + (t.count != null ? "（" + t.count + "）" : "");
-    b.onclick = () => onSelect(t.key);
+    b.onclick = () => { activateNavItem(fb, b); onSelect(t.key); };
     fb.appendChild(b);
   });
 }
@@ -293,6 +307,7 @@ async function loadList(q) {
   const ep = endpointFor(q);
   if (!ep) return;
   const my = ++loadSeq;
+  showListLoading();
   if (state.module === "cases" && !casesCatsCache) {
     try { casesCatsCache = await api("/api/cases/cats"); } catch (e) { casesCatsCache = { cats: [] }; }
   }
@@ -327,9 +342,9 @@ async function loadList(q) {
   } else if (state.module === "articles" && articleCatsCache) {
     renderArticleCatNav(articleCatsCache.cats, state.articleCat || "");
   } else if (state.module === "bz" && bzCatsCache) {
-    renderBzCatNav(bzCatsCache.cats, state.bzCat || "", "bz", "病症分类", "全部病症");
+    renderBzCatNav(bzCatsCache.cats, state.bzCat || "", "bzCat", "病症分类", "全部病症");
   } else if (state.module === "sspl" && ssplCatsCache) {
-    renderBzCatNav(ssplCatsCache.cats, state.ssplCat || "", "sspl", "评论分类", "全部评论");
+    renderBzCatNav(ssplCatsCache.cats, state.ssplCat || "", "ssplCat", "评论分类", "全部评论");
   } else if (state.module === "herbs" && data.cats) {
     renderHerbTabs(data.cats);
   }
@@ -349,7 +364,7 @@ function renderCasesCatNav(cats, activeKey) {
     const b = document.createElement("button");
     b.className = "catnav-item" + (c.key === activeKey ? " active" : "");
     b.innerHTML = `<span class="cn-label">${esc(c.label)}</span><em class="cn-count">${c.count}</em>`;
-    b.onclick = () => { state.caseCat = c.key; state.page = 1; loadList($("#search").value); };
+    b.onclick = () => { activateNavItem(nav, b); state.caseCat = c.key; state.page = 1; loadList($("#search").value); };
     nav.appendChild(b);
   });
 }
@@ -367,13 +382,13 @@ function renderArticleCatNav(cats, activeKey) {
   const all = document.createElement("button");
   all.className = "catnav-item" + (activeKey === "" ? " active" : "");
   all.innerHTML = `<span class="cn-label">全部论文</span><em class="cn-count">${ARTICLE_TOTAL || ""}</em>`;
-  all.onclick = () => { state.articleCat = ""; state.page = 1; loadList($("#search").value); };
+  all.onclick = () => { activateNavItem(nav, all); state.articleCat = ""; state.page = 1; loadList($("#search").value); };
   nav.appendChild(all);
   (cats || []).forEach((c) => {
     const b = document.createElement("button");
     b.className = "catnav-item" + (c.key === activeKey ? " active" : "");
     b.innerHTML = `<span class="cn-label">${esc(c.name)}</span><em class="cn-count">${c.count}</em>`;
-    b.onclick = () => { state.articleCat = c.key; state.page = 1; loadList($("#search").value); };
+    b.onclick = () => { activateNavItem(nav, b); state.articleCat = c.key; state.page = 1; loadList($("#search").value); };
     nav.appendChild(b);
   });
 }
@@ -392,13 +407,13 @@ function renderBzCatNav(cats, activeKey, stateKey, titleText, allLabel) {
   const all = document.createElement("button");
   all.className = "catnav-item" + (activeKey === "" ? " active" : "");
   all.innerHTML = `<span class="cn-label">${allLabel || "全部病症"}</span>`;
-  all.onclick = () => { state[stateKey] = ""; state.page = 1; loadList($("#search").value); };
+  all.onclick = () => { activateNavItem(nav, all); state[stateKey] = ""; state.page = 1; loadList($("#search").value); };
   nav.appendChild(all);
   (cats || []).forEach((c) => {
     const b = document.createElement("button");
     b.className = "catnav-item" + (c.key === activeKey ? " active" : "");
     b.innerHTML = `<span class="cn-label">${esc(c.name)}</span><em class="cn-count">${c.count}</em>`;
-    b.onclick = () => { state[stateKey] = c.key; state.page = 1; loadList($("#search").value); };
+    b.onclick = () => { activateNavItem(nav, b); state[stateKey] = c.key; state.page = 1; loadList($("#search").value); };
     nav.appendChild(b);
   });
 }
