@@ -1,10 +1,13 @@
-# Vercel upload ignores .gitignore automatically; this trims a few more MB
-# so the large-blob deploy is more likely to survive a flaky uplink.
+# Vercel upload ignores .gitignore automatically; this trims a few more MB and
+# keeps the 92MB leftovers / scratch out of the deployment.
 tools/exe_strings.txt
 web_app/.uvicorn.log
-# data.db (97MB) is NOT bundled to Vercel; common.py downloads it at runtime
-# from the GitHub repo (DATA_DB_URL). It is still committed to git normally.
-web_app/data.db
+web_app/_*.py
+web_app/_carved/
+web_app/_verify/
+web_app/_uv*
+web_app/data_full.db
+public/data.db
 *.log
 .workbuddy/
 .vercel/

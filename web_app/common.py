@@ -32,35 +32,64 @@ REMOTE_DB_URL = os.environ.get(
 
 
 def _resolve_db_path():
-    """Return a usable SQLite path: local file if present, else a downloaded cache.
+    """Return a usable SQLite path if a local copy exists; else None (no network).
 
-    下载带重试 + 多镜像（raw.githubusercontent 偶发不可达时回退 jsDelivr），
-    任一次成功即写入 /tmp 缓存，避免冷启动失败导致整个函数崩溃（USE_SQLITE=False）。
+    仅做本地判定，绝不在导入期发起网络下载 —— Vercel 冷启动预算极小，92MB 下载
+    会阻塞导入并导致 FUNCTION_INVOCATION_FAILED。本地开发 / 已随部署打包 data.db
+    的实例走 DEFAULT_DB 分支，瞬时返回；否则返回 None，由调用方降级（USE_SQLITE=False）。
+    真正的下载在 _ensure_db() 中按需、懒触发（首次访问数据时），不阻塞导入。
     """
+    cache = os.path.join("/tmp", "finalhopes_data.db")
     if os.path.exists(DEFAULT_DB):
         return DEFAULT_DB
-    cache = os.path.join("/tmp", "finalhopes_data.db")
-    if os.path.exists(cache):
+    if os.path.exists(cache) and os.path.getsize(cache) > 1_000_000:
         return cache
-    import urllib.request as _urllib
-    mirrors = [REMOTE_DB_URL]
-    jsd = "https://cdn.jsdelivr.net/gh/dmych1989/finalhopes-Learning-System@main/web_app/data.db"
-    if jsd != REMOTE_DB_URL:
-        mirrors.append(jsd)
-    last_err = None
-    for url in mirrors:
-        for attempt in range(4):
-            try:
-                _urllib.urlretrieve(url, cache)
-                if os.path.getsize(cache) > 1_000_000:
-                    return cache
-                last_err = f"too small ({os.path.getsize(cache)})"
-            except Exception as e:  # 超时/网络抖动/5xx 都重试
-                last_err = repr(e)
-            import time
-            time.sleep(1.5 * (attempt + 1))
-    print("WARN: data.db 下载失败：", last_err)
     return None
+
+
+def _download_db(dest, timeout=55):
+    """Lazily download data.db from the runtime host. Returns True on success.
+
+    优先从「同源部署静态文件」(PUBLIC_DB_URL) 拉取 —— Vercel 函数访问自身部署
+    域名走内网，快且稳定；公网 GitHub raw / jsDelivr 在 Vercel 出网常被阻塞或挂起，
+    仅作兜底。调用方需处理失败（返回 False）。
+    """
+    import urllib.request as _urllib
+    urls = []
+    pub = os.environ.get("PUBLIC_DB_URL") or "https://finalhopes.dynv6.net/data.db"
+    urls.append(pub)
+    if REMOTE_DB_URL not in urls:
+        urls.append(REMOTE_DB_URL)
+    jsd = "https://cdn.jsdelivr.net/gh/dmych1989/finalhopes-Learning-System@main/web_app/data.db"
+    if jsd not in urls:
+        urls.append(jsd)
+    last = None
+    for url in urls:
+        try:
+            _urllib.urlretrieve(url, dest, timeout=timeout)
+            if os.path.getsize(dest) > 1_000_000:
+                return True
+            last = "too small (%d)" % os.path.getsize(dest)
+        except Exception as e:
+            last = repr(e)
+    print("WARN: data.db 懒下载失败：", last)
+    return False
+
+
+def _ensure_db():
+    """Lazily resolve a SQLite path (local /tmp cache / download). Sets USE_SQLITE."""
+    global DATA_DB, USE_SQLITE
+    if USE_SQLITE and DATA_DB and os.path.exists(DATA_DB):
+        return True
+    # 本地 /tmp 缓存（同实例复用，避免重复下载）
+    cache = os.path.join("/tmp", "finalhopes_data.db")
+    if os.path.exists(cache) and os.path.getsize(cache) > 1_000_000:
+        DATA_DB, USE_SQLITE = cache, True
+        return True
+    if _download_db(cache):
+        DATA_DB, USE_SQLITE = cache, True
+        return True
+    return False
 
 
 DATA_DB = _resolve_db_path()
@@ -68,6 +97,8 @@ USE_SQLITE = DATA_DB is not None
 
 
 def _sqlite_json(table, key):
+    if not _ensure_db():
+        return None
     con = sqlite3.connect(DATA_DB)
     cur = con.execute("SELECT v FROM %s WHERE k=?" % table, (key,))
     row = cur.fetchone()
@@ -205,7 +236,7 @@ def _clean_row(v):
 
 
 def load_table(table, cipher_table=None):
-    if USE_SQLITE:
+    if _ensure_db():
         rows = _sqlite_json("main_table", table)
         # SQLite 模式在转换期已做过一次 clean_text；此处再跑一遍以应用
         # 后续新增的版式/水印清理规则（Normalheading、微信公众号等），幂等。
@@ -230,7 +261,7 @@ def decrypt_image(val):
 
 
 def load_dict(table, key_col="MZ"):
-    if USE_SQLITE:
+    if _ensure_db():
         d = _sqlite_json("main_table", table)
         return d if d is not None else {}
     return {r.get(key_col, ""): r for r in load_table(table)}
@@ -238,7 +269,7 @@ def load_dict(table, key_col="MZ"):
 
 def get_yaotu_images():
     """Return {name: jpeg_bytes} for the 药图 (yaotu) herb images."""
-    if USE_SQLITE:
+    if _ensure_db():
         con = sqlite3.connect(DATA_DB)
         cur = con.execute("SELECT name, data FROM yaotu_img")
         d = {r[0]: r[1] for r in cur.fetchall()}

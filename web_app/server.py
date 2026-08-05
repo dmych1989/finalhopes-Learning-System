@@ -5,7 +5,7 @@ import os
 import re
 import json
 from fastapi import FastAPI, HTTPException, Body
-from fastapi.responses import HTMLResponse, JSONResponse, Response, FileResponse
+from fastapi.responses import HTMLResponse, JSONResponse, Response, FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 import common
 
@@ -18,12 +18,20 @@ import tianji_tree
 # 天纪排盘 / 命理系统：八字 + 紫微斗数 + 本命卦 引擎（纯 Python）。
 import paipan
 
+# 图片索引：extract_images.py 把 yaotu/renji/tianji 三库图片抽出到 public/img/{sub}/，
+# 并把「原名 -> 文件名」映射写入 web_app/img_index.py；图片端点 302 重定向到 CDN 静态路径。
+try:
+    import img_index
+    IMG_INDEX = getattr(img_index, "IMG_INDEX", {})
+except Exception:
+    IMG_INDEX = {}
+
 app = FastAPI(title="倪海厦医学查询系统 (网页版)")
 
-print("Loading data from LILUN.mdb ...")
-CASES = common.load_table("1234567")
-# The original case MZ field is just "N.古籍斋倪海厦医案数据库" (a distributor
-# watermark), so give each case a meaningful title derived from its content.
+# 医案数据懒加载：首次访问时才从 data.db 读取，避免 Vercel 冷启动导入期就触发
+# 92MB 下载 / 解密，导致函数初始化超时（FUNCTION_INVOCATION_FAILED）。
+CASES = None
+
 def case_title(rec):
     for c in ["【来诊原因】", "【诊断】", "【问诊】"]:
         v = (rec.get(c) or "").strip()
@@ -32,8 +40,20 @@ def case_title(rec):
     if rec.get("【姓名】"):
         return rec["【姓名】"][:24]
     return "医案记录"
-for _c in CASES:
-    _c["_title"] = case_title(_c)
+
+def get_cases():
+    global CASES
+    if CASES is None:
+        print("Loading 医案 from data.db ...")
+        try:
+            rows = common.load_table("1234567")
+        except Exception as _e:
+            print("WARN: CASES 加载失败：", repr(_e))
+            rows = []
+        for _c in rows:
+            _c["_title"] = case_title(_c)
+        CASES = rows
+    return CASES
 
 # ---- 医案「按证型浏览」分类体系（倪海厦以伤寒六经 + 脏腑辨证立论） ----
 # 每条: (key, 显示名, [关键词]) ；关键词命中 诊断/来诊原因/解说/中药处方 即归入。
@@ -76,7 +96,7 @@ CASE_CATS = [
 
 # 预计算每条医案归属的证型集合（按索引），供计数与过滤使用。
 _CASE_TEXT = [" ".join((_r.get(f) or "") for f in
-              ("【诊断】", "【来诊原因】", "【解说】", "【中药处方】")) for _r in CASES]
+              ("【诊断】", "【来诊原因】", "【解说】", "【中药处方】")) for _r in get_cases()]
 CASE_CAT_SETS = {}
 for _key, _label, _kws in CASE_CATS:
     if _kws is None:
@@ -271,11 +291,8 @@ for _r in sorted(_HDWJ_RAW, key=lambda r: _hdwj_pos(str(r.get("MZ", "")))):
     HDWJ.append(_r)
 del _HDWJ_RAW
 
-# yaotu 中药图（JPEG，XOR-0x0F 解密后存入 SQLite；无 data.db 时回退直连 .mdb）
-YAOTU_IMG = common.get_yaotu_images()
-YAOTU_NAMES = sorted(YAOTU_IMG.keys())
-
-
+# yaotu 中药图：图片已从 data.db 抽出为静态资源 public/img/yaotu/（XOR-0x0F 解密后），
+# 由 /api/herb_image 302 重定向到 CDN 静态文件；索引见 web_app/img_index.py。
 def yaotu_type(name):
     """The herb-image name is '药名-形态' (e.g. 麻黄-原态). The suffix after the
     last '-' is the 形态/类别 (原态 / 药材 / 饮片 / 草药); names without a dash
@@ -286,6 +303,7 @@ def yaotu_type(name):
     return t
 
 
+YAOTU_NAMES = sorted(IMG_INDEX.get("yaotu", {}).keys())
 YAOTU_TYPES = sorted(set(yaotu_type(n) for n in YAOTU_NAMES))
 HERB_IMG = {}
 for hname in HERBS:
@@ -294,7 +312,7 @@ for hname in HERBS:
             HERB_IMG[hname] = yname
             break
 print("Loaded: cases=%d herbs=%d articles=%d yaotu=%d" %
-      (len(CASES), len(HERBS), len(ARTICLES), len(YAOTU_IMG)))
+      (len(CASES), len(HERBS), len(ARTICLES), len(YAOTU_NAMES)))
 
 # ---- 外部《中医》资料索引（穴位 / 中药图片，来自 GitHub 仓库，按经络/文件夹分类） ----
 # 优先从预构建的 extra_data.json 加载（生产环境无本地中医目录）；
@@ -730,10 +748,10 @@ def api_yaotu(q: str = "", cat: str = "", page: int = 1, size: int = 60):
 
 @app.get("/api/herb_image/{name}")
 def herb_image(name: str):
-    img = YAOTU_IMG.get(name)
-    if not img:
+    fn = IMG_INDEX.get("yaotu", {}).get(name)
+    if not fn:
         raise HTTPException(404, "no image")
-    return Response(content=img, media_type="image/jpeg")
+    return RedirectResponse("/img/yaotu/%s" % fn, status_code=302)
 
 
 # ---------------------------------------------------------------------------
@@ -874,10 +892,10 @@ def api_renji_ziwwu():
 
 @app.get("/renji/img")
 def renji_img(name: str = ""):
-    img = renji_db.image_bytes(name)
-    if not img:
+    fn = IMG_INDEX.get("renji", {}).get(name)
+    if not fn:
         raise HTTPException(404, "no image")
-    return Response(content=img, media_type="image/jpeg")
+    return RedirectResponse("/img/renji/%s" % fn, status_code=302)
 
 
 # ---------------------------------------------------------------------------
@@ -1066,10 +1084,10 @@ def api_tianji_tables(sub: str = ""):
 
 @app.get("/tianji/img")
 def tianji_img(name: str = ""):
-    img, mt = tianji_db.image_bytes(name)
-    if not img:
+    fn = IMG_INDEX.get("tianji", {}).get(name)
+    if not fn:
         raise HTTPException(404, "no image")
-    return Response(content=img, media_type=mt or "image/jpeg")
+    return RedirectResponse("/img/tianji/%s" % fn, status_code=302)
 
 
 # ---- 天纪·排盘系统 / 命理系统（新增强化模块）----------------------------------
@@ -1157,3 +1175,8 @@ def tianji_page():
 
 app.mount("/static", StaticFiles(directory=os.path.join(os.path.dirname(__file__), "static")),
           name="static")
+
+# 本地开发：把 public/img 挂载为 /img（Vercel 上由 CDN 静态托管 public/，函数不会收到 /img 请求）。
+_IMG_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "public", "img")
+if os.path.isdir(_IMG_DIR):
+    app.mount("/img", StaticFiles(directory=_IMG_DIR), name="img_static")
