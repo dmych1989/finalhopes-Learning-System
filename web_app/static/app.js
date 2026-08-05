@@ -96,9 +96,10 @@ function buildSidebar(modules) {
       bar.appendChild(d);
     });
   } else if (side) {
-    // tianji：模块列表保留在左侧（原设计），顶部栏只放 logo/搜索/三系统切换
+    // tianji：模块列表保留在左侧，但 tool 类（排盘系统/命理系统）提升到顶部横向菜单
     side.innerHTML = "";
     modules.forEach((m) => {
+      if (m.kind === "tool") return;   // 排盘/命理 移到顶部 #tjTools，左侧不再重复
       const d = document.createElement("div");
       d.className = "nav-item";
       d.innerHTML = `${esc(m.name)}<small>${esc(m.desc || "")}</small>`;
@@ -106,12 +107,35 @@ function buildSidebar(modules) {
       d.onclick = () => selectModule(m, d);
       side.appendChild(d);
     });
+    buildTianjiTools(modules);
   }
 }
 
 function setActive(el) {
-  document.querySelectorAll(".board-tab, .nav-item").forEach((n) => n.classList.remove("active"));
+  document.querySelectorAll(".board-tab, .nav-item, .tj-tool").forEach((n) => n.classList.remove("active"));
   if (el) el.classList.add("active");
+}
+
+// 天纪：把 tool 类模块（排盘系统/命理系统）渲染为顶部横向菜单
+function buildTianjiTools(modules) {
+  const box = document.getElementById("tjTools");
+  if (!box) return;
+  const tools = modules.filter((m) => m.kind === "tool");
+  box.innerHTML = "";
+  if (!tools.length) return;
+  const label = document.createElement("span");
+  label.className = "tj-tools-label";
+  label.textContent = "工具";
+  box.appendChild(label);
+  tools.forEach((m) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "tj-tool" + (m.key === state.module ? " active" : "");
+    b.textContent = m.name;
+    m._toolEl = b;
+    b.onclick = () => selectModule(m, b);
+    box.appendChild(b);
+  });
 }
 
 function setHead(m) {
