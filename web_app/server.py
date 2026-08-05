@@ -13,6 +13,8 @@ import common
 import renji_db
 # 天纪学习系统：三个独立数据库（LILUN/CollData/MasterData，密码各不相同），易经/紫微/天文/命理。
 import tianji_db
+# 天纪目录树（按 列表.txt 重组，每叶带 src/idx，复用 /api/tianji/item 渲染）
+import tianji_tree
 # 天纪排盘 / 命理系统：八字 + 紫微斗数 + 本命卦 引擎（纯 Python）。
 import paipan
 
@@ -1026,6 +1028,13 @@ def api_tianji_modules():
 @app.get("/api/tianji/catalog")
 def api_tianji_catalog():
     return TIANJI_CATALOG
+
+
+@app.get("/api/tianji/tree")
+def api_tianji_tree():
+    """按 列表.txt 重组的天纪目录树（斗数/断法细则/卦象/子女/时辰效验/案例查询）。
+    每个叶子带 src(数据源) 与 idx(序号)，前端点击调用 /api/tianji/item?sub=<src>&i=<idx>。"""
+    return {"tree": tianji_tree.TIANJI_TREE}
 
 
 @app.get("/api/tianji/list")

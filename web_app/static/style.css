@@ -73,6 +73,26 @@ body{margin:0;font-family:"PingFang SC","Microsoft YaHei","PingFangTC-Regular","
 .sidebar .nav-item.active{background:var(--teal-bg);border-left-color:var(--teal);
   color:var(--teal-dd);font-weight:600}
 .sidebar .nav-item small{display:block;font-size:11px;color:var(--ink3);font-weight:400;margin-top:2px}
+
+/* 天纪 · 左侧目录树（按 列表.txt 重组：斗数 → 基础理论/断法细则/卦象/子女/时辰效验/案例查询） */
+.sidebar .tj-root{font-size:13px;font-weight:700;color:var(--teal-dd);letter-spacing:.5px;
+  padding:2px 6px 10px;margin-bottom:4px;border-bottom:1px dashed var(--line)}
+.sidebar .tj-node{margin:2px 0}
+.sidebar .tj-node-head{display:flex;align-items:center;gap:6px;padding:7px 8px;
+  border-radius:var(--radius-sm);cursor:pointer;color:var(--ink2);font-size:13.5px;
+  user-select:none;transition:.15s}
+.sidebar .tj-node-head:hover{background:var(--panel2);color:var(--ink)}
+.sidebar .tj-node-head .tj-toggle{width:14px;text-align:center;color:var(--ink3);font-size:11px;flex:0 0 auto}
+.sidebar .tj-node-head .tj-node-title{font-weight:600}
+.sidebar .tj-node-head small{margin-left:auto;font-size:11px;color:var(--ink3);font-weight:400}
+.sidebar .tj-node-children{margin-left:8px;padding-left:8px;border-left:1px solid var(--line)}
+.sidebar .tj-node:not(.open) > .tj-node-children{display:none}
+.sidebar .tj-leaf{padding:6px 8px 6px 24px;border-radius:var(--radius-sm);cursor:pointer;
+  color:var(--ink2);font-size:13px;user-select:none;transition:.15s;position:relative}
+.sidebar .tj-leaf:hover{background:var(--panel2);color:var(--ink)}
+.sidebar .tj-leaf.active{background:var(--teal-bg);color:var(--teal-dd);font-weight:600}
+.sidebar .tj-leaf.active::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--teal);border-radius:0 3px 3px 0}
 .main{flex:1;display:flex;flex-direction:column;min-width:0}
 .module-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:14px 22px;
   border-bottom:1px solid var(--line);background:var(--panel)}
