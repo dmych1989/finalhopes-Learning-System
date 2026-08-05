@@ -219,35 +219,121 @@ print("人纪 loaded: xuewei=%d zhenjiu=%d hantang=%d tu=%d points=%d bbxx=%d bz
          len(BBXX), len(BZDZ), len(ZFBZ), len(ZJDCJL)))
 
 
-MODULES = [
-    {"key": "xuewei",  "name": "倪师穴位详解", "kind": "fields", "count": len(XUEWEI),
-     "desc": "357 个穴位：别名/定位/解剖/主治/穴义/刺灸/配伍/特征/规律/名词解析/倪师注解/治法"},
-    {"key": "zhenjiu", "name": "针灸医案",     "kind": "fields", "count": len(ZHENJIU),
-     "desc": "220 则针灸医案：歌诀/穴位介绍/病因病理分析/医疗案例"},
-    {"key": "hantang", "name": "汉唐方剂",     "kind": "fields", "count": len(HANTANG),
-     "desc": "252 首汉唐方剂（倪师讲解）"},
-    {"key": "tu",      "name": "倪师图",       "kind": "image",  "count": len(TU_NAMES),
-     "desc": "63 张倪师表格 / 经络图（八脉交会穴表、各脏腑经络生理病理与治疗配穴列表…）"},
-    {"key": "points",  "name": "人体穴位图",   "kind": "points", "count": len(POINTS),
-     "desc": "按原软件 SELFDATA 坐标的可点击人体穴位图"},
-    {"key": "bbxx",    "name": "病症方剂",     "kind": "fields", "count": len(BBXX),
-     "desc": "206 条病症对应方剂"},
-    {"key": "bzdz",    "name": "辨证论治",     "kind": "fields", "count": len(BZDZ),
-     "desc": "50 条辨证思路"},
-    {"key": "zfbz",    "name": "正副辨证",     "kind": "fields", "count": len(ZFBZ),
-     "desc": "30 条正治与反治"},
-    {"key": "zjdcjl",  "name": "针灸记录",     "kind": "fields", "count": len(ZJDCJL),
-     "desc": "27 条针灸记录"},
-    {"key": "ziwwu",   "name": "子午流注·灵龟八法", "kind": "tables", "count":
-     len(ZIWU["lingui"]["rows"]) + len(ZIWU["najia"]["rows"]) + len(ZIWU["nazi"]["rows"]),
-     "desc": "灵龟八法 60 / 纳甲 12 / 纳子 120"},
-    # ---- 以下三项原属「医学论文医案查询系统」，现已并入人纪融合 ----
-    # 它们复用主系统接口（/api/herbs、/api/yaotu、/api/xuewei）与渲染逻辑，
-    # 前端在 renji 模式下选中时直接跨系统调用主系统端点，无需重复数据。
-    {"key": "herbs",  "name": "中药查询", "desc": "中药查询（神农本草经序 + 补全），含图谱"},
-    {"key": "yaotu",  "name": "药图",     "desc": "中药图（形态 + 功效分类），含图谱"},
-    {"key": "xuewei", "name": "穴位查询", "desc": "穴位/图文（按经络分类，来自《中医》资料库）"},
+# ---- 人纪学习系统五大板块（与「人纪针灸」EXE 菜单一致）---------------------
+# 每个板块( board )含若干子模块( sub )；sub 的 kind 决定前端渲染方式：
+#   meridians      十四经络穴位（主系统《中医》按经络分组 + 任纪倪师注解）
+#   points         人体穴位图（SELFDATA 坐标）
+#   fields         倪师注解型数据（name + fields 字典）
+#   image          倪师图集（tu，按关键词筛选）
+#   ziwwu_table    子午流注/灵龟八法表（najia / nazi / lingui）
+#   hantang_method 汉唐方剂按四法归类（经络/脏腑/对症/辨证）
+#   cross          跨系统复用主系统接口（herbs / yaotu）
+#   tool           交互工具（万年历 / 子午流注盘 / 圆形灵龟八法盘）
+#   animation      SVG 经络走向动画
+BOARD_STRUCT = [
+    {
+        "key": "xuewei", "name": "穴位详解",
+        "subs": [
+            {"key": "meridians", "name": "十四经络穴位", "kind": "meridians",
+             "desc": "任督二脉 + 十二正经，共 767 穴（含倪师注解）"},
+            {"key": "points", "name": "人体穴位图", "kind": "points", "src": "points",
+             "desc": "按原软件坐标的可点击人体穴位图"},
+            {"key": "nishi_exp", "name": "倪师傅经验", "subs": [
+                {"key": "cifa", "name": "针刺手法", "kind": "image", "src": "tu",
+                 "filter": ("补泻", "刺激", "手法", "针刺", "井穴"),
+                 "desc": "倪师针刺补泻 / 手法图表"},
+                {"key": "zongjie", "name": "针灸穴位总结图表", "kind": "image", "src": "tu",
+                 "filter": ("配穴", "八脉", "交会", "生理病理", "脏腑经络"),
+                 "desc": "各经络生理病理与治疗配穴总表"},
+            ]},
+            {"key": "zhenjiu", "name": "针灸医案", "kind": "fields", "src": "zhenjiu",
+             "desc": "220 则针灸医案"},
+            {"key": "bbxx", "name": "病症方剂", "kind": "fields", "src": "bbxx",
+             "desc": "206 条病症对应方剂"},
+            {"key": "bzdz", "name": "辨证论治", "kind": "fields", "src": "bzdz",
+             "desc": "50 条辨证思路"},
+            {"key": "zfbz", "name": "正副辨证", "kind": "fields", "src": "zfbz",
+             "desc": "30 条正治与反治"},
+            {"key": "zjdcjl", "name": "针灸记录", "kind": "fields", "src": "zjdcjl",
+             "desc": "27 条针灸记录"},
+        ],
+    },
+    {
+        "key": "linggui", "name": "灵龟八法",
+        "subs": [
+            {"key": "wanianli", "name": "万年历", "kind": "tool", "tool": "wanianli",
+             "desc": "公历 ↔ 农历/干支年 + 二十四节气"},
+            {"key": "pan", "name": "倪海厦子午流注盘", "kind": "tool", "tool": "ziwwu_pan",
+             "desc": "输入年月日时 → 四柱干支 + 纳子/纳甲/灵龟八法开穴"},
+            {"key": "dial", "name": "圆形灵龟八法盘", "kind": "tool", "tool": "lingui_dial",
+             "desc": "九宫八穴交互圆盘，标出当前时辰开穴"},
+            {"key": "lingui", "name": "灵龟八法表", "kind": "ziwwu_table", "table": "lingui",
+             "desc": "灵龟八法 60 穴（日干支 → 开穴）"},
+        ],
+    },
+    {
+        "key": "ziwwu", "name": "子午流注",
+        "subs": [
+            {"key": "najia", "name": "十二经纳甲法", "kind": "ziwwu_table", "table": "najia",
+             "desc": "纳甲 12 日干对应开穴"},
+            {"key": "nazi", "name": "十二经脉纳子法", "kind": "ziwwu_table", "table": "nazi",
+             "desc": "纳子 120 时辰对应开穴"},
+        ],
+    },
+    {
+        "key": "hantang", "name": "汉唐取穴",
+        "subs": [
+            {"key": "jingluo", "name": "经络取穴法", "kind": "hantang_method", "method": "jingluo",
+             "desc": "按经络辨证取穴"},
+            {"key": "zangfu", "name": "脏腑取穴法", "kind": "hantang_method", "method": "zangfu",
+             "desc": "按脏腑辨证取穴"},
+            {"key": "duizheng", "name": "对症取穴法", "kind": "hantang_method", "method": "duizheng",
+             "desc": "对症治疗取穴"},
+            {"key": "bianzheng", "name": "辨证取穴法", "kind": "hantang_method", "method": "bianzheng",
+             "desc": "按八纲辨证取穴"},
+            {"key": "tu", "name": "倪师取穴图表", "kind": "image", "src": "tu",
+             "desc": "63 张倪师取穴 / 经络图表"},
+            {"key": "herbs", "name": "中药查询", "kind": "cross", "endpoint": "/api/herbs",
+             "desc": "中药查询（神农本草经 + 补全）"},
+            {"key": "yaotu", "name": "药图", "kind": "cross", "endpoint": "/api/yaotu",
+             "desc": "中药图（形态 + 功效分类）"},
+        ],
+    },
+    {
+        "key": "donghua", "name": "动画演示",
+        "subs": [
+            {"key": "shier", "name": "十二经络穴位走向动画", "kind": "animation", "group": "shier",
+             "desc": "十二正经循行走向（SVG 重建）"},
+            {"key": "qijing", "name": "奇经八脉穴位走向动画", "kind": "animation", "group": "qijing",
+             "desc": "奇经八脉循行走向（SVG 重建）"},
+        ],
+    },
 ]
+
+
+def _count_board(b):
+    n = 0
+    for s in b.get("subs", []):
+        if "subs" in s:
+            n += len(s["subs"])
+        else:
+            n += 1
+    return n
+
+
+BOARDS = []
+for _b in BOARD_STRUCT:
+    _copy = dict(_b)
+    _copy["count"] = _count_board(_b)
+    BOARDS.append(_copy)
+
+del _b, _copy
+GROUP_NAME = {
+    "shier": "十二经络",
+    "qijing": "奇经八脉",
+}
+MERIDIAN_ORDER = ["ren", "du", "fei", "chang", "wei", "pi", "xin", "xiao",
+                  "pang", "shen", "bao", "jiao", "dan", "gan"]
 
 _DATA = {
     "xuewei": XUEWEI, "zhenjiu": ZHENJIU, "hantang": HANTANG, "tu": TU_NAMES,
@@ -257,7 +343,17 @@ _DATA = {
 
 
 def modules():
-    return MODULES
+    return BOARDS
+
+
+# 倪师穴位详解（nishixuewei）按穴名建立索引，供「穴位详解」交叉挂接倪师注解。
+_NISHI_BY_NAME = {}
+for _it in XUEWEI:
+    _NISHI_BY_NAME[_it["name"]] = _it.get("fields", {})
+
+
+def nishi_fields(name):
+    return _NISHI_BY_NAME.get(name, {})
 
 
 def list_items(sub, q=""):
@@ -304,4 +400,5 @@ def image_bytes(name):
         return None
 
 
-__all__ = ["modules", "list_items", "get_item", "image_bytes", "MODULES"]
+__all__ = ["modules", "list_items", "get_item", "image_bytes", "nishi_fields",
+           "BOARDS", "GROUP_NAME", "MERIDIAN_ORDER"]

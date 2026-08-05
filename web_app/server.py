@@ -572,6 +572,106 @@ def api_renji_item(sub: str = "", i: int = 0):
     return item
 
 
+# ---- 穴位详解：十四经络（主系统《中医》按经络分组 + 任纪倪师注解交叉挂接）----
+_MER_LABELS = {c["key"]: c["label"] for c in XUEWEI.get("cats", [])}
+
+
+def _meridians():
+    out = []
+    for key in renji_db.MERIDIAN_ORDER:
+        pts = [p for p in XUEWEI["points"] if p.get("cat") == key]
+        out.append({
+            "key": key,
+            "label": _MER_LABELS.get(key, key),
+            "count": len(pts),
+            "diagram": next((c.get("diagram") for c in XUEWEI.get("cats", [])
+                             if c["key"] == key), None),
+        })
+    return out
+
+
+@app.get("/api/renji/meridians")
+def api_renji_meridians():
+    return _meridians()
+
+
+@app.get("/api/renji/meridian/{key}")
+def api_renji_meridian(key: str):
+    pts = [p for p in XUEWEI["points"] if p.get("cat") == key]
+    items = []
+    for p in pts:
+        nishi = renji_db.nishi_fields(p.get("name", ""))
+        items.append({
+            "name": p.get("name", ""),
+            "cat": p.get("cat"),
+            "cat_name": p.get("cat_name", ""),
+            "sub": p.get("sub", ""),
+            "content": p.get("content", ""),
+            "images": p.get("images", []),
+            "nishi": nishi,   # 任纪倪师穴位详解 13 字段
+        })
+    return {
+        "key": key,
+        "label": _MER_LABELS.get(key, key),
+        "total": len(items),
+        "items": items,
+    }
+
+
+# ---- 汉唐取穴：252 首汉唐方剂按 经络/脏腑/对症/辨证 四法尽力归类 ----
+_HANTANG_KW = {
+    "jingluo": ["经络", "经穴", "循行", "流注", "手太阴", "手阳明", "足阳明", "足太阴",
+            "手少阴", "手太阳", "足太阳", "手厥阴", "手少阳", "足少阳", "足厥阴",
+            "任脉", "督脉", "井荥俞经合", "五输"],
+    "zangfu": ["肝", "心", "脾", "肺", "肾", "胃", "胆", "膀胱", "大肠", "小肠",
+            "三焦", "心包", "脏腑", "胸", "腹"],
+    "duizheng": ["痛", "咳", "喘", "炎", "肿", "泻", "秘", "晕", "麻", "痿", "痹",
+            "血", "汗", "渴", "呕", "胀", "症", "失眠", "惊"],
+    "bianzheng": ["虚", "实", "寒", "热", "阴", "阳", "表", "里", "辨证", "不足",
+            "有余", "湿", "燥", "风", "火", "气滞", "血瘀"],
+}
+
+
+def _hantang_by_method(method):
+    kws = _HANTANG_KW.get(method, [])
+    out = []
+    for it in renji_db.HANTANG:
+        text = (it.get("name", "") + " " + it.get("fields", {}).get("讲解", ""))
+        if any(k in text for k in kws):
+            out.append({"name": it.get("name", ""), "num": it.get("num", 0),
+                        "desc": (it.get("fields", {}).get("讲解", "") or "")[:120]})
+    out.sort(key=lambda x: x.get("num", 0))
+    return out
+
+
+@app.get("/api/renji/hantang/{method}")
+def api_renji_hantang(method: str):
+    return {"method": method, "total": len(_hantang_by_method(method)),
+            "items": _hantang_by_method(method)}
+
+
+@app.get("/api/renji/hantang/{method}/item")
+def api_renji_hantang_item(method: str, name: str = ""):
+    for it in renji_db.HANTANG:
+        if it.get("name") == name:
+            return {"name": it.get("name", ""),
+                    "fields": it.get("fields", {})}
+    raise HTTPException(404, "not found")
+
+
+# ---- 交互工具数据 ----
+@app.get("/api/renji/tool/{tool}")
+def api_renji_tool(tool: str):
+    if tool == "ziwwu_pan":
+        return {"ziwwu": renji_db.ZIWU,
+                "meridians": _meridians()}
+    if tool == "lingui_dial":
+        return renji_db.ZIWU.get("lingui", {})
+    if tool == "wanianli":
+        return {"ok": True, "note": "万年历由前端 JS 计算（干支年 + 节气）"}
+    raise HTTPException(404, "unknown tool")
+
+
 @app.get("/api/renji/ziwwu")
 def api_renji_ziwwu():
     return renji_db.ZIWU
