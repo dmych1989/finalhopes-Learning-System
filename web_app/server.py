@@ -197,69 +197,70 @@ BZ_ALL = set().union(*BZ_CAT_SETS.values()) if BZ_CAT_SETS else set()
 # （每篇取 标题 + 正文前 160 字 做子串匹配），与 病症研究 同源做法一致。
 # 注：用户清单中的「倪师论感自」即「倪师论感冒」、「时倪师论肾脏」即「倪师论肾脏」。
 SSPL_CATS = [
-    {"key": "ai",         "name": "倪师论癌症",   "kws": ["癌", "肿瘤", "阴实", "肉瘤", "恶性肿瘤", "癌末", "癌指"]},
-    {"key": "ganbing",    "name": "倪师论肝病",   "kws": ["肝", "B肝", "C肝", "肝炎", "肝硬化", "肝腹水"]},
-    {"key": "liugan",     "name": "倪师论流感",   "kws": ["流感", "流行性感冒"]},
-    {"key": "ganmao",     "name": "倪师论感冒",   "kws": ["感冒", "伤风", "风寒", "着凉"]},
-    {"key": "niunai",     "name": "倪师论牛奶",   "kws": ["牛奶", "牛乳"]},
-    {"key": "shenzang",   "name": "倪师论肾脏",   "kws": ["肾", "洗肾", "尿毒症", "肾炎", "肾衰竭", "肾臟"]},
-    {"key": "tangniao",   "name": "倪师论糖尿",   "kws": ["糖尿", "血糖", "胰岛素", "消渴"]},
-    {"key": "xinbing",    "name": "倪师论心病",   "kws": ["心脏病", "心血管", "高血压", "心肌梗塞", "冠心病", "心衰竭", "心律", "心臟"]},
-    {"key": "xueye",      "name": "倪师论血液",   "kws": ["血液", "血癌", "贫血", "白血", "淋巴", "骨髓瘤"]},
-    {"key": "zhongyao",   "name": "倪师论中药",   "kws": ["中药", "本草", "经方", "草药", "药材", "汉唐"]},
-    {"key": "kangshengsu", "name": "倪师论抗生素", "kws": ["抗生素", "西药", "类固醇", "消炎", "青霉素"]},
-    {"key": "zuixin",     "name": "最新研究成果时事评论", "kws": ["最新研究", "美最新", "英最新", "研究报告", "研究指出", "最新發現"]},
-    {"key": "ruanai",     "name": "倪师论乳癌",   "kws": ["乳癌", "乳房", "乳腺", "乳腺癌"]},
-    {"key": "youyu",      "name": "倪师论忧郁",   "kws": ["忧郁", "抑郁", "燥郁", "忧"]},
-    {"key": "fuke",       "name": "倪师论妇科",   "kws": ["妇科", "月经", "子宫", "卵巢", "白带", "孕期", "妊娠", "阴道"]},
-    {"key": "weifanlei",  "name": "未归类评论",   "kws": []},  # 特殊：含评论性标记但不归属任一具体主题
+    {"key": "ai",         "name": "倪师论癌症"},
+    {"key": "ganbing",    "name": "倪师论肝病"},
+    {"key": "liugan",     "name": "倪师论流感"},
+    {"key": "shenzang",   "name": "倪师论肾脏"},
+    {"key": "niunai",     "name": "倪师论牛奶"},
+    {"key": "tangniao",   "name": "倪师论糖尿"},
+    {"key": "xinbing",    "name": "倪师论心病"},
+    {"key": "xueye",      "name": "倪师论血液"},
+    {"key": "zhongyao",   "name": "倪师论中药"},
+    {"key": "kangshengsu", "name": "倪师论抗生素"},
+    {"key": "zuixin",     "name": "最新研究成果时事评论"},
+    {"key": "ruanai",     "name": "倪师论乳癌"},
+    {"key": "youyu",      "name": "倪师论忧郁"},
+    {"key": "fuke",       "name": "倪师论妇科"},
+    {"key": "baojian",    "name": "保健锦囊"},
+    {"key": "fkmenzhen",  "name": "妇科门诊"},
+    {"key": "weifanlei",  "name": "未归类评论"},
+    {"key": "foodinc",    "name": "食品帝国FoodInc."},
 ]
-SSPL_CAT_SETS = {}
-SSPL_CAT_CTR = {}
-_SSPL_UNION = set()
-for _cat in SSPL_CATS:
-    if _cat["key"] == "weifanlei":
-        continue
-    _idxs = set()
-    for _i, _r in enumerate(ARTICLES):
-        # 校准：以标题(MZ)命中为准，避免正文偶发提及导致误归入时事评论
-        _title = str(_r.get("MZ", ""))
-        if any(_k in _title for _k in _cat["kws"]):
-            _idxs.add(_i)
-    SSPL_CAT_SETS[_cat["key"]] = _idxs
-    SSPL_CAT_CTR[_cat["key"]] = len(_idxs)
-    _SSPL_UNION |= _idxs
-# 未归类评论：含评论性标记但不归属任一具体主题的 article。
-# 校准：移除过宽标记「倪师」（其仅作署名出现，不表示评论性质）。
-_SSPL_UNC_MARKERS = ["评论", "时事", "专栏", "时评", "杂谈", "有感", "随笔",
-                     "我看", "个人认为", "杂文", "随想", "杂感"]
-_SSPL_UNC = set()
-for _i, _r in enumerate(ARTICLES):
-    if _i in _SSPL_UNION:
-        continue
-    _blob = str(_r.get("MZ", "")) + " " + str(_r.get("NR", ""))[:160]
-    if any(_m in _blob for _m in _SSPL_UNC_MARKERS):
-        _SSPL_UNC.add(_i)
-SSPL_CAT_SETS["weifanlei"] = _SSPL_UNC
-SSPL_CAT_CTR["weifanlei"] = len(_SSPL_UNC)
-SSPL_TOTAL = len(_SSPL_UNION | _SSPL_UNC)
-# 模块专属范围：归属于任一时事评论主题 + 未归类评论的文章索引集合。默认（含「全部评论」）
+# 加载 ID->栏目key 映射（由 tools/build_sspl_map.py 依据 EXE 目录.txt 预计算）
+_SSPL_MAP_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sspl_map.json")
+try:
+    with open(_SSPL_MAP_PATH, encoding="utf-8") as _f:
+        _SSPL_MAP = json.load(_f)
+except Exception:
+    _SSPL_MAP = {}
+# 文章 ID -> 索引
+_id_to_idx = {str(r.get("ID", "")): i for i, r in enumerate(ARTICLES)}
+SSPL_CAT_SETS = {c["key"]: set() for c in SSPL_CATS}
+for _aid, _key in _SSPL_MAP.items():
+    _i = _id_to_idx.get(str(_aid))
+    if _i is not None and _key in SSPL_CAT_SETS:
+        SSPL_CAT_SETS[_key].add(_i)
+SSPL_CAT_CTR = {k: len(v) for k, v in SSPL_CAT_SETS.items()}
+# 模块专属范围：归属于任一时事评论栏目的文章索引集合。默认（含「全部评论」）
 # 只显示这些，避免与论文/病症研究显示同一份整库列表。
-SSPL_ALL = _SSPL_UNION | _SSPL_UNC
+SSPL_ALL = set().union(*SSPL_CAT_SETS.values())
+SSPL_TOTAL = len(SSPL_ALL)
 
 # ---- 三板块互不重叠分区（论文 > 病症研究 > 时事评论）------------------------
 # 用户要求：每个板块只显示自己板块的文章、计数只记录本板块。但 bz/sspl 关键词
 # 抽取存在天然重叠（同一条疾病文章既命中「癌症专论」又命中「倪师论癌症」），故按
 # 优先级把重叠文章只归入高优先级板块：倪海厦论文(13栏目,权威) > 病症研究(疾病) >
 # 时事评论(评论)。这样任一文章至多出现在一个板块，且各板「全部」计数=本板篇数。
-BZ_ALL = BZ_ALL - ARTICLE_ALL
-SSPL_ALL = SSPL_ALL - ARTICLE_ALL - BZ_ALL
+# ---- 三板块互不重叠分区（时事评论 > 论文 > 病症研究）------------------------
+# 用户要求「全站按 EXE 重排」：时事评论依据 EXE 目录.txt 权威认领其全部文章，
+# 并从论文(13栏目)与病症研究移出这些重叠文章，使三板块互不重叠、各板计数=本板篇数。
+# 1) 清除时事评论文章在论文中的栏目归属，并同步下调论文各栏计数
+_SSPL_REMOVED_CATS = {}
+for _i in SSPL_ALL:
+    _old = ARTICLES[_i].get("_art_cat", "")
+    if _old:
+        ARTICLES[_i]["_art_cat"] = ""
+        _SSPL_REMOVED_CATS[_old] = _SSPL_REMOVED_CATS.get(_old, 0) + 1
+for _c, _n in _SSPL_REMOVED_CATS.items():
+    _ART_CTR[_c] = max(0, _ART_CTR.get(_c, 0) - _n)
+# 2) 重建论文集合（已剔除移入时事评论的文章）
+ARTICLE_ALL = set(i for i, _r in enumerate(ARTICLES) if _r.get("_art_cat", ""))
+# 3) 病症研究移出时事评论与论文的重叠文章
+BZ_ALL = BZ_ALL - SSPL_ALL - ARTICLE_ALL
 for _k in BZ_CAT_SETS:
-    BZ_CAT_SETS[_k] -= ARTICLE_ALL
+    BZ_CAT_SETS[_k] -= (SSPL_ALL | ARTICLE_ALL)
     BZ_CAT_CTR[_k] = len(BZ_CAT_SETS[_k])
-for _k in SSPL_CAT_SETS:
-    SSPL_CAT_SETS[_k] -= (ARTICLE_ALL | BZ_ALL)
-    SSPL_CAT_CTR[_k] = len(SSPL_CAT_SETS[_k])
+# 4) 时事评论各栏即最终归属（已具最高优先级，无需剔除）
 BZ_TOTAL = len(BZ_ALL)
 SSPL_TOTAL = len(SSPL_ALL)
 
