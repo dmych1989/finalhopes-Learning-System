@@ -1,13 +1,13 @@
 // -*- coding: utf-8 -*-
 // 顶部「系统切换器」：倪海厦各学习系统相互独立，各自为一个独立页面。
-// 当前系统由所在页面的 window.SYSTEM 决定（lilun / renji / tianji / mingli）。
+// 当前系统由所在页面的 window.SYSTEM 决定（lilun / renji / tianji）。
 // 若页面内含 #sysInline 容器，则把切换按钮内联到该处（如人纪 topbar 右侧）；
 // 否则回退到 #sysBar 独立渐变条（lilun / tianji / mingli 默认）。
+// 注：命理系统（/mingli）已从顶部切换器移除，仅作独立页面（直链访问）。
 const SYS_SYSTEMS = [
   { key: "lilun",  name: "论文医案查询系统", url: "/" },
   { key: "renji",  name: "人纪学习系统",          url: "/renji" },
   { key: "tianji", name: "天纪学习系统",          url: "/tianji" },
-  { key: "mingli", name: "命理系统",              url: "/mingli" },
 ];
 
 function renderSysBar() {

@@ -652,7 +652,17 @@ def api_hdwj(q: str = "", page: int = 1, size: int = 20):
                 if ql in str(r.get("MZ", "")).lower()
                 or ql in str(r.get("NR", "")).lower()]
     items, total = paginate(data, page, size)
-    return {"total": total, "page": page, "size": size, "items": items}
+    # 列表接口即附上「译文」，否则前端用列表项直接渲染时 rec.yi 为空，
+    # 对照视图只剩原文、译文标签不出现。详情接口 /api/hdwj/{idx} 同样处理。
+    out = []
+    for r in items:
+        rr = dict(r)
+        mz = str(rr.get("MZ", ""))
+        yi = HDWJ_YI.get(mz) or HDWJ_YI.get(HDWJ_ALIAS.get(mz))
+        if yi:
+            rr["yi"] = yi
+        out.append(rr)
+    return {"total": total, "page": page, "size": size, "items": out}
 
 
 @app.get("/api/hdwj/{idx}")
