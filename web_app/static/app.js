@@ -270,7 +270,7 @@ function showTianjiTab(tab, el) {
   if (tab === "mingli") {
     if (side) side.style.display = "none";
     const mh = document.getElementById("moduleHead");
-    if (mh) mh.innerHTML = '<div class="mh-left"><h2>命理系统</h2><p>排盘 · 八字四柱 · 紫微斗数 · 本命卦 · 解读</p></div>';
+    if (mh) mh.innerHTML = '';
     renderTool();
     return;
   }
