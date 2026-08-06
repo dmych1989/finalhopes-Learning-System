@@ -279,7 +279,7 @@ body{margin:0;font-family:"PingFang SC","Microsoft YaHei","PingFangTC-Regular","
 .art-point-n{display:inline-block;font-weight:800;color:var(--gold);margin-right:6px}
 /* 老师评语块（与报告·医案区分） */
 .art-teacher{margin-top:18px;border:1px solid var(--teal);border-left:4px solid var(--teal);
-  border-radius:12px;background:linear-gradient(180deg,var(--teal-bg),#fff);
+  border-radius:12px;background:none;
   padding:14px 16px;box-shadow:var(--shadow-sm)}
 .art-teacher-h{font-weight:700;font-size:15px;color:var(--teal-dd);margin-bottom:8px;
   padding-bottom:8px;border-bottom:1px dashed var(--teal-l)}
