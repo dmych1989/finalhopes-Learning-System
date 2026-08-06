@@ -143,6 +143,12 @@ const TIANJI_THEORY = {
 };
 const TIANJI_THEORY_ROOT = { "斗数理论": "斗数", "四柱理论": "四柱" };
 
+// 命理系统 hub 顶部菜单栏：各根下拉仅列出这些一级分区（其余如四柱的「子女」不进下拉，仍可经左侧目录树访问）。
+const ML_MENU_SECTIONS = {
+  "斗数": ["基础理论", "断法细则", "天纪卦象查询"],
+  "四柱": ["断法分类", "基础理论", "断法细则", "时辰效验", "案例查询"]
+};
+
 // 目录树数据（可能含多根：斗数 / 四柱），每个叶子带 src/idx，点击复用 /api/tianji/item 渲染详情。
 async function loadTianjiTree() {
   if (tianjiTreeData) return tianjiTreeData;
@@ -248,7 +254,9 @@ function buildMingliMenuBar(tab) {
   btn.innerHTML = esc(rootName) + ' <span class="caret">▾</span>';
   const dd = document.createElement("div");
   dd.className = "ml-dropdown";
-  (root.children || []).forEach((sec) => {
+  const allow = ML_MENU_SECTIONS[rootName];
+  const sections = allow ? (root.children || []).filter((s) => allow.includes(s.t)) : (root.children || []);
+  sections.forEach((sec) => {
     const it = document.createElement("div");
     it.className = "ml-dd-item";
     it.textContent = sec.t;
