@@ -676,3 +676,20 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
 .ml-menu.open .ml-dropdown{display:block}
 .ml-dd-item{padding:9px 12px;border-radius:var(--radius-sm);cursor:pointer;font-size:14px;color:var(--ink)}
 .ml-dd-item:hover{background:var(--teal-bg);color:var(--teal-dd);font-weight:600}
+
+/* 斗数·基础理论 整页三栏：左一级竖排 / 中二级横排 / 右内容（不保留目录树） */
+.dj{display:flex;gap:0;height:calc(100vh - 212px);min-height:440px;
+  border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel);margin-top:12px}
+.dj-side{width:184px;flex:none;overflow:auto;border-right:1px solid var(--line);background:#f7faf9}
+.dj-1tab{display:block;width:100%;text-align:left;padding:14px 16px;font-size:15px;
+  border:0;border-bottom:1px solid #eef1f4;background:transparent;cursor:pointer;color:var(--ink2);transition:.15s}
+.dj-1tab:hover{background:var(--teal-bg);color:var(--teal-dd)}
+.dj-1tab.active{background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#fff;font-weight:600}
+.dj-mid{width:236px;flex:none;overflow:auto;border-right:1px solid var(--line);padding:14px;background:#fafcfe}
+.dj-mid .hint{color:var(--ink3);font-size:13px}
+.dj-2tabs{display:flex;flex-wrap:wrap;gap:8px}
+.dj-2tab{display:inline-block;padding:7px 12px;border:1px solid var(--line);border-radius:999px;
+  background:#fff;cursor:pointer;font-size:13px;color:var(--ink2);transition:.15s}
+.dj-2tab:hover{border-color:var(--teal-l);color:var(--teal-dd)}
+.dj-2tab.active{background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#fff;border-color:var(--teal);font-weight:600}
+.dj-main{flex:1;overflow:auto;padding:18px 24px}

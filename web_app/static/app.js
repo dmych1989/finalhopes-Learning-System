@@ -149,6 +149,103 @@ const ML_MENU_SECTIONS = {
   "四柱": ["断法分类", "基础理论", "断法细则", "时辰效验", "案例查询"]
 };
 
+// 斗数 → 基础理论：整页三栏（左一级竖排 / 中二级横排 / 右内容），不保留目录树。
+// 6 类顺序固定；格局详解/其他/论五宫 当前库无数据，占位显示「暂无内容」。
+const DOU_JICHU_ORDER = ["基础概念", "格局详解", "十二宫", "甲级星", "其他", "论五宫"];
+function getDouJichuData() {
+  const root = (tianjiTreeData || []).find((r) => r.t === "斗数");
+  const find = (n, name) => n && (n.children || []).find((c) => c.t === name);
+  const basic = find(root, "基础理论");
+  const duanfa = find(root, "断法细则");
+  const map = {
+    "基础概念": find(basic, "基础概念"),
+    "格局详解": null,
+    "十二宫": find(duanfa, "十二宫"),
+    "甲级星": find(basic, "甲级星"),
+    "其他": null,
+    "论五宫": null
+  };
+  const out = {};
+  DOU_JICHU_ORDER.forEach((k) => { out[k] = (map[k] && map[k].children) ? map[k].children : []; });
+  return out;
+}
+
+// 退出三栏面板、恢复常规（目录树 + 列表 + 详情）。
+function restoreMingliNormal() {
+  const panel = document.getElementById("douJichuPanel");
+  if (panel) panel.style.display = "none";
+  const lp = document.getElementById("listPane"); if (lp) lp.style.display = "";
+  const dp = document.getElementById("detailPane"); if (dp) dp.style.display = "";
+  const side = document.getElementById("sidebar"); if (side) side.style.display = "";
+}
+
+// 渲染斗数·基础理论 三栏面板。
+async function renderDouJichuPanel() {
+  const panel = document.getElementById("douJichuPanel");
+  if (!panel) return;
+  const side = document.getElementById("sidebar"); if (side) side.style.display = "none";
+  const lp = document.getElementById("listPane"); if (lp) lp.style.display = "none";
+  const dp = document.getElementById("detailPane"); if (dp) dp.style.display = "none";
+  const mh = document.getElementById("moduleHead");
+  if (mh) mh.innerHTML = '<div class="mh-left"><h2>斗数 · 基础理论</h2><p>基础概念 / 格局详解 / 十二宫 / 甲级星 / 其他 / 论五宫</p></div>';
+  const data = getDouJichuData();
+  panel.style.display = "";
+  panel.innerHTML = "";
+  const col1 = document.createElement("div"); col1.className = "dj-side";
+  const col2 = document.createElement("div"); col2.className = "dj-mid";
+  const col3 = document.createElement("div"); col3.className = "dj-main";
+  panel.appendChild(col1); panel.appendChild(col2); panel.appendChild(col3);
+  DOU_JICHU_ORDER.forEach((k) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "dj-1tab"; b.textContent = k;
+    b.onclick = () => selectDJ1(k, data, col1, col2, col3);
+    col1.appendChild(b);
+  });
+  selectDJ1(DOU_JICHU_ORDER[0], data, col1, col2, col3);
+}
+
+function selectDJ1(k, data, col1, col2, col3) {
+  col1.querySelectorAll(".dj-1tab").forEach((b) => b.classList.toggle("active", b.textContent === k));
+  const items = data[k] || [];
+  col2.innerHTML = "";
+  if (!items.length) {
+    col2.innerHTML = '<div class="hint">（该分类暂无子项）</div>';
+    col3.innerHTML = '<div class="hint">暂无内容</div>';
+    return;
+  }
+  const wrap = document.createElement("div"); wrap.className = "dj-2tabs";
+  items.forEach((leaf, i) => {
+    const t = document.createElement("button");
+    t.type = "button"; t.className = "dj-2tab"; t.textContent = leaf.t;
+    t.onclick = () => selectDJ2(leaf, wrap, col3);
+    wrap.appendChild(t);
+    if (i === 0) t.classList.add("active");
+  });
+  col2.appendChild(wrap);
+  selectDJ2(items[0], wrap, col3);
+}
+
+async function selectDJ2(leaf, wrap, col3) {
+  wrap.querySelectorAll(".dj-2tab").forEach((b) => b.classList.toggle("active", b.textContent === leaf.t));
+  if (!leaf.src) { col3.innerHTML = '<div class="hint">暂无内容</div>'; return; }
+  col3.innerHTML = '<div class="hint">加载中…</div>';
+  try {
+    const item = await api(`${sysCfg.api}/item?sub=${enc(leaf.src)}&i=${leaf.idx}`);
+    const fields = item.fields || {};
+    let h = `<div class="detail-card"><h3>${esc(item.name)}</h3>`;
+    Object.keys(fields).forEach((kk) => {
+      const v = fields[kk];
+      if (v == null || v === "") return;
+      h += `<div class="sec-h">${esc(kk)}</div><div class="sec-b">${esc(v)}</div>`;
+    });
+    if (!Object.keys(fields).length) h += '<div class="hint">（本条暂无内容）</div>';
+    h += "</div>";
+    col3.innerHTML = h;
+  } catch (e) {
+    col3.innerHTML = '<div class="hint">详情加载失败，请重试。</div>';
+  }
+}
+
 // 目录树数据（可能含多根：斗数 / 四柱），每个叶子带 src/idx，点击复用 /api/tianji/item 渲染详情。
 async function loadTianjiTree() {
   if (tianjiTreeData) return tianjiTreeData;
@@ -225,7 +322,7 @@ function showMingliTab(tab) {
     renderTool();
     return;
   }
-  if (side) side.style.display = "";
+  restoreMingliNormal();
   buildTianjiTreeRoot(tab === "dou" ? "斗数" : "四柱");
   buildMingliMenuBar(tab);
   const lm = $("#listMain"); if (lm) lm.innerHTML = '<div class="hint">请选择左侧目录查看文章。</div>';
@@ -260,7 +357,13 @@ function buildMingliMenuBar(tab) {
     const it = document.createElement("div");
     it.className = "ml-dd-item";
     it.textContent = sec.t;
-    it.onclick = (ev) => { ev.stopPropagation(); wrap.classList.remove("open"); jumpToTianjiSection(rootName, sec.t); };
+    it.onclick = (ev) => {
+      ev.stopPropagation();
+      wrap.classList.remove("open");
+      if (rootName === "斗数" && sec.t === "基础理论") { renderDouJichuPanel(); return; }
+      restoreMingliNormal();
+      jumpToTianjiSection(rootName, sec.t);
+    };
     dd.appendChild(it);
   });
   btn.onclick = (ev) => { ev.stopPropagation(); wrap.classList.toggle("open"); };
