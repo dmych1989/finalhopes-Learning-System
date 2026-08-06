@@ -645,6 +645,8 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
   min-width:200px;background:var(--panel);border:1px solid var(--line);
   border-radius:10px;box-shadow:var(--shadow);padding:6px;z-index:40}
 .tj-tool.has-dd.open .tj-dropdown{display:block}
+/* 顶部「理论」下拉靠右排布 */
+.tj-tool.right-push{margin-left:auto}
 .tj-dd-item{padding:9px 11px;border-radius:7px;color:var(--ink);cursor:pointer;
   font-size:14px;font-weight:500;white-space:nowrap;transition:.12s}
 .tj-dd-item:hover{background:var(--teal-bg);color:var(--teal-dd)}

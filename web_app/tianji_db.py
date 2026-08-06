@@ -235,11 +235,8 @@ MODULES = [
     {"key": "yijing", "name": "易经数表",     "kind": "tables", "count":
      sum(len(v["rows"]) for v in YIJING.values()),
      "desc": "安世袭卦 / 定天符 / 天师 / 易经 / 加密换算表"},
-    {"key": "paipan", "name": "排盘系统", "kind": "tool", "count": 0,
-     "desc": "输入阳历生日 / 时辰 / 性别，排出八字四柱 · 紫微斗数命盘 · 本命卦（复刻原版排盘界面）",
-     "hasImg": False},
     {"key": "mingli_sys", "name": "命理系统", "kind": "tool", "count": 0,
-     "desc": "基于排盘结果，解读日主强弱 · 十神六亲 · 大运走势，并关联天纪原有八字命例与理论",
+     "desc": "输入阳历生日 / 时辰 / 性别，排出八字四柱 · 紫微斗数命盘 · 本命卦，并解读日主强弱 · 十神六亲 · 大运走势，关联天纪原有八字命例与理论",
      "hasImg": False},
 ]
 

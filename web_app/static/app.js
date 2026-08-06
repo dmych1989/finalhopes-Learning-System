@@ -97,10 +97,11 @@ function buildSidebar(modules) {
       bar.appendChild(d);
     });
   } else if (side) {
-    // tianji：顶部只放工具类（排盘/命理），左侧渲染按 列表.txt 重组的目录树
+    // tianji：顶部放工具类（命理系统）+ 理论下拉（斗数/四柱），左侧渲染目录树
     side.innerHTML = "";
     buildTianjiTools(modules);
     buildTianjiTree();
+    buildTianjiTheoryNav();
   }
 }
 
@@ -126,8 +127,16 @@ function buildTianjiTools(modules) {
   });
 }
 
-// 左侧目录树：按 列表.txt 重组（斗数 > 基础理论/断法细则/卦象/子女/时辰效验/案例查询）。
-// 每个叶子带 src/idx，点击复用 /api/tianji/item 渲染详情。
+// 天纪目录树数据（供顶部「理论」下拉跳转定位）。两个根：斗数 / 四柱。
+let tianjiTreeData = null;
+// 顶部「理论」下拉菜单配置：标签 -> 对应根下分区标题（点击跳转左侧目录）。
+const TIANJI_THEORY = {
+  "斗数理论": ["基础理论", "断法细则", "天纪卦象查询"],
+  "四柱理论": ["断法分类", "基础理论", "断法细则", "时辰效验"]
+};
+const TIANJI_THEORY_ROOT = { "斗数理论": "斗数", "四柱理论": "四柱" };
+
+// 左侧目录树：两个根（斗数 / 四柱），每个叶子带 src/idx，点击复用 /api/tianji/item 渲染详情。
 async function buildTianjiTree() {
   const side = document.getElementById("sidebar");
   if (!side) return;
@@ -140,13 +149,15 @@ async function buildTianjiTree() {
     return;
   }
   if (!tree || !tree.length) { side.innerHTML = '<div class="hint">暂无目录。</div>'; return; }
+  tianjiTreeData = tree;
   side.innerHTML = "";
-  const root = tree[0];
-  const title = document.createElement("div");
-  title.className = "tj-root";
-  title.textContent = root.t;
-  side.appendChild(title);
-  renderTianjiTree(root.children, side, 0);
+  tree.forEach((root) => {
+    const title = document.createElement("div");
+    title.className = "tj-root";
+    title.textContent = root.t;
+    side.appendChild(title);
+    renderTianjiTree(root.children, side, 0, root);
+  });
 }
 
 function countTianjiLeaves(node) {
@@ -156,8 +167,10 @@ function countTianjiLeaves(node) {
   return n;
 }
 
-function renderTianjiTree(nodes, container, level) {
+// parent：父节点引用（用于下拉跳转时回溯展开祖先）；同时为节点挂 _li/_head 供跳转定位。
+function renderTianjiTree(nodes, container, level, parent) {
   nodes.forEach((node) => {
+    node._parent = parent;
     if (node.children && node.children.length) {
       const li = document.createElement("div");
       li.className = "tj-node" + (level < 1 ? " open" : "");
@@ -174,8 +187,10 @@ function renderTianjiTree(nodes, container, level) {
       li.appendChild(head);
       const wrap = document.createElement("div");
       wrap.className = "tj-node-children";
-      renderTianjiTree(node.children, wrap, level + 1);
+      renderTianjiTree(node.children, wrap, level + 1, node);
       li.appendChild(wrap);
+      node._li = li;
+      node._head = head;
       container.appendChild(li);
     } else {
       const leaf = document.createElement("div");
@@ -184,9 +199,145 @@ function renderTianjiTree(nodes, container, level) {
       leaf.dataset.src = node.src || "";
       leaf.dataset.idx = (node.idx != null) ? String(node.idx) : "";
       leaf.onclick = () => openTianjiLeaf(leaf);
+      node._li = null;
       container.appendChild(leaf);
     }
   });
+}
+
+// 顶部「理论」下拉（斗数理论 / 四柱理论）：追加到 #tjTools 右侧，点击分区跳转到左侧对应目录并展开渲染。
+function buildTianjiTheoryNav() {
+  const box = document.getElementById("tjTools");
+  if (!box) return;
+  Object.keys(TIANJI_THEORY).forEach((label, i) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "tj-tool has-dd" + (i === 0 ? " right-push" : "");
+    btn.innerHTML = esc(label) + ' <span class="caret">▾</span>';
+    const dd = document.createElement("div");
+    dd.className = "tj-dropdown";
+    TIANJI_THEORY[label].forEach((sec) => {
+      const it = document.createElement("div");
+      it.className = "tj-dd-item";
+      it.textContent = sec;
+      it.dataset.root = TIANJI_THEORY_ROOT[label];
+      it.dataset.section = sec;
+      it.onclick = (ev) => {
+        ev.stopPropagation();
+        btn.classList.remove("open");
+        jumpToTianjiSection(it.dataset.root, sec);
+      };
+      dd.appendChild(it);
+    });
+    btn.appendChild(dd);
+    btn.onclick = (ev) => {
+      ev.stopPropagation();
+      document.querySelectorAll(".tj-tool.has-dd.open").forEach((b) => { if (b !== btn) b.classList.remove("open"); });
+      btn.classList.toggle("open");
+    };
+    box.appendChild(btn);
+  });
+  // 点击空白处关闭所有下拉
+  document.addEventListener("click", () => {
+    document.querySelectorAll(".tj-tool.has-dd.open").forEach((b) => b.classList.remove("open"));
+  });
+}
+
+// 在目录树中按标题查找节点（含根自身）。
+function findTianjiNode(root, title) {
+  if (root.t === title) return root;
+  for (const c of (root.children || [])) {
+    const r = findTianjiNode(c, title);
+    if (r) return r;
+  }
+  return null;
+}
+
+// 展开某节点及其全部祖先，并同步折叠箭头。
+function expandTianjiAncestors(node) {
+  let p = node;
+  while (p) { if (p._li) p._li.classList.add("open"); p = p._parent; }
+  syncTianjiToggles();
+}
+
+function syncTianjiToggles() {
+  document.querySelectorAll("#sidebar .tj-node").forEach((li) => {
+    const head = li.firstElementChild;
+    const tg = head ? head.querySelector(".tj-toggle") : null;
+    if (tg) tg.textContent = li.classList.contains("open") ? "▾" : "▸";
+  });
+}
+
+// 顶部「理论」下拉 -> 跳转左侧目录对应分区：展开该分区并列出其下属文章。
+function jumpToTianjiSection(rootName, sectionTitle) {
+  if (!tianjiTreeData) return;
+  const root = tianjiTreeData.find((r) => r.t === rootName);
+  if (!root) return;
+  const node = findTianjiNode(root, sectionTitle);
+  if (!node) { renderTianjiSectionEmpty(rootName, sectionTitle); return; }
+  expandTianjiAncestors(node);
+  if (node._head) node._head.scrollIntoView({ block: "center", behavior: "smooth" });
+  renderTianjiNodeList(node, rootName);
+}
+
+// 收集节点下所有带 src 的叶子（递归）。
+function collectTianjiLeaves(node, out) {
+  if (node.children && node.children.length) {
+    node.children.forEach((c) => collectTianjiLeaves(c, out));
+  } else if (node.src) {
+    out.push(node);
+  }
+  return out;
+}
+
+// 在右侧列表区渲染某分区的全部文章（点击即看详情），复用 openTianjiLeaf。
+function renderTianjiNodeList(node, rootName) {
+  const leaves = collectTianjiLeaves(node, []);
+  const ul = document.getElementById("resultList");
+  const hint = document.getElementById("listHint");
+  const fb = document.getElementById("filterBar");
+  const pg = document.getElementById("pager");
+  const mh = document.getElementById("moduleHead");
+  const dp = document.getElementById("detailPane");
+  if (fb) { fb.innerHTML = ""; fb.style.display = "none"; }
+  if (pg) pg.innerHTML = "";
+  if (hint) hint.style.display = "none";
+  if (mh) mh.innerHTML = `<div class="mh-left"><h2>${esc(rootName)} · ${esc(node.t)}</h2><p>共 ${leaves.length} 条内容</p></div>`;
+  if (dp) dp.innerHTML = '<div class="hint">点击上方条目查看详情。</div>';
+  if (!ul) return;
+  ul.innerHTML = "";
+  if (!leaves.length) {
+    ul.innerHTML = '<li class="hint">此分类暂无内容。</li>';
+    return;
+  }
+  leaves.forEach((leaf) => {
+    const li = document.createElement("li");
+    li.className = "result-item";
+    li.textContent = leaf.t;
+    li.onclick = () => {
+      const tmp = document.createElement("div");
+      tmp.dataset.src = leaf.src || "";
+      tmp.dataset.idx = (leaf.idx != null) ? String(leaf.idx) : "";
+      tmp.textContent = leaf.t;
+      openTianjiLeaf(tmp);
+      document.querySelectorAll("#resultList .result-item.active").forEach((d) => d.classList.remove("active"));
+      li.classList.add("active");
+    };
+    ul.appendChild(li);
+  });
+}
+
+function renderTianjiSectionEmpty(rootName, sectionTitle) {
+  const mh = document.getElementById("moduleHead");
+  if (mh) mh.innerHTML = `<div class="mh-left"><h2>${esc(rootName)} · ${esc(sectionTitle)}</h2><p>暂无内容</p></div>`;
+  const ul = document.getElementById("resultList");
+  const hint = document.getElementById("listHint");
+  const fb = document.getElementById("filterBar");
+  if (fb) { fb.innerHTML = ""; fb.style.display = "none"; }
+  if (hint) hint.style.display = "none";
+  if (ul) ul.innerHTML = '<li class="hint">此分类（' + esc(sectionTitle) + '）暂无内容。</li>';
+  const dp = document.getElementById("detailPane");
+  if (dp) dp.innerHTML = '<div class="hint">点击左侧条目查看详情。</div>';
 }
 
 // 点击目录树叶子：设置数据源并复用 /api/tianji/item 取详情（showSubDetail 已支持 gua 图+卦象）。

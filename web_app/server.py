@@ -26,7 +26,7 @@ try:
 except Exception:
     IMG_INDEX = {}
 
-app = FastAPI(title="倪海厦三大学习系统 (网页版)")
+app = FastAPI(title="论文医案查询系统 (网页版)")
 
 # 医案数据懒加载：首次访问时才从 data.db 读取，避免 Vercel 冷启动导入期就触发
 # 92MB 下载 / 解密，导致函数初始化超时（FUNCTION_INVOCATION_FAILED）。
