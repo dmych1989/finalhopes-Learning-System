@@ -103,14 +103,12 @@ function buildSidebar(modules) {
       bar.appendChild(d);
     });
   } else if (side) {
-    // 天纪 / 命理系统 共用左侧目录树（斗数 / 四柱）。
     side.innerHTML = "";
-    buildTianjiTree();
-    if (SYSTEM === "mingli") {
-      // 命理系统（独立页面）：顶部右侧横排「斗数理论 / 四柱理论」两个下拉按钮。
-      buildTianjiTheoryNav();
+    if (SYSTEM !== "mingli") {
+      // 天纪页：左侧目录树（斗数 / 四柱 双根）。
+      buildTianjiTree();
     }
-    // 天纪页：仅目录树（命理系统已独立成页，工具与理论下拉移至 mingli）。
+    // 命理系统 hub（mingli）：树与三标签切换由 init 的 showMingliTab 接管，此处不建。
   }
 }
 
@@ -145,28 +143,88 @@ const TIANJI_THEORY = {
 };
 const TIANJI_THEORY_ROOT = { "斗数理论": "斗数", "四柱理论": "四柱" };
 
-// 左侧目录树：两个根（斗数 / 四柱），每个叶子带 src/idx，点击复用 /api/tianji/item 渲染详情。
+// 目录树数据（可能含多根：斗数 / 四柱），每个叶子带 src/idx，点击复用 /api/tianji/item 渲染详情。
+async function loadTianjiTree() {
+  if (tianjiTreeData) return tianjiTreeData;
+  tianjiTreeData = (await api("/api/tianji/tree")).tree;
+  return tianjiTreeData;
+}
+
+// 左侧目录树：两个根（斗数 / 四柱）。命理系统 hub 下由 showMingliTab 调用单根版本。
 async function buildTianjiTree() {
   const side = document.getElementById("sidebar");
   if (!side) return;
   side.innerHTML = '<div class="hint">目录加载中…</div>';
-  let tree;
   try {
-    tree = (await api("/api/tianji/tree")).tree;
+    await loadTianjiTree();
   } catch (e) {
     side.innerHTML = '<div class="hint">目录加载失败，请刷新页面重试。</div>';
     return;
   }
-  if (!tree || !tree.length) { side.innerHTML = '<div class="hint">暂无目录。</div>'; return; }
-  tianjiTreeData = tree;
+  if (!tianjiTreeData || !tianjiTreeData.length) { side.innerHTML = '<div class="hint">暂无目录。</div>'; return; }
   side.innerHTML = "";
-  tree.forEach((root) => {
+  tianjiTreeData.forEach((root) => {
     const title = document.createElement("div");
     title.className = "tj-root";
     title.textContent = root.t;
     side.appendChild(title);
     renderTianjiTree(root.children, side, 0, root);
   });
+}
+
+// 命理系统 hub：仅渲染某个根（斗数 / 四柱）到左侧目录树。
+function buildTianjiTreeRoot(rootName) {
+  const side = document.getElementById("sidebar");
+  if (!side || !tianjiTreeData) return;
+  const root = tianjiTreeData.find((r) => r.t === rootName);
+  if (!root) return;
+  side.innerHTML = "";
+  const title = document.createElement("div");
+  title.className = "tj-root";
+  title.textContent = root.t;
+  side.appendChild(title);
+  renderTianjiTree(root.children, side, 0, root);
+}
+
+// 命理系统 hub 顶部三标签：命理系统 / 斗数 / 四柱（三套独立子系统，横向切换）。
+let mingliTab = "mingli";
+function buildMingliTabs() {
+  const box = document.getElementById("mingliTabs");
+  if (!box) return;
+  box.innerHTML = "";
+  const tabs = [
+    { key: "mingli", label: "命理系统" },
+    { key: "dou", label: "斗数" },
+    { key: "sizhu", label: "四柱" },
+  ];
+  tabs.forEach((t) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "ml-tab" + (t.key === mingliTab ? " active" : "");
+    b.textContent = t.label;
+    b.dataset.tab = t.key;
+    b.onclick = () => showMingliTab(t.key);
+    box.appendChild(b);
+  });
+}
+
+// 切换命理系统 hub 的三个子系统：命理系统=排盘工具；斗数/四柱=对应目录树 + 文章。
+function showMingliTab(tab) {
+  mingliTab = tab;
+  document.querySelectorAll("#mingliTabs .ml-tab").forEach((b) =>
+    b.classList.toggle("active", b.dataset.tab === tab));
+  const side = document.getElementById("sidebar");
+  if (tab === "mingli") {
+    if (side) side.style.display = "none";
+    renderTool();
+    return;
+  }
+  if (side) side.style.display = "";
+  buildTianjiTreeRoot(tab === "dou" ? "斗数" : "四柱");
+  const lm = $("#listMain"); if (lm) lm.innerHTML = '<div class="hint">请选择左侧目录查看文章。</div>';
+  const dp = $("#detailPane"); if (dp) dp.innerHTML = '<div class="hint">点击左侧条目查看详情。</div>';
+  const fb = $("#filterBar"); if (fb) fb.style.display = "none";
+  const pg = $("#pager"); if (pg) pg.innerHTML = "";
 }
 
 function countTianjiLeaves(node) {
@@ -2006,7 +2064,15 @@ async function doGlobalSearch(q) {
   // 子系统（人纪 / 天纪）：左侧模块即各子模块，loadSubList 需据此查 sub 的 kind。
   if (sysCfg) subSubs = modules;
   buildSidebar(modules);
-  // 初始默认激活：优先恢复上次停留在的模块（按系统分别记忆），否则激活第一个模块
+  // 命理系统 hub：顶部三标签（命理系统 / 斗数 / 四柱）切换三个独立子系统。
+  // 命理系统=排盘工具；斗数/四柱=对应目录树 + 文章。默认落在「命理系统」标签。
+  if (SYSTEM === "mingli") {
+    buildMingliTabs();
+    try { await loadTianjiTree(); } catch (e) {}
+    showMingliTab("mingli");
+    return;
+  }
+  // 天纪等其他子系统：初始默认激活优先恢复上次模块，否则第一个模块
   let target = modules[0];
   try {
     const saved = localStorage.getItem("nihai_active_module_" + SYSTEM);
@@ -2015,18 +2081,6 @@ async function doGlobalSearch(q) {
       if (found) target = found;
     }
   } catch (e) {}
-  // 命理系统页（独立页面）：默认直接展示命理工具（排盘 + 命例 + 解读），
-  // 而非某个目录模块；点击左上角「命理系统」标题可随时回到该工具视图。
-  if (SYSTEM === "mingli") {
-    const tool = modules.find((m) => m.kind === "tool");
-    if (tool) target = tool;
-    const h1 = document.querySelector(".brand h1");
-    if (h1) {
-      h1.style.cursor = "pointer";
-      h1.title = "返回命理工具";
-      h1.onclick = () => { const t = (subSubs || []).find((m) => m.kind === "tool"); if (t) selectModule(t, t._el); };
-    }
-  }
   if (target) selectModule(target, target._el);
   const doSearch = () => {
     const q = $("#search").value.trim();
