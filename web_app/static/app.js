@@ -86,8 +86,24 @@ async function api(path, opts) {
 function buildSidebar(modules) {
   const bar = $("#boardTabs");
   const side = $("#sidebar");
-  if (bar) {
-    // lilun：模块标签横向排在顶部（与 renji 顶栏一致）
+  if (bar && SYSTEM === "tianji") {
+    // 天纪：顶部三标签（命理系统 / 斗数 / 四柱）
+    bar.innerHTML = "";
+    const tjTabs = [
+      { key: "mingli", label: "命理系统" },
+      { key: "dou", label: "斗数" },
+      { key: "sizhu", label: "四柱" },
+    ];
+    tjTabs.forEach((t) => {
+      const d = document.createElement("div");
+      d.className = "board-tab";
+      d.dataset.tab = t.key;
+      d.innerHTML = `<span>${esc(t.label)}</span>`;
+      d.onclick = () => showTianjiTab(t.key, d);
+      bar.appendChild(d);
+    });
+  } else if (bar) {
+    // lilun / renji：模块标签横向排在顶部
     bar.innerHTML = "";
     modules.forEach((m) => {
       const d = document.createElement("div");
@@ -99,7 +115,6 @@ function buildSidebar(modules) {
     });
   } else if (side) {
     side.innerHTML = "";
-    // 天纪页：左侧目录树（斗数 / 四柱 双根），树顶部含「命理系统」排盘入口。
     buildTianjiTree();
   }
 }
@@ -245,8 +260,34 @@ async function loadTianjiTree() {
   return tianjiTreeData;
 }
 
-// 左侧目录树：两个根（斗数 / 四柱），顶部含「命理系统」排盘入口。
-async function buildTianjiTree() {
+// 天纪顶部三标签切换：命理系统=排盘工具；斗数/四柱=对应根目录树 + 文章。
+let tianjiTab = "dou";
+function showTianjiTab(tab, el) {
+  tianjiTab = tab;
+  setActive(el);
+  restoreMingliNormal();
+  const side = document.getElementById("sidebar");
+  if (tab === "mingli") {
+    if (side) side.style.display = "none";
+    const mh = document.getElementById("moduleHead");
+    if (mh) mh.innerHTML = '<div class="mh-left"><h2>命理系统</h2><p>排盘 · 八字四柱 · 紫微斗数 · 本命卦 · 解读</p></div>';
+    renderTool();
+    return;
+  }
+  // 斗数 / 四柱：显示侧栏目录树
+  if (side) side.style.display = "";
+  const rootName = tab === "dou" ? "斗数" : "四柱";
+  const mh = document.getElementById("moduleHead");
+  if (mh) mh.innerHTML = '<div class="mh-left"><h2>' + esc(rootName) + '</h2><p>点击左侧目录浏览文章</p></div>';
+  buildTianjiTree(rootName);
+  const lm = $("#listMain"); if (lm) lm.innerHTML = '<div class="hint">请选择左侧目录查看文章。</div>';
+  const dp = $("#detailPane"); if (dp) dp.innerHTML = '<div class="hint">点击左侧条目查看详情。</div>';
+  const fb = $("#filterBar"); if (fb) fb.style.display = "none";
+  const pg = $("#pager"); if (pg) pg.innerHTML = "";
+}
+
+// 左侧目录树：可选 rootName 参数，仅渲染指定根（斗数 / 四柱）。
+async function buildTianjiTree(rootName) {
   const side = document.getElementById("sidebar");
   if (!side) return;
   side.innerHTML = '<div class="hint">目录加载中…</div>';
@@ -258,27 +299,16 @@ async function buildTianjiTree() {
   }
   if (!tianjiTreeData || !tianjiTreeData.length) { side.innerHTML = '<div class="hint">暂无目录。</div>'; return; }
   side.innerHTML = "";
-  // 侧栏顶部：命理系统入口（排盘工具）
-  const toolBtn = document.createElement("div");
-  toolBtn.className = "nav-item ml-tool-entry";
-  toolBtn.innerHTML = '<span>命理系统</span><small>排盘 · 八字 · 紫微</small>';
-  toolBtn.onclick = () => { setActive(toolBtn); showMingliTool(); };
-  side.appendChild(toolBtn);
-  tianjiTreeData.forEach((root) => {
+  const roots = rootName
+    ? tianjiTreeData.filter((r) => r.t === rootName)
+    : tianjiTreeData;
+  roots.forEach((root) => {
     const title = document.createElement("div");
     title.className = "tj-root";
     title.textContent = root.t;
     side.appendChild(title);
     renderTianjiTree(root.children, side, 0, root);
   });
-}
-
-// 命理系统（排盘工具）：天纪侧栏顶部入口，点击后在主内容区渲染排盘界面。
-function showMingliTool() {
-  restoreMingliNormal();
-  const mh = document.getElementById("moduleHead");
-  if (mh) mh.innerHTML = '<div class="mh-left"><h2>命理系统</h2><p>排盘 · 八字四柱 · 紫微斗数 · 本命卦 · 解读</p></div>';
-  renderTool();
 }
 
 function countTianjiLeaves(node) {
@@ -2118,16 +2148,23 @@ async function doGlobalSearch(q) {
   // 子系统（人纪 / 天纪）：左侧模块即各子模块，loadSubList 需据此查 sub 的 kind。
   if (sysCfg) subSubs = modules;
   buildSidebar(modules);
-  // 天纪等其他子系统：初始默认激活优先恢复上次模块，否则第一个模块
-  let target = modules[0];
-  try {
-    const saved = localStorage.getItem("nihai_active_module_" + SYSTEM);
-    if (saved) {
-      const found = modules.find((m) => m.key === saved);
-      if (found) target = found;
-    }
-  } catch (e) {}
-  if (target) selectModule(target, target._el);
+  // 天纪：顶部三标签（命理系统/斗数/四柱），默认选「斗数」
+  if (SYSTEM === "tianji") {
+    try { await loadTianjiTree(); } catch (e) {}
+    const firstTab = document.querySelector('#boardTabs .board-tab[data-tab="dou"]');
+    if (firstTab) showTianjiTab("dou", firstTab);
+  } else {
+    // 其他子系统：初始默认激活优先恢复上次模块，否则第一个模块
+    let target = modules[0];
+    try {
+      const saved = localStorage.getItem("nihai_active_module_" + SYSTEM);
+      if (saved) {
+        const found = modules.find((m) => m.key === saved);
+        if (found) target = found;
+      }
+    } catch (e) {}
+    if (target) selectModule(target, target._el);
+  }
   const doSearch = () => {
     const q = $("#search").value.trim();
     state.page = 1;
