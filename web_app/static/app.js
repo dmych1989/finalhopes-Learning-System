@@ -34,7 +34,7 @@ let subSubs = [], subKey = "", subMeta = null, subQ = "", subTotal = 0;
 
 const $ = (s) => document.querySelector(s);
 
-// 当前所属系统：lilun（医学论文医案查询系统）/ renji（人纪学习系统）/ tianji（天纪学习系统）。
+// 当前所属系统：lilun（论文医案查询系统）/ renji（人纪学习系统）/ tianji（天纪学习系统）。
 // 三个系统是完全独立的不同页面，由各自 HTML 的 window.SYSTEM 决定，互不在对方侧栏出现。
 const SYSTEM = window.SYSTEM || "lilun";
 
@@ -304,6 +304,8 @@ function endpointFor(q) {
 const enc = (s) => encodeURIComponent(s || "");
 
 async function loadList(q) {
+  const wa = document.querySelector(".workarea");
+  if (wa) wa.classList.toggle("hdwj-mode", state.module === "hdwj");
   const ep = endpointFor(q);
   if (!ep) return;
   const my = ++loadSeq;
@@ -498,12 +500,14 @@ function renderPager() {
 }
 
 function showDetail(k, rec) {
+  const wa = document.querySelector(".workarea");
+  if (wa) wa.classList.toggle("hdwj-mode", k === "hdwj");
   if (k === "cases") return showCase(rec);
   if (k === "herbs") return showHerb(rec);
-  if (k === "articles") return showArticle(rec);
-  if (k === "hdwj") return showArticle(rec);
-  if (k === "bz") return showArticle(rec);
-  if (k === "sspl") return showArticle(rec);
+  if (k === "articles") return showArticle(rec, k);
+  if (k === "hdwj") return showHdwj(rec);
+  if (k === "bz") return showArticle(rec, k);
+  if (k === "sspl") return showArticle(rec, k);
   if (k === "hantang") return showHantang(rec);
   return showGeneric(rec, k);
 }
@@ -513,7 +517,7 @@ function showUniversal(module, rec) {
   if (module === "ref" && rec._table) module = rec._table.toLowerCase(); // 搜索结果里的参考表
   if (module === "cases") return showCase(rec);
   if (module === "herbs") return showHerb(rec);
-  if (module === "articles") return showArticle(rec);
+  if (module === "articles") return showArticle(rec, module);
   if (module === "yaotu") return showYaotuDetail(rec);
   if (module === "xuewei") return showXueweiDetail(rec);
   if (module === "hantang") return showHantang(rec);
@@ -580,7 +584,7 @@ function showHantang(rec) {
   $("#detailPane").innerHTML = h;
 }
 
-function showArticle(rec) {
+function showArticle(rec, module) {
   let body = rec.NR || "";
   const title = (rec.MZ || "").trim();
   // The article body usually repeats the title as its first line; drop it.
@@ -589,10 +593,134 @@ function showArticle(rec) {
   }
   // 《外经微言》标注原书篇次（第 N 篇），其余文章无 _idx 则不加。
   const idxTag = (rec._idx != null) ? `<span class="seq-badge">第 ${rec._idx} 篇</span> ` : "";
-  let h = `<div class="detail-card"><h3>${idxTag}${esc(rec.MZ || "(无标题)")}</h3>`;
-  h += `<div class="article-body">${esc(body)}</div>`;
-  h += `</div>`;
+  const h = `<div class="detail-card"><h3>${idxTag}${esc(rec.MZ || "(无标题)")}</h3>` +
+            beautifyArticle(body, module) +
+            `</div>`;
   $("#detailPane").innerHTML = h;
+}
+
+/* ===== 文章美化：报道 / 老师评语 / 小标题 区分渲染 =====
+ * 段落按空行切分；识别「老师评语 / 评语 / 倪师曰」分隔线，将全文分为
+ * 「报告·医案」与「老师评语」两块，分别加不同底色与标签；并把初诊/二诊/
+ * 治则/处方 等小标题、◎就诊标记、【】框题、1. 2. 编号要点做视觉强化。 */
+const ART_DIV_RE   = /^(老师评语|倪师评语|倪师曰|倪师按|评语)[：:　\s]*$/;
+const ART_SUB_RE   = /^(初诊|二诊|三诊|四诊|五诊|六诊|七诊|八诊|九诊|十诊|复诊|再诊|末诊|回诊|治则|处方|辨证|辨症|针灸|针方|治法|食疗|说明|注|讨论|分析|结论|诊断|按)[：:]?/;
+const ART_VISIT_RE = /^[◎○●◉\s]/;
+const ART_VISITDATE_RE = /^\d{1,2}[.、]\d{1,2}\s*[，,]\s*(初诊|二诊|三诊|四诊|五诊|六诊|七诊|八诊|九诊|十诊|复诊|再诊|末诊|回诊|诊)/;
+const ART_BOXED_RE = /^【[^】]{1,24}】\s*$/;
+// 编号要点：要求点号后紧跟非数字/非空白字符，避免把「98.1.30」这类日期误判为要点
+const ART_NUM_RE   = /^\d{1,3}[.、]\s*[^\d\s]/;
+
+// 编号要点：把开头的「N.」/「N、」高亮
+function _artPointInner(s) {
+  const m = s.match(/^(\d{1,3}[.、])\s*([\s\S]*)$/);
+  if (m) return `<span class="art-point-n">${esc(m[1])}</span>${esc(m[2])}`;
+  return esc(s);
+}
+
+/* 逐行状态机：
+ *  - 小标题（初诊/二诊/治则/处方/◎标记/「M.D，X诊」就诊标记/【】框题）→ 独立区块
+ *  - 编号要点（N. 后接中文，非日期）→ 要点卡片
+ *  - 其余行合并为普通段落（pre-wrap 保留换行），使正文紧凑易读
+ * 原文无空行、仅靠换行分行，故不依赖空行切段。 */
+function _artRenderSegment(segLines) {
+  let out = "";
+  let pLines = null;                                  // 累积中的普通段落
+  const flushP = () => { if (pLines && pLines.length) { out += `<p class="art-p">${esc(pLines.join("\n"))}</p>`; pLines = null; } };
+  let secBody = null;                                 // 处于小标题区块内时累积正文
+  const flushSec = () => { if (secBody !== null) { out += `<div class="art-sec-body">${esc(secBody.join("\n"))}</div></div>`; secBody = null; } };
+
+  for (const ln of segLines) {
+    const t = ln.trim();
+    if (t === "") { flushP(); flushSec(); continue; }
+    const isBoxed = ART_BOXED_RE.test(t);
+    const isNum   = ART_NUM_RE.test(t);
+    const isSub   = ART_SUB_RE.test(t) || ART_VISIT_RE.test(t) || ART_VISITDATE_RE.test(t);
+    if (isBoxed) { flushP(); flushSec(); out += `<div class="art-sub art-sub--boxed">${esc(t)}</div>`; continue; }
+    if (isSub) {
+      flushP(); flushSec();
+      out += `<div class="art-sec"><div class="art-sub">${esc(t)}</div>`;
+      secBody = [];
+      continue;
+    }
+    if (isNum) { flushP(); flushSec(); out += `<div class="art-point">${_artPointInner(t)}</div>`; continue; }
+    if (secBody !== null) { secBody.push(t); continue; }   // 小标题区块正文
+    if (pLines) pLines.push(t); else pLines = [t];          // 连续普通行合并为一个段落
+  }
+  flushP(); flushSec();
+  return out;
+}
+
+function beautifyArticle(body, module) {
+  const text = (body || "").replace(/\r\n/g, "\n");
+  const lines = text.split("\n");
+
+  let divIdx = -1;
+  for (let i = 0; i < lines.length; i++) {
+    if (ART_DIV_RE.test(lines[i].trim())) { divIdx = i; break; }
+  }
+  const mainLines = divIdx >= 0 ? lines.slice(0, divIdx) : lines;
+  const teacherLines = divIdx >= 0 ? lines.slice(divIdx) : [];
+
+  // 「报道」横幅：仅时事评论(sspl)模块中真正含媒体/报道信号的文章显示，
+  // 论文、医案里偶然出现「报道」二字一律不标，避免误判。
+  let html = "";
+  const mainText = mainLines.join("\n");
+  if (module === "sspl" && /(报道|报导|媒体|记者|采访|新闻|纪录片|影片|电视台)/.test(mainText)) {
+    html += `<div class="art-banner art-banner--report">📰 报道 / 媒体评论</div>`;
+  }
+  html += `<div class="art-main">${_artRenderSegment(mainLines)}</div>`;
+  if (teacherLines.length > 1) {
+    const head = teacherLines[0].trim() || "老师评语";
+    const tbody = teacherLines.slice(1).join("\n");
+    if (tbody.trim()) {
+      html += `<div class="art-teacher">` +
+              `<div class="art-teacher-h">💬 ${esc(head)}</div>` +
+              `<div class="art-teacher-body">${_artRenderSegment(teacherLines.slice(1))}</div>` +
+              `</div>`;
+    }
+  }
+  return html;
+}
+
+/* ===== 黄帝外经：原文（文言文）/ 译文（现代白话）对照 =====
+ * 左侧目录收窄（.workarea.hdwj-mode），正文区更宽；原文与译文分卡区分，
+ * 顶部「对照 / 原文 / 译文」切换。 */
+function showHdwj(rec) {
+  let body = rec.NR || "";
+  const title = (rec.MZ || "").trim();
+  if (title && body.startsWith(title)) {
+    body = body.slice(title.length).replace(/^\s*[\r\n]+/, "");
+  }
+  const yi = rec.yi || "";
+  const hasYi = yi.trim().length > 0;
+  const idxTag = (rec._idx != null) ? `<span class="seq-badge">第 ${rec._idx} 篇</span> ` : "";
+  let h = `<div class="detail-card hdwj-card"><h3>${idxTag}${esc(rec.MZ || "(无标题)")}</h3>`;
+  h += `<div class="hdwj-tabs">`;
+  h += `<button class="hdwj-tab active" data-v="both">对照</button>`;
+  h += `<button class="hdwj-tab" data-v="orig">原文</button>`;
+  if (hasYi) h += `<button class="hdwj-tab" data-v="yi">译文</button>`;
+  h += `</div>`;
+  h += `<div class="hdwj-body">`;
+  h += `<section class="hdwj-sec hdwj-orig"><div class="hdwj-sec-h">📜 原文（古籍 · 文言文）</div>` +
+       `<div class="hdwj-text hdwj-text--orig">${esc(body)}</div></section>`;
+  if (hasYi) h += `<section class="hdwj-sec hdwj-yi"><div class="hdwj-sec-h">📖 译文（现代白话）</div>` +
+       `<div class="hdwj-text">${esc(yi)}</div></section>`;
+  h += `</div></div>`;
+  $("#detailPane").innerHTML = h;
+
+  const tabs = $("#detailPane").querySelectorAll(".hdwj-tab");
+  tabs.forEach((t) => {
+    t.onclick = () => {
+      tabs.forEach((x) => x.classList.remove("active"));
+      t.classList.add("active");
+      const v = t.getAttribute("data-v");
+      const origEl = $("#detailPane").querySelector(".hdwj-orig");
+      const yiEl = $("#detailPane").querySelector(".hdwj-yi");
+      if (origEl) origEl.style.display = (v === "orig" || v === "both") ? "" : "none";
+      if (yiEl) yiEl.style.display = (v === "yi" || v === "both") ? "" : "none";
+    };
+  });
 }
 
 // 参考类表（辨证论治/正副辨证/针灸记录等）字段的中文标签。

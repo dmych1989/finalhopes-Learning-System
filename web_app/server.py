@@ -26,7 +26,7 @@ try:
 except Exception:
     IMG_INDEX = {}
 
-app = FastAPI(title="倪海厦医学查询系统 (网页版)")
+app = FastAPI(title="倪海厦三大学习系统 (网页版)")
 
 # 医案数据懒加载：首次访问时才从 data.db 读取，避免 Vercel 冷启动导入期就触发
 # 92MB 下载 / 解密，导致函数初始化超时（FUNCTION_INVOCATION_FAILED）。
@@ -314,6 +314,16 @@ for _r in sorted(_HDWJ_RAW, key=lambda r: _hdwj_pos(str(r.get("MZ", "")))):
         _r["_idx"] = _pos
     HDWJ.append(_r)
 del _HDWJ_RAW
+
+# 黄帝外经《外经微言》现代白话译文（参考 Obsidian 外经微言.md，按篇章名映射）。
+# 与 MDB 原文（文言文）形成「原文 / 译文」对照；缺译文的篇章（如缺卷三篇）留空。
+HDWJ_YI_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "hdwj_yi.json")
+HDWJ_YI = {}
+try:
+    with open(HDWJ_YI_PATH, encoding="utf-8") as _f:
+        HDWJ_YI = json.load(_f)
+except Exception:
+    HDWJ_YI = {}
 
 # yaotu 中药图：图片已从 data.db 抽出为静态资源 public/img/yaotu/（XOR-0x0F 解密后），
 # 由 /api/herb_image 302 重定向到 CDN 静态文件；索引见 web_app/img_index.py。
@@ -648,7 +658,14 @@ def api_hdwj(q: str = "", page: int = 1, size: int = 20):
 @app.get("/api/hdwj/{idx}")
 def api_hdwj_item(idx: int):
     if 0 <= idx < len(HDWJ):
-        return HDWJ[idx]
+        r = dict(HDWJ[idx])
+        mz = str(r.get("MZ", ""))
+        yi = HDWJ_YI.get(mz)
+        if not yi:  # 个别篇章名与通行本略有出入（如「热舒肝篇」↔「寒热舒肝篇」）
+            yi = HDWJ_YI.get(HDWJ_ALIAS.get(mz))
+        if yi:
+            r["yi"] = yi
+        return r
     raise HTTPException(404, "not found")
 
 

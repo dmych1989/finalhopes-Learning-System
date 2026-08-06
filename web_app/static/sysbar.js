@@ -4,7 +4,7 @@
 // 若页面内含 #sysInline 容器，则把切换按钮内联到该处（如人纪 topbar 右侧）；
 // 否则回退到 #sysBar 独立渐变条（lilun / tianji 默认）。
 const SYS_SYSTEMS = [
-  { key: "lilun",  name: "医学论文医案查询系统", url: "/" },
+  { key: "lilun",  name: "论文医案查询系统", url: "/" },
   { key: "renji",  name: "人纪学习系统",          url: "/renji" },
   { key: "tianji", name: "天纪学习系统",          url: "/tianji" },
 ];
