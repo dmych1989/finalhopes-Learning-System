@@ -133,9 +133,13 @@ ARTICLE_MAP = _ACM["map"]                    # {文章ID: 栏目名}
 _ART_CTR = {}
 for _v in ARTICLE_MAP.values():
     _ART_CTR[_v] = _ART_CTR.get(_v, 0) + 1
-# 给每篇文章标注其栏目(未归入任何栏目的为空字符串, 仅出现在「全部论文」)
+# 给每篇文章标注其栏目(未归入任何栏目的为空字符串)
 for _r in ARTICLES:
     _r["_art_cat"] = ARTICLE_MAP.get(str(_r.get("ID", "")), "")
+
+# 模块专属范围：归属于 13 个栏目之一的文章索引集合。默认（含「全部论文」）只显示这些，
+# 而非把整库 3499 篇一股脑倒出——倪海厦论文板块只展示本板块内容，避免与病症研究/时事评论雷同。
+ARTICLE_ALL = set(i for i, _r in enumerate(ARTICLES) if _r.get("_art_cat", ""))
 
 # ---- 病症研究（按疾病专论归类）模块 --------------------------------------
 # 原 EXE（医案论文内部查询系统V2022c61.exe）菜单另含一组「疾病专论」栏目
@@ -547,12 +551,13 @@ def api_articles_cats():
     """论文 13 个栏目（来自原 EXE 真实目录）及其文章数，供左侧栏目侧栏使用。"""
     out = [{"key": name, "name": name, "count": _ART_CTR.get(name, 0)}
            for name in ARTICLE_CAT_NAMES]
-    return {"cats": out}
+    return {"cats": out, "total": len(ARTICLE_ALL)}
 
 
 @app.get("/api/articles")
 def api_articles(q: str = "", cat: str = "", page: int = 1, size: int = 20):
-    data = ARTICLES
+    # 默认（含「全部论文」）仅显示归属于 13 个栏目之一的文章，而非整库
+    data = [ARTICLES[i] for i in ARTICLE_ALL] if ARTICLE_ALL else []
     if cat:
         data = [r for r in data if r.get("_art_cat", "") == cat]
     if q:
