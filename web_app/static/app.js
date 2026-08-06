@@ -290,30 +290,76 @@ function buildTianjiTreeRoot(rootName) {
 }
 
 // 命理系统 hub 顶部三标签：命理系统 / 斗数 / 四柱（三套独立子系统，横向切换）。
+// 斗数 / 四柱 标签自带下拉（该根的一级分区），点击分区跳转对应内容（不再单独菜单栏）。
 let mingliTab = "mingli";
+let mlTabDDBound = false;
 function buildMingliTabs() {
   const box = document.getElementById("mingliTabs");
   if (!box) return;
   box.innerHTML = "";
   const tabs = [
-    { key: "mingli", label: "命理系统" },
-    { key: "dou", label: "斗数" },
-    { key: "sizhu", label: "四柱" },
+    { key: "mingli", label: "命理系统", root: null },
+    { key: "dou", label: "斗数", root: "斗数" },
+    { key: "sizhu", label: "四柱", root: "四柱" },
   ];
   tabs.forEach((t) => {
-    const b = document.createElement("button");
-    b.type = "button";
-    b.className = "ml-tab" + (t.key === mingliTab ? " active" : "");
-    b.textContent = t.label;
-    b.dataset.tab = t.key;
-    b.onclick = () => showMingliTab(t.key);
-    box.appendChild(b);
+    const tab = document.createElement("div");
+    tab.className = "ml-tab" + (t.key === mingliTab ? " active" : "");
+    tab.dataset.tab = t.key;
+    const lbl = document.createElement("span");
+    lbl.className = "ml-tab-lbl";
+    lbl.textContent = t.label;
+    lbl.onclick = () => showMingliTab(t.key);
+    tab.appendChild(lbl);
+    const sections = t.root && ML_MENU_SECTIONS[t.root] ? ML_MENU_SECTIONS[t.root] : [];
+    if (sections.length) {
+      const caret = document.createElement("span");
+      caret.className = "ml-caret";
+      caret.textContent = "▾";
+      caret.onclick = (ev) => { ev.stopPropagation(); toggleMingliTabDD(tab); };
+      tab.appendChild(caret);
+      const dd = document.createElement("div");
+      dd.className = "ml-dropdown";
+      sections.forEach((secName) => {
+        const it = document.createElement("div");
+        it.className = "ml-dd-item";
+        it.textContent = secName;
+        it.onclick = (ev) => {
+          ev.stopPropagation();
+          closeMingliTabDDs();
+          if (t.root === "斗数" && secName === "基础理论") {
+            showMingliTab("dou");
+            renderDouJichuPanel();
+            return;
+          }
+          showMingliTab(t.key);
+          restoreMingliNormal();
+          jumpToTianjiSection(t.root, secName);
+        };
+        dd.appendChild(it);
+      });
+      tab.appendChild(dd);
+    }
+    box.appendChild(tab);
   });
+  if (!mlTabDDBound) {
+    mlTabDDBound = true;
+    document.addEventListener("click", closeMingliTabDDs);
+  }
+}
+function toggleMingliTabDD(tab) {
+  const wasOpen = tab.classList.contains("open");
+  closeMingliTabDDs();
+  if (!wasOpen) tab.classList.add("open");
+}
+function closeMingliTabDDs() {
+  document.querySelectorAll("#mingliTabs .ml-tab.open").forEach((t) => t.classList.remove("open"));
 }
 
 // 切换命理系统 hub 的三个子系统：命理系统=排盘工具；斗数/四柱=对应目录树 + 文章。
 function showMingliTab(tab) {
   mingliTab = tab;
+  closeMingliTabDDs();
   document.querySelectorAll("#mingliTabs .ml-tab").forEach((b) =>
     b.classList.toggle("active", b.dataset.tab === tab));
   const side = document.getElementById("sidebar");
@@ -324,59 +370,13 @@ function showMingliTab(tab) {
   }
   restoreMingliNormal();
   buildTianjiTreeRoot(tab === "dou" ? "斗数" : "四柱");
-  buildMingliMenuBar(tab);
   const lm = $("#listMain"); if (lm) lm.innerHTML = '<div class="hint">请选择左侧目录查看文章。</div>';
   const dp = $("#detailPane"); if (dp) dp.innerHTML = '<div class="hint">点击左侧条目查看详情。</div>';
   const fb = $("#filterBar"); if (fb) fb.style.display = "none";
   const pg = $("#pager"); if (pg) pg.innerHTML = "";
 }
 
-// 命理系统 hub：斗数 / 四柱 标签下的「顶部菜单栏」——系统按钮 + 下拉（该根的直接分区）。
-// 点击分区 -> jumpToTianjiSection 展开左侧目录树对应分区并列出其文章。
-let mlMenuOutsideBound = false;
-function buildMingliMenuBar(tab) {
-  const bar = document.getElementById("mlMenuBar");
-  if (!bar) return;
-  if (tab === "mingli" || !tianjiTreeData) { bar.style.display = "none"; bar.innerHTML = ""; return; }
-  const rootName = tab === "dou" ? "斗数" : "四柱";
-  const root = tianjiTreeData.find((r) => r.t === rootName);
-  if (!root) { bar.style.display = "none"; bar.innerHTML = ""; return; }
-  bar.style.display = "";
-  bar.innerHTML = "";
-  const wrap = document.createElement("div");
-  wrap.className = "ml-menu";
-  const btn = document.createElement("button");
-  btn.type = "button";
-  btn.className = "ml-menu-btn";
-  btn.innerHTML = esc(rootName) + ' <span class="caret">▾</span>';
-  const dd = document.createElement("div");
-  dd.className = "ml-dropdown";
-  const allow = ML_MENU_SECTIONS[rootName];
-  const sections = allow ? (root.children || []).filter((s) => allow.includes(s.t)) : (root.children || []);
-  sections.forEach((sec) => {
-    const it = document.createElement("div");
-    it.className = "ml-dd-item";
-    it.textContent = sec.t;
-    it.onclick = (ev) => {
-      ev.stopPropagation();
-      wrap.classList.remove("open");
-      if (rootName === "斗数" && sec.t === "基础理论") { renderDouJichuPanel(); return; }
-      restoreMingliNormal();
-      jumpToTianjiSection(rootName, sec.t);
-    };
-    dd.appendChild(it);
-  });
-  btn.onclick = (ev) => { ev.stopPropagation(); wrap.classList.toggle("open"); };
-  wrap.appendChild(btn);
-  wrap.appendChild(dd);
-  bar.appendChild(wrap);
-  if (!mlMenuOutsideBound) {
-    mlMenuOutsideBound = true;
-    document.addEventListener("click", () => {
-      document.querySelectorAll(".ml-menu.open").forEach((m) => m.classList.remove("open"));
-    });
-  }
-}
+// （原 斗数/四柱「顶部菜单栏」buildMingliMenuBar 已合并到 buildMingliTabs 的标签下拉，见上。）
 
 function countTianjiLeaves(node) {
   if ("src" in node) return 1;
