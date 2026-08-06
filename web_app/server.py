@@ -141,52 +141,54 @@ for _r in ARTICLES:
 # 而非把整库 3499 篇一股脑倒出——倪海厦论文板块只展示本板块内容，避免与病症研究/时事评论雷同。
 ARTICLE_ALL = set(i for i, _r in enumerate(ARTICLES) if _r.get("_art_cat", ""))
 
-# ---- 病症研究（按疾病专论归类）模块 --------------------------------------
-# 原 EXE（医案论文内部查询系统V2022c61.exe）菜单另含一组「疾病专论」栏目
-# （艾滋病专论 / 肺病专论 / 肝癌专论 … 癌症专论 等），其文章分散在 nhxlwj
-# 全库中，源数据无独立病种字段。这里以「病种关键词」对 3499 篇文章做一次性
-# 离线归类：每篇取其标题(MZ) + 正文前 160 字做子串匹配，归入命中的病种；
-# 一篇文章可命中多个病种（如某乳癌文同时归入「乳癌专论」与「癌症专论」），
-# 符合浏览型筛选的直觉。关键词集合参考 tools/文章分类.txt 的病种覆盖度校准。
+# ---- 病症研究（按 EXE 目录.txt 真实栏目归类）模块 ---------------------------------
+# 原 EXE 菜单含一组「疾病专论」栏目，其真实栏目结构见
+# 「医学论文医案查询系统/病症研究/目录.txt」（艾滋病专论 / 肺病专论 / 肝癌专论 …
+# 癌症专论 等共 22 个栏目）。由 tools/build_bz_map.py 解析该目录，离线生成
+# 文章ID -> 栏目key 的映射 web_app/bz_map.json（含《健康警讯/解密谣言/医药保健/
+# 肠胃型流感》等内嵌标记处理），这里加载它驱动分类，保证网页病症研究板块与 EXE 原貌一致。
 BZ_CATS = [
-    {"key": "aids",      "name": "艾滋病专论", "kws": ["艾滋", "爱滋", "AIDS", "HIV", "後天免疫", "后天免疫"]},
-    {"key": "feibing",   "name": "肺病专论",   "kws": ["肺癌", "肺积水", "肺衰竭", "肺气肿", "肺结核", "气喘", "哮喘", "慢性支气管炎", "肺炎", "胸腔", "气管", "肺家阴实", "肺痛", "肺家"]},
-    {"key": "ganai",     "name": "肝癌专论",   "kws": ["肝癌", "肝肿瘤", "肝家阴实", "肝指数", "肝腹水", "肝硬化", "B肝", "C肝", "肝炎", "肝病", "肝衰竭"]},
-    {"key": "guzhi",     "name": "骨质疏松症", "kws": ["骨质疏松", "骨松", "骨质", "骨折", "骨密度", "软骨", "钙"]},
-    {"key": "laonian",   "name": "老年痴呆症", "kws": ["老年", "痴呆", "阿兹海默", "阿尔茨海默", "失智", "记忆", "脑退化"]},
-    {"key": "rubai",     "name": "乳癌专论",   "kws": ["乳癌", "乳房", "乳腺", "乳腺癌"]},
-    {"key": "shenzang",  "name": "肾脏病专论", "kws": ["肾脏", "肾病", "肾衰", "洗肾", "尿毒症", "肾炎", "肾衰竭", "肾臟", "腰子", "肾阳", "肾水"]},
-    {"key": "weitaming", "name": "维他命专论", "kws": ["维他命", "维生素", "Vitamin", "叶酸", "B12", "D3"]},
-    {"key": "xinzang",   "name": "心脏病专论", "kws": ["心脏病", "心衰竭", "心肌梗塞", "冠心病", "心律", "心绞痛", "高血压", "血压", "心脏", "心臟", "心阳", "心血"]},
-    {"key": "yizang",    "name": "胰脏癌专论", "kws": ["胰脏", "胰腺癌", "胰臟", "胰"]},
-    {"key": "zisha",     "name": "自杀案例",   "kws": ["自杀", "轻生", "忧郁", "抑郁", "想死"]},
-    {"key": "dachang",   "name": "大肠癌专论", "kws": ["大肠癌", "肠癌", "直肠癌", "结肠", "直肠"]},
-    {"key": "fuke",      "name": "妇科专论",   "kws": ["妇科", "经期", "月经", "子宫", "卵巢", "女科", "白带", "孕期", "妊娠", "阴道"]},
-    {"key": "ganmao",    "name": "感冒与疫苗", "kws": ["感冒", "疫苗", "流感", "防疫", "预防针", "接种", "病毒", "发烧", "发热", "疫"]},
-    {"key": "hongban",   "name": "红斑狼疮",   "kws": ["红斑", "狼疮", "SLE"]},
-    {"key": "naobing",   "name": "脑病专论",   "kws": ["脑瘤", "脑瘫", "偏头痛", "癫痫", "帕金森", "脑病", "脑神经", "脑膜炎", "脑中风"]},
-    {"key": "shepro",    "name": "摄护腺癌",   "kws": ["摄护腺", "前列腺癌", "PSA", "摄护"]},
-    {"key": "tangniao",  "name": "糖尿病专论", "kws": ["糖尿病", "血糖", "胰岛素", "糖尿", "消渴", "梵帝雅"]},
-    {"key": "weibing",   "name": "胃病区专论", "kws": ["胃病", "胃炎", "胃溃疡", "胃癌", "胃粘膜", "十二指肠溃疡", "胃家", "胃气", "胃"]},
-    {"key": "xueai",     "name": "血癌专论",   "kws": ["血癌", "白血病", "淋巴癌", "骨髓瘤", "淋巴"]},
-    {"key": "zhongfeng", "name": "中风专论",   "kws": ["中风", "脑卒中", "脑血管", "偏瘫", "半身不遂"]},
-    {"key": "aizheng",   "name": "癌症专论",   "kws": ["癌", "肿瘤", "癌症", "恶性肿瘤", "阴实", "肉瘤", "癌末", "癌指", "癌细"]},
+    {"key": "aizibing",  "name": "艾滋病专论"},
+    {"key": "feibing",   "name": "肺病专论"},
+    {"key": "ganai",     "name": "肝癌专论"},
+    {"key": "guzhishu",  "name": "骨质疏松症"},
+    {"key": "laonianchidai", "name": "老年痴呆症"},
+    {"key": "rubing",    "name": "乳癌专论"},
+    {"key": "shenzangbing", "name": "肾脏病专论"},
+    {"key": "weitaming", "name": "维他命专论"},
+    {"key": "xinzangbing", "name": "心脏病专论"},
+    {"key": "yizangai",  "name": "胰脏癌专论"},
+    {"key": "zisha",     "name": "自杀案例"},
+    {"key": "dachangai", "name": "大肠癌专论"},
+    {"key": "fuke",      "name": "妇科专论"},
+    {"key": "ganmao",    "name": "感冒与疫苗"},
+    {"key": "hongbanlangchuang", "name": "红斑狼疮"},
+    {"key": "naobing",   "name": "脑病专论"},
+    {"key": "shenprostate", "name": "摄护腺癌"},
+    {"key": "tangniaobing", "name": "糖尿病专论"},
+    {"key": "weibing",   "name": "胃病区专论"},
+    {"key": "xueai",     "name": "血癌专论"},
+    {"key": "zhongfeng", "name": "中风专论"},
+    {"key": "aizheng",   "name": "癌症专论"},
 ]
-BZ_CAT_SETS = {}
-BZ_CAT_CTR = {}
-for _cat in BZ_CATS:
-    _idxs = set()
-    for _i, _r in enumerate(ARTICLES):
-        # 校准：以标题(MZ)命中为准，避免正文偶发提及导致误归入疾病专论
-        _title = str(_r.get("MZ", ""))
-        if any(_k in _title for _k in _cat["kws"]):
-            _idxs.add(_i)
-    BZ_CAT_SETS[_cat["key"]] = _idxs
-    BZ_CAT_CTR[_cat["key"]] = len(_idxs)
-BZ_TOTAL = len(set().union(*BZ_CAT_SETS.values())) if BZ_CAT_SETS else 0
-# 模块专属范围：归属于任一疾病专论的文章索引集合。默认（含「全部病症」）只显示这些，
+# 加载 ID->栏目key 映射（由 tools/build_bz_map.py 依据 EXE 目录.txt 预计算）
+_BZ_MAP_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "bz_map.json")
+try:
+    with open(_BZ_MAP_PATH, encoding="utf-8") as _f:
+        _BZ_MAP = json.load(_f)
+except Exception:
+    _BZ_MAP = {}
+_id_to_idx = {str(r.get("ID", "")): i for i, r in enumerate(ARTICLES)}
+BZ_CAT_SETS = {c["key"]: set() for c in BZ_CATS}
+for _aid, _key in _BZ_MAP.items():
+    _i = _id_to_idx.get(str(_aid))
+    if _i is not None and _key in BZ_CAT_SETS:
+        BZ_CAT_SETS[_key].add(_i)
+BZ_CAT_CTR = {k: len(v) for k, v in BZ_CAT_SETS.items()}
+# 模块专属范围：归属于任一个病症研究栏目的文章索引集合。默认（含「全部病症」）只显示这些，
 # 而非把整库 3499 篇一股脑倒出——否则病症研究会与论文/时事评论显示完全相同的列表。
-BZ_ALL = set().union(*BZ_CAT_SETS.values()) if BZ_CAT_SETS else set()
+BZ_ALL = set().union(*BZ_CAT_SETS.values())
+BZ_TOTAL = len(BZ_ALL)
 
 # ---- 时事评论（按「倪师论×」主题归类）模块 ---------------------------------
 # 原 EXE（医案论文内部查询系统V2022c61.exe）菜单含「时事评论」节点，其下为一组
@@ -236,32 +238,24 @@ SSPL_CAT_CTR = {k: len(v) for k, v in SSPL_CAT_SETS.items()}
 SSPL_ALL = set().union(*SSPL_CAT_SETS.values())
 SSPL_TOTAL = len(SSPL_ALL)
 
-# ---- 三板块互不重叠分区（论文 > 病症研究 > 时事评论）------------------------
-# 用户要求：每个板块只显示自己板块的文章、计数只记录本板块。但 bz/sspl 关键词
-# 抽取存在天然重叠（同一条疾病文章既命中「癌症专论」又命中「倪师论癌症」），故按
-# 优先级把重叠文章只归入高优先级板块：倪海厦论文(13栏目,权威) > 病症研究(疾病) >
-# 时事评论(评论)。这样任一文章至多出现在一个板块，且各板「全部」计数=本板篇数。
-# ---- 三板块互不重叠分区（时事评论 > 论文 > 病症研究）------------------------
-# 用户要求「全站按 EXE 重排」：时事评论依据 EXE 目录.txt 权威认领其全部文章，
-# 并从论文(13栏目)与病症研究移出这些重叠文章，使三板块互不重叠、各板计数=本板篇数。
-# 1) 清除时事评论文章在论文中的栏目归属，并同步下调论文各栏计数
-_SSPL_REMOVED_CATS = {}
-for _i in SSPL_ALL:
+# ---- 三板块分区（评论/病症各自按 EXE 目录.txt 权威认领，论文为 13 栏目核心）----
+# 时事评论与病症研究均依据各自 EXE 目录.txt 认领全部文章（评论=1015、病症=555），
+# 二者在文章层面仅少量重叠（约 16 篇，EXE 中同文跨模块），予以保留以忠实于 EXE 原貌。
+# 论文(13栏目)为权威核心板块，需剔除同时被评论/病症认领的文章，保证论文不重复显示。
+# 1) 清除被评论/病症认领文章在论文中的栏目归属，并同步下调论文各栏计数
+_REMOVED_CATS = {}
+for _i in (SSPL_ALL | BZ_ALL):
     _old = ARTICLES[_i].get("_art_cat", "")
     if _old:
         ARTICLES[_i]["_art_cat"] = ""
-        _SSPL_REMOVED_CATS[_old] = _SSPL_REMOVED_CATS.get(_old, 0) + 1
-for _c, _n in _SSPL_REMOVED_CATS.items():
+        _REMOVED_CATS[_old] = _REMOVED_CATS.get(_old, 0) + 1
+for _c, _n in _REMOVED_CATS.items():
     _ART_CTR[_c] = max(0, _ART_CTR.get(_c, 0) - _n)
-# 2) 重建论文集合（已剔除移入时事评论的文章）
+# 2) 重建论文集合（已剔除被评论/病症认领的文章）
 ARTICLE_ALL = set(i for i, _r in enumerate(ARTICLES) if _r.get("_art_cat", ""))
-# 3) 病症研究移出时事评论与论文的重叠文章
-BZ_ALL = BZ_ALL - SSPL_ALL - ARTICLE_ALL
-for _k in BZ_CAT_SETS:
-    BZ_CAT_SETS[_k] -= (SSPL_ALL | ARTICLE_ALL)
-    BZ_CAT_CTR[_k] = len(BZ_CAT_SETS[_k])
-# 4) 时事评论各栏即最终归属（已具最高优先级，无需剔除）
+# 3) 评论/病症各自为完整 EXE 栏目集合，不相互剔除（保留 EXE 跨模块重叠）
 BZ_TOTAL = len(BZ_ALL)
+SSPL_TOTAL = len(SSPL_ALL)
 SSPL_TOTAL = len(SSPL_ALL)
 
 # ---- 黄帝外经（外经微言，陈士铎本）独立模块 ---------------------------------
