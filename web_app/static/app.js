@@ -221,10 +221,50 @@ function showMingliTab(tab) {
   }
   if (side) side.style.display = "";
   buildTianjiTreeRoot(tab === "dou" ? "斗数" : "四柱");
+  buildMingliMenuBar(tab);
   const lm = $("#listMain"); if (lm) lm.innerHTML = '<div class="hint">请选择左侧目录查看文章。</div>';
   const dp = $("#detailPane"); if (dp) dp.innerHTML = '<div class="hint">点击左侧条目查看详情。</div>';
   const fb = $("#filterBar"); if (fb) fb.style.display = "none";
   const pg = $("#pager"); if (pg) pg.innerHTML = "";
+}
+
+// 命理系统 hub：斗数 / 四柱 标签下的「顶部菜单栏」——系统按钮 + 下拉（该根的直接分区）。
+// 点击分区 -> jumpToTianjiSection 展开左侧目录树对应分区并列出其文章。
+let mlMenuOutsideBound = false;
+function buildMingliMenuBar(tab) {
+  const bar = document.getElementById("mlMenuBar");
+  if (!bar) return;
+  if (tab === "mingli" || !tianjiTreeData) { bar.style.display = "none"; bar.innerHTML = ""; return; }
+  const rootName = tab === "dou" ? "斗数" : "四柱";
+  const root = tianjiTreeData.find((r) => r.t === rootName);
+  if (!root) { bar.style.display = "none"; bar.innerHTML = ""; return; }
+  bar.style.display = "";
+  bar.innerHTML = "";
+  const wrap = document.createElement("div");
+  wrap.className = "ml-menu";
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "ml-menu-btn";
+  btn.innerHTML = esc(rootName) + ' <span class="caret">▾</span>';
+  const dd = document.createElement("div");
+  dd.className = "ml-dropdown";
+  (root.children || []).forEach((sec) => {
+    const it = document.createElement("div");
+    it.className = "ml-dd-item";
+    it.textContent = sec.t;
+    it.onclick = (ev) => { ev.stopPropagation(); wrap.classList.remove("open"); jumpToTianjiSection(rootName, sec.t); };
+    dd.appendChild(it);
+  });
+  btn.onclick = (ev) => { ev.stopPropagation(); wrap.classList.toggle("open"); };
+  wrap.appendChild(btn);
+  wrap.appendChild(dd);
+  bar.appendChild(wrap);
+  if (!mlMenuOutsideBound) {
+    mlMenuOutsideBound = true;
+    document.addEventListener("click", () => {
+      document.querySelectorAll(".ml-menu.open").forEach((m) => m.classList.remove("open"));
+    });
+  }
 }
 
 function countTianjiLeaves(node) {
