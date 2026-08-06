@@ -276,16 +276,13 @@ async function buildTianjiTree() {
 }
 
 // 命理系统 hub：仅渲染某个根（斗数 / 四柱）到左侧目录树。
+// 注意：不渲染根标题「斗数 / 四柱」——该名称已由顶部横向标签承载，避免界面出现重复的斗数/四柱。
 function buildTianjiTreeRoot(rootName) {
   const side = document.getElementById("sidebar");
   if (!side || !tianjiTreeData) return;
   const root = tianjiTreeData.find((r) => r.t === rootName);
   if (!root) return;
   side.innerHTML = "";
-  const title = document.createElement("div");
-  title.className = "tj-root";
-  title.textContent = root.t;
-  side.appendChild(title);
   renderTianjiTree(root.children, side, 0, root);
 }
 
