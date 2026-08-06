@@ -342,9 +342,9 @@ async function loadList(q) {
   } else if (state.module === "articles" && articleCatsCache) {
     renderArticleCatNav(articleCatsCache.cats, state.articleCat || "");
   } else if (state.module === "bz" && bzCatsCache) {
-    renderBzCatNav(bzCatsCache.cats, state.bzCat || "", "bzCat", "病症分类", "全部病症");
+    renderBzCatNav(bzCatsCache.cats, state.bzCat || "", "bzCat", "病症分类", "全部病症", bzCatsCache.total);
   } else if (state.module === "sspl" && ssplCatsCache) {
-    renderBzCatNav(ssplCatsCache.cats, state.ssplCat || "", "ssplCat", "评论分类", "全部评论");
+    renderBzCatNav(ssplCatsCache.cats, state.ssplCat || "", "ssplCat", "评论分类", "全部评论", ssplCatsCache.total);
   } else if (state.module === "herbs" && data.cats) {
     renderHerbTabs(data.cats);
   }
@@ -395,7 +395,7 @@ function renderArticleCatNav(cats, activeKey) {
 
 // 病症研究 / 时事评论 共用「左侧目录侧栏」，复用论文栏目的 #articleCatNav 容器。
 // stateKey 决定点击写入 state 的哪个字段（bz→state.bzCat / sspl→state.ssplCat）。
-function renderBzCatNav(cats, activeKey, stateKey, titleText, allLabel) {
+function renderBzCatNav(cats, activeKey, stateKey, titleText, allLabel, allCount) {
   const nav = $("#articleCatNav");
   if (!nav) return;
   nav.style.display = "block";
@@ -406,7 +406,8 @@ function renderBzCatNav(cats, activeKey, stateKey, titleText, allLabel) {
   nav.appendChild(title);
   const all = document.createElement("button");
   all.className = "catnav-item" + (activeKey === "" ? " active" : "");
-  all.innerHTML = `<span class="cn-label">${allLabel || "全部病症"}</span>`;
+  all.innerHTML = `<span class="cn-label">${allLabel || "全部病症"}</span>` +
+    (allCount != null ? `<em class="cn-count">${allCount}</em>` : "");
   all.onclick = () => { activateNavItem(nav, all); state[stateKey] = ""; state.page = 1; loadList($("#search").value); };
   nav.appendChild(all);
   (cats || []).forEach((c) => {

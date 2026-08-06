@@ -179,6 +179,9 @@ for _cat in BZ_CATS:
     BZ_CAT_SETS[_cat["key"]] = _idxs
     BZ_CAT_CTR[_cat["key"]] = len(_idxs)
 BZ_TOTAL = len(set().union(*BZ_CAT_SETS.values())) if BZ_CAT_SETS else 0
+# 模块专属范围：归属于任一疾病专论的文章索引集合。默认（含「全部病症」）只显示这些，
+# 而非把整库 3499 篇一股脑倒出——否则病症研究会与论文/时事评论显示完全相同的列表。
+BZ_ALL = set().union(*BZ_CAT_SETS.values()) if BZ_CAT_SETS else set()
 
 # ---- 时事评论（按「倪师论×」主题归类）模块 ---------------------------------
 # 原 EXE（医案论文内部查询系统V2022c61.exe）菜单含「时事评论」节点，其下为一组
@@ -233,6 +236,9 @@ for _i, _r in enumerate(ARTICLES):
 SSPL_CAT_SETS["weifanlei"] = _SSPL_UNC
 SSPL_CAT_CTR["weifanlei"] = len(_SSPL_UNC)
 SSPL_TOTAL = len(_SSPL_UNION | _SSPL_UNC)
+# 模块专属范围：归属于任一时事评论主题 + 未归类评论的文章索引集合。默认（含「全部评论」）
+# 只显示这些，避免与论文/病症研究显示同一份整库列表。
+SSPL_ALL = _SSPL_UNION | _SSPL_UNC
 
 # ---- 黄帝外经（外经微言，陈士铎本）独立模块 ---------------------------------
 # 原 EXE(医案论文内部查询系统V2022c61.exe) 菜单含独立的「黄帝外经」节点，其下即
@@ -569,14 +575,16 @@ def api_bz_cats():
     """22 个疾病专论栏目及命中文章数，供病症研究模块左侧目录侧栏使用。"""
     out = [{"key": c["key"], "name": c["name"], "count": BZ_CAT_CTR.get(c["key"], 0)}
            for c in BZ_CATS]
-    return {"cats": out}
+    return {"cats": out, "total": BZ_TOTAL}
 
 
 @app.get("/api/bz")
 def api_bz(cat: str = "", q: str = "", page: int = 1, size: int = 20):
-    data = ARTICLES
     if cat and cat in BZ_CAT_SETS:
         data = [ARTICLES[i] for i in BZ_CAT_SETS[cat]]
+    else:
+        # 默认（含「全部病症」）仅显示归属于任一疾病专论的文章，而非整库
+        data = [ARTICLES[i] for i in BZ_ALL] if BZ_ALL else []
     if q:
         data = [r for r in data if search_in(r, q)]
     items, total = paginate(data, page, size)
@@ -589,14 +597,16 @@ def api_sspl_cats():
     """16 个主题栏目及命中文章数，供时事评论模块左侧目录侧栏使用。"""
     out = [{"key": c["key"], "name": c["name"], "count": SSPL_CAT_CTR.get(c["key"], 0)}
            for c in SSPL_CATS]
-    return {"cats": out}
+    return {"cats": out, "total": SSPL_TOTAL}
 
 
 @app.get("/api/sspl")
 def api_sspl(cat: str = "", q: str = "", page: int = 1, size: int = 20):
-    data = ARTICLES
     if cat and cat in SSPL_CAT_SETS:
         data = [ARTICLES[i] for i in SSPL_CAT_SETS[cat]]
+    else:
+        # 默认（含「全部评论」）仅显示归属于任一时事评论主题+未归类评论的文章
+        data = [ARTICLES[i] for i in SSPL_ALL] if SSPL_ALL else []
     if q:
         data = [r for r in data if search_in(r, q)]
     items, total = paginate(data, page, size)
