@@ -1229,9 +1229,10 @@ def tianji_page():
     return FileResponse(os.path.join(_STATIC, "tianji.html"))
 
 
-@app.get("/mingli", response_class=HTMLResponse)
-def mingli_page():
-    return FileResponse(os.path.join(_STATIC, "mingli.html"))
+@app.get("/mingli")
+def mingli_redirect():
+    from fastapi.responses import RedirectResponse
+    return RedirectResponse(url="/tianji", status_code=302)
 
 
 app.mount("/static", StaticFiles(directory=os.path.join(os.path.dirname(__file__), "static")),

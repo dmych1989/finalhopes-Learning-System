@@ -50,11 +50,6 @@ const SYS_CFG = {
     api: "/api/tianji", img: "/tianji/img", modulesUrl: "/api/tianji/modules",
     tablesUrl: "/api/tianji/tables", showDD: true,
   },
-  // 命理系统：从天纪拆出的独立页面，复用天纪后端（目录树 / 命理工具 / 命例）。
-  mingli: {
-    api: "/api/tianji", img: "/tianji/img", modulesUrl: "/api/tianji/modules",
-    tablesUrl: "/api/tianji/tables", showDD: true,
-  },
 };
 const sysCfg = SYS_CFG[SYSTEM];   // 仅 renji / tianji 有值
 
@@ -104,11 +99,8 @@ function buildSidebar(modules) {
     });
   } else if (side) {
     side.innerHTML = "";
-    if (SYSTEM !== "mingli") {
-      // 天纪页：左侧目录树（斗数 / 四柱 双根）。
-      buildTianjiTree();
-    }
-    // 命理系统 hub（mingli）：树与三标签切换由 init 的 showMingliTab 接管，此处不建。
+    // 天纪页：左侧目录树（斗数 / 四柱 双根），树顶部含「命理系统」排盘入口。
+    buildTianjiTree();
   }
 }
 
@@ -253,7 +245,7 @@ async function loadTianjiTree() {
   return tianjiTreeData;
 }
 
-// 左侧目录树：两个根（斗数 / 四柱）。命理系统 hub 下由 showMingliTab 调用单根版本。
+// 左侧目录树：两个根（斗数 / 四柱），顶部含「命理系统」排盘入口。
 async function buildTianjiTree() {
   const side = document.getElementById("sidebar");
   if (!side) return;
@@ -266,6 +258,12 @@ async function buildTianjiTree() {
   }
   if (!tianjiTreeData || !tianjiTreeData.length) { side.innerHTML = '<div class="hint">暂无目录。</div>'; return; }
   side.innerHTML = "";
+  // 侧栏顶部：命理系统入口（排盘工具）
+  const toolBtn = document.createElement("div");
+  toolBtn.className = "nav-item ml-tool-entry";
+  toolBtn.innerHTML = '<span>命理系统</span><small>排盘 · 八字 · 紫微</small>';
+  toolBtn.onclick = () => { setActive(toolBtn); showMingliTool(); };
+  side.appendChild(toolBtn);
   tianjiTreeData.forEach((root) => {
     const title = document.createElement("div");
     title.className = "tj-root";
@@ -275,105 +273,13 @@ async function buildTianjiTree() {
   });
 }
 
-// 命理系统 hub：仅渲染某个根（斗数 / 四柱）到左侧目录树。
-// 注意：不渲染根标题「斗数 / 四柱」——该名称已由顶部横向标签承载，避免界面出现重复的斗数/四柱。
-function buildTianjiTreeRoot(rootName) {
-  const side = document.getElementById("sidebar");
-  if (!side || !tianjiTreeData) return;
-  const root = tianjiTreeData.find((r) => r.t === rootName);
-  if (!root) return;
-  side.innerHTML = "";
-  renderTianjiTree(root.children, side, 0, root);
-}
-
-// 命理系统 hub 顶部三标签：命理系统 / 斗数 / 四柱（三套独立子系统，横向切换）。
-// 斗数 / 四柱 标签自带下拉（该根的一级分区），点击分区跳转对应内容（不再单独菜单栏）。
-let mingliTab = "mingli";
-let mlTabDDBound = false;
-function buildMingliTabs() {
-  const box = document.getElementById("mingliTabs");
-  if (!box) return;
-  box.innerHTML = "";
-  const tabs = [
-    { key: "mingli", label: "命理系统", root: null },
-    { key: "dou", label: "斗数", root: "斗数" },
-    { key: "sizhu", label: "四柱", root: "四柱" },
-  ];
-  tabs.forEach((t) => {
-    const tab = document.createElement("div");
-    tab.className = "ml-tab" + (t.key === mingliTab ? " active" : "");
-    tab.dataset.tab = t.key;
-    const lbl = document.createElement("span");
-    lbl.className = "ml-tab-lbl";
-    lbl.textContent = t.label;
-    lbl.onclick = () => showMingliTab(t.key);
-    tab.appendChild(lbl);
-    const sections = t.root && ML_MENU_SECTIONS[t.root] ? ML_MENU_SECTIONS[t.root] : [];
-    if (sections.length) {
-      const caret = document.createElement("span");
-      caret.className = "ml-caret";
-      caret.textContent = "▾";
-      caret.onclick = (ev) => { ev.stopPropagation(); toggleMingliTabDD(tab); };
-      tab.appendChild(caret);
-      const dd = document.createElement("div");
-      dd.className = "ml-dropdown";
-      sections.forEach((secName) => {
-        const it = document.createElement("div");
-        it.className = "ml-dd-item";
-        it.textContent = secName;
-        it.onclick = (ev) => {
-          ev.stopPropagation();
-          closeMingliTabDDs();
-          if (t.root === "斗数" && secName === "基础理论") {
-            showMingliTab("dou");
-            renderDouJichuPanel();
-            return;
-          }
-          showMingliTab(t.key);
-          restoreMingliNormal();
-          jumpToTianjiSection(t.root, secName);
-        };
-        dd.appendChild(it);
-      });
-      tab.appendChild(dd);
-    }
-    box.appendChild(tab);
-  });
-  if (!mlTabDDBound) {
-    mlTabDDBound = true;
-    document.addEventListener("click", closeMingliTabDDs);
-  }
-}
-function toggleMingliTabDD(tab) {
-  const wasOpen = tab.classList.contains("open");
-  closeMingliTabDDs();
-  if (!wasOpen) tab.classList.add("open");
-}
-function closeMingliTabDDs() {
-  document.querySelectorAll("#mingliTabs .ml-tab.open").forEach((t) => t.classList.remove("open"));
-}
-
-// 切换命理系统 hub 的三个子系统：命理系统=排盘工具；斗数/四柱=对应目录树 + 文章。
-function showMingliTab(tab) {
-  mingliTab = tab;
-  closeMingliTabDDs();
-  document.querySelectorAll("#mingliTabs .ml-tab").forEach((b) =>
-    b.classList.toggle("active", b.dataset.tab === tab));
-  const side = document.getElementById("sidebar");
-  if (tab === "mingli") {
-    if (side) side.style.display = "none";
-    renderTool();
-    return;
-  }
+// 命理系统（排盘工具）：天纪侧栏顶部入口，点击后在主内容区渲染排盘界面。
+function showMingliTool() {
   restoreMingliNormal();
-  buildTianjiTreeRoot(tab === "dou" ? "斗数" : "四柱");
-  const lm = $("#listMain"); if (lm) lm.innerHTML = '<div class="hint">请选择左侧目录查看文章。</div>';
-  const dp = $("#detailPane"); if (dp) dp.innerHTML = '<div class="hint">点击左侧条目查看详情。</div>';
-  const fb = $("#filterBar"); if (fb) fb.style.display = "none";
-  const pg = $("#pager"); if (pg) pg.innerHTML = "";
+  const mh = document.getElementById("moduleHead");
+  if (mh) mh.innerHTML = '<div class="mh-left"><h2>命理系统</h2><p>排盘 · 八字四柱 · 紫微斗数 · 本命卦 · 解读</p></div>';
+  renderTool();
 }
-
-// （原 斗数/四柱「顶部菜单栏」buildMingliMenuBar 已合并到 buildMingliTabs 的标签下拉，见上。）
 
 function countTianjiLeaves(node) {
   if ("src" in node) return 1;
@@ -2212,14 +2118,6 @@ async function doGlobalSearch(q) {
   // 子系统（人纪 / 天纪）：左侧模块即各子模块，loadSubList 需据此查 sub 的 kind。
   if (sysCfg) subSubs = modules;
   buildSidebar(modules);
-  // 命理系统 hub：顶部三标签（命理系统 / 斗数 / 四柱）切换三个独立子系统。
-  // 命理系统=排盘工具；斗数/四柱=对应目录树 + 文章。默认落在「命理系统」标签。
-  if (SYSTEM === "mingli") {
-    buildMingliTabs();
-    try { await loadTianjiTree(); } catch (e) {}
-    showMingliTab("mingli");
-    return;
-  }
   // 天纪等其他子系统：初始默认激活优先恢复上次模块，否则第一个模块
   let target = modules[0];
   try {

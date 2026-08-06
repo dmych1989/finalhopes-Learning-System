@@ -74,6 +74,12 @@ body{margin:0;font-family:"PingFang SC","Microsoft YaHei","PingFangTC-Regular","
   color:var(--teal-dd);font-weight:600}
 .sidebar .nav-item small{display:block;font-size:11px;color:var(--ink3);font-weight:400;margin-top:2px}
 
+/* 天纪 · 侧栏「命理系统」排盘入口 */
+.sidebar .ml-tool-entry{display:flex;flex-direction:column;gap:1px;
+  background:linear-gradient(135deg,var(--teal-bg),var(--panel));
+  border:1px solid var(--teal-l);font-weight:600;margin-bottom:10px}
+.sidebar .ml-tool-entry span{color:var(--teal-dd)}
+
 /* 天纪 · 左侧目录树（按 列表.txt 重组：斗数 → 基础理论/断法细则/卦象/子女/时辰效验/案例查询） */
 .sidebar .tj-root{font-size:13px;font-weight:700;color:var(--teal-dd);letter-spacing:.5px;
   padding:2px 6px 10px;margin-bottom:4px;border-bottom:1px dashed var(--line)}
