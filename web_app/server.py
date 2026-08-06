@@ -177,8 +177,9 @@ BZ_CAT_CTR = {}
 for _cat in BZ_CATS:
     _idxs = set()
     for _i, _r in enumerate(ARTICLES):
-        _blob = str(_r.get("MZ", "")) + " " + str(_r.get("NR", ""))[:160]
-        if any(_k in _blob for _k in _cat["kws"]):
+        # 校准：以标题(MZ)命中为准，避免正文偶发提及导致误归入疾病专论
+        _title = str(_r.get("MZ", ""))
+        if any(_k in _title for _k in _cat["kws"]):
             _idxs.add(_i)
     BZ_CAT_SETS[_cat["key"]] = _idxs
     BZ_CAT_CTR[_cat["key"]] = len(_idxs)
@@ -221,15 +222,17 @@ for _cat in SSPL_CATS:
         continue
     _idxs = set()
     for _i, _r in enumerate(ARTICLES):
-        _blob = str(_r.get("MZ", "")) + " " + str(_r.get("NR", ""))[:160]
-        if any(_k in _blob for _k in _cat["kws"]):
+        # 校准：以标题(MZ)命中为准，避免正文偶发提及导致误归入时事评论
+        _title = str(_r.get("MZ", ""))
+        if any(_k in _title for _k in _cat["kws"]):
             _idxs.add(_i)
     SSPL_CAT_SETS[_cat["key"]] = _idxs
     SSPL_CAT_CTR[_cat["key"]] = len(_idxs)
     _SSPL_UNION |= _idxs
 # 未归类评论：含评论性标记但不归属任一具体主题的 article。
+# 校准：移除过宽标记「倪师」（其仅作署名出现，不表示评论性质）。
 _SSPL_UNC_MARKERS = ["评论", "时事", "专栏", "时评", "杂谈", "有感", "随笔",
-                     "我看", "个人认为", "倪师", "杂文", "随想", "杂感"]
+                     "我看", "个人认为", "杂文", "随想", "杂感"]
 _SSPL_UNC = set()
 for _i, _r in enumerate(ARTICLES):
     if _i in _SSPL_UNION:
@@ -243,6 +246,22 @@ SSPL_TOTAL = len(_SSPL_UNION | _SSPL_UNC)
 # 模块专属范围：归属于任一时事评论主题 + 未归类评论的文章索引集合。默认（含「全部评论」）
 # 只显示这些，避免与论文/病症研究显示同一份整库列表。
 SSPL_ALL = _SSPL_UNION | _SSPL_UNC
+
+# ---- 三板块互不重叠分区（论文 > 病症研究 > 时事评论）------------------------
+# 用户要求：每个板块只显示自己板块的文章、计数只记录本板块。但 bz/sspl 关键词
+# 抽取存在天然重叠（同一条疾病文章既命中「癌症专论」又命中「倪师论癌症」），故按
+# 优先级把重叠文章只归入高优先级板块：倪海厦论文(13栏目,权威) > 病症研究(疾病) >
+# 时事评论(评论)。这样任一文章至多出现在一个板块，且各板「全部」计数=本板篇数。
+BZ_ALL = BZ_ALL - ARTICLE_ALL
+SSPL_ALL = SSPL_ALL - ARTICLE_ALL - BZ_ALL
+for _k in BZ_CAT_SETS:
+    BZ_CAT_SETS[_k] -= ARTICLE_ALL
+    BZ_CAT_CTR[_k] = len(BZ_CAT_SETS[_k])
+for _k in SSPL_CAT_SETS:
+    SSPL_CAT_SETS[_k] -= (ARTICLE_ALL | BZ_ALL)
+    SSPL_CAT_CTR[_k] = len(SSPL_CAT_SETS[_k])
+BZ_TOTAL = len(BZ_ALL)
+SSPL_TOTAL = len(SSPL_ALL)
 
 # ---- 黄帝外经（外经微言，陈士铎本）独立模块 ---------------------------------
 # 原 EXE(医案论文内部查询系统V2022c61.exe) 菜单含独立的「黄帝外经」节点，其下即
