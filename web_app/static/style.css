@@ -252,6 +252,15 @@ body{margin:0;font-family:"PingFang SC","Microsoft YaHei","PingFangTC-Regular","
 .art-main{margin-top:4px}
 .art-banner{display:inline-block;font-size:13px;font-weight:600;padding:5px 14px;border-radius:16px;margin:0 0 14px}
 .art-banner--report{background:#eaf2ff;color:#2f6bd0;border:1px solid #cfe0ff}
+/* 文首元信息：日期 + 报道平台/来源 芯片 */
+.art-meta{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.art-chip{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:600;
+  padding:4px 12px;border-radius:14px;border:1px solid var(--line)}
+.art-chip--date{background:#fff7e6;color:#b9770e;border-color:#ffe0a3}
+.art-chip--src{background:#eef6ff;color:#2f6bd0;border-color:#cfe0ff}
+/* 内联（半角括号）倪师按语 → 醒目内联批注 */
+.art-note{background:#fff3cd;color:#8a5a00;border-radius:5px;padding:0 4px;
+  box-shadow:inset 0 -1px 0 #f0d488;font-style:normal}
 /* 报告·医案正文段落 */
 .art-p{white-space:pre-wrap;line-height:1.95;font-size:15px;color:var(--ink);margin:0 0 12px}
 /* 小标题（初诊/二诊/治则/处方/◎就诊标记） */
@@ -294,6 +303,19 @@ body{margin:0;font-family:"PingFang SC","Microsoft YaHei","PingFangTC-Regular","
 .hdwj-text{white-space:pre-wrap;line-height:2;font-size:15.5px;color:var(--ink);padding:16px 18px}
 .hdwj-text--orig{font-family:"Songti SC","SimSun","Noto Serif CJK SC",serif;font-size:16px;
   color:#3a2f55}
+
+/* 原文 / 译文 显隐由 .hdwj-body 的 data-mode 控制，切换必然生效 */
+.hdwj-body .hdwj-orig,
+.hdwj-body .hdwj-yi{display:none}
+.hdwj-body[data-mode="both"] .hdwj-orig,
+.hdwj-body[data-mode="both"] .hdwj-yi{display:block}
+.hdwj-body[data-mode="orig"] .hdwj-orig{display:block}
+.hdwj-body[data-mode="yi"] .hdwj-yi{display:block}
+/* 对照模式：宽屏左右并排，与单栏的「原文 / 译文」明显区分 */
+@media (min-width:860px){
+  .hdwj-body[data-mode="both"]{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+  .hdwj-body[data-mode="both"] .hdwj-sec{margin-bottom:0}
+}
 
 /* ===== 画廊 / 缩略图 ===== */
 .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}

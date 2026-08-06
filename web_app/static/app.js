@@ -603,7 +603,7 @@ function showArticle(rec, module) {
  * 段落按空行切分；识别「老师评语 / 评语 / 倪师曰」分隔线，将全文分为
  * 「报告·医案」与「老师评语」两块，分别加不同底色与标签；并把初诊/二诊/
  * 治则/处方 等小标题、◎就诊标记、【】框题、1. 2. 编号要点做视觉强化。 */
-const ART_DIV_RE   = /^(老师评语|倪师评语|倪师曰|倪师按|评语)[：:　\s]*$/;
+const ART_DIV_RE   = /^(老师评语|倪师评语|倪师曰|倪师按|评语|评论|编按|编者按|按语)[：:　\s]*$/;
 const ART_SUB_RE   = /^(初诊|二诊|三诊|四诊|五诊|六诊|七诊|八诊|九诊|十诊|复诊|再诊|末诊|回诊|治则|处方|辨证|辨症|针灸|针方|治法|食疗|说明|注|讨论|分析|结论|诊断|按)[：:]?/;
 const ART_VISIT_RE = /^[◎○●◉\s]/;
 const ART_VISITDATE_RE = /^\d{1,2}[.、]\d{1,2}\s*[，,]\s*(初诊|二诊|三诊|四诊|五诊|六诊|七诊|八诊|九诊|十诊|复诊|再诊|末诊|回诊|诊)/;
@@ -618,6 +618,60 @@ function _artPointInner(s) {
   return esc(s);
 }
 
+/* 日期 / 报道平台（来源）抽取，渲染为文章头部的「元信息」芯片。
+ * 仅扫描正文前若干行（日期、记者、来源通常出现在文首），匹配到的整行
+ * 若仅由「日期 / 来源 / 更新日期 / 记者 / 冒号 / 空白」构成，则整行被芯片取代，
+ * 不再重复出现在正文里。 */
+const ART_DATE_RE = /(更新日期\s*[:：]?\s*)?(\d{4})[/年.\-](\d{1,2})[/月.\-](\d{1,2})(?:\s*(\d{1,2}):(\d{2}))?/;
+function _extractMeta(lines) {
+  const chips = [];
+  const keep = [];
+  const N = Math.min(lines.length, 8);
+  for (let i = 0; i < lines.length; i++) {
+    const t = lines[i].trim();
+    if (i >= N && chips.length) { keep.push(lines[i]); continue; }   // 元信息只取文首
+    if (t === "") { keep.push(lines[i]); continue; }
+    let consumed = false;
+    let work = t;
+    const dm = t.match(ART_DATE_RE);
+    if (dm) {
+      chips.push({ cls: "art-chip--date", icon: "📅",
+        text: `${dm[2]}年${dm[3]}月${dm[4]}日` + (dm[5] != null ? ` ${dm[5]}:${dm[6]}` : "") });
+      work = work.replace(dm[0], "");
+    }
+    // 报道平台 / 来源
+    const bm = t.match(/[【〔]([^】〕]*?(?:报导|報導)[^】〕]*?)[】〕]/);
+    let src = null;
+    if (bm) src = bm[1];
+    else if (/资料?来源\s*[:：]/.test(t)) {
+      const u = t.match(/资料?来源\s*[:：]\s*(\S+)/);
+      src = u ? "资料来源 " + u[1].replace(/^https?:\/\//, "").split("/")[0] : "资料来源";
+    } else if (/记者\s*[:：]?/.test(t) && /(?:报导|報導)/.test(t)) {
+      const sm = t.match(/记者\s*[:：]?\s*([^【〔]*?(?:报导|報導))/);
+      if (sm) src = sm[1];
+    }
+    if (src) { chips.push({ cls: "art-chip--src", icon: "📰", text: src }); }
+    // 判断整行是否仅由元信息构成 → 用芯片取代，不再保留原文行
+    work = work.replace(/[【〔][^】〕]*[】〕]/g, "");
+    work = work.replace(/资料?来源\s*[:：].*/g, "");
+    work = work.replace(/记者\s*[:：]?/g, "");
+    work = work.replace(/更新日期/g, "");
+    work = work.replace(/[：:\s]/g, "");
+    if (work === "") consumed = true;
+    if (consumed) continue;
+    keep.push(lines[i]);
+  }
+  const seen = new Set(); const uniq = [];
+  for (const c of chips) { if (!seen.has(c.text)) { seen.add(c.text); uniq.push(c); } }
+  return { chips: uniq, keep };
+}
+
+// 内联（半角括号）倪师按语 → 醒目内联批注；仅当括号内含中文时才处理，
+// 避免把网址、缩写等误标。传入串已 esc()，括号与中文均为字面量，安全。
+function _artInline(s) {
+  return s.replace(/\(([^()]*[一-龥][^()]*)\)/g, '<span class="art-note">($1)</span>');
+}
+
 /* 逐行状态机：
  *  - 小标题（初诊/二诊/治则/处方/◎标记/「M.D，X诊」就诊标记/【】框题）→ 独立区块
  *  - 编号要点（N. 后接中文，非日期）→ 要点卡片
@@ -626,9 +680,9 @@ function _artPointInner(s) {
 function _artRenderSegment(segLines) {
   let out = "";
   let pLines = null;                                  // 累积中的普通段落
-  const flushP = () => { if (pLines && pLines.length) { out += `<p class="art-p">${esc(pLines.join("\n"))}</p>`; pLines = null; } };
+  const flushP = () => { if (pLines && pLines.length) { out += `<p class="art-p">${_artInline(esc(pLines.join("\n")))}</p>`; pLines = null; } };
   let secBody = null;                                 // 处于小标题区块内时累积正文
-  const flushSec = () => { if (secBody !== null) { out += `<div class="art-sec-body">${esc(secBody.join("\n"))}</div></div>`; secBody = null; } };
+  const flushSec = () => { if (secBody !== null) { out += `<div class="art-sec-body">${_artInline(esc(secBody.join("\n")))}</div></div>`; secBody = null; } };
 
   for (const ln of segLines) {
     const t = ln.trim();
@@ -643,7 +697,7 @@ function _artRenderSegment(segLines) {
       secBody = [];
       continue;
     }
-    if (isNum) { flushP(); flushSec(); out += `<div class="art-point">${_artPointInner(t)}</div>`; continue; }
+    if (isNum) { flushP(); flushSec(); out += `<div class="art-point">${_artInline(_artPointInner(t))}</div>`; continue; }
     if (secBody !== null) { secBody.push(t); continue; }   // 小标题区块正文
     if (pLines) pLines.push(t); else pLines = [t];          // 连续普通行合并为一个段落
   }
@@ -655,16 +709,25 @@ function beautifyArticle(body, module) {
   const text = (body || "").replace(/\r\n/g, "\n");
   const lines = text.split("\n");
 
-  let divIdx = -1;
-  for (let i = 0; i < lines.length; i++) {
-    if (ART_DIV_RE.test(lines[i].trim())) { divIdx = i; break; }
-  }
-  const mainLines = divIdx >= 0 ? lines.slice(0, divIdx) : lines;
-  const teacherLines = divIdx >= 0 ? lines.slice(divIdx) : [];
+  // 文首日期 / 报道平台（来源）抽取为元信息芯片
+  const meta = _extractMeta(lines);
 
+  let divIdx = -1;
+  for (let i = 0; i < meta.keep.length; i++) {
+    if (ART_DIV_RE.test(meta.keep[i].trim())) { divIdx = i; break; }
+  }
+  const mainLines = divIdx >= 0 ? meta.keep.slice(0, divIdx) : meta.keep;
+  const teacherLines = divIdx >= 0 ? meta.keep.slice(divIdx) : [];
+
+  let html = "";
+  // 元信息芯片：日期 + 报道平台/来源
+  if (meta.chips.length) {
+    html += `<div class="art-meta">` +
+            meta.chips.map((c) => `<span class="art-chip ${c.cls}">${c.icon} ${esc(c.text)}</span>`).join("") +
+            `</div>`;
+  }
   // 「报道」横幅：仅时事评论(sspl)模块中真正含媒体/报道信号的文章显示，
   // 论文、医案里偶然出现「报道」二字一律不标，避免误判。
-  let html = "";
   const mainText = mainLines.join("\n");
   if (module === "sspl" && /(报道|报导|媒体|记者|采访|新闻|纪录片|影片|电视台)/.test(mainText)) {
     html += `<div class="art-banner art-banner--report">📰 报道 / 媒体评论</div>`;
@@ -701,7 +764,8 @@ function showHdwj(rec) {
   h += `<button class="hdwj-tab" data-v="orig">原文</button>`;
   if (hasYi) h += `<button class="hdwj-tab" data-v="yi">译文</button>`;
   h += `</div>`;
-  h += `<div class="hdwj-body">`;
+  // data-mode 由 CSS 控制各 section 显隐，避免内联 style 时序问题，切换必然生效
+  h += `<div class="hdwj-body" data-mode="both">`;
   h += `<section class="hdwj-sec hdwj-orig"><div class="hdwj-sec-h">📜 原文（古籍 · 文言文）</div>` +
        `<div class="hdwj-text hdwj-text--orig">${esc(body)}</div></section>`;
   if (hasYi) h += `<section class="hdwj-sec hdwj-yi"><div class="hdwj-sec-h">📖 译文（现代白话）</div>` +
@@ -709,16 +773,14 @@ function showHdwj(rec) {
   h += `</div></div>`;
   $("#detailPane").innerHTML = h;
 
+  const bodyEl = $("#detailPane").querySelector(".hdwj-body");
   const tabs = $("#detailPane").querySelectorAll(".hdwj-tab");
   tabs.forEach((t) => {
     t.onclick = () => {
       tabs.forEach((x) => x.classList.remove("active"));
       t.classList.add("active");
       const v = t.getAttribute("data-v");
-      const origEl = $("#detailPane").querySelector(".hdwj-orig");
-      const yiEl = $("#detailPane").querySelector(".hdwj-yi");
-      if (origEl) origEl.style.display = (v === "orig" || v === "both") ? "" : "none";
-      if (yiEl) yiEl.style.display = (v === "yi" || v === "both") ? "" : "none";
+      if (bodyEl) bodyEl.setAttribute("data-mode", v);
     };
   });
 }
