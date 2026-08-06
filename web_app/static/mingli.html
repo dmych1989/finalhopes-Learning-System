@@ -3,25 +3,27 @@
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>天纪学习系统 · 网页版</title>
-    <link rel="stylesheet" href="/static/style.css?v=39">
+    <title>命理系统 · 网页版</title>
+    <link rel="stylesheet" href="/static/style.css?v=40">
 </head>
 <body>
 <div class="app">
   <header class="topbar renji-bar">
     <div class="brand">
-      <img class="brand-logo" src="/static/logo.png" alt="天纪学习系统">
+      <img class="brand-logo" src="/static/logo.png" alt="命理系统">
       <div>
-        <h1>天纪学习系统</h1>
-        <p class="brand-sub">倪海厦汉唐中医馆 · 天纪内部学习系统（完整复刻）</p>
+        <h1>命理系统</h1>
+        <p class="brand-sub">倪海厦汉唐中医馆 · 命理排盘与斗数 / 四柱理论（完整复刻）</p>
       </div>
     </div>
     <div class="searchbox">
-      <input id="search" type="text" placeholder="搜索天纪：卦名 / 经文 / 干支 / 命例 / 经纬度…" autocomplete="off">
+      <input id="search" type="text" placeholder="搜索命理：卦名 / 干支 / 命例 / 姓名…" autocomplete="off">
       <button id="searchBtn">搜索</button>
     </div>
     <div id="sysInline" class="sys-inline"></div>
   </header>
+
+  <nav class="tj-toolbar" id="tjTools"></nav>
 
   <div class="layout layout--side">
     <nav class="sidebar" id="sidebar"></nav>
@@ -44,7 +46,7 @@
     </main>
   </div>
 </div>
-<script>window.SYSTEM = "tianji";</script>
+<script>window.SYSTEM = "mingli";</script>
 <script src="/static/sysbar.js?v=35"></script>
 <script src="/static/app.js?v=56"></script>
 </body>

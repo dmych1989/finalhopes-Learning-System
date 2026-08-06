@@ -34,8 +34,9 @@ let subSubs = [], subKey = "", subMeta = null, subQ = "", subTotal = 0;
 
 const $ = (s) => document.querySelector(s);
 
-// 当前所属系统：lilun（论文医案查询系统）/ renji（人纪学习系统）/ tianji（天纪学习系统）。
-// 三个系统是完全独立的不同页面，由各自 HTML 的 window.SYSTEM 决定，互不在对方侧栏出现。
+// 当前所属系统：lilun（论文医案查询系统）/ renji（人纪学习系统）/ tianji（天纪学习系统）
+// / mingli（命理系统，从天纪拆出的独立页面）。各系统是完全独立的不同页面，由各自
+// HTML 的 window.SYSTEM 决定，互不在对方侧栏出现。
 const SYSTEM = window.SYSTEM || "lilun";
 
 // 子系统配置：人纪 / 天纪 共用一套「左侧即子模块」渲染逻辑，仅 API 前缀 / 图片路由 /
@@ -46,6 +47,11 @@ const SYS_CFG = {
     tablesUrl: "/api/renji/ziwwu", showDD: false,
   },
   tianji: {
+    api: "/api/tianji", img: "/tianji/img", modulesUrl: "/api/tianji/modules",
+    tablesUrl: "/api/tianji/tables", showDD: true,
+  },
+  // 命理系统：从天纪拆出的独立页面，复用天纪后端（目录树 / 命理工具 / 命例）。
+  mingli: {
     api: "/api/tianji", img: "/tianji/img", modulesUrl: "/api/tianji/modules",
     tablesUrl: "/api/tianji/tables", showDD: true,
   },
@@ -97,11 +103,14 @@ function buildSidebar(modules) {
       bar.appendChild(d);
     });
   } else if (side) {
-    // tianji：顶部放工具类（命理系统）+ 理论下拉（斗数/四柱），左侧渲染目录树
+    // 天纪 / 命理系统 共用左侧目录树（斗数 / 四柱）。
     side.innerHTML = "";
-    buildTianjiTools(modules);
     buildTianjiTree();
-    buildTianjiTheoryNav();
+    if (SYSTEM === "mingli") {
+      // 命理系统（独立页面）：顶部右侧横排「斗数理论 / 四柱理论」两个下拉按钮。
+      buildTianjiTheoryNav();
+    }
+    // 天纪页：仅目录树（命理系统已独立成页，工具与理论下拉移至 mingli）。
   }
 }
 
@@ -2006,6 +2015,18 @@ async function doGlobalSearch(q) {
       if (found) target = found;
     }
   } catch (e) {}
+  // 命理系统页（独立页面）：默认直接展示命理工具（排盘 + 命例 + 解读），
+  // 而非某个目录模块；点击左上角「命理系统」标题可随时回到该工具视图。
+  if (SYSTEM === "mingli") {
+    const tool = modules.find((m) => m.kind === "tool");
+    if (tool) target = tool;
+    const h1 = document.querySelector(".brand h1");
+    if (h1) {
+      h1.style.cursor = "pointer";
+      h1.title = "返回命理工具";
+      h1.onclick = () => { const t = (subSubs || []).find((m) => m.kind === "tool"); if (t) selectModule(t, t._el); };
+    }
+  }
   if (target) selectModule(target, target._el);
   const doSearch = () => {
     const q = $("#search").value.trim();

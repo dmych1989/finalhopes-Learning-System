@@ -1219,6 +1219,11 @@ def tianji_page():
     return FileResponse(os.path.join(_STATIC, "tianji.html"))
 
 
+@app.get("/mingli", response_class=HTMLResponse)
+def mingli_page():
+    return FileResponse(os.path.join(_STATIC, "mingli.html"))
+
+
 app.mount("/static", StaticFiles(directory=os.path.join(os.path.dirname(__file__), "static")),
           name="static")
 
