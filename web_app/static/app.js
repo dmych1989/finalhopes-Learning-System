@@ -109,7 +109,6 @@ function buildSidebar(modules) {
         const caret = document.createElement("span");
         caret.className = "board-tab-caret";
         caret.textContent = "▾";
-        caret.onclick = (ev) => { ev.stopPropagation(); toggleTianjiTabDD(d); };
         d.appendChild(caret);
         const dd = document.createElement("div");
         dd.className = "board-dropdown";
@@ -125,8 +124,13 @@ function buildSidebar(modules) {
           dd.appendChild(it);
         });
         d.appendChild(dd);
+        // 斗数/四柱：按钮本身不可导航，整颗按钮（含文字与 ▾）点击即展开下拉菜单。
+        // stopPropagation 避免冒泡触发 document 监听把刚展开的下拉又关掉。
+        d.onclick = (ev) => { ev.stopPropagation(); toggleTianjiTabDD(d); };
+      } else {
+        // 命理系统：无下拉分区，仍是可点击的导航项（渲染排盘工具）。
+        d.onclick = () => showTianjiTab(t.key, d);
       }
-      d.onclick = () => showTianjiTab(t.key, d);
       bar.appendChild(d);
     });
     if (!tianjiTabDDBound) {
