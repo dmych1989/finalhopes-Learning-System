@@ -2257,6 +2257,9 @@ let lastPaipan = null;       // 最近一次排盘结果（含 analysis / case�
 let lastCase = null;         // 当前命例（用于导出）
 
 function renderTool() {
+  // 命理工具视图：给 workarea 挂 mingli-mode，让 .workarea.mingli-mode 系列规则（含左栏 250px 宽度）生效
+  const wa = document.querySelector(".workarea");
+  if (wa) wa.classList.add("mingli-mode");
   // 左：命理（八字命例列表，点击即排双盘）
   const lm = $("#listMain");
   lm.innerHTML =
