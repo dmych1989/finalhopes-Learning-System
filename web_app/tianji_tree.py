@@ -851,653 +851,326 @@ TIANJI_TREE = [
         "t": "天纪卦象查询",
         "children": [
           {
-            "t": "六十四卦",
-            "children": [
-              {
-                "t": "乾为天",
-                "src": "gua",
-                "idx": 0
-              },
-              {
-                "t": "坤为地",
-                "src": "gua",
-                "idx": 1
-              },
-              {
-                "t": "水雷屯",
-                "src": "gua",
-                "idx": 2
-              },
-              {
-                "t": "山水蒙",
-                "src": "gua",
-                "idx": 3
-              },
-              {
-                "t": "水天需",
-                "src": "gua",
-                "idx": 4
-              },
-              {
-                "t": "天水讼",
-                "src": "gua",
-                "idx": 5
-              },
-              {
-                "t": "地水师",
-                "src": "gua",
-                "idx": 6
-              },
-              {
-                "t": "水地比",
-                "src": "gua",
-                "idx": 7
-              },
-              {
-                "t": "风天小畜",
-                "src": "gua",
-                "idx": 8
-              },
-              {
-                "t": "天泽履",
-                "src": "gua",
-                "idx": 9
-              },
-              {
-                "t": "地天泰",
-                "src": "gua",
-                "idx": 10
-              },
-              {
-                "t": "天地否",
-                "src": "gua",
-                "idx": 11
-              },
-              {
-                "t": "天火同人",
-                "src": "gua",
-                "idx": 12
-              },
-              {
-                "t": "火天大有",
-                "src": "gua",
-                "idx": 13
-              },
-              {
-                "t": "地山谦",
-                "src": "gua",
-                "idx": 14
-              },
-              {
-                "t": "雷地豫",
-                "src": "gua",
-                "idx": 15
-              },
-              {
-                "t": "泽雷随",
-                "src": "gua",
-                "idx": 16
-              },
-              {
-                "t": "山风蛊",
-                "src": "gua",
-                "idx": 17
-              },
-              {
-                "t": "地泽临",
-                "src": "gua",
-                "idx": 18
-              },
-              {
-                "t": "风地观",
-                "src": "gua",
-                "idx": 19
-              },
-              {
-                "t": "火雷噬嗑",
-                "src": "gua",
-                "idx": 20
-              },
-              {
-                "t": "山火贲",
-                "src": "gua",
-                "idx": 21
-              },
-              {
-                "t": "山地剥",
-                "src": "gua",
-                "idx": 22
-              },
-              {
-                "t": "地雷复",
-                "src": "gua",
-                "idx": 23
-              },
-              {
-                "t": "天雷无妄",
-                "src": "gua",
-                "idx": 24
-              },
-              {
-                "t": "山天大畜",
-                "src": "gua",
-                "idx": 25
-              },
-              {
-                "t": "山雷颐",
-                "src": "gua",
-                "idx": 26
-              },
-              {
-                "t": "泽风大过",
-                "src": "gua",
-                "idx": 27
-              },
-              {
-                "t": "坎为水",
-                "src": "gua",
-                "idx": 28
-              },
-              {
-                "t": "离为火",
-                "src": "gua",
-                "idx": 29
-              },
-              {
-                "t": "泽山咸",
-                "src": "gua",
-                "idx": 30
-              },
-              {
-                "t": "雷风恒",
-                "src": "gua",
-                "idx": 31
-              },
-              {
-                "t": "天山遯",
-                "src": "gua",
-                "idx": 32
-              },
-              {
-                "t": "雷天大壮",
-                "src": "gua",
-                "idx": 33
-              },
-              {
-                "t": "火地晋",
-                "src": "gua",
-                "idx": 34
-              },
-              {
-                "t": "地火明夷",
-                "src": "gua",
-                "idx": 35
-              },
-              {
-                "t": "风火家人",
-                "src": "gua",
-                "idx": 36
-              },
-              {
-                "t": "火泽睽",
-                "src": "gua",
-                "idx": 37
-              },
-              {
-                "t": "水山蹇",
-                "src": "gua",
-                "idx": 38
-              },
-              {
-                "t": "雷水解",
-                "src": "gua",
-                "idx": 39
-              },
-              {
-                "t": "山泽损",
-                "src": "gua",
-                "idx": 40
-              },
-              {
-                "t": "风雷益",
-                "src": "gua",
-                "idx": 41
-              },
-              {
-                "t": "泽天夬",
-                "src": "gua",
-                "idx": 42
-              },
-              {
-                "t": "天风姤",
-                "src": "gua",
-                "idx": 43
-              },
-              {
-                "t": "泽地萃",
-                "src": "gua",
-                "idx": 44
-              },
-              {
-                "t": "地风升",
-                "src": "gua",
-                "idx": 45
-              },
-              {
-                "t": "泽水困",
-                "src": "gua",
-                "idx": 46
-              },
-              {
-                "t": "水风井",
-                "src": "gua",
-                "idx": 47
-              },
-              {
-                "t": "泽火革",
-                "src": "gua",
-                "idx": 48
-              },
-              {
-                "t": "火风鼎",
-                "src": "gua",
-                "idx": 49
-              },
-              {
-                "t": "震为雷",
-                "src": "gua",
-                "idx": 50
-              },
-              {
-                "t": "艮为山",
-                "src": "gua",
-                "idx": 51
-              },
-              {
-                "t": "风山渐",
-                "src": "gua",
-                "idx": 52
-              },
-              {
-                "t": "雷泽归妹",
-                "src": "gua",
-                "idx": 53
-              },
-              {
-                "t": "雷火丰",
-                "src": "gua",
-                "idx": 54
-              },
-              {
-                "t": "火山旅",
-                "src": "gua",
-                "idx": 55
-              },
-              {
-                "t": "巽为风",
-                "src": "gua",
-                "idx": 56
-              },
-              {
-                "t": "兑为泽",
-                "src": "gua",
-                "idx": 57
-              },
-              {
-                "t": "风水涣",
-                "src": "gua",
-                "idx": 58
-              },
-              {
-                "t": "水泽节",
-                "src": "gua",
-                "idx": 59
-              },
-              {
-                "t": "风泽中孚",
-                "src": "gua",
-                "idx": 60
-              },
-              {
-                "t": "雷山小过",
-                "src": "gua",
-                "idx": 61
-              },
-              {
-                "t": "水火既济",
-                "src": "gua",
-                "idx": 62
-              },
-              {
-                "t": "火水未济",
-                "src": "gua",
-                "idx": 63
-              }
-            ],
-            "_sec": "天纪卦象查询",
-            "_grp": "六十四卦"
-          },
-          {
             "t": "人间道",
             "children": [
               {
                 "t": "乾为天",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 0
               },
               {
                 "t": "坤为地",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 1
               },
               {
                 "t": "水雷屯",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 2
               },
               {
                 "t": "山水蒙",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 3
               },
               {
                 "t": "水天需",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 4
               },
               {
                 "t": "天水讼",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 5
               },
               {
                 "t": "地水师",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 6
               },
               {
                 "t": "水地比",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 7
               },
               {
                 "t": "风天小畜",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 8
               },
               {
                 "t": "天泽履",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 9
               },
               {
                 "t": "地天泰",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 10
               },
               {
                 "t": "天地否",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 11
               },
               {
                 "t": "天火同人",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 12
               },
               {
                 "t": "火天大有",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 13
               },
               {
                 "t": "地山谦",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 14
               },
               {
                 "t": "雷地豫",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 15
               },
               {
                 "t": "泽雷随",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 16
               },
               {
                 "t": "山风蛊",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 17
               },
               {
                 "t": "地泽临",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 18
               },
               {
                 "t": "风地观",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 19
               },
               {
                 "t": "火雷噬嗑",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 20
               },
               {
                 "t": "山火贲",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 21
               },
               {
                 "t": "山地剥",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 22
               },
               {
                 "t": "地雷复",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 23
               },
               {
                 "t": "天雷无妄",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 24
               },
               {
                 "t": "山天大畜",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 25
               },
               {
                 "t": "山雷颐",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 26
               },
               {
                 "t": "泽风大过",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 27
               },
               {
                 "t": "坎为水",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 28
               },
               {
                 "t": "离为火",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 29
               },
               {
                 "t": "泽山咸",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 30
               },
               {
                 "t": "雷风恒",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 31
               },
               {
                 "t": "天山遯",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 32
               },
               {
                 "t": "雷天大壮",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 33
               },
               {
                 "t": "火地晋",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 34
               },
               {
                 "t": "地火明夷",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 35
               },
               {
                 "t": "风火家人",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 36
               },
               {
                 "t": "火泽睽",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 37
               },
               {
                 "t": "水山蹇",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 38
               },
               {
                 "t": "雷水解",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 39
               },
               {
                 "t": "山泽损",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 40
               },
               {
                 "t": "风雷益",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 41
               },
               {
                 "t": "泽天夬",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 42
               },
               {
                 "t": "天风姤",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 43
               },
               {
                 "t": "泽地萃",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 44
               },
               {
                 "t": "地风升",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 45
               },
               {
                 "t": "泽水困",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 46
               },
               {
                 "t": "水风井",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 47
               },
               {
                 "t": "泽火革",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 48
               },
               {
                 "t": "火风鼎",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 49
               },
               {
                 "t": "震为雷",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 50
               },
               {
                 "t": "艮为山",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 51
               },
               {
                 "t": "风山渐",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 52
               },
               {
                 "t": "雷泽归妹",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 53
               },
               {
                 "t": "雷火丰",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 54
               },
               {
                 "t": "火山旅",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 55
               },
               {
                 "t": "巽为风",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 56
               },
               {
                 "t": "兑为泽",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 57
               },
               {
                 "t": "风水涣",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 58
               },
               {
                 "t": "水泽节",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 59
               },
               {
                 "t": "风泽中孚",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 60
               },
               {
                 "t": "雷山小过",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 61
               },
               {
                 "t": "水火既济",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 62
               },
               {
                 "t": "火水未济",
-                "src": "rendao",
+                "src": "gua",
                 "idx": 63
               }
             ],
@@ -1505,7 +1178,331 @@ TIANJI_TREE = [
             "_grp": "人间道"
           },
           {
-            "t": "地脉道"
+            "t": "地脉道",
+            "children": [
+              {
+                "t": "乾为天",
+                "src": "rendao",
+                "idx": 0
+              },
+              {
+                "t": "坤为地",
+                "src": "rendao",
+                "idx": 1
+              },
+              {
+                "t": "水雷屯",
+                "src": "rendao",
+                "idx": 2
+              },
+              {
+                "t": "山水蒙",
+                "src": "rendao",
+                "idx": 3
+              },
+              {
+                "t": "水天需",
+                "src": "rendao",
+                "idx": 4
+              },
+              {
+                "t": "天水讼",
+                "src": "rendao",
+                "idx": 5
+              },
+              {
+                "t": "地水师",
+                "src": "rendao",
+                "idx": 6
+              },
+              {
+                "t": "水地比",
+                "src": "rendao",
+                "idx": 7
+              },
+              {
+                "t": "风天小畜",
+                "src": "rendao",
+                "idx": 8
+              },
+              {
+                "t": "天泽履",
+                "src": "rendao",
+                "idx": 9
+              },
+              {
+                "t": "地天泰",
+                "src": "rendao",
+                "idx": 10
+              },
+              {
+                "t": "天地否",
+                "src": "rendao",
+                "idx": 11
+              },
+              {
+                "t": "天火同人",
+                "src": "rendao",
+                "idx": 12
+              },
+              {
+                "t": "火天大有",
+                "src": "rendao",
+                "idx": 13
+              },
+              {
+                "t": "地山谦",
+                "src": "rendao",
+                "idx": 14
+              },
+              {
+                "t": "雷地豫",
+                "src": "rendao",
+                "idx": 15
+              },
+              {
+                "t": "泽雷随",
+                "src": "rendao",
+                "idx": 16
+              },
+              {
+                "t": "山风蛊",
+                "src": "rendao",
+                "idx": 17
+              },
+              {
+                "t": "地泽临",
+                "src": "rendao",
+                "idx": 18
+              },
+              {
+                "t": "风地观",
+                "src": "rendao",
+                "idx": 19
+              },
+              {
+                "t": "火雷噬嗑",
+                "src": "rendao",
+                "idx": 20
+              },
+              {
+                "t": "山火贲",
+                "src": "rendao",
+                "idx": 21
+              },
+              {
+                "t": "山地剥",
+                "src": "rendao",
+                "idx": 22
+              },
+              {
+                "t": "地雷复",
+                "src": "rendao",
+                "idx": 23
+              },
+              {
+                "t": "天雷无妄",
+                "src": "rendao",
+                "idx": 24
+              },
+              {
+                "t": "山天大畜",
+                "src": "rendao",
+                "idx": 25
+              },
+              {
+                "t": "山雷颐",
+                "src": "rendao",
+                "idx": 26
+              },
+              {
+                "t": "泽风大过",
+                "src": "rendao",
+                "idx": 27
+              },
+              {
+                "t": "坎为水",
+                "src": "rendao",
+                "idx": 28
+              },
+              {
+                "t": "离为火",
+                "src": "rendao",
+                "idx": 29
+              },
+              {
+                "t": "泽山咸",
+                "src": "rendao",
+                "idx": 30
+              },
+              {
+                "t": "雷风恒",
+                "src": "rendao",
+                "idx": 31
+              },
+              {
+                "t": "天山遯",
+                "src": "rendao",
+                "idx": 32
+              },
+              {
+                "t": "雷天大壮",
+                "src": "rendao",
+                "idx": 33
+              },
+              {
+                "t": "火地晋",
+                "src": "rendao",
+                "idx": 34
+              },
+              {
+                "t": "地火明夷",
+                "src": "rendao",
+                "idx": 35
+              },
+              {
+                "t": "风火家人",
+                "src": "rendao",
+                "idx": 36
+              },
+              {
+                "t": "火泽睽",
+                "src": "rendao",
+                "idx": 37
+              },
+              {
+                "t": "水山蹇",
+                "src": "rendao",
+                "idx": 38
+              },
+              {
+                "t": "雷水解",
+                "src": "rendao",
+                "idx": 39
+              },
+              {
+                "t": "山泽损",
+                "src": "rendao",
+                "idx": 40
+              },
+              {
+                "t": "风雷益",
+                "src": "rendao",
+                "idx": 41
+              },
+              {
+                "t": "泽天夬",
+                "src": "rendao",
+                "idx": 42
+              },
+              {
+                "t": "天风姤",
+                "src": "rendao",
+                "idx": 43
+              },
+              {
+                "t": "泽地萃",
+                "src": "rendao",
+                "idx": 44
+              },
+              {
+                "t": "地风升",
+                "src": "rendao",
+                "idx": 45
+              },
+              {
+                "t": "泽水困",
+                "src": "rendao",
+                "idx": 46
+              },
+              {
+                "t": "水风井",
+                "src": "rendao",
+                "idx": 47
+              },
+              {
+                "t": "泽火革",
+                "src": "rendao",
+                "idx": 48
+              },
+              {
+                "t": "火风鼎",
+                "src": "rendao",
+                "idx": 49
+              },
+              {
+                "t": "震为雷",
+                "src": "rendao",
+                "idx": 50
+              },
+              {
+                "t": "艮为山",
+                "src": "rendao",
+                "idx": 51
+              },
+              {
+                "t": "风山渐",
+                "src": "rendao",
+                "idx": 52
+              },
+              {
+                "t": "雷泽归妹",
+                "src": "rendao",
+                "idx": 53
+              },
+              {
+                "t": "雷火丰",
+                "src": "rendao",
+                "idx": 54
+              },
+              {
+                "t": "火山旅",
+                "src": "rendao",
+                "idx": 55
+              },
+              {
+                "t": "巽为风",
+                "src": "rendao",
+                "idx": 56
+              },
+              {
+                "t": "兑为泽",
+                "src": "rendao",
+                "idx": 57
+              },
+              {
+                "t": "风水涣",
+                "src": "rendao",
+                "idx": 58
+              },
+              {
+                "t": "水泽节",
+                "src": "rendao",
+                "idx": 59
+              },
+              {
+                "t": "风泽中孚",
+                "src": "rendao",
+                "idx": 60
+              },
+              {
+                "t": "雷山小过",
+                "src": "rendao",
+                "idx": 61
+              },
+              {
+                "t": "水火既济",
+                "src": "rendao",
+                "idx": 62
+              },
+              {
+                "t": "火水未济",
+                "src": "rendao",
+                "idx": 63
+              }
+            ],
+            "_sec": "天纪卦象查询",
+            "_grp": "地脉道"
           }
         ]
       }
