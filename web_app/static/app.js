@@ -2411,6 +2411,10 @@ function renderPaipanSystem(d) {
     '<span>五行局 <b>' + esc(z.ju) + '</b></span>' +
     '<span>命宫 <b>' + esc(z.ming_gong.gz) + '</b></span>' +
     '<span>身宫 <b>' + esc(z.shen_gong.zhi) + '</b></span></div>';
+  zh += '<div class="star-toggle-bar">' +
+    '<button type="button" class="star-toggle" id="btnMinor">辅星</button>' +
+    '<button type="button" class="star-toggle" id="btnAdj">杂曜</button>' +
+    '</div>';
   zh += '<div class="ziwei-grid">';
   cells.forEach((pal, i) => {
     if (!pal) {
@@ -2433,8 +2437,11 @@ function renderPaipanSystem(d) {
     zh += '<div class="pc-stars">';
     if (!pal.stars.length) zh += '<span class="pc-empty">（空宫）</span>';
     pal.stars.forEach(s => {
-      const col = SIHUA_COLOR[s.sihua] || "var(--star)";
-      zh += '<span class="star-chip" style="color:' + col + '" title="' + ziweiStarTip(s.name) + '">' + esc(s.name) + (s.sihua ? '<i class="sihua">' + s.sihua + '</i>' : '') + '</span>';
+      let cls = "star-chip", col;
+      if (s.kind === "minor") { cls += " minor-star"; col = "#5b9bd5"; }
+      else if (s.kind === "adjective") { cls += " adj-star"; col = "#9a9a9a"; }
+      else { col = SIHUA_COLOR[s.sihua] || "var(--star)"; }
+      zh += '<span class="' + cls + '" style="color:' + col + '" title="' + ziweiStarTip(s.name) + '">' + esc(s.name) + (s.sihua ? '<i class="sihua">' + s.sihua + '</i>' : '') + '</span>';
     });
     zh += '</div></div>';
   });
@@ -2446,6 +2453,17 @@ function renderPaipanSystem(d) {
   });
   zh += '</div>';
   $("#ppZiwei").innerHTML = zh;
+  // 辅星 / 杂曜 显隐切换（默认仅显示十四主星）
+  const ppz = $("#ppZiwei");
+  const bm = $("#btnMinor"), ba = $("#btnAdj");
+  if (bm) bm.onclick = function () {
+    const on = ppz.classList.toggle("show-minor");
+    bm.classList.toggle("on", on);
+  };
+  if (ba) ba.onclick = function () {
+    const on = ppz.classList.toggle("show-adj");
+    ba.classList.toggle("on", on);
+  };
   // ---- 八字盘 ----
   let bh = '<div class="pp-summary">' +
     '<span>日主 <b>' + esc(b.ri_gan) + '（' + esc(b.ri_wx) + '）</b></span>' +
