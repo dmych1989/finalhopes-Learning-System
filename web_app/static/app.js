@@ -89,6 +89,10 @@ function buildSidebar(modules) {
   if (bar && SYSTEM === "tianji") {
     // 天纪：顶部三标签（命理系统 / 斗数 / 四柱）
     bar.innerHTML = "";
+    // 斗数根下的一级分区：作为「斗数」按钮的下拉菜单（点击直接跳转到对应分区）。
+    const TJ_TAB_SECTIONS = {
+      dou: ["基础理论", "断法细则", "天纪卦象查询"],
+    };
     const tjTabs = [
       { key: "mingli", label: "命理系统" },
       { key: "dou", label: "斗数" },
@@ -99,9 +103,35 @@ function buildSidebar(modules) {
       d.className = "board-tab";
       d.dataset.tab = t.key;
       d.innerHTML = `<span>${esc(t.label)}</span>`;
+      const sections = TJ_TAB_SECTIONS[t.key];
+      if (sections && sections.length) {
+        const caret = document.createElement("span");
+        caret.className = "board-tab-caret";
+        caret.textContent = "▾";
+        caret.onclick = (ev) => { ev.stopPropagation(); toggleTianjiTabDD(d); };
+        d.appendChild(caret);
+        const dd = document.createElement("div");
+        dd.className = "board-dropdown";
+        sections.forEach((sec) => {
+          const it = document.createElement("div");
+          it.className = "board-dd-item";
+          it.textContent = sec;
+          it.onclick = (ev) => {
+            ev.stopPropagation();
+            closeTianjiTabDDs();
+            showTianjiDouSection(sec);
+          };
+          dd.appendChild(it);
+        });
+        d.appendChild(dd);
+      }
       d.onclick = () => showTianjiTab(t.key, d);
       bar.appendChild(d);
     });
+    if (!tianjiTabDDBound) {
+      tianjiTabDDBound = true;
+      document.addEventListener("click", closeTianjiTabDDs);
+    }
   } else if (bar) {
     // lilun / renji：模块标签横向排在顶部
     bar.innerHTML = "";
@@ -262,6 +292,32 @@ async function loadTianjiTree() {
 
 // 天纪顶部三标签切换：命理系统=排盘工具；斗数/四柱=对应根目录树 + 文章。
 let tianjiTab = "dou";
+let tianjiTabDDBound = false;
+function toggleTianjiTabDD(tab) {
+  const wasOpen = tab.classList.contains("open");
+  closeTianjiTabDDs();
+  if (!wasOpen) tab.classList.add("open");
+}
+function closeTianjiTabDDs() {
+  document.querySelectorAll("#boardTabs .board-tab.open").forEach((t) => t.classList.remove("open"));
+}
+// 点击「斗数」下拉中的分区：切到斗数标签并渲染目录树，再跳转到对应分区。
+async function showTianjiDouSection(sec) {
+  tianjiTab = "dou";
+  const douTab = document.querySelector('#boardTabs .board-tab[data-tab="dou"]');
+  setActive(douTab);
+  restoreMingliNormal();
+  const side = document.getElementById("sidebar");
+  if (side) side.style.display = "";
+  const mh = document.getElementById("moduleHead");
+  if (mh) mh.innerHTML = '<div class="mh-left"><h2>斗数</h2><p>点击左侧目录浏览文章</p></div>';
+  const lm = $("#listMain"); if (lm) lm.innerHTML = '<div class="hint">请选择左侧目录查看文章。</div>';
+  const dp = $("#detailPane"); if (dp) dp.innerHTML = '<div class="hint">点击左侧条目查看详情。</div>';
+  const fb = $("#filterBar"); if (fb) fb.style.display = "none";
+  const pg = $("#pager"); if (pg) pg.innerHTML = "";
+  await buildTianjiTree("斗数");
+  jumpToTianjiSection("斗数", sec);
+}
 function showTianjiTab(tab, el) {
   tianjiTab = tab;
   setActive(el);

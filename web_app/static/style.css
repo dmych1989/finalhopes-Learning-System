@@ -50,6 +50,8 @@ body{margin:0;font-family:"PingFang SC","Microsoft YaHei","PingFangTC-Regular","
 .board-tab:hover{background:rgba(255,255,255,.18)}
 .board-tab.active{background:#fff;color:var(--teal-dd)}
 .board-tab .bt-count{opacity:.7;font-size:12px;font-weight:400;margin-left:3px}
+.board-tab-caret{margin-left:5px;font-size:10px;opacity:.85;padding:0 2px}
+.board-tab.active .board-tab-caret{color:var(--teal)}
 .board-dropdown{display:none;position:absolute;top:calc(100% + 8px);left:0;
   min-width:215px;background:var(--panel);border:1px solid var(--line);
   border-radius:10px;box-shadow:var(--shadow);padding:6px;z-index:40}
