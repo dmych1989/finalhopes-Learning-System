@@ -2265,8 +2265,10 @@ function renderTool() {
   lm.innerHTML =
     '<div class="pp-mingli">' +
     '<h3>命理 · 八字命例</h3>' +
+    '<div id="ppCatNav" class="pp-catnav"></div>' +
     '<input id="ppSearch" class="pp-search" type="text" placeholder="搜索姓名 / 四柱…">' +
     '<div id="caseList" class="case-list"></div>' +
+    '<div id="casePager" class="case-pager"></div>' +
     '</div>';
   const fb = $("#filterBar"); if (fb) fb.style.display = "none";
   const lh = $("#listHint"); if (lh) lh.style.display = "none";
@@ -2291,7 +2293,10 @@ function renderTool() {
     '</div>';
   $("#ppBtn").onclick = doPaipan;
   $("#ppExport").onclick = exportDujie;
-  const ps = $("#ppSearch"); if (ps) ps.oninput = () => { if (window.__caseCache) renderCaseList(window.__caseCache); };
+  const ps = $("#ppSearch"); if (ps) ps.oninput = () => { window.__casePage = 1; if (window.__caseCache) renderCaseList(window.__caseCache); };
+  // 命例筛选状态复位并渲染分类标签
+  window.__caseCat = ""; window.__casePage = 1;
+  renderCaseCats();
   loadCases();
 }
 
@@ -2315,14 +2320,45 @@ async function loadCases() {
   renderCaseList(window.__caseCache);
 }
 
+const CASE_PAGE_SIZE = 10;
+
+// 顶部分类筛选标签：全部 / 男 / 女（命例数据自带性别字段）
+function renderCaseCats() {
+  const nav = $("#ppCatNav"); if (!nav) return;
+  const cats = [["全部", ""], ["男", "男"], ["女", "女"]];
+  nav.innerHTML = cats.map(c =>
+    '<button type="button" class="pp-cat' + ((window.__caseCat || "") === c[1] ? " active" : "") +
+    '" data-cat="' + esc(c[1]) + '">' + esc(c[0]) + '</button>').join("");
+  nav.querySelectorAll(".pp-cat").forEach(b => {
+    b.onclick = () => {
+      window.__caseCat = b.dataset.cat;
+      window.__casePage = 1;
+      renderCaseCats();
+      if (window.__caseCache) renderCaseList(window.__caseCache);
+    };
+  });
+}
+
 function renderCaseList(cases) {
   const box = $("#caseList"); if (!box) return;
-  const q = ($("#ppSearch").value || "").trim();
+  const cat = window.__caseCat || "";
+  const q = (($("#ppSearch") || {}).value || "").trim();
   const list = cases.filter(c =>
-    !q || c.name.toLowerCase().includes(q.toLowerCase()) ||
-    (c.pillars || "").includes(q) || (c.birth || "").includes(q));
-  if (!list.length) { box.innerHTML = '<div class="hint">无匹配命例</div>'; return; }
-  box.innerHTML = list.map(c =>
+    (!cat || c.gender === cat) &&
+    (!q || c.name.toLowerCase().includes(q.toLowerCase()) ||
+     (c.pillars || "").includes(q) || (c.birth || "").includes(q)));
+  const total = list.length;
+  const pages = Math.max(1, Math.ceil(total / CASE_PAGE_SIZE));
+  if (window.__casePage < 1) window.__casePage = 1;
+  if (window.__casePage > pages) window.__casePage = pages;
+  const start = (window.__casePage - 1) * CASE_PAGE_SIZE;
+  const pageItems = list.slice(start, start + CASE_PAGE_SIZE);
+  if (!total) {
+    box.innerHTML = '<div class="hint">无匹配命例</div>';
+    renderCasePager(total, pages);
+    return;
+  }
+  box.innerHTML = pageItems.map(c =>
     '<div class="case-item" data-i="' + c.i + '">' +
       '<div class="ci-name">' + esc(c.name) + ' <span class="ci-gender">' + esc(c.gender) + '</span></div>' +
       '<div class="ci-zhu">' + esc(c.pillars) + '</div>' +
@@ -2330,6 +2366,27 @@ function renderCaseList(cases) {
     '</div>').join("");
   box.querySelectorAll(".case-item").forEach(el => {
     el.onclick = () => selectCase(parseInt(el.dataset.i, 10));
+  });
+  renderCasePager(total, pages);
+}
+
+// 分页控件：上一页 / 第 X / Y 页 / 下一页（每页 CASE_PAGE_SIZE 条）
+function renderCasePager(total, pages) {
+  const pg = $("#casePager"); if (!pg) return;
+  if (pages <= 1) { pg.innerHTML = '<div class="cp-info">共 ' + total + ' 例</div>'; return; }
+  const cur = window.__casePage;
+  let html = '<button type="button" class="cp-btn" data-go="prev"' + (cur <= 1 ? " disabled" : "") + '>‹ 上一页</button>';
+  html += '<span class="cp-info">第 ' + cur + ' / ' + pages + ' 页 · 共 ' + total + ' 例</span>';
+  html += '<button type="button" class="cp-btn" data-go="next"' + (cur >= pages ? " disabled" : "") + '>下一页 ›</button>';
+  pg.innerHTML = html;
+  pg.querySelectorAll(".cp-btn").forEach(b => {
+    b.onclick = () => {
+      const go = b.dataset.go;
+      if (go === "prev" && window.__casePage > 1) window.__casePage--;
+      else if (go === "next" && window.__casePage < pages) window.__casePage++;
+      else return;
+      if (window.__caseCache) renderCaseList(window.__caseCache);
+    };
   });
 }
 
