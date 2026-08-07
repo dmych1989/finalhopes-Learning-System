@@ -887,13 +887,14 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
   .ziwei-center{ padding:10px; gap:6px; }
   .zc-sizhu{ font-size:17px; }
 
-  /* 斗数·基础理论 三栏整页（dj）：竖屏上下堆叠，去掉固定高度 */
-  .dj{ flex-direction:column; height:auto; min-height:0; margin-top:10px; }
-  .dj-side{ width:100%; border-right:none; border-bottom:1px solid var(--line); max-height:34vh; overflow:auto; -webkit-overflow-scrolling:touch; }
-  .dj-mid{ width:100%; border-right:none; border-bottom:1px solid var(--line); max-height:34vh; overflow:auto; -webkit-overflow-scrolling:touch; }
+  /* 斗数·基础理论 三栏整页（dj）：竖屏上下堆叠，面板高度有界且 overflow:hidden，
+     三栏各自内部滚动 —— 避免点击标签后 .dj-main 内容撑高导致整页下移「跳动」 */
+  .dj{ flex-direction:column; height:calc(100vh - 250px); min-height:0; margin-top:10px; overflow:hidden; }
+  .dj-side{ width:100%; border-right:none; border-bottom:1px solid var(--line); max-height:20vh; overflow:auto; -webkit-overflow-scrolling:touch; }
+  .dj-mid{ width:100%; border-right:none; border-bottom:1px solid var(--line); max-height:20vh; overflow:auto; -webkit-overflow-scrolling:touch; }
   .dj-1tab{ font-size:14px; padding:11px 14px; }
   .dj-2tab{ font-size:12.5px; padding:6px 11px; }
-  .dj-main{ padding:14px 16px; }
+  .dj-main{ flex:1 1 auto; min-height:0; overflow:auto; padding:14px 16px; }
 
   /* 灵龟八法 / 经络 等横排组件：允许换行、缩小 */
   .lg-live-main{ gap:12px; }
