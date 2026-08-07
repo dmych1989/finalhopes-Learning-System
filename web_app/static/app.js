@@ -663,6 +663,7 @@ const enc = (s) => encodeURIComponent(s || "");
 async function loadList(q) {
   const wa = document.querySelector(".workarea");
   if (wa) wa.classList.toggle("hdwj-mode", state.module === "hdwj");
+  if (wa) wa.classList.remove("mingli-mode");
   const ep = endpointFor(q);
   if (!ep) return;
   const my = ++loadSeq;
@@ -859,6 +860,7 @@ function renderPager() {
 function showDetail(k, rec) {
   const wa = document.querySelector(".workarea");
   if (wa) wa.classList.toggle("hdwj-mode", k === "hdwj");
+  if (wa) wa.classList.remove("mingli-mode");
   if (k === "cases") return showCase(rec);
   if (k === "herbs") return showHerb(rec);
   if (k === "articles") return showArticle(rec, k);
@@ -1826,6 +1828,8 @@ async function loadSubList() {
   const meta = (subSubs || []).find((m) => m.key === subKey);
   if (!meta) return;
   const kind = meta.kind;
+  const wa = document.querySelector(".workarea");
+  if (wa) wa.classList.toggle("mingli-mode", subKey === "mingli");
   if (kind === "tool") { renderTool(); return; }
   if (kind === "catalog") { renderCatalogTree(); return; }
   const my = ++loadSeq;

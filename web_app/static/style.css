@@ -599,6 +599,12 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
   color:var(--ink);font-size:14px;outline:none}
 .pp-search:focus{border-color:var(--teal);background:#fff}
 .case-list{display:flex;flex-direction:column;gap:8px}
+/* 命理 · 八字命例表：左栏横向收窄，把横向空间让给命盘/解读 */
+.workarea.mingli-mode .list-pane{width:24%;max-width:300px;padding:10px}
+.workarea.mingli-mode .pp-mingli h3{font-size:14px;margin-bottom:2px}
+.workarea.mingli-mode .case-item{padding:7px 10px;border-radius:8px}
+.workarea.mingli-mode .ci-zhu{font-size:11.5px}
+.workarea.mingli-mode .ci-birth{font-size:11.5px}
 .case-item{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:9px 12px;
   cursor:pointer;box-shadow:var(--shadow-sm);transition:border-color .15s,background .15s}
 .case-item:hover{border-color:var(--teal);background:var(--teal-bg)}
