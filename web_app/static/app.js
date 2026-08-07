@@ -89,9 +89,10 @@ function buildSidebar(modules) {
   if (bar && SYSTEM === "tianji") {
     // 天纪：顶部三标签（命理系统 / 斗数 / 四柱）
     bar.innerHTML = "";
-    // 斗数根下的一级分区：作为「斗数」按钮的下拉菜单（点击直接跳转到对应分区）。
+    // 斗数/四柱 根下的一级分区：作为对应按钮的下拉菜单（点击直接跳转到对应分区）。
     const TJ_TAB_SECTIONS = {
       dou: ["基础理论", "断法细则", "天纪卦象查询"],
+      sizhu: ["断法分类", "基础理论", "断法细则", "时辰效验", "案例查询"],
     };
     const tjTabs = [
       { key: "mingli", label: "命理系统" },
@@ -119,7 +120,7 @@ function buildSidebar(modules) {
           it.onclick = (ev) => {
             ev.stopPropagation();
             closeTianjiTabDDs();
-            showTianjiDouSection(sec);
+            showTianjiSection(t.key, sec);
           };
           dd.appendChild(it);
         });
@@ -301,22 +302,23 @@ function toggleTianjiTabDD(tab) {
 function closeTianjiTabDDs() {
   document.querySelectorAll("#boardTabs .board-tab.open").forEach((t) => t.classList.remove("open"));
 }
-// 点击「斗数」下拉中的分区：切到斗数标签并渲染目录树，再跳转到对应分区。
-async function showTianjiDouSection(sec) {
-  tianjiTab = "dou";
-  const douTab = document.querySelector('#boardTabs .board-tab[data-tab="dou"]');
-  setActive(douTab);
+// 点击「斗数/四柱」下拉中的分区：切到对应标签并渲染目录树，再跳转到对应分区。
+async function showTianjiSection(tabKey, sec) {
+  const rootName = tabKey === "dou" ? "斗数" : "四柱";
+  tianjiTab = tabKey;
+  const tabEl = document.querySelector('#boardTabs .board-tab[data-tab="' + tabKey + '"]');
+  setActive(tabEl);
   restoreMingliNormal();
   const side = document.getElementById("sidebar");
   if (side) side.style.display = "";
   const mh = document.getElementById("moduleHead");
-  if (mh) mh.innerHTML = '<div class="mh-left"><h2>斗数</h2><p>点击左侧目录浏览文章</p></div>';
+  if (mh) mh.innerHTML = '<div class="mh-left"><h2>' + esc(rootName) + '</h2><p>点击左侧目录浏览文章</p></div>';
   const lm = $("#listMain"); if (lm) lm.innerHTML = '<div class="hint">请选择左侧目录查看文章。</div>';
   const dp = $("#detailPane"); if (dp) dp.innerHTML = '<div class="hint">点击左侧条目查看详情。</div>';
   const fb = $("#filterBar"); if (fb) fb.style.display = "none";
   const pg = $("#pager"); if (pg) pg.innerHTML = "";
-  await buildTianjiTree("斗数");
-  jumpToTianjiSection("斗数", sec);
+  await buildTianjiTree(rootName);
+  jumpToTianjiSection(rootName, sec);
 }
 function showTianjiTab(tab, el) {
   tianjiTab = tab;
