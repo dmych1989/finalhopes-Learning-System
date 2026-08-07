@@ -781,12 +781,14 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
   .topbar .brand-sub{ display:none; }                 /* 副标题为装饰，竖屏隐藏避免挤占 */
   .sys-inline{ flex:0 0 auto; margin-left:0; }
   .sys-inline .sys-tab{ padding:6px 11px; font-size:13px; }
-  .searchbox{ flex:1 1 100%; order:5; max-width:none; gap:8px; }
-  .searchbox input{ font-size:16px; padding:9px 14px; }  /* 16px 防 iOS 聚焦自动缩放 */
-  .searchbox button{ padding:9px 16px; font-size:14px; }
+  .searchbox{ flex:1 1 100%; order:5; max-width:none; gap:8px; min-width:0; }
+  .searchbox input{ font-size:16px; padding:9px 14px; flex:1 1 auto; min-width:0; }  /* 16px 防 iOS 聚焦自动缩放；flex+min-width:0 防挤压按钮 */
+  .searchbox button{ padding:9px 16px; font-size:14px; flex:0 0 auto; }  /* flex-shrink:0 保证搜索按钮始终可见可点 */
 
-  /* 顶部板块/工具标签条：取消 sticky（顶栏高度可变），改为可横向滚动，避免错位 */
-  .board-tabs, .tj-toolbar, .mingli-tabs{ position:static; padding:6px 10px; gap:4px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  /* 顶部板块/工具标签条：取消 sticky（顶栏高度可变）；board-tabs 改为可换行+overflow:visible，
+     避免 overflow-x:auto 裁切内部绝对定位的下拉菜单（修复「斗数/四柱点不开下拉」「人纪横向标签被裁」）。 */
+  .board-tabs{ position:static; padding:6px 10px; gap:4px; flex-wrap:wrap; overflow:visible; }
+  .tj-toolbar, .mingli-tabs{ position:static; padding:6px 10px; gap:4px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
   .board-tab, .tj-tool, .ml-tab{ font-size:13px; padding:5px 11px; flex:0 0 auto; }
   .board-tab .bt-count{ font-size:11px; }
 

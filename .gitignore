@@ -53,3 +53,4 @@ web_app/data_full.db
 # Static images are deployed via vercel_deploy.py (reads public/img/** from disk),
 # never committed to git.
 public/
+_diag/
