@@ -842,7 +842,6 @@ TIANJI_TREE = [
           }
         ]
       },
-      
       {
         "t": "天纪卦象查询",
         "children": [
