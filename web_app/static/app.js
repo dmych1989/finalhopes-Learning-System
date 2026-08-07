@@ -2445,7 +2445,14 @@ function renderPaipanSystem(d) {
       if (s.kind === "minor") { cls += " minor-star"; col = "#5b9bd5"; }
       else if (s.kind === "adjective") { cls += " adj-star"; col = "#9a9a9a"; }
       else { col = SIHUA_COLOR[s.sihua] || "var(--star)"; }
-      zh += '<span class="' + cls + '" style="color:' + col + '" title="' + ziweiStarTip(s.name) + '">' + esc(s.name) + (s.sihua ? '<i class="sihua">' + s.sihua + '</i>' : '') + '</span>';
+      // 亮度（庙/旺/得/利/平/不/陷），仅主星与部分辅星有数据
+      let bright = "";
+      if (s.brightness) {
+        const lv = {"庙":"best","旺":"best","得":"good","利":"good",
+                    "平":"mid","不":"weak","陷":"weak"}[s.brightness] || "mid";
+        bright = '<i class="bright bright-' + lv + '" title="亮度：' + s.brightness + '">' + s.brightness + '</i>';
+      }
+      zh += '<span class="' + cls + '" style="color:' + col + '" title="' + ziweiStarTip(s.name) + '">' + esc(s.name) + (s.sihua ? '<i class="sihua">' + s.sihua + '</i>' : '') + bright + '</span>';
     });
     zh += '</div></div>';
   });

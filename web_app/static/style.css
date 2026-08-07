@@ -548,6 +548,13 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
 .star-chip{font-size:12px;font-weight:600;background:var(--panel2);border-radius:5px;
   padding:1px 5px;line-height:1.5}
 .star-chip .sihua{font-style:normal;font-size:10px;margin-left:2px;opacity:.9}
+/* 星曜亮度徽标：庙旺（最佳）/得利（佳）/平（中）/不陷（弱） */
+.star-chip .bright{font-style:normal;font-size:9.5px;font-weight:700;line-height:1;
+  margin-left:2px;padding:1px 3px;border-radius:4px;vertical-align:middle}
+.bright-best{color:#7a4b00;background:rgba(230,162,60,.30)}
+.bright-good{color:#0a6e5e;background:rgba(69,209,182,.22)}
+.bright-mid{color:#5a5a5a;background:rgba(154,154,154,.20)}
+.bright-weak{color:#9a2b2b;background:rgba(217,83,79,.18)}
 .pc-empty{font-size:11px;color:var(--ink3)}
 
 /* 辅星 / 杂曜 显隐切换栏 */
@@ -599,12 +606,12 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
   color:var(--ink);font-size:14px;outline:none}
 .pp-search:focus{border-color:var(--teal);background:#fff}
 .case-list{display:flex;flex-direction:column;gap:8px}
-/* 命理 · 八字命例表：左栏横向收窄，把横向空间让给命盘/解读 */
-.workarea.mingli-mode .list-pane{width:24%;max-width:300px;padding:10px}
-.workarea.mingli-mode .pp-mingli h3{font-size:14px;margin-bottom:2px}
-.workarea.mingli-mode .case-item{padding:7px 10px;border-radius:8px}
-.workarea.mingli-mode .ci-zhu{font-size:11.5px}
-.workarea.mingli-mode .ci-birth{font-size:11.5px}
+/* 命理 · 八字命例表：左栏进一步横向收窄，把横向空间让给命盘/解读 */
+.workarea.mingli-mode .list-pane{width:17%;max-width:230px;padding:8px 6px}
+.workarea.mingli-mode .pp-mingli h3{font-size:13px;margin-bottom:2px}
+.workarea.mingli-mode .case-item{padding:6px 8px;border-radius:7px}
+.workarea.mingli-mode .ci-zhu{font-size:11px;line-height:1.35}
+.workarea.mingli-mode .ci-birth{font-size:11px;line-height:1.35}
 .case-item{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:9px 12px;
   cursor:pointer;box-shadow:var(--shadow-sm);transition:border-color .15s,background .15s}
 .case-item:hover{border-color:var(--teal);background:var(--teal-bg)}

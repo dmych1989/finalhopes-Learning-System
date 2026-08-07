@@ -153,6 +153,14 @@ def _load_mingli():
     return out
 
 
+def _strip_mingli_contact():
+    """四柱·案例查询：剔除命例中的『联系方式』字段（原库里是 QQ/手机号等垃圾数据）。"""
+    for rec in MINGLI:
+        f = rec.get("fields")
+        if isinstance(f, dict):
+            f.pop("联系方式", None)
+
+
 def _load_table_set(tables):
     res = {}
     for t in tables:
@@ -198,6 +206,7 @@ if USE_SQLITE:
     GUA = _SD["gua"]; RENDAO = _SD["rendao"]; LILUN = _SD["lilun"]
     RIYUE = _SD["riyue"]; JINGDU = _SD["jingdu"]; MINGLI = _SD["mingli"]
     ZIWEI = _SD["ziwei"]; YIJING = _SD["yijing"]
+    _strip_mingli_contact()
 else:
     print("Loading 天纪 databases …")
     GUA = _load_gua()
@@ -206,6 +215,7 @@ else:
     RIYUE = _load_riyue()
     JINGDU = _load_jingdu()
     MINGLI = _load_mingli()
+    _strip_mingli_contact()
     ZIWEI = _load_table_set(["ziweibiao", "ziweizhuxing01"])
     YIJING = _load_table_set(["anshixi", "dingtianfu", "tianshi", "yt", "加密换算表"])
 
@@ -361,7 +371,6 @@ def get_item(sub, i):
             "四柱（干支）": zhu,
             "生辰": birth,
             "出生地": clean_text(str(r.get("CSD") or "")),
-            "联系方式": clean_text(str(r.get("LXFS") or "")),
             "命盘分析": _dec_rtf_str(r.get("YCNR")),
         }
         return {"name": rec["name"], "fields": fields}
