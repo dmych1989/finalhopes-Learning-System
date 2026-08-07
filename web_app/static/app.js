@@ -298,7 +298,7 @@ async function loadTianjiTree() {
 }
 
 // 天纪顶部三标签切换：命理系统=排盘工具；斗数/四柱=对应根目录树 + 文章。
-let tianjiTab = "dou";
+let tianjiTab = "mingli";
 let tianjiTabDDBound = false;
 function toggleTianjiTabDD(tab) {
   const wasOpen = tab.classList.contains("open");
@@ -2207,11 +2207,12 @@ async function doGlobalSearch(q) {
   // 子系统（人纪 / 天纪）：左侧模块即各子模块，loadSubList 需据此查 sub 的 kind。
   if (sysCfg) subSubs = modules;
   buildSidebar(modules);
-  // 天纪：顶部三标签（命理系统/斗数/四柱），默认选「斗数」
+  // 天纪：顶部三标签（命理系统/斗数/四柱）。默认进入「命理系统」（排盘/紫微），
+  // 斗数/四柱 仍可在顶栏点选，但不再自动落到空目录页。
   if (SYSTEM === "tianji") {
     try { await loadTianjiTree(); } catch (e) {}
-    const firstTab = document.querySelector('#boardTabs .board-tab[data-tab="dou"]');
-    if (firstTab) showTianjiTab("dou", firstTab);
+    const firstTab = document.querySelector('#boardTabs .board-tab[data-tab="mingli"]');
+    if (firstTab) showTianjiTab("mingli", firstTab);
   } else {
     // 其他子系统：初始默认激活优先恢复上次模块，否则第一个模块
     let target = modules[0];
