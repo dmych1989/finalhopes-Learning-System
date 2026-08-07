@@ -23,14 +23,42 @@ def tracked_files():
             res.append(f)
     return res
 
-def build_files():
+def upload_file_hashed(token, relpath, data):
+    """Upload a file via the /v2/files hash endpoint (used for files too large
+    for inline base64, or to keep the inline deploy body under Vercel's 10MB
+    request limit). The deployment then references it by sha + size."""
+    import hashlib
+    sha = hashlib.sha1(data).hexdigest()
+    size = len(data)
+    url = f"{BASE}/v2/files?teamId={TEAM}"
+    for i in range(5):
+        req = urllib.request.Request(url, data=data, method="POST")
+        req.add_header("Authorization", f"Bearer {token}")
+        req.add_header("Content-Type", "application/octet-stream")
+        req.add_header("x-vercel-digest", sha)
+        try:
+            with urllib.request.urlopen(req, timeout=300) as r:
+                print(f"  hashed {relpath} ({size // 1024}KB) status {r.status}")
+                return {"file": relpath, "sha": sha, "size": size}
+        except Exception as e:
+            print(f"  hashed upload attempt {i+1} for {relpath} failed: {e}; retrying...")
+            time.sleep(3)
+    raise RuntimeError(f"failed to upload {relpath}")
+
+def build_files(token):
     files = []
     for f in tracked_files():
         if f == "web_app/data.db":
-            continue  # 大数据文件走哈希上传
-        with open(os.path.join(ROOT, f), "rb") as fh:
+            continue  # 大数据文件由 upload_data_db 单独哈希上传
+        p = os.path.join(ROOT, f)
+        with open(p, "rb") as fh:
             data = fh.read()
-        files.append({"file": f, "data": base64.b64encode(data).decode("ascii"), "encoding": "base64"})
+        # 图片等较大资源走哈希上传，避免内联 base64 触发 Vercel 10MB 请求体上限；
+        # 其余小文件（代码/HTML）内联上传。
+        if f.startswith("public/img/") or len(data) > 4 * 1024 * 1024:
+            files.append(upload_file_hashed(token, f, data))
+        else:
+            files.append({"file": f, "data": base64.b64encode(data).decode("ascii"), "encoding": "base64"})
     return files
 
 def upload_data_db(token):
@@ -90,7 +118,7 @@ def http_json(method, url, token, body=None, attempts=5, timeout=120):
 
 def main():
     token = auth_token()
-    files = build_files()
+    files = build_files(token)
     db_ref = upload_data_db(token)
     files.append(db_ref)
     total = sum(len(f.get("data", "")) for f in files)
