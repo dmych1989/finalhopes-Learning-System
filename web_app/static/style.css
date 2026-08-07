@@ -18,7 +18,7 @@ body{margin:0;font-family:"PingFang SC","Microsoft YaHei","PingFangTC-Regular","
 ::-webkit-scrollbar-thumb:hover{background:#c0c9d1}
 ::-webkit-scrollbar-track{background:transparent}
 
-.app{min-height:100vh;display:flex;flex-direction:column}
+.app{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
 
 /* ===== 顶栏 ===== */
 .topbar{display:flex;justify-content:space-between;align-items:center;gap:14px;
@@ -748,7 +748,7 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
 .ml-dd-item:hover{background:var(--teal-bg);color:var(--teal-dd);font-weight:600}
 
 /* 斗数·基础理论 整页三栏：左一级竖排 / 中二级横排 / 右内容（不保留目录树） */
-.dj{display:flex;gap:0;height:calc(100vh - 212px);min-height:440px;
+.dj{display:flex;gap:0;height:calc(100dvh - 212px);min-height:440px;
   border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel);margin-top:12px}
 .dj-side{width:184px;flex:none;overflow:auto;border-right:1px solid var(--line);background:#f7faf9}
 .dj-1tab{display:block;width:100%;text-align:left;padding:14px 16px;font-size:15px;
@@ -802,14 +802,16 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
   .sidebar .tj-node-head{ font-size:13px; padding:6px 8px; }
   .sidebar .tj-leaf{ font-size:12.5px; padding:6px 8px 6px 20px; }
 
-  /* 工作区：列表/详情上下堆叠（强化基础 880 规则细节） */
-  .workarea{ flex-direction:column; }
-  .list-pane{ width:100%; max-width:none; border-right:none; border-bottom:1px solid var(--line); padding:10px 12px; }
+  /* 工作区：列表/详情上下堆叠；恢复高度约束链（基础规则 flex:1;min-height:0 + overflow:auto），
+     否则移动端内容加载会撑高页面导致「点击标签/搜索结果时整页下移跳动」。 */
+  .workarea{ flex-direction:column; flex:none; height:calc(100dvh - 250px); min-height:0; overflow:hidden; }
+  .list-pane{ width:100%; max-width:none; border-right:none; border-bottom:1px solid var(--line);
+    flex:0 0 34vh; min-height:0; overflow:auto; padding:10px 12px; }
   .list-main{ padding:0; }
   .cases-catnav{ flex:1 1 100%; flex-direction:row; flex-wrap:nowrap; overflow-x:auto;
     -webkit-overflow-scrolling:touch; max-height:none; border-right:none; border-bottom:1px dashed var(--line); padding:6px 0 8px; }
   .cases-catnav .catnav-item{ flex:0 0 auto; white-space:nowrap; }
-  .detail-pane{ padding:14px 14px; overflow-x:auto; }
+  .detail-pane{ flex:1 1 auto; min-height:0; overflow:auto; width:100%; padding:14px 14px; }
   .filter-bar{ padding:6px 0 10px; }
   .filter-tab{ font-size:12.5px; padding:4px 12px; }
   .result-item{ padding:10px 12px; margin:6px 0; }
@@ -889,7 +891,9 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
 
   /* 斗数·基础理论 三栏整页（dj）：竖屏上下堆叠，面板高度有界且 overflow:hidden，
      三栏各自内部滚动 —— 避免点击标签后 .dj-main 内容撑高导致整页下移「跳动」 */
-  .dj{ flex-direction:column; height:calc(100vh - 250px); min-height:0; margin-top:10px; overflow:hidden; }
+  /* 高度用 100dvh（动态视口）而非 100vh：手机地址栏显隐会改变 100vh，
+     若用 100vh 则每次点击/滚动地址栏收起时面板被压短、内容下移 = 整页「跳动」。 */
+  .dj{ flex-direction:column; height:calc(100dvh - 250px); min-height:0; margin-top:10px; overflow:hidden; }
   .dj-side{ width:100%; border-right:none; border-bottom:1px solid var(--line); max-height:20vh; overflow:auto; -webkit-overflow-scrolling:touch; }
   .dj-mid{ width:100%; border-right:none; border-bottom:1px solid var(--line); max-height:20vh; overflow:auto; -webkit-overflow-scrolling:touch; }
   .dj-1tab{ font-size:14px; padding:11px 14px; }

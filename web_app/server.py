@@ -1132,6 +1132,27 @@ def api_tianji_item(sub: str = "", i: int = 0):
     return item
 
 
+@app.get("/api/tianji/search")
+def api_tianji_search(q: str = ""):
+    """天纪站内搜索：遍历全部 fields 型子模块按名称匹配，返回分组结果。
+    前端点击结果后调用 /api/tianji/item?sub=<module>&i=<i> 取详情。"""
+    q = (q or "").strip()
+    if not q:
+        return {"q": q, "groups": []}
+    groups = []
+    field_subs = [m for m in tianji_db.MODULES if m.get("kind") == "fields"]
+    for m in field_subs:
+        items = tianji_db.list_items(m["key"], q)
+        if items:
+            groups.append({
+                "module": m["key"],
+                "name": m["name"],
+                "total": len(items),
+                "items": [{"i": it["i"], "name": it["name"]} for it in items[:50]],
+            })
+    return {"q": q, "groups": groups}
+
+
 @app.get("/api/tianji/tables")
 def api_tianji_tables(sub: str = ""):
     """Return {tables:[{key,label,cols,rows}]} for a tables-kind sub-module."""

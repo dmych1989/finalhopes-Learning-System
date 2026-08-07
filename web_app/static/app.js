@@ -281,6 +281,105 @@ async function selectTJ2(leaf, col3) {
   }
 }
 
+// 确保 #listMain 内含标准结果列表骨架（#filterBar/#listHint/#resultList/#pager）。
+// 命理排盘板 renderTool 会整体重写 #listMain，销毁 #resultList；搜索前必须复位，
+// 否则 $("#resultList") 为 null 导致渲染抛异常（即「搜索无法使用」的根因之一）。
+function ensureResultList() {
+  let lm = $("#listMain");
+  if (!lm) {
+    const lp = document.getElementById("listPane");
+    if (lp) { lp.innerHTML = '<div class="list-main" id="listMain"></div>'; lm = $("#listMain"); }
+  }
+  if (!lm) return false;
+  if (!$("#resultList")) {
+    lm.innerHTML =
+      '<div class="filter-bar" id="filterBar"></div>' +
+      '<div class="hint" id="listHint"></div>' +
+      '<ul id="resultList" class="result-list"></ul>' +
+      '<div class="pager" id="pager"></div>';
+  }
+  return true;
+}
+
+// 天纪站内搜索：隐藏三栏面板、切到工作区（列表 + 详情），拉 /api/tianji/search 渲染分组结果。
+async function doTianjiSearch(q) {
+  currentSearchQ = q;
+  const dj = document.getElementById("douJichuPanel"); if (dj) dj.style.display = "none";
+  const lp = document.getElementById("listPane"); if (lp) lp.style.display = "";
+  const dp = document.getElementById("detailPane"); if (dp) dp.style.display = "";
+  const side = document.getElementById("sidebar"); if (side) side.style.display = "none";
+  const wa = document.querySelector(".workarea"); if (wa) wa.classList.remove("mingli-mode");
+  const mh = document.getElementById("moduleHead");
+  if (mh) mh.innerHTML = '<div class="mh-left"><h2>天纪搜索</h2><p>关键词：' + esc(q) + '</p></div>';
+  ensureResultList();
+  const ul = $("#resultList"); if (ul) { ul.className = "result-list"; ul.innerHTML = ""; }
+  const hint = $("#listHint");
+  if (hint) { hint.style.display = "block"; hint.textContent = "搜索中…"; }
+  const fb = $("#filterBar"); if (fb) fb.style.display = "none";
+  const pg = $("#pager"); if (pg) pg.innerHTML = "";
+  let data;
+  try { data = await api(`/api/tianji/search?q=${enc(q)}`); }
+  catch (e) {
+    if (hint) { hint.style.display = "block"; hint.textContent = "搜索失败，请重试。"; }
+    return;
+  }
+  const groups = (data && data.groups) || [];
+  const total = groups.reduce((s, g) => s + g.items.length, 0);
+  if (!total) {
+    if (hint) { hint.style.display = "block"; hint.textContent = `未找到与 “${q}” 相关的内容`; }
+    return;
+  }
+  if (hint) hint.style.display = "none";
+  groups.forEach((g) => {
+    const gh = document.createElement("li");
+    gh.className = "result-group-head";
+    gh.textContent = `${g.name}（${g.total}）`;
+    ul.appendChild(gh);
+    g.items.forEach((it) => {
+      const li = document.createElement("li");
+      li.className = "result-item";
+      li.innerHTML = `<div class="t">${esc(it.name)}</div><div class="s">${esc(g.name)}</div>`;
+      li.onclick = () => loadTianjiSearchItem(g.module, it.i);
+      ul.appendChild(li);
+    });
+  });
+}
+
+async function loadTianjiSearchItem(sub, i) {
+  let item;
+  try { item = await api(`${sysCfg.api}/item?sub=${enc(sub)}&i=${i}`); }
+  catch (e) { $("#detailPane").innerHTML = '<div class="hint">详情加载失败，请重试。</div>'; return; }
+  renderTianjiItem(sub, item);
+}
+
+function renderTianjiItem(sub, item) {
+  const meta = CAT_SUB_META[sub] || {};
+  const imgBase = (sysCfg && sysCfg.img) ? sysCfg.img : "/api/tianji/img";
+  let h = `<div class="detail-card"><h3>${esc(item.name)}</h3>`;
+  if (meta.hasImg) {
+    h += `<div class="gua-img"><img src="${imgBase}?name=${enc(item.name)}" ` +
+         `alt="${esc(item.name)}" onerror="this.style.display='none'"></div>`;
+  }
+  if (item.dd && /^[01]{6}$/.test(item.dd)) {
+    h += `<div class="gua-dd" title="上爻→初爻">`;
+    for (let k = 0; k < 6; k++) {
+      const yang = item.dd[k] === "1";
+      h += `<div class="gua-line ${yang ? "yang" : "yin"}">` + (yang ? "" : `<span></span><span></span>`) + `</div>`;
+    }
+    h += `</div>`;
+  }
+  const fields = item.fields || {};
+  const keys = Object.keys(fields);
+  if (!keys.length && !meta.hasImg && !item.dd) h += `<div class="hint">（本条暂无内容）</div>`;
+  keys.forEach((k) => {
+    const v = fields[k];
+    if (v == null || v === "") return;
+    h += `<div class="sec-h">${esc(k)}</div><div class="sec-b">${esc(v)}</div>`;
+  });
+  h += `</div>`;
+  $("#detailPane").innerHTML = h;
+}
+
 // 退出三栏面板、恢复常规（目录树 + 列表 + 详情）。
 function restoreMingliNormal() {
   const panel = document.getElementById("douJichuPanel");
@@ -2231,6 +2330,9 @@ async function doGlobalSearch(q) {
     // 子系统（人纪 / 天纪）是独立页面：无论空查询还是有查询，都走自身的子模块内
     // 搜索/列表（避免与医案系统的同名模块 key 如 xuewei/bbxx 冲突）。
     if (sysCfg) {
+      // 天纪：有查询走站内全局搜索（/api/tianji/search），覆盖斗数/四柱/卦象/命例全部内容；
+      // 空查询仍浏览当前子模块（保持原行为）。人纪仍走 loadSubList。
+      if (SYSTEM === "tianji" && q) { return doTianjiSearch(q); }
       subQ = q;
       return loadSubList();
     }
