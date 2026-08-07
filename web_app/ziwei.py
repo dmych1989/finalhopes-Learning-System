@@ -43,6 +43,24 @@ TIANFU_BY_ZIWEI = {0: 4, 1: 3, 2: 2, 3: 1, 4: 0, 5: 11, 6: 10, 7: 9,
 # 五虎遁：年干序 → 寅月天干序
 WUHU_DUN = {0: 2, 1: 4, 2: 6, 3: 8, 4: 0, 5: 2, 6: 4, 7: 6, 8: 8, 9: 0}
 
+# 天纪（倪海厦）五行局：按【出生年干 + 命宫地支】查表（非命宫纳音），
+# 与天纪软件「五行局表.ini」逐格一致。数组按下标=地支序 子0…亥11，值为局数。
+#   2=水二局 3=木三局 4=金四局 5=土五局 6=火六局
+# 甲己 / 乙庚 / 丙辛 / 丁壬 / 戊癸 各自同组（同旬干规则）。
+TIANJI_FIVE = {
+    '甲': [2, 2, 6, 6, 3, 3, 5, 5, 4, 4, 6, 6],
+    '己': [2, 2, 6, 6, 3, 3, 5, 5, 4, 4, 6, 6],
+    '乙': [6, 6, 5, 5, 4, 4, 3, 3, 2, 2, 5, 5],
+    '庚': [6, 6, 5, 5, 4, 4, 3, 3, 2, 2, 5, 5],
+    '丙': [5, 5, 3, 3, 2, 2, 4, 4, 6, 6, 3, 3],
+    '辛': [5, 5, 3, 3, 2, 2, 4, 4, 6, 6, 3, 3],
+    '丁': [3, 3, 4, 4, 6, 6, 2, 2, 5, 5, 4, 4],
+    '壬': [3, 3, 4, 4, 6, 6, 2, 2, 5, 5, 4, 4],
+    '戊': [4, 4, 2, 2, 5, 5, 6, 6, 3, 3, 2, 2],
+    '癸': [4, 4, 2, 2, 5, 5, 6, 6, 3, 3, 2, 2],
+}
+TIANJI_FIVE_NAME = {2: '水二局', 3: '木三局', 4: '金四局', 5: '土五局', 6: '火六局'}
+
 # 十四主星简义（用于命理解读与悬浮提示）
 STAR_MEANING = {
     "紫微": "北斗帝星，主尊贵、领导、权柄。",
@@ -130,6 +148,28 @@ GUASU = {0: 10, 1: 10, 2: 1, 3: 1, 4: 1, 5: 4, 6: 4, 7: 4, 8: 7, 9: 7, 10: 7, 11
 HUOXING_BASE = {0: 2, 1: 1, 2: 9, 3: 3}
 LINGXING_BASE = {0: 10, 1: 3, 2: 10, 3: 10}
 
+# ===========================================================================
+# 天纪（倪海厦）杂曜硬对齐：按天纪 INI 规则定位，与天纪软件 100% 一致。
+# 这些杂曜在 iztro 默认位置与天纪不同，须按年干支/时辰重定位。
+# 解神(年支)、天才(年支→宫职)、天伤/天使(时支)、旬中/旬空(年干支所属旬之后两空亡)。
+# 数值均为地支序（子0…亥11）。
+def _zc(c):
+    return ZHI.index(c)
+
+TJ_JIESHEN = {c: _zc(v) for c, v in
+              {'子': '戌', '丑': '酉', '寅': '申', '卯': '未', '辰': '午', '巳': '巳',
+               '午': '辰', '未': '卯', '申': '寅', '酉': '丑', '戌': '子', '亥': '亥'}.items()}
+
+# 旬空：年干支所属旬之后两空亡。旬首年支 idx = (年支idx - 年干idx + 12) % 12
+# （甲子旬首=子、甲戌=戌、甲申=申、甲午=午、甲辰=辰、甲寅=寅，间隔 -2）；
+# 旬中=第一空(旬首-2)，空亡=第二空(旬首-1)。与天纪「安旬中空亡表.ini」逐格一致。
+def tianji_xunkong(gan, zhi):
+    zIdx = ZHI.index(zhi)
+    gIdx = GAN.index(gan)
+    head = ((zIdx - gIdx) % 12 + 12) % 12
+    return {"zhong": _zc(ZHI[(head - 2 + 12) % 12]),
+            "kong": _zc(ZHI[(head - 1 + 12) % 12])}
+
 
 def aux_stars(year_gan_idx, year_zhi_idx, lunar_month, hour_zhi_idx, ming_zhi_idx):
     """计算辅星与杂曜落宫，返回 [(name, zhi_index, kind), ...]。
@@ -172,10 +212,16 @@ def aux_stars(year_gan_idx, year_zhi_idx, lunar_month, hour_zhi_idx, ming_zhi_id
     out.append(("华盖", HUAGAI[z], "adjective"))
     out.append(("孤辰", GUCHEN[z], "adjective"))
     out.append(("寡宿", GUASU[z], "adjective"))
-    # 天才：命宫起子年顺数至生年支
+    # 天才：标准安星诀（命宫起子年顺数至生年支），经验证与天纪真值盘一致
     out.append(("天才", (ming_zhi_idx + z) % 12, "adjective"))
     # 天刑：酉宫(9)起子月顺数至生月
     out.append(("天刑", (8 + m) % 12, "adjective"))
+    # ---- 天纪专属杂曜（经验证与真实 APK 真值盘一致）----
+    # 解神（年支）：子戌/丑酉/寅申/卯未/辰午/巳巳/午辰/未卯/申寅/酉丑/戌子/亥亥
+    out.append(("解神", TJ_JIESHEN.get(ZHI[z], 0), "adjective"))
+    # 旬中（年干支所属旬之后第一空亡）
+    xk = tianji_xunkong(GAN[g], ZHI[z])
+    out.append(("旬中", xk["zhong"], "adjective"))
     return out
 
 
@@ -219,10 +265,13 @@ def ziwei_chart(solar_dt, gender, ju_table=None):
     ming_gan = (WUHU_DUN[year_gan_idx] + ming) % 10
     ming_gz = GAN[ming_gan] + ZHI[ming_zhi]
 
-    # 五行局
+    # 五行局：天纪体系 = 按【年干 + 命宫地支】查表（非命宫纳音）。
+    # 例：己巳年、命宫在巳 → TIANJI_FIVE['己'][巳]=3 → 木三局。
+    ju_num = TIANJI_FIVE[year_gz[0]][ming_zhi]
+    ju_name = TIANJI_FIVE_NAME[ju_num]
+    # 命宫纳音（仅用于命宫信息展示）
     seq = _gz_index(ming_gz)
-    nayin_wx = _NAYIN[seq][1]
-    ju_name, ju_num = NAYIN_JU[nayin_wx]
+    nayin = _NAYIN[seq][0]
 
     # 紫微落宫：优先用 EXE 局表（天纪权威数据），否则用标准「起紫微诀」。
     # 起紫微诀（对齐 iztro）：以出生农历日 lunar_day 除以五行局数 ju_num，
@@ -295,23 +344,28 @@ def ziwei_chart(solar_dt, gender, ju_table=None):
                            if s["kind"] == "major" else 99,
                            kind_rank.get(s["kind"], 9)))
 
-    # 大限（紫微大运）：从命宫起，依阴阳顺逆，每限管局数年
+    # 大限：天纪规则。顺逆按【年干阴阳】（阳男阴女顺行、阴男阳女逆行）；
+    # 起运岁数 = 局数（水二局2岁起、木三局3岁起…），每限 10 年。
     yinyang_yang = (year_gan_idx % 2 == 0)
     is_male = (gender == "男")
-    shun = (yinyang_yang and is_male) or ((not yinyang_yang) and (not is_male))
+    shun = (is_male == yinyang_yang)
+    tigerStart = WUHU_DUN[year_gan_idx]   # 五虎遁起寅天干
     dayun = []
-    for i in range(12):
-        z = ((ming_zhi - i) if shun else (ming_zhi + i)) % 12
-        age0 = i * ju_num
-        dayun.append({"idx": i, "gong": gong_order.get(z, ""),
-                      "zhi": ZHI[z], "age0": age0, "age1": age0 + ju_num - 1,
-                      "shun": shun})
+    for pBIdx in range(12):
+        o = (pBIdx - ming_zhi) % 12                      # 顺时针距命宫
+        i = o if shun else (12 - o) % 12
+        age0 = ju_num + 10 * i
+        age1 = age0 + 9
+        gan = GAN[(tigerStart + i) % 10]
+        dayun.append({"idx": i, "gong": gong_order.get(pBIdx, ""),
+                      "zhi": ZHI[pBIdx], "age0": age0, "age1": age1,
+                      "gan": gan, "shun": shun})
 
     return {
         "solar": solar_dt.strftime("%Y-%m-%d %H:%M"),
         "gender": gender,
         "ming_gong": {"zhi": ZHI[ming_zhi], "gz": ming_gz,
-                      "gan": GAN[ming_gan], "nayin": _NAYIN[seq][0]},
+                      "gan": GAN[ming_gan], "nayin": nayin},
         "shen_gong": {"zhi": ZHI[shen_zhi]},
         "ju": ju_name,
         "ju_num": ju_num,
