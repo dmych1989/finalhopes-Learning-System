@@ -104,6 +104,69 @@ def _related_lilun(ri_wx, limit=8):
     return out
 
 
+# ---- 八字五行·性格提醒（传统文化参考，非命理定论）---------------------------
+# 把「五行偏缺」做性格化解读：说你缺某行，指的是某种性格面向偏弱，
+# 而非字面意义的黄金/饮水/花草/石头/红衣等。供自省参考，有则改之、无则加勉。
+WX_PERSONALITY = {
+    "金": {
+        "trait": "主见与决断力",
+        "mis": "多带黄金、戴金饰",
+        "meaning": "容易没主见、拿不定主意，该拍板的时候下不了手。",
+    },
+    "水": {
+        "trait": "独立思考",
+        "mis": "多喝水",
+        "meaning": "脑子容易拎不清，别人说啥就信，缺乏自己的判断。",
+    },
+    "木": {
+        "trait": "持久定力",
+        "mis": "在家多摆花草绿植",
+        "meaning": "缺定力，干什么事都三分钟热度，难以坚持到底。",
+    },
+    "土": {
+        "trait": "情绪稳定",
+        "mis": "买一堆石头摆件",
+        "meaning": "心态不稳，容易急躁，情绪波动比较大。",
+    },
+    "火": {
+        "trait": "行动力",
+        "mis": "天天穿红色、戴红色",
+        "meaning": "做事干劲不够、不主动，还总爱瞎操心。",
+    },
+}
+WX_REMINDER_CLOSING = (
+    "以上为传统文化里对「五行偏缺」的一种性格化解读，纯属参考。"
+    "有则改之、无则加勉，对照着看看自己即可，信不信都行，当个提醒听听。"
+)
+
+
+def _wx_reminder(wx_score):
+    """把五行分布映射成性格化提醒（传统文化参考，非命理定论）。
+
+    返回 {elements:[{element,trait,mis,meaning,status,score}], closing}。
+    status：缺(score==0) / 偏弱(score<1.0) / 正常。固定五行顺序 木火土金水。
+    """
+    items = []
+    for e in ["木", "火", "土", "金", "水"]:
+        s = float(wx_score.get(e, 0.0))
+        if s == 0:
+            status = "缺"
+        elif s < 1.0:
+            status = "偏弱"
+        else:
+            status = "正常"
+        info = WX_PERSONALITY[e]
+        items.append({
+            "element": e,
+            "trait": info["trait"],
+            "mis": info["mis"],
+            "meaning": info["meaning"],
+            "status": status,
+            "score": round(s, 2),
+        })
+    return {"elements": items, "closing": WX_REMINDER_CLOSING}
+
+
 def analyze(b, z, g):
     """基于八字/紫微/本命卦生成解读草稿。"""
     ri_gan = b["ri_gan"]
@@ -152,6 +215,7 @@ def analyze(b, z, g):
         "benming_gua": g,
         "related_cases": cases,
         "related_lilun": lilun,
+        "wx_reminder": _wx_reminder(b["wx_score"]),
     }
 
 

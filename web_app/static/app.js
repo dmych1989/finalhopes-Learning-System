@@ -2517,6 +2517,26 @@ function renderDujie(d) {
     '<span>五行局 <b>' + esc(z.ju) + '</b></span></div>';
   h += '<div class="sec-h">格局分析</div><div class="sec-b">' + esc(a.pattern) + '</div>';
   h += '<div class="sec-h">大运走势</div><div class="sec-b">' + esc(a.dayun_note) + '</div>';
+  // 五行·性格提醒（传统文化参考，非命理定论）
+  if (a.wx_reminder && a.wx_reminder.elements && a.wx_reminder.elements.length) {
+    h += '<div class="sec-h">五行·性格提醒（传统文化参考）</div><div class="wx-remind">';
+    a.wx_reminder.elements.forEach(function (it) {
+      const hi = (it.status === "缺" || it.status === "偏弱") ? " hi" : "";
+      let flag = "";
+      if (it.status === "缺") flag = '<span class="wxr-flag lack">缺</span>';
+      else if (it.status === "偏弱") flag = '<span class="wxr-flag weak">偏弱</span>';
+      h += '<div class="wxr-item' + hi + '">';
+      h += '<div class="wxr-head"><span class="wxr-el">' + esc(it.element) + '</span>' + flag +
+        '<span class="wxr-trait">代表：' + esc(it.trait) + '</span>' +
+        '<span class="wxr-score">五行得分 ' + it.score.toFixed(2) + '</span></div>';
+      h += '<div class="wxr-body">';
+      h += '<div class="wxr-mean">' + esc(it.meaning) + '</div>';
+      h += '<div class="wxr-mis">误区：说你「缺' + esc(it.element) + '」不是让你' + esc(it.mis) + '。</div>';
+      h += '</div></div>';
+    });
+    h += '<div class="wxr-closing">' + esc(a.wx_reminder.closing) + '</div>';
+    h += '</div>';
+  }
   h += '<div class="sec-h">四柱十神</div><div class="tag-row">';
   const labels = ["年", "月", "日", "时"];
   b.pillars.forEach((p, i) => { h += '<span class="tag">' + labels[i] + '·' + esc(p.gan) + '→' + esc(p.gan_shi) + '</span>'; });
@@ -2578,6 +2598,15 @@ function exportDujie() {
   });
   t += "\n【格局分析】\n" + a.pattern + "\n";
   t += "\n【大运】" + a.dayun_note + "\n";
+  if (a.wx_reminder && a.wx_reminder.elements && a.wx_reminder.elements.length) {
+    t += "\n【五行·性格提醒（传统文化参考）】\n";
+    a.wx_reminder.elements.forEach(function (it) {
+      const tag = it.status === "正常" ? "" : ("（" + it.status + "）");
+      t += "· 缺" + it.element + tag + " → " + it.trait + "：" + it.meaning +
+        "　误区：不是让你" + it.mis + "。\n";
+    });
+    t += a.wx_reminder.closing + "\n";
+  }
   t += "\n【六亲】\n";
   a.liuqin.forEach(q => { t += q.from + " " + q.gan + " " + q.shi + "：" + q.meaning + "\n"; });
   t += "\n【本命卦】" + d.gua.ben + "（" + d.gua.up + "上" + d.gua.down + "下），动第" + d.gua.dong_yao + "爻，变卦 " + d.gua.bian + "\n";
