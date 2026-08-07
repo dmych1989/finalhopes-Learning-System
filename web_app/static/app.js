@@ -2337,20 +2337,45 @@ function pillarCell(p, label) {
 
 function renderPaipanSystem(d) {
   const b = d.bazi, z = d.ziwei, g = d.gua;
-  // ---- 紫微盘 ----
+  // ---- 紫微盘：4×4 传统方阵布局 ----
+  // 地支绝对方位 → [row, col]（子=底部中央，顺时针环绕）
+  const ZHI_POS = {
+    '巳':[0,0],'午':[0,1],'未':[0,2],'申':[0,3],
+    '辰':[1,0],                  '酉':[1,3],
+    '卯':[2,0],                  '戌':[2,3],
+    '寅':[3,0],'丑':[3,1],'子':[3,2],'亥':[3,3],
+  };
+  const cells = new Array(16).fill(null);
+  z.palace.forEach(pal => {
+    const pos = ZHI_POS[pal.zhi];
+    if (pos) cells[pos[0]*4 + pos[1]] = pal;
+  });
   let zh = '<div class="pp-summary">' +
     '<span>阳历 <b>' + esc(b.solar) + '</b></span>' +
     '<span>农历 <b>' + esc(b.lunar) + '</b></span>' +
-    '<span>生肖 <b>' + esc(b.zodiac) + '</b></span>' +
-    '<span>性别 <b>' + esc(b.gender) + '</b></span>' +
     '<span>五行局 <b>' + esc(z.ju) + '</b></span>' +
     '<span>命宫 <b>' + esc(z.ming_gong.gz) + '</b></span>' +
     '<span>身宫 <b>' + esc(z.shen_gong.zhi) + '</b></span></div>';
   zh += '<div class="ziwei-grid">';
-  z.palace.forEach(pal => {
+  cells.forEach((pal, i) => {
+    if (!pal) {
+      // 中心 2×2 区域：仅在 [1,1]（index=5）渲染，跨 2 列 2 行
+      if (i === 5) {
+        const sizhu = (b.pillars || []).map(p => p.gz).join(' ');
+        zh += '<div class="ziwei-center">';
+        zh += '<div class="zc-sizhu">' + esc(sizhu) + '</div>';
+        zh += '<div class="zc-meta"><span>五行局</span><b>' + esc(z.ju) + '</b></div>';
+        zh += '<div class="zc-meta"><span>命宫</span><b>' + esc(z.ming_gong.gz) + '</b></div>';
+        zh += '<div class="zc-meta"><span>身宫</span><b>' + esc(z.shen_gong.zhi) + '</b></div>';
+        zh += '</div>';
+      }
+      return;
+    }
     const isMing = pal.gong === "命宫";
-    zh += '<div class="palace-card' + (isMing ? ' ming' : '') + '">';
-    zh += '<div class="pc-head">' + esc(pal.gong) + ' <span class="pc-zhi">' + esc(pal.zhi) + '</span></div><div class="pc-stars">';
+    const isShen = pal.zhi === z.shen_gong.zhi;
+    zh += '<div class="palace-card' + (isMing ? ' ming' : '') + (isShen ? ' shen' : '') + '">';
+    zh += '<div class="pc-head"><span class="pc-name">' + esc(pal.gong) + '</span><span class="pc-zhi">' + esc(pal.zhi) + '</span></div>';
+    zh += '<div class="pc-stars">';
     if (!pal.stars.length) zh += '<span class="pc-empty">（空宫）</span>';
     pal.stars.forEach(s => {
       const col = SIHUA_COLOR[s.sihua] || "var(--star)";

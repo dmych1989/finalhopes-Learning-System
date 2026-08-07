@@ -532,18 +532,31 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
 .dy-gz{font-size:18px;font-weight:600;color:var(--ink)}
 .dy-shi{font-size:11px;color:var(--teal-d)}
 
-.ziwei-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
-.palace-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 10px;
-  box-shadow:var(--shadow-sm);min-height:72px}
-.palace-card.ming{border-color:var(--gold);background:linear-gradient(160deg,#fffaf0,#fff);
-  box-shadow:0 2px 10px rgba(230,162,60,.18)}
-.pc-head{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:5px}
-.pc-zhi{color:var(--ink3);font-weight:400;font-size:12px}
-.pc-stars{display:flex;flex-wrap:wrap;gap:4px}
-.star-chip{font-size:13px;font-weight:600;background:var(--panel2);border-radius:6px;
-  padding:2px 6px;line-height:1.5}
+.ziwei-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);gap:6px;min-height:560px}
+.palace-card{background:linear-gradient(180deg,var(--panel2),var(--card));border:1px solid var(--line);border-radius:8px;padding:8px 9px;
+  box-shadow:var(--shadow-sm);min-height:120px;display:flex;flex-direction:column;gap:4px}
+.palace-card.ming{border-color:var(--gold);box-shadow:0 0 0 1px rgba(230,162,60,.2) inset,0 2px 10px rgba(230,162,60,.15)}
+.palace-card.shen{border-color:var(--teal)}
+.pc-head{display:flex;justify-content:space-between;align-items:baseline}
+.pc-name{font-size:14px;font-weight:700;color:var(--ink)}
+.palace-card.ming .pc-name{color:var(--gold)}
+.palace-card.shen .pc-name{color:var(--teal-dd)}
+.pc-zhi{color:var(--ink3);font-weight:400;font-size:11px}
+.pc-stars{display:flex;flex-wrap:wrap;gap:3px 5px;flex:1;align-content:flex-start}
+.star-chip{font-size:12px;font-weight:600;background:var(--panel2);border-radius:5px;
+  padding:1px 5px;line-height:1.5}
 .star-chip .sihua{font-style:normal;font-size:10px;margin-left:2px;opacity:.9}
-.pc-empty{font-size:12px;color:var(--ink3)}
+.pc-empty{font-size:11px;color:var(--ink3)}
+
+/* 中心 2×2 区域：四柱 / 五行局 / 命宫 / 身宫 */
+.ziwei-center{grid-column:2/4;grid-row:2/4;
+  display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;
+  background:linear-gradient(180deg,rgba(230,162,60,.04),rgba(230,162,60,.01));
+  border:1px solid rgba(230,162,60,.1);border-radius:8px;padding:12px}
+.zc-sizhu{font-size:20px;color:var(--gold);letter-spacing:.08em;text-align:center;line-height:1.6;font-weight:700}
+.zc-meta{display:flex;align-items:baseline;gap:8px;font-size:13px}
+.zc-meta span{color:var(--ink3)}
+.zc-meta b{color:var(--ink2);font-weight:600}
 
 .sihua-line{display:flex;gap:12px;flex-wrap:wrap}
 .sihua-pill{font-size:14px;font-weight:600}
@@ -599,7 +612,7 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
 .plate-title{font-size:15px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--teal-d),var(--teal));
   padding:9px 16px}
 .plate-body{padding:12px 14px;overflow:auto}
-.pp-ziwei .ziwei-grid{grid-template-columns:repeat(4,1fr)}
+.pp-ziwei .plate-body{padding:10px 12px}
 .pp-bazi .bazi-grid{grid-template-columns:repeat(4,1fr)}
 .pp-dujie{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow-sm);overflow:hidden}
 .pp-dujie .plate-title{background:linear-gradient(135deg,var(--teal-d),var(--teal))}
