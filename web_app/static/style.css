@@ -763,3 +763,171 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
 .dj-2tab:hover{border-color:var(--teal-l);color:var(--teal-dd)}
 .dj-2tab.active{background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#fff;border-color:var(--teal);font-weight:600}
 .dj-main{flex:1;overflow:auto;padding:18px 24px}
+
+/* ============================================================
+   移动端（手机竖版）适配  ——  全部约束在媒体查询内，桌面端完全不变
+   目标：竖屏单栏、文字适度缩小、布局不溢出/不错位/不丢失、保留原主题配色
+   ============================================================ */
+@media (max-width:820px){
+  html{ -webkit-text-size-adjust:100%; }
+  body{ font-size:13px; line-height:1.62; overflow-wrap:anywhere; }
+  .app{ min-height:100dvh; }
+
+  /* 顶栏：图标+标题 与 系统切换 同行，搜索整行换行占满；内容完整不裁切 */
+  .topbar{ position:sticky; top:0; height:auto; flex-wrap:wrap; padding:8px 12px; gap:8px 10px; }
+  .brand{ flex:1 1 auto; min-width:0; }
+  .brand-logo{ height:30px; }
+  .topbar h1{ font-size:15px; line-height:1.2; }
+  .topbar .brand-sub{ display:none; }                 /* 副标题为装饰，竖屏隐藏避免挤占 */
+  .sys-inline{ flex:0 0 auto; margin-left:0; }
+  .sys-inline .sys-tab{ padding:6px 11px; font-size:13px; }
+  .searchbox{ flex:1 1 100%; order:5; max-width:none; gap:8px; }
+  .searchbox input{ font-size:16px; padding:9px 14px; }  /* 16px 防 iOS 聚焦自动缩放 */
+  .searchbox button{ padding:9px 16px; font-size:14px; }
+
+  /* 顶部板块/工具标签条：取消 sticky（顶栏高度可变），改为可横向滚动，避免错位 */
+  .board-tabs, .tj-toolbar, .mingli-tabs{ position:static; padding:6px 10px; gap:4px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .board-tab, .tj-tool, .ml-tab{ font-size:13px; padding:5px 11px; flex:0 0 auto; }
+  .board-tab .bt-count{ font-size:11px; }
+
+  /* 天纪 · 左侧目录树：竖屏改为顶部整宽、限高可滚，置于正文之上（纯 CSS，内容不丢） */
+  .layout--side{ flex-direction:column; }
+  .sidebar{ width:100%; max-height:42vh; overflow:auto; -webkit-overflow-scrolling:touch;
+    border-right:none; border-bottom:1px solid var(--line); padding:10px 12px; }
+  .sidebar .nav-item{ padding:9px 12px; font-size:13.5px; }
+  .sidebar .ml-tool-entry{ font-size:13.5px; }
+  .sidebar .tj-root{ font-size:12.5px; }
+  .sidebar .tj-node-head{ font-size:13px; padding:6px 8px; }
+  .sidebar .tj-leaf{ font-size:12.5px; padding:6px 8px 6px 20px; }
+
+  /* 工作区：列表/详情上下堆叠（强化基础 880 规则细节） */
+  .workarea{ flex-direction:column; }
+  .list-pane{ width:100%; max-width:none; border-right:none; border-bottom:1px solid var(--line); padding:10px 12px; }
+  .list-main{ padding:0; }
+  .cases-catnav{ flex:1 1 100%; flex-direction:row; flex-wrap:nowrap; overflow-x:auto;
+    -webkit-overflow-scrolling:touch; max-height:none; border-right:none; border-bottom:1px dashed var(--line); padding:6px 0 8px; }
+  .cases-catnav .catnav-item{ flex:0 0 auto; white-space:nowrap; }
+  .detail-pane{ padding:14px 14px; overflow-x:auto; }
+  .filter-bar{ padding:6px 0 10px; }
+  .filter-tab{ font-size:12.5px; padding:4px 12px; }
+  .result-item{ padding:10px 12px; margin:6px 0; }
+  .result-item .t{ font-size:14px; }
+  .result-item .s{ font-size:12px; }
+  .hint{ font-size:12.5px; padding:14px; }
+  .pager{ padding:12px 0; }
+  .pager button{ font-size:13px; padding:6px 14px; }
+
+  /* 各模式 list-pane 固定宽度覆盖（hdwj/mingli 优先级高于基础规则） */
+  .workarea.hdwj-mode .list-pane{ width:100%; max-width:none; }
+  .workarea.mingli-mode .list-pane{ width:100%; max-width:none; flex:1 1 auto; border-right:none; padding:8px 10px; }
+
+  /* 模块标题区 */
+  .module-head{ padding:10px 14px; gap:10px; }
+  .mh-left h2{ font-size:16px; }
+  .mh-left p{ font-size:12px; }
+
+  /* 详情卡片 / 文章正文：缩小字号，长串可断行 */
+  .detail-card{ padding:14px 14px; }
+  .detail-card h3{ font-size:17px; }
+  .field{ margin:8px 0; }
+  .field .k{ font-size:13px; min-width:84px; }
+  .field .v{ font-size:13.5px; }
+  .sec-h{ font-size:13.5px; margin:14px 0 6px; }
+  .sec-b{ font-size:13.5px; line-height:1.8; padding:9px 12px; }
+  .article-body{ font-size:14px; line-height:1.85; }
+  .art-p{ font-size:14px; line-height:1.85; }
+  .art-sub{ font-size:14.5px; }
+  .art-sec-body{ font-size:13.5px; }
+  .art-point{ font-size:13.5px; }
+  .art-teacher-body{ font-size:13.5px; }
+  .seq-badge{ font-size:11.5px; }
+  .seq-line{ font-size:12.5px; }
+  .hdwj-text{ font-size:14px; }
+  .hdwj-text--orig{ font-size:14.5px; }
+
+  /* 通用：图片不出界 */
+  img{ max-width:100%; height:auto; }
+
+  /* 卦图 */
+  .gua-img img{ max-width:180px; max-height:240px; }
+  .gua-line.yang, .gua-line.yin{ width:96px; }
+  .gua-line.yin span{ width:38px; }
+
+  /* 排盘 / 命理 系统 */
+  .paipan-form{ width:100%; max-width:none; padding:14px 14px; }
+  .paipan-form input, .paipan-form select, .pp-controls input, .pp-controls select, .pp-search{ font-size:16px; }
+  .paipan-result{ padding:14px 14px; max-width:none; }
+  .pp-controls{ padding:12px; gap:10px 12px; }
+  .pp-controls label{ font-size:13px; }
+  .pp-summary{ font-size:12.5px; gap:6px 12px; padding:9px 12px; }
+  .pp-charts{ flex-direction:column; }
+  .pp-plate{ min-width:0; }
+  .plate-title{ font-size:14px; padding:8px 14px; }
+
+  /* 八字四柱网格：保持 4 列，缩小字号/内距避免溢出 */
+  .bazi-grid{ gap:6px; }
+  .bz-cell{ padding:9px 4px; }
+  .bz-gz{ font-size:22px; letter-spacing:1px; }
+  .bz-label{ font-size:11px; }
+  .bz-shi{ font-size:12px; }
+  .bz-nayin{ font-size:10px; }
+
+  /* 紫微斗数 16 宫盘：保持 4 列，缩小间距与字号 */
+  .ziwei-grid{ gap:4px; min-height:0; }
+  .palace-card{ padding:6px 6px; min-height:96px; gap:3px; }
+  .pc-name{ font-size:13px; }
+  .pc-zhi{ font-size:10px; }
+  .pc-stars{ gap:2px 4px; }
+  .star-chip{ font-size:11px; padding:1px 4px; }
+  .pc-empty{ font-size:10px; }
+
+  /* 五行局 / 中心区 */
+  .ziwei-center{ padding:10px; gap:6px; }
+  .zc-sizhu{ font-size:17px; }
+
+  /* 斗数·基础理论 三栏整页（dj）：竖屏上下堆叠，去掉固定高度 */
+  .dj{ flex-direction:column; height:auto; min-height:0; margin-top:10px; }
+  .dj-side{ width:100%; border-right:none; border-bottom:1px solid var(--line); max-height:34vh; overflow:auto; -webkit-overflow-scrolling:touch; }
+  .dj-mid{ width:100%; border-right:none; border-bottom:1px solid var(--line); max-height:34vh; overflow:auto; -webkit-overflow-scrolling:touch; }
+  .dj-1tab{ font-size:14px; padding:11px 14px; }
+  .dj-2tab{ font-size:12.5px; padding:6px 11px; }
+  .dj-main{ padding:14px 16px; }
+
+  /* 灵龟八法 / 经络 等横排组件：允许换行、缩小 */
+  .lg-live-main{ gap:12px; }
+  .lg-live-acu{ font-size:30px; }
+  .gz{ min-width:96px; }
+  .lg-grid{ gap:6px; }
+  .chip{ font-size:12.5px; padding:7px 10px; }
+  .lg-live-chips{ grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:7px; }
+  .jl-svg{ max-width:100%; }
+  .jl-info, .jl-legend{ min-width:0; }
+
+  /* 表格：允许在详情区内横向滚动，不撑破布局 */
+  table.acu{ font-size:12.5px; }
+  table.acu th, table.acu td{ padding:6px 8px; }
+
+  /* 画廊/缩略图：自适应不出界 */
+  .gallery{ grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:10px; }
+  .gallery img{ height:130px; }
+  .thumb-grid{ grid-template-columns:repeat(auto-fill,minmax(80px,1fr)); gap:8px; }
+  .thumb-item img{ height:84px; }
+
+  /* 人纪人体图 SVG 自适应 */
+  .renji-map-wrap{ padding:8px; }
+  .renji-svg{ max-height:60vh; }
+
+  /* 灯箱 */
+  .lightbox img{ max-width:96%; max-height:90%; }
+}
+
+/* 超小屏（<=380px）进一步收紧，确保不溢出 */
+@media (max-width:380px){
+  body{ font-size:12.5px; }
+  .topbar h1{ font-size:14px; }
+  .bz-gz{ font-size:20px; }
+  .palace-card{ min-height:88px; }
+  .detail-card h3{ font-size:16px; }
+  .sidebar .tj-leaf{ font-size:12px; }
+  .mh-left h2{ font-size:15px; }
+}
