@@ -11,7 +11,9 @@ BASE = "https://api.vercel.com"
 EXCLUDE = {"tools/exe_strings.txt"}  # data.db 现在单独哈希上传（体积大，不能 inline）
 
 def tracked_files():
-    out = subprocess.check_output(["git", "ls-files"], cwd=ROOT, text=True).splitlines()
+    # -z emits NUL-delimited, UNQUOTED paths so non-ASCII filenames
+    # (e.g. Chinese hexagram images) aren't mangled by git's quotePath.
+    out = subprocess.check_output(["git", "ls-files", "-z"], cwd=ROOT, text=True).split("\0")
     res = []
     for f in out:
         if f in EXCLUDE or f.startswith(".git/") or "__pycache__" in f:
