@@ -2367,7 +2367,10 @@ async function doPaipan() {
   const gender = $("#ppGender").value;
   const place = ($("#ppPlace").value || "").trim();
   if (!date) { alert("请填写出生日期"); return; }
-  const solar = date + " " + String(hour).padStart(2, "0") + ":30";
+  // 时辰索引(0=子…11=亥) → 钟点 = index*2（与后端 _hour_zhi((h+1)//2) 一一反向对应，
+  // 经 12 时辰全验证：index*2 还原后恰为该时辰；之前漏 *2 导致相邻时辰塌缩、命盘时辰不对应）。
+  const clockHour = hour * 2;
+  const solar = date + " " + String(clockHour).padStart(2, "0") + ":00";
   const dp = $("#ppDujie"); if (dp) dp.innerHTML = '<div class="hint">排盘中…</div>';
   let data;
   try {
