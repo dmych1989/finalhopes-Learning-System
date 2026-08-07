@@ -1208,11 +1208,20 @@ def ext_img(p: str = ""):
     return Response(content=data, media_type=mt)
 
 
+# 页面 HTML 不缓存：避免浏览器缓存旧版 tianji.html（旧版引用旧 app.js/style.css），
+# 导致「刷新后仍显示旧页面」。每次刷新都重新拉取最新 HTML（其内 ?v=NN 再 bust 静态资源）。
+_NO_CACHE = {
+    "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
+    "Pragma": "no-cache",
+    "Expires": "0",
+}
+
+
 @app.get("/", response_class=HTMLResponse)
 def index():
     with open(os.path.join(os.path.dirname(__file__), "static", "index.html"),
               encoding="utf-8") as f:
-        return f.read()
+        return HTMLResponse(f.read(), headers=_NO_CACHE)
 
 
 # 三套学习系统：各自独立页面（顶部系统切换器跳转），互不在对方侧栏出现。
@@ -1221,18 +1230,18 @@ _STATIC = os.path.join(os.path.dirname(__file__), "static")
 
 @app.get("/renji", response_class=HTMLResponse)
 def renji_page():
-    return FileResponse(os.path.join(_STATIC, "renji.html"))
+    return FileResponse(os.path.join(_STATIC, "renji.html"), headers=_NO_CACHE)
 
 
 @app.get("/tianji", response_class=HTMLResponse)
 def tianji_page():
-    return FileResponse(os.path.join(_STATIC, "tianji.html"))
+    return FileResponse(os.path.join(_STATIC, "tianji.html"), headers=_NO_CACHE)
 
 
 @app.get("/mingli")
 def mingli_redirect():
     from fastapi.responses import RedirectResponse
-    return RedirectResponse(url="/tianji", status_code=302)
+    return RedirectResponse(url="/tianji", status_code=302, headers=_NO_CACHE)
 
 
 app.mount("/static", StaticFiles(directory=os.path.join(os.path.dirname(__file__), "static")),

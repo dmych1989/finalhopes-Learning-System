@@ -28,6 +28,7 @@ web_app/_carved/
 web_app/_verify/
 web_app/_*.png
 web_app/_uv*
+web_app/_trash/
 
 # Exploratory one-off scratch in tools/ — keep only the canonical build scripts
 # (mdb_to_sqlite.py, build_cat_map.py, verify_cats.py, probe_db.py) + reference .txt.
