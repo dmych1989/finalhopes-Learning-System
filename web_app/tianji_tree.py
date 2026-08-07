@@ -839,6 +839,79 @@ TIANJI_TREE = [
             ],
             "_sec": "基础理论",
             "_grp": "十二宫"
+          },
+          {
+            "t": "论五宫",
+            "children": [
+              {
+                "t": "六亲定位",
+                "src": "lilun",
+                "idx": 247
+              }
+            ]
+          },
+          {
+            "t": "其他",
+            "children": [
+              { "t": "天干作用", "src": "lilun", "idx": 24 },
+              { "t": "地支作用", "src": "lilun", "idx": 3 },
+              { "t": "墓库作用", "src": "lilun", "idx": 23 },
+              { "t": "大运流年命局作用", "src": "lilun", "idx": 15 },
+              { "t": "大运流年命局作用(补充)", "src": "lilun", "idx": 2 }
+            ]
+          }
+        ]
+      },
+      {
+        "t": "断法细则",
+        "children": [
+          {
+            "t": "事业",
+            "children": [
+              { "t": "先天风水", "src": "lilun", "idx": 5 }
+            ]
+          },
+          {
+            "t": "疾病",
+            "children": [
+              { "t": "身体疾病", "src": "lilun", "idx": 21 },
+              { "t": "相貌身高", "src": "lilun", "idx": 25 }
+            ]
+          },
+          {
+            "t": "感情",
+            "children": [
+              { "t": "婚姻感情(一)", "src": "lilun", "idx": 12 },
+              { "t": "婚姻感情(二)", "src": "lilun", "idx": 11 }
+            ]
+          },
+          {
+            "t": "财运",
+            "children": [
+              { "t": "择吉", "src": "lilun", "idx": 29 }
+            ]
+          },
+          {
+            "t": "考试",
+            "children": [
+              { "t": "子女", "src": "lilun", "idx": 33 }
+            ]
+          },
+          {
+            "t": "灾祸",
+            "children": [
+              { "t": "事业财运(一)", "src": "lilun", "idx": 9 },
+              { "t": "事业财运(二)", "src": "lilun", "idx": 6 },
+              { "t": "事业财运(三)", "src": "lilun", "idx": 7 },
+              { "t": "事业财运(四)", "src": "lilun", "idx": 8 }
+            ]
+          },
+          {
+            "t": "其他",
+            "children": [
+              { "t": "学习(一)", "src": "lilun", "idx": 28 },
+              { "t": "学习(二)", "src": "lilun", "idx": 27 }
+            ]
           }
         ]
       },
