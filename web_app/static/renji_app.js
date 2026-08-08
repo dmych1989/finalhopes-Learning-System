@@ -59,6 +59,46 @@
   // ---------- 工具 ----------
   const $ = (s, r) => (r || document).querySelector(s);
   const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+  function isMobile() {
+    try { return window.matchMedia("(max-width:820px)").matches; } catch (e) { return false; }
+  }
+  // 移动端：把 #resultList 的 .result-item 转成「二级目录」下拉，选中即渲染详情；默认自动展示首项。
+  // MutationObserver 自动适配所有刷新列表的渲染（穴位/取穴/中药等），无需逐个挂钩。
+  let _mListObserver = null, _mListTO = null;
+  function mobileListToSelect() {
+    const ul = document.getElementById("resultList");
+    if (!ul) return;
+    let sel = document.getElementById("mListSelect");
+    if (!isMobile()) { if (sel) sel.remove(); ul.style.display = ""; return; }
+    const items = ul.querySelectorAll(".result-item");
+    if (!items.length) { if (sel) sel.style.display = "none"; ul.style.display = ""; return; }
+    if (!sel) { sel = document.createElement("select"); sel.id = "mListSelect"; sel.className = "tj-mobile-select"; ul.parentNode.insertBefore(sel, ul); }
+    sel.style.display = ""; ul.style.display = "none";
+    sel.innerHTML = "";
+    const ph = document.createElement("option");
+    ph.value = ""; ph.textContent = "选择项目"; ph.disabled = true; ph.selected = true;
+    sel.appendChild(ph);
+    items.forEach((li, i) => {
+      const o = document.createElement("option");
+      o.value = "i" + i; o.textContent = li.textContent.trim(); o._li = li;
+      sel.appendChild(o);
+    });
+    sel.onchange = () => {
+      const o = sel.selectedOptions && sel.selectedOptions[0];
+      if (o && o._li && o._li.onclick) o._li.onclick();
+    };
+    if (sel.options.length > 1) { sel.selectedIndex = 1; sel.onchange(); }
+  }
+  function observeMobileList() {
+    if (_mListObserver) return;
+    const ul = document.getElementById("resultList");
+    if (!ul) return;
+    _mListObserver = new MutationObserver(() => {
+      if (_mListTO) clearTimeout(_mListTO);
+      _mListTO = setTimeout(mobileListToSelect, 60);
+    });
+    _mListObserver.observe(ul, { childList: true, subtree: true });
+  }
   function getJSON(url) {
     return new Promise((res, rej) => {
       fetch(url).then(r => r.json()).then(res).catch(rej);
@@ -129,6 +169,31 @@
 
   function renderBoards() {
     boardTabs.innerHTML = "";
+    if (isMobile()) {
+      // 移动端：板块标签条改为一级下拉菜单（#mModSelect）
+      let ms = document.getElementById("mModSelect");
+      if (!ms) {
+        ms = document.createElement("select");
+        ms.id = "mModSelect";
+        ms.className = "tj-mobile-select";
+        boardTabs.parentNode.insertBefore(ms, boardTabs);
+      }
+      ms.innerHTML = "";
+      const ph = document.createElement("option");
+      ph.value = ""; ph.textContent = "选择板块"; ph.disabled = true; ph.selected = true;
+      ms.appendChild(ph);
+      BOARDS.forEach((b) => {
+        const o = document.createElement("option");
+        o.value = b.name; o.textContent = b.name + "（" + b.count + "）"; o._b = b;
+        ms.appendChild(o);
+      });
+      ms.onchange = () => {
+        const o = ms.selectedOptions && ms.selectedOptions[0];
+        if (o && o._b) { selectBoard(o._b, true); ms.value = o._b.name; }
+      };
+      boardTabs.style.display = "none";
+      return;
+    }
     BOARDS.forEach(b => {
       const t = el("div", "board-tab" + (b === CUR_BOARD ? " active" : ""));
       t.innerHTML = esc(b.name) + " <span class='bt-count'>(" + b.count + ")</span>";
@@ -589,7 +654,14 @@
     if (si) si.onkeydown = e => { if (e.key === "Enter") doSearch(si.value); };
     getJSON("/api/renji/modules").then(bs => {
       BOARDS = bs;
-      if (BOARDS[0]) selectBoard(BOARDS[0], true);
+      observeMobileList();
+      if (BOARDS[0]) {
+        selectBoard(BOARDS[0], true);
+        if (isMobile()) {
+          const ms = document.getElementById("mModSelect");
+          if (ms && BOARDS[0]) ms.value = BOARDS[0].name;
+        }
+      }
     });
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);

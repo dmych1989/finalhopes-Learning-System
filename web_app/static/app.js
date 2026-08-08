@@ -138,16 +138,41 @@ function buildSidebar(modules) {
       document.addEventListener("click", closeTianjiTabDDs);
     }
   } else if (bar) {
-    // lilun / renji：模块标签横向排在顶部
+    // lilun：模块标签。移动端改为一级下拉菜单（#mModSelect），桌面保持横向标签。
     bar.innerHTML = "";
-    modules.forEach((m) => {
-      const d = document.createElement("div");
-      d.className = "board-tab";
-      d.innerHTML = `<span>${esc(m.name)}</span>`;
-      m._el = d;
-      d.onclick = () => selectModule(m, d);
-      bar.appendChild(d);
-    });
+    if (isMobile()) {
+      let ms = document.getElementById("mModSelect");
+      if (!ms) {
+        ms = document.createElement("select");
+        ms.id = "mModSelect";
+        ms.className = "tj-mobile-select";
+        bar.parentNode.insertBefore(ms, bar);
+      }
+      ms.innerHTML = "";
+      const ph = document.createElement("option");
+      ph.value = ""; ph.textContent = "选择模块"; ph.disabled = true; ph.selected = true;
+      ms.appendChild(ph);
+      modules.forEach((m) => {
+        const o = document.createElement("option");
+        o.value = m.key; o.textContent = m.name; o._m = m;
+        ms.appendChild(o);
+      });
+      ms.onchange = () => {
+        const o = ms.selectedOptions && ms.selectedOptions[0];
+        if (o && o._m) selectModule(o._m, o._m._el);
+      };
+      bar.style.display = "none";
+    } else {
+      modules.forEach((m) => {
+        const d = document.createElement("div");
+        d.className = "board-tab";
+        d.innerHTML = `<span>${esc(m.name)}</span>`;
+        m._el = d;
+        d.onclick = () => selectModule(m, d);
+        bar.appendChild(d);
+      });
+      bar.style.display = "";
+    }
   } else if (side) {
     side.innerHTML = "";
     buildTianjiTree();
@@ -204,7 +229,7 @@ async function renderTianjiSectionPanel(rootName, secName) {
   const dp = document.getElementById("detailPane"); if (dp) dp.style.display = "none";
   const mh = document.getElementById("moduleHead");
   if (mh) mh.innerHTML = '<div class="mh-left"><h2>' + esc(rootName) + ' · ' + esc(secName) + '</h2><p>' +
-    (isMobile() ? '下拉选择标签，查看内容' : '左侧分类 → 中间条目 → 右侧内容') + '</p></div>';
+    (isMobile() ? '选择分类与文章，查看内容' : '左侧分类 → 中间条目 → 右侧内容') + '</p></div>';
   await loadTianjiTree();
   const root = (tianjiTreeData || []).find((r) => r.t === rootName);
   const find = (n, name) => n && (n.children || []).find((c) => c.t === name);
@@ -214,49 +239,77 @@ async function renderTianjiSectionPanel(rootName, secName) {
   panel.innerHTML = "";
 
   if (isMobile()) {
-    // 移动端：用顶部下拉菜单选择「文章标签」，去掉左右两栏滚动条；内容区显示详情。
-    const sel = document.createElement("select");
-    sel.className = "tj-mobile-select";
-    sel.id = "djMobileSelect";
-    const ph = document.createElement("option");
-    ph.value = ""; ph.textContent = "选择「" + secName + "」标签";   // 缩短占位文字，避免被 select 截断
-    ph.disabled = true; ph.selected = true;
-    sel.appendChild(ph);
+    // 移动端：目录做成两个下拉（一级=分类、二级=该分类下文章）；文章全文显示、整页滚动（非嵌入式）。
+    const lvl1 = document.createElement("select");
+    lvl1.className = "tj-mobile-select";
+    lvl1.id = "tjLevel1";
+    const ph1 = document.createElement("option");
+    ph1.value = ""; ph1.textContent = "选择分类"; ph1.disabled = true; ph1.selected = true;
+    lvl1.appendChild(ph1);
+
+    const lvl2 = document.createElement("select");
+    lvl2.className = "tj-mobile-select";
+    lvl2.id = "tjLevel2";
+    const ph2 = document.createElement("option");
+    ph2.value = ""; ph2.textContent = "选择文章"; ph2.disabled = true; ph2.selected = true;
+    lvl2.appendChild(ph2);
+
     const content = document.createElement("div");
     content.className = "dj-main";
     content.id = "djMobileContent";
+
     if (!cats.length) {
       content.innerHTML = '<div class="hint">（该分区暂无内容）</div>';
-    } else {
-      cats.forEach((cat) => {
-        const og = document.createElement("optgroup");
-        og.label = cat.t;
-        if (cat.src) {
-          const o = document.createElement("option");
-          o.textContent = "📄 " + cat.t; o._leaf = cat; og.appendChild(o);
-        }
-        collectTianjiLeaves(cat, []).forEach((leaf) => {
-          const o = document.createElement("option");
-          o.textContent = leaf.t; o._leaf = leaf; og.appendChild(o);
-        });
-        if (og.children.length) sel.appendChild(og);
-      });
-      // 默认选中第一个叶子并直接展示内容，减少一步操作
-      let firstLeaf = null;
-      for (const c of cats) { const ls = collectTianjiLeaves(c, []); if (ls.length) { firstLeaf = ls[0]; break; } }
-      if (firstLeaf) {
-        sel.value = (firstLeaf.src ? "📄 " : "") + firstLeaf.t;
-        selectTJ2(firstLeaf, content);
-      } else {
-        content.innerHTML = '<div class="hint">（该分区暂无内容）</div>';
-      }
+      panel.appendChild(lvl1); panel.appendChild(lvl2); panel.appendChild(content);
+      return;
     }
-    sel.addEventListener("change", () => {
-      const opt = sel.selectedOptions && sel.selectedOptions[0];
+
+    cats.forEach((cat, i) => {
+      const o = document.createElement("option");
+      o.value = "c" + i; o.textContent = cat.t; o._cat = cat;
+      lvl1.appendChild(o);
+    });
+
+    // 根据一级分类填充二级下拉（文章），并自动展示首篇
+    const fillLevel2 = (cat) => {
+      lvl2.innerHTML = "";
+      const ph = document.createElement("option");
+      ph.value = ""; ph.textContent = "选择文章"; ph.disabled = true; ph.selected = true;
+      lvl2.appendChild(ph);
+      const leaves = collectTianjiLeaves(cat, []);
+      if (!leaves.length && cat.src) {
+        const o = document.createElement("option");
+        o.value = "l0"; o.textContent = "📄 " + cat.t; o._leaf = cat;
+        lvl2.appendChild(o);
+      } else {
+        leaves.forEach((leaf, j) => {
+          const o = document.createElement("option");
+          o.value = "l" + j; o.textContent = leaf.t; o._leaf = leaf;
+          lvl2.appendChild(o);
+        });
+      }
+      const first = [...lvl2.options].find((x) => x._leaf);
+      if (first) { lvl2.value = first.value; selectTJ2(first._leaf, content); }
+      else content.innerHTML = '<div class="hint">（该分类暂无内容）</div>';
+    };
+
+    lvl1.addEventListener("change", () => {
+      const opt = lvl1.selectedOptions && lvl1.selectedOptions[0];
+      if (!opt || !opt._cat) return;
+      fillLevel2(opt._cat);
+    });
+    lvl2.addEventListener("change", () => {
+      const opt = lvl2.selectedOptions && lvl2.selectedOptions[0];
       if (!opt || !opt._leaf) return;
       selectTJ2(opt._leaf, content);
     });
-    panel.appendChild(sel);
+
+    // 默认选中第一个分类并展示其首篇（打开网页自动显示第一项内容）
+    lvl1.value = "c0";
+    fillLevel2(cats[0]);
+
+    panel.appendChild(lvl1);
+    panel.appendChild(lvl2);
     panel.appendChild(content);
     return;
   }
@@ -524,6 +577,60 @@ async function buildTianjiTree(rootName) {
 // 是否处于移动端断点（与 CSS @media(max-width:820px) 保持一致）
 function isMobile() {
   try { return window.matchMedia("(max-width:820px)").matches; } catch (e) { return false; }
+}
+
+// 移动端：把文章列表（#resultList 的 .result-item）转成「二级目录」下拉，选中即渲染详情；默认自动展示首项。
+// 通过 MutationObserver 自动适配所有会刷新列表的模块（分页 / 栏目切换 / 子模块切换 / 搜索结果等），
+// 无需逐个渲染函数挂钩。非列表型内容（工具 / 表格 / 图集 / 动画）不含 .result-item，下拉不生成，整页滚动全文显示。
+let _mListObserver = null, _mListTO = null;
+function mobileListToSelect() {
+  const ul = document.getElementById("resultList");
+  if (!ul) return;
+  let sel = document.getElementById("mListSelect");
+  if (!isMobile()) {
+    if (sel) sel.remove();
+    ul.style.display = "";
+    return;
+  }
+  const items = ul.querySelectorAll(".result-item");
+  if (!items.length) {
+    if (sel) sel.style.display = "none";
+    ul.style.display = "";
+    return;
+  }
+  if (!sel) {
+    sel = document.createElement("select");
+    sel.id = "mListSelect";
+    sel.className = "tj-mobile-select";
+    ul.parentNode.insertBefore(sel, ul);
+  }
+  sel.style.display = "";
+  ul.style.display = "none";
+  sel.innerHTML = "";
+  const ph = document.createElement("option");
+  ph.value = ""; ph.textContent = "选择文章"; ph.disabled = true; ph.selected = true;
+  sel.appendChild(ph);
+  items.forEach((li, i) => {
+    const o = document.createElement("option");
+    o.value = "i" + i; o.textContent = li.textContent.trim(); o._li = li;
+    sel.appendChild(o);
+  });
+  sel.onchange = () => {
+    const o = sel.selectedOptions && sel.selectedOptions[0];
+    if (o && o._li && o._li.onclick) o._li.onclick();
+  };
+  // 自动展示首项（打开网页 / 切换模块 / 翻页后均落到第一条）
+  if (sel.options.length > 1) { sel.selectedIndex = 1; sel.onchange(); }
+}
+function observeMobileList() {
+  if (_mListObserver) return;
+  const ul = document.getElementById("resultList");
+  if (!ul) return;
+  _mListObserver = new MutationObserver(() => {
+    if (_mListTO) clearTimeout(_mListTO);
+    _mListTO = setTimeout(mobileListToSelect, 60);
+  });
+  _mListObserver.observe(ul, { childList: true, subtree: true });
 }
 
 function countTianjiLeaves(node) {
@@ -2367,12 +2474,18 @@ async function doGlobalSearch(q) {
   // 子系统（人纪 / 天纪）：左侧模块即各子模块，loadSubList 需据此查 sub 的 kind。
   if (sysCfg) subSubs = modules;
   buildSidebar(modules);
+  observeMobileList();
   // 天纪：顶部三标签（命理系统/斗数/四柱）。默认进入「命理系统」（排盘/紫微），
   // 斗数/四柱 仍可在顶栏点选，但不再自动落到空目录页。
   if (SYSTEM === "tianji") {
     try { await loadTianjiTree(); } catch (e) {}
-    const firstTab = document.querySelector('#boardTabs .board-tab[data-tab="mingli"]');
-    if (firstTab) showTianjiTab("mingli", firstTab);
+    if (isMobile()) {
+      // 移动端默认直接落到「斗数·基础理论」并自动展示首篇（整页滚动、双下拉目录）
+      await showTianjiSection("dou", "基础理论");
+    } else {
+      const firstTab = document.querySelector('#boardTabs .board-tab[data-tab="mingli"]');
+      if (firstTab) showTianjiTab("mingli", firstTab);
+    }
   } else {
     // 其他子系统：初始默认激活优先恢复上次模块，否则第一个模块
     let target = modules[0];
@@ -2384,6 +2497,10 @@ async function doGlobalSearch(q) {
       }
     } catch (e) {}
     if (target) selectModule(target, target._el);
+    if (isMobile()) {
+      const ms = document.getElementById("mModSelect");
+      if (ms && target) ms.value = target.key;
+    }
   }
   const doSearch = () => {
     const q = $("#search").value.trim();

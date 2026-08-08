@@ -771,9 +771,9 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
 @media (max-width:820px){
   html{ -webkit-text-size-adjust:100%; }
   body{ font-size:13px; line-height:1.62; overflow-wrap:anywhere; }
-  /* 锁定视口高度并裁切溢出：彻底消除「整页竖向滚动条」（移动端根容器不再被内容撑高）。
-     内部面板改用 flex:1 填满剩余空间（见 .workarea/.dj），各自 overflow:auto 内部滚动。 */
-  .app{ height:100dvh; overflow:hidden; }
+  /* 整页自然滚动：去掉视口锁定与溢出裁切，根容器高度自适应，文章随页面整体上下滚动（不再嵌入式滚动）。
+     !important 同时覆盖人纪内联 CSS 的 .app{height:100vh}。 */
+  .app{ height:auto !important; min-height:100dvh; overflow:visible !important; }
 
   /* 顶栏：图标+标题 与 系统切换 同行，搜索整行换行占满；内容完整不裁切 */
   .topbar{ position:sticky; top:0; height:auto; flex-wrap:wrap; padding:6px 12px; gap:6px 10px; }
@@ -815,18 +815,18 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
     .cases-catnav::-webkit-scrollbar, .result-list::-webkit-scrollbar, .list-main::-webkit-scrollbar,
     .catalog-tree::-webkit-scrollbar{ width:0; height:0; display:none; }
 
-  /* 工作区：列表/详情上下堆叠；用 flex:1 填满 .main 剩余空间（不再是写死 calc(100dvh-250px)，
-     那会随顶栏/标签条/目录树实际高度变化而比可用空间更高 → 撑出整页竖向滚动）。
-     配合 .app{height:100dvh;overflow:hidden}，整页不再滚动，列表/详情各自内部滚动。 */
-  .main{ min-height:0; }
-  .workarea{ flex-direction:column; flex:1; min-height:0; height:auto; overflow:hidden; }
+  /* 工作区：列表/详情上下堆叠；高度自适应，整页自然滚动（不再 flex:1 填满、不再内部 overflow:auto）。
+     文章区去掉固定高度与内部滚动 → 全文随页面一起滚动。 */
+  .main{ min-height:0; height:auto; overflow:visible; }
+  .layout{ height:auto; min-height:0; }
+  .workarea{ flex-direction:column; flex:none; min-height:0; height:auto; overflow:visible; }
   .list-pane{ width:100%; max-width:none; border-right:none; border-bottom:1px solid var(--line);
-    flex:0 0 34vh; min-height:0; overflow:auto; padding:10px 12px; background:var(--panel); }
+    flex:none; min-height:0; height:auto; overflow:visible; padding:10px 12px; background:var(--panel); }
   .list-main{ padding:0; }
   .cases-catnav{ flex:1 1 100%; flex-direction:row; flex-wrap:nowrap; overflow-x:auto;
     -webkit-overflow-scrolling:touch; max-height:none; border-right:none; border-bottom:1px dashed var(--line); padding:6px 0 8px; }
   .cases-catnav .catnav-item{ flex:0 0 auto; white-space:nowrap; }
-  .detail-pane{ flex:1 1 auto; min-height:0; overflow:auto; width:100%; padding:12px 12px 14px; background:var(--bg); }
+  .detail-pane{ flex:none; min-height:0; height:auto; overflow:visible; width:100%; padding:12px 12px 14px; background:var(--bg); }
   .filter-bar{ padding:6px 0 10px; }
   .filter-tab{ font-size:12.5px; padding:4px 12px; }
   .result-item{ padding:10px 12px; margin:6px 0; }
@@ -836,9 +836,9 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
   .pager{ padding:12px 0; }
   .pager button{ font-size:13px; padding:6px 14px; }
 
-  /* 各模式 list-pane 固定宽度覆盖（hdwj/mingli 优先级高于基础规则） */
+  /* 各模式 list-pane 覆盖：仅保留整宽，去掉 flex 撑高（整页滚动下无需固定高度） */
   .workarea.hdwj-mode .list-pane{ width:100%; max-width:none; }
-  .workarea.mingli-mode .list-pane{ width:100%; max-width:none; flex:1 1 auto; border-right:none; padding:8px 10px; }
+  .workarea.mingli-mode .list-pane{ width:100%; max-width:none; padding:8px 10px; }
 
   /* 模块标题区：紧凑、提升主标题视觉权重，加底色突出 */
   .module-head{ padding:8px 14px 10px; gap:8px; background:var(--panel); border-bottom:1px solid var(--line); }
@@ -904,15 +904,13 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
   .ziwei-center{ padding:10px; gap:6px; }
   .zc-sizhu{ font-size:17px; }
 
-  /* 斗数·基础理论 三栏整页（dj）：竖屏上下堆叠，用 flex:1 填满 .main 剩余空间
-     （不再写死 calc(100dvh-250px)，避免比可用空间更高而撑出整页竖向滚动）。
-     移动端三栏改为下拉菜单 + 内容区，dj 顶部贴紧 module-head（margin-top:0、padding 0）。 */
-  .dj{ flex-direction:column; flex:1; min-height:0; height:auto; margin-top:0; padding:0; overflow:hidden; }
-  .dj-side{ width:100%; border-right:none; border-bottom:1px solid var(--line); max-height:20vh; overflow:auto; -webkit-overflow-scrolling:touch; }
-  .dj-mid{ width:100%; border-right:none; border-bottom:1px solid var(--line); max-height:20vh; overflow:auto; -webkit-overflow-scrolling:touch; }
+  /* 斗数·基础理论 三栏（dj）：竖屏上下堆叠，高度自适应、整页自然滚动；三栏改为双下拉 + 内容区。 */
+  .dj{ flex-direction:column; flex:none; min-height:0; height:auto; margin-top:0; padding:0; overflow:visible; }
+  .dj-side{ width:100%; border-right:none; border-bottom:1px solid var(--line); max-height:none; overflow:visible; height:auto; }
+  .dj-mid{ width:100%; border-right:none; border-bottom:1px solid var(--line); max-height:none; overflow:visible; height:auto; }
   .dj-1tab{ font-size:14px; padding:11px 14px; }
   .dj-2tab{ font-size:12.5px; padding:6px 11px; }
-  .dj-main{ flex:1 1 auto; min-height:0; overflow:auto; padding:12px 14px; }
+  .dj-main{ flex:none; min-height:0; overflow:visible; height:auto; padding:12px 14px; }
 
   /* 灵龟八法 / 经络 等横排组件：允许换行、缩小 */
   .lg-live-main{ gap:12px; }
