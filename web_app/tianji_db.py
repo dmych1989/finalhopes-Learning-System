@@ -319,7 +319,23 @@ def list_items(sub, q=""):
     items = [{"i": idx, "name": it["name"]} for idx, it in enumerate(raw)]
     if q:
         ql = q.lower()
-        items = [it for it in items if ql in it["name"].lower()]
+        out = []
+        for it in items:
+            # 标题命中直接纳入
+            if ql in it["name"].lower():
+                out.append(it)
+                continue
+            # 否则匹配文章正文（fields 内容）
+            try:
+                rec = get_item(sub, it["i"])
+            except Exception:
+                rec = None
+            fields = (rec or {}).get("fields") or {}
+            fv = " ".join(str(k) for k in fields) + " " + \
+                 " ".join(str(v) for v in fields.values() if v)
+            if ql in fv.lower():
+                out.append(it)
+        items = out
     return items
 
 

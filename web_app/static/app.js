@@ -348,13 +348,30 @@ async function selectTJ2(leaf, col3) {
   try {
     const item = await api(`${sysCfg.api}/item?sub=${enc(leaf.src)}&i=${leaf.idx}`);
     const fields = item.fields || {};
+    const meta = CAT_SUB_META[leaf.src] || {};
     let h = `<div class="detail-card"><h3>${esc(item.name)}</h3>`;
+    // 卦图（人间道 / 六十四卦 src=gua 默认带原版卦图）
+    if (meta.hasImg) {
+      h += `<div class="gua-img"><img src="${sysCfg.img}?name=${enc(item.name)}" ` +
+           `alt="${esc(item.name)}" onerror="this.style.display='none'"></div>`;
+    }
+    // 卦象线（阴阳爻）
+    if (item.dd && /^[01]{6}$/.test(item.dd)) {
+      h += `<div class="gua-dd" title="上爻→初爻">`;
+      for (let k = 0; k < 6; k++) {
+        const yang = item.dd[k] === "1";
+        h += `<div class="gua-line ${yang ? "yang" : "yin"}">` + (yang ? "" : `<span></span><span></span>`) + `</div>`;
+      }
+      h += `</div>`;
+    }
     Object.keys(fields).forEach((kk) => {
       const v = fields[kk];
       if (v == null || v === "") return;
-      h += `<div class="sec-h">${esc(kk)}</div><div class="sec-b">${esc(v)}</div>`;
+      // 收紧段落之间的空行：吃掉换行前后的空白、合并连续换行（保留段落分隔，去掉整行空白）
+      const vv = String(v).replace(/\r\n/g, "\n").replace(/[ \t]*\n[ \t]*/g, "\n").replace(/\n{2,}/g, "\n").trim();
+      h += `<div class="sec-h">${esc(kk)}</div><div class="sec-b">${esc(vv)}</div>`;
     });
-    if (!Object.keys(fields).length) h += '<div class="hint">（本条暂无内容）</div>';
+    if (!Object.keys(fields).length && !meta.hasImg && !item.dd) h += '<div class="hint">（本条暂无内容）</div>';
     h += "</div>";
     col3.innerHTML = h;
   } catch (e) {
@@ -455,7 +472,8 @@ function renderTianjiItem(sub, item) {
   keys.forEach((k) => {
     const v = fields[k];
     if (v == null || v === "") return;
-    h += `<div class="sec-h">${esc(k)}</div><div class="sec-b">${esc(v)}</div>`;
+    const vv = String(v).replace(/\r\n/g, "\n").replace(/[ \t]*\n[ \t]*/g, "\n").replace(/\n{2,}/g, "\n").trim();
+    h += `<div class="sec-h">${esc(k)}</div><div class="sec-b">${esc(vv)}</div>`;
   });
   h += `</div>`;
   $("#detailPane").innerHTML = h;
