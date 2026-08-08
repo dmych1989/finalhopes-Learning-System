@@ -199,6 +199,7 @@ async function renderTianjiSectionPanel(rootName, secName) {
   const panel = document.getElementById("douJichuPanel");
   if (!panel) return;
   const side = document.getElementById("sidebar"); if (side) side.style.display = "none";
+  const wa = document.querySelector(".workarea"); if (wa) wa.style.display = "none";  // 整体隐藏工作区（避免 .workarea 与 .dj 同时 flex:1 平分空间，导致 .dj 被挤压到中部）
   const lp = document.getElementById("listPane"); if (lp) lp.style.display = "none";
   const dp = document.getElementById("detailPane"); if (dp) dp.style.display = "none";
   const mh = document.getElementById("moduleHead");
@@ -218,7 +219,7 @@ async function renderTianjiSectionPanel(rootName, secName) {
     sel.className = "tj-mobile-select";
     sel.id = "djMobileSelect";
     const ph = document.createElement("option");
-    ph.value = ""; ph.textContent = "— 选择「" + secName + "」文章标签 —";
+    ph.value = ""; ph.textContent = "选择「" + secName + "」标签";   // 缩短占位文字，避免被 select 截断
     ph.disabled = true; ph.selected = true;
     sel.appendChild(ph);
     const content = document.createElement("div");
@@ -431,10 +432,11 @@ function renderTianjiItem(sub, item) {
   $("#detailPane").innerHTML = h;
 }
 
-// 退出三栏面板、恢复常规（目录树 + 列表 + 详情）。
+// 退出三栏面板、恢复常规（工作区 + 列表 + 详情）。
 function restoreMingliNormal() {
   const panel = document.getElementById("douJichuPanel");
   if (panel) panel.style.display = "none";
+  const wa = document.querySelector(".workarea"); if (wa) wa.style.display = "";   // 恢复工作区（与 renderTianjiSectionPanel 隐藏配对）
   const lp = document.getElementById("listPane"); if (lp) lp.style.display = "";
   const dp = document.getElementById("detailPane"); if (dp) dp.style.display = "";
   const side = document.getElementById("sidebar"); if (side) side.style.display = "";

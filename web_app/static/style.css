@@ -776,29 +776,31 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
   .app{ height:100dvh; overflow:hidden; }
 
   /* 顶栏：图标+标题 与 系统切换 同行，搜索整行换行占满；内容完整不裁切 */
-  .topbar{ position:sticky; top:0; height:auto; flex-wrap:wrap; padding:8px 12px; gap:8px 10px; }
-  .brand{ flex:1 1 auto; min-width:0; }
-  .brand-logo{ height:30px; }
-  .topbar h1{ font-size:15px; line-height:1.2; }
+  .topbar{ position:sticky; top:0; height:auto; flex-wrap:wrap; padding:6px 12px; gap:6px 10px; }
+  .brand{ flex:1 1 auto; min-width:0; gap:8px; }
+  .brand-logo{ height:28px; }
+  .topbar h1{ font-size:14.5px; line-height:1.2; }
   .topbar .brand-sub{ display:none; }                 /* 副标题为装饰，竖屏隐藏避免挤占 */
-  .sys-inline{ flex:0 0 auto; margin-left:0; }
-  .sys-inline .sys-tab{ padding:6px 11px; font-size:13px; }
+  .sys-inline{ flex:0 0 auto; margin-left:0; gap:4px; }
+  .sys-inline .sys-tab{ padding:5px 10px; font-size:12.5px; }
   .searchbox{ flex:1 1 100%; order:5; max-width:none; gap:8px; min-width:0; }
   .searchbox input{ font-size:16px; padding:9px 14px; flex:1 1 auto; min-width:0; }  /* 16px 防 iOS 聚焦自动缩放；flex+min-width:0 防挤压按钮 */
   .searchbox button{ padding:9px 16px; font-size:14px; flex:0 0 auto; }  /* flex-shrink:0 保证搜索按钮始终可见可点 */
 
   /* 顶部板块/工具标签条：取消 sticky（顶栏高度可变）；board-tabs 改为可换行+overflow:visible，
      避免 overflow-x:auto 裁切内部绝对定位的下拉菜单（修复「斗数/四柱点不开下拉」「人纪横向标签被裁」）。 */
-  .board-tabs{ position:static; padding:6px 10px; gap:4px; flex-wrap:wrap; overflow:visible; }
-  .tj-toolbar, .mingli-tabs{ position:static; padding:6px 10px; gap:4px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .board-tabs{ position:static; padding:4px 10px; gap:3px; flex-wrap:wrap; overflow:visible; }
+  .tj-toolbar, .mingli-tabs{ position:static; padding:5px 10px; gap:4px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
   .board-tab, .tj-tool, .ml-tab{ font-size:13px; padding:5px 11px; flex:0 0 auto; }
   .board-tab .bt-count{ font-size:11px; }
 
   /* 天纪 · 目录侧栏在移动端隐藏（实际导航走顶部分区下拉 + 三栏面板；移动端三栏改为下拉菜单） */
   .layout--side{ flex-direction:column; }
   .sidebar{ display:none; }
-  .tj-mobile-select{ width:100%; font-size:16px; padding:10px 12px; border:1px solid var(--line);
-    border-radius:8px; background:var(--bg-card, #fff); color:var(--text); margin:8px 12px 0; }
+  /* 移动端 dj 面板下拉菜单：视觉上像「标签条」成员，统一主题色。 */
+  .tj-mobile-select{ width:calc(100% - 24px); font-size:14px; padding:8px 30px 8px 12px; border:1px solid var(--line);
+    border-radius:8px; background:var(--bg-card, #fff) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M2 4l4 4 4-4' stroke='%235a8b85' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>") no-repeat right 10px center;
+    -webkit-appearance:none; appearance:none; color:var(--text); margin:0 12px 8px; min-height:36px; }
   .sidebar .nav-item{ padding:9px 12px; font-size:13.5px; }
   .sidebar .ml-tool-entry{ font-size:13.5px; }
   .sidebar .tj-root{ font-size:12.5px; }
@@ -819,12 +821,12 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
   .main{ min-height:0; }
   .workarea{ flex-direction:column; flex:1; min-height:0; height:auto; overflow:hidden; }
   .list-pane{ width:100%; max-width:none; border-right:none; border-bottom:1px solid var(--line);
-    flex:0 0 34vh; min-height:0; overflow:auto; padding:10px 12px; }
+    flex:0 0 34vh; min-height:0; overflow:auto; padding:10px 12px; background:var(--panel); }
   .list-main{ padding:0; }
   .cases-catnav{ flex:1 1 100%; flex-direction:row; flex-wrap:nowrap; overflow-x:auto;
     -webkit-overflow-scrolling:touch; max-height:none; border-right:none; border-bottom:1px dashed var(--line); padding:6px 0 8px; }
   .cases-catnav .catnav-item{ flex:0 0 auto; white-space:nowrap; }
-  .detail-pane{ flex:1 1 auto; min-height:0; overflow:auto; width:100%; padding:14px 14px; }
+  .detail-pane{ flex:1 1 auto; min-height:0; overflow:auto; width:100%; padding:12px 12px 14px; background:var(--bg); }
   .filter-bar{ padding:6px 0 10px; }
   .filter-tab{ font-size:12.5px; padding:4px 12px; }
   .result-item{ padding:10px 12px; margin:6px 0; }
@@ -838,10 +840,10 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
   .workarea.hdwj-mode .list-pane{ width:100%; max-width:none; }
   .workarea.mingli-mode .list-pane{ width:100%; max-width:none; flex:1 1 auto; border-right:none; padding:8px 10px; }
 
-  /* 模块标题区 */
-  .module-head{ padding:10px 14px; gap:10px; }
-  .mh-left h2{ font-size:16px; }
-  .mh-left p{ font-size:12px; }
+  /* 模块标题区：紧凑、提升主标题视觉权重，加底色突出 */
+  .module-head{ padding:8px 14px 10px; gap:8px; background:var(--panel); border-bottom:1px solid var(--line); }
+  .mh-left h2{ font-size:16px; font-weight:700; letter-spacing:.3px; }
+  .mh-left p{ font-size:12px; color:var(--ink3); margin-top:2px; }
 
   /* 详情卡片 / 文章正文：缩小字号，长串可断行 */
   .detail-card{ padding:14px 14px; }
@@ -904,13 +906,13 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
 
   /* 斗数·基础理论 三栏整页（dj）：竖屏上下堆叠，用 flex:1 填满 .main 剩余空间
      （不再写死 calc(100dvh-250px)，避免比可用空间更高而撑出整页竖向滚动）。
-     三栏各自内部滚动（dj-side/dj-mid max-height:20vh、dj-main flex:1 overflow:auto）。 */
-  .dj{ flex-direction:column; flex:1; min-height:0; height:auto; margin-top:0; overflow:hidden; }
+     移动端三栏改为下拉菜单 + 内容区，dj 顶部贴紧 module-head（margin-top:0、padding 0）。 */
+  .dj{ flex-direction:column; flex:1; min-height:0; height:auto; margin-top:0; padding:0; overflow:hidden; }
   .dj-side{ width:100%; border-right:none; border-bottom:1px solid var(--line); max-height:20vh; overflow:auto; -webkit-overflow-scrolling:touch; }
   .dj-mid{ width:100%; border-right:none; border-bottom:1px solid var(--line); max-height:20vh; overflow:auto; -webkit-overflow-scrolling:touch; }
   .dj-1tab{ font-size:14px; padding:11px 14px; }
   .dj-2tab{ font-size:12.5px; padding:6px 11px; }
-  .dj-main{ flex:1 1 auto; min-height:0; overflow:auto; padding:14px 16px; }
+  .dj-main{ flex:1 1 auto; min-height:0; overflow:auto; padding:12px 14px; }
 
   /* 灵龟八法 / 经络 等横排组件：允许换行、缩小 */
   .lg-live-main{ gap:12px; }
@@ -943,10 +945,12 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
 /* 超小屏（<=380px）进一步收紧，确保不溢出 */
 @media (max-width:380px){
   body{ font-size:12.5px; }
-  .topbar h1{ font-size:14px; }
+  .topbar h1{ font-size:13.5px; }
+  .sys-inline .sys-tab{ padding:4px 8px; font-size:12px; }
   .bz-gz{ font-size:20px; }
   .palace-card{ min-height:88px; }
   .detail-card h3{ font-size:16px; }
   .sidebar .tj-leaf{ font-size:12px; }
   .mh-left h2{ font-size:15px; }
+  .tj-mobile-select{ font-size:13.5px; padding:7px 28px 7px 10px; }
 }
