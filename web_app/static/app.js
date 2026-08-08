@@ -2919,9 +2919,11 @@ function renderPaipanSystem(d) {
   });
   zh += '</div>';
   $("#ppZiwei").innerHTML = zh;
-  // 辅星 / 杂曜 显隐切换（默认仅显示十四主星）
+  // 辅星 / 杂曜 显隐切换（默认显示辅星，杂曜默认隐藏）
   const ppz = $("#ppZiwei");
   const bm = $("#btnMinor"), ba = $("#btnAdj");
+  ppz.classList.add("show-minor");
+  if (bm) bm.classList.add("on");
   if (bm) bm.onclick = function () {
     const on = ppz.classList.toggle("show-minor");
     bm.classList.toggle("on", on);
