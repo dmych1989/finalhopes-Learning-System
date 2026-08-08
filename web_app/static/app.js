@@ -138,41 +138,17 @@ function buildSidebar(modules) {
       document.addEventListener("click", closeTianjiTabDDs);
     }
   } else if (bar) {
-    // lilun：模块标签。移动端改为一级下拉菜单（#mModSelect），桌面保持横向标签。
+    // lilun：模块标签始终横向排列（桌面/移动一致）；移动端由 CSS .board-tabs{flex-wrap} 自动换行。
     bar.innerHTML = "";
-    if (isMobile()) {
-      let ms = document.getElementById("mModSelect");
-      if (!ms) {
-        ms = document.createElement("select");
-        ms.id = "mModSelect";
-        ms.className = "tj-mobile-select";
-        bar.parentNode.insertBefore(ms, bar);
-      }
-      ms.innerHTML = "";
-      const ph = document.createElement("option");
-      ph.value = ""; ph.textContent = "选择模块"; ph.disabled = true; ph.selected = true;
-      ms.appendChild(ph);
-      modules.forEach((m) => {
-        const o = document.createElement("option");
-        o.value = m.key; o.textContent = m.name; o._m = m;
-        ms.appendChild(o);
-      });
-      ms.onchange = () => {
-        const o = ms.selectedOptions && ms.selectedOptions[0];
-        if (o && o._m) selectModule(o._m, o._m._el);
-      };
-      bar.style.display = "none";
-    } else {
-      modules.forEach((m) => {
-        const d = document.createElement("div");
-        d.className = "board-tab";
-        d.innerHTML = `<span>${esc(m.name)}</span>`;
-        m._el = d;
-        d.onclick = () => selectModule(m, d);
-        bar.appendChild(d);
-      });
-      bar.style.display = "";
-    }
+    modules.forEach((m) => {
+      const d = document.createElement("div");
+      d.className = "board-tab";
+      d.innerHTML = `<span>${esc(m.name)}</span>`;
+      m._el = d;
+      d.onclick = () => selectModule(m, d);
+      bar.appendChild(d);
+    });
+    bar.style.display = "";
   } else if (side) {
     side.innerHTML = "";
     buildTianjiTree();
@@ -916,13 +892,14 @@ function selectModule(m, el) {
 
 function endpointFor(q) {
   const k = state.module;
-  if (k === "cases") return `/api/cases?cat=${enc(state.caseCat || "")}&q=${enc(q)}&page=${state.page}&size=${state.size}`;
-  if (k === "herbs") return `/api/herbs?q=${enc(q)}&cat=${enc(state.herbCat)}&page=${state.page}&size=${state.size}`;
-  if (k === "articles") return `/api/articles?cat=${enc(state.articleCat || "")}&q=${enc(q)}&page=${state.page}&size=${state.size}`;
-  if (k === "hdwj") return `/api/hdwj?q=${enc(q)}&page=${state.page}&size=${state.size}`;
-  if (k === "bz") return `/api/bz?cat=${enc(state.bzCat || "")}&q=${enc(q)}&page=${state.page}&size=${state.size}`;
-  if (k === "sspl") return `/api/sspl?cat=${enc(state.ssplCat || "")}&q=${enc(q)}&page=${state.page}&size=${state.size}`;
-  if (REF_TABLES[k]) return `/api/ref/${REF_TABLES[k]}?q=${enc(q)}&page=${state.page}&size=${state.size}`;
+  const sz = isMobile() ? 19999 : state.size;   // 移动端一次取全量（去掉翻页）；桌面仍按原分页
+  if (k === "cases") return `/api/cases?cat=${enc(state.caseCat || "")}&q=${enc(q)}&page=${state.page}&size=${sz}`;
+  if (k === "herbs") return `/api/herbs?q=${enc(q)}&cat=${enc(state.herbCat)}&page=${state.page}&size=${sz}`;
+  if (k === "articles") return `/api/articles?cat=${enc(state.articleCat || "")}&q=${enc(q)}&page=${state.page}&size=${sz}`;
+  if (k === "hdwj") return `/api/hdwj?q=${enc(q)}&page=${state.page}&size=${sz}`;
+  if (k === "bz") return `/api/bz?cat=${enc(state.bzCat || "")}&q=${enc(q)}&page=${state.page}&size=${sz}`;
+  if (k === "sspl") return `/api/sspl?cat=${enc(state.ssplCat || "")}&q=${enc(q)}&page=${state.page}&size=${sz}`;
+  if (REF_TABLES[k]) return `/api/ref/${REF_TABLES[k]}?q=${enc(q)}&page=${state.page}&size=${sz}`;
   return null;
 }
 const enc = (s) => encodeURIComponent(s || "");
@@ -977,10 +954,46 @@ async function loadList(q) {
   }
 }
 
+// 移动端：把分类侧栏（评论/病症/按证型/论文栏目）渲染为单个下拉菜单；桌面保持按钮列表。
+// onPick(null) 表示选中「全部」；否则传入对应分类对象。
+function renderCatNavSelect(nav, title, items, onPick, allLabel) {
+  nav.style.display = "block";
+  nav.innerHTML = "";
+  const sel = document.createElement("select");
+  sel.id = "mCatSelect";
+  sel.className = "tj-mobile-select";
+  const ph = document.createElement("option");
+  ph.value = ""; ph.textContent = title; ph.disabled = true; ph.selected = true;
+  sel.appendChild(ph);
+  if (allLabel) {
+    const o = document.createElement("option");
+    o.value = "__all"; o.textContent = allLabel;
+    sel.appendChild(o);
+  }
+  (items || []).forEach((c, i) => {
+    const o = document.createElement("option");
+    o.value = "c" + i;
+    o.textContent = (c.label != null ? c.label : c.name) + (c.count != null ? "（" + c.count + "）" : "");
+    o._c = c;
+    sel.appendChild(o);
+  });
+  sel.onchange = () => {
+    const o = sel.selectedOptions && sel.selectedOptions[0];
+    if (!o) return;
+    onPick(o.value === "__all" ? null : (o._c || null));
+  };
+  nav.appendChild(sel);
+}
+
 // 医案「按证型浏览」左侧分类侧栏
 function renderCasesCatNav(cats, activeKey) {
   const nav = $("#casesCatNav");
   if (!nav) return;
+  if (isMobile()) {
+    renderCatNavSelect(nav, "按证型浏览", cats,
+      (c) => { state.caseCat = c ? c.key : "all"; state.page = 1; loadList($("#search").value); }, "全部证型");
+    return;
+  }
   nav.style.display = "block";
   nav.innerHTML = "";
   const title = document.createElement("div");
@@ -1000,6 +1013,11 @@ function renderCasesCatNav(cats, activeKey) {
 function renderArticleCatNav(cats, activeKey) {
   const nav = $("#articleCatNav");
   if (!nav) return;
+  if (isMobile()) {
+    renderCatNavSelect(nav, "论文栏目", cats,
+      (c) => { state.articleCat = c ? c.key : ""; state.page = 1; loadList($("#search").value); }, "全部论文");
+    return;
+  }
   nav.style.display = "block";
   nav.innerHTML = "";
   const title = document.createElement("div");
@@ -1025,6 +1043,11 @@ function renderArticleCatNav(cats, activeKey) {
 function renderBzCatNav(cats, activeKey, stateKey, titleText, allLabel, allCount) {
   const nav = $("#articleCatNav");
   if (!nav) return;
+  if (isMobile()) {
+    renderCatNavSelect(nav, titleText, cats,
+      (c) => { state[stateKey] = c ? c.key : ""; state.page = 1; loadList($("#search").value); }, allLabel);
+    return;
+  }
   nav.style.display = "block";
   nav.innerHTML = "";
   const title = document.createElement("div");
@@ -1108,6 +1131,7 @@ function renderList() {
 function renderPager() {
   const p = $("#pager");
   if (!p) return;
+  if (isMobile()) { p.innerHTML = ""; return; }   // 移动端去掉翻页，列表一次取全量、整页滚动
   p.innerHTML = "";
   const totalPages = Math.max(1, Math.ceil(state.total / state.size));
   const mk = (label, page, dis) => {
@@ -2497,10 +2521,6 @@ async function doGlobalSearch(q) {
       }
     } catch (e) {}
     if (target) selectModule(target, target._el);
-    if (isMobile()) {
-      const ms = document.getElementById("mModSelect");
-      if (ms && target) ms.value = target.key;
-    }
   }
   const doSearch = () => {
     const q = $("#search").value.trim();

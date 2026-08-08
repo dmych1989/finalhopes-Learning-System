@@ -905,7 +905,7 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
   .zc-sizhu{ font-size:17px; }
 
   /* 斗数·基础理论 三栏（dj）：竖屏上下堆叠，高度自适应、整页自然滚动；三栏改为双下拉 + 内容区。 */
-  .dj{ flex-direction:column; flex:none; min-height:0; height:auto; margin-top:0; padding:0; overflow:visible; }
+  .dj{ flex-direction:column; flex:none; min-height:0; height:auto; margin-top:0; padding:0; overflow:visible; border:0; border-radius:0; background:transparent; }
   .dj-side{ width:100%; border-right:none; border-bottom:1px solid var(--line); max-height:none; overflow:visible; height:auto; }
   .dj-mid{ width:100%; border-right:none; border-bottom:1px solid var(--line); max-height:none; overflow:visible; height:auto; }
   .dj-1tab{ font-size:14px; padding:11px 14px; }

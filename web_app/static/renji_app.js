@@ -169,31 +169,7 @@
 
   function renderBoards() {
     boardTabs.innerHTML = "";
-    if (isMobile()) {
-      // 移动端：板块标签条改为一级下拉菜单（#mModSelect）
-      let ms = document.getElementById("mModSelect");
-      if (!ms) {
-        ms = document.createElement("select");
-        ms.id = "mModSelect";
-        ms.className = "tj-mobile-select";
-        boardTabs.parentNode.insertBefore(ms, boardTabs);
-      }
-      ms.innerHTML = "";
-      const ph = document.createElement("option");
-      ph.value = ""; ph.textContent = "选择板块"; ph.disabled = true; ph.selected = true;
-      ms.appendChild(ph);
-      BOARDS.forEach((b) => {
-        const o = document.createElement("option");
-        o.value = b.name; o.textContent = b.name + "（" + b.count + "）"; o._b = b;
-        ms.appendChild(o);
-      });
-      ms.onchange = () => {
-        const o = ms.selectedOptions && ms.selectedOptions[0];
-        if (o && o._b) { selectBoard(o._b, true); ms.value = o._b.name; }
-      };
-      boardTabs.style.display = "none";
-      return;
-    }
+    // 板块标签始终横向排列（桌面/移动一致）；移动端由 CSS .board-tabs{flex-wrap} 自动换行。
     BOARDS.forEach(b => {
       const t = el("div", "board-tab" + (b === CUR_BOARD ? " active" : ""));
       t.innerHTML = esc(b.name) + " <span class='bt-count'>(" + b.count + ")</span>";
@@ -657,10 +633,6 @@
       observeMobileList();
       if (BOARDS[0]) {
         selectBoard(BOARDS[0], true);
-        if (isMobile()) {
-          const ms = document.getElementById("mModSelect");
-          if (ms && BOARDS[0]) ms.value = BOARDS[0].name;
-        }
       }
     });
   }
