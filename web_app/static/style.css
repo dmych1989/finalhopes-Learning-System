@@ -794,15 +794,24 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
   .board-tab, .tj-tool, .ml-tab{ font-size:13px; padding:5px 11px; flex:0 0 auto; }
   .board-tab .bt-count{ font-size:11px; }
 
-  /* 天纪 · 左侧目录树：竖屏改为顶部整宽、限高可滚，置于正文之上（纯 CSS，内容不丢） */
+  /* 天纪 · 目录侧栏在移动端隐藏（实际导航走顶部分区下拉 + 三栏面板；移动端三栏改为下拉菜单） */
   .layout--side{ flex-direction:column; }
-  .sidebar{ width:100%; max-height:42vh; overflow:auto; -webkit-overflow-scrolling:touch;
-    border-right:none; border-bottom:1px solid var(--line); padding:10px 12px; }
+  .sidebar{ display:none; }
+  .tj-mobile-select{ width:100%; font-size:16px; padding:10px 12px; border:1px solid var(--line);
+    border-radius:8px; background:var(--bg-card, #fff); color:var(--text); margin:8px 12px 0; }
   .sidebar .nav-item{ padding:9px 12px; font-size:13.5px; }
   .sidebar .ml-tool-entry{ font-size:13.5px; }
   .sidebar .tj-root{ font-size:12.5px; }
   .sidebar .tj-node-head{ font-size:13px; padding:6px 8px; }
   .sidebar .tj-leaf{ font-size:12.5px; padding:6px 8px 6px 20px; }
+
+  /* 隐藏列表/详情/三栏/目录区的滚动条 UI（保留触摸滚动）：满足「删除列表和目录的滚动条」 */
+  .list-pane, .detail-pane, .dj-side, .dj-mid, .dj-main, .sidebar, .cases-catnav,
+    .result-list, .list-main, .catalog-tree{ scrollbar-width:none; -ms-overflow-style:none; }
+  .list-pane::-webkit-scrollbar, .detail-pane::-webkit-scrollbar, .dj-side::-webkit-scrollbar,
+    .dj-mid::-webkit-scrollbar, .dj-main::-webkit-scrollbar, .sidebar::-webkit-scrollbar,
+    .cases-catnav::-webkit-scrollbar, .result-list::-webkit-scrollbar, .list-main::-webkit-scrollbar,
+    .catalog-tree::-webkit-scrollbar{ width:0; height:0; display:none; }
 
   /* 工作区：列表/详情上下堆叠；用 flex:1 填满 .main 剩余空间（不再是写死 calc(100dvh-250px)，
      那会随顶栏/标签条/目录树实际高度变化而比可用空间更高 → 撑出整页竖向滚动）。

@@ -202,7 +202,8 @@ async function renderTianjiSectionPanel(rootName, secName) {
   const lp = document.getElementById("listPane"); if (lp) lp.style.display = "none";
   const dp = document.getElementById("detailPane"); if (dp) dp.style.display = "none";
   const mh = document.getElementById("moduleHead");
-  if (mh) mh.innerHTML = '<div class="mh-left"><h2>' + esc(rootName) + ' · ' + esc(secName) + '</h2><p>左侧分类 → 中间条目 → 右侧内容</p></div>';
+  if (mh) mh.innerHTML = '<div class="mh-left"><h2>' + esc(rootName) + ' · ' + esc(secName) + '</h2><p>' +
+    (isMobile() ? '下拉选择标签，查看内容' : '左侧分类 → 中间条目 → 右侧内容') + '</p></div>';
   await loadTianjiTree();
   const root = (tianjiTreeData || []).find((r) => r.t === rootName);
   const find = (n, name) => n && (n.children || []).find((c) => c.t === name);
@@ -210,6 +211,56 @@ async function renderTianjiSectionPanel(rootName, secName) {
   const cats = (sec && sec.children) || [];
   panel.style.display = "";
   panel.innerHTML = "";
+
+  if (isMobile()) {
+    // 移动端：用顶部下拉菜单选择「文章标签」，去掉左右两栏滚动条；内容区显示详情。
+    const sel = document.createElement("select");
+    sel.className = "tj-mobile-select";
+    sel.id = "djMobileSelect";
+    const ph = document.createElement("option");
+    ph.value = ""; ph.textContent = "— 选择「" + secName + "」文章标签 —";
+    ph.disabled = true; ph.selected = true;
+    sel.appendChild(ph);
+    const content = document.createElement("div");
+    content.className = "dj-main";
+    content.id = "djMobileContent";
+    if (!cats.length) {
+      content.innerHTML = '<div class="hint">（该分区暂无内容）</div>';
+    } else {
+      cats.forEach((cat) => {
+        const og = document.createElement("optgroup");
+        og.label = cat.t;
+        if (cat.src) {
+          const o = document.createElement("option");
+          o.textContent = "📄 " + cat.t; o._leaf = cat; og.appendChild(o);
+        }
+        collectTianjiLeaves(cat, []).forEach((leaf) => {
+          const o = document.createElement("option");
+          o.textContent = leaf.t; o._leaf = leaf; og.appendChild(o);
+        });
+        if (og.children.length) sel.appendChild(og);
+      });
+      // 默认选中第一个叶子并直接展示内容，减少一步操作
+      let firstLeaf = null;
+      for (const c of cats) { const ls = collectTianjiLeaves(c, []); if (ls.length) { firstLeaf = ls[0]; break; } }
+      if (firstLeaf) {
+        sel.value = (firstLeaf.src ? "📄 " : "") + firstLeaf.t;
+        selectTJ2(firstLeaf, content);
+      } else {
+        content.innerHTML = '<div class="hint">（该分区暂无内容）</div>';
+      }
+    }
+    sel.addEventListener("change", () => {
+      const opt = sel.selectedOptions && sel.selectedOptions[0];
+      if (!opt || !opt._leaf) return;
+      selectTJ2(opt._leaf, content);
+    });
+    panel.appendChild(sel);
+    panel.appendChild(content);
+    return;
+  }
+
+  // 桌面：保持三栏（左分类 / 中条目 / 右内容）
   const col1 = document.createElement("div"); col1.className = "dj-side";
   const col2 = document.createElement("div"); col2.className = "dj-mid";
   const col3 = document.createElement("div"); col3.className = "dj-main";
@@ -399,6 +450,7 @@ async function loadTianjiTree() {
 // 天纪顶部三标签切换：命理系统=排盘工具；斗数/四柱=对应根目录树 + 文章。
 let tianjiTab = "mingli";
 let tianjiTabDDBound = false;
+let tianjiView = { type: "mingli" };   // 当前天纪视图（命理工具 / 分区三栏），供跨断点重建目录复用
 function toggleTianjiTabDD(tab) {
   const wasOpen = tab.classList.contains("open");
   closeTianjiTabDDs();
@@ -412,6 +464,7 @@ function closeTianjiTabDDs() {
 async function showTianjiSection(tabKey, sec) {
   const rootName = tabKey === "dou" ? "斗数" : "四柱";
   tianjiTab = tabKey;
+  tianjiView = { type: "section", rootName, secName: sec };
   const tabEl = document.querySelector('#boardTabs .board-tab[data-tab="' + tabKey + '"]');
   setActive(tabEl);
   await renderTianjiSectionPanel(rootName, sec);
@@ -423,6 +476,7 @@ function showTianjiTab(tab, el) {
   const side = document.getElementById("sidebar");
   if (tab === "mingli") {
     if (side) side.style.display = "none";
+    tianjiView = { type: "mingli" };
     const mh = document.getElementById("moduleHead");
     if (mh) mh.innerHTML = '';
     renderTool();
@@ -463,6 +517,11 @@ async function buildTianjiTree(rootName) {
     side.appendChild(title);
     renderTianjiTree(root.children, side, 0, root);
   });
+}
+
+// 是否处于移动端断点（与 CSS @media(max-width:820px) 保持一致）
+function isMobile() {
+  try { return window.matchMedia("(max-width:820px)").matches; } catch (e) { return false; }
 }
 
 function countTianjiLeaves(node) {
@@ -2352,6 +2411,23 @@ async function doGlobalSearch(q) {
   };
   $("#searchBtn").onclick = doSearch;
   $("#search").addEventListener("keydown", (e) => { if (e.key === "Enter") doSearch(); });
+
+  // 天纪：跨断点（桌面<->移动）时重建目录——移动端用下拉菜单、桌面用树。
+  if (SYSTEM === "tianji") {
+    let _lastMobile = isMobile();
+    let _rzTimer = null;
+    window.addEventListener("resize", () => {
+      if (_rzTimer) clearTimeout(_rzTimer);
+      _rzTimer = setTimeout(() => {
+        const m = isMobile();
+        if (m === _lastMobile) return;
+        _lastMobile = m;
+        if (tianjiView.type === "section") {
+          renderTianjiSectionPanel(tianjiView.rootName, tianjiView.secName);
+        }
+      }, 200);
+    });
+  }
 })();
 
 // ===== 天纪 · 排盘系统 / 命理系统（tool 型模块，顶层作用域，供 loadSubList 调用） =====
