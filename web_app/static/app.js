@@ -609,6 +609,60 @@ function observeMobileList() {
   _mListObserver.observe(ul, { childList: true, subtree: true });
 }
 
+// 命理 · 八字命例列表：移动端由 .case-item 卡片转 #mCaseSelect 下拉，选择即排盘。
+let _mCaseObserver = null, _mCaseTO = null;
+function mobileCaseListToSelect() {
+  const ul = document.getElementById("caseList");
+  if (!ul) return;
+  let sel = document.getElementById("mCaseSelect");
+  if (!isMobile()) {
+    if (sel) sel.remove();
+    ul.style.display = "";
+    return;
+  }
+  const items = ul.querySelectorAll(".case-item");
+  if (!items.length) {
+    if (sel) sel.style.display = "none";
+    ul.style.display = "";
+    return;
+  }
+  if (!sel) {
+    sel = document.createElement("select");
+    sel.id = "mCaseSelect";
+    sel.className = "tj-mobile-select";
+    ul.parentNode.insertBefore(sel, ul);
+  }
+  sel.style.display = "";
+  ul.style.display = "none";
+  sel.innerHTML = "";
+  const ph = document.createElement("option");
+  ph.value = ""; ph.textContent = "选择命例"; ph.disabled = true; ph.selected = true;
+  sel.appendChild(ph);
+  items.forEach((li) => {
+    const o = document.createElement("option");
+    const nm = li.querySelector(".ci-name");
+    o.value = li.dataset.i; o.textContent = (nm ? nm.textContent : "").trim();
+    o._i = li.dataset.i;
+    sel.appendChild(o);
+  });
+  sel.onchange = () => {
+    const o = sel.selectedOptions && sel.selectedOptions[0];
+    if (o && o._i) selectCase(parseInt(o._i, 10));
+  };
+  // 自动展示首条命例（打开网页 / 切换筛选 / 搜索后均落到第一条）
+  if (sel.options.length > 1) { sel.selectedIndex = 1; sel.onchange(); }
+}
+function observeMobileCaseList() {
+  if (_mCaseObserver) return;
+  const ul = document.getElementById("caseList");
+  if (!ul) return;
+  _mCaseObserver = new MutationObserver(() => {
+    if (_mCaseTO) clearTimeout(_mCaseTO);
+    _mCaseTO = setTimeout(mobileCaseListToSelect, 60);
+  });
+  _mCaseObserver.observe(ul, { childList: true, subtree: true });
+}
+
 function countTianjiLeaves(node) {
   if ("src" in node) return 1;
   let n = 0;
@@ -956,33 +1010,49 @@ async function loadList(q) {
 
 // 移动端：把分类侧栏（评论/病症/按证型/论文栏目）渲染为单个下拉菜单；桌面保持按钮列表。
 // onPick(null) 表示选中「全部」；否则传入对应分类对象。
-function renderCatNavSelect(nav, title, items, onPick, allLabel) {
+// 关键修复：loadList 每次都会重渲染本侧栏，若每次都重建 <select> 会把选中项弹回占位符（表现为「无法切换」）。
+//   故复用同一 select 元素（按 _items 引用判断分类集合是否变化），重建后仅靠 activeValue 同步选中项。
+function renderCatNavSelect(nav, title, items, onPick, allLabel, activeValue) {
   nav.style.display = "block";
-  nav.innerHTML = "";
-  const sel = document.createElement("select");
-  sel.id = "mCatSelect";
-  sel.className = "tj-mobile-select";
-  const ph = document.createElement("option");
-  ph.value = ""; ph.textContent = title; ph.disabled = true; ph.selected = true;
-  sel.appendChild(ph);
-  if (allLabel) {
-    const o = document.createElement("option");
-    o.value = "__all"; o.textContent = allLabel;
-    sel.appendChild(o);
+  let sel = nav.querySelector("#mCatSelect");
+  if (!sel || sel._items !== (items || [])) {
+    nav.innerHTML = "";
+    sel = document.createElement("select");
+    sel.id = "mCatSelect";
+    sel.className = "tj-mobile-select";
+    sel._items = items || [];
+    const ph = document.createElement("option");
+    ph.value = ""; ph.textContent = title; ph.disabled = true; ph.selected = true;
+    sel.appendChild(ph);
+    if (allLabel) {
+      const o = document.createElement("option");
+      o.value = "__all"; o.textContent = allLabel;
+      sel.appendChild(o);
+    }
+    (items || []).forEach((c, i) => {
+      const o = document.createElement("option");
+      o.value = "c" + i;
+      o.textContent = (c.label != null ? c.label : c.name) + (c.count != null ? "（" + c.count + "）" : "");
+      o._c = c;
+      sel.appendChild(o);
+    });
+    sel.onchange = () => {
+      const o = sel.selectedOptions && sel.selectedOptions[0];
+      if (!o) return;
+      onPick(o.value === "__all" ? null : (o._c || null));
+    };
+    nav.appendChild(sel);
   }
-  (items || []).forEach((c, i) => {
-    const o = document.createElement("option");
-    o.value = "c" + i;
-    o.textContent = (c.label != null ? c.label : c.name) + (c.count != null ? "（" + c.count + "）" : "");
-    o._c = c;
-    sel.appendChild(o);
-  });
-  sel.onchange = () => {
-    const o = sel.selectedOptions && sel.selectedOptions[0];
-    if (!o) return;
-    onPick(o.value === "__all" ? null : (o._c || null));
-  };
-  nav.appendChild(sel);
+  // 同步当前选中项：保持用户所选，不再弹回占位符。
+  let want = "";
+  if (activeValue === "__all" || activeValue === "all" || activeValue === "" || activeValue == null) {
+    want = allLabel ? "__all" : "";
+  } else {
+    const hit = Array.prototype.slice.call(sel.options).find(
+      (o) => o._c && (o._c.key === activeValue || o._c.name === activeValue));
+    if (hit) want = hit.value;
+  }
+  if (want) sel.value = want;
 }
 
 // 医案「按证型浏览」左侧分类侧栏
@@ -991,7 +1061,7 @@ function renderCasesCatNav(cats, activeKey) {
   if (!nav) return;
   if (isMobile()) {
     renderCatNavSelect(nav, "按证型浏览", cats,
-      (c) => { state.caseCat = c ? c.key : "all"; state.page = 1; loadList($("#search").value); }, "全部证型");
+      (c) => { state.caseCat = c ? c.key : "all"; state.page = 1; loadList($("#search").value); }, "全部证型", activeKey);
     return;
   }
   nav.style.display = "block";
@@ -1015,7 +1085,7 @@ function renderArticleCatNav(cats, activeKey) {
   if (!nav) return;
   if (isMobile()) {
     renderCatNavSelect(nav, "论文栏目", cats,
-      (c) => { state.articleCat = c ? c.key : ""; state.page = 1; loadList($("#search").value); }, "全部论文");
+      (c) => { state.articleCat = c ? c.key : ""; state.page = 1; loadList($("#search").value); }, "全部论文", activeKey);
     return;
   }
   nav.style.display = "block";
@@ -1045,7 +1115,7 @@ function renderBzCatNav(cats, activeKey, stateKey, titleText, allLabel, allCount
   if (!nav) return;
   if (isMobile()) {
     renderCatNavSelect(nav, titleText, cats,
-      (c) => { state[stateKey] = c ? c.key : ""; state.page = 1; loadList($("#search").value); }, allLabel);
+      (c) => { state[stateKey] = c ? c.key : ""; state.page = 1; loadList($("#search").value); }, allLabel, activeKey);
     return;
   }
   nav.style.display = "block";
@@ -2635,6 +2705,8 @@ async function loadCases() {
   catch (e) { box.innerHTML = '<div class="hint">命例加载失败</div>'; return; }
   window.__caseCache = data.cases || [];
   renderCaseList(window.__caseCache);
+  observeMobileCaseList();
+  mobileCaseListToSelect();
 }
 
 const CASE_PAGE_SIZE = 10;
@@ -2665,11 +2737,13 @@ function renderCaseList(cases) {
     (!q || c.name.toLowerCase().includes(q.toLowerCase()) ||
      (c.pillars || "").includes(q) || (c.birth || "").includes(q)));
   const total = list.length;
-  const pages = Math.max(1, Math.ceil(total / CASE_PAGE_SIZE));
+  // 移动端不分页：一次列出全部命例（与全文整页滚动的手机版取向一致）
+  const pageSize = isMobile() ? Math.max(1, total) : CASE_PAGE_SIZE;
+  const pages = Math.max(1, Math.ceil(total / pageSize));
   if (window.__casePage < 1) window.__casePage = 1;
   if (window.__casePage > pages) window.__casePage = pages;
-  const start = (window.__casePage - 1) * CASE_PAGE_SIZE;
-  const pageItems = list.slice(start, start + CASE_PAGE_SIZE);
+  const start = (window.__casePage - 1) * pageSize;
+  const pageItems = list.slice(start, start + pageSize);
   if (!total) {
     box.innerHTML = '<div class="hint">无匹配命例</div>';
     renderCasePager(total, pages);
