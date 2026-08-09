@@ -2447,6 +2447,45 @@ function showSubImage(name) {
     `src="${sysCfg.img}?name=${enc(name)}" alt="${esc(name)}" onerror="this.style.display='none'"></div>`;
 }
 
+// ---- 图片点击放大（lightbox）----
+// 全局事件委托：点击卦图(.gua-img img)或药材图(.herb-img) → 全屏放大查看。
+// 复用 style.css 既有的 .lightbox 样式（此前只定义了样式、未接逻辑，故点击无反应）。
+// 用 DOM 属性设置 src/alt，避免任何注入风险；点击遮罩或图片本身、按 Esc 均可关闭。
+(function initLightbox() {
+  let lb = null;
+  function open(src, alt) {
+    if (!lb) {
+      lb = document.createElement("div");
+      lb.id = "lightbox";
+      lb.className = "lightbox";
+      lb.setAttribute("role", "dialog");
+      lb.setAttribute("aria-label", "图片放大查看");
+      lb.addEventListener("click", () => { if (lb) { lb.remove(); lb = null; } });
+      document.body.appendChild(lb);
+    }
+    lb.innerHTML = "";
+    const im = document.createElement("img");
+    im.src = src;
+    im.alt = alt || "";
+    im.onerror = () => { if (lb) { lb.remove(); lb = null; } };
+    lb.appendChild(im);
+  }
+  document.addEventListener("click", (ev) => {
+    const t = ev.target;
+    if (t && t.tagName === "IMG" &&
+        (t.closest(".gua-img") || t.classList.contains("herb-img"))) {
+      ev.preventDefault();
+      open(t.getAttribute("src"), t.getAttribute("alt"));
+    }
+  });
+  document.addEventListener("keydown", (ev) => {
+    if (ev.key === "Escape") {
+      const ex = document.getElementById("lightbox");
+      if (ex) { ex.remove(); lb = null; }
+    }
+  });
+})();
+
 // ---- points 型：SELFDATA 坐标人体穴位图 ----
 function renderSubPoints(items) {
   const ul = $("#resultList");

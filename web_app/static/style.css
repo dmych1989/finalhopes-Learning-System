@@ -478,7 +478,9 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
 /* 天纪：卦图 + 卦象（阴阳爻） */
 .gua-img{ text-align:center; margin:4px 0 14px; }
 .gua-img img{ max-width:220px; max-height:300px; border:1px solid var(--line);
-  border-radius:8px; box-shadow:var(--shadow-sm); background:#fff; }
+  border-radius:8px; box-shadow:var(--shadow-sm); background:#fff; cursor:zoom-in;
+  transition:transform .15s, box-shadow .15s; }
+.gua-img img:hover{ transform:scale(1.03); box-shadow:0 4px 16px rgba(0,0,0,.15); }
 .gua-dd{ display:flex; flex-direction:column; gap:6px; align-items:center;
   margin:10px 0 16px; padding:10px; background:var(--panel2);
   border:1px solid var(--line); border-radius:10px; }
