@@ -369,7 +369,12 @@ async function selectTJ2(leaf, col3) {
       if (v == null || v === "") return;
       // 收紧段落之间的空行：吃掉换行前后的空白、合并连续换行（保留段落分隔，去掉整行空白）
       const vv = String(v).replace(/\r\n/g, "\n").replace(/[ \t]*\n[ \t]*/g, "\n").replace(/\n{2,}/g, "\n").trim();
-      h += `<div class="sec-h">${esc(kk)}</div><div class="sec-b">${esc(vv)}</div>`;
+      // 概述段（与文章同名或「正文」）不加小标题，直接作正文；其余（如合并后的「工作一」）作小节
+      if (kk === item.name || kk === "正文") {
+        h += `<div class="sec-b sec-lead">${esc(vv)}</div>`;
+      } else {
+        h += `<div class="sec-h">${esc(kk)}</div><div class="sec-b">${esc(vv)}</div>`;
+      }
     });
     if (!Object.keys(fields).length && !meta.hasImg && !item.dd) h += '<div class="hint">（本条暂无内容）</div>';
     h += "</div>";
@@ -473,7 +478,11 @@ function renderTianjiItem(sub, item) {
     const v = fields[k];
     if (v == null || v === "") return;
     const vv = String(v).replace(/\r\n/g, "\n").replace(/[ \t]*\n[ \t]*/g, "\n").replace(/\n{2,}/g, "\n").trim();
-    h += `<div class="sec-h">${esc(k)}</div><div class="sec-b">${esc(vv)}</div>`;
+    if (k === item.name || k === "正文") {
+      h += `<div class="sec-b sec-lead">${esc(vv)}</div>`;
+    } else {
+      h += `<div class="sec-h">${esc(k)}</div><div class="sec-b">${esc(vv)}</div>`;
+    }
   });
   h += `</div>`;
   $("#detailPane").innerHTML = h;
@@ -2295,7 +2304,12 @@ function showSubDetail(item) {
   keys.forEach((k) => {
     const v = fields[k];
     if (v == null || v === "") return;
-    h += `<div class="sec-h">${esc(k)}</div><div class="sec-b">${esc(v)}</div>`;
+    const vv = String(v).replace(/\r\n/g, "\n").replace(/[ \t]*\n[ \t]*/g, "\n").replace(/\n{2,}/g, "\n").trim();
+    if (k === item.name || k === "正文") {
+      h += `<div class="sec-b sec-lead">${esc(vv)}</div>`;
+    } else {
+      h += `<div class="sec-h">${esc(k)}</div><div class="sec-b">${esc(vv)}</div>`;
+    }
   });
   h += `</div>`;
   $("#detailPane").innerHTML = h;

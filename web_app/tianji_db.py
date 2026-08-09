@@ -12,8 +12,10 @@ Two backends, auto-selected by data.db presence (see common.USE_SQLITE):
 """
 import os
 import ast
+import re
 import json
 import sqlite3
+from collections import defaultdict
 
 from common import (decrypt_bytes, rtf_to_text, clean_text, text_of,
                     DATA_DB, USE_SQLITE)
@@ -226,6 +228,108 @@ print("天纪 loaded: gua=%d rendao=%d lilun=%d riyue=%d jingdu=%d mingli=%d "
                               sum(len(v["rows"]) for v in YIJING.values())))
 
 
+# ---- lilun 系列合并 -------------------------------------------------------
+# 仅合并「同名 + 末尾序号（一/二/三…或阿拉伯数字）」的关联文章，例如
+# 工作一~四、婚姻感情一/二、学业一/二；并吸收同名无序号的概述篇（工作/学业），
+# 形成一篇干净的总文章。命例(mingli) 与 紫微星名重复（衰/博士/财运…）不含序号，
+# 不在此列，保持原样。
+_CN_NUM = "一二三四五六七八九十百零〇"
+_ORD_SUFFIX = re.compile(r"(?:[（(]([%s]+)[）)]|([%s]+)|(\d+))$" % (_CN_NUM, _CN_NUM))
+
+def _lilun_base(name):
+    n = (name or "").strip()
+    m = _ORD_SUFFIX.search(n)
+    return n[:m.start()].strip() if m else n
+
+def _lilun_has_ord(name):
+    return bool(_ORD_SUFFIX.search(name or ""))
+
+def _lilun_text(it):
+    f = it.get("fields")
+    if isinstance(f, str):
+        try:
+            f = ast.literal_eval(f)
+        except Exception:
+            f = {"正文": f}
+    if isinstance(f, dict):
+        return "\n".join(str(v) for v in f.values() if v)
+    if USE_SQLITE:
+        return ""
+    return clean_text(it.get("nr") or "")
+
+def _cn_to_int(s):
+    tbl = {"一": 1, "二": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7,
+           "八": 8, "九": 9, "十": 10, "零": 0, "〇": 0}
+    s = (s or "").strip()
+    if s.isdigit():
+        return int(s)
+    if s == "十":
+        return 10
+    if "十" in s:
+        a, _, b = s.partition("十")
+        return (tbl.get(a, 1) if a else 1) * 10 + (tbl.get(b, 0) if b else 0)
+    return tbl.get(s, 10 ** 9)  # 未知序号排最后
+
+_LILUN_MEMBER_CANON = {}
+_LILUN_MERGED = {}
+def _build_lilun_series():
+    groups = defaultdict(list)
+    for idx, it in enumerate(LILUN):
+        groups[_lilun_base(it.get("name", ""))].append(idx)
+    for base, idxs in groups.items():
+        ord_members = [i for i in idxs if _lilun_has_ord(LILUN[i].get("name", ""))]
+        if len(ord_members) < 2:
+            continue  # 仅当≥2 篇带序号才视为系列；纯重复名（衰/财运…）不合并
+        def ord_key(i, _suf=_ORD_SUFFIX):
+            m = _suf.search(LILUN[i].get("name", ""))
+            if m:
+                tok = m.group(1) or m.group(2) or m.group(3)
+                return (1, _cn_to_int(tok))
+            return (0, 0)  # 无序号概述篇排最前
+        ordered = sorted(idxs, key=ord_key)
+        fields = {}
+        for i in ordered:
+            fields[LILUN[i].get("name", "")] = _lilun_text(LILUN[i])
+        canon = ordered[0]  # 概述篇（若有）或最小序号篇
+        _LILUN_MERGED[canon] = {"name": base, "dd": "", "fields": fields}
+        for i in idxs:
+            _LILUN_MEMBER_CANON[i] = canon
+_build_lilun_series()
+
+def _collapse_lilun_tree(node):
+    """折叠左侧目录树：移除非首篇系列叶子，将首篇叶子改名为合并总标题，清理空目录。"""
+    if isinstance(node, list):
+        out = []
+        for x in node:
+            r = _collapse_lilun_tree(x)
+            if r is not None:
+                out.append(r)
+        return out
+    if not isinstance(node, dict):
+        return node
+    if node.get("src") == "lilun":
+        idx = node.get("idx")
+        ci = _LILUN_MEMBER_CANON.get(idx)
+        if ci is not None and ci != idx:
+            return None  # 非首篇系列 → 移除
+        if idx in _LILUN_MERGED:
+            node = dict(node)
+            node["t"] = _LILUN_MERGED[idx]["name"]  # 首篇 → 改名
+        return node
+    if "children" in node:
+        kids = []
+        for c in node["children"]:
+            r = _collapse_lilun_tree(c)
+            if r is not None:
+                kids.append(r)
+        if not kids:
+            return None
+        node = dict(node)
+        node["children"] = kids
+        return node
+    return node
+
+
 MODULES = [
     {"key": "gua",    "name": "六十四卦",     "kind": "fields", "count": len(GUA),
      "desc": "64 卦：卦名 / 卦象（阴阳爻）/ 卦辞图象，配原版卦图", "hasImg": True},
@@ -316,7 +420,15 @@ def list_items(sub, q=""):
     raw = _DATA.get(sub, [])
     if isinstance(raw, dict):
         return raw  # tables subs handled by /tables endpoint
-    items = [{"i": idx, "name": it["name"]} for idx, it in enumerate(raw)]
+    items = []
+    for idx, it in enumerate(raw):
+        # 天纪理论(lilun)：系列合并后，列表/搜索只保留首篇（合并总文章），其余系列篇去重
+        if sub == "lilun" and _LILUN_MEMBER_CANON.get(idx, idx) != idx:
+            continue
+        name = it["name"]
+        if sub == "lilun" and idx in _LILUN_MERGED:
+            name = _LILUN_MERGED[idx]["name"]
+        items.append({"i": idx, "name": name})
     if q:
         ql = q.lower()
         out = []
@@ -343,6 +455,11 @@ def get_item(sub, i):
     raw = _DATA.get(sub, [])
     if isinstance(raw, dict) or not raw:
         return None
+    # 天纪理论(lilun)：系列合并后，系列内任一篇均返回合并总文章
+    if sub == "lilun":
+        ci = _LILUN_MEMBER_CANON.get(int(i), int(i))
+        if ci in _LILUN_MERGED:
+            return _LILUN_MERGED[ci]
     try:
         rec = raw[int(i)]
     except (ValueError, IndexError):

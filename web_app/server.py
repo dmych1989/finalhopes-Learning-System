@@ -1108,7 +1108,12 @@ def api_tianji_catalog():
 def api_tianji_tree():
     """按 列表.txt 重组的天纪目录树（斗数/断法细则/卦象/子女/时辰效验/案例查询）。
     每个叶子带 src(数据源) 与 idx(序号)，前端点击调用 /api/tianji/item?sub=<src>&i=<idx>。"""
-    return {"tree": tianji_tree.TIANJI_TREE}
+    tree = tianji_tree.TIANJI_TREE
+    try:
+        tree = tianji_db._collapse_lilun_tree(tree)
+    except Exception:
+        tree = tianji_tree.TIANJI_TREE
+    return {"tree": tree}
 
 
 @app.get("/api/tianji/list")
