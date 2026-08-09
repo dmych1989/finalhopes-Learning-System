@@ -567,14 +567,22 @@
   };
   const SHIER = ["肺经","大肠经","胃经","脾经","心经","小肠经","膀胱经","肾经","心包经","三焦经","胆经","肝经"];
   const QIJING = ["督脉","任脉","冲脉","带脉","阴维脉","阳维脉","阳跷脉","阴跷脉"];
+  function bodyShapes() {
+    return "<g fill='#243049' stroke='#3c4d70' stroke-width='1.2'>" +
+      "<ellipse cx='100' cy='40' rx='21' ry='25'/>" +
+      "<rect x='93' y='60' width='14' height='14' rx='5'/>" +
+      "<path d='M68,74 Q100,66 132,74 L136,196 Q100,210 64,196 Z'/>" +
+      "<path d='M68,78 Q52,82 47,120 L43,196 Q50,202 57,196 L66,128 Q72,98 76,80 Z'/>" +
+      "<path d='M132,78 Q148,82 153,120 L157,196 Q150,202 143,196 L134,128 Q128,98 124,80 Z'/>" +
+      "<path d='M68,196 L64,300 Q66,360 72,402 L90,402 Q92,340 94,206 Z'/>" +
+      "<path d='M132,196 L136,300 Q134,360 128,402 L110,402 Q108,340 106,206 Z'/>" +
+      "</g>";
+  }
   function renderAnimation(s) {
     filterBar.innerHTML = "";
     const list = s.group === "shier" ? SHIER : QIJING;
     const colors = ["#ff6b6b","#ffd166","#06d6a0","#4d96ff","#c77dff","#ff9f1c","#2ec4b6","#e63946","#a7c957","#457b9d","#f4a261","#9d4edd","#ff70a6","#48cae4","#b5179e","#90be6d","#f9844a","#577590"];
-    let svg = "<svg class='anim-stage' viewBox='0 0 200 420' style='width:100%;max-width:360px'>";
-    svg += "<ellipse class='body' cx='100' cy='40' rx='24' ry='28'/><rect class='body' x='72' y='68' width='56' height='150' rx='20'/>";
-    svg += "<rect class='body' x='44' y='78' width='22' height='105' rx='11'/><rect class='body' x='134' y='78' width='22' height='105' rx='11'/>";
-    svg += "<rect class='body' x='82' y='218' width='16' height='120' rx='8'/><rect class='body' x='102' y='218' width='16' height='120' rx='8'/></svg>";
+    let svg = "<svg class='anim-stage' viewBox='0 0 200 420' style='width:100%;max-width:360px'>" + bodyShapes() + "</svg>";
     let buttons = "<div class='mer-filter'>";
     list.forEach((m, i) => { buttons += "<button data-m='" + m + "' style='border-color:" + colors[i % colors.length] + "'>" + m + "</button>"; });
     buttons += "</div>";
@@ -591,13 +599,30 @@
     const d = MER_PATHS[name] || "M100,40 L100,380";
     detailPane.innerHTML = "<div class='anim-cap' style='color:" + color + "'>" + esc(name) + " · 穴位走向</div>" +
       "<div class='anim-stage'><svg viewBox='0 0 200 420' style='width:100%;max-width:360px'>" +
-      "<ellipse class='body' cx='100' cy='40' rx='24' ry='28'/><rect class='body' x='72' y='68' width='56' height='150' rx='20'/>" +
-      "<rect class='body' x='44' y='78' width='22' height='105' rx='11'/><rect class='body' x='134' y='78' width='22' height='105' rx='11'/>" +
-      "<rect class='body' x='82' y='218' width='16' height='120' rx='8'/><rect class='body' x='102' y='218' width='16' height='120' rx='8'/>" +
-      "<path class='mer-path' d='" + d + "' stroke='" + color + "'><animate attributeName='stroke-dasharray' from='0 1000' to='1000 0' dur='3s' repeatCount='indefinite'/></path>" +
-      "<circle class='mer-comet' r='6' fill='" + color + "'><animateMotion dur='3s' repeatCount='indefinite' path='" + d + "'/></circle>" +
+      "<defs><linearGradient id='mg' x1='0' y1='0' x2='0' y2='1'>" +
+      "<stop offset='0' stop-color='" + color + "' stop-opacity='0.25'/>" +
+      "<stop offset='1' stop-color='" + color + "' stop-opacity='0.95'/></linearGradient>" +
+      "<filter id='glow' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='2.4' result='b'/>" +
+      "<feMerge><feMergeNode in='b'/><feMergeNode in='SourceGraphic'/></feMerge></filter></defs>" +
+      bodyShapes() +
+      "<path id='mp' d='" + d + "' fill='none' stroke='url(#mg)' stroke-width='3.6' stroke-linecap='round' filter='url(#glow)'/>" +
+      "<path d='" + d + "' fill='none' stroke='#ffffff' stroke-width='1.3' stroke-dasharray='2 9' opacity='0.9'>" +
+      "<animate attributeName='stroke-dashoffset' from='0' to='-110' dur='2.2s' repeatCount='indefinite'/></path>" +
+      "<circle r='5.5' fill='" + color + "' filter='url(#glow)'><animateMotion dur='3s' repeatCount='indefinite' path='" + d + "'/></circle>" +
+      "<circle r='2.6' fill='#ffffff' opacity='0.95'><animateMotion dur='3s' repeatCount='indefinite' path='" + d + "'/></circle>" +
       "</svg></div><div class='hint'>该动画为依经络循行次序以 SVG 路径流动重建（原软件为 Flash，已停服，无法提取原帧）。</div>" +
       "<div class='anim-art'>" + esc(name === "任脉" || name === "督脉" || QIJING.indexOf(name) >= 0 ? ART_QIJING : ART_SHIER) + "</div>";
+    const _mp = detailPane.querySelector("#mp");
+    if (_mp && _mp.getTotalLength) { try {
+        const _L = _mp.getTotalLength(), _n = Math.max(4, Math.round(_L / 52));
+        for (let _k = 1; _k < _n; _k++) {
+          const _pt = _mp.getPointAtLength(_L * _k / _n);
+          const _c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          _c.setAttribute("cx", _pt.x); _c.setAttribute("cy", _pt.y); _c.setAttribute("r", "2.6");
+          _c.setAttribute("fill", "#ffffff"); _c.setAttribute("stroke", color); _c.setAttribute("stroke-width", "1.2");
+          _mp.parentNode.appendChild(_c);
+        }
+      } catch (e) {} }
   }
   const ART_SHIER = "十二经脉循行走向（说明，逆向自「人纪针灸」EXE）\n\n十二经脉的名称为：手太阴肺经、手阳明大肠经、足阳明胃经、足太阴脾经、手少阴心经、手太阳小肠经、足太阳膀胱经、足少阴肾经、手厥阴心包经、手少阳三焦经、足少阳胆经、足厥阴肝经。\n\n其流注次序是：从手太阴肺经开始，依次传至手阳明大肠经、足阳明胃经、足太阴脾经、手少阴心经、手太阳小肠经、足太阳膀胱经、足少阴肾经、手厥阴心包经、手少阳三焦经、足少阳胆经、足厥阴肝经，再复注于手太阴肺经，如环无端，周而复始。\n\n手三阴从胸走手，手三阳从手走头，足三阳从头走足，足三阴从足走腹（胸）。阴阳相贯，气血周流不息。";
   const ART_QIJING = "奇经八脉循行走向（说明，逆向自「人纪针灸」EXE）\n\n奇经八脉者：督脉、任脉、冲脉、带脉、阴维脉、阳维脉、阴跷脉、阳跷脉也。\n\n督脉行于腰背正中，总督一身之阳；任脉行于胸腹正中，总任一身之阴；冲脉为血海，渗灌诸经；带脉环腰一周，约束纵行诸脉；阴维、阳维分别维络一身之阴经与阳经；阴跷、阳跷分主一身左右之阴阳跷捷。\n\n八脉交会于十二正经，其中公孙（脾）→内关（心包）、临泣（胆）→外关（三焦）、后溪（小肠）→申脉（膀胱）、列缺（肺）→照海（肾）四组，为灵龟八法与飞腾八法之根基。";
