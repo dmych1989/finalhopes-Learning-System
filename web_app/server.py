@@ -1221,9 +1221,18 @@ def ext_img(p: str = ""):
     if not p:
         raise HTTPException(400, "missing p")
     rel = unquote(p).replace("/", os.sep).replace("\\", os.sep)
-    full = os.path.normpath(os.path.join(_EXTIMG_BASE, rel))
+    # 《中医》仓库「本草/中药图片」子库已随站部署到 public/img/zhongyi/，
+    # 生产(Vercel CDN)与本地均可直接读该静态目录；原仓库目录仅作退化回退。
+    zhongyi_prefix = os.path.join("本草", "中药图片") + os.sep
+    zy_base = os.path.normpath(os.path.join(_IMG_DIR, "zhongyi"))
+    if rel.startswith(zhongyi_prefix):
+        cand = os.path.normpath(os.path.join(_IMG_DIR, "zhongyi", rel[len(zhongyi_prefix):]))
+        full = cand if os.path.isfile(cand) else os.path.normpath(os.path.join(_EXTIMG_BASE, rel))
+    else:
+        full = os.path.normpath(os.path.join(_EXTIMG_BASE, rel))
     base_norm = os.path.normpath(_EXTIMG_BASE)
-    if full != base_norm and not full.startswith(base_norm + os.sep):
+    if full != base_norm and not full.startswith(base_norm + os.sep) \
+       and not full.startswith(zy_base + os.sep):
         raise HTTPException(403, "forbidden")
     if not os.path.isfile(full):
         raise HTTPException(404, "not found")

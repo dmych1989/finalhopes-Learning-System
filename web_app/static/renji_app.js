@@ -415,13 +415,26 @@
     getJSON(s.endpoint + "?size=2000").then(d => {
       resultList.innerHTML = "";
       const items = d.items || [];
-      items.slice(0, 400).forEach((it, i) => {
-        const li = el("li", "result-item", esc(it.name));
+      items.slice(0, 2000).forEach((it, i) => {
+        // herbs 接口用 MZ 命名字段，yaotu 接口用 name；统一取名称（修复下拉/列表项空白）
+        const name = it.name || it.MZ || it.title || "";
+        const li = el("li", "result-item", esc(name));
         li.onclick = () => {
-          let h = "<div class='point-card'><h4>" + esc(it.name) + "</h4>";
-          Object.keys(it).forEach(k => { if (k !== "name" && k !== "_image" && it[k] && typeof it[k] === "string")
-            h += "<div class='sec'><b>" + esc(k) + "：</b><br>" + esc(it[k]) + "</div>"; });
-          if (it._image) h += "<img src='/api/herb_image/" + encodeURIComponent(it.name) + "' style='max-width:160px;margin:4px;background:#fff;border-radius:6px'>";
+          let h = "<div class='point-card'><h4>" + esc(name) + "</h4>";
+          Object.keys(it).forEach(k => {
+            // name/MZ 已作标题；_image/_rel/_folder 为内部字段，均不展示为原始键名
+            if (k === "name" || k === "MZ" || k === "_image" || k === "_rel" || k === "_folder") return;
+            if (it[k] && typeof it[k] === "string")
+              h += "<div class='sec'><b>" + esc(k) + "：</b><br>" + esc(it[k]) + "</div>";
+          });
+          // 药图：MDB 派生（原态/药材/饮片）走 /api/herb_image；本草/中药图片 文件夹图走 /extimg（已随站部署）
+          const imgName = it._image || name;
+          if (imgName) {
+            const imgSrc = it._folder
+              ? ("/extimg?p=" + encodeURIComponent(it._rel))
+              : ("/api/herb_image/" + encodeURIComponent(imgName));
+            h += "<img src='" + imgSrc + "' style='max-width:160px;margin:4px;background:#fff;border-radius:6px' onerror=\"this.style.display='none'\">";
+          }
           h += "</div>";
           detailPane.innerHTML = h;
         };
