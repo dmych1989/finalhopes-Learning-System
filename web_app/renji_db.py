@@ -15,6 +15,7 @@ Tables (人纪-specific):
 Shared (plaintext) reference tables: BBXX / BZDZ / ZFBZ / ZJDCJL / linggui / najia / nazi
 """
 import os
+import re
 import json
 import sqlite3
 
@@ -174,6 +175,73 @@ def _load_ziwwu():
     }
 
 
+def _fmt_xue(s):
+    """规整穴位写法：'内关54' -> '内关(54)'；'太溪45大陵51' -> '太溪(45) / 大陵(51)'。"""
+    s = (s or "").strip()
+    if not s:
+        return ""
+    # 同一格内多个穴位（数字紧接汉字处断开）
+    s = re.sub(r"(\d)(?=[一-鿿])", r"\1 / ", s)
+    # 名称 + 编号 -> 名称(编号)
+    s = re.sub(r"([一-鿿]{1,4})(\d+)", lambda m: "%s(%s)" % (m.group(1), m.group(2)), s)
+    return s
+
+
+def _normalize_ziwwu(z):
+    """规整 灵龟八法 / 子午流注 三表的展示格式：去首尾空白、修正表头、拆分穴名与编号。
+
+    修复项：
+      * 所有单元格首尾空白（含纳子法 12 空格空值）。
+      * 灵龟八法表 / 纳子法表 首列表头原为「时辰」，实为「日干支」（甲子…），更正。
+      * 纳子法空白格置空（前端显示为 —），并把「太溪45大陵51」这类拼接拆开。
+      * 纳甲法 补母穴/泻子穴（动词+经脉+穴名+编号 黏连）拆为「补三焦经母穴 中渚(57)」；
+        本穴/原穴 规整为「穴名(编号)」；修正源数据笔误「胱经」->「膀胱经」。
+    """
+    for k in ("lingui", "najia", "nazi"):
+        d = z.get(k)
+        if not d:
+            continue
+        d["cols"] = [(c.strip() if isinstance(c, str) else c) for c in d["cols"]]
+        if k in ("lingui", "nazi") and d["cols"] and d["cols"][0] == "时辰":
+            d["cols"][0] = "日干支"
+        d["rows"] = [[(c.strip() if isinstance(c, str) else c) for c in r] for r in d["rows"]]
+
+    # 纳子法：空白格置空（渲染为 —），多穴位拆分为「穴名(编号) / 穴名(编号)」
+    for r in z["nazi"]["rows"]:
+        for i in range(1, len(r)):
+            if not str(r[i]).strip():
+                r[i] = ""
+            else:
+                r[i] = _fmt_xue(r[i])
+
+    # 纳甲法：补母穴/泻子穴（动词+经脉+穴名+编号 黏连）拆分；本穴/原穴仅规整编号
+    najia = z["najia"]
+    idx = {c: i for i, c in enumerate(najia["cols"])}
+    for r in najia["rows"]:
+        for cname in ("补母穴", "泻子穴", "本穴", "原穴"):
+            i = idx.get(cname)
+            if i is None:
+                continue
+            v = str(r[i]).strip()
+            if not v:
+                r[i] = ""
+                continue
+            v = v.replace("胱经", "膀胱经")  # 修正源数据笔误
+            r[i] = _split_najia_xue(v)
+    return z
+
+
+def _split_najia_xue(v):
+    """纳甲法单元格：'补三焦经母穴中渚57' -> '补三焦经母穴 中渚(57)'；'足临泣64' -> '足临泣(64)'。"""
+    m = re.match(r"^(.*?(?:母穴|子穴))([一-鿿]{1,4})(\d+)\s*$", v)
+    if m:
+        return m.group(1) + " " + m.group(2) + "(" + m.group(3) + ")"
+    m = re.match(r"^([一-鿿]{1,4})(\d+)\s*$", v)
+    if m:
+        return m.group(1) + "(" + m.group(2) + ")"
+    return v
+
+
 # ---- SQLite-mode loader ----------------------------------------------------
 def _load_sqlite():
     con = sqlite3.connect(DATA_DB)
@@ -187,36 +255,53 @@ def _load_sqlite():
     return data
 
 
-# ---- dispatch --------------------------------------------------------------
-if USE_SQLITE:
-    print("Loading 人纪 from SQLite (data.db) …")
-    _SD = _load_sqlite()
-    XUEWEI = _SD["xuewei"]
-    ZHENJIU = _SD["zhenjiu"]
-    HANTANG = _SD["hantang"]
-    TU_NAMES = _SD["tu"]
-    POINTS = _SD["points"]
-    BBXX = _SD["bbxx"]
-    BZDZ = _SD["bzdz"]
-    ZFBZ = _SD["zfbz"]
-    ZJDCJL = _SD["zjdcjl"]
-    ZIWU = _SD["ziwwu"]
-else:
-    print("Loading 人纪 LILUN.mdb …")
-    XUEWEI = _load_xuewei()
-    ZHENJIU = _load_zhenjiu()
-    HANTANG = _load_hantang()
-    TU_NAMES = _load_tu_names()
-    POINTS = _load_points()
-    BBXX = _load_plain("BBXX")
-    BZDZ = _load_plain("BZDZ")
-    ZFBZ = _load_plain("ZFBZ")
-    ZJDCJL = _load_plain("ZJDCJL")
-    ZIWU = _load_ziwwu()
+# ---- dispatch（懒加载）----------------------------------------------------
+# 不在模块导入期加载，避免 Vercel 冷启动把整套数据读进内存导致函数初始化
+# 超时（FUNCTION_INVOCATION_FAILED）；首次访问相关数据时才由 server 中间件触发。
+XUEWEI = ZHENJIU = HANTANG = TU_NAMES = POINTS = BBXX = BZDZ = ZFBZ = ZJDCJL = ZIWU = None
+_RENJI_LOADED = False
 
-print("人纪 loaded: xuewei=%d zhenjiu=%d hantang=%d tu=%d points=%d bbxx=%d bzdz=%d zfbz=%d zjdcjl=%d"
-      % (len(XUEWEI), len(ZHENJIU), len(HANTANG), len(TU_NAMES), len(POINTS),
-         len(BBXX), len(BZDZ), len(ZFBZ), len(ZJDCJL)))
+
+def _ensure_renji():
+    global XUEWEI, ZHENJIU, HANTANG, TU_NAMES, POINTS, BBXX, BZDZ, ZFBZ, ZJDCJL, ZIWU, _RENJI_LOADED, _DATA, _NISHI_BY_NAME
+    if _RENJI_LOADED:
+        return
+    print("Loading 人纪 from SQLite (data.db) …" if USE_SQLITE else "Loading 人纪 LILUN.mdb …")
+    if USE_SQLITE:
+        _SD = _load_sqlite()
+        XUEWEI = _SD["xuewei"]
+        ZHENJIU = _SD["zhenjiu"]
+        HANTANG = _SD["hantang"]
+        TU_NAMES = _SD["tu"]
+        POINTS = _SD["points"]
+        BBXX = _SD["bbxx"]
+        BZDZ = _SD["bzdz"]
+        ZFBZ = _SD["zfbz"]
+        ZJDCJL = _SD["zjdcjl"]
+        ZIWU = _normalize_ziwwu(_SD["ziwwu"])
+    else:
+        XUEWEI = _load_xuewei()
+        ZHENJIU = _load_zhenjiu()
+        HANTANG = _load_hantang()
+        TU_NAMES = _load_tu_names()
+        POINTS = _load_points()
+        BBXX = _load_plain("BBXX")
+        BZDZ = _load_plain("BZDZ")
+        ZFBZ = _load_plain("ZFBZ")
+        ZJDCJL = _load_plain("ZJDCJL")
+        ZIWU = _normalize_ziwwu(_load_ziwwu())
+    _DATA = {
+        "xuewei": XUEWEI, "zhenjiu": ZHENJIU, "hantang": HANTANG, "tu": TU_NAMES,
+        "points": POINTS, "bbxx": BBXX, "bzdz": BZDZ, "zfbz": ZFBZ, "zjdcjl": ZJDCJL,
+        "ziwwu": ZIWU,
+    }
+    _NISHI_BY_NAME = {}
+    for _it in XUEWEI:
+        _NISHI_BY_NAME[_it["name"]] = _it.get("fields", {})
+    _RENJI_LOADED = True
+    print("人纪 loaded: xuewei=%d zhenjiu=%d hantang=%d tu=%d points=%d bbxx=%d bzdz=%d zfbz=%d zjdcjl=%d"
+          % (len(XUEWEI), len(ZHENJIU), len(HANTANG), len(TU_NAMES), len(POINTS),
+             len(BBXX), len(BZDZ), len(ZFBZ), len(ZJDCJL)))
 
 
 # ---- 人纪学习系统五大板块（与「人纪针灸」EXE 菜单一致）---------------------
@@ -236,20 +321,17 @@ BOARD_STRUCT = [
         "subs": [
             {"key": "meridians", "name": "十四经络穴位", "kind": "meridians",
              "desc": "任督二脉 + 十二正经，共 767 穴（含倪师注解）"},
-            {"key": "points", "name": "人体穴位图", "kind": "points", "src": "points",
-             "desc": "按原软件坐标的可点击人体穴位图"},
             {"key": "nishi_exp", "name": "倪师傅经验", "subs": [
-                {"key": "cifa", "name": "针刺手法", "kind": "image", "src": "tu",
-                 "filter": ("补泻", "刺激", "手法", "针刺", "井穴"),
-                 "desc": "倪师针刺补泻 / 手法图表"},
+                {"key": "shoufa", "name": "针刺手法", "kind": "hantang_method", "method": "shoufa",
+                 "desc": "烧山火 / 透天凉 / 提插捻转 / 开阖 等手法（自 EXE 提取文本 + 图）"},
                 {"key": "zongjie", "name": "针灸穴位总结图表", "kind": "image", "src": "tu",
                  "filter": ("配穴", "八脉", "交会", "生理病理", "脏腑经络"),
                  "desc": "各经络生理病理与治疗配穴总表"},
             ]},
             {"key": "zhenjiu", "name": "针灸医案", "kind": "fields", "src": "zhenjiu",
              "desc": "220 则针灸医案"},
-            {"key": "bbxx", "name": "病症方剂", "kind": "fields", "src": "bbxx",
-             "desc": "206 条病症对应方剂"},
+            {"key": "bbxx", "name": "病症取穴", "kind": "fields", "src": "bbxx",
+             "desc": "206 条病症对应取穴"},
             {"key": "bzdz", "name": "辨证论治", "kind": "fields", "src": "bzdz",
              "desc": "50 条辨证思路"},
             {"key": "zfbz", "name": "正副辨证", "kind": "fields", "src": "zfbz",
@@ -259,40 +341,24 @@ BOARD_STRUCT = [
         ],
     },
     {
-        "key": "linggui", "name": "灵龟八法",
-        "subs": [
-            {"key": "wanianli", "name": "万年历", "kind": "tool", "tool": "wanianli",
-             "desc": "公历 ↔ 农历/干支年 + 二十四节气"},
-            {"key": "pan", "name": "倪海厦子午流注盘", "kind": "tool", "tool": "ziwwu_pan",
-             "desc": "输入年月日时 → 四柱干支 + 纳子/纳甲/灵龟八法开穴"},
-            {"key": "dial", "name": "圆形灵龟八法盘", "kind": "tool", "tool": "lingui_dial",
-             "desc": "九宫八穴交互圆盘，标出当前时辰开穴"},
-            {"key": "lingui", "name": "灵龟八法表", "kind": "ziwwu_table", "table": "lingui",
-             "desc": "灵龟八法 60 穴（日干支 → 开穴）"},
-        ],
+        "key": "linggui", "name": "灵龟八法", "kind": "lbg_page",
+        "desc": "万年历 + 倪海厦子午流注盘 + 圆形灵龟八法盘 + 灵龟八法表（同一网页排列显示）",
     },
     {
-        "key": "ziwwu", "name": "子午流注",
-        "subs": [
-            {"key": "najia", "name": "十二经纳甲法", "kind": "ziwwu_table", "table": "najia",
-             "desc": "纳甲 12 日干对应开穴"},
-            {"key": "nazi", "name": "十二经脉纳子法", "kind": "ziwwu_table", "table": "nazi",
-             "desc": "纳子 120 时辰对应开穴"},
-        ],
+        "key": "ziwwu", "name": "子午流注", "kind": "ziwwu_page",
+        "desc": "十二经纳甲法 + 十二经脉纳子法 对照表（左 纳甲 · 右 纳子，无下拉整页）",
     },
     {
         "key": "hantang", "name": "汉唐取穴",
         "subs": [
-            {"key": "jingluo", "name": "经络取穴法", "kind": "hantang_method", "method": "jingluo",
-             "desc": "按经络辨证取穴"},
-            {"key": "zangfu", "name": "脏腑取穴法", "kind": "hantang_method", "method": "zangfu",
-             "desc": "按脏腑辨证取穴"},
-            {"key": "duizheng", "name": "对症取穴法", "kind": "hantang_method", "method": "duizheng",
-             "desc": "对症治疗取穴"},
-            {"key": "bianzheng", "name": "辨证取穴法", "kind": "hantang_method", "method": "bianzheng",
-             "desc": "按八纲辨证取穴"},
-            {"key": "tu", "name": "倪师取穴图表", "kind": "image", "src": "tu",
-             "desc": "63 张倪师取穴 / 经络图表"},
+            {"key": "jingluo", "name": "经络辩证取穴", "kind": "hantang_method", "method": "jingluo",
+             "desc": "十二正经 + 奇经八脉 生理病理与治疗配穴列表（取穴图表）"},
+            {"key": "zangfu", "name": "脏腑辩证取穴", "kind": "hantang_method", "method": "zangfu",
+             "desc": "脏腑对应正经 生理病理与治疗配穴列表"},
+            {"key": "duizheng", "name": "汉唐对症取穴", "kind": "hantang_method", "method": "duizheng",
+             "desc": "对症取穴法原则图表（俞募 / 下合 / 五腧 / 补泻）"},
+            {"key": "bianzheng", "name": "汉唐辩病取穴法", "kind": "hantang_method", "method": "bianzheng",
+             "desc": "各系统疾病对应脏腑配穴 + 取穴法原则"},
             {"key": "herbs", "name": "中药查询", "kind": "cross", "endpoint": "/api/herbs",
              "desc": "中药查询（神农本草经 + 补全）"},
             {"key": "yaotu", "name": "药图", "kind": "cross", "endpoint": "/api/yaotu",
@@ -312,6 +378,9 @@ BOARD_STRUCT = [
 
 
 def _count_board(b):
+    if b.get("kind") and not b.get("subs"):
+        # 板块级整页（如 子午流注 双表并排）：以所含表数量计
+        return 2
     n = 0
     for s in b.get("subs", []):
         if "subs" in s:
@@ -335,21 +404,12 @@ GROUP_NAME = {
 MERIDIAN_ORDER = ["ren", "du", "fei", "chang", "wei", "pi", "xin", "xiao",
                   "pang", "shen", "bao", "jiao", "dan", "gan"]
 
-_DATA = {
-    "xuewei": XUEWEI, "zhenjiu": ZHENJIU, "hantang": HANTANG, "tu": TU_NAMES,
-    "points": POINTS, "bbxx": BBXX, "bzdz": BZDZ, "zfbz": ZFBZ, "zjdcjl": ZJDCJL,
-    "ziwwu": ZIWU,
-}
+_DATA = {}
+_NISHI_BY_NAME = {}
 
 
 def modules():
     return BOARDS
-
-
-# 倪师穴位详解（nishixuewei）按穴名建立索引，供「穴位详解」交叉挂接倪师注解。
-_NISHI_BY_NAME = {}
-for _it in XUEWEI:
-    _NISHI_BY_NAME[_it["name"]] = _it.get("fields", {})
 
 
 def nishi_fields(name):

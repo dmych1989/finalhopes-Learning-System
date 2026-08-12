@@ -11,6 +11,8 @@ import common
 
 # 人纪学习系统：独立的第二数据库（人纪针灸学习系统 LILUN.mdb），同密码同加密。
 import renji_db
+# 灵龟八法 / 子午流注 时间计算（干支时、开穴、万年历）
+import lbg_calc
 # 天纪学习系统：三个独立数据库（LILUN/CollData/MasterData，密码各不相同），易经/紫微/天文/命理。
 import tianji_db
 # 天纪目录树（按 列表.txt 重组，每叶带 src/idx，复用 /api/tianji/item 渲染）
@@ -887,44 +889,53 @@ def api_renji_meridian(key: str):
     }
 
 
-# ---- 汉唐取穴：252 首汉唐方剂按 经络/脏腑/对症/辨证 四法尽力归类 ----
-_HANTANG_KW = {
-    "jingluo": ["经络", "经穴", "循行", "流注", "手太阴", "手阳明", "足阳明", "足太阴",
-            "手少阴", "手太阳", "足太阳", "手厥阴", "手少阳", "足少阳", "足厥阴",
-            "任脉", "督脉", "井荥俞经合", "五输"],
-    "zangfu": ["肝", "心", "脾", "肺", "肾", "胃", "胆", "膀胱", "大肠", "小肠",
-            "三焦", "心包", "脏腑", "胸", "腹"],
-    "duizheng": ["痛", "咳", "喘", "炎", "肿", "泻", "秘", "晕", "麻", "痿", "痹",
-            "血", "汗", "渴", "呕", "胀", "症", "失眠", "惊"],
-    "bianzheng": ["虚", "实", "寒", "热", "阴", "阳", "表", "里", "辨证", "不足",
-            "有余", "湿", "燥", "风", "火", "气滞", "血瘀"],
-}
-
-
-def _hantang_by_method(method):
-    kws = _HANTANG_KW.get(method, [])
-    out = []
-    for it in renji_db.HANTANG:
-        text = (it.get("name", "") + " " + it.get("fields", {}).get("讲解", ""))
-        if any(k in text for k in kws):
-            out.append({"name": it.get("name", ""), "num": it.get("num", 0),
-                        "desc": (it.get("fields", {}).get("讲解", "") or "")[:120]})
-    out.sort(key=lambda x: x.get("num", 0))
-    return out
+# ---- 汉唐取穴：临床取穴内容（取穴图表 + 针刺手法，2026-08-09）----
+# 数据由 tools/_gen_hantang_quxue_json.py 生成：4 法(经络/脏腑/对症/辨证)叶子 -> nishitu 取穴表，
+# 另含 8 段针刺手法文本(自 EXE 提取) + 总览图。图表/图名无扩展名，对应 IMG_INDEX["renji"] key。
+_HERE = os.path.dirname(os.path.abspath(__file__))
+try:
+    with open(os.path.join(_HERE, "hantang_quxue.json"), encoding="utf-8") as _f:
+        _HANTANG_QUXUE = json.load(_f)
+except Exception as _e:
+    print("WARN 汉唐取穴数据加载失败:", _e)
+    _HANTANG_QUXUE = {"methods": {}, "shoufa": {"name": "针刺手法", "items": [], "overview": []}}
 
 
 @app.get("/api/renji/hantang/{method}")
 def api_renji_hantang(method: str):
-    return {"method": method, "total": len(_hantang_by_method(method)),
-            "items": _hantang_by_method(method)}
+    if method == "shoufa":
+        sf = _HANTANG_QUXUE["shoufa"]
+        return {"method": method, "name": sf["name"], "chapters": sf.get("chapters", [])}
+    m = _HANTANG_QUXUE["methods"].get(method)
+    if not m:
+        raise HTTPException(404, "unknown method")
+    items = [{"name": lf["name"]} for lf in m["leaves"]]
+    return {"method": method, "name": m["name"], "total": len(items), "items": items}
+
+
+@app.get("/api/renji/hantang/{method}/all")
+def api_renji_hantang_all(method: str):
+    """汉唐取穴文档式渲染：一次性返回该分类层级（groups: 组→条目，组带 charts）。"""
+    if method == "shoufa":
+        sf = _HANTANG_QUXUE["shoufa"]
+        return {"method": method, "name": sf["name"], "chapters": sf.get("chapters", [])}
+    m = _HANTANG_QUXUE["methods"].get(method)
+    if not m:
+        raise HTTPException(404, "unknown method")
+    return {"method": method, "name": m["name"], "tree": m.get("groups", [])}
 
 
 @app.get("/api/renji/hantang/{method}/item")
 def api_renji_hantang_item(method: str, name: str = ""):
-    for it in renji_db.HANTANG:
-        if it.get("name") == name:
-            return {"name": it.get("name", ""),
-                    "fields": it.get("fields", {})}
+    if method == "shoufa":
+        sf = _HANTANG_QUXUE["shoufa"]
+        return {"method": method, "name": sf["name"], "chapters": sf.get("chapters", [])}
+    m = _HANTANG_QUXUE["methods"].get(method)
+    if not m:
+        raise HTTPException(404, "unknown method")
+    for lf in m.get("leaves", []):
+        if lf["name"] == name:
+            return {"name": lf["name"], "charts": lf["charts"], "text": lf["text"]}
     raise HTTPException(404, "not found")
 
 
@@ -944,6 +955,24 @@ def api_renji_tool(tool: str):
 @app.get("/api/renji/ziwwu")
 def api_renji_ziwwu():
     return renji_db.ZIWU
+
+
+@app.get("/api/renji/lbg_compute")
+def api_renji_lbg_compute(y: int, m: int, d: int, h: int, mi: int = 0):
+    """灵龟八法整页：根据年月日时算开穴。"""
+    try:
+        return lbg_calc.lbg_compute(y, m, d, h, mi)
+    except Exception as e:
+        raise HTTPException(400, "计算失败: " + str(e))
+
+
+@app.get("/api/renji/lbg_calendar")
+def api_renji_lbg_calendar(y: int, m: int):
+    """灵龟八法整页：当月万年历（阳历/阴历/24节气）。"""
+    try:
+        return lbg_calc.lbg_calendar(y, m)
+    except Exception as e:
+        raise HTTPException(400, "计算失败: " + str(e))
 
 
 @app.get("/renji/img")
@@ -1020,7 +1049,7 @@ def _build_tianji_catalog():
         "mingli": names(tianji_db.MINGLI),
     }
     # 每个来源允许归入的顶层分类
-    ALLOW = {"lilun": {"基础理论", "断法细则", "子女", "时辰效验"},
+    ALLOW = {"lilun": {"基础理论", "断法细则", "子女", "验证时辰法"},
              "gua": {"天纪卦象查询"}, "rendao": {"天纪卦象查询"},
              "mingli": {"案例查询"}}
     # 同名条目（如「乾为天」同时存在于六十四卦与人间道）时，按子分类名偏好挑选来源
@@ -1087,11 +1116,24 @@ def _build_tianji_catalog():
     return ({"tree": tree, "uncat": {"name": "未归类", "articles": uncat}}, total)
 
 
-TIANJI_CATALOG, TIANJI_CATALOG_TOTAL = _build_tianji_catalog()
+# 不可在模块导入期构建：_build_tianji_catalog() 内部 names(tianji_db.LILUN) 依赖
+# 懒加载数据（LILUN 等全局在 _ensure_tianji() 后才填充），导入期调用会抛
+# TypeError: 'NoneType' object is not iterable，导致整个 server 起不来（连带天纪
+# 搜索 / 图片全挂）。改为首次访问相关接口时才 _ensure_tianji() 再构建。
+TIANJI_CATALOG, TIANJI_CATALOG_TOTAL = None, 0
+
+
+def _get_tianji_catalog():
+    global TIANJI_CATALOG, TIANJI_CATALOG_TOTAL
+    if TIANJI_CATALOG is None:
+        tianji_db._ensure_tianji()
+        TIANJI_CATALOG, TIANJI_CATALOG_TOTAL = _build_tianji_catalog()
+    return TIANJI_CATALOG
 
 
 @app.get("/api/tianji/modules")
 def api_tianji_modules():
+    _get_tianji_catalog()  # ensure lazy build populated TIANJI_CATALOG_TOTAL
     return tianji_db.modules() + [{
         "key": "catalog", "name": "天纪目录", "kind": "catalog",
         "count": TIANJI_CATALOG_TOTAL,
@@ -1101,7 +1143,7 @@ def api_tianji_modules():
 
 @app.get("/api/tianji/catalog")
 def api_tianji_catalog():
-    return TIANJI_CATALOG
+    return _get_tianji_catalog()
 
 
 @app.get("/api/tianji/tree")
@@ -1286,3 +1328,25 @@ app.mount("/static", StaticFiles(directory=os.path.join(os.path.dirname(__file__
 _IMG_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "public", "img")
 if os.path.isdir(_IMG_DIR):
     app.mount("/img", StaticFiles(directory=_IMG_DIR), name="img_static")
+
+
+# ---- 懒加载中间件：避免 Vercel 冷启动导入期加载全套数据导致函数初始化超时
+# （FUNCTION_INVOCATION_FAILED）。仅对 /api/ 数据路由在首次请求时触发一次性加载；
+# 首页 / 静态资源不经过此分支，瞬时可用。加载在单个实例内只发生一次（幂等）。 ----
+@app.middleware("http")
+async def _ensure_data_middleware(request, call_next):
+    path = request.url.path
+    if path.startswith("/api/"):
+        try:
+            renji_db._ensure_renji()
+        except Exception as _e:
+            print("WARN: renji lazy load failed:", repr(_e))
+        try:
+            tianji_db._ensure_tianji()
+        except Exception as _e:
+            print("WARN: tianji lazy load failed:", repr(_e))
+        try:
+            get_cases()
+        except Exception as _e:
+            print("WARN: cases lazy load failed:", repr(_e))
+    return await call_next(request)

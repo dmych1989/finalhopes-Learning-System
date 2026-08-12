@@ -47,7 +47,7 @@ def main():
             return ("lilun", lilun[name]) if name in lilun else (None, None)
         if sec == "案例查询":
             return ("mingli", mingli[name]) if name in mingli else (None, None)
-        if sec == "时辰效验":
+        if sec == "验证时辰法":
             if name in lilun:
                 return ("lilun", lilun[name])
             if name in jingdu:

@@ -201,31 +201,70 @@ def _load_sqlite():
     return data
 
 
-# ---- dispatch --------------------------------------------------------------
-if USE_SQLITE:
-    print("Loading 天纪 from SQLite (data.db) …")
-    _SD = _load_sqlite()
-    GUA = _SD["gua"]; RENDAO = _SD["rendao"]; LILUN = _SD["lilun"]
-    RIYUE = _SD["riyue"]; JINGDU = _SD["jingdu"]; MINGLI = _SD["mingli"]
-    ZIWEI = _SD["ziwei"]; YIJING = _SD["yijing"]
-    _strip_mingli_contact()
-else:
-    print("Loading 天纪 databases …")
-    GUA = _load_gua()
-    RENDAO = _load_rendao()
-    LILUN = _load_lilun()
-    RIYUE = _load_riyue()
-    JINGDU = _load_jingdu()
-    MINGLI = _load_mingli()
-    _strip_mingli_contact()
-    ZIWEI = _load_table_set(["ziweibiao", "ziweizhuxing01"])
-    YIJING = _load_table_set(["anshixi", "dingtianfu", "tianshi", "yt", "加密换算表"])
+# ---- dispatch（懒加载）----------------------------------------------------
+# 不在模块导入期加载，避免 Vercel 冷启动把整套数据读进内存导致函数初始化
+# 超时（FUNCTION_INVOCATION_FAILED）；首次访问相关数据时才由 server 中间件触发。
+GUA = RENDAO = LILUN = RIYUE = JINGDU = MINGLI = ZIWEI = YIJING = None
+_TIANJI_LOADED = False
 
-print("天纪 loaded: gua=%d rendao=%d lilun=%d riyue=%d jingdu=%d mingli=%d "
-      "ziwei=%d yijing=%d" % (len(GUA), len(RENDAO), len(LILUN), len(RIYUE),
-                              len(JINGDU), len(MINGLI),
-                              len(ZIWEI["ziweibiao"]["rows"]) + len(ZIWEI["ziweizhuxing01"]["rows"]),
-                              sum(len(v["rows"]) for v in YIJING.values())))
+
+def _ensure_tianji():
+    global GUA, RENDAO, LILUN, RIYUE, JINGDU, MINGLI, ZIWEI, YIJING, _TIANJI_LOADED, MODULES, _DATA, _LILUN_SECTIONS
+    if _TIANJI_LOADED:
+        return
+    print("Loading 天纪 from SQLite (data.db) …" if USE_SQLITE else "Loading 天纪 databases …")
+    if USE_SQLITE:
+        _SD = _load_sqlite()
+        GUA = _SD["gua"]; RENDAO = _SD["rendao"]; LILUN = _SD["lilun"]
+        RIYUE = _SD["riyue"]; JINGDU = _SD["jingdu"]; MINGLI = _SD["mingli"]
+        ZIWEI = _SD["ziwei"]; YIJING = _SD["yijing"]
+        _strip_mingli_contact()
+    else:
+        GUA = _load_gua()
+        RENDAO = _load_rendao()
+        LILUN = _load_lilun()
+        RIYUE = _load_riyue()
+        JINGDU = _load_jingdu()
+        MINGLI = _load_mingli()
+        _strip_mingli_contact()
+        ZIWEI = _load_table_set(["ziweibiao", "ziweizhuxing01"])
+        YIJING = _load_table_set(["anshixi", "dingtianfu", "tianshi", "yt", "加密换算表"])
+    MODULES = [
+        {"key": "gua",    "name": "六十四卦",     "kind": "fields", "count": len(GUA),
+         "desc": "64 卦：卦名 / 卦象（阴阳爻）/ 卦辞图象，配原版卦图", "hasImg": True},
+        {"key": "rendao", "name": "人间道",       "kind": "fields", "count": len(RENDAO),
+         "desc": "64 卦的人间道：图象解说与现实启示", "hasImg": False},
+        {"key": "lilun",  "name": "天纪理论",     "kind": "fields", "count": len(LILUN),
+         "desc": "倪师讲解易经 / 紫微 / 天文的核心理论（%d 篇）" % len(LILUN)},
+        {"key": "riyue",  "name": "天文历法",     "kind": "fields", "count": len(RIYUE),
+         "desc": "干支 / 日月 / 天时历法（%d 条，密文已解密）" % len(RIYUE)},
+        {"key": "ziwei",  "name": "紫微斗数",     "kind": "tables", "count":
+         len(ZIWEI["ziweibiao"]["rows"]) + len(ZIWEI["ziweizhuxing01"]["rows"]),
+         "desc": "紫微斗数·局（水二局…）/ 紫微诸星"},
+        {"key": "mingli", "name": "八字命例",     "kind": "fields", "count": len(MINGLI),
+         "desc": "倪师八字命盘案例（%d 例，含四柱与命理分析）" % len(MINGLI)},
+        {"key": "jingdu", "name": "经纬度",       "kind": "fields", "count": len(JINGDU),
+         "desc": "全国省市经纬度与时差（%d 条）" % len(JINGDU)},
+        {"key": "yijing", "name": "易经数表",     "kind": "tables", "count":
+         sum(len(v["rows"]) for v in YIJING.values()),
+         "desc": "安世袭卦 / 定天符 / 天师 / 易经 / 加密换算表"},
+        {"key": "mingli_sys", "name": "命理系统", "kind": "tool", "count": 0,
+         "desc": "输入阳历生日 / 时辰 / 性别，排出八字四柱 · 紫微斗数命盘 · 本命卦，并解读日主强弱 · 十神六亲 · 大运走势，关联天纪原有八字命例与理论",
+         "hasImg": False},
+    ]
+    _DATA = {
+        "gua": GUA, "rendao": RENDAO, "lilun": LILUN, "riyue": RIYUE, "jingdu": JINGDU,
+        "mingli": MINGLI, "ziwei": ZIWEI, "yijing": YIJING,
+    }
+    _LILUN_SECTIONS = _build_dou_siz_sections(LILUN)
+    _DATA.update(_LILUN_SECTIONS)
+    _build_lilun_series()
+    _TIANJI_LOADED = True
+    print("天纪 loaded: gua=%d rendao=%d lilun=%d riyue=%d jingdu=%d mingli=%d "
+          "ziwei=%d yijing=%d" % (len(GUA), len(RENDAO), len(LILUN), len(RIYUE),
+                                  len(JINGDU), len(MINGLI),
+                                  len(ZIWEI["ziweibiao"]["rows"]) + len(ZIWEI["ziweizhuxing01"]["rows"]),
+                                  sum(len(v["rows"]) for v in YIJING.values())))
 
 
 # ---- lilun 系列合并 -------------------------------------------------------
@@ -294,7 +333,6 @@ def _build_lilun_series():
         _LILUN_MERGED[canon] = {"name": base, "dd": "", "fields": fields}
         for i in idxs:
             _LILUN_MEMBER_CANON[i] = canon
-_build_lilun_series()
 
 def _collapse_lilun_tree(node):
     """折叠左侧目录树：移除非首篇系列叶子，将首篇叶子改名为合并总标题，清理空目录。"""
@@ -330,34 +368,58 @@ def _collapse_lilun_tree(node):
     return node
 
 
-MODULES = [
-    {"key": "gua",    "name": "六十四卦",     "kind": "fields", "count": len(GUA),
-     "desc": "64 卦：卦名 / 卦象（阴阳爻）/ 卦辞图象，配原版卦图", "hasImg": True},
-    {"key": "rendao", "name": "人间道",       "kind": "fields", "count": len(RENDAO),
-     "desc": "64 卦的人间道：图象解说与现实启示", "hasImg": False},
-    {"key": "lilun",  "name": "天纪理论",     "kind": "fields", "count": len(LILUN),
-     "desc": "倪师讲解易经 / 紫微 / 天文的核心理论（%d 篇）" % len(LILUN)},
-    {"key": "riyue",  "name": "天文历法",     "kind": "fields", "count": len(RIYUE),
-     "desc": "干支 / 日月 / 天时历法（%d 条，密文已解密）" % len(RIYUE)},
-    {"key": "ziwei",  "name": "紫微斗数",     "kind": "tables", "count":
-     len(ZIWEI["ziweibiao"]["rows"]) + len(ZIWEI["ziweizhuxing01"]["rows"]),
-     "desc": "紫微斗数·局（水二局…）/ 紫微诸星"},
-    {"key": "mingli", "name": "八字命例",     "kind": "fields", "count": len(MINGLI),
-     "desc": "倪师八字命盘案例（%d 例，含四柱与命理分析）" % len(MINGLI)},
-    {"key": "jingdu", "name": "经纬度",       "kind": "fields", "count": len(JINGDU),
-     "desc": "全国省市经纬度与时差（%d 条）" % len(JINGDU)},
-    {"key": "yijing", "name": "易经数表",     "kind": "tables", "count":
-     sum(len(v["rows"]) for v in YIJING.values()),
-     "desc": "安世袭卦 / 定天符 / 天师 / 易经 / 加密换算表"},
-    {"key": "mingli_sys", "name": "命理系统", "kind": "tool", "count": 0,
-     "desc": "输入阳历生日 / 时辰 / 性别，排出八字四柱 · 紫微斗数命盘 · 本命卦，并解读日主强弱 · 十神六亲 · 大运走势，关联天纪原有八字命例与理论",
-     "hasImg": False},
-]
+# ---- 去重：剥掉「正文首行 == 标题」的那一行 ----------------------------
+# 部分「四柱（八字）理论」文章解密后的 memo，首行就是文章标题；而前端已用
+# <h3> 渲染大标题，导致标题重复显示。这里在 get_item 返回前，把正文首行
+# 与标题完全一致（或仅带标点/空白）的那一行去掉。对无重复的篇目零影响。
+_TITLE_TRAIL = re.compile(r"^[\s：:、\-—–·.。，,]+")
+def _strip_leading_title(text, *titles):
+    """若正文首行（跳过前置空行）等于某个标题，或仅由标题+标点/空白构成，
+    则删掉该行（及紧随的空行）；否则原样返回。"""
+    if not text:
+        return text
+    lines = text.split("\n")
+    idx = 0
+    while idx < len(lines) and not lines[idx].strip():
+        idx += 1
+    if idx >= len(lines):
+        return text
+    fstripped = lines[idx].strip()
+    for t in titles:
+        if not t:
+            continue
+        t = t.strip()
+        if fstripped == t:
+            del lines[idx]
+            while idx < len(lines) and not lines[idx].strip():
+                del lines[idx]
+            return "\n".join(lines)
+        if fstripped.startswith(t):
+            rem = _TITLE_TRAIL.sub("", fstripped[len(t):])
+            if not rem:
+                del lines[idx]
+                while idx < len(lines) and not lines[idx].strip():
+                    del lines[idx]
+                return "\n".join(lines)
+    return text
 
-_DATA = {
-    "gua": GUA, "rendao": RENDAO, "lilun": LILUN, "riyue": RIYUE, "jingdu": JINGDU,
-    "mingli": MINGLI, "ziwei": ZIWEI, "yijing": YIJING,
-}
+def _clean_lilun_fields(fields, main_title):
+    """清理 lilun 文章的 fields：键本身即小节标题（合并系列）→ 用小节标题去重；
+    “正文”键 → 用文章主标题去重。返回新 dict，不改原数据。"""
+    if not isinstance(fields, dict):
+        return fields
+    out = {}
+    for k, v in fields.items():
+        if isinstance(v, str):
+            out[k] = _strip_leading_title(v, k, main_title)
+        else:
+            out[k] = v
+    return out
+
+
+MODULES = []  # 在 _ensure_tianji() 加载数据后填充（含各模块 count）
+
+_DATA = {}
 
 # ---- 斗数 / 四柱 文章分类（从「天纪理论」lilun 分出，供顶部下拉菜单）----
 # lilun 271 篇天然分两块：从名为「紫微」那篇起为紫微斗数理论，其前为八字（四柱）理论。
@@ -402,8 +464,7 @@ def _build_dou_siz_sections(lilun):
         out[ziwei_map[cat_ziwei(a.get("name", ""))]].append(a)
     return out
 
-_LILUN_SECTIONS = _build_dou_siz_sections(LILUN)
-_DATA.update(_LILUN_SECTIONS)
+_LILUN_SECTIONS = {}
 
 TABLE_LABELS = {
     "ziweibiao": "紫微斗数·局", "ziweizhuxing01": "紫微诸星",
@@ -459,7 +520,9 @@ def get_item(sub, i):
     if sub == "lilun":
         ci = _LILUN_MEMBER_CANON.get(int(i), int(i))
         if ci in _LILUN_MERGED:
-            return _LILUN_MERGED[ci]
+            m = dict(_LILUN_MERGED[ci])
+            m["fields"] = _clean_lilun_fields(m.get("fields"), m.get("name"))
+            return m
     try:
         rec = raw[int(i)]
     except (ValueError, IndexError):
@@ -474,13 +537,15 @@ def get_item(sub, i):
                 rec["fields"] = ast.literal_eval(f)
             except Exception:
                 rec["fields"] = {"正文": f}
+        rec["fields"] = _clean_lilun_fields(rec.get("fields"), rec.get("name"))
         return rec
     # ---- mdb 模式：按需解码 ----
     if sub in ("gua", "rendao"):
         fields = {"图象 / 卦辞": clean_text(rec.get("nr") or "")}
         return {"name": rec["name"], "dd": rec.get("dd") or "", "fields": fields}
     if sub == "lilun":
-        return {"name": rec["name"], "fields": {"正文": clean_text(rec.get("nr") or "")}}
+        return {"name": rec["name"],
+                "fields": {"正文": _strip_leading_title(clean_text(rec.get("nr") or ""), rec["name"])}}
     if sub == "riyue":
         return {"name": rec["name"], "fields": {"解说": _dec_bytes(rec.get("nr"))}}
     if sub == "jingdu":

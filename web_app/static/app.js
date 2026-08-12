@@ -92,7 +92,7 @@ function buildSidebar(modules) {
     // 斗数/四柱 根下的一级分区：作为对应按钮的下拉菜单（点击直接跳转到对应分区）。
     const TJ_TAB_SECTIONS = {
       dou: ["基础理论", "断法细则", "天纪卦象查询"],
-      sizhu: ["断法分类", "基础理论", "断法细则", "时辰效验", "案例查询"],
+      sizhu: ["断法分类", "基础理论", "断法细则", "验证时辰法", "案例查询"],
     };
     const tjTabs = [
       { key: "mingli", label: "命理系统" },
@@ -182,14 +182,14 @@ let tianjiTreeData = null;
 // 顶部「理论」下拉菜单配置：标签 -> 对应根下分区标题（点击跳转左侧目录）。
 const TIANJI_THEORY = {
   "斗数理论": ["基础理论", "断法细则", "天纪卦象查询"],
-  "四柱理论": ["断法分类", "基础理论", "断法细则", "时辰效验"]
+  "四柱理论": ["断法分类", "基础理论", "断法细则", "验证时辰法"]
 };
 const TIANJI_THEORY_ROOT = { "斗数理论": "斗数", "四柱理论": "四柱" };
 
 // 命理系统 hub 顶部菜单栏：各根下拉仅列出这些一级分区（其余如四柱的「子女」不进下拉，仍可经左侧目录树访问）。
 const ML_MENU_SECTIONS = {
   "斗数": ["基础理论", "断法细则", "天纪卦象查询"],
-  "四柱": ["断法分类", "基础理论", "断法细则", "时辰效验", "案例查询"]
+  "四柱": ["断法分类", "基础理论", "断法细则", "验证时辰法", "案例查询"]
 };
 
 // 天纪某分区（斗数/四柱 下拉项）三栏面板：左=一级分类(子类) / 中=二级条目 / 右=内容。
@@ -235,7 +235,12 @@ async function renderTianjiSectionPanel(rootName, secName) {
     content.id = "djMobileContent";
 
     if (!cats.length) {
-      content.innerHTML = '<div class="hint">（该分区暂无内容）</div>';
+      if (sec && sec.src) {
+        // 分区本身即单篇内容（如「验证时辰法」）：直接加载，无需中间列
+        selectTJ2(sec, content);
+      } else {
+        content.innerHTML = '<div class="hint">（该分区暂无内容）</div>';
+      }
       panel.appendChild(lvl1); panel.appendChild(lvl2); panel.appendChild(content);
       return;
     }
@@ -296,9 +301,16 @@ async function renderTianjiSectionPanel(rootName, secName) {
   const col3 = document.createElement("div"); col3.className = "dj-main";
   panel.appendChild(col1); panel.appendChild(col2); panel.appendChild(col3);
   if (!cats.length) {
-    col1.innerHTML = '<div class="hint">（该分区暂无分类）</div>';
-    col2.innerHTML = '<div class="hint">（暂无条目）</div>';
-    col3.innerHTML = '<div class="hint">暂无内容</div>';
+    if (sec && sec.src) {
+      // 分区本身即单篇内容（如「验证时辰法」）：直接加载，省略中间分类列
+      col1.innerHTML = '<div class="hint">（本分区为单篇内容）</div>';
+      col2.innerHTML = '<div class="hint">（无子分类）</div>';
+      selectTJ2(sec, col3);
+    } else {
+      col1.innerHTML = '<div class="hint">（该分区暂无分类）</div>';
+      col2.innerHTML = '<div class="hint">（暂无条目）</div>';
+      col3.innerHTML = '<div class="hint">暂无内容</div>';
+    }
     return;
   }
   cats.forEach((cat, i) => {
@@ -1390,10 +1402,7 @@ function _extractMeta(lines) {
     const bm = t.match(/[【〔]([^】〕]*?(?:报导|報導)[^】〕]*?)[】〕]/);
     let src = null;
     if (bm) src = bm[1];
-    else if (/资料?来源\s*[:：]/.test(t)) {
-      const u = t.match(/资料?来源\s*[:：]\s*(\S+)/);
-      src = u ? "资料来源 " + u[1].replace(/^https?:\/\//, "").split("/")[0] : "资料来源";
-    } else if (/记者\s*[:：]?/.test(t) && /(?:报导|報導)/.test(t)) {
+    else if (/记者\s*[:：]?/.test(t) && /(?:报导|報導)/.test(t)) {
       const sm = t.match(/记者\s*[:：]?\s*([^【〔]*?(?:报导|報導))/);
       if (sm) src = sm[1];
     }

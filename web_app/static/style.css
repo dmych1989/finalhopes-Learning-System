@@ -199,7 +199,7 @@ body{margin:0;font-family:"PingFang SC","Microsoft YaHei","PingFangTC-Regular","
 
 /* ===== 工作区 ===== */
 .workarea{display:flex;flex:1;min-height:0}
-.list-pane{width:38%;max-width:460px;border-right:1px solid var(--line);overflow:auto;padding:12px;
+.list-pane{width:38%;max-width:460px;flex:0 0 auto;border-right:1px solid var(--line);overflow:auto;padding:12px;
   background:var(--panel);display:flex;gap:12px;align-items:stretch}
 .list-main{flex:1;min-width:0;display:flex;flex-direction:column}
 /* 医案「按证型浏览」左侧分类侧栏 */
@@ -215,13 +215,24 @@ body{margin:0;font-family:"PingFang SC","Microsoft YaHei","PingFangTC-Regular","
 .catnav-item .cn-count{font-style:normal;font-size:11px;color:var(--ink3);background:var(--panel2);
   border-radius:10px;padding:1px 7px;min-width:22px;text-align:center}
 .catnav-item.active .cn-count{color:var(--teal-dd);background:#fff}
-.detail-pane{flex:1;overflow:auto;padding:20px 24px;background:var(--bg)}
+.detail-pane{flex:1;min-width:0;overflow:auto;padding:20px 24px;background:var(--bg)}
 .hint{color:var(--ink3);font-size:13.5px;padding:20px}
-.result-list{list-style:none;margin:0;padding:0}
-.result-item{padding:12px 14px;margin:8px 0;border:1px solid var(--line);border-radius:var(--radius-sm);
-  background:var(--panel);cursor:pointer;transition:.15s}
+.result-list{list-style:none;margin:0;padding:0;display:block;width:100%}
+.fb-title{font-size:13px;font-weight:700;color:var(--ink2);align-self:center;margin-right:4px;white-space:nowrap}
+
+/* 子午流注：双表并排（左 纳甲法 · 右 纳子法） */
+.zwlz-title{font-size:15px;font-weight:700;color:var(--teal-dd);margin:2px 0 10px;
+  padding-left:9px;border-left:3px solid var(--teal);line-height:1.3}
+.table-scroll{width:100%;overflow:auto;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--panel)}
+table.zi{border-collapse:collapse;width:100%;font-size:13px;color:var(--ink)}
+table.zi th{position:sticky;top:0;background:var(--teal-bg);color:var(--teal-dd);font-weight:700;
+  padding:8px 10px;border:1px solid var(--line);white-space:nowrap;text-align:center}
+table.zi td{padding:7px 10px;border:1px solid var(--line);text-align:center;white-space:nowrap}
+table.zi tbody tr:nth-child(even){background:var(--panel2)}
+.result-item{padding:8px 14px;margin:4px 0;border:1px solid var(--line);border-radius:var(--radius-sm);
+  background:var(--panel);cursor:pointer;transition:.15s;display:block;width:100%;box-sizing:border-box}
 .result-item:hover{border-color:var(--teal-l);box-shadow:var(--shadow-sm)}
-.result-item.active-row{border-left:3px solid var(--teal);background:var(--teal-bg)}
+.result-item.active, .result-item.active-row{border-left:3px solid var(--teal);background:var(--teal-bg)}
 .result-group-head{list-style:none;padding:10px 14px;margin-top:10px;font-size:13px;
   font-weight:600;color:var(--teal-dd);background:var(--panel2);border-radius:var(--radius-sm)}
 .filter-bar{display:flex;flex-wrap:wrap;gap:8px;padding:8px 2px 12px;border-bottom:1px solid var(--line);margin-bottom:8px}
@@ -299,7 +310,7 @@ body{margin:0;font-family:"PingFang SC","Microsoft YaHei","PingFangTC-Regular","
 
 /* ===== 黄帝外经：原文 / 译文 对照 ===== */
 /* 左侧目录收窄，正文区更宽 */
-.workarea.hdwj-mode .list-pane{width:24%;max-width:300px}
+.workarea.hdwj-mode .list-pane{width:24%;max-width:300px;flex:0 0 auto}
 .hdwj-card{max-width:none}
 .hdwj-tabs{display:flex;gap:8px;margin:0 0 14px;flex-wrap:wrap}
 .hdwj-tab{padding:6px 16px;border:1px solid var(--line);background:var(--panel);
@@ -835,7 +846,7 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
   .detail-pane{ flex:none; min-height:0; height:auto; overflow:visible; width:100%; padding:12px 12px 14px; background:var(--bg); }
   .filter-bar{ padding:6px 0 10px; }
   .filter-tab{ font-size:12.5px; padding:4px 12px; }
-  .result-item{ padding:10px 12px; margin:6px 0; }
+  .result-item{ padding:7px 12px; margin:3px 0; }
   .result-item .t{ font-size:14px; }
   .result-item .s{ font-size:12px; }
   .hint{ font-size:12.5px; padding:14px; }
@@ -920,6 +931,8 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
 
   /* 灵龟八法 / 经络 等横排组件：允许换行、缩小 */
   .lg-live-main{ gap:12px; }
+
+  @media (max-width:900px){ .zw-layout{ grid-template-columns:1fr; } }
   .lg-live-acu{ font-size:30px; }
   .gz{ min-width:96px; }
   .lg-grid{ gap:6px; }
@@ -946,6 +959,90 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
   .lightbox img{ max-width:96%; max-height:90%; }
 }
 
+
+  /* ===== 灵龟八法 整页（万年历 + 子午流注盘 + 圆形灵龟八法盘 + 灵龟八法表） ===== */
+  /* 灵龟八法 整页（按 灵龟八法页面.html 复刻 · 奶油底/绿标题/红开穴） */
+  .lbg-head{ background:#2d5a4f; color:#fff; padding:12px 18px; border-radius:8px; margin-bottom:12px; }
+  .lbg-head h1{ font-size:18px; font-weight:700; }
+  .lbg-head p{ font-size:12px; opacity:.85; margin-top:4px; }
+  .lbg-wrap{ width:100%; box-sizing:border-box; background:#f5f1e8; border-radius:12px; padding:14px; }
+  .lbg-main{ display:grid; grid-template-columns:460px 1fr; gap:12px; }
+  .lbg-left{ display:flex; flex-direction:column; gap:10px; }
+  .selector{ background:#fff; padding:10px 14px; border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+  .selector .row1{ display:grid; grid-template-columns:repeat(4,1fr) auto; gap:8px; align-items:center; }
+  .selector label{ font-size:11px; color:#555; display:block; }
+  .selector input, .selector select{ padding:4px 6px; font-size:12px; border:1px solid #ccc; border-radius:3px; width:100%; box-sizing:border-box; }
+  .selector button{ padding:5px 12px; font-size:12px; background:#c0392b; color:#fff; border:none; border-radius:4px; cursor:pointer; }
+  .selector button:hover{ filter:brightness(1.06); }
+  .computed{ background:#fff; border-radius:8px; padding:10px 14px; box-shadow:0 1px 3px rgba(0,0,0,.08); font-size:12px; }
+  .computed h3{ font-size:13px; color:#2d5a4f; margin:6px 0 4px; padding-bottom:3px; border-bottom:1px solid #eee; }
+  .computed .blk{ padding:6px 8px; background:#fdf6e3; border-left:3px solid #2d5a4f; border-radius:3px; margin-bottom:6px; }
+  .computed .row{ display:flex; gap:8px 14px; flex-wrap:wrap; font-size:11px; }
+  .computed .row > div{ padding:1px 0; }
+  .computed .lbl{ color:#888; font-size:10px; display:block; }
+  .computed .val{ font-weight:bold; color:#c0392b; font-size:13px; }
+  .cal{ background:#fff; border-radius:8px; padding:10px 14px; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+  .cal .calhead{ display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+  .cal .calhead .ym{ font-size:14px; font-weight:bold; }
+  .cal .calhead button{ border:1px solid #ccc; background:#f3efe4; border-radius:4px; padding:2px 8px; cursor:pointer; }
+  .cal table{ border-collapse:collapse; width:100%; font-size:12px; }
+  .cal th, .cal td{ border:1px solid #e0d8c0; padding:4px 2px; text-align:center; vertical-align:middle; height:44px; }
+  .cal th{ background:#fdf6e3; color:#5a4a30; font-weight:bold; font-size:11px; }
+  .cal td.cur{ background:#c0392b; color:#fff; font-weight:bold; }
+  .cal td.cur .lun{ color:#fff; }
+  .cal td .solar{ font-weight:bold; font-size:13px; }
+  .cal td .lun{ color:#999; font-size:10px; margin-top:2px; }
+  .cal td .jq{ display:block; color:#c0392b; font-size:9px; margin-top:1px; }
+  .cal td.empty{ border:none; }
+  .rightcol{ background:#fff; border-radius:8px; padding:10px; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+  .disc-wrap{ position:relative; width:100%; }
+  .disc-wrap svg{ width:100%; max-width:700px; height:auto; margin:0 auto; display:block; }
+  .yq-info{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:10px; font-size:12px; }
+  .yq-info .card{ background:#fdf6e3; border-radius:4px; padding:6px 10px; text-align:center; }
+  .yq-info .card .lbl{ color:#888; font-size:11px; }
+  .yq-info .card .val{ font-weight:bold; color:#2d5a4f; font-size:13px; }
+  .lbg-wrap .foot{ text-align:center; font-size:11px; color:#999; margin-top:10px; }
+  @media (max-width:900px){
+    .lbg-main{ grid-template-columns:1fr; }
+  }
+  /* 整页板块（灵龟八法/子午流注）：内容整页自然滚动，不被 overflow:auto 的视口盒子掐断 */
+  .workarea.page-mode{ overflow:visible; }
+  .workarea.page-mode .detail-pane{ flex:none; height:auto; overflow:visible; width:100%; padding:20px 24px; }
+  @media (max-width:820px){
+    .rightcol{ width:100%; }
+    .yq-info{ grid-template-columns:repeat(2,1fr); }
+    .selector .row1{ grid-template-columns:repeat(2,1fr); }
+  }
+  /* 子午流注 整页：按 子午流注.html 复刻（奶油底/绿标题/红高亮） */
+  .zw-wrap{ width:100%; box-sizing:border-box; background:#f5f1e8; border-radius:12px; padding:14px; font-size:12px; color:#222; }
+  .zw-head{ background:#2d5a4f; color:#fff; padding:12px 18px; border-radius:8px; margin-bottom:10px; }
+  .zw-head h1{ font-size:18px; font-weight:700; }
+  .zw-head p{ font-size:12px; opacity:.85; margin-top:4px; }
+  .zw-selector{ background:#fff; padding:10px 14px; border-radius:8px; display:flex; gap:10px; align-items:flex-end; flex-wrap:wrap; box-shadow:0 1px 3px rgba(0,0,0,.08); margin-bottom:12px; }
+  .zw-selector label{ font-size:11px; color:#555; display:block; }
+  .zw-selector input, .zw-selector select{ padding:4px 6px; font-size:12px; border:1px solid #ccc; border-radius:3px; width:90px; box-sizing:border-box; }
+  .zw-selector button{ padding:5px 14px; font-size:12px; background:#c0392b; color:#fff; border:none; border-radius:4px; cursor:pointer; }
+  .zw-selector button:hover{ filter:brightness(1.06); }
+  .zw-hint{ font-size:11px; color:#888; margin-left:auto; align-self:center; }
+  .zw-layout{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .zw-panel{ background:#fff; border-radius:8px; padding:12px; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+  .zw-panel h2{ font-size:15px; color:#2d5a4f; margin-bottom:8px; padding-bottom:4px; border-bottom:1.5px solid #2d5a4f; }
+  .zw-note{ font-size:11px; color:#999; margin-bottom:6px; }
+  .zw-tblwrap{ max-height:620px; overflow:auto; border:1px solid #ddd; border-radius:4px; }
+  .zw-tab{ border-collapse:collapse; width:100%; font-size:12px; }
+  .zw-tab th, .zw-tab td{ border:1px solid #ddd; padding:5px 8px; text-align:center; }
+  .zw-tab th{ background:#fdf6e3; color:#5a4a30; position:sticky; top:0; z-index:1; }
+  .zw-tab tbody tr:nth-child(even) td{ background:#faf9f4; }
+  .zw-tab td.zw-hour{ font-weight:bold; color:#2d5a4f; }
+  .zw-tab td.cur, .zw-tab tr.cur td{ background:#fdebd0 !important; color:#c0392b; font-weight:bold; }
+  .zw-empty{ color:#ccc; }
+  .zw-result{ background:#fff; border-radius:8px; padding:12px 16px; box-shadow:0 1px 3px rgba(0,0,0,.08); margin-top:12px; }
+  .zw-result h3{ font-size:13px; color:#2d5a4f; margin-bottom:6px; }
+  .zw-row{ display:flex; gap:18px; flex-wrap:wrap; }
+  .zw-lbl{ color:#888; font-size:11px; display:block; }
+  .zw-val{ font-weight:bold; color:#c0392b; font-size:13px; }
+  .zw-foot{ text-align:center; font-size:11px; color:#999; margin-top:10px; }
+
 /* 超小屏（<=380px）进一步收紧，确保不溢出 */
 @media (max-width:380px){
   body{ font-size:12.5px; }
@@ -957,4 +1054,166 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
   .sidebar .tj-leaf{ font-size:12px; }
   .mh-left h2{ font-size:15px; }
   .tj-mobile-select{ font-size:13.5px; padding:7px 28px 7px 10px; }
+}
+
+/* ===== 汉唐取穴（临床取穴图表 + 针刺手法，2026-08-09） ===== */
+.ht-bread{font-size:12.5px;color:var(--ink3);margin-bottom:6px}
+.ht-title{font-size:21px;color:var(--teal-dd);margin-bottom:4px}
+.ht-intro{font-size:13.5px;color:var(--ink3);margin-bottom:14px;line-height:1.75}
+.ht-crumb{font-size:14px;font-weight:600;color:var(--teal-dd);padding:4px 2px}
+.ht-group-h{font-size:15px;font-weight:700;color:var(--teal-dd);margin:14px 0 4px;padding:7px 10px;
+  border-left:4px solid var(--teal);background:var(--teal-bg);border-radius:6px;cursor:pointer}
+.ht-group-h:hover{background:#e3f1ee}
+.ht-group-h.active-group{background:var(--teal);color:#fff}
+.ht-group-h.active-group:hover{background:var(--teal)}
+.result-item.ht-leaf{margin-left:10px}
+.ht-sec-ttl{font-size:15px;font-weight:700;color:var(--teal-dd);margin:18px 0 10px;
+  border-bottom:1px dashed var(--line);padding-bottom:5px}
+.ht-empty{color:var(--ink3);font-size:13px;padding:18px}
+.ht-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin:6px 0 16px}
+.ht-cell{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden;
+  cursor:zoom-in;box-shadow:var(--shadow-sm);transition:box-shadow .15s,transform .1s}
+.ht-cell:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.ht-cell .imgbox{aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;
+  background:var(--panel2);overflow:hidden}
+.ht-cell .imgbox img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.ht-cell .nm{font-size:12.5px;text-align:center;padding:8px 6px;color:var(--ink2);line-height:1.4}
+.ht-sf{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--teal);
+  border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:14px;box-shadow:var(--shadow-sm)}
+.ht-sf h3{font-size:16px;color:var(--teal);margin-bottom:6px}
+.ht-sf p{font-size:14px;line-height:1.95;color:var(--ink);white-space:pre-wrap}
+/* 汉唐取穴：文档式渲染（分类 → 主题 → 条文 + 取穴图表） */
+.ht-topic{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-sm);
+  padding:14px 16px;margin-bottom:16px;box-shadow:var(--shadow-sm)}
+.ht-topic-ttl{font-size:17px;font-weight:700;color:var(--teal-dd);margin:0 0 10px;
+  padding-left:10px;border-left:4px solid var(--teal)}
+.ht-text{white-space:pre-wrap;line-height:1.9;font-size:14px;color:#27352f;
+  padding:10px 14px;background:#f6faf9;border:1px solid #e3eeec;border-radius:10px;margin-bottom:4px}
+/* 针刺手法（shoufa）单页：目录导航 + 手法条目 */
+.sf-toc{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 2px}
+.sf-toc-item{font-size:13px;padding:5px 12px;border:1px solid var(--line);border-radius:999px;
+  background:var(--panel);color:var(--ink2);cursor:pointer;transition:.15s}
+.sf-toc-item:hover{border-color:var(--teal-l);color:var(--teal-dd);box-shadow:var(--shadow-sm)}
+.sf-block{padding:12px 0 8px;border-bottom:1px dashed var(--line)}
+.sf-block:last-of-type{border-bottom:none}
+.sf-block .ht-topic-ttl{margin-top:0}
+.ht-sf-list{margin:4px 0 2px;padding-left:22px;columns:2;column-gap:28px}
+.ht-sf-list li{font-size:14px;line-height:1.95;color:var(--ink);break-inside:avoid;margin-bottom:4px}
+/* 真人全身经络穴位图（十二经络与奇经八脉 / 穴位走向动画） */
+.body-ref{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-sm);
+  padding:8px;margin-bottom:10px}
+.body-ref-bar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.bi-btn{font:inherit;font-size:12.5px;padding:4px 12px;border-radius:999px;cursor:pointer;
+  background:var(--panel2);color:var(--ink2);border:1px solid var(--line);transition:.15s}
+.bi-btn:hover{border-color:var(--teal);color:var(--teal)}
+.bi-btn.active{background:var(--teal);color:#fff;border-color:var(--teal)}
+.body-ref-img{background:#0b2236;border-radius:var(--radius-sm);padding:6px;
+  display:flex;align-items:center;justify-content:center}
+.body-ref-img img{max-width:100%;max-height:520px;height:auto;object-fit:contain;display:block;
+  cursor:zoom-in}
+/* 十四经络：真人全身图移到「穴位详情」右侧，两列并排 */
+.mer-detail-pane{display:flex;gap:18px;align-items:flex-start}
+.mer-detail-pane .mer-point{flex:1;min-width:0}
+.mer-detail-pane .body-ref{flex:0 0 320px;max-width:340px}
+.mer-detail-pane .body-ref-img img{max-height:600px}
+@media (max-width:880px){
+  .mer-detail-pane{flex-direction:column}
+  .mer-detail-pane .body-ref{flex:none;max-width:none;width:100%}
+}
+/* 动画：本经穴位列表（充实"内容"） */
+.mer-points{margin-top:14px;background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--radius-sm);padding:12px 14px}
+.mp-ttl{font-size:15px;color:var(--teal);margin-bottom:10px;font-weight:600}
+.mp-grid{display:flex;flex-wrap:wrap;gap:7px}
+.mp-chip{font-size:13px;padding:4px 11px;background:var(--panel2);border:1px solid var(--line);
+  border-radius:999px;color:var(--ink)}
+/* 修复 renji 详情区既有未定义类的兜底样式 */
+.point-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:14px 16px;margin-bottom:12px}
+.point-card h4{font-size:17px;color:var(--teal-dd);margin-bottom:8px}
+.point-card .sec{margin:8px 0;font-size:14px;line-height:1.85;color:var(--ink)}
+.point-card .sec b{color:var(--teal)}
+.nishi-box{background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius-sm);
+  padding:10px 14px;margin-top:10px}
+.nishi-box .sec{font-size:13.5px;line-height:1.8}
+
+/* ===== 药图画廊（药图列表.html 内容接入 renji 药图）===== */
+.yt-search{display:flex;gap:8px;align-items:center;padding:8px 10px}
+.yt-search input{flex:1;min-width:0;border:1px solid var(--line);border-radius:20px;
+  padding:8px 14px;font-size:14px;outline:2px solid transparent;background:var(--panel);
+  color:var(--ink)}
+.yt-search input:focus{outline:2px solid var(--teal-l)}
+.yt-count{font-size:12.5px;color:var(--mut);padding:2px 12px 8px}
+.yt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:11px;padding:6px 12px 16px}
+.yt-item{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;
+  cursor:pointer;transition:.15s;display:flex;flex-direction:column;margin:0}
+.yt-item:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);border-color:var(--teal)}
+.yt-item.active{border-color:var(--teal);box-shadow:0 0 0 3px var(--teal-l)}
+.yt-thumb{aspect-ratio:1/1;width:100%;background:#eef4f3;overflow:hidden}
+.yt-thumb img{width:100%;height:100%;object-fit:cover;display:block;background:#eef4f3}
+.yt-cap{padding:6px 5px;font-size:13px;line-height:1.3;text-align:center;color:var(--ink);
+  border-top:1px solid var(--line);min-height:36px;display:flex;align-items:center;justify-content:center}
+.yt-pane{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:10px;
+  background:#0b1f1c !important;padding:18px 16px;min-height:0}
+.yt-preview{flex:0 0 auto;display:flex;align-items:center;justify-content:center;width:100%;
+  min-height:0;padding:6px}
+.yt-preview img{max-width:100%;width:auto;max-height:none;height:auto;display:block;
+  border-radius:8px;box-shadow:0 8px 30px rgba(0,0,0,.45);background:#fff}
+.yt-pname{font-size:18px;font-weight:600;color:#eafff9;text-align:center}
+.yt-phint{font-size:12px;color:#9fc7c0;text-align:center}
+.yt-empty{color:var(--mut);text-align:center;padding:40px 0}
+.yt-filterbar{position:sticky;top:0;z-index:3;background:var(--panel)}
+.yt-cats{display:flex;flex-wrap:wrap;gap:6px;padding:8px 10px 4px}
+.yt-cat{border:1px solid var(--line);background:var(--panel);border-radius:20px;
+  padding:4px 11px;font-size:12.5px;color:var(--ink);cursor:pointer;transition:.15s;line-height:1.4}
+.yt-cat i{font-style:normal;margin-left:4px;color:var(--mut);font-size:11px}
+.yt-cat:hover{border-color:var(--teal-l);background:var(--panel2)}
+.yt-cat.active{border-color:var(--teal);background:var(--teal);color:#fff}
+.yt-cat.active i{color:rgba(255,255,255,.85)}
+.yt-pager{display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 0 16px}
+.yt-pbtn{border:1px solid var(--line);background:var(--panel);border-radius:8px;
+  padding:6px 14px;font-size:13px;color:var(--ink);cursor:pointer;transition:.15s}
+.yt-pbtn:hover:not(:disabled){border-color:var(--teal);color:var(--teal-dd)}
+.yt-pbtn:disabled{opacity:.4;cursor:not-allowed}
+.yt-pinfo{font-size:12.5px;color:var(--mut);min-width:90px;text-align:center}
+
+/* ===== 中药查询画廊（中药查询.html 内容接入 renji 中药查询）===== */
+.zy-toolbar{position:sticky;top:0;background:var(--panel);z-index:5;padding:2px 0 8px;border-bottom:1px solid var(--line)}
+.zy-search{width:100%;padding:8px 12px;border:1px solid var(--line);border-radius:20px;
+  font-size:14px;outline:2px solid transparent;background:var(--panel);color:var(--ink);margin-bottom:8px}
+.zy-search:focus{outline:2px solid var(--teal-l);border-color:var(--teal)}
+.zy-ftitle{font-size:11.5px;color:var(--mut);margin:6px 0 4px}
+.zy-ftags{display:flex;flex-wrap:wrap;gap:6px}
+.zy-ftag{border:1px solid var(--line);background:var(--panel);color:var(--ink2);
+  padding:3px 10px;border-radius:14px;font-size:12px;cursor:pointer;transition:.12s;
+  display:inline-flex;align-items:center;gap:4px}
+.zy-ftag:hover{border-color:var(--teal)}
+.zy-ftag.active{background:var(--teal);color:#fff;border-color:var(--teal)}
+.zy-ftag .ct{opacity:.65;margin-left:2px;font-size:11px}
+.zy-empty{color:var(--mut);text-align:center;padding:30px 0;font-size:13.5px}
+.zy-item{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-sm);
+  padding:10px 12px;margin-bottom:8px;cursor:pointer;transition:.15s;list-style:none}
+.zy-item:hover{transform:translateY(-1px);box-shadow:var(--shadow-sm);border-color:var(--teal)}
+.zy-item.active{border-color:var(--teal);box-shadow:0 0 0 3px var(--teal-l)}
+.zy-item .top{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.zy-nm{font-size:15px;font-weight:600;color:var(--ink)}
+.zy-num{font-size:13px;font-weight:700;color:var(--mut);font-variant-numeric:tabular-nums;min-width:30px;flex:none}
+.zy-badge{font-size:11px;padding:1px 8px;border-radius:10px;background:var(--teal-bg);color:var(--teal-dd);border:1px solid var(--teal-l)}
+.zy-badge.fill{background:#fff4e6;color:#c97a16;border-color:#f0c98a}
+.zy-badge.other{background:var(--panel2);color:var(--ink3);border-color:var(--line)}
+.zy-qi{font-size:11px;padding:1px 7px;border-radius:10px;background:#eef4f3;color:var(--teal-dd);border:1px solid var(--line)}
+.zy-gx{font-size:12.5px;color:var(--ink2);margin-top:5px;line-height:1.5;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.zy-detail{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;max-width:780px}
+.zy-ph .nm{font-size:22px;font-weight:700;color:var(--teal-dd);margin-bottom:4px}
+.zy-seq{font-size:12.5px;color:var(--mut);margin-bottom:14px;padding-bottom:10px;border-bottom:1px dashed var(--line)}
+.zy-row{margin:12px 0;font-size:14px;line-height:1.85}
+.zy-row .k{font-weight:700;color:var(--teal-dd);display:block;margin-bottom:3px;font-size:13.5px}
+.zy-row .v{color:var(--ink);white-space:pre-wrap;word-break:break-word}
+.zy-row .v .hl{background:#fff3a8;border-radius:3px;padding:0 1px}
+.zy-herb{display:block;max-width:240px;width:100%;height:auto;margin:14px 0 2px;border-radius:8px;
+  border:1px solid var(--line);background:#fff}
+@media (max-width:820px){
+  .zy-detail{max-width:none}
+  .zy-herb{max-width:180px}
 }
