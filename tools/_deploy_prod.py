@@ -86,8 +86,25 @@ def modified_files():
     return set(a) | set(b)
 
 
+def disk_img_files():
+    """public/img 下所有磁盘文件（排除 SKIP_PREFIXES），不依赖 git 追踪状态。
+    防止新增/未强追踪的图片漏部署（如 public/img/shoufa）。"""
+    res = []
+    base = os.path.join(ROOT, "public", "img")
+    if not os.path.isdir(base):
+        return res
+    for dp, _, fns in os.walk(base):
+        for fn in fns:
+            full = os.path.join(dp, fn)
+            rel = "public/img/" + os.path.relpath(full, base).replace(os.sep, "/")
+            if any(rel.startswith(s) for s in SKIP_PREFIXES):
+                continue
+            res.append(rel)
+    return res
+
+
 def build_files(token, prev_paths, prev_shas, force=set()):
-    tracked = set(tracked_files())
+    tracked = set(tracked_files()) | set(disk_img_files())
     mod = modified_files()
     overlay = set()
     for f in tracked:
@@ -106,7 +123,7 @@ def build_files(token, prev_paths, prev_shas, force=set()):
         sha = hashlib.sha1(data).hexdigest()
         size = len(data)
         cur_shas[f] = sha
-        if f in prev_paths and f not in overlay and prev_shas.get(f) == sha:
+        if f in prev_paths and f not in overlay:
             files.append({"file": f, "sha": sha, "size": size})
         else:
             if f.startswith("public/img/") or size > 4 * 1024 * 1024:
