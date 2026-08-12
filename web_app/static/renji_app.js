@@ -1300,15 +1300,37 @@
     if (listHint) listHint.style.display = "none";
     if (pager) pager.style.display = "";
     detailPane.innerHTML = "<div class='hint'>载入中…</div>";
-    getJSON("/static/zhongyao_herbs.json?v=2").then(HERBS => {
+    getJSON("/static/zhongyao_herbs_meta.json?v=3").then(meta => {
       const CATS = ["上经", "中经", "下经", "增补", "其他"];
       const QIS = ["热", "温", "平", "凉", "寒"];
       const ZY_PAGE = 20;
-      const st = { HERBS, curCat: "", curQi: "", curQ: "", activeIdx: null, page: 1 };
+      const VER = "?v=3";
+      const CAT_FILE = { "上经":"zhongyao_herbs_shang.json", "中经":"zhongyao_herbs_zhong.json", "下经":"zhongyao_herbs_xia.json", "增补":"zhongyao_herbs_zeng.json", "其他":"zhongyao_herbs_qita.json" };
+      const _cache = {};      // cat -> 已加载数组（缓存复用）
+      const _loading = {};    // cat -> 进行中的 Promise
+      let _meta = meta || null;
+      function loadCat(cat) {
+        if (_cache[cat]) return Promise.resolve(_cache[cat]);
+        if (_loading[cat]) return _loading[cat];
+        const p = getJSON("/static/" + CAT_FILE[cat] + VER).then(arr => { _cache[cat] = arr; return arr; });
+        _loading[cat] = p;
+        return p;
+      }
+      function loadCats(cats) {
+        if (cats.length === 1 && cats[0] === "") return Promise.all(CATS.map(loadCat)).then(a => [].concat(...a));
+        return Promise.all(cats.map(loadCat)).then(a => [].concat(...a));
+      }
+      const st = { HERBS: [], curCat: "", curQi: "", curQ: "", activeIdx: null, page: 1 };
       _zyState = st;
 
-      function countCat(c) { return HERBS.filter(h => c === "" ? true : h.c === c).length; }
-      function countQi(q) { return HERBS.filter(h => q === "" ? true : h.qi === q).length; }
+      function countCat(c) {
+        if (c === "") return _meta ? _meta.total : st.HERBS.length;
+        return _meta ? (_meta.counts[c] || 0) : st.HERBS.filter(h => h.c === c).length;
+      }
+      function countQi(q) {
+        const base = (st.curCat === "" ? st.HERBS : st.HERBS.filter(h => h.c === st.curCat));
+        return q === "" ? base.length : base.filter(h => h.qi === q).length;
+      }
       function hl(s, q) {
         s = s || "";
         if (!q) return esc(s);
@@ -1318,7 +1340,7 @@
       }
       function filtered() {
         const q = st.curQ.trim().toLowerCase();
-        return HERBS.filter(h => {
+        return st.HERBS.filter(h => {
           if (st.curCat && h.c !== st.curCat) return false;
           if (st.curQi && h.qi !== st.curQi) return false;
           if (q) {
@@ -1346,10 +1368,10 @@
         const se = document.getElementById("zySearch");
         se.addEventListener("input", () => { st.curQ = se.value; st.page = 1; renderList(); });
         filterBar.querySelectorAll("[data-cat]").forEach(b => {
-          b.onclick = () => { st.curCat = b.getAttribute("data-cat"); st.page = 1; renderTags(); renderList(); };
+          b.onclick = () => applyCat(b.getAttribute("data-cat"));
         });
         filterBar.querySelectorAll("[data-qi]").forEach(b => {
-          b.onclick = () => { st.curQi = b.getAttribute("data-qi"); st.page = 1; renderTags(); renderList(); };
+          b.onclick = () => { st.curQi = b.getAttribute("data-qi"); st.page = 1; applyCat(st.curCat); };
         });
       }
 
@@ -1438,8 +1460,26 @@
         if (li) li.scrollIntoView({ block: "nearest" });
       }
 
+      function applyCat(cat) {
+        st.curCat = cat;
+        st.page = 1;
+        st.activeIdx = null;
+        detailPane.innerHTML = "<div class='hint'>载入中…</div>";
+        renderTags();
+        loadCats([cat]).then(arr => {
+          st.HERBS = arr;
+          renderList();
+          renderTags();
+        }).catch(err => {
+          detailPane.innerHTML = "<div class='hint'>中药数据载入失败：" + esc(String(err)) + "</div>";
+        });
+      }
+
+      // 初始：meta 已载入（含分类计数），按需懒加载具体分类数据，避免一次性下载全量
       renderTags();
-      renderList();
+      resultList.innerHTML = "<li class='hint'>请选择上方《神农本草经》分类查看（点『全部』载入全部 " + (_meta ? _meta.total : "") + " 味）</li>";
+      if (pager) pager.innerHTML = "";
+
       if (_zyKeyHandler) document.removeEventListener("keydown", _zyKeyHandler);
       _zyKeyHandler = (e) => {
         if (e.target && e.target.tagName === "INPUT") return;
