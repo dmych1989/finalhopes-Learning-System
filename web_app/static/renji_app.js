@@ -122,8 +122,7 @@
   }
   function esc(s) { return (s == null ? "" : String(s)).replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c])); }
 
-  const boardTabs = $("#boardTabs"),
-        moduleHead = $("#moduleHead"), listHint = $("#listHint"),
+  const moduleHead = $("#moduleHead"), listHint = $("#listHint"),
         resultList = $("#resultList"), detailPane = $("#detailPane"),
         filterBar = $("#filterBar"), pager = $("#pager");
 
@@ -178,50 +177,103 @@
   }
 
   // ---------- 板块 / 子模块 渲染 ----------
-  function closeDropdowns() {
-    [...boardTabs.querySelectorAll(".board-tab.open")].forEach(t => t.classList.remove("open"));
-  }
-  document.addEventListener("click", closeDropdowns);
+  // 顶部板块标签已改为左侧目录树，下拉菜单不再存在；保留空实现避免历史调用报错
+  function closeDropdowns() {}
 
-  function renderBoards() {
-    boardTabs.innerHTML = "";
-    // 板块标签始终横向排列（桌面/移动一致）；移动端由 CSS .board-tabs{flex-wrap} 自动换行。
-    BOARDS.forEach(b => {
-      const t = el("div", "board-tab" + (b === CUR_BOARD ? " active" : ""));
-      t.innerHTML = esc(b.name) + (b.subs ? " <span class='bt-count'>(" + b.count + ")</span>" : "");
-      const dd = el("div", "board-dropdown");
-      const walk = (subs) => subs.forEach(s => {
-        if (s.subs) {
-          dd.appendChild(el("div", "board-dd-group", esc(s.name)));
-          walk(s.subs);
-        } else {
-          const it = el("div", "board-dd-item");
-          if (s === CUR_SUB) it.classList.add("active");
-          it.textContent = s.name;
-          it.onclick = (e) => { e.stopPropagation(); selectSub(s); };
-          dd.appendChild(it);
-        }
-      });
-      if (b.subs) walk(b.subs);
-      t.appendChild(dd);
-      t.onclick = (e) => {
-        e.stopPropagation();
-        if (b.kind) {  // 板块级整页（无下拉菜单）：直接渲染整页
-          selectBoardPage(b);
-          return;
-        }
-        const wasOpen = t.classList.contains("open");
-        closeDropdowns();
-        if (wasOpen) return;
-        if (b !== CUR_BOARD) {
-          CUR_BOARD = b;
-          [...boardTabs.children].forEach(c => c.classList.remove("active"));
-          t.classList.add("active");
-        }
-        t.classList.add("open");
+  // ---------- 左侧目录树（桌面）+ 移动端下拉（仿天纪 .sidebar / .tj-mobile-select） ----------
+  function navLeaf(text, onClick, obj) {
+    const l = el("div", "tj-leaf", "");
+    l.textContent = text;
+    if (obj) l._nav = obj;
+    l.onclick = () => { onClick(); applyNavActive(); };
+    return l;
+  }
+  // 递归渲染侧栏节点；depth 用于缩进
+  function renderSidebarNode(s, parent, depth) {
+    if (s.subs && s.subs.length) {
+      const node = el("div", "tj-node open");
+      const head = el("div", "tj-node-head",
+        "<span class='tj-toggle'>▾</span><span class='tj-node-title'>" + esc(s.name) + "</span>");
+      head.onclick = () => {
+        node.classList.toggle("open");
+        head.querySelector(".tj-toggle").textContent = node.classList.contains("open") ? "▾" : "▸";
       };
-      boardTabs.appendChild(t);
+      node.appendChild(head);
+      const kids = el("div", "tj-node-children", "");
+      s.subs.forEach(c => renderSidebarNode(c, kids, depth + 1));
+      node.appendChild(kids);
+      parent.appendChild(node);
+    } else {
+      const indent = depth > 1 ? "　".repeat(depth - 1) : "";
+      parent.appendChild(navLeaf(indent + s.name, () => selectSub(s), s));
+    }
+  }
+  function renderRenjiSidebar() {
+    const side = document.getElementById("sidebar");
+    if (!side) return;
+    side.innerHTML = "";
+    BOARDS.forEach(b => {
+      if (b.kind) {                 // 整页板块（灵龟八法 / 子午流注）：顶层可点击项
+        side.appendChild(navLeaf(b.name, () => selectBoardPage(b), b));
+      } else {
+        const root = el("div", "tj-root", esc(b.name));
+        side.appendChild(root);
+        (b.subs || []).forEach(s => renderSidebarNode(s, side, 1));
+      }
     });
+  }
+  // 移动端：把 板块/子模块 压平成一个 <select>（禁用项作分组标题），选中即渲染
+  function renderRenjiMobileNav() {
+    const wrap = document.getElementById("renjiMobileNavWrap");
+    if (!wrap) return;
+    wrap.innerHTML = "";
+    const sel = el("select", "tj-mobile-select", "");
+    sel.id = "renjiMobileNav";
+    const ph = document.createElement("option");
+    ph.value = ""; ph.textContent = "选择板块 / 子模块"; ph.disabled = true; ph.selected = true;
+    sel.appendChild(ph);
+    const mi = { n: 0 };
+    BOARDS.forEach(b => {
+      if (b.kind) {                 // 整页板块（灵龟八法 / 子午流注）：直接作为可选项，不加禁用分组标题
+        const o = document.createElement("option");
+        o.value = "b" + (mi.n++); o.textContent = b.name; o._act = () => selectBoardPage(b);
+        sel.appendChild(o);
+      } else {
+        const sep = document.createElement("option");
+        sep.disabled = true; sep.textContent = "▸ " + b.name; sel.appendChild(sep);
+        (b.subs || []).forEach(s => appendMobileLeaf(sel, s, 1, mi));
+      }
+    });
+    sel.onchange = () => {
+      const o = sel.selectedOptions && sel.selectedOptions[0];
+      if (o && o._act) o._act();
+    };
+    wrap.appendChild(sel);
+  }
+  function appendMobileLeaf(sel, s, depth, mi) {
+    if (s.subs && s.subs.length) {
+      s.subs.forEach(c => appendMobileLeaf(sel, c, depth + 1, mi));
+    } else {
+      const o = document.createElement("option");
+      o.value = "m" + (mi.n++); o.textContent = "　".repeat(depth) + s.name;
+      o._act = () => selectSub(s);
+      sel.appendChild(o);
+    }
+  }
+  function applyNavActive() {
+    const side = document.getElementById("sidebar");
+    if (side) {
+      side.querySelectorAll(".tj-leaf").forEach(l => {
+        const on = (l._nav === CUR_SUB) || (l._nav === CUR_BOARD && !CUR_SUB);
+        l.classList.toggle("active", !!on);
+      });
+    }
+  }
+  // 顶部板块/工具标签条已改为左侧目录树；renderBoards 现在负责构建侧栏 + 移动端下拉
+  function renderBoards() {
+    renderRenjiSidebar();
+    renderRenjiMobileNav();
+    applyNavActive();
   }
   function selectBoard(b, autoFirst) {
     CUR_BOARD = b; CUR_SUB = null;
@@ -242,8 +294,7 @@
     moduleHead.innerHTML = "<h2>" + esc(s.name) + "</h2><p class='brand-sub'>" + esc(s.desc || "") + "</p>";
     listHint.style.display = "none";
     pager.innerHTML = ""; filterBar.innerHTML = "";
-    [...boardTabs.querySelectorAll(".board-dd-item")].forEach(x =>
-      x.classList.toggle("active", x.textContent.trim() === s.name));
+    applyNavActive();
     dispatchSub(s);
     closeDropdowns();
   }
