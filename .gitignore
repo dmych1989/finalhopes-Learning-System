@@ -54,3 +54,6 @@ web_app/data_full.db
 # never committed to git.
 public/
 _diag/
+
+# Local deploy-state (records last deployed commit + file shas for change detection).
+.vercel_deploy_state.json
