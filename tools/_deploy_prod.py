@@ -17,11 +17,14 @@ def auth_token():
     return json.load(open(os.path.expanduser("~/.vercel/auth.json"), encoding="utf-8-sig"))["token"]
 
 
-def apiget(path, token, attempts=5):
-    """GET JSON with retry on transient network/SSL errors (api.vercel.com 偶发
-    SSL: UNEXPECTED_EOF_WHILE_READING，属瞬时故障，重试即可，不必中断整个部署。"""
+def apiget(path, token, attempts=5, persist=False):
+    """GET JSON with retry on transient network/SSL errors.
+    persist=True（只读状态轮询用）：对瞬时网络/SSL 错误无限退避重试、绝不抛异常，
+    避免 api.vercel.com 偶发 SSL 抖动（UNEXPECTED_EOF_WHILE_READING）让整个部署进程自杀。
+    4xx/5xx 客户端错误始终立即抛出（不重试）。"""
     last = None
-    for i in range(attempts):
+    i = 0
+    while True:
         req = urllib.request.Request("https://api.vercel.com" + path)
         req.add_header("Authorization", "Bearer %s" % token)
         try:
@@ -32,8 +35,12 @@ def apiget(path, token, attempts=5):
             raise  # 4xx/5xx 客户端错误不重试，直接抛
         except Exception as e:
             last = e
-            print("  apiget attempt %d failed: %s" % (i + 1, e))
-            time.sleep(3)
+            if not persist and i >= attempts - 1:
+                break
+            i += 1
+            wait = min(30, 3 * (2 ** min(i, 4)))
+            print("  apiget attempt %d failed: %s (retry in %ds)" % (i, e, wait))
+            time.sleep(wait)
     if last:
         raise last
     raise RuntimeError("apiget exhausted attempts")
@@ -300,7 +307,7 @@ def main():
         print("production id=", did, "(attempt %d)" % (deploy_attempt + 1))
         frozen = False
         for i in range(620):
-            d = apiget("/v13/deployments/%s?teamId=%s" % (did, TEAM), token)
+            d = apiget("/v13/deployments/%s?teamId=%s" % (did, TEAM), token, persist=True)
             status = d.get("status")
             print("[%d] status=%s aliasAssigned=%s" % (i, status, d.get("aliasAssigned")))
             if status == "READY":
@@ -309,7 +316,11 @@ def main():
                 save_deploy_state(head_commit(), cur_shas)
                 return
             if status in ("ERROR", "CANCELED"):
-                print("FAILED", json.dumps(d)[:800]); break
+                print("FAILED/ERROR — deleting, cooling 120s, retrying", json.dumps(d)[:400])
+                delete_deployment(token, did)
+                time.sleep(120)
+                frozen = True
+                break
             # 平台级 post-build 卡死（HOBBY 偶发）：BUILDING 超过 ~30 分钟无进展才删掉重试。
             # 阈值调高（原 18 分钟）：当前 HOBBY 负载下 Python 构建常需 20-30 分钟，
             # 避免把「缓慢推进但正常」的构建误判为冻结而反复删除重来（每次删除还需占槽冷却）。
