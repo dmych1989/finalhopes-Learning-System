@@ -93,27 +93,73 @@
   function isMobile() {
     try { return window.matchMedia("(max-width:820px)").matches; } catch (e) { return false; }
   }
-  // 移动端：把 #resultList 的 .result-item 转成「二级目录」下拉，选中即渲染详情；默认自动展示首项。
-  // MutationObserver 自动适配所有刷新列表的渲染（穴位/取穴/中药等），无需逐个挂钩。
-  let _mListObserver = null, _mListTO = null;
+  // 移动端：把「顶部横栏之下的内容列表」转成下拉菜单（每个穴位/条目通过下拉选择）。
+  // - #resultList 的条目（穴位/中药/医案…）=> #mListSelect 下拉，选中即渲染详情，默认首项。
+  // - #filterBar 的可点击筛选按钮（如各经络）=> #mFilterSelect 下拉。
+  // MutationObserver 自动适配列表刷新；桌面端自动还原为列表。顶部横栏菜单保持不变。
+  let _mObservers = null, _mTO = null;
+  function itemLabel(it) {
+    const t = it.querySelector(".t, .ri-title, .rp-title, .tu-name, .name, h3, h4, strong");
+    if (t && t.textContent.trim()) return t.textContent.trim();
+    if (it.dataset && it.dataset.title) return it.dataset.title;
+    return it.textContent.replace(/\s+/g, " ").trim().slice(0, 48);
+  }
   function mobileListToSelect() {
     const ul = document.getElementById("resultList");
     if (!ul) return;
-    // 不再把左侧目录折叠成下拉：所有视口都保持目录列表可见（窄屏由 .workarea 列布局堆叠在顶部）
-    const sel = document.getElementById("mListSelect");
-    if (sel) sel.remove();
-    ul.style.display = "";
-    return;
-  }
-  function observeMobileList() {
-    if (_mListObserver) return;
-    const ul = document.getElementById("resultList");
-    if (!ul) return;
-    _mListObserver = new MutationObserver(() => {
-      if (_mListTO) clearTimeout(_mListTO);
-      _mListTO = setTimeout(mobileListToSelect, 60);
+    const old = document.getElementById("mListSelect");
+    if (old) old.remove();
+    if (!isMobile()) { ul.style.display = ""; return; }   // 桌面：保持原始列表
+    const items = [...ul.children].filter(c => c.onclick || c.classList.contains("result-item"));
+    if (!items.length) { ul.style.display = ""; return; }
+    const sel = el("select", "m-list-select", "");
+    sel.id = "mListSelect";
+    const ph = document.createElement("option");
+    ph.value = ""; ph.textContent = "选择条目…"; ph.disabled = true; ph.selected = true;
+    sel.appendChild(ph);
+    items.forEach((it, i) => {
+      const o = document.createElement("option");
+      o.value = String(i); o.textContent = itemLabel(it); o._item = it;
+      sel.appendChild(o);
     });
-    _mListObserver.observe(ul, { childList: true, subtree: true });
+    sel.onchange = () => { const it = items[Number(sel.value)]; if (it) it.click(); };
+    ul.parentNode.insertBefore(sel, ul);
+    ul.style.display = "none";          // 手机端用下拉替代列表
+    sel.value = "0"; items[0].click();  // 默认展示首项详情
+  }
+  function mobileFilterToSelect() {
+    const fb = document.getElementById("filterBar");
+    if (!fb) return;
+    const old = document.getElementById("mFilterSelect");
+    if (old) old.remove();
+    if (!isMobile()) { [...fb.querySelectorAll("button")].forEach(b => b.style.display = ""); return; }
+    const btns = [...fb.querySelectorAll("button")].filter(b => b.onclick);
+    if (btns.length < 2) return;        // 非列表（提示/单按钮）保持原样
+    const sel = el("select", "m-filter-select", "");
+    sel.id = "mFilterSelect";
+    const ph = document.createElement("option");
+    ph.value = ""; ph.textContent = "选择分类…"; ph.disabled = true; ph.selected = true;
+    sel.appendChild(ph);
+    btns.forEach((b, i) => {
+      const o = document.createElement("option");
+      o.value = String(i); o.textContent = b.textContent.trim(); o._btn = b;
+      sel.appendChild(o);
+    });
+    sel.onchange = () => { const b = btns[Number(sel.value)]; if (b) b.click(); };
+    fb.insertBefore(sel, fb.firstChild);
+    btns.forEach(b => b.style.display = "none");
+    sel.value = "0"; btns[0].click();
+  }
+  function runMobileSelects() { mobileListToSelect(); mobileFilterToSelect(); }
+  function observeMobileList() {
+    if (_mObservers) return;
+    _mObservers = {};
+    const cb = () => { if (_mTO) clearTimeout(_mTO); _mTO = setTimeout(runMobileSelects, 60); };
+    const ul = document.getElementById("resultList");
+    const fb = document.getElementById("filterBar");
+    if (ul) { _mObservers.ul = new MutationObserver(cb); _mObservers.ul.observe(ul, { childList: true, subtree: true }); }
+    if (fb) { _mObservers.fb = new MutationObserver(cb); _mObservers.fb.observe(fb, { childList: true, subtree: true }); }
+    window.addEventListener("resize", () => { if (_mTO) clearTimeout(_mTO); _mTO = setTimeout(runMobileSelects, 200); });
   }
   function getJSON(url) {
     return new Promise((res, rej) => {
@@ -313,10 +359,6 @@
       };
       boardTabs.appendChild(t);
     });
-    // 左侧目录树 + 移动端下拉（与顶部栏共享状态）
-    renderRenjiSidebar();
-    renderRenjiMobileNav();
-    applyNavActive();
   }
   function selectBoard(b, autoFirst) {
     CUR_BOARD = b; CUR_SUB = null;
@@ -337,7 +379,6 @@
     moduleHead.innerHTML = "<h2>" + esc(s.name) + "</h2><p class='brand-sub'>" + esc(s.desc || "") + "</p>";
     listHint.style.display = "none";
     pager.innerHTML = ""; filterBar.innerHTML = "";
-    applyNavActive();
     [...boardTabs.querySelectorAll(".board-dd-item")].forEach(x =>
       x.classList.toggle("active", x.textContent.trim() === s.name));
     dispatchSub(s);
