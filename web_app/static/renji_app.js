@@ -1811,7 +1811,7 @@
   let FLOW_ACTIVE = 0;
   function flowGetData() {
     if (FLOW_DATA) return Promise.resolve(FLOW_DATA);
-    return getJSON("/static/meridian_flow.json?v=1").then(d => (FLOW_DATA = d));
+    return getJSON("/static/meridian_flow.json?v=2").then(d => (FLOW_DATA = d));
   }
 
   // （已删除原有的示意人体 bodyShapes，改由真实人体图 + SELFDATA 坐标叠加）
