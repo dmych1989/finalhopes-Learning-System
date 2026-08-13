@@ -229,13 +229,22 @@ def map_missing_to_paths(missing):
 
 
 def delete_deployment(token, did):
-    req = urllib.request.Request("%s/v13/deployments/%s?teamId=%s" % (BASE, did, TEAM), method="DELETE")
-    req.add_header("Authorization", "Bearer %s" % token)
-    try:
-        with urllib.request.urlopen(req, timeout=30) as r:
-            print("  deleted deployment", did, "status", r.status)
-    except Exception as e:
-        print("  delete failed", did, e)
+    # Vercel API 当前 SSL 抖动频繁，删除必须重试，否则冻结重试时 DELETE 静默失败、
+    # 留下孤儿部署持续占用 HOBBY 唯一构建槽，导致后续部署无限 QUEUED。
+    for _ in range(8):
+        req = urllib.request.Request("%s/v13/deployments/%s?teamId=%s" % (BASE, did, TEAM), method="DELETE")
+        req.add_header("Authorization", "Bearer %s" % token)
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                print("  deleted deployment", did, "status", r.status)
+                return True
+        except urllib.error.HTTPError as e:
+            print("  delete HTTP", e.code, did); return False
+        except Exception as e:
+            print("  delete attempt failed", did, e)
+            time.sleep(6)
+    print("  delete giving up", did)
+    return False
 
 
 def create_deployment(token, files):
@@ -262,7 +271,7 @@ def main():
     # 强制上传，绝不引用旧 blob。增量部署若把旧版 server.py 与新版 data.db/前端错配，会在导入期
     # 崩溃（如旧 server.py 顶层 get_yaotu_images() 引用已删除的 yaotu_img 表）或使前端修复失效。
     # 图片保持增量（新增的 yaotu_list 等不在 prev_paths 会自动上传，已存在的引用旧 blob 无害）。
-    force_backend = {f for f in (tracked_files() | set(disk_img_files()))
+    force_backend = {f for f in (set(tracked_files()) | set(disk_img_files()))
                      if not f.startswith("public/img/")}
     changed |= force_backend
     print("forced non-image files: %d" % len(force_backend))
@@ -290,7 +299,7 @@ def main():
         did = j["id"]
         print("production id=", did, "(attempt %d)" % (deploy_attempt + 1))
         frozen = False
-        for i in range(260):
+        for i in range(620):
             d = apiget("/v13/deployments/%s?teamId=%s" % (did, TEAM), token)
             status = d.get("status")
             print("[%d] status=%s aliasAssigned=%s" % (i, status, d.get("aliasAssigned")))
@@ -301,10 +310,10 @@ def main():
                 return
             if status in ("ERROR", "CANCELED"):
                 print("FAILED", json.dumps(d)[:800]); break
-            # 平台级 post-build 卡死（HOBBY 偶发）：BUILDING 超过 ~18 分钟无进展才删掉重试。
-            # 阈值调高（原 8 分钟）：本次多传 467 个药图、文件总数更大，构建本身可能更慢，
-            # 避免把「缓慢推进但正常」的构建误判为冻结而反复删除重来。
-            if i >= 180 and status in (None, "BUILDING", "QUEUED"):
+            # 平台级 post-build 卡死（HOBBY 偶发）：BUILDING 超过 ~30 分钟无进展才删掉重试。
+            # 阈值调高（原 18 分钟）：当前 HOBBY 负载下 Python 构建常需 20-30 分钟，
+            # 避免把「缓慢推进但正常」的构建误判为冻结而反复删除重来（每次删除还需占槽冷却）。
+            if i >= 500 and status in (None, "BUILDING", "QUEUED"):
                 print("  freeze suspected (%d polls, ~%.0f min) — deleting, cooling 120s, retrying" % (i, i * 6 / 60))
                 delete_deployment(token, did)
                 time.sleep(120)  # 给 Vercel 拥塞的构建槽恢复时间，降低下一轮再次卡死概率
