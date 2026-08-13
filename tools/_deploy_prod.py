@@ -6,7 +6,10 @@ TEAM = "team_AUEOwID6emZlHoTjyvmre3gV"
 PROJECT = "prj_5FqANpHobhjTmTTGWWM39bhhRmHY"
 BASE = "https://api.vercel.com"
 EXCLUDE = {"tools/exe_strings.txt"}
-SKIP_PREFIXES = ("public/img/yaotu_list/",)
+# 注意：public/img/yaotu_list/ 的 467 张药图画廊图必须随站部署（前端画廊直接引用
+# /img/yaotu_list/* 静态路径）。早期曾因误判「永不部署」而跳过，导致线上药图全 404，
+# 现改为正常部署（仅首次上传，之后按内容 sha 引用，不重复传输）。
+SKIP_PREFIXES = ()
 STATE_FILE = os.path.join(ROOT, ".vercel_deploy_state.json")
 
 

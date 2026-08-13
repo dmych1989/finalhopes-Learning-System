@@ -98,16 +98,25 @@
   // - #filterBar 的可点击筛选按钮（如各经络）=> #mFilterSelect 下拉。
   // MutationObserver 自动适配列表刷新；桌面端自动还原为列表。顶部横栏菜单保持不变。
   let _mObservers = null, _mTO = null;
+  let _mOpenSel = null;       // 当前已打开（focus）的原生 select；重建前若命中则跳过，避免原生选择器被销毁而「闪退」
+  let _mWasMobile = null;     // 上次 isMobile() 状态；resize 仅跨断点时响应（避免移动端地址栏收起误触发重建）
+  let _mListSig = "";         // resultList 内容签名；仅在列表内容真正变化时自动选中首项（避免重复点击/循环）
+  let _mActiveFilter = null;  // 用户已选的筛选下拉索引，重建后保留显示
   function itemLabel(it) {
     const t = it.querySelector(".t, .ri-title, .rp-title, .tu-name, .name, h3, h4, strong");
     if (t && t.textContent.trim()) return t.textContent.trim();
     if (it.dataset && it.dataset.title) return it.dataset.title;
     return it.textContent.replace(/\s+/g, " ").trim().slice(0, 48);
   }
+  function listSignature(ul) {
+    const its = [...ul.children].filter(c => c.onclick || c.classList.contains("result-item"));
+    return its.length + "|" + its.slice(0, 3).map(itemLabel).join("/");
+  }
   function mobileListToSelect() {
     const ul = document.getElementById("resultList");
     if (!ul) return;
     const old = document.getElementById("mListSelect");
+    if (old && old === _mOpenSel) return;   // 用户正打开此下拉，跳过重建（防闪退）
     if (old) old.remove();
     if (!isMobile()) { ul.style.display = ""; return; }   // 桌面：保持原始列表
     const items = [...ul.children].filter(c => c.onclick || c.classList.contains("result-item"));
@@ -123,14 +132,25 @@
       sel.appendChild(o);
     });
     sel.onchange = () => { const it = items[Number(sel.value)]; if (it) it.click(); };
+    // focus/blur 跟踪当前打开的下拉；关闭后补一次列表同步（不抢焦点）
+    sel.addEventListener("focus", () => { _mOpenSel = sel; });
+    sel.addEventListener("blur", () => {
+      if (_mOpenSel === sel) _mOpenSel = null;
+      if (_mWasMobile && isMobile()) setTimeout(syncMobileList, 0);
+    });
     ul.parentNode.insertBefore(sel, ul);
     ul.style.display = "none";          // 手机端用下拉替代列表
-    sel.value = "0"; items[0].click();  // 默认展示首项详情
+    const sig = listSignature(ul);
+    if (sig !== _mListSig) {            // 仅列表内容真正变化时自动选中首项（避免重复点击/循环）
+      _mListSig = sig;
+      sel.value = "0"; items[0].click();
+    }
   }
   function mobileFilterToSelect() {
     const fb = document.getElementById("filterBar");
     if (!fb) return;
     const old = document.getElementById("mFilterSelect");
+    if (old && old === _mOpenSel) return;   // 用户正打开此下拉，跳过重建（防闪退）
     if (old) old.remove();
     if (!isMobile()) { [...fb.querySelectorAll("button")].forEach(b => b.style.display = ""); return; }
     const btns = [...fb.querySelectorAll("button")].filter(b => b.onclick);
@@ -145,26 +165,43 @@
       o.value = String(i); o.textContent = b.textContent.trim(); o._btn = b;
       sel.appendChild(o);
     });
-    sel.onchange = () => { const b = btns[Number(sel.value)]; if (b) b.click(); };
+    sel.onchange = () => { const b = btns[Number(sel.value)]; if (b) { _mActiveFilter = Number(sel.value); b.click(); } };
+    sel.addEventListener("focus", () => { _mOpenSel = sel; });
+    sel.addEventListener("blur", () => { if (_mOpenSel === sel) _mOpenSel = null; });
     // 关键：把下拉插为 #filterBar 的【同级兄弟】而非子节点——否则它的增删会触发被监听的
     // #filterBar，造成 MutationObserver 无限回环（桌面 isMobile() 早返回故无此问题）。
     fb.parentNode.insertBefore(sel, fb);
     btns.forEach(b => b.style.display = "none");
-    // 仅在尚未加载任何经络时自动选首项：避免「select→loadMeridian→resultList 变动→observer 再次触发」
-    // 形成无限循环（每轮都重点 btns[0] → 重渲染列表 → 又触发 observer）。
+    // 保留用户已选分类的显示；仅当尚未加载任何内容时自动选首项（避免循环）。
+    if (_mActiveFilter != null && _mActiveFilter < btns.length) sel.value = String(_mActiveFilter);
     const _rl = document.getElementById("resultList");
-    if (!_rl || _rl.children.length === 0) { sel.value = "0"; btns[0].click(); }
+    if ((!_rl || _rl.children.length === 0) && (!_mActiveFilter || _mActiveFilter >= btns.length)) { sel.value = "0"; _mActiveFilter = 0; btns[0].click(); }
   }
-  function runMobileSelects() { mobileListToSelect(); mobileFilterToSelect(); }
+  function runMobileSelects() {
+    if (_mOpenSel) return;   // 用户正在操作某个下拉，绝不重建（防雷退）
+    mobileListToSelect(); mobileFilterToSelect();
+  }
+  function syncMobileList() {       // 关闭下拉后补一次列表同步（不影响焦点）
+    if (_mOpenSel) return;
+    mobileListToSelect();
+  }
   function observeMobileList() {
     if (_mObservers) return;
     _mObservers = {};
-    const cb = () => { if (_mTO) clearTimeout(_mTO); _mTO = setTimeout(runMobileSelects, 60); };
+    _mWasMobile = isMobile();
+    const cb = () => { if (_mOpenSel) return; if (_mTO) clearTimeout(_mTO); _mTO = setTimeout(runMobileSelects, 60); };
     const ul = document.getElementById("resultList");
     const fb = document.getElementById("filterBar");
     if (ul) { _mObservers.ul = new MutationObserver(cb); _mObservers.ul.observe(ul, { childList: true, subtree: true }); }
     if (fb) { _mObservers.fb = new MutationObserver(cb); _mObservers.fb.observe(fb, { childList: true, subtree: true }); }
-    window.addEventListener("resize", () => { if (_mTO) clearTimeout(_mTO); _mTO = setTimeout(runMobileSelects, 200); });
+    // 仅当跨移动/桌面断点时响应 resize；移动端地址栏收起会触发 resize，但不应重建下拉（导致闪退）
+    window.addEventListener("resize", () => {
+      const m = isMobile();
+      if (_mWasMobile === m) return;
+      _mWasMobile = m;
+      if (_mTO) clearTimeout(_mTO);
+      _mTO = setTimeout(runMobileSelects, 200);
+    });
   }
   function getJSON(url) {
     return new Promise((res, rej) => {
