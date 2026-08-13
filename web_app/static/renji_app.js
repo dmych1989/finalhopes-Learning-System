@@ -1976,11 +1976,12 @@
       // 候选图：优先 API 给的 _rel；否则按 name 拼；再依次尝试 原态/药材/饮片 三种后缀。
       const cands = [];
       if (item._rel) cands.push(item._rel);
-      cands.push("/img/yaotu_list/" + encodeURIComponent(name) + ".jpg");
-      ["原态", "药材", "饮片"].forEach(suf => {
-        const base = name.replace(/[-－](原态|药材|饮片)$/, "");
-        cands.push("/img/yaotu_list/" + encodeURIComponent(base + "-" + suf) + ".jpg");
+      const _base = name.replace(/[-－](原态|药材|饮片)$/, "");
+      // 药材/饮片 在磁盘上最常见，优先尝试可避免无谓的 404 日志噪声（图片仍能正确显示）。
+      ["药材", "饮片", "原态"].forEach(suf => {
+        cands.push("/img/yaotu_list/" + encodeURIComponent(_base + "-" + suf) + ".jpg");
       });
+      cands.push("/img/yaotu_list/" + encodeURIComponent(name) + ".jpg"); // 兜底：原样名
       const uniq = [...new Set(cands)];
       let h = "<div class='point-card'><h4>" + esc(name) + "</h4>";
       h += "<div class='sec'><img id='yaotuImg' src='" + uniq[0] + "' alt='" + esc(name) +
