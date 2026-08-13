@@ -245,9 +245,9 @@ def main():
     inline = sum(len(f.get("data", "")) for f in files) / 1024 / 1024
     print("inline ~%.2f MB" % inline)
 
-    # 最多 3 次完整部署尝试；每次内部对 400 missing_files 自愈，对平台级
-    # post-build 卡死（HOBBY 偶发）自动 DELETE 后重试。
-    for deploy_attempt in range(3):
+    # 最多 10 次完整部署尝试；每次内部对 400 missing_files 自愈，对平台级
+    # post-build 卡死（HOBBY 偶发，可能持续数十分钟）自动 DELETE 后冷却重试。
+    for deploy_attempt in range(10):
         st, j = create_deployment(token, files)
         if st not in (200, 201):
             err = (j or {}).get("error", {})
@@ -278,8 +278,9 @@ def main():
                 print("FAILED", json.dumps(d)[:800]); break
             # 平台级 post-build 卡死（HOBBY 偶发）：BUILDING 超过 ~8 分钟无进展即删掉重试。
             if i >= 80 and status in (None, "BUILDING", "QUEUED"):
-                print("  freeze suspected (%d polls, ~%.0f min) — deleting and retrying" % (i, i * 6 / 60))
+                print("  freeze suspected (%d polls, ~%.0f min) — deleting, cooling 60s, retrying" % (i, i * 6 / 60))
                 delete_deployment(token, did)
+                time.sleep(120)  # 给 Vercel 拥塞的构建槽恢复时间，降低下一轮再次卡死概率
                 frozen = True
                 break
             time.sleep(6)
