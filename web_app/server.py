@@ -704,7 +704,9 @@ def api_search(q: str = "", module: str = "", page: int = 1, size: int = 50):
                 rr["_table"] = tname
                 ref_hits.append(rr)
     ql = q.lower()
-    yaotu_hits = [{"name": n} for n in YAOTU_NAMES if ql in n.lower()]
+    # YAOTU_NAMES 已含后缀（如「桂枝-药材」），直接映射回真实文件名，避免前端瞎拼路径 404。
+    yaotu_hits = [{"name": n, "_rel": "/img/yaotu_list/" + IMG_INDEX["yaotu"][n]}
+                  for n in YAOTU_NAMES if ql in n.lower()]
     # 合并《中医》仓库「中药图片」文件夹内的药名
     yaotu_hits += [{"name": it["name"], "_folder": True, "_rel": it["_rel"]}
                    for it in HERB_IMGS["items"] if ql in it["name"].lower()]

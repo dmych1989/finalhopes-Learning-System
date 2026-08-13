@@ -1961,23 +1961,127 @@
   const ART_QIJING = "奇经八脉循行走向（说明，逆向自「人纪针灸」EXE）\n\n奇经八脉者：督脉、任脉、冲脉、带脉、阴维脉、阳维脉、阴跷脉、阳跷脉也。\n\n督脉行于腰背正中，总督一身之阳；任脉行于胸腹正中，总任一身之阴；冲脉为血海，渗灌诸经；带脉环腰一周，约束纵行诸脉；阴维、阳维分别维络一身之阴经与阳经；阴跷、阳跷分主一身左右之阴阳跷捷。\n\n八脉交会于十二正经，其中公孙（脾）→内关（心包）、临泣（胆）→外关（三焦）、后溪（小肠）→申脉（膀胱）、列缺（肺）→照海（肾）四组，为灵龟八法与飞腾八法之根基。";
 
   // ---------- 搜索 ----------
+  function searchItemName(it) { return it.name || it.MZ || it.n || it.title || "(未命名)"; }
+  let _searchCache = null;   // 保存最近一次搜索结果，供「显示全部」复用
+
+  // 把搜索命中的某条记录渲染为详情（右侧 detailPane；按模块复用既有渲染或通用字段渲染）。
+  function searchDetailHTML(item, module) {
+    if (module === "xuewei") {
+      // 复用穴位详情渲染（showPoint 接收含 name/cat_name/content/images 的点对象）。
+      showPoint({ name: item.name, cat_name: item.cat_name, content: item.content || "", images: item.images || [] });
+      return;
+    }
+    if (module === "yaotu") {
+      const name = item.name || "";
+      // 候选图：优先 API 给的 _rel；否则按 name 拼；再依次尝试 原态/药材/饮片 三种后缀。
+      const cands = [];
+      if (item._rel) cands.push(item._rel);
+      cands.push("/img/yaotu_list/" + encodeURIComponent(name) + ".jpg");
+      ["原态", "药材", "饮片"].forEach(suf => {
+        const base = name.replace(/[-－](原态|药材|饮片)$/, "");
+        cands.push("/img/yaotu_list/" + encodeURIComponent(base + "-" + suf) + ".jpg");
+      });
+      const uniq = [...new Set(cands)];
+      let h = "<div class='point-card'><h4>" + esc(name) + "</h4>";
+      h += "<div class='sec'><img id='yaotuImg' src='" + uniq[0] + "' alt='" + esc(name) +
+           "' style='max-width:100%;border:1px solid #2a5;border-radius:6px;background:#fff'></div>";
+      h += "</div>";
+      detailPane.innerHTML = h;
+      // 候选链：依次尝试，全部失败才隐藏（避免 404 导致裂图）。
+      const img = document.getElementById("yaotuImg");
+      let ci = 0;
+      img.onerror = () => { ci++; if (ci < uniq.length) img.src = uniq[ci]; else { img.onerror = null; img.style.display = "none"; } };
+      return;
+    }
+    if (module === "herbs") {
+      const name = item.MZ || item.n || item.name || "";
+      const rows = [["性能（性味归经）", item.x], ["功效", item.g], ["用法用量", item.y],
+                    ["使用注意", item.z], ["神农本经原文", item.bj], ["倪师注解", item.nt],
+                    ["古籍摘要", item.j], ["现代研究", item.m], ["简述", item.b]];
+      let h = "<div class='zy-detail'><div class='zy-ph'><div class='nm'>" + esc(name) + "</div>";
+      if (item._cat) h += "<div class='zy-seq'>《神农本草经》· " + esc(item._cat) + "</div>";
+      rows.forEach(([k, v]) => { if (v && String(v).trim()) h += "<div class='zy-row'><span class='k'>" + k + "</span><div class='v'>" + esc(String(v)) + "</div></div>"; });
+      if (item.img) h += "<img class='zy-herb' src='" + esc(item.img) + "' alt='" + esc(name) + "' onerror=\"this.style.display='none'\">";
+      h += "</div></div>";
+      detailPane.innerHTML = h;
+      return;
+    }
+    // cases / articles / ref：通用字段渲染（MDB 大写字段 + 已知标签映射）。
+    const LABELS = { MZ: "名称", NR: "内容", BBXX: "基本信息", BZDZ: "辨证论治",
+                     ZFBZ: "治法方药", ZJDCJL: "诊疗记录", ID: "编号", _table: "来源表", title: "标题" };
+    const skip = ["_image", "_folder", "_rel", "module", "single"];
+    let html = "<div class='point-card'><h4>" + esc(item.MZ || item.name || item.title || "(无标题)") + "</h4>";
+    Object.keys(item).forEach(k => {
+      if (skip.indexOf(k) >= 0) return;
+      const v = item[k];
+      if (v == null || (typeof v === "string" && !v.trim())) return;
+      const lab = LABELS[k] || k;
+      html += "<div class='sec'><b>" + esc(lab) + "：</b><br>" + esc(v) + "</div>";
+    });
+    html += "</div>";
+    detailPane.innerHTML = html;
+  }
+
+  function markActiveSearchItem(li) {
+    resultList.querySelectorAll(".result-item.active").forEach(x => x.classList.remove("active"));
+    if (li) li.classList.add("active");
+  }
+
+  // 将搜索结果渲染到左侧 resultList（与全站一致：左列列表、右栏详情），点击只更新 detailPane。
+  function renderSearchList(groups, q) {
+    resultList.className = "result-list";
+    resultList.innerHTML = "";
+    if (resultList) resultList.style.display = "";
+    let total = 0;
+    groups.forEach(g => {
+      total += g.total;
+      const gh = document.createElement("li");
+      gh.className = "search-group-head";
+      gh.innerHTML = esc(g.name) + " <span style='color:var(--mut);font-weight:400'>(" + g.total + ")</span>" +
+        (g.total > g.items.length ? " <span class='search-more' data-module='" + esc(g.module) + "'>显示全部 " + g.total + " 条 ›</span>" : "");
+      resultList.appendChild(gh);
+      g.items.forEach((it, idx) => {
+        const li = document.createElement("li");
+        li.className = "result-item search-item";
+        li.textContent = searchItemName(it);
+        li.dataset.module = g.module;
+        li.dataset.idx = idx;
+        li.onclick = () => { searchDetailHTML(it, g.module); markActiveSearchItem(li); };
+        resultList.appendChild(li);
+      });
+    });
+    detailPane.innerHTML = "<div class='hint'>共 " + total + " 条结果，点击左侧条目查看详情。</div>";
+    resultList.querySelectorAll(".search-more").forEach(el => {
+      el.onclick = (e) => { e.stopPropagation(); loadModuleSearch(q, el.dataset.module); };
+    });
+    // 移动端：把 resultList 转成下拉（既有逻辑），选择即查看详情。
+    runMobileSelects();
+  }
+
+  // 按模块拉取全部命中（分页默认 50 条），用于「显示全部」展开。
+  function loadModuleSearch(q, module) {
+    const more = resultList.querySelector(".search-more[data-module='" + module + "']");
+    if (more) more.textContent = "加载中…";
+    getJSON("/api/search?q=" + encodeURIComponent(q) + "&module=" + encodeURIComponent(module)).then(d => {
+      const grp = (d.groups || [])[0];
+      if (!grp || !grp.items.length) { detailPane.innerHTML = "<div class='hint'>无结果。</div>"; return; }
+      renderSearchList([grp], q);
+    }).catch(() => { detailPane.innerHTML = "<div class='hint'>加载失败，请重试。</div>"; });
+  }
+
   function doSearch(q) {
     if (!q) return;
     moduleHead.innerHTML = "<h2>搜索：人纪</h2>";
-    detailPane.innerHTML = "<div class='hint'>搜索中…</div>";
+    resultList.innerHTML = "<div class='loading'>搜索中…</div>";
+    if (resultList) resultList.style.display = "";
+    detailPane.innerHTML = "<div class='hint'>请在左侧列表选择搜索结果查看详情。</div>";
     getJSON("/api/search?q=" + encodeURIComponent(q)).then(d => {
-      let h = "<div class='open-list'>";
-      (d.groups || []).forEach(g => {
-        h += "<div class='op'><b>" + esc(g.name) + "（" + g.total + "）</b></div>";
-        g.items.slice(0, 8).forEach(it => {
-          const name = it.name || it.MZ || it.title || "";
-          h += "<div class='hint' style='padding:2px 8px'>· " + esc(name) + "</div>";
-        });
-      });
-      h += "</div>";
-      if (!d.groups || !d.groups.length) h = "<div class='hint'>未找到相关人纪内容。</div>";
-      detailPane.innerHTML = h;
-      resultList.innerHTML = "";
+      const groups = d.groups || [];
+      _searchCache = d;
+      if (!groups.length) { resultList.innerHTML = "<div class='hint'>未找到相关人纪内容。</div>"; return; }
+      renderSearchList(groups, q);
+    }).catch(() => {
+      resultList.innerHTML = "<div class='hint'>搜索失败，请重试。</div>";
     });
   }
 
