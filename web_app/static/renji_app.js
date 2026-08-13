@@ -184,7 +184,7 @@
   }
   document.addEventListener("click", closeDropdowns);
 
-  // ---------- 左侧目录树（桌面）+ 移动端下拉（仿天纪 .sidebar / .tj-mobile-select） ----------
+  // ---------- 移动端下拉（仿天纪 .tj-mobile-select）；桌面侧栏已移除（遵从"电脑版不动"，桌面仅保留顶部 board-tabs） ----------
   function navLeaf(text, onClick, obj) {
     const l = el("div", "tj-leaf", "");
     l.textContent = text;
@@ -274,7 +274,7 @@
     }
   }
   // 顶部板块/工具标签条（横向，桌面/移动一致；移动端由 CSS .board-tabs{flex-wrap} 自动换行）
-  // 同时构建左侧目录树（桌面）+ 移动端下拉（仿天纪）；三套导航并存、共享 BOARDS/CUR_BOARD/CUR_SUB。
+  // 桌面：仅顶部标签条（还原原始布局，无侧栏）；移动端：另构建下拉（仿天纪），与顶部栏共享状态。
   function renderBoards() {
     boardTabs.innerHTML = "";
     BOARDS.forEach(b => {
