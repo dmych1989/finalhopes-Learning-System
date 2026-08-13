@@ -1745,7 +1745,16 @@
     "督脉":"督脉经穴","任脉":"任脉经穴"
   };
   function FLOW_KEY_OF(short) { return FLOW_KEY_MAP[short] || null; }
-  const FLOW_IMG = "/renji/img?name=" + encodeURIComponent("全身背面经络穴位图");
+  // 每条经络对应的正确人体方位图（解剖学：膀胱经/督脉行于背后→背面；胆经行于体侧→侧面；其余正面）
+  const MERIDIAN_VIEW = {
+    "膀胱经": "背面", "督脉": "背面", "胆经": "侧面"
+  };
+  // 三张人体图真实像素尺寸（取自图片文件），用于按图设定 SVG viewBox，使坐标按比例贴合
+  const BODY_IMG_DIMS = {
+    "正面": [1793, 3200], "背面": [1278, 2304], "侧面": [1283, 2304]
+  };
+  function flowViewOf(name) { return MERIDIAN_VIEW[name] || "正面"; }
+  function flowImgOf(view) { return "/renji/img?name=" + encodeURIComponent(BODY_VIEWS[view]); }
   let FLOW_DATA = null;
   let FLOW_ACTIVE = 0;
   function flowGetData() {
@@ -1766,10 +1775,11 @@
     // #resultList 只承载 #flowPtsHost（穴位顺序列表），playMeridian 仍按此查询
     resultList.innerHTML = "<div id='flowPtsHost' class='flow-pts-host'></div>";
     const art = s.group === "shier" ? ART_SHIER : ART_QIJING;
+    const pv = "正面", pvImg = flowImgOf(pv);
     detailPane.innerHTML =
       "<div class='flow-placeholder'>" +
-        "<img src='" + FLOW_IMG + "' alt='全身背面经络穴位图' onerror=\"this.style.display='none'\">" +
-        "<div class='flow-phcap'>点击左侧经络，查看其穴位循行走向（基于 SELFDATA 真实坐标叠加）</div>" +
+        "<img src='" + pvImg + "' alt='全身正面经络穴位图' onerror=\"this.style.display='none'\">" +
+        "<div class='flow-phcap'>点击左侧经络，查看其穴位循行走向（基于 SELFDATA 真实坐标叠加；按经络自动切换正/背/侧人体图）</div>" +
       "</div>" +
       "<div class='anim-art'>" + esc(art) + "</div>";
   }
@@ -1798,13 +1808,15 @@
                 "<text class='flow-name' x='" + p.x + "' y='" + (p.y - 14) + "'>" + esc(p.name) + "</text>" +
               "</g>";
     });
-    const svg = "<svg class='flow-svg' viewBox='0 0 1278 2304' preserveAspectRatio='xMidYMid meet'>" +
-        "<image class='flow-img' href='" + FLOW_IMG + "' xlink:href='" + FLOW_IMG + "' x='0' y='0' width='1278' height='2304'/>" +
+    const view = flowViewOf(name), vd = BODY_IMG_DIMS[view], vimg = flowImgOf(view);
+    const svg = "<svg class='flow-svg' viewBox='0 0 " + vd[0] + " " + vd[1] + "' preserveAspectRatio='xMidYMid meet'>" +
+        "<image class='flow-img' href='" + vimg + "' xlink:href='" + vimg + "' x='0' y='0' width='" + vd[0] + "' height='" + vd[1] + "'/>" +
         "<path class='flow-line' d='" + d + "'></path>" +
         "<path class='flow-anim' d='" + d + "'></path>" +
         dots + "</svg>";
     const meta = "<div class='flow-meta'>" +
         "<span><b>" + esc(name) + "</b>（" + esc(info.code) + "）</span>" +
+        "<span>人体视图：<b>" + view + "</b></span>" +
         "<span>阴阳：<b>" + (info.yin === "yin" ? "阴经" : "阳经") + "</b></span>" +
         "<span>五行：<b>" + esc(info.element) + "</b></span>" +
         "<span>走向：<b>" + esc(info.direction) + "</b></span>" +
