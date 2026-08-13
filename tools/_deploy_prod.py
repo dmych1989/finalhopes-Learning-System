@@ -14,12 +14,26 @@ def auth_token():
     return json.load(open(os.path.expanduser("~/.vercel/auth.json"), encoding="utf-8-sig"))["token"]
 
 
-def apiget(path, token):
-    req = urllib.request.Request("https://api.vercel.com" + path)
-    req.add_header("Authorization", "Bearer %s" % token)
-    with urllib.request.urlopen(req, timeout=30) as r:
-        raw = r.read().decode("utf-8")
-    return json.loads(raw)
+def apiget(path, token, attempts=5):
+    """GET JSON with retry on transient network/SSL errors (api.vercel.com 偶发
+    SSL: UNEXPECTED_EOF_WHILE_READING，属瞬时故障，重试即可，不必中断整个部署。"""
+    last = None
+    for i in range(attempts):
+        req = urllib.request.Request("https://api.vercel.com" + path)
+        req.add_header("Authorization", "Bearer %s" % token)
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                raw = r.read().decode("utf-8")
+            return json.loads(raw)
+        except urllib.error.HTTPError as e:
+            raise  # 4xx/5xx 客户端错误不重试，直接抛
+        except Exception as e:
+            last = e
+            print("  apiget attempt %d failed: %s" % (i + 1, e))
+            time.sleep(3)
+    if last:
+        raise last
+    raise RuntimeError("apiget exhausted attempts")
 
 
 def apipost(path, token, body, attempts=3, timeout=120):
