@@ -146,9 +146,14 @@
       sel.appendChild(o);
     });
     sel.onchange = () => { const b = btns[Number(sel.value)]; if (b) b.click(); };
-    fb.insertBefore(sel, fb.firstChild);
+    // 关键：把下拉插为 #filterBar 的【同级兄弟】而非子节点——否则它的增删会触发被监听的
+    // #filterBar，造成 MutationObserver 无限回环（桌面 isMobile() 早返回故无此问题）。
+    fb.parentNode.insertBefore(sel, fb);
     btns.forEach(b => b.style.display = "none");
-    sel.value = "0"; btns[0].click();
+    // 仅在尚未加载任何经络时自动选首项：避免「select→loadMeridian→resultList 变动→observer 再次触发」
+    // 形成无限循环（每轮都重点 btns[0] → 重渲染列表 → 又触发 observer）。
+    const _rl = document.getElementById("resultList");
+    if (!_rl || _rl.children.length === 0) { sel.value = "0"; btns[0].click(); }
   }
   function runMobileSelects() { mobileListToSelect(); mobileFilterToSelect(); }
   function observeMobileList() {
@@ -479,7 +484,13 @@
     }
     if (p.images && p.images.length) {
       h += "<div class='sec'><b>图谱：</b><br>";
-      p.images.forEach(im => { h += "<img src='/extimg?p=" + encodeURIComponent(im) + "' style='max-width:160px;margin:4px;border:1px solid #2a5;border-radius:6px;background:#fff'>"; });
+      // 穴位图谱已随站部署到 public/img/xuewei（Vercel 静态托管，根路径 /img/xuewei/...）。
+      // /extimg 走服务端函数读取 public/，在 Vercel serverless 下读不到 → 404，故此处改用静态路径。
+      p.images.forEach(im => {
+        const src = im.replace(/^穴位\//, "/img/xuewei/");
+        const finalSrc = src === im ? ("/extimg?p=" + encodeURIComponent(im)) : src;
+        h += "<img src='" + finalSrc + "' style='max-width:160px;margin:4px;border:1px solid #2a5;border-radius:6px;background:#fff' onerror=\"this.style.display='none'\">";
+      });
       h += "</div>";
     }
     h += "</div>";
