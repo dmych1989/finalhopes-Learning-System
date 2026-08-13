@@ -122,7 +122,8 @@
   }
   function esc(s) { return (s == null ? "" : String(s)).replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c])); }
 
-  const moduleHead = $("#moduleHead"), listHint = $("#listHint"),
+  const boardTabs = $("#boardTabs"),
+        moduleHead = $("#moduleHead"), listHint = $("#listHint"),
         resultList = $("#resultList"), detailPane = $("#detailPane"),
         filterBar = $("#filterBar"), pager = $("#pager");
 
@@ -177,8 +178,11 @@
   }
 
   // ---------- 板块 / 子模块 渲染 ----------
-  // 顶部板块标签已改为左侧目录树，下拉菜单不再存在；保留空实现避免历史调用报错
-  function closeDropdowns() {}
+  // 顶部板块/工具标签条（横向，桌面/移动一致；移动端由 CSS .board-tabs{flex-wrap} 自动换行）
+  function closeDropdowns() {
+    [...boardTabs.querySelectorAll(".board-tab.open")].forEach(t => t.classList.remove("open"));
+  }
+  document.addEventListener("click", closeDropdowns);
 
   // ---------- 左侧目录树（桌面）+ 移动端下拉（仿天纪 .sidebar / .tj-mobile-select） ----------
   function navLeaf(text, onClick, obj) {
@@ -269,8 +273,47 @@
       });
     }
   }
-  // 顶部板块/工具标签条已改为左侧目录树；renderBoards 现在负责构建侧栏 + 移动端下拉
+  // 顶部板块/工具标签条（横向，桌面/移动一致；移动端由 CSS .board-tabs{flex-wrap} 自动换行）
+  // 同时构建左侧目录树（桌面）+ 移动端下拉（仿天纪）；三套导航并存、共享 BOARDS/CUR_BOARD/CUR_SUB。
   function renderBoards() {
+    boardTabs.innerHTML = "";
+    BOARDS.forEach(b => {
+      const t = el("div", "board-tab" + (b === CUR_BOARD ? " active" : ""));
+      t.innerHTML = esc(b.name) + (b.subs ? " <span class='bt-count'>(" + b.count + ")</span>" : "");
+      const dd = el("div", "board-dropdown");
+      const walk = (subs) => subs.forEach(s => {
+        if (s.subs) {
+          dd.appendChild(el("div", "board-dd-group", esc(s.name)));
+          walk(s.subs);
+        } else {
+          const it = el("div", "board-dd-item");
+          if (s === CUR_SUB) it.classList.add("active");
+          it.textContent = s.name;
+          it.onclick = (e) => { e.stopPropagation(); selectSub(s); };
+          dd.appendChild(it);
+        }
+      });
+      if (b.subs) walk(b.subs);
+      t.appendChild(dd);
+      t.onclick = (e) => {
+        e.stopPropagation();
+        if (b.kind) {  // 板块级整页（无下拉菜单）：直接渲染整页
+          selectBoardPage(b);
+          return;
+        }
+        const wasOpen = t.classList.contains("open");
+        closeDropdowns();
+        if (wasOpen) return;
+        if (b !== CUR_BOARD) {
+          CUR_BOARD = b;
+          [...boardTabs.children].forEach(c => c.classList.remove("active"));
+          t.classList.add("active");
+        }
+        t.classList.add("open");
+      };
+      boardTabs.appendChild(t);
+    });
+    // 左侧目录树 + 移动端下拉（与顶部栏共享状态）
     renderRenjiSidebar();
     renderRenjiMobileNav();
     applyNavActive();
@@ -295,6 +338,8 @@
     listHint.style.display = "none";
     pager.innerHTML = ""; filterBar.innerHTML = "";
     applyNavActive();
+    [...boardTabs.querySelectorAll(".board-dd-item")].forEach(x =>
+      x.classList.toggle("active", x.textContent.trim() === s.name));
     dispatchSub(s);
     closeDropdowns();
   }
