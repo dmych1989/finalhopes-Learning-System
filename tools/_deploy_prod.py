@@ -258,6 +258,14 @@ def main():
         changed = changed_files(prev_commit)
         if changed:
             print("committed/working changes since %s: %d files" % (prev_commit, len(changed)))
+    # 防御性：除 public/img 图片外的所有文件（代码/静态 JSON/HTML/CSS/JS/DB）永远按当前内容
+    # 强制上传，绝不引用旧 blob。增量部署若把旧版 server.py 与新版 data.db/前端错配，会在导入期
+    # 崩溃（如旧 server.py 顶层 get_yaotu_images() 引用已删除的 yaotu_img 表）或使前端修复失效。
+    # 图片保持增量（新增的 yaotu_list 等不在 prev_paths 会自动上传，已存在的引用旧 blob 无害）。
+    force_backend = {f for f in (tracked_files() | set(disk_img_files()))
+                     if not f.startswith("public/img/")}
+    changed |= force_backend
+    print("forced non-image files: %d" % len(force_backend))
     files, cur_shas = build_files(token, prev_paths, changed)
     inline = sum(len(f.get("data", "")) for f in files) / 1024 / 1024
     print("inline ~%.2f MB" % inline)
