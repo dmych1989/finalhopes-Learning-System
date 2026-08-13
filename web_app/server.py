@@ -1263,18 +1263,25 @@ def ext_img(p: str = ""):
     if not p:
         raise HTTPException(400, "missing p")
     rel = unquote(p).replace("/", os.sep).replace("\\", os.sep)
-    # 《中医》仓库「本草/中药图片」子库已随站部署到 public/img/zhongyi/，
-    # 生产(Vercel CDN)与本地均可直接读该静态目录；原仓库目录仅作退化回退。
+    # 已随站部署的静态子库（生产 Vercel CDN 与本地均可直接读）：
+    #   - 本草/中药图片  -> public/img/zhongyi/        （中药图鉴）
+    #   - 穴位/          -> public/img/xuewei/         （十四经络穴位图谱，360 张）
+    # 原《中医》仓库目录仅作本地开发的退化回退。
     zhongyi_prefix = os.path.join("本草", "中药图片") + os.sep
+    xuewei_prefix = "穴位" + os.sep
     zy_base = os.path.normpath(os.path.join(_IMG_DIR, "zhongyi"))
+    xw_base = os.path.normpath(os.path.join(_IMG_DIR, "xuewei"))
     if rel.startswith(zhongyi_prefix):
         cand = os.path.normpath(os.path.join(_IMG_DIR, "zhongyi", rel[len(zhongyi_prefix):]))
+        full = cand if os.path.isfile(cand) else os.path.normpath(os.path.join(_EXTIMG_BASE, rel))
+    elif rel.startswith(xuewei_prefix):
+        cand = os.path.normpath(os.path.join(_IMG_DIR, "xuewei", rel[len(xuewei_prefix):]))
         full = cand if os.path.isfile(cand) else os.path.normpath(os.path.join(_EXTIMG_BASE, rel))
     else:
         full = os.path.normpath(os.path.join(_EXTIMG_BASE, rel))
     base_norm = os.path.normpath(_EXTIMG_BASE)
     if full != base_norm and not full.startswith(base_norm + os.sep) \
-       and not full.startswith(zy_base + os.sep):
+       and not full.startswith(zy_base + os.sep) and not full.startswith(xw_base + os.sep):
         raise HTTPException(403, "forbidden")
     if not os.path.isfile(full):
         raise HTTPException(404, "not found")
