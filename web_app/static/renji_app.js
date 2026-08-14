@@ -524,7 +524,7 @@
       // 穴位图谱已随站部署到 public/img/xuewei（Vercel 静态托管，根路径 /img/xuewei/...）。
       // /extimg 走服务端函数读取 public/，在 Vercel serverless 下读不到 → 404，故此处改用静态路径。
       p.images.forEach(im => {
-        const src = im.replace(/^穴位\//, "/img/xuewei/");
+        const src = im.replace(/^穴位\//, "/api/img/xuewei/");
         const finalSrc = src === im ? ("/extimg?p=" + encodeURIComponent(im)) : src;
         h += "<img src='" + finalSrc + "' style='max-width:160px;margin:4px;border:1px solid #2a5;border-radius:6px;background:#fff' onerror=\"this.style.display='none'\">";
       });
@@ -1221,7 +1221,7 @@
     getJSON("/static/shoufa.json?v=1").then(d => {
       const sf = d.shoufa || [];
       const gallery = d.gallery || [];
-      const imgUrl = (b) => "/img/shoufa/" + encodeURIComponent(b);
+      const imgUrl = (b) => "/api/img/shoufa/" + encodeURIComponent(b);
       const showItem = (s) => {
         let h = "<h2 class='ht-title'>" + esc(s.name) + "</h2>";
         if (s.text && s.text.trim()) h += "<div class='ht-text'>" + esc(s.text) + "</div>";
@@ -1979,9 +1979,9 @@
       const _base = name.replace(/[-－](原态|药材|饮片)$/, "");
       // 药材/饮片 在磁盘上最常见，优先尝试可避免无谓的 404 日志噪声（图片仍能正确显示）。
       ["药材", "饮片", "原态"].forEach(suf => {
-        cands.push("/img/yaotu_list/" + encodeURIComponent(_base + "-" + suf) + ".jpg");
+        cands.push("/api/img/yaotu_list/" + encodeURIComponent(_base + "-" + suf) + ".jpg");
       });
-      cands.push("/img/yaotu_list/" + encodeURIComponent(name) + ".jpg"); // 兜底：原样名
+      cands.push("/api/img/yaotu_list/" + encodeURIComponent(name) + ".jpg"); // 兜底：原样名
       const uniq = [...new Set(cands)];
       let h = "<div class='point-card'><h4>" + esc(name) + "</h4>";
       h += "<div class='sec'><img id='yaotuImg' src='" + uniq[0] + "' alt='" + esc(name) +

@@ -6,10 +6,12 @@ TEAM = "team_AUEOwID6emZlHoTjyvmre3gV"
 PROJECT = "prj_5FqANpHobhjTmTTGWWM39bhhRmHY"
 BASE = "https://api.vercel.com"
 EXCLUDE = {"tools/exe_strings.txt"}
-# 注意：public/img/yaotu_list/ 的 467 张药图画廊图必须随站部署（前端画廊直接引用
-# /img/yaotu_list/* 静态路径）。早期曾因误判「永不部署」而跳过，导致线上药图全 404，
-# 现改为正常部署（仅首次上传，之后按内容 sha 引用，不重复传输）。
-SKIP_PREFIXES = ()
+# 图片不再作为独立静态文件随站部署：2239 张 public/img/* 会让部署包文件数爆炸
+# （HOBBY 拥塞下 Downloading 2315 files 超时 → state=ERROR）。改由 tools/pack_images.py
+# 把全部图片打包进按子目录拆分的 SQLite 库 web_app/images_<sub>.db（共 ~96MB、7 个文件），
+# 经 server.py 的 /api/img/<name> 端点按需返回。故 public/img/ 整体跳过不部署；
+# images_*.db 作为普通文件随 git 追踪、按内容 sha 增量上传（首次上传，之后引用旧 blob）。
+SKIP_PREFIXES = ("public/img/",)
 STATE_FILE = os.path.join(ROOT, ".vercel_deploy_state.json")
 
 
@@ -158,20 +160,10 @@ def tracked_files():
 
 
 def disk_img_files():
-    """public/img 下所有磁盘文件（排除 SKIP_PREFIXES），不依赖 git 追踪状态。
-    防止新增/未强追踪的图片漏部署（如 public/img/shoufa）。"""
-    res = []
-    base = os.path.join(ROOT, "public", "img")
-    if not os.path.isdir(base):
-        return res
-    for dp, _, fns in os.walk(base):
-        for fn in fns:
-            full = os.path.join(dp, fn)
-            rel = "public/img/" + os.path.relpath(full, base).replace(os.sep, "/")
-            if any(rel.startswith(s) for s in SKIP_PREFIXES):
-                continue
-            res.append(rel)
-    return res
+    """历史遗留：早期用于把 public/img 下未强追踪的图片补进部署。
+    现图片已统一打包进 web_app/images_<sub>.db 随 git 部署，public/img 整体跳过，
+    此函数不再贡献任何文件（保留签名以兼容 build_files 调用）。"""
+    return []
 
 
 def build_files(token, prev_paths, changed, force=set()):
@@ -277,9 +269,11 @@ def main():
     # 防御性：除 public/img 图片外的所有文件（代码/静态 JSON/HTML/CSS/JS/DB）永远按当前内容
     # 强制上传，绝不引用旧 blob。增量部署若把旧版 server.py 与新版 data.db/前端错配，会在导入期
     # 崩溃（如旧 server.py 顶层 get_yaotu_images() 引用已删除的 yaotu_img 表）或使前端修复失效。
-    # 图片保持增量（新增的 yaotu_list 等不在 prev_paths 会自动上传，已存在的引用旧 blob 无害）。
+    # 例外：web_app/images_*.db 是图片包，按 git 追踪内容 sha 增量上传（首次上传、之后引用旧 blob），
+    # 不每次强制重传（避免每次部署都重传 ~96MB）。
     force_backend = {f for f in (set(tracked_files()) | set(disk_img_files()))
-                     if not f.startswith("public/img/")}
+                     if not f.startswith("public/img/")
+                     and not f.startswith("web_app/images_")}
     changed |= force_backend
     print("forced non-image files: %d" % len(force_backend))
     files, cur_shas = build_files(token, prev_paths, changed)

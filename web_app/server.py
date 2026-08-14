@@ -4,6 +4,8 @@ Reads Data/LILUN.mdb live (via 64-bit Access ODBC) and decrypts on the fly."""
 import os
 import re
 import json
+import sqlite3
+import urllib.parse
 from fastapi import FastAPI, HTTPException, Body
 from fastapi.responses import HTMLResponse, JSONResponse, Response, FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
@@ -808,10 +810,11 @@ def api_yaotu(q: str = "", cat: str = "", page: int = 1, size: int = 60):
 
 @app.get("/api/herb_image/{name}")
 def herb_image(name: str):
-    fn = IMG_INDEX.get("yaotu", {}).get(name)
+    idx = IMG_INDEX.get("yaotu", {})
+    fn = idx.get(name) or idx.get(os.path.splitext(name)[0])
     if not fn:
         raise HTTPException(404, "no image")
-    return RedirectResponse("/img/yaotu/%s" % fn, status_code=302)
+    return RedirectResponse("/api/img/yaotu/%s" % fn, status_code=302)
 
 
 # ---------------------------------------------------------------------------
@@ -979,10 +982,11 @@ def api_renji_lbg_calendar(y: int, m: int):
 
 @app.get("/renji/img")
 def renji_img(name: str = ""):
-    fn = IMG_INDEX.get("renji", {}).get(name)
+    idx = IMG_INDEX.get("renji", {})
+    fn = idx.get(name) or idx.get(os.path.splitext(name)[0])
     if not fn:
         raise HTTPException(404, "no image")
-    return RedirectResponse("/img/renji/%s" % fn, status_code=302)
+    return RedirectResponse("/api/img/renji/%s" % fn, status_code=302)
 
 
 # ---------------------------------------------------------------------------
@@ -1210,10 +1214,11 @@ def api_tianji_tables(sub: str = ""):
 
 @app.get("/tianji/img")
 def tianji_img(name: str = ""):
-    fn = IMG_INDEX.get("tianji", {}).get(name)
+    idx = IMG_INDEX.get("tianji", {})
+    fn = idx.get(name) or idx.get(os.path.splitext(name)[0])
     if not fn:
         raise HTTPException(404, "no image")
-    return RedirectResponse("/img/tianji/%s" % fn, status_code=302)
+    return RedirectResponse("/api/img/tianji/%s" % fn, status_code=302)
 
 
 # ---- 天纪·排盘系统 / 命理系统（新增强化模块）----------------------------------
@@ -1261,24 +1266,24 @@ _EXTIMG_MT = {"jpg": "image/jpeg", "jpeg": "image/jpeg", "png": "image/png",
 
 @app.get("/extimg")
 def ext_img(p: str = ""):
-    from urllib.parse import unquote
+    from urllib.parse import quote, unquote
     if not p:
         raise HTTPException(400, "missing p")
-    rel = unquote(p).replace("/", os.sep).replace("\\", os.sep)
-    # 已随站部署的静态子库（生产 Vercel CDN 与本地均可直接读）：
-    #   - 本草/中药图片  -> public/img/zhongyi/        （中药图鉴）
-    #   - 穴位/          -> public/img/xuewei/         （十四经络穴位图谱，360 张）
-    # 原《中医》仓库目录仅作本地开发的退化回退。
-    zhongyi_prefix = os.path.join("本草", "中药图片") + os.sep
-    xuewei_prefix = "穴位" + os.sep
+    rel = unquote(p).replace("\\", "/")
+    # 已随站部署的静态子库（生产 Vercel 不再随站部署 public/img，已打包进 images_*.db）：
+    #   - 本草/中药图片  -> public/img/zhongyi/   （中药图鉴）
+    #   - 穴位/          -> public/img/xuewei/    （十四经络穴位图谱，360 张）
+    # 统一 302 到 /api/img/<sub>/<相对 public/img/<sub> 的路径>。
+    zhongyi_prefix = "本草/中药图片/"
+    xuewei_prefix = "穴位/"
     zy_base = os.path.normpath(os.path.join(_IMG_DIR, "zhongyi"))
     xw_base = os.path.normpath(os.path.join(_IMG_DIR, "xuewei"))
     if rel.startswith(zhongyi_prefix):
         cand = os.path.normpath(os.path.join(_IMG_DIR, "zhongyi", rel[len(zhongyi_prefix):]))
-        full = cand if os.path.isfile(cand) else os.path.normpath(os.path.join(_EXTIMG_BASE, rel))
+        return RedirectResponse("/api/img/" + quote(os.path.relpath(cand, _IMG_DIR).replace(os.sep, "/")), status_code=302)
     elif rel.startswith(xuewei_prefix):
         cand = os.path.normpath(os.path.join(_IMG_DIR, "xuewei", rel[len(xuewei_prefix):]))
-        full = cand if os.path.isfile(cand) else os.path.normpath(os.path.join(_EXTIMG_BASE, rel))
+        return RedirectResponse("/api/img/" + quote(os.path.relpath(cand, _IMG_DIR).replace(os.sep, "/")), status_code=302)
     else:
         full = os.path.normpath(os.path.join(_EXTIMG_BASE, rel))
     base_norm = os.path.normpath(_EXTIMG_BASE)
@@ -1292,6 +1297,55 @@ def ext_img(p: str = ""):
     with open(full, "rb") as f:
         data = f.read()
     return Response(content=data, media_type=mt)
+
+
+# ---------------------------------------------------------------------------
+# 图片统一端点 /api/img/<name>：从按子目录拆分的 SQLite 库 images_<sub>.db 读取。
+# 前端原本直接引用 Vercel CDN 静态路径 /img/<sub>/...，但 2239 张独立图片导致部署包
+# 文件数爆炸（HOBBY 拥塞下 Downloading 2315 files 超时）。现改为服务端打包 + 此端点，
+# 部署文件数降到 ~78。key 形如 img/<sub>/<相对 public/img/<sub> 的路径>。
+# ---------------------------------------------------------------------------
+_IMG_DB_DIR = os.path.dirname(os.path.abspath(__file__))  # web_app/
+_IMG_SUBS = {"renji", "shoufa", "tianji", "xuewei", "yaotu", "yaotu_list", "zhongyi"}
+_IMG_MIME = {"jpg": "image/jpeg", "jpeg": "image/jpeg", "png": "image/png",
+             "gif": "image/gif", "webp": "image/webp", "bmp": "image/bmp"}
+_img_db_cache = {}
+
+
+def _img_db(sub):
+    if sub not in _IMG_SUBS:
+        return None
+    if sub not in _img_db_cache:
+        p = os.path.join(_IMG_DB_DIR, "images_%s.db" % sub)
+        if not os.path.isfile(p):
+            return None
+        # check_same_thread=False：端点可能在事件循环线程外读取（FastAPI 默认线程池）。
+        _img_db_cache[sub] = sqlite3.connect(p, check_same_thread=False)
+    return _img_db_cache[sub]
+
+
+@app.get("/api/img/{name:path}")
+def serve_img(name: str):
+    # 浏览器会对非 ASCII / 含特殊字符的路径做 percent-encoding，FastAPI 的 path 转换器
+    # 不一定会二次解码，这里统一解码，确保 raw 与 encoded 两种形式都能命中 DB key。
+    name = urllib.parse.unquote(name)
+    if not name or ".." in name or name.startswith("/") or "\\" in name:
+        raise HTTPException(400, "bad path")
+    parts = name.split("/")
+    if len(parts) < 2 or parts[0] not in _IMG_SUBS:
+        raise HTTPException(400, "bad path")
+    sub = parts[0]
+    key = "img/" + name
+    db = _img_db(sub)
+    if db is None:
+        raise HTTPException(404, "no image db")
+    row = db.execute("SELECT data, mime FROM images WHERE name=?", (key,)).fetchone()
+    if not row:
+        raise HTTPException(404, "not found")
+    ext = os.path.splitext(name)[1].lower().lstrip(".")
+    mt = row[1] or _IMG_MIME.get(ext, "application/octet-stream")
+    return Response(content=row[0], media_type=mt,
+                    headers={"Cache-Control": "public, max-age=86400"})
 
 
 # 页面 HTML 不缓存：避免浏览器缓存旧版 tianji.html（旧版引用旧 app.js/style.css），
