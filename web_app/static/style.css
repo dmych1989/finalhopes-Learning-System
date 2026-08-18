@@ -1262,3 +1262,15 @@ img.herb-img{float:right;max-width:220px;max-height:260px;margin:0 0 12px 16px;b
   font-weight:600;margin:2px 0 12px;padding:4px 10px;border:1px solid var(--line);
   border-radius:8px;background:var(--panel)}
 .search-back:hover{background:var(--panel2)}
+
+/* GitHub 开源项目页脚 */
+.site-footer{display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  padding:10px 18px;background:var(--panel);border-top:1px solid var(--line);
+  font-size:13px;color:var(--ink3)}
+.site-footer .gh-link{display:inline-flex;align-items:center;gap:7px;
+  color:var(--ink2);text-decoration:none;font-weight:600;transition:.15s}
+.site-footer .gh-link:hover{color:var(--teal-dd)}
+.site-footer .gh-ico{color:var(--ink2);transition:.15s}
+.site-footer .gh-link:hover .gh-ico{color:var(--teal-dd)}
+.site-footer .gh-sep{color:var(--line)}
+.site-footer .gh-meta{color:var(--ink3)}
