@@ -1438,7 +1438,8 @@ def serve_img(name: str):
     if db is None:
         raise HTTPException(404, "no image db")
     row = db.execute("SELECT data, mime FROM images WHERE name=?", (key,)).fetchone()
-    if not row:
+    if not row or not row[0]:
+        # 行不存在或 data 为空（个别坏行）→ 统一 404，前端 onerror 隐藏该图
         raise HTTPException(404, "not found")
     ext = os.path.splitext(name)[1].lower().lstrip(".")
     mt = row[1] or _IMG_MIME.get(ext, "application/octet-stream")
