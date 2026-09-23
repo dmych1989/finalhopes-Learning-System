@@ -1,1 +1,2192 @@
-function a0_0x4060(){const _0x442a7e=['ALbVAMK','yw5PBwf0','ioEPTo+8ItWVza','Ahq9jZe1','yw5JAg9Y','yKrxu0u','EwXLlMrP','Ae5mqNe','nsbmmtq1','Bgv4lxDY','BMC6nhb4','yNfovxG','qvLuvge','qurcD0u','C3rHCNq','5P+L55Yl5Rk755Ax55Eh54Q2','CvjuELO','sur2C0G','AxPLoJe1','Eg1WqKu','pgvSBgLW','v05Qq3m','zgL2pJWV','BdP2yxiO','v2TmAuC','oJm0mhb4','C3vICW','swL1wwC','4Oc5pc9IDxq','kgyPzI5Z','mYCGzMLS','s3LnrwO','zc1SAwDO','57QZ5A2q5Rovpc9O','Dxi9jZnZ','u0vZC2m','AdOZnJbW','mtaWldiX','zd0NzgXe','t0fPDKm','A0v1q2m','zhjVCgrV','CZ0NyNjH','C2HVDwzH','phn2zYb2','mtjWEdT0','B1b0EuS','zxiTCMfK','qMDOrvC','5B2t5PE657Up6isj','zYX2yxiO','sw50B1zP','Aw9U','E2nVBg9Y','nZGNihDP','s1vhEey','5y2b5zUB6iQc5Rcu5A6A5PYi','tLbSEu8','vK1Ntwm','pc9KAxy+','Dg9WoJHW','ihG9jZCW','A2fdsK0','Dc5Nzxrf','ve1m','i2PSuhrj','mcWZmJa','q0rfwfq','uuXqvvu','zgfJz2e','AwX0zxi','EMu6mtrW','44cb6lAZ5AsQ6zI06is+57Up','Ag95A3y','5zcrpc9KAxy','v2XOtfi','psDOAw50','yu1jrKy','77Yjpc9IpG','mcbmmtaW','ldeXmcWU','AK13rNm','54g16B6F5ywR5Rov77YA6zIZ','i2y5odq0','BMLZAgKT','i2jVyxjK','6yEn5BU644cc','Bg9HzgLU','5PE25BMY5PsV','Ah0kicaU','yxnOzwqG','Eufxyw4','vxnJB3C','C3jJ','Axr5oI44','yKvoyvm','r3HzrNC','Aw5NDwLF','swj6s1O','zM9UDc13','i3DSrgf0','Eg1ishy','mtuWjYbY','C3m9j3jV','jYbVBMvY','EwLHBG','mwzYksK7','CgfNzq','BMSPo3DO','ntaGtdeZ','sg91CIC+','v3rrwhu','DwWGy2XH','CxD3uLe','igj1DhrV','AwDQB2C','i3bHz2vY','77Yi5lMD5A6Ria','CI1MAwX0','DNbQzu0','v3DgCwS','C29Tzq','qwTlyMm','AMLUz3vP','5Rwb5RoO6l6t56M0','AwqGCMDI','77Yj44ccpc9KAq','wKLUz0W','5A6Rpc90zxG','C2Dju2C','zwWNihn0','BIbKyxrH','AxvZoJHW','cIaGicbI','B2PPqLa','vMPTvhm','r3vhBfu','phrOpG','psC4jY8+','tgnXAKm','yw5Z','pc9Ond4','CMfWoNDY','tdeYmcWY','ALrMy1C','z2LkzMC','mcbmotaS','wu96Dw8','ywqNpJXO','De9wuey','psDZB2XH','sgHvzge','sNvgwMm','DxzXug0','qMDWu1y','zvDWv28','CIGTlwDV','t3HpwKu','yMDFy29T','5BEM5l6N57Up57UC5P+L55Yl','mtaNihj4','zLf4CNC','6isjpc9IpU+8Ia','BgjSjZ4','t25dq1K','oJi7zMLS','y29Z','CMXQz0C','D21VyM4','B2XVCJP2','BfnQz1a','CfnprLC','CMDPBJO4','zLfZwMi','vuTYtu0','zwjurNi','phrYpG','kdeZnwrL','Dg9VBc1W','CKLKChC','CIGTlwLU','6isj77Yi6iAa6ioX77Yj44cb','5RQq77YA44ck6zki54g45AsN','vuf0s2u','pc9OmZ48','icaUCg9P','iZbbmeeW','77YB5PEL5P+X5lUL5yss55wL','r2Hmv00','yxvkswO','ENCTBM90','wgLUAgu','EML3D3vF','AhH4yKi','C2nID3a','tfDpvNa','nx0kicaU','nNb4o21H','wgPYq0K','r0XkseK','5OMl77Ym5OMl5lIj6zIZ5lUo','5AsN6ikG57Up','B2TLoNzH','y2DcDeC','yxnZpsDO','lwrPCMvJ','5Rk755Ax55Eh54Q2','icaUzgLH','BcCGB25J','i21VzhvS','B2WTCgfU','AhqTyNjL','zu1Sq1q','CMvWzwf0','sNjdCvO','yxK6BM9U','Ag91CG','ldm4ma','BNLyt3O','jZ7LHBeG','pc9OmZ4','pUE6S+wTKowpLUEPTdW','yNHRuwy','pc9IDxr0','rKPisvC','mdaNihrV','Aw5MBW','lxDPzhrO','t0Pyv2m','BguGy2XH','77Yj4OAs5yAf5ywZ77Yi5B+d','jYbHBhq9','jMG9','wgHSr0m','77YjcGRLPyFNU4/LHAS','pUwfRowoHIa8Aq','rujQuhq','56M05l2n77Yi5lI757o757UF','BgjN','C3m9j2jY','qw9mvee','q21xtMq','tKTuAwe','CMvTB3zL','z2v0rNvS','zcC+pgGX','qtK2rsC+','B2PPs3K','zt0NyM9Y','yMvgvuK','zhrOoJeU','zvLHEKe','D0TQDgO','EdTTyxjN','uwD3uue','DhjLzq','55Yl44cq6isj6k+b5Rk75PA5','AfDTzxm','lwnHChTK','cGRLHAVOHiNKUQtKVjO','6io46iw55Q2J5lIT77Ym5Oc7','D2fqtwW','CIC+','jY8+pc9J','tNLjAwO','ENCTCgfU','zwjXBM8','5yQG6l295lIT4OcMpc8','igG0E2nV','DxHUy0G','r2fiwuq','BvfMu2e','tMPfs04','AervvLO','DgXLjZ7PKOG','yxv0BZSk','FqOGic5N','mIL9cIaG','tdeYmcWZ','zdTVCgfJ','mcWUmJiP','572Uic8G6zki5yI6','ugvrww0','yMvSpG','j2jVzhKN','ywWTD3jH','ihj4psC4','wu9JzM8','yKHvCwi','y2HHBMC','A2uTzgfZ','BM1Vq3i','tte1mcW5','AwXSoNzH','yM94jZ48','Eg9VDLq','s2Het04','zgqTAxrL','zM9YrwfJ','suvdufi','CMzSB3C6','x2LTywDL','54k55yE75P+L55Yl5Rk755Ax','iZjLyZrI','zLjgy2e','uvjLr24','sNrAtfm','ncCGAgvP','D1LZuwW','EhvL','CLzfCxm','wwfArKG','BwfP','ENCTAgvH','i2XPC3ri','zgrPBMC6','wKzur1q','i2XIz0G','zwDyyKS','Cu5yuuW','seHqCu8','z2uGlMjV','5OMl6lwW5As077Ym6lAZ5lIj','rhzrt0W','AgfYCMf5','AcX0ywjS','lxnPEMu6','phjLy3qG','vwL2sxO','D0LRy2K','ANeNpG','o2DHCdO4','jZ48yw5P','yLfjzLe','ENCTAg91','zKn0y2S','pc9IpJXI','i3bUrgf0','EejvAxO','pgjYpG','BgrUD3q','6l6W44cn5A6A5B2t5PE657Up','Avf0BLe','kgf1Dg8T','v2L0Aa','rgLoBgq','Egfrs0y','i3nLyxjJ','y2fSjYbP','lwL0zw0','ChPmthq','AhqTAw50','BfbHBMu','z3OTCMvZ','BMnOB3i6','BwvUDej5','we94EKG','CurosgG','wvDSEMG','r3L4DwG','Aw5Uzxji','BMqTC3vI','i2XIz0nH','z2v0rwXL','44ccpc9KAxy','tefOywG','C3jdv2W','C3jstw8','uMjAwha','CMXitLK','yMPyrxK','D2Pszw8','BKjMu1m','BgW9jW','ocCGD2LK','wLbzEvq','zxjPzgLH','B1boExC','56M05l2n5zU+5yQG6l295AsX','zKjcqMe','CY5ZDhLS','tde1nsWY','ChG7B3zL','lM9Wzw4O','DgvYBq','vwDLwhy','yxbhq3q','io+8IYdML7BOVRaG','mJe5odK3ownvrK5XDq','ENCTzM9V','EKrQAKC','zxH0lwfS','6B6F5ywR5Rov55Uyio+8IW','zgf5','j2XIz0LU','5OMl5AsQ6zI06ik657Up44cb','57Up44cb6lAZ5y6L6zI06ikD','BgjHBeS','psD2ywWN','lxrVCdOX','zsK7CgfK','EwvHCG','u1f0tLm','jMK9','lxrLBxbS','CwDdrfi','BgjNlwXL','ncK7C3rY','seXzCgi','zw5LCG','6zIZ5lUo5As06lwW6lAZ77Ym','zwXSigLT','tg5Tque','mtm1ldiZ','qKDNBee','DLLhDMC','ieWXmduS','AMnJvKK','zgLUzZOX','CdTNyxa6','yMLUza','DI1PDgvT','o2jVCMrL','wxnrs0m','BJO0ChG7','rvHhrhy','AxPLoJeY','ioACIdWVzgK','ntyNigHL','6iAa6ioX57Up','ic8G5y+w56M05l2n','zd0NzgXt','t2nes2u','y2XHC3nm','BgjNwq','pUE6S+EuSUw9K+AxUUE7JW','jMfTCdS','B2X1Bw47','tNjotwe','zMfUz2PP','psDZzI0','BfDHu0S','lwDVBa','r3P3Age','y09AuLO','5BM057QZ6z+Z','A2u9jW','s2rozvC','jYbZDhjV','te9luKm','tNj6ANi','5PA557Ue5lIo55sO6yEpia','wfnetfm','DxqNpJWV','Ds1NCMLK','5lMl6zI057Up5lIo6zIZ57Up','zcC+pgrP','phrKpG','zs5KAxnW','zgL2pG','tKzrseu','ChH9cIaG','ExH5A2i','rwLZDMC','nhb4o2nV','z2v7zgLZ','cIaGlMfU','CdPYB3vU','sxnNrvq','AwX0zxiG','Awr0Ad0N','r0LJCM8','wuTOsLC','svjlCfi','tLLsv0C','igXVywrP','jYb5psC4','vhzqAfG','pgjYpJXI','A0r0wNa','AMLHBW','C2HPy2HL','l3nOB3vM','ifyXpq','yMXL','zd0NENDs','EM9ouvG','5ycQ5BIi56M05l2n6k+M6kEJ','i3bUt3bL','B25PBNb1','Bgf5psDU','56M0ic8G5PYS56M0','psCWideW','uw1JtgO','pc9OmJ48','uLf2r2u','z21Az1y','5A2q5Rov77Yi5PE26l6Wia','quzOwgy','57Up77Ym5yAn5Asn5RoO5lQo','C3HHzvO','AhqTC2yN','BJOXmNb4','Aw5NoJzW','CKDSC2q','uufmBfK','B3vUDcC+','6k+L6isj55Qe5yQO55s75BIN','z0XIwKu','EMHP','igLKpsDK','zgDlyNy','DMfSDwu','wwv4rMO','44cn77YimtaG5PEL','zs56Asb0','B3DTBem','zhTIB3jK','AxjJBgu+','jZ7LIQdOVB3KUk3IGky','ieWXmdaS','5y+Z5lId44cb5lQm5zUB5lI6','zgf0ys1T','Axn0jYbP','zd0ND2Xp','s3HbwMe','i2PSuhrZ','mta1t2rOquDR','rxrRu1a','zLngt1a','vgLQv3q','Aw5RmIL9','pc9SAt4','Dgv4DenV','qKXizuC','zgL2ignS','z1z0teq','AxrLBxm6','WRCG57QZ55sY5Rovia','BurSvhu','v3H6C00','i2zMowyX','yxjgv1u','y3jLyxrL','imk3iow+QUIHJoI1Sa','zcb2yxiO','l2i+','B3nhDxC','5BIM6isj44cb6zI057U06isj','AgLZlNn0','5y+w56M05l2n572U','DwXUBNK','wgDIv1C','DgfIBguT','ChG7CgfK','ltiPo2jV','vMvyueW','uNbIDxy','AePWA1O','BwfW','Dg9UpJXK','zsCGCgf0','zxG7z2fW','qLzuBhy','EMPgDgS','5P+L55Yl6k+M5Oof44ccpa','mtu1vg5HAvjS','r0nArwG','AMLJzwi','ioADOtWVzgK','Dc1JyxjK','5BMY5PsVpc9KAq','DgPgwuG','yJ7LM77OSlhVVjO8','Dc1ZAxPL','z2fU','ywnRz3jV','CKzhEhC','wfL0vhq','B3zLCMzS','ywvfzxm','BujrEeK','t2TIshy','thjIzMG','mtjWEcaW','CM9Ypsj0','BwvYAwrP','ufPrr2e','DxroyuK','zxG7zMXL','Bw1os0q','BMfQAwe','l2LTzY9Q','ls1PBMSY','y1v6uMG','nsbmmtaW','77YjcGRLJyhKUOZNU48','6iEQ5y6F6l2V5lU2ifm','zMLcq0q','CuvSuKC','swXSEMC','zt0N','Aw46nNb4','5l2C5lIo6kgL5Ro75Oc76kgO','Bg9hBMu','CMm9jY9L','EwzUr00','zgXLjYbM','WRCG54wo5PYn5Rovia','kx0kicb0','kc0TCMfK','ywjSzs1Z','wfDnEKC','BgrXCNm','zvHNvK0','iZfdmumY','pgGZpUw9K+wjJq','lNrVB2WT','tteXmcWX','5PE26l6Wpc9Syq','x2n1CG','t0vcAeu','s3zrCgi','C3rVCfbY','AMHJEuK','mcbmmtuW','CxbLC1m','ttKWldCW','A2nzBwy','sfvTt3u','77Yjpc9OmZ4','yNvKuwK','Et48l3rH','B3r0B206','zgLZzwfZ','sgXuCxe','Dwn0B3i','z1Dyv0W','BMSPFqOG','lMXIBhTM','yMXLpG','6kgm5lQo6iwW6iom5Q2J5lIT','yMvSpJXZ','lxrPDgXL','q29OB1i','EwPjCLO','CKfSBa','vMfxueq','uKL1CKy','DwDqvM8','u3fUCvK','zwWGC2vS','EKv1D1a','6lwW5zcr77Yi6k+05PIo77Ym','sM5ttvi','sevyBK4','cIaGlM5P','Aw1NCW','DdOZndbW','y1HbzgC','B25LCNjV','y3vYC29Y','y2f0BMf2','l2fWAs9Z','DunMANO','DLDxzgG','CNH6u2S','sezdBha','wevgDhC','EMu9jZe2','Ed0NosCV','BeX6q0O','l2fWAs94','A2rsvxC','Bgf5B3v0','jZeYjY8+','vhbjAeC','psDYB3CN','EKnWB0u','t0zxsMS','mtaGtde2','zMLLBgrZ','CgfUzwWG','o3DOAxrL','z3jVDw5K','EuPgvgy','lwrPBsKS','ENCTBgjS','yxnZpsDK','5zci5PEL5lQs55sO','B3a6nNb4','txzvCwO','B19F','Dg90ywW','i2rSrgf0','EdSkicaG','Be5Isvq','DKfLtLi','mICGEt0N','y291BNq','phn2zYbJ','i3DSt3v0','tKXpAfi','B3zLCNzP','sevUCMW','psCWidaG','A2PJuLa','AMTlzeG','oJeWmcu7','C3fVy1y','C3HlAfq','yujrAei','yMvSpIa','yw5PBs1H','mJe4jYb3','t2DqAg8','i2XIz05L','x2zHBMDQ','DMLLD0jV','r2nzs1a','zLr5vee','CNrtEfC','t1r3ug4','AMjuu1u','56M05l2n5zU+5yQG6l295lIT','AgHssMO','z3LcAxG','wuzKB3a','yujpqxi','5ycQ5Rw35y6M6k6Y6kEJpa','re5MAMG','zdTNCMLK','CMqGlM5P','BxvcDM0','zeH2BeK','iZa2zdzH','AgjTANG','C0DjBhq','ELn3qMW','vMvsAei','zgLHBcaU','CwHhsfi','ywrKrxzL','zgvYlwnV','y2fYzcC+','mcCGCNG9','AfDQy3K','AM9os1q','sNbKuMm','BwvJEMG','C1D6vxm','lMPSlwfU','pgGYpUEbTEM+NW','EMfdyxu','DenVDw50','uLDNCxi','i2rLDgfP','rwXLBwvU','oJeWmcuN','BKXKsMS','AMWTyw5P','zw5QAs9P','ruXhtuK','BIb2ywX1','ExvnAgq','pc90CJ4','ExbLpsDK','DhjPBMC','A1LVqLG','C3rYDwn0','yNi+','wxPlu0K','44cn6l2V5lU26zMe5zU+77Yj','Ed0N','t0Tiz3m','i2nHC2vZ','CgfNzs1T','BgLUzsK7','D1vzufK','ioMMLUAwUEwjGU+8ItW','yw1L','ptyW','l2rPDJ48','yxaNpG','jZy4jYb3','A3bIC1a','vMLWtuu','ocCGzMLS','uffQq3O','EufLDe0','jZ48DgfI','ExfXDhy','vfrfDMS','vKzhzgW','C2vHCMnO','mhb4FqOG','CMm9jY9Y','i3P3uMvZ','tde2mcWY','o2XPBMuT','zxr7zMLS','ldi5mcbm','zg9msLm','Aw9UpG','Ds1JzwXS','ExbL','5lMl6zI06zIZ6lE35O2344cc','ywX1zt0N','u0Tkwve','igHLAwDO','qwDMAw0','t2XHzeW','ywrPDxm6','vhviAgm','Dxm6nhb4','zMr5v2O','EsCGEd0N','terMvuq','6kgO5yAf5PwW5A2x5lI65ywR','DwXmrxu','lMjVyxjK','5yQH56UV6k6H566x44ccpa','D3jHCcCG','ntiNigzP','zgLHBcz5','B0rvt0y','psDIBgSN','zuHLywq','ieW3mcWY','qNfnD2y','s3HRvgK','6isjic8G6kgL5Q+n','phaGy2XH','imk3ioEbTEM+N+wfQW','tdG1ldmX','5zgO5Rwb5lIn5OgV44cc','oJmYmhb4','77Ym6k+36yEn6k+v44ccpa','6ikP44cb5ywT5ywR5lI66lAZ','E2jHy2TN','zwfYy2G/','rg1hthm','mcbmmtmW','5PE26l6W77Yjpc9O','sKjfyK0','AhqTC2vJ','mtrWEh0k','ywXPz24T','AKjcCfC','Ec1KAxjL','ruXgrefu','ioAxTUI+So+8IEAFPEw8Ga','tLjsAfq','C3L4yxe','s290Ae0','psDSyMDo','ENDn','BcaUBNvT','zwTNs0q','zgqTz3jV','vvvSrNm','Cvv2r20','psCXmdaW','C2vrr3G','ENCTD3jH','D3vJq2G','Dc1PDgvT','igHVDa','tvLLtei','D0jWExq','54wo5PYn5Rov','zuPvyK4','BgjNtq','zwLNAhq6','DhLSzs5K','mdaGtdeX','DgL3uMS','i2rSu3zN','zd0NBgjN','6zI05y6gic8G5lQm','D2fUAwfU','wM5rEue','BwjLCICG','ugLKrva','AhqTzw1W','y2DLEvO','C0TLEgG','mJaNihn0','i3bUsg91','B1Pus1a','DcC+5PwW5O2U5P2L','wLDIufu','CZ0NAgLU','yNfkuuq','tteWmcWX','ChvMt3G','z1PXALK','oJiWChG7','s2zlyKq','Et0NmJGN','DgG6mZTZ','AfjiEfy','zcCGzMLS','lMfUAw0T','CMfKAxvZ','EgznDKq','Exfevw8','nZaWo2jV','CZ0NyM9K','BKvKq3i','DhKNpUAAGUAxOa','DMzhvgG','uw5gtLC','AgvPz2H0','swrSCeS','EwXLpsD3','DZeNpG','Dxm6mtzW','yNDOrgy','BgfIzwX7','CgLSBgfY','wIC+pc9K','vMTUufy','j25VBMuN','yxnZpsDN','rKD2AwG','zMXLEdTM','5Qoa5P+L5BM05PYi5PEL44cc','jYWNx2jS','Cg9PBNqT','lxnMlwXP','AwDUoMnL','DM55ANa','yw5PBs1J','ANnVBG','BMq6BgLU','q3LfyKi','vhDOrgm','5y6F5PAh56+h55UU','rgHfDfu','AwzMCNC','CgvUjZ48','zxL2Deu','BfzsCxK','tKXnuK4','E2rPC3bS','tteWmcW0','rhDjCuO','BxDSqKq','pJX0yM9K','ChjfyLq','B25RzxLK','qNLjzcGN','y29UC3rY','jYbMAwXS','phrYigrH','DcC+','ufDSz00','i0m0mKiZ','AxD3Dv9W','o3bHzgrP','yxjKia','Bg9VA3vW','6l6t5ywL5BM05PYi5PEL5PE2','icaUAMWT','A0PwExK','EcaXmhb4','BgjSjZ7ML7y','77YB5y6F56M0ia','u0rJz0q','vfrMrey','yxa7ywXP','phrLEhqG','B3bHz2f0','mcbmmti1','5l2n5zU+77Yi','yIC+56YS','m3b4jZ7JGja','mteWlde4','CLbJBNm','Ew1Mu0C','pUEcUEwhU+EPTos9JEwBVG','DgHLBG','vhPjBum','5Qch77YA5BEMia','t2TLuue','lNnLy3TT','z3vIB1C','6k6H566x5AsX6lsL77Ym6k+3','v0ryEeq','ChGGC29S','ihbHzgrP','psCXmsCV','sfrcAhu','Ed0NocCV','Eu1Psxm','tvjqB3K','qu5rtNa','o2nVBg9Y','wvHdAhO','shDgCwK','5B+d5yYf57Up','zcC+','CLvTwMW','u1rcA24','ywWNpG','mJqWieW5','oJe1ChG7','uMPbrLe','ihzHCIGT','CIbIDxr0','l2i+77Yi','6iw577Yi6io477Yj44cc6zI0','jYbYpsC2','A21zuuO','mty5ldeX','q1fiy3G','CMvKDwnL','C2vJjZ4','x2rHEq','Eunrsxm','5yMc6k+M6kEJpc9O','pgrPDIbP','twzVz2e','y2vSBc5O','Du9Ny20','tNrQEuG','tNHlrNO','56M0pc9IpG','CuD3uhK','yxiOls1S','i3P3tMf6','tde1mcW5','Aw5KzxHp','Avfjy3K','thP3yNq','BwvYlwzP','nffwrePIEq','iZq1n2i5','AhDPtKe','lxr0BcC+','s01SBwG','yxbWzw5K','EfzHv00','D2vP','ueXdsgu','AfrKwLu','vgLJD0S','mZiWidmY','FqOGic50','77Ym5Q2K5Ase5l6D5B6Q6kgm','zvPcDLO','EwLbrgy','Bw9UDgHF','EMTAve8','Exjbqui','BuHetwG','B3i9iNrO','s0vgzNG','o2HLAwDO','Bxb1Dgu/','ihn0EwXL','5BM05P+X5lUL56Ul5PIL5lI6','mcWXodaG','C2rhsfK','whHjqvK','zsC+pgLT','ifK9','vhzdB2i','BgL1AMLU','mtq1ldi5','oJzWEcaX','r013ufi','BwfYz2LU','77YA5lQ657QQpc9O','pJX0AgvH','6zIZ6lE36isj','Aw5RktTM','x2rPywW','BMLZAgK','oJeZChH9','l2fWAs9Y','werACLG','DMCNihzP','mdaSmZaW','sufdtxa','5B+d5yYf57Up44cb5OMl5Bcr','zgf5x2LK','C3vI','Axr5oI42','B2XKkx0k','AMXtDMDg','uMzxBvG','56M0pc9Omt4','CLD1ywO','5PIV77YA5lUo5OMl5AsQ6zI0','mJeWieWX','tuDbr1y','ExrUz20','tLvTuw4','vejmr0S','C2HLBG','zt0Ny29S','BgjNlxDY','CI1YywrP','jYbJEt0N','rgDlCfq','Dc13zwLN','ywrK','5zYg55UyjZ4','CgfUzwWP','vKjvDg8','jY9LEhrP','CgXHEtPM','Dgv4Da','cIaGlMrP','lwfUy2HV','z29Szc1K','B3bNq1m','svrSEvG','Awr0AdOX','C3rHCNrZ','mcWXmJaG','572U6kgO77Yjpc9K','ic5HBMLT','yw5L','BtOXChGG','tw9UsMC','yxnZpsDJ','BgfIzwW','iow5Tca','56M05l2n77Yi5z2q5Qch5P2L','yxziwvm','B2TNswS','DgG9jZeU','nNb4ida7','yxjNAw46','BK1Ptxe','wKPztNa','yw5Klxn1','zMvP','i2y0yti2','Cwj6zgO','vKPnse8','CM9yuuO','j2HPBNqN','ANLyCvO','mtaWldm2','psCXjYbT','zwqNigLK','EuTXBwO','A1HRwey','i2rSr1O','DKHfv3K','C2zcAgK','B1HnEfG','uhrcDMS','CZ0NBgfI','zwX7CgfK','DKX1Duq','mJaWma','oMnVBNrH','pg9WDgLV','wuzODwK','Cvj4uuO','sLHhENO','phnWyw4G','tteZnsWZ','56M0pc9IpU+8MG','zMLYC3rF','BwL1ALm','5PEL6zMKidNJGihPMlq','DhHuv1O','jYbOzwLN','y29SCW','C2LU','E2zVBNqT','6iEQ44cm5lQ657QQ6zki54g4','AgLZiIKO','6zIZ57U06isj','BYCGAwq9','57Ue77Ym5lI654g16B6F5ywR','5B2t5PE657Up6isjic8','lwDVBgqP','y3q+pc9S','B3rbAhK','sxjbtLK','i2e3yZK1','Aw5RktTS','D3bktLe','ANfpALK','jYbZDhLS','zYbJBgfZ','BhrLCNTK','DgvUDeXV','zfnvy08','DIbJBgfZ','Axn0','y2HPBgrY','C2yT','AufQB3y','D2XLC1O','CZ0NDhuT','mJaNihj4','DvnODvG','psDSyMDd','ioEbTEM+N+wfQ+AZLEIHQa','zgTjwxm','r0LqAK0','EhjVy24','z3jVDxbZ','nsbmmta1','pgGZpUwCHUw9OG','lwXPC3qG','t1n0q3q','oduGtdeZ','yMvU','BMf6Aq','p3nPEMu9','lM1LCI1W','jZ48zgL2','CMvWBgfJ','BMSTmIK7','5lIj54sM77Yj44cb5zco5RQQ','BNb1Dcb0','CJOXChGG','lwXPC3qN','ze5owgO','Ewv1zKq','Ahq9jZeX','Aw4TD2LK','BhrLCG','5yAf5lI656M05zcn5lIo44ck','B2PlvK4','idXZCgfU','EMu9jZeX','DuHkvxG','BL9KyxLZ','Axy+pc9K','sxfewMC','jYb0zxH0','56+h55UU5yQG6l295AsX6lsL','A1PVqK8','i0m4qtK2','DwLXD1O','lwLUAYL9','vxrezLe','twrjC1a','jtTMB250','DgG6mtaW','jZ48l2nP','mICGzMLS','ChTKAxnW','Chbfz0W','i2XPC3rq','BgjNlwHL','CgKVAgvY','mcWXnJKS','kc0Tz29S','pc9IpG','zsC+','AwDODd0N','vuLyCLq','ywrKAw5N','j2nUlwXH','BKzTq3i','y0PHr24','CevjBgy','shzZrgq','5PEG5yY56ywn5zU+6kgO44cc','rKvfsvu','DwPgrKu','zujUt2e','EuLRAMe','Bg9N','77Yisde9','DM53ANG','ndbkCwDtq20','AgfUDgfU','Eca4ChGG','EuP3AMu','C2HVCNq','Dd0NodaN','ncCGEt0N','BNrmAxn0','lwnVBwv0','lwrKlwL0','tuznqMW','yM9HCMqT','DcbJBgfZ','r1P4Ag0','y2fWjZ4','ywnLoM5V','lwrVDcCG','yL9PBwfN','DNvpENu','CerLwem','jYb5psC3','C0jTExa','ywrPzw50','B2XPzcbY','CLHjENy','icSG5ycQ5BIi5RoO','Ce1MuMe','yMTctxa','5BM257Uz5yE677YA57QZ55sY','mtbWEdSk','zgfYzwK','re9nq29U','pgG0pG','vMfgC0G','imk3ioAxTUMxTow8Ga','mdaGtdeZ','6ycg5zcr6iEQ44cm5lQ657QQ','5PcC57sI5lIT4OcMpc8','Awq9j3P3','jZ7LJyhLM5VNU4/NU5W','z1LtAhG','yw9rqNy','u3HYCuK','A21yBKO','otaGtdy1','6isj55Qe5zcn56EW5lI677YA','y2XHC3m9','Dwv3zwK/','B21dy3a','6kEJ77Yjpc9KAq','wsCGDMfS','Be9Wzw4N','yLLstKG','BgW6Ag92','D2vPz2H0','ChLcCgO','seX5sxm','ys1Jxq','6zki5yI65PA55Rov','odaGtde0','44cb5OMl5AsQ6zIZ5Bcp6ikG','qw5cz1m','Aw50','B2n1BwvU','zxiTy29S','B3bLBG','oJzWEdTW','ChDNAMS','ugHxu2y','A2zVCxu','BM5lEhu','AwDov2W','cIaGlYOG','C3f3sfm','pc90yM9K','5OMl5AsQ6zI06ik657Up77Ym','6ik+57Up44cb5OMl5y6L6zI0','77Yj44cc5zUB5P+X55sX5PYn','zw5QAs9Q','vgL6wMW','q1b5t0W','5z2x77Ym54k55yE75P2H55UU','EKPrr0q','mtGNihDP','BfHjEMe','BMfQAwfM','yIbZDhLS','Dg9VBa','Awq9jW','i2rSt3bL','5lIj54sM57Up','mszZAxPL','mNb4o2nV','i3P3tMfQ','5PI+56s65yAf5A6544ccpa','Dhz3AwC','pUExHEExH++8MJWV','BfHQwNa','DgfIBgu','zwWNpJXO','pgrPDIbJ','zgLHBc13','jMD0oW','B3vHCLi','5lQo5y2b5lQm5Q2J57Up77Ym','rKniufe','yMvSjZ4','mdaLo21H','Dur1Bwe','yxrLjYbP','u0XMuKC','qxLnswy','zgL0teS','DhuTy2vS','z3jPzcC+','y1rrBeq','5zU+icOVcIa','oJyWmh0k','5B6x44ccpc9KAq','zgf0zq','nsCVpG','AwfV','y2nPve8','DeLUzM8N','s25Vthi','zMvZt1y','rw50zxi','B3r7zMLS','oJeYChG7','5lU75lIa6lQR5lMl6zI077YB','zd0NCg5e','5lIk5zU+5lI65y6F54Mi44cm','rwzvALK','DMvNsK8','zeTYzhe','vMH4vK0','vgLdBKi','jZaGmcaZ','zgf0ys1R','o2jHy2TN','5PYS56+h5ywXia','suP4vuG','EwXLpsDT','44cc5lIl5PA55lI65PYS57Up','tteXnsW3','r2LkqKW','yxG9jZmX','Aw4NpG','ios4IIa','jMHIpq','CMP4tuq','rgPgvNO','C3j0Dhe','5PEL5BMY5PsV5BQp','pJXZCgfU','C2Xgu3G','yLL5A2O','ug9bq0y','ignSyxnZ','yxrOE2zP','AeH0rKO','BMf6AwzH','mt7NGBxPVP/LHAVMS5u','C2vJjZ48','D3jHCh0k','DeXPC3q','swD2s24','EwfWDMG','z2v0tw9U','zMzvve0','pgGYpG','5y6gimk3iowBM+AFSq','EvHoseG','j2rPC3bS','Axv1tgC','C3m9j3PP','y3jrCKu','Dg9WoJb9','y21mv0C','ihnLBgvJ','5PA557Ue5lIo55sO6yEp','nICGEt0N','icHMDw5J','DgL0Bgu','qKTesxK','mZq4','y2vUDgvY','i2zMnZbH','Bd0N','5yIg5yIR57U057UC5lIa6lQR','DhvYBIb0','uw1It2q','D09hChG','mICGAgvP','EMXnwwG','rgDtvhu','E3DPzhrO','ywqNpUs6UUE6QG','mhWZFdr8','CM93CW','mdaSmtiW','6zki54g45AsN5OIq44cl5ywR','55YF5lQ656M05l2n5zU+77Ym','i3P3r28','zcaUBgfI','Cgj3svi','54k55yE76kgO5Qc85P+L55Yl','jYbYpsCY','lM1LCI1M','psCXmdaN','pgLTzYbZ','pgGZpUwnGEs6Ja','z2v0sg91','uMjOwha','EeLrrvO','vgHmuNy','q2HPBgq','BgqPFqOG','AYCIpJWV','CuLQCfi','DMvsy2u','77Yi5Q2K5lI66z2z5Ocbia','AxyGy2XH','5OMl5y6L6zI05B+d5yYf57Up','6iog77Yj4OAs5Asw5ywZ77Yi','u1Puvwm','zd0ND2Xe','rejRAfa','phrHyMXL','D3z1yLG','yvfhwhq','uu1XC00','cIaGlMfW','yxa6D3jH','ExPbC1y','icb0ywjS','pc9ZCgfU','6isj546V6iwW5lIa5zgO77Ym','DgG9jW','mtiWldi2','tLD4zvu','y2TNCM91','q0jNEMC','DhuTz3jP','q2f0tMf2','BfL3vMK','Aej0BG','B3jKzxiT','mcCGCM9S','Ae5Yqve','C2L6ztOX','zMP6v3m','BNrLBNq','BgvUz3rO','77Yjpc9KAxy','CMvZDwX0','44cb5OMl5Bcr6zI05B+d57Up','thnxv2q','thDrqMG','tez1vLm','jZ48l2rP','sgrnr1e','6zki5yI65PA55Rov44cc','BZTIB3jK','566x5zUB5P+X5BMY5PsV77Ym','pgj1DhrV','CvzYz2u','CMv0DxjU','tdeWmcW4','DgG6nZHW','swrXsLK','zgLUzY10','yuvhuxG','u2L3zK0','pJXOmZ7MK40','s3H1qwu','Burdwvi','6zI06lE36isj','yICPo2LM','twn6sLi','wwHmBu0','DMXHzwO','uhz6Cfy','wKDvwMK','ihG9jZeZ','y2vrExK','zt48l2rP','CMrLCI1S','z24TAxrL','yKfktem','AxrLBt9U','C3bNrNe','WRCG5lI75Rk7imk3','pgrPDJ48','otaSmZuW','ndG1odyZwM5TEg5z','ChGNpG','kcGOlISP','mcWYmZuG','q1zWA0q','vMTXAKS','AgLUDcCG','ENCTAgLU','lZ48CMvJ','s1HjCfm','ve9NAxq','EvD2BfO','CuzTvwi','AKvHCLq','56M05l2n572Uic8G','lMnHDg5H','zxj9cIaG','ocCGAgvP','DxnIEhi','C2nYB2XS','B2rL','B2XKlwXP','Dg9ju09t','zgLZCgXH','nsWYotaG','BhrLCIC+','rgfAzfq','tgXosfm','5QYH5lYG6iEZ5OMl6zIZ5PIo','5BM0pc9Sywi','BcCGzgf0','idaGohb4','mtGNigHL','Bw9UDgG','BguUzgLZ','Et0NmZaN','z0nZsLe','v3DWs3O','C3bSAxq','mZ48zgL2','EcC+','C0Xryw8','ieW4nsWX','EfPnvxu','57Up57QZ55sY5Rov77Yi5OYj','ChGGn3b4','Aw1Hz2vZ','5Ro75A2q56M0','oda4mem7','pgGZpUs4H+w5Ta','CM93jZ4','tNDxAuO','Aw1Hz2u','ze9Xv3O','zhbry0q','sevQD2e','zwjiAwi','wK1szu4','mJaNihDP','ttCWldiW','44caphnWyw4','5PELpc9Sywi','z3ngrfi','D2LUzg93','tKLcBvi','zM9UDc1Z','vgvOBwq','iJ48zgL2','DgLJA3K7','qtKWjZ4','pc90ywjS','AMXqDhmN','jYb2ywX1','ttK1ldyW','idHWEcC+','5PA56kEJimk3iowaQG','uendCeu','A3P5Cfm','Ad0NodaN','vgv2t3q','ic5VCgvU','Cu1equK','Dg9tDhjP','whz4B0K','B3vUzdOJ','z2fUEMHP','ENDz','yMfJA2DY','77YApc9IpG','mZqW','ufDXzxC','o3DPzhrO','5Rov5BQp5y+344ccpc8','y2XHC3no','DgG9jZi0','mZaGtde1','zhrOpsCX','yLb4AwC','5PYipc9Sywi','5lMD5BgL5lIa44cb5BEM5lIj','AMDMBLm','Au1jueO','mdaGmZaW','mtu3nJK0ndzPzKzqDxO','DhjPBq','DgG9jZiY','Cfj3uhu','pha+5y2b5lQm57Up','tNPkAg0','qvPIBgG','D2fYBG','vLfiBem','BwfeEKG','zKjht3q','q2POCLq','C3vU','zgf0ys1J','B24+','44cb6lAZ6zIZ5PIo6iod57Up','CgfUzW','AgvHza','DuzMuK4','pc90Ad4','CKj6zwm','mIdLSi/ML7BKUidOVRa','pc91Bd48','zwXLy3qG','zxiTy29T','yxrdB3vU','C3m9j2jV','zMXLEc13','qMrvwgK','DhHjB2e','DhjBzgf0','5BMY5PsVpc9OmW','oJm2mhb4','ioIHQo+8JooaJowaQUA1TW','5lI757Up6l+h5y6F','oJfWEcbZ','ywWTBcK7','55sY5Rovpc9OmG','rvHivMK','i2XIz0rP','zw5KCg9P','5OMl5Rov5yAf5A6544ccpa','CMrLCJOX','CNqNpG','Bwv0Ag9K','r3j0ufq','yxbWBhK','q3jcENG','yw5Pyw5S','yMDFy2fS','yJ1WB2LU','44cb6zIZ57U06isj44cb6zI0','i2XIz0q','y1DJqK8','lJG1FqOG','6k+35lUo5lIk5PA55A+86iIQ','idaNigr1','sxjIv0e','y1Pxq3q','ldeYmcbm','s2HAvfG','EI1Yzxn1','BwTTvui','Cxz2wu0','lxrVCdO4','DLndy2q','AxvZktSk','lwLUAZiP','Du1qwKu','wfDOBeq','pUwTKownIoA1GEAZQca','imk3ioECN+s6UUEPTa','DgLVBIGP','5yIg5lI75lIa6lQR5BEM5y+Z','uuDmzKm','AgvHzd48','DhjVA2uT','ic5ZzwmG','yuH5CNq','6l6W77Yjpc9OmW','ENCTCM93','y1zQu0O','Ce9Qr04','mJaWidqY','BKvgwfm','cIaGlNrV','54Mi57Up57UC6lwW5zcr5yQO','A2uTD2LK','i2rSsg91','pgXHyMvS','BgjNra','ueHkuMK','Bgv4o2P1','5PQc5PEG5PA55yMc5PwW5O2U','5BMYio+8IYdML7BOVRa','v1HHy3m','CMvH','Ehjgzvy','D2T0ue4','77Yjpc9IpJW','zNvXrwi','5yE75lIT6zE05PA55yMc5P+L','t3vjuuu','CgfKu3rH','A0P1DwC','A2v5CW','ywLLz0C','5yYf77Yj44cb5lI05RoJ77Yi','lwm9jW','qxH6v1i','ldmWmcbm','ioADOEI+QoIVGEMaIEEPTa','C0nsAMu','y0PYz20','y3jVBgX7','BgjNx3bH','Efjtt0q','mdSkicaG','uND2EfC','r3rwCee','pUEbTEM+N+wfQ+AZLEw8Ga','ywjSzs56','i3P3sa','zg9uy1e','yMnutwG','Bxb1DgvK','lw09jW','rKzet3q','zMLSBcXT','ieW1nsWX','r0HoA1C','jYbKyxrH','s2vlz08','zwXhvKy','ideYChG7','ic5NEI1J','EhrPBwC/','uwntwgq','DfHsCKi','z1bKrhe','zxj7yM9Y','o21HCMDP','B0vjr04','yxa7z2fW','Dg9VBd1S','rNjUB3O','ntaGtde0','psDJyxaN','zhDcteq','lwzPBhrL','DgfNzsC+','wNLVC3K','z1fYsgC','Dhi+','rYdOT6/LVOtMTyhLIQG','mdaSmJuW','AgLUDcC+','yxj0E2nV','pgLTzYbS','z2v0qxr0','57Up44cb6lAZ5AsQ6zIZ6iAa','r3nfrey','54g16B6F5ywR5Rov5BYa56M0','psDIDc1J','BM0NpG','y3jVC3m','ywn0AxzL','AxPqs0W','5OMl5lIj6zI05lUo6io46lwW','AMnWC2G','CMLIDxrL','jZeXjY8+','Ahq9jZeW','tte0mcWZ','CKjPsxm','s3z4Eva','AxnWBgf5','zgfZAa','AMLHBMDQ','v1D5rey','Ee9MEwG','wxr5rvm','jZ48Aw1N','zxiTDg9W','vhfSr3a','z3OTy2fY','DJ48zgL2','wKflwLu','yvnZugW','B25JAgfU','Dw5KoImW','qu9HEKC','yxiOls1P','rfDYrK4','y1nMzKS','jMq9','qu9vquW','BvbcBhe','CKjHCG','Dg9WoJeY','qK1iBfG','ufbOseq','ELLhuMO','zwXLy3rV','sxfTq28','yY10DgWN','Dgf0zq','sejKAMK','uK9WCe0','jYbYpsC0','zMjst1O','jY8+pc9W','tujLuKC','EKTkANq','mcWXndaG','Aw5NDwKV','pc9VChrP','kc0TAw5R','B25LjYi+','rLHhtLO','yxrLjYb2','BNTIywnR','ChbPs2O','x21Z','s1zhAg4','5Rwb57Up6isp6iwr57Up57UC','tK9mDKK','At95pq','B1nluM4','lwq9jW','C2uGy2XH','AxzLE2jH','quXUCg4','ywjLBd4','ufr4B2K','y2SNigLK','ihG9jZGY','jYbMCM9T','zvjczKi','i2m3n2rM','Ec13Awr0','yKfIzw4','r3zJzva','C0PXuwG','AM9PBG','Adm+pgrP','5PIG5Bce5yIW56s65Osp5lQ6','77YB5PYS56M0ia','jY8+','C1fXteq','yLH3rxm','77YB6zI06lE344cb6zIZ6lE3','y29TChv0','pJWVzgL2','BM9Uzq','seXsChi','jM09','A2LUza','iZq4y2fL','ENCTC2vS','rKPZzuC','BLfeAfO','Axy+pgrP','Dfbry2O','tMndvgO','Dwrvz1i','ChrZlwH7','uezzALO','tLHsBgK','DdOXmZbW','77Yi5P2H5PAh77YjWRCG','EgzQBKm','ic8G5y6F56M0pa','AhqTDg9W','lNjLC3vS','54wN5Rw377Yi6ik+77Yj5zUB','pgGZpUwaQUA1TW','oJCWmdTM','D0rjA0C','s3Liqxq','lde5mcbm','6isj6k+b5Rk75PA577Yi5P2H','pUAxTUI+Sca8CW','Awq9j2rS','rLbXAeK','Dd0NyM9S','mcbmmtyW','Dgvoyw1L','z2v0rgf0','zhKNign4','AdOXmdaL','C21PDuO','rLfHs0e','ruPuzxO','zhLIuKe','CuTJthO','ywrgshG','yw5PBs1Z','y2HHChrL','qLfeDum','zgL2pJXK','mtiWjYbY','Chr5jZ7IGjq','yM9YzgvY','AeLRv28','77Yi6zIZ5y6gic8G','wM5wvNe','55wm77YB5PYi5P+X5OYj5lQm','B3iOiNjL','v1DTy0S','57QQ5yAf5A6544ccpc8','mtbWEdTT','l2rPDJ4','zxH0jZ7IGlO','Bwf0y2G','DcL9cIaG','lxjVDW','tte0mcW5','sLH5u2G','pJXKAxyG','6l6W44cn5BYa56M077YB5Qc8','CIGTlxrL','Cun5Dg8','tvjWB1u','zwW+pgLU','6lE36isj44cb6zIZ6lE36isj','zxHJzxb0','CMDIysGY','sgLKuhK','BI10B3a6','lwLUAYK7','D0HXq1C','5BMYimoxideY','yxaNpUEcUEwhUW','y3DWCvq','BgvTzw50','i2zMzde2','yxnZpsC','B24+pc9K','rwjcreO','Axn0p3n1','BwC/Cd0','i3bUr1O','i0yYruje','4OcMpc9KAxy','5ywR5Rov6kgOpc9O','v0r3zuW','ktTYoJz9','CMfWo21H','z2zQrxe','5PE26iEQ5yQO5P+L5BYa56M0','uLjpuwm','o2zVBNqT','zs1OzwLN','6lAZ5Bcr6zI06ik+57Up44cb','B2TLlxDP','DMzhzgq','oNzHCIGT','5BYa56M044ccpc9K','5PEL6zMKidBVViZKVzK','5zco5PI+56s644ccpc8','Dg9Nz2XL','CMrLCI1Y','whbTtKW','jZ7JGiW','cIaGlM1L','zw5QAs9S','wwjhC1a','BMrkrw8','C2yTDg9J','wePOt1m','kYKRksSK','zM5kr3q','EwTNrK4','tteYmcWX','wvHwu0K','Cg9PBNrZ','tde1mcWX','rereCwy','tde1mcWZ','lM9WE2jH','yMT6Chq','phrKignS','DgfNzsCG','iownGEs6JoE7J+IeIEE6SW','zgrNDKC','5yI65OMl5Rovpc9K','zKrAqwG','AvLtv3C','rfD2Cfm','Ahq6mZaW','Bwr4D0S','wK5Jzee','DMvYE2jV','Aw5TyxGO','CMfWjZ48','zgLZyY13','wwvlCwu','wxLSrfa','77YApc9IpJW','6kAb55wLimk3ioAwUq','6ioX57Up44cb6lAZ5Bcr6zI0','zd0NCg5h','C2vSzwn0','lwXPBMuP','q0L1tuG','wgvUt0m','Bvriwve','z2fWoJeW','ioE7HcdcTYa','AMWTChrZ','B250lxnP','Dwu9jW','B25JBgLJ','mcWYmZaG','ugXNtwG','u3r5u1O','z3jVDxa','iZKWyMu2','yxjKic52','y3G9jW','5PYQ5OM+5yIW55U45ywZ5lQ6','sKnPtgq','B3iNpJXK','EdTVyMPL','sNntvvi','pc90zd4','EMu6mtzW','i2zMnMi2','Bg9YoNzH','DKLhvvm','v21mzfu','EMu9jZeY','tMf6AsC+','BgfWC2u6','rhbesMe','r0rpqMm','rezxy2y','zvbTrvm','mcWZmdaG','z1rHyMXL','Awq9j3bU','6zI06is+57Up44cb5OMl5Bcr','CMLNAhrJ','zgzJD1m','EeD6uKG','jZ48l3jL','ChGGmdTJ','vhrNCwC','psD6DY12','tfvNBNK','zt0NBwf4','i2XIz1rH','nZiNihK9','ldmYma','5AAc546V5PEG56UV77Ym5zgO','DhjHy2u','mJaGtde1','A1j5vfe','C3r5Bgu','D25VDwy','tKfItwC','B3bLBI1S','ChHnseW','Chv0zt95','ic50Ds1J','qwHWuLG','rwj3zxC','mJqXndbtsuTUqvi','jZ7cTYa','iZLKngvK','zLbzwMq','C29qqLO','r0XsAhG','DwX0jYbP','Cgr3tem','BMLxzMi','oMf1Dg87','5PEL5O6O566x77YB5PE25P+X','6zIZ77YB5lU76isj6kgm5lQo','idLWEdT0','BvfxBKO','i2u2mZK0','jZ48Dhi+','Aw0Ty2fW','ihnVBgLK','vwzgvwG','iJ48l2rP','Ahq6ms44','BNrZCNq','AwmNigLK','BgLJAZ0I','zgf5x2nU','C3bSyxK6','qvPnEve','lde2mcbm','Bwf0zu1V','ywiNpJX0','pgGYpUMhKEwmRG','ztTZDhjV','zKzgwMW','vK9fv3y','r1zZvLq','ioEVH+EBRG','Dg9VBd16','zwjq77YjkYa','5lMD5A6R5RsB5lMM77YA5OI0','uu5kAM4','zd0NAMXq','AxD3Dq','pgGZignS','rMfmwgG','jYbYpsCX','vNzsCvi','AYK7zM9U','Chv0ihr5','BfLLyxi','BMC6mNb4','CxvLCNLt','pgXPpG','zw5QAs96','uvLSDhO','DLzbsxu','B3rIzNy','mdaSmty5','AMT6y2K','t2HQqM8','l3a+','rhngrgK','uhrSChO','6icm5Asn5AEl44cccGO','yNHLzwW','Cgu9j251','CZ0NBwvY','DgrBzgf0','EMH1EMHP','BgvMDa','sNvQqLG','v2vVvKO','zMLSDgvY','5OUP5PEL5PYF5lIo5PE26l6W','BMC6nxb4','zd48Dhi+','vMHSEeG','wefewgG','i2XIz0DV','5y6L6zI06ikD57Up44cccG','ANjnz1m','zvfZwK0','vg9W','wMXYELu','B2DSvxm','y29UDgfP','CMrLCI1J','CJ0NBwLK','zMLUza','DMXhr1a','56M0pc9KAxy','C2HPlwjV','Bgf5oMzS','DfHerLy','qND5BgW','rfLOque','s2zQthG','ANvMqNq','zw5QAs9T','lxrHyI5V','ENCTDgjS','BNDWC2e','mty1mZy1s0TUs1fp','zw5QAs90','wLbJzwy','jNbHz2u9','6zIZ55U46lsV77Ym5Rcu6kga','rMDjzgu','Bg9YoG','yw5HqwG','zMrTEM4','ktTZDhjV','iowTKownIoA1GEAZQoEBMa','44cb5OMl5Bcr6zIZ5lIj54sM','zKfpz3u','6zIZ5lIj54sM57Up44cb6lAZ','yvPWvxa','C2HPzxi','A0nyv3u','EdTIywnR','DwvfAei','BgW6BM9U','Awq9j2XI','wMnTwgS','CwLHshC','B3CNpG','5lU76isj44cb5yAY6isj44cb','y2vSBhTM','5z2oiokaPIa5ia','DgTdq1O','EMT0Bxa','ENCTCMvZ','C0nJqLe','B2vltvK','sxriuvm','CZOXmNb4','terpB3u','jZi0jYbY','AYK7BgLU','AxrLBxm','A2v5','C29SAwqG','t2HWy3C','y1DNuvG','ttqWlde4','BMuTyMXV','ls1NB2XK','v3bzBNO','AMLHBMz1','ktTJB2XV','yw5PBsCG','y2f0x25H','BwC/BMfT','zhrOpsCY','oInMzMyN','yM5uzfi','BhqNigLK','BwvYlwrV','CM91BMq6','EeP0uLK','ueXpveq','Cgz2tM8','v01wre4','mteWlc40','pha+5lIh5BM05y6g','44cn77Yi6ycq5BIN77Ym5RQq','otKXmZqWyxPKrun1','lwLUAY0Y','z2rPsMm','v3LgCuW','zNDvBwe','ktTWB3nP','DeTAtxC','mtrWEcaX','mtTMBgv4','C2XPy2u','z2H0kx0k','lde0mcbm','6isj6icf77YA552J6isj44cb','CK1TBwm','twniCg4','x19WCM90','mcu7Bwf4','B2r1BgvZ','ENLQvK0','wLnktLC','qunlvee','CLzrCNa','5PEL5BMY5PsV','uM5vwLq','rhzxtKm','ugXLs1K','y2fSAgvH','EMu9jZeW','AwDODdOX','z0DWufm','ign5psC0','Aw5LktTI','5AsQ6zIZ6iAa6ioX57Up44cb','yxG9jZeY','z3Hys3y','zsbJBgfZ','s1f6yK0','u2jfqxy','CKLoqvC','B0Hlqxi','uKXPv0i','q2rNAha','Ed0NmcaW','B3PltLG','zgf0ys1P','zgPqtNK','ktTWywrK','DdOXmdb2','6lsL77Ym6k+36yEn6k+v44cc','CenbDhK','C3r5Bgu9','A09ftuu','y2f0y2G','AhzPsLy','y3vY','suT1suK','vgfICW','Dxm6DMfY','C2u7D2LK','C3bHBIbJ','Axy+','icaUBwvY','qE+8Jow3SUAmIEAVLos+IW','yuvOu2C','vwfrwwK','y0T2tfm','Dxm6mtbW','ihG9jZGW','BgqPo21H','BgfIzwW+','psDPBMrL','nsKNpG','5ywR5Rov5BYa56M0pc8','AYL9cIaG','yw5LBcC+','EhTIB3jK','ktTIB3jK','5OIq44cl5A2q5y2i5Rwb5RoO','psFNGBxPVP/LHAVMS5u','mduNihj4','idiWmca0','sxzZD0G','ugDID20','vg13wfG','DcC+5O6O566x5lIT','tMj2r0e','r21YC3C','rvPis1O','ExeTAw5M','ktWVC3bH','su9tAhO','56UG6iQc5yQG6l295AsX6lsL','pc9ZDMC+','y2HHCNrZ','vujjAeS','pgGZpUAoQoEULW','t3HxsK8','6k+M5Oof5yQG6l295AsX6lsL','Bgu9j3DP','yKjmsw8','Aw1NyM94','DKfPz2e','i2i1mtC5','AxmUC3r5','lxDLAwDO','qNvgteS','56A777Yj44ccpc9K','zxi6mxb4','BM9UzsCI','cIaGlNbV','tNzkr1u','tde0nsWZ','twHRCMO','yu1HA2K','qxPWAw8','yxiOls1N','EKzXv0u','6zki54g444cnrvHf','mtyNigHL','tgTeExO','CJP2yxiO','z29UzW','y29UC29S','C3bSyxK9','Agvmthi','DgvK','5O6O566ximk3ia','DgLHB3DL','i2zMzG','5y2b5lQm57Up6isj5B6Q6kgm','zxmNpJXO','pgnPCMnS','pc90zxH0','y3PltKu','CLHMDKy','DhTMAwXS','sfjHDhe','mZGW','j3bHzgrP','BuLMruG','DgG9jZyW','CJ0IDgHP','yxjNAw4T','jYb4psC','tuHUELy','sNzwAxa','u1DiAuq','q1rOr3K','Ag5pz2u','zd0NAMXt','z2H0psCX','pJWVC3zN','Chbis0W','y0D6v3e','CunXrfq','nICGAgvP','tuLSCu4','C3rYAw5N','B3fYALi','s1vXt2y','q09RD2e','psDVCgfJ','oNbVAw50','pgvTignS','BhnuEvq','AhPjt1G','nNb4FqOG','B3aNpJXI','BMq6DMfY','6l6Wpc9KAxy','EvvMwwS','Aw17Bwf4','vgXjB3K','B2jxzwe','Ed0NmJaN','ttyWldKW','DgfI','DgLVBIbK','Agj0tM8','odm0DvH2zLHk','zw5Kyxi/','zM9VDcC+','y3rPB246','AhTIywnR','t1bPteq','Eh0kicaU','DhvwyuO','ueHSuw4','yxrLlwnV','icaGihbH','jYb5psCY','imk3ioAXIEwuKowpLG','jYb5psC','zxi7zM9U','ihjLCgvH','yxK6z3jP','sNPZAKG','ENvYu24','l3jLBMPP','BNqTy2fY','BgqTBgLN','EgLU','pc9ZzwXL','lwjVDhrV','l3rOzwfK','C21VB3rO','lNr1lwnL','uhzwzu8','wMnvyKe','EtPPBMXP','iZrKotzM','ndaGtde1','CgXHEt0N','t3vHDwm','nsCGCNG9','yMfV','ldeXmcbm','zw5QAs93','iZu3nZu5','zgvZyW','5Rw35y6M6k6Y6kEJimk3','zhL7C3rY','seHozxu','DKHQvxO','5lIo6kgL5Ro75y+w56M077Yj','BJ48l2G0','B3DU','seLoCvG','5yAf5A655yQG6l295AsX6lsL','rxffEK0','ihG9jZqW','ANPRCgW','r2PVqLq','5yIx57Y677Yi6ik677Yj4OAs','CeXOD2G','zsbJEd0N','wLLnCKW','AdOZmJbW','BgfZCZ0N','BMfTzq','77Ym5Oc7552J5lIa6lQR5lMl','pUwkOoI9VEs4REkaPJW','tLHeBLG','ihG9jZq0','57Up57QZ5A2q5Rov77Yi5OYj','mtuWChGS','C2vJjZ7LNza','shvxz1y','BM5wug0','EuPxugO','ufrVyLG','io+8IYdLNiBLVAlNGBu','ioEoSos7O+wmU+AHIooaKq','ic5Jyxb7','uKvIAwq','i2XIz0nV','ihG9jZeW','Aw5LlwHL','zwHyrue','B2XPzcb2','z2jHkdiW','CcbJBgfZ','mcCGD2LK','l2LTzZ9U','vgDVtw8','DMDgyICG','lxjHzgL1','546W5lUJ5yY75Qgi77Yi','ywrLza','ENvJAgvU','B3vUzdP2','whP6wNu','B29Sx2nV','yw4MEt0','zgL2','Dg9W','AhbTAhG','sgHyC1K','EtPIBg9J','6lAZ5lI05RoJ','oJfWEcbK','yNv0Dg9U','u01YC2u','mJGPo2jV','Avn4vhm','BhvUyxi','wgrnEvu','DMfYkc0T','pc9WpJWV','qxfYvu0','56M05l2n5zU+44ccpc8','C1DOwuu','5lMl5Qc55z+644cc','Dfb1uwW','6kgL5Q+n56M0','zsC+5OYj44cm5PEL','BMC9j2XH','psDIBg9J','zKvkC0S','tvjxs3y','DLnnCK0','ic5KAwfS','kc0TBgLU','DxqSlNrV','yNTJB2XV','pc90CJ48','u1PuuNq','tunoC0S','qNDlDve','BgLUz3vP','DcK7CJO1','uuPJz1i','lwGNpG','s2jvseC','vu5yuKC','C3jJpsCV','A30kicaU','BMzV','jYbMB250','Ad0N','DhjVA2u6','A0TLBg4','zgf0ys1K','B3i6i0m4','qM5Vuey','BgjSjZ7ML6u','5PE277Yj77YA','wvnpqNa','56M055sX5PYn5yQH56UV5OYj','vfzVsuK','j3zHBcC+','EgH4s2y','ExPSBwi','i2zPBhrL','z1LRr2e'];a0_0x4060=function(){return _0x442a7e;};return a0_0x4060();}function a0_0x2474(_0x39bf20,_0x1eb5be){_0x39bf20=_0x39bf20-0x19a;const _0x592e9b=a0_0x4060();let _0x572684=_0x592e9b[_0x39bf20];if(a0_0x2474['nIYsLF']===undefined){var _0x52db52=function(_0x58518c){const _0x406072='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x2474b6='',_0x4d5d2b='',_0x58b987=_0x2474b6+_0x52db52;for(let _0x3b9913=0x0,_0x406cb3,_0x5b495a,_0x3c9d34=0x0;_0x5b495a=_0x58518c['charAt'](_0x3c9d34++);~_0x5b495a&&(_0x406cb3=_0x3b9913%0x4?_0x406cb3*0x40+_0x5b495a:_0x5b495a,_0x3b9913++%0x4)?_0x2474b6+=_0x58b987['charCodeAt'](_0x3c9d34+0xa)-0xa!==0x0?String['fromCharCode'](0xff&_0x406cb3>>(-0x2*_0x3b9913&0x6)):_0x3b9913:0x0){_0x5b495a=_0x406072['indexOf'](_0x5b495a);}for(let _0x48cccc=0x0,_0x8f9963=_0x2474b6['length'];_0x48cccc<_0x8f9963;_0x48cccc++){_0x4d5d2b+='%'+('00'+_0x2474b6['charCodeAt'](_0x48cccc)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x4d5d2b);};a0_0x2474['dgqWOg']=_0x52db52,a0_0x2474['CUtlOg']={},a0_0x2474['nIYsLF']=!![];}const _0x5f4e49=_0x592e9b[0x0],_0x124c1d=_0x39bf20+_0x5f4e49,_0x398b1a=a0_0x2474['CUtlOg'][_0x124c1d];if(!_0x398b1a){const _0x320eef=function(_0xf343cb){this['HVTefx']=_0xf343cb,this['pylByZ']=[0x1,0x0,0x0],this['czZpXm']=function(){return'newState';},this['SXnUqm']='\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*',this['EGsFoy']='[\x27|\x22].+[\x27|\x22];?\x20*}';};_0x320eef['prototype']['wExGuy']=function(){const _0x1cbffb=new RegExp(this['SXnUqm']+this['EGsFoy']),_0x1a1541=_0x1cbffb['test'](this['czZpXm']['toString']())?--this['pylByZ'][0x1]:--this['pylByZ'][0x0];return this['kbAhao'](_0x1a1541);},_0x320eef['prototype']['kbAhao']=function(_0x10cf27){if(!Boolean(~_0x10cf27))return _0x10cf27;return this['Irzxpg'](this['HVTefx']);},_0x320eef['prototype']['Irzxpg']=function(_0x3e282e){for(let _0x404878=0x0,_0xff35fb=this['pylByZ']['length'];_0x404878<_0xff35fb;_0x404878++){this['pylByZ']['push'](Math['round'](Math['random']())),_0xff35fb=this['pylByZ']['length'];}return _0x3e282e(this['pylByZ'][0x0]);},new _0x320eef(a0_0x2474)['wExGuy'](),_0x572684=a0_0x2474['dgqWOg'](_0x572684),a0_0x2474['CUtlOg'][_0x124c1d]=_0x572684;}else _0x572684=_0x398b1a;return _0x572684;}(function(_0x13376f,_0x3346c9){const _0x3a6951=a0_0x2474,_0x404fff=_0x13376f();while(!![]){try{const _0x31ce6a=parseInt(_0x3a6951(0x981))/0x1*(-parseInt(_0x3a6951(0x4ca))/0x2)+parseInt(_0x3a6951(0x2cc))/0x3*(-parseInt(_0x3a6951(0x91c))/0x4)+parseInt(_0x3a6951(0x2f3))/0x5*(-parseInt(_0x3a6951(0xa74))/0x6)+-parseInt(_0x3a6951(0x6e1))/0x7*(parseInt(_0x3a6951(0x5ba))/0x8)+-parseInt(_0x3a6951(0x241))/0x9+-parseInt(_0x3a6951(0x9c1))/0xa+parseInt(_0x3a6951(0x748))/0xb;if(_0x31ce6a===_0x3346c9)break;else _0x404fff['push'](_0x404fff['shift']());}catch(_0xad8842){_0x404fff['push'](_0x404fff['shift']());}}}(a0_0x4060,0x300cc),(function(){const _0x5a199c=a0_0x2474,_0xa67dec={'TTfDF':function(_0x5ab5b1,_0x512124){return _0x5ab5b1===_0x512124;},'gGpPS':_0x5a199c(0x5f7),'jgfnS':_0x5a199c(0x3ae),'SiwfM':function(_0xa563dc,_0x20129c){return _0xa563dc+_0x20129c;},'OxOZE':'return'+'\x20(func'+_0x5a199c(0x790)+'\x20','kmYQJ':'{}.con'+_0x5a199c(0x3be)+_0x5a199c(0x87c)+_0x5a199c(0x678)+_0x5a199c(0x557)+'\x20)','cKvLS':_0x5a199c(0x302),'yuSDo':'<h2>搜索'+_0x5a199c(0x4ef)+'2>','fDZAh':function(_0xe140d5){return _0xe140d5();},'jbxMl':_0x5a199c(0x74f),'pZsmu':_0x5a199c(0x19f),'mZYrD':_0x5a199c(0x88e)+'ion','KUGxF':function(_0x10eab1,_0x2c370c){return _0x10eab1<_0x2c370c;},'kOEME':function(_0xb459eb,_0x371b33){return _0xb459eb!==_0x371b33;},'bvlrf':'iXzuF','fBGOt':_0x5a199c(0xa46),'Frnoz':_0x5a199c(0x6b9)+'-item','miUKe':function(_0x11a07a,_0x22fc89){return _0x11a07a(_0x22fc89);},'sxKhT':_0x5a199c(0x93a)+_0x5a199c(0x8d8)+_0x5a199c(0x4ba)+'2>','VJMHO':function(_0x4a8187,_0x397921){return _0x4a8187(_0x397921);},'xfMvD':_0x5a199c(0x3c8)+_0x5a199c(0x957),'GLRhx':'\x20首方剂。点'+_0x5a199c(0x7ad)+_0x5a199c(0x1bd)+'（条文）·\x20'+_0x5a199c(0x280)+_0x5a199c(0x31d)+_0x5a199c(0x6de)+'\x20方歌\x20·\x20'+_0x5a199c(0x72c)+_0x5a199c(0xa9d)+_0x5a199c(0xabd)+_0x5a199c(0x229)+'>','TizZl':'IbzKZ','QMqsM':function(_0x44ca03,_0x1deb21){return _0x44ca03(_0x1deb21);},'LWOVp':'<br>','iuuLg':function(_0x438e6a,_0x496e58){return _0x438e6a(_0x496e58);},'NAbMg':_0x5a199c(0x80c),'xVaWM':_0x5a199c(0xad3),'crQrE':function(_0x3ad13d,_0x33df74,_0xf69df){return _0x3ad13d(_0x33df74,_0xf69df);},'dYvhD':function(_0x469f76,_0x58a9c1){return _0x469f76===_0x58a9c1;},'cWcBO':'active','GIPjM':_0x5a199c(0x2ad),'niWfb':function(_0xb9c173,_0x71259e,_0x1ce611){return _0xb9c173(_0x71259e,_0x1ce611);},'yJWPj':function(_0x435bcc,_0x9c313f){return _0x435bcc+_0x9c313f;},'jzkpl':function(_0x4d1096,_0x101426){return _0x4d1096===_0x101426;},'kmXnJ':'\x20activ'+'e','sCRje':function(_0x31f58e,_0x5bbd18){return _0x31f58e+_0x5bbd18;},'CGrdz':_0x5a199c(0x58f)+_0x5a199c(0x658)+_0x5a199c(0x7eb)+_0x5a199c(0x2b7)+'(','ebqno':function(_0x45b790,_0x159413,_0x1dfaeb){return _0x45b790(_0x159413,_0x1dfaeb);},'xmHHv':function(_0x53a853,_0x18922d){return _0x53a853(_0x18922d);},'bXwEs':_0x5a199c(0x8f4)+'b','OkeQA':_0x5a199c(0x898)+'6','TgoMo':_0x5a199c(0x39c)+'0','RnUZT':_0x5a199c(0x1ec)+'6','JzsjH':_0x5a199c(0x92a)+'6','cJaGn':_0x5a199c(0x532)+'1','RWgqr':_0x5a199c(0x91e)+'d','lLzCJ':_0x5a199c(0xa27)+'e','vWWdh':_0x5a199c(0xb63)+'a','HhXsY':_0x5a199c(0xb24)+_0x5a199c(0x82e)+_0x5a199c(0x762)+'dy\x27\x20cx'+_0x5a199c(0x68b)+'\x20cy=\x274'+_0x5a199c(0x3a6)+_0x5a199c(0x9a4)+_0x5a199c(0x440)+'/><rec'+_0x5a199c(0x5c6)+_0x5a199c(0x449)+'y\x27\x20x=\x27'+_0x5a199c(0x90d)+_0x5a199c(0x3cd)+_0x5a199c(0x293)+'56\x27\x20he'+'ight=\x27'+_0x5a199c(0xb76)+'x=\x2720\x27'+'/>','FGvih':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+'anim-c'+_0x5a199c(0x895)+_0x5a199c(0xbaf)+'走向动画</'+_0x5a199c(0x874)+'iv\x20cla'+'ss=\x27an'+'im-art'+'\x27>','jkzci':_0x5a199c(0x7ed),'gQrHg':_0x5a199c(0xb8b)+_0x5a199c(0x38a)+'i','HHNeu':_0x5a199c(0x2a3),'HRatq':function(_0x51e0e5,_0x52462f){return _0x51e0e5!==_0x52462f;},'GZxhm':_0x5a199c(0x5fb),'dfcwS':_0x5a199c(0xb4b)+_0x5a199c(0xb4b),'xGzRH':function(_0x41fb16,_0x55a339){return _0x41fb16===_0x55a339;},'FCHPQ':function(_0x93d9db,_0x5a7de1){return _0x93d9db(_0x5a7de1);},'nFmCr':function(_0x483bca,_0x34d236){return _0x483bca(_0x34d236);},'XgbWW':function(_0x49ba50,_0x3c04e1){return _0x49ba50(_0x3c04e1);},'SWHiD':_0x5a199c(0xbc0),'FaLXh':function(_0x1bf07b,_0x484436){return _0x1bf07b(_0x484436);},'Daekt':_0x5a199c(0x3c5)+_0x5a199c(0x6f5),'IqmCo':function(_0x265f76,_0x5f04a0){return _0x265f76(_0x5f04a0);},'YFdop':'#listP'+_0x5a199c(0x522),'VkqjK':function(_0x36decb,_0x86088d){return _0x36decb+_0x86088d;},'fesOV':_0x5a199c(0x2ab)+'p\x20clas'+_0x5a199c(0xb3a)+_0x5a199c(0x226)+'\x27>','jiceb':'</p>','yuMhd':'none','XdMyU':function(_0x48c363){return _0x48c363();},'PWlgM':_0x5a199c(0x3f1)+_0x5a199c(0x5c3)+'em','Ouauc':_0x5a199c(0x7bb)+'ge','AkKbc':function(_0x5abb7f,_0x1df673){return _0x5abb7f(_0x1df673);},'NwWiJ':'<div\x20c'+_0x5a199c(0xaaf)+_0x5a199c(0x7e4)+'该板块暂无可'+_0x5a199c(0x618)+_0x5a199c(0x880),'ACKTA':function(_0x251eb1,_0x295a0d){return _0x251eb1(_0x295a0d);},'AFhXf':function(_0x4337ca,_0x169cb8){return _0x4337ca+_0x169cb8;},'eYazA':function(_0x395990,_0x1e496b){return _0x395990+_0x1e496b;},'izPKL':function(_0x23ddb8,_0x18e5e9){return _0x23ddb8(_0x18e5e9);},'Pgbwm':_0x5a199c(0x435)+'r','pCAty':function(_0x53b46f){return _0x53b46f();},'daEBc':_0x5a199c(0x501),'LsWWd':function(_0x529bfc,_0x43640b){return _0x529bfc+_0x43640b;},'lXjZp':function(_0xd6faa1,_0x588541){return _0xd6faa1(_0x588541);},'iQIcy':function(_0x369dda){return _0x369dda();},'uiqwZ':function(_0x141db3,_0x36bffc){return _0x141db3+_0x36bffc;},'soPBZ':function(_0x3c3217,_0x20a918){return _0x3c3217+_0x20a918;},'Agfim':function(_0x5bdbab,_0x5b3531){return _0x5bdbab+_0x5b3531;},'yrAAB':function(_0x5522fa,_0x4e127e){return _0x5522fa(_0x4e127e);},'HBdji':function(_0x184a01,_0x230069){return _0x184a01(_0x230069);},'TTEvk':function(_0x4e8caf,_0x2c70b5,_0x250782){return _0x4e8caf(_0x2c70b5,_0x250782);},'BqMwf':_0x5a199c(0x76a),'TuHhc':_0x5a199c(0x7ea),'ojiBP':function(_0x289d7c,_0x2f6928){return _0x289d7c!==_0x2f6928;},'RQvGe':_0x5a199c(0x97b),'pdwLC':_0x5a199c(0x307)+_0x5a199c(0xb9c),'uMPZE':function(_0x5c06a0,_0x12dad4){return _0x5c06a0===_0x12dad4;},'vfGdd':function(_0x240995,_0x4ec68a){return _0x240995===_0x4ec68a;},'hDUVZ':_0x5a199c(0x611),'udUgR':_0x5a199c(0x4f6)+_0x5a199c(0x97d)+'eridia'+'ns','qRTzZ':function(_0x2ccae0,_0x135f12){return _0x2ccae0+_0x135f12;},'ZPcef':function(_0x82b702,_0x444dfb){return _0x82b702+_0x444dfb;},'FJZwN':function(_0xf22675,_0x51b46c){return _0xf22675+_0x51b46c;},'vHEWy':'<h3>当前'+_0x5a199c(0xa3f),'CrBzx':function(_0x5ef3ec,_0x2d5fdf){return _0x5ef3ec(_0x2d5fdf);},'IgvKn':function(_0x238cd8,_0x2975c5){return _0x238cd8(_0x2975c5);},'AqrUM':_0x5a199c(0xb8c),'rjxMD':function(_0x3cdfca,_0x45c76,_0x25a133){return _0x3cdfca(_0x45c76,_0x25a133);},'eBnOa':_0x5a199c(0x36e),'AyMIf':_0x5a199c(0xb41),'QLPUU':function(_0xa6bdc6,_0x49bf31,_0x484dcf){return _0xa6bdc6(_0x49bf31,_0x484dcf);},'lSjgP':_0x5a199c(0x6a6)+'>','txKxZ':_0x5a199c(0x68a)+_0x5a199c(0xb56),'zFqWE':_0x5a199c(0x7b5),'HLyIs':function(_0x5a29f6,_0x65e827,_0x587599){return _0x5a29f6(_0x65e827,_0x587599);},'fFFZl':function(_0xa4488e,_0xd9acd2){return _0xa4488e+_0xd9acd2;},'oXMxX':_0x5a199c(0x68c)+_0x5a199c(0x31a)+_0x5a199c(0x7d0)+'p=','ePmES':_0x5a199c(0x564)+'e=\x27max'+_0x5a199c(0x1a0)+':160px'+';margi'+_0x5a199c(0x265)+_0x5a199c(0x877)+_0x5a199c(0x76b)+_0x5a199c(0x5d1)+_0x5a199c(0xac5)+_0x5a199c(0x5a6)+_0x5a199c(0x9be)+_0x5a199c(0xa0d)+_0x5a199c(0xb3f)+_0x5a199c(0xb94)+_0x5a199c(0x992)+'ground'+_0x5a199c(0x9b5)+'>','NqHJx':'xPmAT','fPYZd':function(_0x24a2ae,_0x26765c){return _0x24a2ae+_0x26765c;},'kXkXF':function(_0x56a262,_0x431832){return _0x56a262+_0x431832;},'ndJEo':_0x5a199c(0x61e)+'lass=\x27'+_0x5a199c(0x45e)+_0x5a199c(0x3a5)+_0x5a199c(0x5da),'kfoqu':function(_0x2b3cd1,_0x950ad3){return _0x2b3cd1(_0x950ad3);},'FJHIW':_0x5a199c(0x71d)+_0x5a199c(0x4e2)+'=\x27opac'+'ity:.6'+_0x5a199c(0x8b4),'YXChz':_0x5a199c(0xbde),'cgeyZ':_0x5a199c(0x2e3),'ceQyy':_0x5a199c(0x5f4),'iffrw':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+'nishi-'+_0x5a199c(0x1e3)+_0x5a199c(0x610)+_0x5a199c(0x50b)+_0x5a199c(0xb04)+_0x5a199c(0x1b3)+_0x5a199c(0x2a4)+_0x5a199c(0x5a8),'tXDFV':_0x5a199c(0x61e)+'lass=\x27'+_0x5a199c(0x65d)+_0x5a199c(0x2fa)+'/b><br'+'>','ThLRv':_0x5a199c(0xb4b),'kjcRP':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0xab7)+_0x5a199c(0x495),'rVQrp':function(_0x28d05f,_0x54955f){return _0x28d05f!==_0x54955f;},'scbwp':_0x5a199c(0x9ec),'pwgjk':function(_0x58934d,_0x54b23c){return _0x58934d+_0x54b23c;},'pEIlf':function(_0x2c5560,_0x2c1605){return _0x2c5560+_0x2c1605;},'PLCHe':_0x5a199c(0x379)+_0x5a199c(0xaaf)+_0x5a199c(0x871)+'tage\x27\x20'+_0x5a199c(0x38b)+_0x5a199c(0x9eb)+_0x5a199c(0xa11)+_0x5a199c(0x434)+_0x5a199c(0x450)+_0x5a199c(0x51d)+_0x5a199c(0x625)+_0x5a199c(0x838)+_0x5a199c(0xaae)+_0x5a199c(0x709),'GIcro':_0x5a199c(0xb24)+_0x5a199c(0x82e)+_0x5a199c(0x762)+_0x5a199c(0x869)+_0x5a199c(0x68b)+_0x5a199c(0x9df)+_0x5a199c(0x3a6)+'\x2726\x27\x20r'+_0x5a199c(0x704)+'/>','HlTqq':_0x5a199c(0x204)+'class='+_0x5a199c(0x1d9)+_0x5a199c(0xaa7)+_0x5a199c(0x299)+_0x5a199c(0xac7)+_0x5a199c(0x73f)+'\x27\x20heig'+_0x5a199c(0x58a)+_0x5a199c(0x3a6)+_0x5a199c(0x360),'WtQXu':_0x5a199c(0x204)+'class='+_0x5a199c(0x1d9)+_0x5a199c(0xa04)+'\x27\x20y=\x272'+_0x5a199c(0x71b)+'dth=\x271'+_0x5a199c(0x6f2)+_0x5a199c(0xa57)+_0x5a199c(0x570)+'=\x279\x27/>','PtBvk':function(_0x1372b7,_0x368437){return _0x1372b7+_0x368437;},'nzFrx':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0x871)+'tage\x27>','ZCTbU':_0x5a199c(0xa1d)+'<div\x20c'+'lass=\x27'+'hint\x27>'+'点击圆点查看'+_0x5a199c(0x528)+_0x5a199c(0x312)+_0x5a199c(0x40f)+_0x5a199c(0x9ff)+_0x5a199c(0x83e)+'体）。</d'+_0x5a199c(0x593)+'iv>','qRxQJ':function(_0x1baffc,_0x5bd177){return _0x1baffc%_0x5bd177;},'DNfjh':_0x5a199c(0x50e),'nERig':_0x5a199c(0x673),'QcSXd':_0x5a199c(0x2f6)+'v>','StCom':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0x7e4)+'列表加载失败'+_0x5a199c(0x402)+_0x5a199c(0x880),'KyMEj':function(_0x52af22,_0x5b22e5){return _0x52af22+_0x5b22e5;},'fnJGt':function(_0x2e2ef1,_0x51cc27){return _0x2e2ef1!==_0x51cc27;},'SMrse':_0x5a199c(0x5e3),'TnAKm':_0x5a199c(0x4f6)+_0x5a199c(0x8b6)+_0x5a199c(0x89c)+'b=','KothM':'#jlPtI'+_0x5a199c(0xafe),'DgSTu':function(_0x105f01,_0x34938c){return _0x105f01!==_0x34938c;},'TiCnB':_0x5a199c(0x695),'PidEP':function(_0x3b492e,_0x430bcf){return _0x3b492e===_0x430bcf;},'TlIoy':function(_0x4e1070,_0x265db0,_0x300c17){return _0x4e1070(_0x265db0,_0x300c17);},'QmcLj':'<div\x20c'+_0x5a199c(0xaaf)+_0x5a199c(0x7e4)+_0x5a199c(0x5b2)+_0x5a199c(0xb4b),'CQHcx':_0x5a199c(0xbd1),'ytngm':_0x5a199c(0x4f6)+'enji/l'+_0x5a199c(0x89c)+'b=tu','OladL':_0x5a199c(0x727)+_0x5a199c(0x6d8)+'v>','NIBmR':_0x5a199c(0x4f6)+_0x5a199c(0x950)+_0x5a199c(0x945),'OTwPn':_0x5a199c(0xa87)+_0x5a199c(0xac8)+'ame=','KxuAe':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+'ht-cel'+_0x5a199c(0xbe0)+_0x5a199c(0x933)+_0x5a199c(0x720)+_0x5a199c(0x23c)+'\x27','DWrFN':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0x7ec),'wYsQl':'iAPNf','OJXWc':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+'ht-gri'+_0x5a199c(0x4a7),'sfBhi':'<div\x20c'+_0x5a199c(0xaaf)+'tool-p'+_0x5a199c(0xa0b),'srRMo':'\x27></la'+_0x5a199c(0x1d8),'YeKqe':_0x5a199c(0x850),'IDvsH':function(_0xd26fde,_0x39e3af){return _0xd26fde+_0x39e3af;},'Ptlpz':function(_0x35f343,_0x17c5cc){return _0x35f343(_0x17c5cc);},'hpmhx':function(_0x40116f,_0x244bc6,_0x4968ac,_0x22ce7e){return _0x40116f(_0x244bc6,_0x4968ac,_0x22ce7e);},'aZpUp':'button','dHvlI':_0x5a199c(0x8b9),'gVtLD':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0xa68)+'>','qCyto':_0x5a199c(0x680)+'2|1','nNYrL':function(_0x10a40f,_0x521438){return _0x10a40f+_0x521438;},'mVFMj':function(_0x1d4434,_0x40baed){return _0x1d4434+_0x40baed;},'NPlyO':function(_0x1e584f,_0xed1a5){return _0x1e584f(_0xed1a5);},'DqUwM':'ZDAij','xIpAC':function(_0x3fd372,_0x342ff5){return _0x3fd372(_0x342ff5);},'ZGUZi':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0x7e4)+_0x5a199c(0x1c8)+_0x5a199c(0x288),'kYoBX':function(_0x4e6949,_0x19a661){return _0x4e6949===_0x19a661;},'YFqFe':_0x5a199c(0xb3b),'pDeXC':_0x5a199c(0x4f6)+'enji/h'+'antang'+'/','ldqrs':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+'sf-blo'+_0x5a199c(0x833)+_0x5a199c(0x275),'uShuX':function(_0x526a58,_0x3f831d,_0xe52783){return _0x526a58(_0x3f831d,_0xe52783);},'ZNcdA':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+'ht-bre'+_0x5a199c(0x67f)+_0x5a199c(0xa80)+_0x5a199c(0x975)+'><div\x20'+_0x5a199c(0x5e8)+'\x27ht-ti'+_0x5a199c(0x1cf)+_0x5a199c(0x8ca)+_0x5a199c(0x9fd),'fdyWj':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0x2b2)+_0x5a199c(0x6cc)+_0x5a199c(0x318)+_0x5a199c(0xbc8)+_0x5a199c(0xb80)+'ss=\x27ht'+_0x5a199c(0x45f)+'st\x27>','zktmp':'<div\x20c'+_0x5a199c(0xaaf)+_0x5a199c(0x7e4)+_0x5a199c(0xaa5)+_0x5a199c(0x402)+_0x5a199c(0x880),'VFGdl':_0x5a199c(0x4f6)+'enji/h'+'antang'+_0x5a199c(0x29f)+'a','wiWPx':_0x5a199c(0xb9d),'RLiWB':'\x27\x20styl'+_0x5a199c(0x90b)+'-width'+':160px'+_0x5a199c(0x7d5)+_0x5a199c(0x265)+_0x5a199c(0x738)+_0x5a199c(0x735)+'fff;bo'+_0x5a199c(0x8b2)+_0x5a199c(0x3e9)+'6px\x27>','Mfoga':function(_0x1acc0f,_0x504a37,_0x346672,_0xbafa70){return _0x1acc0f(_0x504a37,_0x346672,_0xbafa70);},'VBTRT':'wanian'+'li','GVsVT':_0x5a199c(0xaf6)+_0x5a199c(0x4f3),'OmYqg':_0x5a199c(0x653),'jbTSU':_0x5a199c(0x848),'fqNJR':function(_0x12b868,_0x5e3840){return _0x12b868+_0x5e3840;},'CThGy':function(_0x4b67fc,_0x53c133){return _0x4b67fc+_0x53c133;},'rIdpw':_0x5a199c(0x712)+_0x5a199c(0x665)+_0x5a199c(0x767)+'>','XWhlD':_0x5a199c(0x61e)+'lass=\x27'+_0x5a199c(0x21e)+_0x5a199c(0x922)+_0x5a199c(0x2c9)+'ut\x27></'+_0x5a199c(0x288),'SMfFS':function(_0x2226d2,_0x21f785){return _0x2226d2+_0x21f785;},'fbROZ':function(_0x113120,_0x56ebd9){return _0x113120+_0x56ebd9;},'sqwHS':'</div>'+_0x5a199c(0x61e)+_0x5a199c(0xaaf)+'val\x27>','hviJV':_0x5a199c(0x7ee)+'-row','ROppM':function(_0x2ded0f,_0x48a2c5,_0x3deea5){return _0x2ded0f(_0x48a2c5,_0x3deea5);},'xPDOb':function(_0x7e572b,_0x36fe08){return _0x7e572b(_0x36fe08);},'TmwXX':function(_0x185f7a,_0x6139be){return _0x185f7a(_0x6139be);},'WNjCs':'#pnDat'+'e','GMwPR':function(_0x56ecf9,_0x131c73){return _0x56ecf9+_0x131c73;},'xIQEZ':function(_0x36594c,_0x43ec46){return _0x36594c+_0x43ec46;},'vuOzu':_0x5a199c(0x64f),'YOcfo':function(_0x3bb124,_0x4a1776){return _0x3bb124+_0x4a1776;},'qBtsI':function(_0x16f35d,_0x2cf1a0){return _0x16f35d+_0x2cf1a0;},'UAtKe':function(_0x2850aa,_0x3817a0){return _0x2850aa+_0x3817a0;},'QGLfC':function(_0x52644e,_0x4a3591){return _0x52644e(_0x4a3591);},'iMIPJ':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0xa68)+_0x5a199c(0x7c0)+_0x5a199c(0x4c1),'hRHxV':_0x5a199c(0x61e)+'lass=\x27'+'op\x27><b'+_0x5a199c(0x19a)+_0x5a199c(0x4b0),'fjzWs':_0x5a199c(0xb07),'slFSx':_0x5a199c(0x485),'cZWCt':_0x5a199c(0x8de),'ShQsO':function(_0x195859,_0xc158a7){return _0x195859+_0xc158a7;},'zlMYh':function(_0x409a59,_0x362b97){return _0x409a59+_0x362b97;},'budQi':'\x27></la'+_0x5a199c(0x385),'TqlGp':_0x5a199c(0xa8b)+_0x5a199c(0x55d)+_0x5a199c(0x831),'FXGNZ':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+'gz-res'+_0x5a199c(0x922)+_0x5a199c(0x8da)+_0x5a199c(0x456)+_0x5a199c(0x9fd),'nLdJk':_0x5a199c(0x61e)+'lass=\x27'+_0x5a199c(0x7e4)+_0x5a199c(0x480)+'，由服务端计'+_0x5a199c(0x6c2)+_0x5a199c(0x5d6)+_0x5a199c(0x55b)+'\x20纳子取穴\x20'+'/\x20灵龟八法'+_0x5a199c(0x8ae)+_0x5a199c(0x9fd),'HwFqi':function(_0x181cbc,_0x1761ad){return _0x181cbc(_0x1761ad);},'MvUqj':function(_0x4b0929,_0x25acad){return _0x4b0929(_0x25acad);},'oqrjR':'#dlDat'+'e','fCtck':function(_0x3fbe49,_0x4214d9){return _0x3fbe49+_0x4214d9;},'ZnVVq':_0x5a199c(0x7a0)+'r','wlesZ':_0x5a199c(0x42a),'hbmjx':function(_0xc8213e,_0x12faee){return _0xc8213e*_0x12faee;},'Xinhe':function(_0x273d55,_0x3fb84d){return _0x273d55+_0x3fb84d;},'yAetM':_0x5a199c(0x420),'cWgQX':_0x5a199c(0x489)+'class='+'\x27num\x27\x20'+_0x5a199c(0x3c2),'pfvNo':_0x5a199c(0xa81),'ouarR':function(_0x3d0408,_0x213e22){return _0x3d0408+_0x213e22;},'EBjPt':_0x5a199c(0xb90)+'t>','txTWZ':_0x5a199c(0x392),'STBkn':_0x5a199c(0x4f6)+'enji/t'+_0x5a199c(0xad1)+'mpute?'+_0x5a199c(0x7d8)+_0x5a199c(0xb71)+_0x5a199c(0x3f5)+'=','kZoBO':function(_0x1d274f,_0x153d65){return _0x1d274f+_0x153d65;},'qVrge':function(_0x1a9b89,_0x4cd3d0){return _0x1a9b89+_0x4cd3d0;},'mHDMh':function(_0xfec999,_0x1a4b56){return _0xfec999+_0x1a4b56;},'nggJn':_0x5a199c(0x579)+'灵龟八法盘<'+'/h3>','tPuQl':_0x5a199c(0x7a1)+_0x5a199c(0x1a8)+_0x5a199c(0x585)+_0x5a199c(0x3bb)+'ate\x27\x20i'+_0x5a199c(0xb36)+'ate\x27\x20v'+'alue=\x27','bXpnK':_0x5a199c(0x61e)+'lass=\x27'+_0x5a199c(0x61f)+_0x5a199c(0x8d3)+'svg\x20cl'+_0x5a199c(0x36d)+'ial\x27\x20i'+_0x5a199c(0x26c)+_0x5a199c(0x4f8)+'ewBox='+_0x5a199c(0x643)+_0x5a199c(0x747)+'\x27></sv'+'g>','nEFXS':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0x7e4)+_0x5a199c(0x942)+_0x5a199c(0x744)+_0x5a199c(0x2c6)+_0x5a199c(0x403)+'、五居中。开'+_0x5a199c(0xb09)+'日、时干支推'+_0x5a199c(0x630)+'v>','gyBix':function(_0x2696a0,_0xc55281){return _0x2696a0(_0xc55281);},'Illzg':function(_0x5d92f3,_0x3b1131){return _0x5d92f3===_0x3b1131;},'xoovT':function(_0x14ab20,_0x148b27){return _0x14ab20/_0x148b27;},'mquhP':function(_0x569878,_0x45c5f5){return _0x569878==_0x45c5f5;},'dybRA':function(_0x9ca90c){return _0x9ca90c();},'BwKuQ':function(_0x2bd91e,_0x28298e){return _0x2bd91e+_0x28298e;},'ntsrt':function(_0xa3c066,_0x53dc5c){return _0xa3c066+_0x53dc5c;},'kDtZp':function(_0x241355,_0x4de4ce){return _0x241355+_0x4de4ce;},'TvPhX':function(_0x535e61,_0x5838f0){return _0x535e61+_0x5838f0;},'NUmQn':function(_0xcf402b,_0x27e48e){return _0xcf402b+_0x27e48e;},'uxncH':function(_0x36f6d5,_0x351387){return _0x36f6d5+_0x351387;},'JCiLd':function(_0x1f550b,_0x53f639){return _0x1f550b+_0x53f639;},'YaIfS':_0x5a199c(0x5ec)+_0x5a199c(0x8e4),'AZblh':_0x5a199c(0x6be)+'v>','JBEbM':_0x5a199c(0x6df)+_0x5a199c(0xa06)+_0x5a199c(0x743)+_0x5a199c(0x88c)+_0x5a199c(0x94b)+_0x5a199c(0x95c)+'mber\x27\x20'+_0x5a199c(0x612),'sWhYE':_0x5a199c(0x6df)+_0x5a199c(0xa06)+_0x5a199c(0x71e)+_0x5a199c(0x88c)+'put\x20ty'+_0x5a199c(0x95c)+_0x5a199c(0x42f)+_0x5a199c(0x612),'FJseG':'D\x27\x20min'+_0x5a199c(0x539)+_0x5a199c(0x64c)+'\x27\x20valu'+_0x5a199c(0x316),'ditLK':'H\x27>','CCRbe':_0x5a199c(0x6df)+_0x5a199c(0xada)+'\x20id=\x27','FPqhI':function(_0x3a2f8b,_0x542c0b){return _0x3a2f8b(_0x542c0b);},'wmobn':function(_0x4092a1,_0x2ac08a){return _0x4092a1+_0x2ac08a;},'cUzRh':function(_0x5c52e3,_0x2f47b3){return _0x5c52e3(_0x2f47b3);},'rINAW':function(_0x210134,_0x34e010){return _0x210134+_0x34e010;},'PLOTD':function(_0x5befb4,_0xdca7f3){return _0x5befb4+_0xdca7f3;},'UNXRG':function(_0x1c470c,_0x4b2ea3){return _0x1c470c(_0x4b2ea3);},'RbhXp':function(_0x1953f4,_0x492453){return _0x1953f4(_0x492453);},'VjmTs':function(_0xe03d60,_0x3522f7){return _0xe03d60+_0x3522f7;},'sAgDG':_0x5a199c(0x7cb)+_0x5a199c(0x7b4),'wDIkG':function(_0x2b702d,_0x525a7c){return _0x2b702d+_0x525a7c;},'qKcLz':_0x5a199c(0x69e)+'\x20class'+'=\x27zw-t'+_0x5a199c(0x939)+_0x5a199c(0x793)+_0x5a199c(0x7e1),'LDOou':_0x5a199c(0x766)+'a-k]','SqnqY':'td[dat'+_0x5a199c(0x5f3),'Gmrsw':_0x5a199c(0xbca)+'F','VeXPL':_0x5a199c(0x89f)+'9','XWMzG':_0x5a199c(0xb3c)+'iewBox'+'=\x270\x200\x20'+_0x5a199c(0x4d5)+_0x5a199c(0x6b2)+'e=\x27img'+'\x27\x20aria'+'-label'+_0x5a199c(0xa0f)+_0x5a199c(0x512),'XEFtw':function(_0x23f3f8,_0x5f0c46){return _0x23f3f8+_0x5f0c46;},'gLbZE':function(_0x1afee1,_0x23fcb8){return _0x1afee1+_0x23fcb8;},'gYkGa':function(_0x12fc89,_0x448d87){return _0x12fc89-_0x448d87;},'RIurF':function(_0x24eb17,_0x16e28a){return _0x24eb17*_0x16e28a;},'pyBpj':function(_0x108926,_0x388b33){return _0x108926*_0x388b33;},'DWvpS':function(_0x22b5fa,_0x20115c){return _0x22b5fa+_0x20115c;},'maDzH':function(_0x57a239,_0x465167){return _0x57a239+_0x465167;},'ZIngL':function(_0x34c0d9,_0x1c60dc){return _0x34c0d9+_0x1c60dc;},'QnFNW':function(_0x14e0c9,_0x570803){return _0x14e0c9+_0x570803;},'waPMl':function(_0x5bfab3,_0x14e41e){return _0x5bfab3+_0x14e41e;},'igNWl':_0x5a199c(0x47b)+'F','Tzaia':_0x5a199c(0x27d)+_0x5a199c(0x27b),'bQIfQ':function(_0x4f0aeb,_0xa8903e){return _0x4f0aeb+_0xa8903e;},'sWzUs':'\x27\x20text'+_0x5a199c(0x519)+_0x5a199c(0x972)+_0x5a199c(0x31c)+_0x5a199c(0x8e3)+_0x5a199c(0x8f8)+_0x5a199c(0x477)+'=\x27','wBpyt':_0x5a199c(0xa41),'uDuma':function(_0x58a182,_0x4fc04e){return _0x58a182-_0x4fc04e;},'jPoji':function(_0x2b31f2,_0x50c276){return _0x2b31f2*_0x50c276;},'HYmLr':function(_0x45693a,_0x518357){return _0x45693a+_0x518357;},'KeKgO':function(_0x95086,_0x3432f2){return _0x95086+_0x3432f2;},'UaQYi':function(_0x78c2d0,_0x55a409){return _0x78c2d0+_0x55a409;},'TnToi':'<circl'+_0x5a199c(0xaac),'HEjwa':_0x5a199c(0x689)+_0x5a199c(0x3d0)+_0x5a199c(0x676),'kGzhX':function(_0x65434d,_0x1c04fd){return _0x65434d+_0x1c04fd;},'giJfg':function(_0x42bec9,_0x24eb21){return _0x42bec9+_0x24eb21;},'rUmZl':'<text\x20'+_0x5a199c(0x3c2),'xZMUu':function(_0x41c90d,_0x3b6ea6){return _0x41c90d+_0x3b6ea6;},'yditz':_0x5a199c(0x595)+_0x5a199c(0x519)+'r=\x27mid'+_0x5a199c(0x31c)+_0x5a199c(0x8e3)+_0x5a199c(0x590)+_0x5a199c(0xaff)+_0x5a199c(0xa29)+_0x5a199c(0x865)+_0x5a199c(0x443)+_0x5a199c(0x676),'nyXOz':_0x5a199c(0xa45)+'>','NvJGU':function(_0x8a357a,_0x4e9323){return _0x8a357a+_0x4e9323;},'RecWf':function(_0x543f1d,_0x261ddf){return _0x543f1d+_0x261ddf;},'ppiKj':_0x5a199c(0x819)+_0x5a199c(0x5a0)+_0x5a199c(0x676),'HRyip':function(_0x3ac7aa,_0x416922){return _0x3ac7aa+_0x416922;},'aiegG':function(_0x262285,_0x43df49){return _0x262285-_0x43df49;},'YSOBp':_0x5a199c(0x595)+_0x5a199c(0x519)+'r=\x27mid'+_0x5a199c(0x31c)+'ont-si'+_0x5a199c(0x35a)+_0x5a199c(0xaff)+_0x5a199c(0xa29)+_0x5a199c(0x865)+_0x5a199c(0x443)+_0x5a199c(0x676),'GHNkW':function(_0x138779,_0x13d6bf){return _0x138779(_0x13d6bf);},'gGyIG':function(_0x45eae6,_0x2e3be7){return _0x45eae6||_0x2e3be7;},'xhxKf':function(_0x1ee80c,_0x92d278){return _0x1ee80c(_0x92d278);},'uHJUx':function(_0x26ce7b,_0x13c858){return _0x26ce7b+_0x13c858;},'EUfvM':_0x5a199c(0xbd0)+'pan','jccVI':_0x5a199c(0xb02),'rxzSk':function(_0x21c1a1,_0x543302){return _0x21c1a1+_0x543302;},'TvCob':function(_0x3287a0,_0x17c267){return _0x3287a0(_0x17c267);},'jhcyI':function(_0x1803bf,_0x447951){return _0x1803bf+_0x447951;},'joNKT':function(_0x490a8c,_0x516d9f){return _0x490a8c+_0x516d9f;},'hBPES':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+'blk\x27><'+_0x5a199c(0x2d4)+'ass=\x27r'+_0x5a199c(0x998),'tkCCZ':function(_0x3ec964,_0x26c34f){return _0x3ec964+_0x26c34f;},'jbmgd':_0x5a199c(0x9d7),'KEFfx':_0x5a199c(0xb68),'NFQHE':function(_0x4db279,_0x3bcc4a){return _0x4db279+_0x3bcc4a;},'kXaMH':function(_0x3c25a1,_0x4cbaf9,_0x9be397){return _0x3c25a1(_0x4cbaf9,_0x9be397);},'AYTTa':'流经脏腑经络','aHyrt':_0x5a199c(0x710),'PvVeO':function(_0x4d1844,_0x5cda6b){return _0x4d1844+_0x5cda6b;},'NLOhR':function(_0x51f978,_0x18098c){return _0x51f978+_0x18098c;},'KfKbD':function(_0x47cbd9,_0x29955f,_0x5ba24a){return _0x47cbd9(_0x29955f,_0x5ba24a);},'cwTHt':_0x5a199c(0xac0)+_0x5a199c(0x7c5),'JXGzz':function(_0x519246,_0x479edb){return _0x519246+_0x479edb;},'kcYmf':_0x5a199c(0x80b),'DiNld':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0x9db)+'d\x27><bu'+'tton\x20i'+_0x5a199c(0x42b)+'Prev\x27>'+_0x5a199c(0xb2c)+_0x5a199c(0x2ed)+_0x5a199c(0x698)+'ss=\x27ym'+'\x27>','IqDZg':_0x5a199c(0x69e)+_0x5a199c(0x4f0)+_0x5a199c(0x966),'PvzpV':_0x5a199c(0xaf2)+_0x5a199c(0xa8d)+_0x5a199c(0x472)+'y>','otbfv':_0x5a199c(0x222),'tPQcj':function(_0x4428c4,_0x2a4070){return _0x4428c4+_0x2a4070;},'WEqaC':_0x5a199c(0x9f7),'BVTlv':function(_0x5dc021,_0x15f205){return _0x5dc021+_0x15f205;},'pzLLt':_0x5a199c(0x3ba),'NWxeU':_0x5a199c(0x389)+'xt','bqJQD':function(_0x472cf6,_0x1b471d){return _0x472cf6(_0x1b471d);},'UUQvn':_0x5a199c(0x989),'hzIOX':function(_0x8e3943,_0x1a21b6){return _0x8e3943+_0x1a21b6;},'eQkOl':'SDcgD','ekgKD':function(_0x367f92,_0x430ee7){return _0x367f92(_0x430ee7);},'CDEXT':function(_0x360014,_0x11de00,_0x2af265,_0x25d4e6){return _0x360014(_0x11de00,_0x2af265,_0x25d4e6);},'YsQKC':function(_0x29dad6,_0x4c669e){return _0x29dad6+_0x4c669e;},'HdMGQ':function(_0x596b29,_0x144d98){return _0x596b29+_0x144d98;},'HPUzO':function(_0x44d429,_0x5158ec){return _0x44d429+_0x5158ec;},'wpJNQ':function(_0x23967f,_0x149b1b){return _0x23967f+_0x149b1b;},'dKrdq':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0x50c)+_0x5a199c(0x3cc),'txIoa':_0x5a199c(0x9bf)+_0x5a199c(0x879)+_0x5a199c(0x42c)+'十四节气）＋'+_0x5a199c(0x98b)+_0x5a199c(0xabc)+_0x5a199c(0x245)+_0x5a199c(0x573)+_0x5a199c(0xae1)+_0x5a199c(0x288),'iSssA':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0x253)+'ft\x27>','fslpR':'<div\x20c'+'lass=\x27'+_0x5a199c(0x903)+'ol\x27>','yCQIs':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0x8d4)+'rap\x27\x20i'+'d=\x27lbg'+'Disc\x27>'+_0x5a199c(0xb4b),'NXRli':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0xa19)+_0x5a199c(0x559)+_0x5a199c(0x247)+'fo\x27></'+'div>','AObmF':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0x97f)+_0x5a199c(0x3f3)+_0x5a199c(0x995)+_0x5a199c(0x900)+_0x5a199c(0x581)+_0x5a199c(0x658)+_0x5a199c(0xb5c)+_0x5a199c(0x2c4)+_0x5a199c(0xb4b)+_0x5a199c(0xb4b),'UgeXv':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0xa76)+_0x5a199c(0xb62)+_0x5a199c(0x550)+_0x5a199c(0x8af)+'数定八法穴；'+_0x5a199c(0x3ef)+'法序号（1\x20'+_0x5a199c(0x99b)+_0x5a199c(0xa2b)+_0x5a199c(0x9fd),'StySZ':_0x5a199c(0x26f),'qhGHR':_0x5a199c(0x425),'aeEes':_0x5a199c(0x1fa),'XhlGC':_0x5a199c(0x1ab),'bHUqb':function(_0xe624fc,_0x4af34d){return _0xe624fc!==_0x4af34d;},'hHtFJ':function(_0x3631e3,_0x2dbae8){return _0x3631e3(_0x2dbae8);},'LAhah':function(_0x35b491,_0x1d2e25){return _0x35b491+_0x1d2e25;},'mkmUB':function(_0x39102c,_0x33868e){return _0x39102c+_0x33868e;},'GLJHI':function(_0x4b005f,_0x19314a){return _0x4b005f+_0x19314a;},'lNbIT':function(_0x7b46a5,_0x51f311){return _0x7b46a5+_0x51f311;},'oeKMY':function(_0x9e91a6,_0x25e8e2){return _0x9e91a6+_0x25e8e2;},'smiuJ':function(_0x3ae147,_0x4cd093){return _0x3ae147(_0x4cd093);},'JtZLS':function(_0x3ef293,_0x2c8c8c){return _0x3ef293+_0x2c8c8c;},'tuVaJ':function(_0x16f36e,_0x3782d5){return _0x16f36e+_0x3782d5;},'wjReo':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0x41d)+'p\x27>','iRtqX':'<div\x20c'+_0x5a199c(0xaaf)+_0x5a199c(0x1f6)+_0x5a199c(0x1b2)+_0x5a199c(0x78e)+_0x5a199c(0x2d7)+'/\x20纳子法<'+'/h1>','WmDCl':_0x5a199c(0x74c)+'纳甲法（日干'+_0x5a199c(0x240)+'→\x20开穴）·'+_0x5a199c(0x8c8)+_0x5a199c(0x2ae)+'→\x20当旺经脉'+_0x5a199c(0xaa1)+_0x5a199c(0xae1)+_0x5a199c(0x288),'bAJLC':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0x84b)+'ector\x27'+'>','BWPBh':function(_0x5b3e6e,_0x143991){return _0x5b3e6e(_0x143991);},'kpbsP':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0x6e8)+'t\x27>两表按'+'所选日期与时'+'辰高亮当期取'+_0x5a199c(0x975)+'></div'+'>','JiHfE':'<div\x20c'+'lass=\x27'+'zw-pan'+_0x5a199c(0x61d)+'2>十二经纳'+_0x5a199c(0x76d)+'>','HvsDd':_0x5a199c(0x61e)+'lass=\x27'+_0x5a199c(0x1c6)+_0x5a199c(0x61d)+'2>十二经脉'+_0x5a199c(0xb31)+'2>','lvJmS':'zwD','KxAZa':_0x5a199c(0x685),'bYRNH':_0x5a199c(0x69f),'EXHVi':function(_0x509f10,_0x192c8a){return _0x509f10+_0x192c8a;},'osuQM':'<butto'+_0x5a199c(0xb93)+_0x5a199c(0x7c6),'gsFDR':_0x5a199c(0x564)+'e=\x27bor'+_0x5a199c(0x3a4)+_0x5a199c(0x987),'OJwYE':'</butt'+_0x5a199c(0x756),'lYwVi':_0x5a199c(0x564)+_0x5a199c(0x90b)+_0x5a199c(0x1a0)+_0x5a199c(0x3b3)+'\x20onerr'+_0x5a199c(0x4de)+_0x5a199c(0xa28)+_0x5a199c(0x703)+_0x5a199c(0xa95)+_0x5a199c(0xa2d)+_0x5a199c(0x887)+_0x5a199c(0x5e8)+_0x5a199c(0x536)+'>','BDSpJ':_0x5a199c(0xa59),'NKTia':_0x5a199c(0x990),'hWmes':_0x5a199c(0x837)+'f','sCcBQ':'#a7c95'+'7','CLNIw':_0x5a199c(0x84a)+'4','darei':_0x5a199c(0x8ea)+'d','pbwIR':_0x5a199c(0x204)+_0x5a199c(0x5e8)+_0x5a199c(0x1d9)+_0x5a199c(0xab4)+_0x5a199c(0x5ce)+'8\x27\x20wid'+_0x5a199c(0x74a)+_0x5a199c(0x552)+'ht=\x2710'+'5\x27\x20rx='+_0x5a199c(0x7f3)+'<rect\x20'+_0x5a199c(0x5e8)+'\x27body\x27'+_0x5a199c(0x6d6)+_0x5a199c(0x5c0)+_0x5a199c(0xb46)+_0x5a199c(0x9b4)+_0x5a199c(0x67b)+_0x5a199c(0xa57)+'05\x27\x20rx'+_0x5a199c(0x49d)+'>','aQGXt':'<rect\x20'+'class='+'\x27body\x27'+_0x5a199c(0x834)+_0x5a199c(0xa7f)+_0x5a199c(0x60d)+_0x5a199c(0x741)+_0x5a199c(0xa5c)+_0x5a199c(0xa57)+_0x5a199c(0x570)+_0x5a199c(0xb9a)+'<rect\x20'+'class='+_0x5a199c(0x1d9)+'\x20x=\x2710'+'2\x27\x20y=\x27'+_0x5a199c(0x387)+_0x5a199c(0x293)+_0x5a199c(0xa37)+_0x5a199c(0x5aa)+'120\x27\x20r'+_0x5a199c(0x49f)+_0x5a199c(0xa58)+'>','IiuYg':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0x4c9)+_0x5a199c(0x6fa),'pxMHL':function(_0x242d6c,_0x10d604){return _0x242d6c+_0x10d604;},'qUvGm':function(_0x2d6448,_0x11dcd3){return _0x2d6448%_0x11dcd3;},'vlGGP':_0x5a199c(0x46f)+'0\x20L100'+_0x5a199c(0xbe9),'dwBLD':function(_0x55825e,_0x5b19f7){return _0x55825e+_0x5b19f7;},'Nrzjr':function(_0x299c12,_0x31e13d){return _0x299c12+_0x31e13d;},'aBOAr':function(_0x5e34e4,_0x28fc73){return _0x5e34e4+_0x28fc73;},'vnwjx':'<rect\x20'+_0x5a199c(0x5e8)+_0x5a199c(0x1d9)+_0x5a199c(0x834)+_0x5a199c(0xa7f)+_0x5a199c(0x60d)+_0x5a199c(0x741)+_0x5a199c(0xa5c)+_0x5a199c(0xa57)+_0x5a199c(0x570)+_0x5a199c(0xb9a)+'<rect\x20'+_0x5a199c(0x5e8)+'\x27body\x27'+'\x20x=\x2710'+'2\x27\x20y=\x27'+_0x5a199c(0x387)+_0x5a199c(0x293)+_0x5a199c(0xa37)+_0x5a199c(0x5aa)+_0x5a199c(0x875)+_0x5a199c(0x49f)+'>','CPyOL':'<path\x20'+'class='+'\x27mer-p'+'ath\x27\x20d'+'=\x27','nEdCr':_0x5a199c(0x209)+'mate\x20a'+'ttribu'+_0x5a199c(0x867)+'=\x27stro'+_0x5a199c(0x1df)+_0x5a199c(0x201)+_0x5a199c(0x835)+_0x5a199c(0x2a9)+_0x5a199c(0x19e)+_0x5a199c(0x41b)+_0x5a199c(0x780)+'r=\x273s\x27'+_0x5a199c(0xa83)+_0x5a199c(0x3af)+_0x5a199c(0xa07)+'finite'+_0x5a199c(0x81b)+'ath>','zjFtk':_0x5a199c(0xa44)+_0x5a199c(0x9e4)+_0x5a199c(0x95d)+_0x5a199c(0x5c2)+_0x5a199c(0x4b2)+_0x5a199c(0x477)+'=\x27','MIlqN':_0x5a199c(0x209)+_0x5a199c(0x938)+_0x5a199c(0xa72)+_0x5a199c(0xb32)+'\x27\x20repe'+_0x5a199c(0x761)+'t=\x27ind'+'efinit'+_0x5a199c(0x2ee)+_0x5a199c(0xb00),'UqghT':function(_0x508c02,_0x1c75f6){return _0x508c02+_0x1c75f6;},'JYVIU':'<div\x20c'+_0x5a199c(0xaaf)+_0x5a199c(0x3b5)+'m-stag'+_0x5a199c(0x4e7)+_0x5a199c(0x565)+'s=\x27jl-'+_0x5a199c(0x9b1)+_0x5a199c(0xafc)+'static'+_0x5a199c(0x30d)+'ingluo'+'/','cdMLH':'.webp\x27'+'\x20alt=\x27','BBeRD':'\x20走向动画\x27'+'\x20','igxeM':_0x5a199c(0x4bb)+_0x5a199c(0xa56)+_0x5a199c(0xaca)+_0x5a199c(0x9f3)+_0x5a199c(0x667)+_0x5a199c(0xbe7)+_0x5a199c(0x5a9),'zjrvE':function(_0x94d55f,_0x1003f4){return _0x94d55f+_0x1003f4;},'hTdZU':function(_0x243c46,_0x15d9ea){return _0x243c46+_0x15d9ea;},'jaTEj':function(_0x5bdd1c,_0x483803){return _0x5bdd1c+_0x483803;},'iYSWw':_0x5a199c(0x2dd)+_0x5a199c(0xb5a)+'>','oPtyK':_0x5a199c(0x63d)+'经络走向动画'+_0x5a199c(0x9c0)+_0x5a199c(0x556)+_0x5a199c(0x3c1)+_0x5a199c(0x649)+_0x5a199c(0x684)+_0x5a199c(0x1eb)+'症状\x20/\x20取'+_0x5a199c(0x6ef)+_0x5a199c(0x6c0),'pLhwh':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0x386)+_0x5a199c(0x773),'fBBBa':function(_0x45939e,_0x1a36a5){return _0x45939e+_0x1a36a5;},'UfFUh':function(_0x550839,_0x5313e8){return _0x550839+_0x5313e8;},'lGuvC':function(_0x3f0d21,_0x4307ba){return _0x3f0d21(_0x4307ba);},'Azpio':_0x5a199c(0xa8e),'GjoBT':_0x5a199c(0x638),'Mhkrj':function(_0x531b07,_0xfac433){return _0x531b07+_0xfac433;},'ynZmk':'<div\x20c'+_0x5a199c(0xaaf)+_0x5a199c(0x7e4)+'本经暂无真人'+_0x5a199c(0xae3)+'div>','jFOYN':_0x5a199c(0x2cb),'gZqjY':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0x7e4)+_0x5a199c(0x391)+'…</div'+'>','yMiIs':_0x5a199c(0x984)+_0x5a199c(0x615)+_0x5a199c(0x3ca),'cGzWq':_0x5a199c(0x8fd),'OkbHv':'金匮要略\x20·'+_0x5a199c(0x93f),'yiADf':_0x5a199c(0x656),'YBZCs':function(_0x444762,_0x15269c){return _0x444762(_0x15269c);},'DjFVz':function(_0x2eb6c8,_0x2161bf){return _0x2eb6c8+_0x2161bf;},'vXulx':function(_0x3f1151,_0x47d4fe){return _0x3f1151+_0x47d4fe;},'OTlaL':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0x7e4)+_0x5a199c(0x646),'DqzCP':function(_0xd6a5e8,_0x5b6671){return _0xd6a5e8+_0x5b6671;},'HidPy':_0x5a199c(0x61e)+'lass=\x27'+_0x5a199c(0x65d)+'b>','WWmcK':'\u3000<b>六经'+_0x5a199c(0x739),'qElRG':function(_0x34e2fe,_0x266050){return _0x34e2fe+_0x266050;},'WmLdU':function(_0x5aeed7,_0x3bfbe6,_0x37be6a){return _0x5aeed7(_0x3bfbe6,_0x37be6a);},'jyXqZ':function(_0x3c179f,_0x103734){return _0x3c179f-_0x103734;},'loGne':function(_0x33a466,_0x1ec134){return _0x33a466+_0x1ec134;},'aMIFF':_0x5a199c(0x419),'vegJO':_0x5a199c(0x6c8),'zSwBl':function(_0x290be2,_0x397465){return _0x290be2+_0x397465;},'ldnwt':_0x5a199c(0x61e)+_0x5a199c(0xaaf)+_0x5a199c(0x7e4)+_0x5a199c(0x5df)+_0x5a199c(0x288),'YKhJW':_0x5a199c(0x5cf),'NVCic':_0x5a199c(0x218)+_0x5a199c(0x6b0),'ZnQyA':_0x5a199c(0x218)+'h','IOShz':'/api/r'+'enji/m'+_0x5a199c(0x9d2),'mPBlq':function(_0x3ccb4b,_0x148df3,_0x220d6a){return _0x3ccb4b(_0x148df3,_0x220d6a);},'MRWKv':_0x5a199c(0xb65)+_0x5a199c(0x9f9),'rXfvF':_0x5a199c(0xbe1)+_0x5a199c(0x3f8),'FFDOt':_0x5a199c(0x1f7)+_0x5a199c(0x5f8),'QJcgR':_0x5a199c(0x3b1)+_0x5a199c(0x21d),'ANQNp':_0x5a199c(0xb0e)+_0x5a199c(0x80e),'Bwyll':_0x5a199c(0xb84),'rBiIs':'click','LFuVS':'M100,7'+_0x5a199c(0xb5f)+_0x5a199c(0xa99)+'80,150'+_0x5a199c(0x3f9)+'00','SSpXs':'M120,3'+_0x5a199c(0x740)+_0x5a199c(0x8ff)+_0x5a199c(0x3db)+_0x5a199c(0xa94)+'0,170\x20'+_0x5a199c(0x8c1)+'20','IdlpK':'M150,1'+_0x5a199c(0x911)+_0x5a199c(0x4e4)+'L140,2'+'50\x20L13'+_0x5a199c(0xb52),'gdiJc':_0x5a199c(0x7f5)+_0x5a199c(0xb7d)+'0,290\x20'+_0x5a199c(0xb9f)+_0x5a199c(0x428)+_0x5a199c(0x51f)+_0x5a199c(0x6c6)+'0','ueEhB':'M100,8'+_0x5a199c(0xba2)+'140\x20L8'+'0,220\x20'+_0x5a199c(0x3ff)+'0','WyFqL':'M100,9'+_0x5a199c(0x578)+_0x5a199c(0x9cc)+_0x5a199c(0x48f)+'5','GvceP':_0x5a199c(0x54c)+_0x5a199c(0x7da)+_0x5a199c(0x6f9)+_0x5a199c(0x23a)+_0x5a199c(0x365)+'0,140\x20'+_0x5a199c(0x4c5)+'5','rGlsd':_0x5a199c(0x72a)+_0x5a199c(0x25d)+'150\x20L1'+_0x5a199c(0x7e3)+_0x5a199c(0x2c5)+_0x5a199c(0x73a),'wEPtR':_0x5a199c(0x9ab)+_0x5a199c(0x866)+',180','IECPR':_0x5a199c(0xa70)+_0x5a199c(0x7c9)+_0x5a199c(0x5e6)+_0x5a199c(0x3de)+'55,370','zurSn':_0x5a199c(0xbd9),'KMlmh':'小肠经','VhxVM':_0x5a199c(0x26a),'ZQwvJ':_0x5a199c(0x4a6),'OPiLD':_0x5a199c(0x614),'vpjeM':'阴维脉','yozba':_0x5a199c(0x558),'UivIz':_0x5a199c(0x4f1),'eJUbN':_0x5a199c(0x6cf),'muBvm':_0x5a199c(0x531),'JkGmH':_0x5a199c(0xa8a),'utNaI':'xiao','prEbT':_0x5a199c(0x758),'ZFTGT':_0x5a199c(0x29d),'BCNxj':'dan','tXRrB':_0x5a199c(0x2fc),'PJuck':function(_0x5c9201,_0x23f60e){return _0x5c9201===_0x23f60e;},'HINqX':_0x5a199c(0x5d9)+_0x5a199c(0x567)+_0x5a199c(0xacd)},_0x4ba22c=(function(){let _0x2febf9=!![];return function(_0x50f044,_0x2c2245){const _0x5e2c2a=_0x2febf9?function(){const _0x1e5e83=a0_0x2474;if(_0x2c2245){const _0x31dfd5=_0x2c2245[_0x1e5e83(0x776)](_0x50f044,arguments);return _0x2c2245=null,_0x31dfd5;}}:function(){};return _0x2febf9=![],_0x5e2c2a;};}()),_0x7b27bf=_0x4ba22c(this,function(){const _0xbc2627=_0x5a199c;return _0x7b27bf[_0xbc2627(0x733)+'ng']()[_0xbc2627(0x3d7)](_0xbc2627(0x6e3)+_0xbc2627(0x8bb))[_0xbc2627(0x733)+'ng']()['constr'+'uctor'](_0x7b27bf)[_0xbc2627(0x3d7)](_0xbc2627(0x6e3)+_0xbc2627(0x8bb));});_0xa67dec[_0x5a199c(0x4c7)](_0x7b27bf);const _0x1147e3=(function(){const _0x538195=_0x5a199c;if(_0xa67dec[_0x538195(0x487)](_0xa67dec[_0x538195(0x9de)],_0xa67dec[_0x538195(0x745)]))_0x4163fa+=_0x538195(0x61e)+'lass=\x27'+'nishi-'+'box\x27><'+'b\x20styl'+'e=\x27col'+_0x538195(0xb04)+_0x538195(0x1b3)+_0x538195(0x2a4)+'</b>',_0x4b9420['forEac'+'h'](_0x1071de=>_0x5c2543+=_0x538195(0x61e)+_0x538195(0xaaf)+_0x538195(0x65d)+'b>'+_0xad6a0a(_0x1071de)+('</b><b'+'r>')+_0x2ba653(_0x1ffe77[_0x1071de])+_0x538195(0xb4b)),_0xe8ace9+=_0x538195(0xb4b);else{let _0x4d9e35=!![];return function(_0x3c1f7a,_0x40e751){const _0x5679f9=_0x4d9e35?function(){if(_0x40e751){const _0xd2126d=_0x40e751['apply'](_0x3c1f7a,arguments);return _0x40e751=null,_0xd2126d;}}:function(){};return _0x4d9e35=![],_0x5679f9;};}}()),_0x5bce0a=_0xa67dec[_0x5a199c(0x80d)](_0x1147e3,this,function(){const _0x410e72=_0x5a199c,_0x24cc4f={'fTyTA':function(_0x4f4e50,_0x4ccbe9){return _0x4f4e50(_0x4ccbe9);},'sZpkp':_0xa67dec['yuSDo'],'WeoVJ':_0x410e72(0x61e)+_0x410e72(0xaaf)+_0x410e72(0x7e4)+_0x410e72(0x5df)+_0x410e72(0x288),'LRzIC':'/api/s'+_0x410e72(0x405)+'q=','TwhDc':_0x410e72(0x61e)+_0x410e72(0xaaf)+'hint\x27>'+_0x410e72(0xaa5)+_0x410e72(0x402)+_0x410e72(0x880)},_0xdacaf4=function(){const _0x21ffd2=_0x410e72;let _0x1873bb;try{_0x1873bb=Function(_0xa67dec[_0x21ffd2(0x6cb)](_0xa67dec['SiwfM'](_0xa67dec[_0x21ffd2(0xbad)],_0xa67dec[_0x21ffd2(0x4b3)]),');'))();}catch(_0x1d69d8){if(_0xa67dec[_0x21ffd2(0x487)]('tcNMA',_0xa67dec[_0x21ffd2(0xa02)])){const _0x8ffc30={'jBBpW':_0x21ffd2(0x61e)+_0x21ffd2(0xaaf)+_0x21ffd2(0x6e7)+_0x21ffd2(0x9f3)+_0x21ffd2(0xa4b)+_0x21ffd2(0x94d)+'\x208px\x27>'+'·\x20','VBUto':_0x21ffd2(0x61e)+_0x21ffd2(0xaaf)+_0x21ffd2(0x7e4)+_0x21ffd2(0x8ed)+_0x21ffd2(0x87e)+_0x21ffd2(0x288)};if(!_0x50db54)return;_0x24cc4f[_0x21ffd2(0x38d)](_0x44a874,![]),_0x26a441[_0x21ffd2(0x225)+_0x21ffd2(0xb50)]=_0x24cc4f['sZpkp'],_0x10e001['innerH'+'TML']=_0x24cc4f[_0x21ffd2(0x962)],_0x24cc4f['fTyTA'](_0xcc9aae,_0x24cc4f['LRzIC']+_0x43d1a1(_0x2438c0))[_0x21ffd2(0x493)](_0x3b7028=>{const _0x412af0=_0x21ffd2,_0x150c0f={'kdRUw':function(_0x1ca689,_0x3d35fc){return _0x1ca689+_0x3d35fc;},'RROQc':_0x8ffc30[_0x412af0(0x40d)],'WkLiG':_0x412af0(0xb4b),'qbzdj':'<div\x20c'+_0x412af0(0xaaf)+'op\x27><b'+'>','mDlTu':function(_0x2b8cb8,_0x33165c){return _0x2b8cb8(_0x33165c);},'jqOjY':_0x412af0(0x7ab)+'/div>'};let _0x3ccb64=_0x412af0(0x61e)+'lass=\x27'+'open-l'+'ist\x27>';(_0x3b7028[_0x412af0(0x577)]||[])[_0x412af0(0x1e7)+'h'](_0x5b76fe=>{const _0x24ed6c=_0x412af0;_0x3ccb64+=_0x150c0f[_0x24ed6c(0x533)]+_0x150c0f[_0x24ed6c(0x2d8)](_0x3d0c13,_0x5b76fe[_0x24ed6c(0xab0)])+'（'+_0x5b76fe[_0x24ed6c(0x372)]+_0x150c0f[_0x24ed6c(0x563)],_0x5b76fe[_0x24ed6c(0x9a6)]['slice'](0x0,0x8)[_0x24ed6c(0x1e7)+'h'](_0x57bf19=>{const _0x2b0097=_0x24ed6c,_0x4ec123=_0x57bf19[_0x2b0097(0xab0)]||_0x57bf19['MZ']||_0x57bf19['title']||'';_0x3ccb64+=_0x150c0f[_0x2b0097(0x35e)](_0x150c0f[_0x2b0097(0x8a7)],_0x3de9a7(_0x4ec123))+_0x150c0f[_0x2b0097(0xb28)];});}),_0x3ccb64+='</div>';if(!_0x3b7028[_0x412af0(0x577)]||!_0x3b7028[_0x412af0(0x577)][_0x412af0(0x6b7)])_0x3ccb64=_0x8ffc30[_0x412af0(0x514)];_0x17e761[_0x412af0(0x225)+_0x412af0(0xb50)]=_0x3ccb64,_0x160c17[_0x412af0(0x225)+'TML']='';});}else _0x1873bb=window;}return _0x1873bb;},_0x2f1489=_0xa67dec['fDZAh'](_0xdacaf4),_0x43a042=_0x2f1489[_0x410e72(0xa3b)+'e']=_0x2f1489[_0x410e72(0xa3b)+'e']||{},_0x1787bd=[_0x410e72(0x5b7),_0xa67dec['jbxMl'],_0xa67dec['pZsmu'],'error',_0xa67dec['mZYrD'],_0x410e72(0x61c),_0x410e72(0x910)];for(let _0x5e1579=0x0;_0xa67dec[_0x410e72(0xb47)](_0x5e1579,_0x1787bd[_0x410e72(0x6b7)]);_0x5e1579++){if(_0xa67dec['kOEME'](_0xa67dec['bvlrf'],_0x410e72(0x291))){const _0x298d90=_0x1147e3[_0x410e72(0x476)+_0x410e72(0x339)]['protot'+_0x410e72(0x3e2)][_0x410e72(0x261)](_0x1147e3),_0x39c874=_0x1787bd[_0x5e1579],_0x1bdcac=_0x43a042[_0x39c874]||_0x298d90;_0x298d90[_0x410e72(0x9d0)+_0x410e72(0x371)]=_0x1147e3[_0x410e72(0x261)](_0x1147e3),_0x298d90[_0x410e72(0x733)+'ng']=_0x1bdcac[_0x410e72(0x733)+'ng'][_0x410e72(0x261)](_0x1bdcac),_0x43a042[_0x39c874]=_0x298d90;}else _0x3c04c2[_0x410e72(0x225)+'TML']='',_0x2a6cae[_0x410e72(0x225)+'TML']=_0x24cc4f[_0x410e72(0x466)];}});_0xa67dec[_0x5a199c(0x4c7)](_0x5bce0a);'use strict';const _0x5f5858=_0x5a199c(0x6a2)+_0x5a199c(0x5a1)+_0x5a199c(0x977)+_0x5a199c(0x30a)+_0x5a199c(0x40e)+_0x5a199c(0xa77)+'column'+_0x5a199c(0x4e0)+_0x5a199c(0x9f0)+_0x5a199c(0xb69)+_0x5a199c(0x35f)+'{flex:'+_0x5a199c(0x9c9)+_0x5a199c(0xbdd)+'tion:c'+_0x5a199c(0x272)+'min-he'+'ight:0'+_0x5a199c(0x4d6)+_0x5a199c(0x283)+_0x5a199c(0x46e)+_0x5a199c(0xa84)+_0x5a199c(0x398)+_0x5a199c(0x251)+_0x5a199c(0xa7d)+'lumns:'+_0x5a199c(0xbe5)+_0x5a199c(0x214)+_0x5a199c(0x7c8)+_0x5a199c(0x8d2)+_0x5a199c(0xab6)+_0x5a199c(0xb7a)+_0x5a199c(0x8e0)+_0x5a199c(0x2e7)+_0x5a199c(0x25f)+_0x5a199c(0x3d8)+_0x5a199c(0x919)+'ell{bo'+_0x5a199c(0x772)+_0x5a199c(0x49b)+_0x5a199c(0xb8d)+'a(200,'+_0x5a199c(0x4b4)+_0x5a199c(0x1d5)+';backg'+_0x5a199c(0x9b9)+'var(--'+_0x5a199c(0x513)+_0x5a199c(0x263)+'r-radi'+_0x5a199c(0xa03)+'x;over'+'flow:h'+'idden;'+_0x5a199c(0x352)+_0x5a199c(0xa63)+_0x5a199c(0x6f1)+_0x5a199c(0xa8f)+_0x5a199c(0x5ef)+_0x5a199c(0x7d4)+_0x5a199c(0x3a4)+_0x5a199c(0x8f5)+'r(--go'+_0x5a199c(0x693)+_0x5a199c(0x919)+_0x5a199c(0x258)+'g{widt'+_0x5a199c(0x86a)+_0x5a199c(0x4e0)+_0x5a199c(0x855)+_0x5a199c(0x8f0)+'ct-fit'+_0x5a199c(0x546)+'in;bac'+'kgroun'+'d:#fff'+'}\x0a\x20\x20.t'+_0x5a199c(0x3e1)+_0x5a199c(0xabe)+_0x5a199c(0x722)+_0x5a199c(0x267)+_0x5a199c(0x2e7)+'ding:5'+_0x5a199c(0x70e)+_0x5a199c(0x4a3)+_0x5a199c(0x8ad)+_0x5a199c(0x78b)+_0x5a199c(0x3dc)+_0x5a199c(0x44e)+':1.35}'+'\x0a\x20\x20.to'+_0x5a199c(0xbe2)+_0x5a199c(0x543)+_0x5a199c(0x25f)+_0x5a199c(0x28d)+_0x5a199c(0x8f5)+_0x5a199c(0xbc4)+_0x5a199c(0xa0a)+_0x5a199c(0x326)+_0x5a199c(0x367)+_0x5a199c(0x454)+'displa'+_0x5a199c(0xa92)+_0x5a199c(0x9ac)+'ck;mar'+'gin:4p'+_0x5a199c(0x5bc)+'4px\x200;'+'color:'+'var(--'+_0x5a199c(0x2d0)+_0x5a199c(0x79d)+'ol-pan'+'el\x20inp'+_0x5a199c(0xaf0)+_0x5a199c(0xbe2)+_0x5a199c(0x348)+'ect{pa'+_0x5a199c(0x1f8)+'5px\x208p'+'x;bord'+_0x5a199c(0xb3f)+_0x5a199c(0xb94)+'x;bord'+_0x5a199c(0xa2c)+_0x5a199c(0x92d)+_0x5a199c(0x4ae)+'-line)'+';\x0a\x20\x20\x20\x20'+_0x5a199c(0x738)+_0x5a199c(0xacf)+_0x5a199c(0x808)+_0x5a199c(0x583)+'color:'+_0x5a199c(0xae0)+_0x5a199c(0x4f2)+_0x5a199c(0x8e3)+_0x5a199c(0xb57)+_0x5a199c(0xa7a)+_0x5a199c(0x21e)+'ult{di'+_0x5a199c(0x935)+_0x5a199c(0x45b)+_0x5a199c(0xb19)+_0x5a199c(0x6a3)+_0x5a199c(0x260)+_0x5a199c(0x87f)+_0x5a199c(0x52d)+_0x5a199c(0x305)+_0x5a199c(0x1d1)+'z-card'+_0x5a199c(0x404)+_0x5a199c(0x9b9)+_0x5a199c(0xae0)+'ink-2)'+_0x5a199c(0x263)+_0x5a199c(0x586)+_0x5a199c(0x9a8)+'rgba(2'+_0x5a199c(0x954)+',110,.'+_0x5a199c(0xadc)+_0x5a199c(0x8b2)+_0x5a199c(0x3e9)+_0x5a199c(0x5d7)+_0x5a199c(0xa7e)+'ddin'+('g:8px\x20'+_0x5a199c(0xb3d)+_0x5a199c(0x244)+_0x5a199c(0x460)+'nter;m'+_0x5a199c(0x58b)+_0x5a199c(0x6c7)+_0x5a199c(0xa7a)+_0x5a199c(0x801)+_0x5a199c(0x686)+_0x5a199c(0x555)+'size:1'+_0x5a199c(0x616)+_0x5a199c(0x8f5)+_0x5a199c(0xbc4)+'k3)}\x0a\x20'+_0x5a199c(0x7cf)+_0x5a199c(0x8eb)+'al{fon'+_0x5a199c(0x2fb)+_0x5a199c(0x43e)+'font-w'+_0x5a199c(0x426)+'700;co'+'lor:va'+_0x5a199c(0xbac)+_0x5a199c(0xa89)+'ht)}\x0a\x20'+'\x20.open'+'-list{'+'margin'+_0x5a199c(0x24c)+_0x5a199c(0x3d8)+_0x5a199c(0x731)+_0x5a199c(0x57a)+_0x5a199c(0x8c4)+'ckgrou'+_0x5a199c(0xa69)+'(--ink'+_0x5a199c(0x2e8)+_0x5a199c(0x6d9)+'eft:3p'+'x\x20soli'+_0x5a199c(0x2de)+_0x5a199c(0x9ad)+_0x5a199c(0x9ef)+_0x5a199c(0x2b4)+_0x5a199c(0x483)+_0x5a199c(0x7d5)+'n:5px\x20'+_0x5a199c(0x7bd)+'\x20borde'+_0x5a199c(0x50d)+_0x5a199c(0x3eb)+';color'+_0x5a199c(0x8ad)+'-ink)}'+_0x5a199c(0x518)+_0x5a199c(0x1da)+_0x5a199c(0x5a1)+_0x5a199c(0x977)+_0x5a199c(0x2ef)+':20px;'+_0x5a199c(0x763)+_0x5a199c(0xb9e)+_0x5a199c(0x488)+_0x5a199c(0x6da)+'ms:cen'+'ter}\x0a\x20'+_0x5a199c(0xaee)+_0x5a199c(0x67e)+_0x5a199c(0xb29)+_0x5a199c(0x4e0)+_0x5a199c(0x34f)+_0x5a199c(0xa7a)+_0x5a199c(0x3a1)+_0x5a199c(0x99a)+'ill:va'+_0x5a199c(0xbc4)+'k-2);s'+_0x5a199c(0xb01)+_0x5a199c(0x88f)+_0x5a199c(0x954)+_0x5a199c(0xb60)+_0x5a199c(0x254)+_0x5a199c(0x8ab)+_0x5a199c(0x1b7)+_0x5a199c(0xbd4)+'dial\x20.'+_0x5a199c(0x4bd)+_0x5a199c(0x639)+'l:var('+_0x5a199c(0x9ad)+_0x5a199c(0x98a)+'ke:var'+_0x5a199c(0x5a7)+_0x5a199c(0xb30)+_0x5a199c(0x883)+'.dial\x20'+_0x5a199c(0x33c)+_0x5a199c(0x1e2)+'r(--in'+_0x5a199c(0x94a)+_0x5a199c(0x2fb)+_0x5a199c(0x4ac)+'text-a'+_0x5a199c(0x21f)+'middle'+_0x5a199c(0x8a8)+_0x5a199c(0x5f0)+_0x5a199c(0x62f)+_0x5a199c(0xbdf)+_0x5a199c(0x416)+'{fill:'+_0x5a199c(0xae0)+_0x5a199c(0x51a)+'im);fo'+'nt-siz'+'e:11px'+';text-'+_0x5a199c(0xb14)+':middl'+'e}\x0a\x20\x20.'+_0x5a199c(0x871)+'tage{b'+'ackgro'+_0x5a199c(0x806)+_0x5a199c(0x711)+'border'+_0x5a199c(0x76b)+_0x5a199c(0xac4)+_0x5a199c(0x4c3)+_0x5a199c(0x9e0)+_0x5a199c(0x6b1)+_0x5a199c(0x445)+_0x5a199c(0x63a)+'paddin'+'g:8px}'+'\x0a\x20\x20.an'+'im-sta'+_0x5a199c(0x1fe)+_0x5a199c(0xa9e)+_0x5a199c(0xbda)+_0x5a199c(0x889)+_0x5a199c(0x76c)+'stroke'+'-width'+_0x5a199c(0xbb5)+_0x5a199c(0xb27)+'--ink-'+_0x5a199c(0x1d2)+_0x5a199c(0x580)+_0x5a199c(0x659)+_0x5a199c(0x994)+_0x5a199c(0x93b)+'ke-wid'+_0x5a199c(0x441)+_0x5a199c(0x794)+'lineca'+_0x5a199c(0x290)+_0x5a199c(0x1d4)+_0x5a199c(0xb6e)+_0x5a199c(0xbd4)+_0x5a199c(0x9b8)+_0x5a199c(0xa48)+_0x5a199c(0x8ad)+_0x5a199c(0x277))+(_0x5a199c(0xb30)+_0x5a199c(0xaf7)+'}\x0a\x20\x20.m'+_0x5a199c(0x760)+_0x5a199c(0x3dd)+_0x5a199c(0xb27)+_0x5a199c(0x9ad)+_0x5a199c(0x8a3)+_0x5a199c(0x28f)+_0x5a199c(0x92c)+_0x5a199c(0xb45)+':var(-'+_0x5a199c(0x55c)+_0x5a199c(0x8a8)+_0x5a199c(0x5f0)+_0x5a199c(0x85d)+_0x5a199c(0x8e3)+_0x5a199c(0x8f3)+_0x5a199c(0x1ba)+_0x5a199c(0x317)+'\x200}\x0a\x20\x20'+_0x5a199c(0x444)+_0x5a199c(0x7e5)+_0x5a199c(0x8f5)+'r(--in'+_0x5a199c(0x9a5)+_0x5a199c(0x8a9)+_0x5a199c(0x930)+_0x5a199c(0x368)+'-space'+':pre-w'+_0x5a199c(0x8a4)+'x-heig'+_0x5a199c(0x8ce)+_0x5a199c(0x23b)+_0x5a199c(0x1e9)+_0x5a199c(0x1d0)+'\x20\x20\x20\x20ba'+'ckgrou'+'nd:var'+_0x5a199c(0x821)+_0x5a199c(0x2e8)+_0x5a199c(0x772)+_0x5a199c(0x49b)+'id\x20var'+_0x5a199c(0xaef)+'e);pad'+_0x5a199c(0x25f)+'0px;bo'+_0x5a199c(0x8b2)+_0x5a199c(0x3e9)+_0x5a199c(0x87f)+_0x5a199c(0xa4f)+_0x5a199c(0xb4c)+_0x5a199c(0xa7a)+_0x5a199c(0x4c9)+_0x5a199c(0x566)+_0x5a199c(0x7f8)+':flex;'+_0x5a199c(0x763)+_0x5a199c(0xb9e)+_0x5a199c(0x7d7)+_0x5a199c(0x5fc)+_0x5a199c(0x5ac)+_0x5a199c(0x4ec)+'0px}\x0a\x20'+'\x20.mer-'+'filter'+_0x5a199c(0xb82)+_0x5a199c(0x825)+_0x5a199c(0x369)+_0x5a199c(0x8ad)+_0x5a199c(0x9c2)+_0x5a199c(0x9b0)+_0x5a199c(0xa39)+_0x5a199c(0x30e)+_0x5a199c(0xa0d)+'er:1px'+'\x20solid'+_0x5a199c(0x4ae)+_0x5a199c(0x8dc)+_0x5a199c(0x263)+_0x5a199c(0x50d)+_0x5a199c(0x452)+_0x5a199c(0x374)+_0x5a199c(0x49c)+_0x5a199c(0xb1a)+_0x5a199c(0x7ce)+_0x5a199c(0x352)+_0x5a199c(0xa63)+_0x5a199c(0xa82)+_0x5a199c(0x2fb)+_0x5a199c(0x4f5)+_0x5a199c(0x8b5)+_0x5a199c(0xb86)+'er\x20but'+'ton:ho'+_0x5a199c(0x8d1)+_0x5a199c(0x971)+'olor:v'+'ar(--g'+'old);c'+'olor:v'+'ar(--g'+_0x5a199c(0x6f6)+_0x5a199c(0x9cb)+_0x5a199c(0x9fe)+_0x5a199c(0x7dd)+_0x5a199c(0x4af)+'on.act'+_0x5a199c(0x82f)+_0x5a199c(0x6ab)+_0x5a199c(0x464)+'ear-gr'+_0x5a199c(0x5d0)+_0x5a199c(0xbc1)+_0x5a199c(0xb42)+_0x5a199c(0x9ad)+_0x5a199c(0x36b)+_0x5a199c(0xae0)+'gold))'+_0x5a199c(0x4a3)+_0x5a199c(0x8ad)+_0x5a199c(0x892)+_0x5a199c(0xb73)+_0x5a199c(0x426)+_0x5a199c(0x448)+'rder-c'+_0x5a199c(0xbb9)+_0x5a199c(0xa34)+_0x5a199c(0x4ff)+_0x5a199c(0xbc9)+_0x5a199c(0xa88)+_0x5a199c(0x2c2)+_0x5a199c(0xa2c)+_0x5a199c(0x92d)+_0x5a199c(0x4ae)+_0x5a199c(0x8dc)+_0x5a199c(0x645)+_0x5a199c(0x9b9)+_0x5a199c(0xae0)+_0x5a199c(0x513)+_0x5a199c(0x263)+'r-radi'+_0x5a199c(0x9fa)+_0x5a199c(0x31f)+_0x5a199c(0x78a)+'\x20\x20\x20\x20pa'+_0x5a199c(0x1f8)+_0x5a199c(0x9c8)+_0x5a199c(0xbd5)+_0x5a199c(0xbbc)+_0x5a199c(0x907)+'olor:v'+_0x5a199c(0x808)+_0x5a199c(0x33b)+'\x20.poin'+_0x5a199c(0x2f7)+_0x5a199c(0x1c9)+_0x5a199c(0x8f5)+'r(--go'+_0x5a199c(0xa05)+'rgin:0'+_0x5a199c(0x700)+'}\x0a\x20\x20.p'+'oint-c'+_0x5a199c(0x47e))+(_0x5a199c(0x497)+'argin:'+_0x5a199c(0x52c)+'color:'+'var(--'+_0x5a199c(0x561)+_0x5a199c(0xac2)+_0x5a199c(0x9dd)+_0x5a199c(0x77e)+'\x20.poin'+_0x5a199c(0x2f7)+_0x5a199c(0x795)+_0x5a199c(0xaf1)+'r:var('+_0x5a199c(0x9ad)+'-dim)}'+_0x5a199c(0xa2e)+'int-ca'+_0x5a199c(0x399)+'shi-bo'+'x\x20.sec'+_0x5a199c(0xb45)+':var(-'+_0x5a199c(0x59a)+_0x5a199c(0x34d)+_0x5a199c(0x976)+_0x5a199c(0xa0c)+_0x5a199c(0x7ff)+_0x5a199c(0xad9)+_0x5a199c(0xb6a)+_0x5a199c(0xae0)+_0x5a199c(0x3c6)+_0x5a199c(0x4ee)+_0x5a199c(0x788)+_0x5a199c(0x2e7)+_0x5a199c(0x6c9)+_0x5a199c(0x36f)+_0x5a199c(0x4d6)+_0x5a199c(0x320)+_0x5a199c(0x7ba)+_0x5a199c(0x300)+'ow:aut'+_0x5a199c(0x6c1)+_0x5a199c(0xa2c)+_0x5a199c(0x92d)+_0x5a199c(0x4ae)+'-line)'+_0x5a199c(0x263)+_0x5a199c(0x50d)+'us:var'+_0x5a199c(0x31f)+'ius-sm'+_0x5a199c(0x31e)+_0x5a199c(0x7c1)+'i{bord'+_0x5a199c(0x5fa)+_0x5a199c(0x8fa)+'collap'+_0x5a199c(0x9fb)+_0x5a199c(0x59e)+_0x5a199c(0x59d)+_0x5a199c(0x203)+'13px}\x0a'+_0x5a199c(0x6a5)+'e.zi\x20t'+_0x5a199c(0x202)+_0x5a199c(0x2c0)+_0x5a199c(0x2c2)+_0x5a199c(0xa2c)+_0x5a199c(0x92d)+_0x5a199c(0x4ae)+_0x5a199c(0x8dc)+_0x5a199c(0x47d)+_0x5a199c(0x965)+_0x5a199c(0x928)+_0x5a199c(0x244)+_0x5a199c(0x460)+'nter;c'+_0x5a199c(0xbb9)+_0x5a199c(0x808)+_0x5a199c(0xb7c)+'ite-sp'+_0x5a199c(0x5c9)+_0x5a199c(0x65e)+'\x20\x20tabl'+_0x5a199c(0x2c0)+_0x5a199c(0xa78)+_0x5a199c(0x369)+_0x5a199c(0x8ad)+'-ink-2'+_0x5a199c(0x9b0)+'r:var('+'--gold'+_0x5a199c(0x9c6)+'tion:s'+_0x5a199c(0x725)+_0x5a199c(0x66b)+_0x5a199c(0x602)+'动画演示：原'+_0x5a199c(0x79e)+'画（动画\x20W'+_0x5a199c(0x941)+'本经真人穴位'+_0x5a199c(0x62e)+_0x5a199c(0x521)+_0x5a199c(0x1bf)+'isplay'+':flex;'+_0x5a199c(0x40c)+_0x5a199c(0x2d6)+_0x5a199c(0x674)+_0x5a199c(0x208)+_0x5a199c(0x28a)+_0x5a199c(0x3ac)+'im-sta'+_0x5a199c(0x28e)+_0x5a199c(0x516)+_0x5a199c(0x7a4)+'stify-'+'conten'+'t:cent'+_0x5a199c(0x6f1)+'.jl-an'+_0x5a199c(0xa6c)+'-width'+_0x5a199c(0x401)+_0x5a199c(0x73c)+_0x5a199c(0x381)+_0x5a199c(0x44e)+_0x5a199c(0x925)+_0x5a199c(0x877)+_0x5a199c(0xacb)+_0x5a199c(0x9a2)+_0x5a199c(0x263)+_0x5a199c(0x586)+'solid\x20'+_0x5a199c(0xae0)+'line);'+_0x5a199c(0xb95)+_0x5a199c(0x2fd)+'und:#0'+'B0B10;'+_0x5a199c(0x6f8)+_0x5a199c(0xad7)+_0x5a199c(0xafd)+_0x5a199c(0x8e2)+'{margi'+_0x5a199c(0x891)+_0x5a199c(0x40b)+_0x5a199c(0x481)+_0x5a199c(0x852)+_0x5a199c(0x722)+_0x5a199c(0xb22)+'px;fon'+_0x5a199c(0x510)+'ht:700'+_0x5a199c(0x4a3)+':var(-'+_0x5a199c(0x55c)+_0x5a199c(0x7d5)+_0x5a199c(0x2b3)+_0x5a199c(0x700)+';\x0a\x20\x20\x20\x20'+_0x5a199c(0x877)+_0x5a199c(0xa8c)+_0x5a199c(0x523)+_0x5a199c(0x7f9))+('ed\x20var'+_0x5a199c(0xaef)+_0x5a199c(0x24d)+'ding-b'+_0x5a199c(0x336)+_0x5a199c(0xa67)+'\x20'),_0x558eda=document[_0x5a199c(0x2dc)+_0x5a199c(0x3b2)+'t'](_0x5a199c(0x913));_0x558eda[_0x5a199c(0x2d2)+_0x5a199c(0x6b6)]=_0x5f5858,document[_0x5a199c(0x759)]['append'+_0x5a199c(0x692)](_0x558eda);const _0x4c5254=(_0x458b14,_0x4f1378)=>(_0x4f1378||document)[_0x5a199c(0x94e)+_0x5a199c(0x813)+'r'](_0x458b14),_0xe0819d=(_0x4bfb97,_0xaa8388,_0x231781)=>{const _0x2264fe=_0x5a199c,_0x23a0f1=document[_0x2264fe(0x2dc)+'Elemen'+'t'](_0x4bfb97);if(_0xaa8388)_0x23a0f1['classN'+_0x2264fe(0x3c9)]=_0xaa8388;if(_0x231781!=null)_0x23a0f1[_0x2264fe(0x225)+_0x2264fe(0xb50)]=_0x231781;return _0x23a0f1;};function _0x1a0f02(_0x115fd2){const _0x2a03ee=_0x5a199c,_0x5b1e39={'yxykb':function(_0x97844e,_0x262f68){return _0x97844e===_0x262f68;},'KhZTX':_0xa67dec[_0x2a03ee(0x752)]};return new Promise((_0x5ae633,_0x28409e)=>{const _0x12231f=_0x2a03ee;if(_0x5b1e39[_0x12231f(0x28b)](_0x5b1e39[_0x12231f(0x784)],_0x12231f(0x9ae)))return!!(_0x280ee4&&_0x3672af['subs']&&_0x5ce9ce['subs'][_0x12231f(0x6b7)]);else fetch(_0x115fd2)['then'](_0x5a6280=>_0x5a6280[_0x12231f(0x463)]())[_0x12231f(0x493)](_0x5ae633)[_0x12231f(0x9f5)](_0x28409e);});}function _0x453737(_0x470f71){const _0x5a66a6=_0x5a199c;return(_0x470f71==null?'':String(_0x470f71))[_0x5a66a6(0x582)+'e'](/[&<>]/g,_0x3a52f6=>({'&':_0x5a66a6(0x271),'<':'&lt;','>':_0x5a66a6(0x620)}[_0x3a52f6]));}function _0x369223(_0xe22a86){const _0x4a440f=_0x5a199c;if(_0xa67dec['TTfDF'](_0xa67dec[_0x4a440f(0x609)],_0x4a440f(0xb72)))return _0xa67dec['QMqsM'](_0x453737,_0xe22a86)[_0x4a440f(0x582)+'e'](/\r?\n/g,_0xa67dec[_0x4a440f(0xbd3)]);else{const _0x4bbbe6={'NYRWG':_0x4a440f(0x85a)+_0x4a440f(0x41f),'kJVyy':_0xa67dec[_0x4a440f(0x7d9)],'MonJg':function(_0x2e46c2,_0x3d33f8){return _0xa67dec['miUKe'](_0x2e46c2,_0x3d33f8);}},_0x5aa0d8=_0x124680['items']||[];_0x2d3fe2['innerH'+'TML']='',_0x5aa0d8[_0x4a440f(0x1e7)+'h'](_0x1c547b=>{const _0x158ff2=_0x4a440f,_0x3a6146=_0x731a10('li',_0x4bbbe6[_0x158ff2(0x482)],_0x4bbbe6[_0x158ff2(0x524)](_0x2534fc,_0x1c547b[_0x158ff2(0xab0)]));_0x3a6146['onclic'+'k']=()=>{const _0x433318=_0x158ff2;[..._0x17f872[_0x433318(0x94e)+'electo'+_0x433318(0x343)](_0x4bbbe6[_0x433318(0x297)])][_0x433318(0x1e7)+'h'](_0x19de44=>_0x19de44[_0x433318(0x26e)+_0x433318(0x56a)]['remove'](_0x433318(0x7ee)+_0x433318(0x884))),_0x3a6146[_0x433318(0x26e)+_0x433318(0x56a)][_0x433318(0x511)]('active'+_0x433318(0x884)),_0x15d4d2(_0x1c547b['no'],_0x1c547b[_0x433318(0xab0)]);},_0x5e968a[_0x158ff2(0x4cf)+_0x158ff2(0x692)](_0x3a6146);}),_0x31ab8c[_0x4a440f(0x225)+_0x4a440f(0xb50)]=_0xa67dec[_0x4a440f(0x6cb)](_0xa67dec[_0x4a440f(0x6cb)](_0xa67dec[_0x4a440f(0x6cb)](_0xa67dec[_0x4a440f(0x383)],_0x4a440f(0x3fd)+_0x4a440f(0x1ac)+_0x4a440f(0x530)+_0x4a440f(0x48d))+_0x3e6670['no'],'篇\x20')+_0xa67dec[_0x4a440f(0x534)](_0x4b15b3,_0x4ae82d[_0x4a440f(0xab0)]),'（')+_0x5aa0d8[_0x4a440f(0x6b7)]+_0xa67dec[_0x4a440f(0x446)],_0x33489a[_0x4a440f(0x225)+_0x4a440f(0xb50)]=_0x4a440f(0x61e)+'lass=\x27'+_0x4a440f(0x7e4)+_0x4a440f(0x646)+_0x5aa0d8[_0x4a440f(0x6b7)]+_0xa67dec[_0x4a440f(0x921)];}}const _0x11d782=_0xa67dec['QGLfC'](_0x4c5254,_0xa67dec[_0x5a199c(0xaec)]),_0x5cdf49=_0x4c5254(_0xa67dec[_0x5a199c(0xa47)]),_0x519d11=_0x4c5254(_0xa67dec[_0x5a199c(0x7c7)]),_0x36960e=_0xa67dec['RbhXp'](_0x4c5254,'#resul'+_0x5a199c(0x65f)),_0x172194=_0x4c5254(_0xa67dec[_0x5a199c(0xaf8)]),_0x20ce8e=_0xa67dec[_0x5a199c(0x61b)](_0x4c5254,_0xa67dec[_0x5a199c(0x4a2)]),_0x49e18e=_0xa67dec['ekgKD'](_0x4c5254,_0xa67dec[_0x5a199c(0x979)]);let _0x41985d=[],_0x1c5e11=null,_0x1851f0=null;const _0x1f1df1=['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];function _0x3b0e82(){const _0x12768c=_0x5a199c;[..._0x11d782[_0x12768c(0x94e)+_0x12768c(0x813)+'rAll'](_0x12768c(0x3f1)+_0x12768c(0x97e)+'pen')][_0x12768c(0x1e7)+'h'](_0x8c581f=>_0x8c581f[_0x12768c(0x26e)+_0x12768c(0x56a)][_0x12768c(0x1b0)]('open'));}document[_0x5a199c(0x3a3)+_0x5a199c(0x5c1)+_0x5a199c(0x256)](_0xa67dec[_0x5a199c(0x7f6)],_0x3b0e82);function _0x17d75f(_0x2435d1){const _0x1d4f04=_0x5a199c;return!!(_0x2435d1&&_0x2435d1[_0x1d4f04(0xb2a)]&&_0x2435d1[_0x1d4f04(0xb2a)][_0x1d4f04(0x6b7)]);}function _0xa2614d(){const _0x23d988=_0x5a199c,_0x4ac78e={'TVoII':_0x23d988(0x990),'fiBCD':_0xa67dec[_0x23d988(0x842)],'KXIpS':_0xa67dec[_0x23d988(0x496)],'MRpoU':_0xa67dec[_0x23d988(0xac9)],'WYYMF':_0x23d988(0xa93)+'f','ozXvv':_0x23d988(0x837)+'f','ypmCM':_0x23d988(0x2da)+'c','TZDBn':_0xa67dec[_0x23d988(0x9d8)],'bUACx':_0xa67dec[_0x23d988(0xa85)],'WofjV':_0x23d988(0x560)+'7','GaHYD':_0xa67dec[_0x23d988(0x5af)],'gYShx':_0xa67dec[_0x23d988(0x3b0)],'XpmNL':_0xa67dec[_0x23d988(0x35c)],'yWvlZ':_0xa67dec[_0x23d988(0x356)],'YtyES':_0xa67dec[_0x23d988(0xad6)],'uOgcm':_0x23d988(0x204)+_0x23d988(0x5e8)+_0x23d988(0x1d9)+_0x23d988(0xab4)+'\x27\x20y=\x277'+_0x23d988(0x233)+_0x23d988(0x74a)+_0x23d988(0x552)+_0x23d988(0x7f4)+_0x23d988(0xa97)+_0x23d988(0x7f3)+_0x23d988(0x204)+_0x23d988(0x5e8)+_0x23d988(0x1d9)+_0x23d988(0x6d6)+_0x23d988(0x5c0)+_0x23d988(0xb46)+'dth=\x272'+_0x23d988(0x67b)+_0x23d988(0xa57)+_0x23d988(0xa10)+_0x23d988(0x49d)+'>','eZBvZ':_0x23d988(0xb4b),'uCfjz':function(_0x5aa06b,_0x3c30d6){return _0x5aa06b+_0x3c30d6;},'jcMnW':_0xa67dec['FGvih'],'ZJYNp':function(_0x15c87e,_0x11997b){return _0x15c87e(_0x11997b);},'bwhDf':_0x23d988(0x366),'CyEbB':function(_0x4f79c2,_0x23dfc9){return _0x4f79c2===_0x23dfc9;},'dNNXj':function(_0x541d0b,_0x2025a7){return _0x541d0b(_0x2025a7);},'JvVip':_0xa67dec[_0x23d988(0x955)],'LpklW':_0xa67dec[_0x23d988(0x7e0)],'kRyTQ':_0xa67dec[_0x23d988(0xa9f)],'sGIlt':function(_0x47b2f7,_0x193964){const _0x18594e=_0x23d988;return _0xa67dec[_0x18594e(0xa49)](_0x47b2f7,_0x193964);},'cVjSJ':_0xa67dec[_0x23d988(0x5c7)],'ALnpn':function(_0x44000a,_0xb30199){return _0x44000a+_0xb30199;},'buMxQ':_0x23d988(0x61e)+_0x23d988(0xaaf)+_0x23d988(0x801)+_0x23d988(0x285)+_0x23d988(0x569)+_0x23d988(0x542)+'\x27>','VhlxH':_0x23d988(0xb4b)+_0x23d988(0x61e)+'lass=\x27'+'val\x27>','NXDnX':function(_0x5de1f8,_0x232ffe){const _0x538307=_0x23d988;return _0xa67dec[_0x538307(0x534)](_0x5de1f8,_0x232ffe);},'XWFZx':_0xa67dec['dfcwS']};if(_0xa67dec[_0x23d988(0x905)](_0x23d988(0xb81),_0x23d988(0xb81)))_0x11d782[_0x23d988(0x225)+_0x23d988(0xb50)]='',_0x41985d[_0x23d988(0x1e7)+'h'](_0x2094a1=>{const _0xf0b604=_0x23d988,_0x253430={'eXgVM':_0xf0b604(0x6c3)+_0xf0b604(0xb93)+_0xf0b604(0x7c6),'JujBX':_0xf0b604(0x564)+_0xf0b604(0x1b5)+_0xf0b604(0x3a4)+_0xf0b604(0x987),'JrCqZ':function(_0x51124f,_0x72db2a){const _0xab4d9d=_0xf0b604;return _0xa67dec[_0xab4d9d(0x668)](_0x51124f,_0x72db2a);},'zDOlu':function(_0x1d0b2c,_0x221f57){const _0x31b1c9=_0xf0b604;return _0xa67dec[_0x31b1c9(0x6cb)](_0x1d0b2c,_0x221f57);},'ugPVo':_0xf0b604(0x6c5)+_0xf0b604(0x670)+_0xf0b604(0x790)+'\x20','ojiKy':_0xa67dec[_0xf0b604(0x4b3)],'mwlBD':_0xa67dec[_0xf0b604(0x915)],'hwiNA':function(_0x742f80,_0x3b8f19){return _0x742f80===_0x3b8f19;},'bPxig':function(_0x3cb314,_0x224941,_0x5a9b39,_0x53db2e){return _0x3cb314(_0x224941,_0x5a9b39,_0x53db2e);},'BMHlX':_0xa67dec[_0xf0b604(0x4d0)],'SEssc':function(_0x1524c7,_0x5161a4){return _0x1524c7(_0x5161a4);},'OAivC':function(_0x19ff9e,_0x4c7e6f,_0x2902cd){const _0x508b33=_0xf0b604;return _0xa67dec[_0x508b33(0x66a)](_0x19ff9e,_0x4c7e6f,_0x2902cd);},'KVGhn':function(_0x18ef01,_0x1ad4c8){return _0xa67dec['dYvhD'](_0x18ef01,_0x1ad4c8);},'cgBtG':_0xa67dec[_0xf0b604(0x77d)]};if(_0xf0b604(0x79a)===_0xa67dec[_0xf0b604(0x575)]){_0x3f4dda[_0xf0b604(0x225)+_0xf0b604(0xb50)]='';const _0x1af342=_0x50704f[_0xf0b604(0x8e9)]===_0x4ac78e[_0xf0b604(0xb0a)]?_0x40a872:_0xbe0313,_0x381460=[_0x4ac78e[_0xf0b604(0x313)],_0x4ac78e[_0xf0b604(0x6ea)],_0x4ac78e[_0xf0b604(0x88b)],_0x4ac78e['WYYMF'],_0x4ac78e['ozXvv'],_0x4ac78e['ypmCM'],_0x4ac78e['TZDBn'],_0x4ac78e['bUACx'],_0x4ac78e['WofjV'],_0xf0b604(0x4cb)+'d',_0x4ac78e[_0xf0b604(0x1cb)],_0x4ac78e[_0xf0b604(0x5e2)],'#ff70a'+'6',_0xf0b604(0x84a)+'4',_0x4ac78e[_0xf0b604(0x8b3)],'#90be6'+'d',_0x4ac78e[_0xf0b604(0x6ec)],_0xf0b604(0xa9b)+'0'];let _0xbde00c=_0xf0b604(0x379)+_0xf0b604(0xaaf)+_0xf0b604(0x871)+_0xf0b604(0x8c7)+_0xf0b604(0x38b)+_0xf0b604(0x9eb)+_0xf0b604(0xa11)+_0xf0b604(0x434)+_0xf0b604(0x450)+'idth:1'+'00%;ma'+_0xf0b604(0x838)+_0xf0b604(0xb34)+_0xf0b604(0x709);_0xbde00c+=_0x4ac78e[_0xf0b604(0x7fd)],_0xbde00c+=_0x4ac78e[_0xf0b604(0x4be)],_0xbde00c+=_0xf0b604(0x204)+_0xf0b604(0x5e8)+'\x27body\x27'+_0xf0b604(0x834)+'\x27\x20y=\x272'+_0xf0b604(0x60d)+_0xf0b604(0x741)+_0xf0b604(0xa5c)+_0xf0b604(0xa57)+_0xf0b604(0x570)+_0xf0b604(0xb9a)+_0xf0b604(0x204)+_0xf0b604(0x5e8)+_0xf0b604(0x1d9)+_0xf0b604(0xac1)+_0xf0b604(0x377)+_0xf0b604(0x387)+_0xf0b604(0x293)+_0xf0b604(0xa37)+_0xf0b604(0x5aa)+_0xf0b604(0x875)+'x=\x278\x27/'+_0xf0b604(0xa58)+'>';let _0x52d0d3=_0xf0b604(0x61e)+_0xf0b604(0xaaf)+'mer-fi'+'lter\x27>';_0x1af342[_0xf0b604(0x1e7)+'h']((_0x7949da,_0x56cb28)=>{const _0xa08b50=_0xf0b604;_0x52d0d3+=_0x253430[_0xa08b50(0x323)]+_0x7949da+_0x253430[_0xa08b50(0x961)]+_0x381460[_0x56cb28%_0x381460[_0xa08b50(0x6b7)]]+'\x27>'+_0x7949da+(_0xa08b50(0x19c)+_0xa08b50(0x756));}),_0x52d0d3+=_0x4ac78e[_0xf0b604(0x4d8)],_0x746e59[_0xf0b604(0x225)+_0xf0b604(0xb50)]=_0x52d0d3;const _0x220a01=_0xa1ae9c['group']===_0x4ac78e['TVoII']?_0x446549:_0x5e3d6e;_0x573b7c[_0xf0b604(0x225)+_0xf0b604(0xb50)]=_0x4ac78e[_0xf0b604(0x355)](_0x4ac78e['jcMnW']+_0x4ac78e[_0xf0b604(0x52f)](_0x32c720,_0x220a01),_0xf0b604(0xb4b)),_0x171111[_0xf0b604(0x94e)+_0xf0b604(0x813)+'rAll']('button')[_0xf0b604(0x1e7)+'h'](_0x361055=>{const _0x2f8276=_0xf0b604;_0x361055[_0x2f8276(0x8e5)+'k']=()=>_0x2092da(_0x361055['getAtt'+_0x2f8276(0x7f2)](_0x2f8276(0x2c7)),_0x381460,_0x1af342);});}else{const _0x36a40e=_0xa67dec[_0xf0b604(0x924)](_0xe0819d,_0xa67dec[_0xf0b604(0x4d0)],_0xa67dec[_0xf0b604(0xaba)](_0xf0b604(0x5c5)+_0xf0b604(0xa71),_0xa67dec[_0xf0b604(0xaa8)](_0x2094a1,_0x1c5e11)?_0xa67dec[_0xf0b604(0x5e5)]:''));_0x36a40e[_0xf0b604(0x225)+_0xf0b604(0xb50)]=_0xa67dec['yJWPj'](_0xa67dec[_0xf0b604(0x7b8)](_0xa67dec['QMqsM'](_0x453737,_0x2094a1['name']),_0xa67dec['CGrdz']),_0x2094a1[_0xf0b604(0x378)])+(_0xf0b604(0xa1a)+'n>');const _0x40746f=_0xa67dec[_0xf0b604(0x1c7)](_0xe0819d,'div',_0xf0b604(0x5c5)+_0xf0b604(0xb39)+'wn'),_0x5abf39=_0x472313=>(_0x472313||[])[_0xf0b604(0x1e7)+'h'](_0x231337=>{const _0x2df061=_0xf0b604,_0x5cefb0={'vnyjp':function(_0x46067c,_0xf61ee7){const _0x4c0741=a0_0x2474;return _0x253430[_0x4c0741(0xbe6)](_0x46067c,_0xf61ee7);},'pkTyZ':function(_0x94a0ec,_0x572221){return _0x94a0ec+_0x572221;},'VOEWv':_0x253430['ojiKy'],'oZTKP':_0x253430[_0x2df061(0x471)]};if(_0x253430[_0x2df061(0x4cc)](_0x2df061(0x958),'DsFDi')){if(_0x231337[_0x2df061(0xb2a)])_0x40746f[_0x2df061(0x4cf)+_0x2df061(0x692)](_0x253430[_0x2df061(0x742)](_0xe0819d,_0x253430[_0x2df061(0x810)],_0x2df061(0x5c5)+_0x2df061(0x418)+'up',_0x253430[_0x2df061(0xb33)](_0x453737,_0x231337['name']))),_0x5abf39(_0x231337[_0x2df061(0xb2a)]);else{const _0x55af23=_0x253430[_0x2df061(0xb37)](_0xe0819d,'div','board-'+_0x2df061(0x1e6)+'m');if(_0x253430[_0x2df061(0x828)](_0x231337,_0x1851f0))_0x55af23[_0x2df061(0x26e)+'ist'][_0x2df061(0x511)](_0x253430[_0x2df061(0xbdb)]);_0x55af23[_0x2df061(0x2d2)+'ntent']=_0x231337['name'],_0x55af23[_0x2df061(0x8e5)+'k']=_0x50bdf9=>{const _0x374e0c=_0x2df061,_0x5dd1d1={'AjECi':function(_0x46a6ba,_0x159eb3){return _0x5cefb0['vnyjp'](_0x46a6ba,_0x159eb3);},'RzbQo':function(_0x17fa6c,_0x3270f7){return _0x5cefb0['pkTyZ'](_0x17fa6c,_0x3270f7);},'sdLop':function(_0x4a1219,_0x52c2e1){return _0x4a1219+_0x52c2e1;},'spgFq':'return'+_0x374e0c(0x670)+_0x374e0c(0x790)+'\x20','BUzyx':_0x5cefb0[_0x374e0c(0x93d)]};_0x5cefb0[_0x374e0c(0x436)]===_0x374e0c(0x63e)?_0x5fe139=ivuulU['AjECi'](_0x46e4a4,ivuulU['RzbQo'](ivuulU['sdLop'](ivuulU[_0x374e0c(0x6dd)],ivuulU['BUzyx']),');'))():(_0x50bdf9[_0x374e0c(0x32c)+_0x374e0c(0x48a)+_0x374e0c(0xb44)](),_0x5cefb0[_0x374e0c(0x461)](_0x19ba49,_0x231337));},_0x40746f[_0x2df061(0x4cf)+_0x2df061(0x692)](_0x55af23);}}else{let _0x20363a;try{_0x20363a=Kdxlay[_0x2df061(0xbe6)](_0x4ce13c,Kdxlay['zDOlu'](Kdxlay[_0x2df061(0x346)]+Kdxlay[_0x2df061(0x1b4)],');'))();}catch(_0x5f399d){_0x20363a=_0x274eac;}return _0x20363a;}});_0xa67dec[_0xf0b604(0xb75)](_0x5abf39,_0x2094a1['subs']),_0x36a40e[_0xf0b604(0x4cf)+_0xf0b604(0x692)](_0x40746f),_0x36a40e[_0xf0b604(0x8e5)+'k']=_0x244c07=>{const _0xd49ec4=_0xf0b604,_0x501314={'cTQlD':_0xd49ec4(0x307)+'ans','sgISg':function(_0x34e132,_0x2f98e8){const _0x4a1a1e=_0xd49ec4;return _0x4ac78e[_0x4a1a1e(0x52f)](_0x34e132,_0x2f98e8);},'egXbK':_0x4ac78e[_0xd49ec4(0x453)],'zYGRj':function(_0x3df1cc,_0x51ae4a){return _0x4ac78e['CyEbB'](_0x3df1cc,_0x51ae4a);},'wHwzc':_0xd49ec4(0x715),'EtkSP':function(_0x517886,_0x3116d3){const _0x20cac0=_0xd49ec4;return _0x4ac78e[_0x20cac0(0x588)](_0x517886,_0x3116d3);},'dOqWz':_0x4ac78e[_0xd49ec4(0xa52)],'cXAdg':'animat'+_0xd49ec4(0xb44),'BUaaI':function(_0x1b22f4,_0x3a1317){return _0x1b22f4===_0x3a1317;},'FQaKA':_0x4ac78e['LpklW']};if(_0x4ac78e[_0xd49ec4(0x465)](_0xd49ec4(0x2a3),_0x4ac78e[_0xd49ec4(0x912)])){_0x244c07[_0xd49ec4(0x32c)+_0xd49ec4(0x48a)+_0xd49ec4(0xb44)]();const _0x3dc170=_0x36a40e['classL'+_0xd49ec4(0x56a)][_0xd49ec4(0x970)+'ns'](_0xd49ec4(0x5fb));_0x3b0e82();if(!_0x17d75f(_0x2094a1)){_0x4ac78e[_0xd49ec4(0x588)](_0xc1e264,_0x2094a1);return;}if(_0x3dc170)return;_0x4ac78e[_0xd49ec4(0x39e)](_0x2094a1,_0x1c5e11)&&(_0x1c5e11=_0x2094a1,[..._0x11d782['childr'+'en']][_0xd49ec4(0x1e7)+'h'](_0x310b56=>_0x310b56['classL'+'ist'][_0xd49ec4(0x1b0)](_0xd49ec4(0x7ee))),_0x36a40e[_0xd49ec4(0x26e)+_0xd49ec4(0x56a)]['add'](_0xd49ec4(0x7ee))),_0x36a40e['classL'+_0xd49ec4(0x56a)]['add'](_0x4ac78e[_0xd49ec4(0x799)]);}else{_0x19b21a(![]),_0x4b18b8(),_0x3213a2[_0xd49ec4(0x225)+_0xd49ec4(0xb50)]='',_0x2f67b2[_0xd49ec4(0x225)+_0xd49ec4(0xb50)]=_0xd49ec4(0x61e)+_0xd49ec4(0xaaf)+'hint\x27>'+_0xd49ec4(0x77f)+'菜单选择子模'+'块，点击条目'+_0xd49ec4(0x2f2)+_0xd49ec4(0x880);const _0x178576=_0x364dfd[_0xd49ec4(0x849)];if(_0x178576===_0x501314[_0xd49ec4(0x62d)])return _0x5e56db(_0x42bc66);if(_0x178576===_0xd49ec4(0x8c0))return _0x501314[_0xd49ec4(0xb91)](_0x4d4009,_0x352b6e);if(_0x178576===_0x501314[_0xd49ec4(0x1fb)])return _0x4f8914(_0xe21c2);if(_0x501314[_0xd49ec4(0x812)](_0x178576,_0x501314['wHwzc']))return _0x501314[_0xd49ec4(0x2cd)](_0x280f35,_0x2c0e1c);if(_0x178576==='ziwwu_'+_0xd49ec4(0x61c))return _0x501314[_0xd49ec4(0xb91)](_0x15bc43,_0x2dffcd);if(_0x501314[_0xd49ec4(0x812)](_0x178576,_0xd49ec4(0x5bb)+'g_meth'+'od'))return _0x501314[_0xd49ec4(0xb91)](_0x5022d0,_0x294378);if(_0x501314['zYGRj'](_0x178576,_0x501314[_0xd49ec4(0x716)]))return _0x501314[_0xd49ec4(0xb91)](_0x4e72ec,_0x180915);if(_0x501314['zYGRj'](_0x178576,'tool'))return _0x501314[_0xd49ec4(0x2cd)](_0x485f1a,_0x40de5a);if(_0x178576===_0x501314[_0xd49ec4(0x350)])return _0x25547a(_0x316ffc);if(_0x501314['BUaaI'](_0x178576,_0x501314[_0xd49ec4(0x86c)]))return _0x49b184(_0x5191cb);}},_0x11d782[_0xf0b604(0x4cf)+_0xf0b604(0x692)](_0x36a40e);}});else return _0x4ac78e[_0x23d988(0x830)](_0x4ac78e['buMxQ']+_0x351c9b+_0x4ac78e[_0x23d988(0x967)]+_0x4ac78e[_0x23d988(0xab3)](_0x4ca3ad,_0x45db1d),_0x4ac78e['XWFZx']);}function _0x19ba8c(_0x8159ec,_0x814190){const _0x1264f9=_0x5a199c;if(_0xa67dec[_0x1264f9(0x9f4)](_0x1264f9(0x98d),_0x1264f9(0x273))){_0x1c5e11=_0x8159ec,_0x1851f0=null,_0xa2614d();if(!_0xa67dec[_0x1264f9(0x623)](_0x17d75f,_0x8159ec)){if(_0x8159ec[_0x1264f9(0x849)])_0xa67dec['nFmCr'](_0xc1e264,_0x8159ec);return;}if(_0x814190){const _0x284712=_0xa67dec[_0x1264f9(0x2e5)](_0x17d9f9,_0x8159ec);if(_0x284712)_0x19ba49(_0x284712);}}else{const _0x4a8e8c=_0x56eebc['create'+'Elemen'+'t'](_0x31f0ad);if(_0x1a6e31)_0x4a8e8c[_0x1264f9(0x73e)+_0x1264f9(0x3c9)]=_0x311320;if(_0xd9e76!=null)_0x4a8e8c[_0x1264f9(0x225)+'TML']=_0x398938;return _0x4a8e8c;}}function _0x17d9f9(_0x48aa66){const _0x552369=_0x5a199c,_0x243c5d={'gPdDq':_0xa67dec[_0x552369(0xa53)]};for(const _0x1e4073 of _0x48aa66['subs']||[]){if(_0x552369(0xa51)!==_0x552369(0x388)){if(_0x1e4073[_0x552369(0xb2a)]){const _0x31a2dd=_0xa67dec[_0x552369(0x947)](_0x17d9f9,{'subs':_0x1e4073[_0x552369(0xb2a)]});if(_0x31a2dd)return _0x31a2dd;}else return _0x1e4073;}else _0x461aa6+=_0x243c5d[_0x552369(0x7d3)],_0x27bf70[_0x552369(0x1e7)+'h'](_0x2cfd91=>_0x21c828+=_0x552369(0x286)+_0x132925(_0x2cfd91)+'</td>'),_0x1a7d8c+='</tr>';}return null;}function _0x40abf7(_0x1660a9){const _0x34d740=_0x5a199c,_0x3ee7f1=document[_0x34d740(0x94e)+'electo'+'r']('.worka'+_0x34d740(0x7a8));if(_0x3ee7f1)_0x3ee7f1[_0x34d740(0x26e)+_0x34d740(0x56a)][_0x34d740(0x8b1)](_0xa67dec['Daekt'],!!_0x1660a9);const _0x4a150e=_0xa67dec[_0x34d740(0x814)](_0x4c5254,_0xa67dec[_0x34d740(0x394)]);if(_0x4a150e)_0x4a150e['style'][_0x34d740(0x6f8)+'y']=_0x1660a9?_0x34d740(0x846):'';}function _0xc1e264(_0x368504){const _0x227a6d=_0x5a199c;_0x1c5e11=_0x368504,_0x1851f0=null,[..._0x11d782[_0x227a6d(0x56b)+'en']][_0x227a6d(0x1e7)+'h'](_0x589126=>_0x589126[_0x227a6d(0x26e)+_0x227a6d(0x56a)][_0x227a6d(0x1b0)]('active'));const _0x474a31=[..._0x11d782[_0x227a6d(0x56b)+'en']][_0x227a6d(0x973)](_0x30f6ce=>_0x30f6ce[_0x227a6d(0x2d2)+_0x227a6d(0x6b6)]['indexO'+'f'](_0x368504[_0x227a6d(0xab0)])===0x0);if(_0x474a31)_0x474a31[_0x227a6d(0x26e)+_0x227a6d(0x56a)][_0x227a6d(0x511)](_0xa67dec[_0x227a6d(0x77d)]);_0x5cdf49[_0x227a6d(0x225)+_0x227a6d(0xb50)]=_0xa67dec['VkqjK'](_0x227a6d(0x664)+_0x453737(_0x368504[_0x227a6d(0xab0)])+_0xa67dec[_0x227a6d(0x637)],_0xa67dec[_0x227a6d(0x2e5)](_0x453737,_0x368504[_0x227a6d(0xa9c)]||''))+_0xa67dec[_0x227a6d(0x2f5)],_0x519d11[_0x227a6d(0x913)][_0x227a6d(0x6f8)+'y']=_0xa67dec[_0x227a6d(0x3b9)],_0x49e18e[_0x227a6d(0x225)+_0x227a6d(0xb50)]='',_0x20ce8e[_0x227a6d(0x225)+_0x227a6d(0xb50)]='',_0xa67dec[_0x227a6d(0xadf)](_0x2d3754),[..._0x11d782['queryS'+_0x227a6d(0x813)+_0x227a6d(0x343)](_0xa67dec[_0x227a6d(0x47a)])]['forEac'+'h'](_0x420ff8=>_0x420ff8[_0x227a6d(0x26e)+_0x227a6d(0x56a)][_0x227a6d(0x1b0)](_0x227a6d(0x7ee)));if(_0xa67dec[_0x227a6d(0x905)](_0x368504[_0x227a6d(0x849)],_0xa67dec[_0x227a6d(0xa96)]))return _0x40abf7(!![]),_0x3d5ec7();if(_0x368504[_0x227a6d(0x849)]===_0x227a6d(0xbd0)+_0x227a6d(0xb7b))return _0xa67dec[_0x227a6d(0xb8a)](_0x40abf7,!![]),_0x302cde();_0xa67dec[_0x227a6d(0x668)](_0x40abf7,![]),_0x172194[_0x227a6d(0x225)+_0x227a6d(0xb50)]=_0xa67dec[_0x227a6d(0x714)];}function _0x19ba49(_0x4c6ec6){const _0x38e3a4=_0x5a199c;_0xa67dec['daEBc']!==_0x38e3a4(0x501)?(_0xa67dec[_0x38e3a4(0x9d5)](_0x627140,'#pnDat'+'e')[_0x38e3a4(0x2bd)]=_0xa67dec[_0x38e3a4(0x6e6)](_0xa67dec[_0x38e3a4(0x2af)](_0xa67dec[_0x38e3a4(0x1b8)](_0x12f940['y'],'-')+_0xa67dec[_0x38e3a4(0x7ef)](_0x276e1b,_0x49de60['m'])[_0x38e3a4(0x7af)+'rt'](0x2,'0'),'-'),_0x56805f(_0x185167['d'])['padSta'+'rt'](0x2,'0')),_0x12668e(_0xa67dec[_0x38e3a4(0xa13)])[_0x38e3a4(0x2bd)]=_0xfc177d(_0x4f88d5['hb']),_0xa67dec[_0x38e3a4(0x9f2)](_0xc77976)):(_0x1851f0=_0x4c6ec6,_0x5cdf49['innerH'+_0x38e3a4(0xb50)]=_0xa67dec['LsWWd']('<h2>'+_0x453737(_0x4c6ec6['name'])+('</h2><'+_0x38e3a4(0xac6)+_0x38e3a4(0xb3a)+'nd-sub'+'\x27>')+_0xa67dec['lXjZp'](_0x453737,_0x4c6ec6['desc']||''),'</p>'),_0x519d11[_0x38e3a4(0x913)][_0x38e3a4(0x6f8)+'y']='none',_0x49e18e[_0x38e3a4(0x225)+_0x38e3a4(0xb50)]='',_0x20ce8e[_0x38e3a4(0x225)+_0x38e3a4(0xb50)]='',[..._0x11d782[_0x38e3a4(0x94e)+_0x38e3a4(0x813)+_0x38e3a4(0x343)](_0xa67dec[_0x38e3a4(0x47a)])][_0x38e3a4(0x1e7)+'h'](_0x45ebeb=>_0x45ebeb[_0x38e3a4(0x26e)+_0x38e3a4(0x56a)]['toggle'](_0x38e3a4(0x7ee),_0x45ebeb[_0x38e3a4(0x2d2)+_0x38e3a4(0x6b6)][_0x38e3a4(0x749)]()===_0x4c6ec6[_0x38e3a4(0xab0)])),_0xa67dec[_0x38e3a4(0x61b)](_0x1d6e92,_0x4c6ec6),_0xa67dec[_0x38e3a4(0x4c7)](_0x3b0e82));}function _0x1d6e92(_0x381970){const _0x259f75=_0x5a199c,_0x2c5953={'PTxoi':function(_0x3b3b0c,_0x4914d0,_0x4e4a73,_0x44ea6d){return _0x3b3b0c(_0x4914d0,_0x4e4a73,_0x44ea6d);},'pSOFW':function(_0xaed6e5,_0xd71a7e){const _0xffe8b1=a0_0x2474;return _0xa67dec[_0xffe8b1(0xaba)](_0xaed6e5,_0xd71a7e);},'BuMrh':function(_0x5710f8,_0x2a4039){const _0x24b5c5=a0_0x2474;return _0xa67dec[_0x24b5c5(0x2af)](_0x5710f8,_0x2a4039);},'doLJS':function(_0x53ca68,_0x381343){return _0x53ca68+_0x381343;},'PQjCz':function(_0x33aef1,_0x2301ba){const _0x2e7827=a0_0x2474;return _0xa67dec[_0x2e7827(0x599)](_0x33aef1,_0x2301ba);},'VQHlC':function(_0x3953b1,_0x57822c){return _0x3953b1+_0x57822c;},'CIuMH':function(_0x48cd6f,_0x23ae7c){return _0x48cd6f+_0x23ae7c;},'otAhy':function(_0x99ce10,_0x2d9eaf){return _0x99ce10+_0x2d9eaf;},'TijWt':function(_0xe3e092,_0x47636d){const _0x9b4c63=a0_0x2474;return _0xa67dec[_0x9b4c63(0x920)](_0xe3e092,_0x47636d);},'sAMIF':function(_0x293963,_0x45954e){return _0xa67dec['Agfim'](_0x293963,_0x45954e);},'BdUXi':_0x259f75(0x325)+'推算\x20·\x20','jkKdH':function(_0x30ada2,_0x489018){const _0x5aec5e=_0x259f75;return _0xa67dec[_0x5aec5e(0x4dc)](_0x30ada2,_0x489018);},'ZAKZU':function(_0x4f703c,_0x4f7558){const _0x2b9477=_0x259f75;return _0xa67dec[_0x2b9477(0x817)](_0x4f703c,_0x4f7558);},'QMXGy':function(_0x150679,_0x7dfe8c,_0x2520c2){const _0x3c3dfc=_0x259f75;return _0xa67dec[_0x3c3dfc(0x3d5)](_0x150679,_0x7dfe8c,_0x2520c2);},'MBWkx':function(_0x28d67a,_0x146fc7,_0x1b3055){return _0x28d67a(_0x146fc7,_0x1b3055);},'Cdghp':_0xa67dec[_0x259f75(0x3fa)],'uFfRN':function(_0x1ea0e9,_0x1d95e7,_0x9d3664){const _0x4c8d17=_0x259f75;return _0xa67dec[_0x4c8d17(0x1c7)](_0x1ea0e9,_0x1d95e7,_0x9d3664);},'IACMp':'合日互用','JsSUR':'当旺经脉','xrocn':_0x259f75(0x829),'YXVSI':_0x259f75(0x710),'vCvbP':_0xa67dec[_0x259f75(0x3ea)]};if(_0xa67dec[_0x259f75(0xb96)](_0xa67dec[_0x259f75(0x2ac)],_0x259f75(0x9ce))){_0x40abf7(![]),_0xa67dec[_0x259f75(0x4c7)](_0x2d3754),_0x36960e[_0x259f75(0x225)+_0x259f75(0xb50)]='',_0x172194[_0x259f75(0x225)+_0x259f75(0xb50)]=_0x259f75(0x61e)+'lass=\x27'+'hint\x27>'+'请从上方导航'+'菜单选择子模'+_0x259f75(0x60b)+_0x259f75(0x2f2)+_0x259f75(0x880);const _0x53eaa9=_0x381970[_0x259f75(0x849)];if(_0xa67dec['xGzRH'](_0x53eaa9,_0xa67dec[_0x259f75(0x923)]))return _0x547454(_0x381970);if(_0xa67dec[_0x259f75(0x487)](_0x53eaa9,'points'))return _0x4cf190(_0x381970);if(_0x53eaa9===_0x259f75(0x366))return _0xa67dec[_0x259f75(0x814)](_0x13bf49,_0x381970);if(_0xa67dec[_0x259f75(0x78c)](_0x53eaa9,'image'))return _0x2d9443(_0x381970);if(_0xa67dec[_0x259f75(0x78c)](_0x53eaa9,_0x259f75(0xbd0)+_0x259f75(0x61c)))return _0x4dbe67(_0x381970);if(_0xa67dec[_0x259f75(0x487)](_0x53eaa9,_0x259f75(0x5bb)+'g_meth'+'od'))return _0x476d16(_0x381970);if(_0xa67dec[_0x259f75(0x487)](_0x53eaa9,_0x259f75(0x7ed)))return _0x492f84(_0x381970);if(_0xa67dec[_0x259f75(0x8ac)](_0x53eaa9,_0xa67dec[_0x259f75(0x1ce)]))return _0x1b7da2(_0x381970);if(_0x53eaa9===_0x259f75(0xb11)+_0x259f75(0xb44))return _0xa67dec[_0x259f75(0x534)](_0xa7a42e,_0x381970);if(_0x53eaa9===_0x259f75(0xb8b)+'_fangj'+'i')return _0x30d74d(_0x381970);}else{const _0x4f677a=_0x2e03f5['ganzhi']||{},_0x58b37c=_0x1260b9[_0x259f75(0x29e)+'n']||{},_0x4fd4db=_0x2232d1[_0x259f75(0x65b)]||{},_0x3fcd3f=_0x3aab29[_0x259f75(0x60f)+'a']||{};_0x2c5953[_0x259f75(0x832)](_0x3b6d1e,_0x2a4816('#zwNaj'+'ia'),_0x42a401(_0x4f677a['day']||'')+_0x274c7b(_0x58b37c[_0x259f75(0x2ba)]||''),_0x58b37c[_0x259f75(0x2ba)]),_0x2c5953[_0x259f75(0x832)](_0x2482fe,_0x1fa6c8(_0x259f75(0x4c4)+'i'),_0x58b37c['zhi'],_0x58b37c['zhi']);const _0x223894=_0x257d0e(_0x259f75(0x3da));if(_0x223894){const _0x7fe5d8=(_0x1d268d,_0x5d53fc)=>'<div><'+'span\x20c'+_0x259f75(0xaaf)+_0x259f75(0x36c)+'\x27>'+_0x850697(_0x1d268d)+(_0x259f75(0x6a6)+_0x259f75(0x654)+_0x259f75(0x658)+_0x259f75(0x909)+_0x259f75(0x4aa))+_0x51da7c(_0x5d53fc||'—')+(_0x259f75(0x6a6)+_0x259f75(0x845)+'>');_0x223894[_0x259f75(0x225)+_0x259f75(0xb50)]=_0x2c5953[_0x259f75(0xbbb)](_0x2c5953['BuMrh'](_0x2c5953[_0x259f75(0x3df)](_0x2c5953[_0x259f75(0x3d1)](_0x2c5953['doLJS'](_0x2c5953['PQjCz'](_0x2c5953[_0x259f75(0x3df)](_0x2c5953[_0x259f75(0x750)](_0x2c5953[_0x259f75(0x8dd)](_0x2c5953[_0x259f75(0x55e)](_0x2c5953[_0x259f75(0x3d1)](_0x2c5953[_0x259f75(0x2cf)](_0x2c5953['sAMIF'](_0x2c5953[_0x259f75(0x3df)](_0x2c5953[_0x259f75(0x764)],_0x14ef7e(_0x4f677a['year'])),'\x20'),_0x2c5953[_0x259f75(0x380)](_0x12227f,_0x4f677a[_0x259f75(0x702)]))+'\x20'+_0x2c5953['jkKdH'](_0x56f933,_0x4f677a[_0x259f75(0x246)]),'\x20')+_0x2c5953[_0x259f75(0x803)](_0x31aac4,_0x4f677a[_0x259f75(0xbe8)]),'时（'),_0x3cc091(_0x58b37c[_0x259f75(0xab0)])),_0x259f75(0x333)+_0x259f75(0x61e)+_0x259f75(0xaaf)+_0x259f75(0x798)+'\x27>'),_0x2c5953['QMXGy'](_0x7fe5d8,_0x259f75(0xb8c),_0x3fcd3f[_0x259f75(0xb8c)])),_0x2c5953['MBWkx'](_0x7fe5d8,_0x2c5953[_0x259f75(0x9ea)],_0x3fcd3f[_0x2c5953['Cdghp']]))+_0x2c5953[_0x259f75(0x75a)](_0x7fe5d8,_0x2c5953[_0x259f75(0x4fa)],_0x3fcd3f[_0x259f75(0x36e)]),_0x2c5953[_0x259f75(0x75a)](_0x7fe5d8,_0x2c5953[_0x259f75(0x8f1)],_0x4fd4db[_0x2c5953[_0x259f75(0x576)]]))+_0x7fe5d8('本穴',_0x4fd4db['本穴'])+_0x7fe5d8('原穴',_0x4fd4db['源穴']),_0x7fe5d8(_0x259f75(0xae7),_0x4fd4db['补泄'])),_0x7fe5d8(_0x2c5953[_0x259f75(0x8bf)],_0x4fd4db['开穴'])),_0x2c5953[_0x259f75(0x75a)](_0x7fe5d8,_0x2c5953['vCvbP'],(_0x4488d7['lingui']||{})[_0x259f75(0x1f2)])),_0x259f75(0xb4b));}}}function _0x547454(_0x5d06ac){const _0x5a9cbd=_0x5a199c,_0x140ad6={'rWuaj':function(_0x39041a,_0x5694ce,_0x4bd32a){return _0x39041a(_0x5694ce,_0x4bd32a);},'TevOt':_0xa67dec[_0x5a9cbd(0x4d0)]};_0x20ce8e[_0x5a9cbd(0x225)+'TML']=_0x5a9cbd(0x61e)+'lass=\x27'+_0x5a9cbd(0x6e7)+_0x5a9cbd(0x9f3)+_0x5a9cbd(0xa4b)+'ng:4px'+_0x5a9cbd(0x5e1)+_0x5a9cbd(0x1aa)+'《中医》分组'+_0x5a9cbd(0x5d3)+_0x5a9cbd(0x5eb)+'v>',_0xa67dec[_0x5a9cbd(0x9d5)](_0x1a0f02,_0xa67dec[_0x5a9cbd(0x851)])[_0x5a9cbd(0x493)](_0x123775=>{const _0x6eb5d0=_0x5a9cbd,_0xa7195b=_0x140ad6[_0x6eb5d0(0x503)](_0xe0819d,_0x140ad6[_0x6eb5d0(0x730)],_0x6eb5d0(0x4c9)+_0x6eb5d0(0x58c));_0x123775[_0x6eb5d0(0x1e7)+'h'](_0x29988d=>{const _0x169462=_0x6eb5d0,_0x33bc14=_0xe0819d(_0x169462(0xada),null,_0x453737(_0x29988d[_0x169462(0x526)])+'\x20('+_0x29988d[_0x169462(0x378)]+')');_0x33bc14['onclic'+'k']=()=>_0x1b4bd3(_0x29988d),_0xa7195b['append'+_0x169462(0x692)](_0x33bc14);}),_0x36960e[_0x6eb5d0(0x4cf)+_0x6eb5d0(0x692)](_0xa7195b),_0x36960e['_ms']=_0x123775;if(_0x123775[0x0])_0x1b4bd3(_0x123775[0x0]);});}function _0x1b4bd3(_0xa84667){const _0x3fa880=_0x5a199c,_0x2a5bce={'nMiMq':_0xa67dec[_0x3fa880(0x7d9)],'Ebwew':function(_0x2239d2,_0x4e3c96){const _0x504d96=_0x3fa880;return _0xa67dec[_0x504d96(0x6cb)](_0x2239d2,_0x4e3c96);},'bkBMp':_0xa67dec['lSjgP'],'NbvGA':_0xa67dec['txKxZ']};if(_0xa67dec[_0x3fa880(0x9f4)](_0x3fa880(0x7b5),_0xa67dec[_0x3fa880(0xa35)])){const _0x2f4145=(_0x163777,_0x211995)=>_0x3fa880(0x6df)+_0x3fa880(0x9fc)+_0x3fa880(0xaaf)+_0x3fa880(0x36c)+'\x27>'+_0x594bc4(_0x163777)+(_0x3fa880(0x6a6)+_0x3fa880(0x654)+_0x3fa880(0x658)+_0x3fa880(0x909)+_0x3fa880(0x4aa))+_0x2c218b(_0x211995||'—')+(_0x3fa880(0x6a6)+'></div'+'>');_0x5d0727[_0x3fa880(0x225)+_0x3fa880(0xb50)]=_0xa67dec[_0x3fa880(0xb20)](_0xa67dec[_0x3fa880(0x1b8)](_0xa67dec[_0x3fa880(0xb20)](_0xa67dec['sCRje'](_0xa67dec[_0x3fa880(0x983)](_0xa67dec['FJZwN'](_0xa67dec[_0x3fa880(0x983)](_0xa67dec[_0x3fa880(0xaba)](_0xa67dec[_0x3fa880(0x7b8)](_0xa67dec[_0x3fa880(0x53e)],_0xa67dec[_0x3fa880(0x777)](_0x28aa7d,_0x620083[_0x3fa880(0x24e)])),'\x20'),_0xa67dec[_0x3fa880(0x660)](_0x9487eb,_0x26783e[_0x3fa880(0x702)]))+'\x20'+_0x307441(_0x4958ff['day']),'\x20'),_0x261b43(_0x45b098[_0x3fa880(0xbe8)]))+'时（',_0xa67dec[_0x3fa880(0x623)](_0x1e65d2,_0x396c3b['name']))+(_0x3fa880(0x333)+'<div\x20c'+_0x3fa880(0xaaf)+_0x3fa880(0x798)+'\x27>')+_0xa67dec[_0x3fa880(0x924)](_0x2f4145,_0xa67dec['AqrUM'],_0x1527b6[_0x3fa880(0xb8c)])+_0x2f4145(_0xa67dec[_0x3fa880(0x3fa)],_0x208661[_0xa67dec['BqMwf']])+_0xa67dec[_0x3fa880(0x650)](_0x2f4145,_0xa67dec[_0x3fa880(0x5b5)],_0x23e675[_0x3fa880(0x36e)]),_0x2f4145(_0xa67dec[_0x3fa880(0x629)],_0x27003b['流经脏腑经络'])),_0x2f4145('本穴',_0x2e4e5d['本穴'])),_0xa67dec[_0x3fa880(0xb54)](_0x2f4145,'原穴',_0x80fc78['源穴']))+_0x2f4145(_0x3fa880(0xae7),_0x1c29f0['补泄'])+_0x2f4145(_0x3fa880(0x710),_0x4c3849['开穴'])+_0x2f4145(_0x3fa880(0x7ea),(_0x4d63ce[_0x3fa880(0xaf6)]||{})[_0x3fa880(0x1f2)])+_0x3fa880(0xb4b);}else[..._0x36960e[_0x3fa880(0x94e)+'electo'+_0x3fa880(0x343)](_0x3fa880(0x68a)+'ilter\x20'+_0x3fa880(0xada))][_0x3fa880(0x1e7)+'h'](_0x16717e=>_0x16717e[_0x3fa880(0x26e)+_0x3fa880(0x56a)]['remove'](_0x3fa880(0x7ee))),[..._0x36960e[_0x3fa880(0x94e)+'electo'+_0x3fa880(0x343)](_0x3fa880(0x68a)+_0x3fa880(0x292)+_0x3fa880(0xada))]['forEac'+'h'](_0x14e982=>{const _0x5e99f7=_0x3fa880;if(_0x14e982[_0x5e99f7(0x2d2)+_0x5e99f7(0x6b6)][_0x5e99f7(0x51e)+'With'](_0xa84667[_0x5e99f7(0x526)]))_0x14e982[_0x5e99f7(0x26e)+'ist'][_0x5e99f7(0x511)](_0x5e99f7(0x7ee));}),_0x1a0f02(_0x3fa880(0x4f6)+_0x3fa880(0x97d)+_0x3fa880(0x235)+'n/'+_0xa84667[_0x3fa880(0x9a7)])[_0x3fa880(0x493)](_0x21db7b=>{const _0x272bc3=_0x3fa880,_0x3d5c66={'pRwPu':_0x2a5bce[_0x272bc3(0x52e)],'ITlyX':function(_0xaada2,_0x1a420a){const _0x36fcfd=_0x272bc3;return _0x2a5bce[_0x36fcfd(0x91b)](_0xaada2,_0x1a420a);},'HWTdE':function(_0x302a89,_0x39fb16){return _0x302a89(_0x39fb16);},'hByVa':function(_0x24654e,_0x4f8db3){const _0x536f31=_0x272bc3;return _0x2a5bce[_0x536f31(0x91b)](_0x24654e,_0x4f8db3);},'xOfyh':function(_0x3a9141,_0x41486b){return _0x3a9141(_0x41486b);},'Gyxuh':_0x2a5bce[_0x272bc3(0x5d5)]},_0x3e1957=_0x36960e['queryS'+_0x272bc3(0x813)+'r'](_0x2a5bce[_0x272bc3(0xa16)]);_0x36960e[_0x272bc3(0x225)+_0x272bc3(0xb50)]='',_0x36960e['append'+_0x272bc3(0x692)](_0x3e1957),_0x21db7b[_0x272bc3(0x9a6)][_0x272bc3(0x1e7)+'h']((_0x254ad4,_0x23c09f)=>{const _0x21a53b=_0x272bc3,_0x4fbfce=_0xe0819d('li',_0x3d5c66[_0x21a53b(0x74b)],_0x3d5c66[_0x21a53b(0x51c)](_0x3d5c66['HWTdE'](_0x453737,_0x254ad4[_0x21a53b(0xab0)]),_0x254ad4[_0x21a53b(0x4fd)]?_0x3d5c66['hByVa'](_0x3d5c66[_0x21a53b(0x51c)](_0x21a53b(0x58f)+'\x20style'+'=\x27opac'+'ity:.6'+_0x21a53b(0x91d),_0x3d5c66[_0x21a53b(0x7fc)](_0x453737,_0x254ad4[_0x21a53b(0x4fd)])),_0x3d5c66[_0x21a53b(0x224)]):''));_0x4fbfce[_0x21a53b(0x8e5)+'k']=()=>_0x5078c9(_0x254ad4),_0x36960e[_0x21a53b(0x4cf)+_0x21a53b(0x692)](_0x4fbfce);});});}function _0x2b6099(_0x5939c5){const _0x39d6c2=_0x5a199c,_0x1b98d8={'ftdmS':function(_0x2a7d21,_0x4a06b7){return _0xa67dec['yrAAB'](_0x2a7d21,_0x4a06b7);},'wtmzi':_0xa67dec['NqHJx'],'PFYjZ':function(_0x2d3e07,_0x5acb68){const _0x4597d3=a0_0x2474;return _0xa67dec[_0x4597d3(0x91f)](_0x2d3e07,_0x5acb68);},'qvvYM':'<div\x20c'+_0x39d6c2(0xaaf)+_0x39d6c2(0x65d)+'b>','igjog':_0x39d6c2(0xb4b)};if(_0xa67dec[_0x39d6c2(0x78c)]('Peuhx',_0x39d6c2(0x6fb))){_0x437034=_0x1c8d0a;if(_0x1ff50c[0x0])_0xa67dec[_0x39d6c2(0x5f2)](_0x4933d6,_0xbb0a2d[0x0],!![]);}else{let _0x26b4aa=_0xa67dec[_0x39d6c2(0x7b8)](_0xa67dec[_0x39d6c2(0x53c)](_0xa67dec[_0x39d6c2(0x3e7)](_0xa67dec[_0x39d6c2(0x8b8)]+_0xa67dec['kfoqu'](_0x453737,_0x5939c5[_0x39d6c2(0xab0)]),_0xa67dec[_0x39d6c2(0x19d)]),_0x453737(_0x5939c5[_0x39d6c2(0x9b2)+'me'])),'」</spa'+_0x39d6c2(0xaa2)+'>');const _0x55fed3=[[_0xa67dec[_0x39d6c2(0x4a4)],_0xa67dec[_0x39d6c2(0x4a4)]],['取穴位置',_0xa67dec[_0x39d6c2(0x432)]],[_0xa67dec[_0x39d6c2(0x6d7)],_0xa67dec['ceQyy']]],_0x19f17c=_0x5939c5['conten'+'t']||'',_0x391a6d={};_0x19f17c[_0x39d6c2(0x707)](/\n/)[_0x39d6c2(0x1e7)+'h'](_0x3e035c=>{const _0x51a654=_0x39d6c2,_0x1301e1={'DgKpT':function(_0x4ff721,_0x5ad096){return _0x1b98d8['ftdmS'](_0x4ff721,_0x5ad096);},'bqFoY':_0x51a654(0x77c),'fQsZb':_0x51a654(0xb03)};if(_0x51a654(0x64b)!==_0x1b98d8['wtmzi']){const _0x74b297=_0x3e035c[_0x51a654(0x882)](/^\[(.+?)\]/);if(_0x74b297)_0x391a6d[_0x74b297[0x1]]='',_0x391a6d[_0x51a654(0x329)]=_0x74b297[0x1];else{if(_0x391a6d[_0x51a654(0x329)])_0x391a6d[_0x391a6d[_0x51a654(0x329)]]+=_0x1b98d8[_0x51a654(0x853)](_0x3e035c,'\x0a');}}else{const _0x5edae2=_0x1301e1[_0x51a654(0x50f)](_0x4cf820,_0x1301e1['bqFoY']);if(_0x5edae2)_0x5edae2[_0x51a654(0x2bd)]=_0x4ec3df[_0x51a654(0x7e7)+_0x51a654(0x7f2)](_0x1301e1[_0x51a654(0xbbd)]);_0x467f4b();}}),[_0xa67dec[_0x39d6c2(0x4a4)],_0x39d6c2(0x2e3),_0x39d6c2(0x5f4)][_0x39d6c2(0x1e7)+'h'](_0xca9059=>{const _0x5a0523=_0x39d6c2;if(_0x391a6d[_0xca9059])_0x26b4aa+=_0x1b98d8[_0x5a0523(0x853)](_0x1b98d8[_0x5a0523(0x787)]+_0xca9059+(_0x5a0523(0x8d7)+_0x5a0523(0x3bf))+_0x369223(_0x391a6d[_0xca9059]['trim']()),_0x1b98d8[_0x5a0523(0xb83)]);});const _0x522487=_0x5939c5[_0x39d6c2(0x4f4)]||{},_0x586a10=Object['keys'](_0x522487)[_0x39d6c2(0x963)](_0x2fa25a=>_0x522487[_0x2fa25a]&&_0x522487[_0x2fa25a][_0x39d6c2(0x749)]());return _0x586a10[_0x39d6c2(0x6b7)]&&(_0x26b4aa+=_0xa67dec[_0x39d6c2(0x469)],_0x586a10[_0x39d6c2(0x1e7)+'h'](_0x5b7343=>_0x26b4aa+=_0x39d6c2(0x61e)+_0x39d6c2(0xaaf)+_0x39d6c2(0x65d)+'b>'+_0x453737(_0x5b7343)+(_0x39d6c2(0x20d)+'r>')+_0x369223(_0x522487[_0x5b7343])+'</div>'),_0x26b4aa+='</div>'),_0x5939c5['images']&&_0x5939c5[_0x39d6c2(0x70f)][_0x39d6c2(0x6b7)]&&(_0x26b4aa+=_0xa67dec[_0x39d6c2(0x978)],_0x5939c5[_0x39d6c2(0x70f)][_0x39d6c2(0x1e7)+'h'](_0x4f2147=>{const _0xde5fb4=_0x39d6c2;_0x26b4aa+=_0xa67dec['fFFZl'](_0xa67dec[_0xde5fb4(0x540)],encodeURIComponent(_0x4f2147))+_0xa67dec[_0xde5fb4(0x8fe)];}),_0x26b4aa+=_0xa67dec[_0x39d6c2(0x691)]),_0x26b4aa+=_0x39d6c2(0xb4b),_0x26b4aa;}}function _0x5078c9(_0x148216){const _0x274be1=_0x5a199c;_0x172194[_0x274be1(0x225)+_0x274be1(0xb50)]=_0xa67dec[_0x274be1(0x814)](_0x2b6099,_0x148216);}function _0x4cf190(_0xf64c74){const _0x44b771=_0x5a199c,_0x5d66da={'VMgMc':function(_0x3585d2,_0x5a2138){const _0x24b26f=a0_0x2474;return _0xa67dec[_0x24b26f(0x549)](_0x3585d2,_0x5a2138);},'kaCJM':function(_0x49748d,_0x595026){const _0x2fe27e=a0_0x2474;return _0xa67dec[_0x2fe27e(0x93c)](_0x49748d,_0x595026);},'gxXKv':function(_0x230794,_0x2dcba6){return _0x230794+_0x2dcba6;},'PCCpE':_0xa67dec[_0x44b771(0x397)],'WXacs':function(_0x3146db,_0x5909c8){const _0x1b3fdd=_0x44b771;return _0xa67dec[_0x1b3fdd(0x668)](_0x3146db,_0x5909c8);}};_0x20ce8e['innerH'+_0x44b771(0xb50)]=_0x44b771(0x61e)+_0x44b771(0xaaf)+_0x44b771(0x6e7)+'style='+_0x44b771(0xa4b)+_0x44b771(0xb1a)+'\x27>按原软件'+'坐标的可点击'+'人体穴位图（'+'共\x20'+_0xa67dec['nERig']+(_0x44b771(0xb12)+_0x44b771(0x9fd)),_0xa67dec[_0x44b771(0x5ff)](_0x1a0f02,_0x44b771(0x4f6)+_0x44b771(0x8b6)+_0x44b771(0x89c)+_0x44b771(0x77a)+'ts')['then'](_0x5f18fe=>{const _0x234e40=_0x44b771,_0x2d6eac={'yfnGM':'<div\x20c'+_0x234e40(0xaaf)+'ht-emp'+'ty\x27>该分'+'类暂无内容。'+_0x234e40(0xb4b),'MCNsK':function(_0x1e7426,_0x2da16e){return _0x1e7426+_0x2da16e;},'Eisvg':_0x234e40(0xb9d),'ZcmXk':_0xa67dec[_0x234e40(0x37f)],'GrtPT':function(_0x51bc8c,_0x30116d){return _0x51bc8c(_0x30116d);}};if(_0xa67dec[_0x234e40(0x9d6)](_0xa67dec[_0x234e40(0xbd2)],_0xa67dec[_0x234e40(0xbd2)])){_0x30a1df[_0x234e40(0x225)+_0x234e40(0xb50)]='',_0xd34978[_0x234e40(0x225)+'TML']=_0x2d6eac[_0x234e40(0x31b)];return;}else{const _0xc2e7e9=_0x5f18fe[_0x234e40(0x9a6)]||[],_0x4158da=_0xa67dec[_0x234e40(0x983)](_0xa67dec[_0x234e40(0x53c)](_0xa67dec[_0x234e40(0x7b8)](_0xa67dec['pwgjk'](_0xa67dec[_0x234e40(0x5b0)](_0xa67dec[_0x234e40(0x4d2)],_0xa67dec[_0x234e40(0x294)]),'<rect\x20'+_0x234e40(0x5e8)+_0x234e40(0x1d9)+_0x234e40(0xb4d)+_0x234e40(0x5ce)+_0x234e40(0xac7)+_0x234e40(0xa4d)+_0x234e40(0x552)+_0x234e40(0xb13)+_0x234e40(0x3a6)+'\x2722\x27/>'),_0xa67dec[_0x234e40(0x338)]),_0x234e40(0x204)+_0x234e40(0x5e8)+'\x27body\x27'+_0x234e40(0x6d6)+_0x234e40(0x66f)+'80\x27\x20wi'+'dth=\x272'+_0x234e40(0x1f0)+'ght=\x271'+_0x234e40(0xbb0)+'=\x2712\x27/'+'>')+_0xa67dec[_0x234e40(0xb7f)],_0x234e40(0x204)+_0x234e40(0x5e8)+_0x234e40(0x1d9)+_0x234e40(0xac1)+_0x234e40(0x377)+'220\x27\x20w'+'idth=\x27'+_0x234e40(0x701)+_0x234e40(0x5aa)+'120\x27\x20r'+_0x234e40(0x35b)+'>');let _0xdfe25='';_0xc2e7e9['forEac'+'h'](_0x25475e=>{const _0x5a069e=_0x234e40,_0x358caf=0x1e+_0x5d66da[_0x5a069e(0xb4a)](_0x25475e[_0x5a069e(0x960)],0xa0),_0x33c98c=_0x5d66da[_0x5a069e(0xb4e)](0x1e,_0x5d66da[_0x5a069e(0xb4a)](_0x25475e[_0x5a069e(0xad4)],0x168));_0xdfe25+=_0x5d66da[_0x5a069e(0x9e3)](_0x5d66da[_0x5a069e(0x9e3)](_0x5d66da[_0x5a069e(0x9e3)](_0x5a069e(0xa44)+'e\x20clas'+'s=\x27mer'+_0x5a069e(0x5ca)+_0x5a069e(0x8ec),_0x358caf)+_0x5d66da[_0x5a069e(0x72d)]+_0x33c98c+(_0x5a069e(0x7cb)+'-n=\x27'),_0x5d66da[_0x5a069e(0x7a7)](_0x453737,_0x25475e['id'])),_0x5a069e(0x59f)+'rcle>');}),_0x172194[_0x234e40(0x225)+_0x234e40(0xb50)]=_0xa67dec['PtBvk'](_0xa67dec['AFhXf'](_0xa67dec['nzFrx'],_0x4158da)+_0xdfe25,_0xa67dec['ZCTbU']),_0xc2e7e9[_0x234e40(0x9ca)](0x0,0xc8)['forEac'+'h'](_0x4585a0=>{const _0x25e552=_0x234e40,_0x416914={'elGVF':function(_0x47c2d4,_0xcb506){const _0x249bf7=a0_0x2474;return _0x2d6eac[_0x249bf7(0xaf4)](_0x47c2d4,_0xcb506);},'yJFTf':function(_0x2116a3,_0x465022){const _0x20c9a6=a0_0x2474;return _0x2d6eac[_0x20c9a6(0xaf4)](_0x2116a3,_0x465022);},'VkvJo':function(_0x4896d6,_0x201945){const _0x55c58e=a0_0x2474;return _0x2d6eac[_0x55c58e(0xaf4)](_0x4896d6,_0x201945);},'YOzuo':'<div\x20c'+_0x25e552(0xaaf)+_0x25e552(0x45e)+_0x25e552(0x3a5)+_0x25e552(0x5da),'cwpqT':function(_0x36a24b,_0x1eb165){return _0x36a24b(_0x1eb165);},'CmWNd':_0x2d6eac[_0x25e552(0x28c)],'ZWbPU':_0x2d6eac[_0x25e552(0x996)]},_0x3559f1=_0xe0819d('li',_0x25e552(0x6b9)+_0x25e552(0x21a),_0x2d6eac[_0x25e552(0x775)](_0x453737,_0x4585a0['id']));_0x3559f1[_0x25e552(0x8e5)+'k']=()=>{const _0x5bc843=_0x25e552;_0x172194[_0x5bc843(0x225)+_0x5bc843(0xb50)]=_0x416914['elGVF'](_0x416914[_0x5bc843(0x36a)](_0x416914[_0x5bc843(0x7cd)](_0x416914[_0x5bc843(0x36a)](_0x416914[_0x5bc843(0x7cd)](_0x416914['VkvJo'](_0x416914['yJFTf'](_0x416914[_0x5bc843(0x7cd)](_0x416914[_0x5bc843(0xba3)],_0x416914[_0x5bc843(0x896)](_0x453737,_0x4585a0['id'])),_0x416914[_0x5bc843(0x1ae)]),_0x416914[_0x5bc843(0x438)]),_0x4585a0['left']),_0x5bc843(0x64e)),_0x4585a0[_0x5bc843(0xad4)])+_0x5bc843(0x5b8)+_0x4585a0['h']+_0x5bc843(0x2a0),_0x4585a0['v'])+_0x5bc843(0x4e8),_0x4585a0['y'])+(_0x5bc843(0x6b8)+_0x5bc843(0x845)+'>');},_0x36960e[_0x25e552(0x4cf)+'Child'](_0x3559f1);});}});}function _0x13bf49(_0x2d523e){const _0x51b267=_0x5a199c,_0x566993={'RyFXR':function(_0x28a2b8,_0x18ac57,_0xd98d1e){return _0x28a2b8(_0x18ac57,_0xd98d1e);},'DmGLs':'div','GhLWM':'mer-fi'+_0x51b267(0x58c),'oglUs':function(_0x12cab0,_0x5890af){const _0x232a69=_0x51b267;return _0xa67dec[_0x232a69(0xb2f)](_0x12cab0,_0x5890af);},'OcDKe':_0x51b267(0x61e)+_0x51b267(0xaaf)+'point-'+_0x51b267(0x3a5)+_0x51b267(0x5da),'xBUiz':_0x51b267(0x61e)+'lass=\x27'+'hint\x27>'+'详情加载失败'+_0x51b267(0x402)+_0x51b267(0x880),'meczh':function(_0x1aaff2,_0x183e02){const _0x2a0205=_0x51b267;return _0xa67dec[_0x2a0205(0x8bc)](_0x1aaff2,_0x183e02);},'VvRqR':_0xa67dec[_0x51b267(0xadb)],'wUYPY':function(_0x3064d9,_0x3c62ad,_0x243307,_0x11a1c8){return _0x3064d9(_0x3c62ad,_0x243307,_0x11a1c8);},'oPNyw':_0x51b267(0x6b9)+_0x51b267(0x21a)};_0xa67dec[_0x51b267(0x9f4)]('xaQKF',_0x51b267(0x217))?_0x49a15a+=_0x51b267(0x61e)+_0x51b267(0xaaf)+_0x51b267(0x4b7)+_0x2a5973(_0x4cebb7)+_0x51b267(0xb4b):(_0x20ce8e['innerH'+_0x51b267(0xb50)]='',_0x1a0f02(_0xa67dec['KyMEj'](_0xa67dec['TnAKm'],_0x2d523e[_0x51b267(0xb6d)])+('&size='+_0x51b267(0x545)))['then'](_0x412f70=>{const _0x552797=_0x51b267,_0x4e9528={'kZHdE':function(_0x29962b,_0x5a6a9e){return _0x29962b!==_0x5a6a9e;},'MRPoy':function(_0x28a473,_0x1a6441){return _0x28a473(_0x1a6441);},'WwFqk':function(_0x3600f6,_0x461586){return _0x3600f6+_0x461586;}},_0x2f172e=_0x412f70[_0x552797(0x9a6)]||[];_0x20ce8e[_0x552797(0x225)+'TML']=_0x552797(0x61e)+'lass=\x27'+_0x552797(0x6e7)+_0x552797(0x9f3)+_0x552797(0xa4b)+_0x552797(0xb1a)+_0x552797(0xbeb)+_0x2f172e[_0x552797(0x6b7)]+_0xa67dec[_0x552797(0x7d1)],_0x36960e[_0x552797(0x225)+'TML']='',_0x2f172e[_0x552797(0x1e7)+'h'](_0x48eb8d=>{const _0x45511a=_0x552797,_0x14deaf={'eRBfB':function(_0x17f685,_0x476f7f,_0x21d1f4){return _0x566993['RyFXR'](_0x17f685,_0x476f7f,_0x21d1f4);},'heLLr':_0x566993[_0x45511a(0x406)],'BgpSV':_0x566993[_0x45511a(0xbcc)],'NYOyJ':_0x45511a(0x61e)+'lass=\x27'+_0x45511a(0x65d)+'b>','ysGFq':function(_0x7aebcb,_0x2528b6){const _0x365baf=_0x45511a;return _0x566993[_0x365baf(0x96f)](_0x7aebcb,_0x2528b6);},'EJfbx':function(_0x455da1,_0x35977d){return _0x455da1+_0x35977d;},'QZMIE':_0x566993[_0x45511a(0x26d)],'KyHAt':function(_0x28f68c,_0x1578bc){return _0x28f68c(_0x1578bc);},'LnmAA':_0x45511a(0xb4b),'aLnme':_0x566993[_0x45511a(0x20f)]};if(_0x566993[_0x45511a(0x3aa)](_0x566993[_0x45511a(0x949)],_0x45511a(0x38c))){const _0x1c8280=_0x566993[_0x45511a(0x3c7)](_0xe0819d,'li',_0x566993[_0x45511a(0x236)],_0x453737(_0x48eb8d[_0x45511a(0xab0)]));_0x1c8280[_0x45511a(0x8e5)+'k']=()=>{const _0xa4534b=_0x45511a,_0x7a46e3={'TzImC':function(_0x127fe1,_0x262571){return _0x127fe1(_0x262571);}};if(_0x4e9528['kZHdE']('uvqPm',_0xa4534b(0xba9))){const _0x30866a=_0x14deaf[_0xa4534b(0x836)](_0x3b41ae,_0x14deaf[_0xa4534b(0xa3d)],_0x14deaf[_0xa4534b(0xbaa)]);_0xd17a8c[_0xa4534b(0x1e7)+'h'](_0x3aaa02=>{const _0x4c2236=_0xa4534b,_0x345926=_0x13e5b8(_0x4c2236(0xada),null,_0x7a46e3[_0x4c2236(0x494)](_0x22eba0,_0x3aaa02[_0x4c2236(0x526)])+'\x20('+_0x3aaa02[_0x4c2236(0x378)]+')');_0x345926['onclic'+'k']=()=>_0x4f5da3(_0x3aaa02),_0x30866a['append'+_0x4c2236(0x692)](_0x345926);}),_0x1ad524['append'+_0xa4534b(0x692)](_0x30866a),_0x220321[_0xa4534b(0x827)]=_0xb187c7;if(_0x53b818[0x0])_0x2db1a9(_0x41d646[0x0]);}else[..._0x36960e[_0xa4534b(0x94e)+_0xa4534b(0x813)+_0xa4534b(0x343)](_0xa4534b(0x85a)+'t-item')][_0xa4534b(0x1e7)+'h'](_0x58541d=>_0x58541d[_0xa4534b(0x26e)+_0xa4534b(0x56a)][_0xa4534b(0x1b0)]('active'+_0xa4534b(0x884))),_0x1c8280[_0xa4534b(0x26e)+_0xa4534b(0x56a)]['add'](_0xa4534b(0x7ee)+_0xa4534b(0x884)),_0x4e9528[_0xa4534b(0x4a1)](_0x1a0f02,_0x4e9528[_0xa4534b(0xb88)]('/api/r'+'enji/i'+'tem?su'+'b=',_0x2d523e[_0xa4534b(0xb6d)])+_0xa4534b(0x250)+_0x48eb8d['i'])[_0xa4534b(0x493)](_0x10a2bf=>{const _0x169268=_0xa4534b,_0x2c917c={'ppEgL':function(_0x50c01f,_0x5910a5){return _0x50c01f+_0x5910a5;},'WMVDN':_0x14deaf['NYOyJ'],'vIGUS':function(_0x22a923,_0x5acd15){return _0x22a923(_0x5acd15);}};let _0xafd5a9=_0x14deaf['ysGFq'](_0x14deaf['EJfbx'](_0x14deaf['QZMIE'],_0x14deaf[_0x169268(0x85f)](_0x453737,_0x10a2bf[_0x169268(0xab0)])),'</h4>');const _0x5a1455=_0x10a2bf[_0x169268(0x366)]||{};Object[_0x169268(0x7b1)](_0x5a1455)[_0x169268(0x1e7)+'h'](_0x209316=>{const _0x473bd5=_0x169268;if(_0x473bd5(0x46d)!==_0x473bd5(0x46d)){const _0x58d8f8=_0x24d7cd[_0x473bd5(0x776)](_0x53556e,arguments);return _0x10a810=null,_0x58d8f8;}else{if(_0x5a1455[_0x209316])_0xafd5a9+=_0x2c917c[_0x473bd5(0x5a2)](_0x2c917c['ppEgL'](_0x2c917c[_0x473bd5(0x9bd)]+_0x2c917c[_0x473bd5(0x8f6)](_0x453737,_0x209316),_0x473bd5(0x8d7)+'br>'),_0x2c917c['vIGUS'](_0x369223,_0x5a1455[_0x209316]))+_0x473bd5(0xb4b);}}),_0xafd5a9+=_0x14deaf[_0x169268(0x259)],_0x172194[_0x169268(0x225)+_0x169268(0xb50)]=_0xafd5a9,_0x172194['scroll'+_0x169268(0x96d)]=0x0;})[_0xa4534b(0x9f5)](()=>{const _0x20747f=_0xa4534b;_0x172194[_0x20747f(0x225)+_0x20747f(0xb50)]=_0x14deaf['aLnme'];});},_0x36960e[_0x45511a(0x4cf)+_0x45511a(0x692)](_0x1c8280);}else _0x45480a=_0x338cee,[..._0x586577['childr'+'en']]['forEac'+'h'](_0x23759b=>_0x23759b[_0x45511a(0x26e)+_0x45511a(0x56a)][_0x45511a(0x1b0)](_0x45511a(0x7ee))),_0x3c45f3[_0x45511a(0x26e)+'ist'][_0x45511a(0x511)]('active');});})[_0x51b267(0x9f5)](()=>{const _0x731b34=_0x51b267;_0x172194['innerH'+_0x731b34(0xb50)]=_0xa67dec['StCom'];}));}function _0x2d9443(_0x419a1a){const _0x54332c=_0x5a199c,_0xb85581={'arFWU':'<div\x20c'+_0x54332c(0xaaf)+_0x54332c(0x871)+_0x54332c(0x7de)+_0x54332c(0x68c)+_0x54332c(0x3d9)+_0x54332c(0x3b6)+_0x54332c(0x9b3)+'e=','KQzbM':function(_0x17e1b8,_0x52ce57){const _0x513e45=_0x54332c;return _0xa67dec[_0x513e45(0x6a1)](_0x17e1b8,_0x52ce57);},'IXfGs':function(_0x1cae24,_0xca678,_0x44a754){const _0x58ab3d=_0x54332c;return _0xa67dec[_0x58ab3d(0x5f2)](_0x1cae24,_0xca678,_0x44a754);},'YqhWt':_0xa67dec['xVaWM'],'miujS':function(_0x55d7e4,_0x1ec181){return _0x55d7e4+_0x1ec181;}};if(_0xa67dec[_0x54332c(0x430)](_0x54332c(0xbd1),_0xa67dec[_0x54332c(0x4b5)]))_0x20ce8e['innerH'+_0x54332c(0xb50)]='',_0xa67dec['FCHPQ'](_0x1a0f02,_0xa67dec[_0x54332c(0x507)])['then'](_0x4dda18=>{const _0x4910f7=_0x54332c,_0x8b9404={'dSUcO':_0xa67dec[_0x4910f7(0x413)],'KdNeW':function(_0x231cdf,_0x4f72b9){return _0x231cdf(_0x4f72b9);},'SLfRG':function(_0x48fc3d,_0x2aac33,_0x364811){return _0x48fc3d(_0x2aac33,_0x364811);},'bssYR':_0x4910f7(0x9ed),'axQiu':_0xa67dec[_0x4910f7(0x77d)]};if(_0xa67dec[_0x4910f7(0x67d)](_0xa67dec[_0x4910f7(0x642)],_0xa67dec[_0x4910f7(0x642)]))_0x38bda6['onclic'+'k']=()=>{const _0x294bb9=_0x4910f7,_0x57e075=_0x43d089(_0x8b9404[_0x294bb9(0x568)]);if(_0x57e075)_0x57e075[_0x294bb9(0x225)+_0x294bb9(0xb50)]=_0x8b9404[_0x294bb9(0x27c)](_0x59cea3,_0x203110[_0x8b9404[_0x294bb9(0x628)](_0x5cf961,_0x12ae2f['getAtt'+_0x294bb9(0x7f2)](_0x8b9404['bssYR']),0xa)]);};else{let _0x190b32=_0x4dda18[_0x4910f7(0x9a6)]['map'](_0x35f60d=>_0x35f60d['name']);if(_0x419a1a[_0x4910f7(0x963)]){if(_0xa67dec['PidEP']('FWjnB',_0x4910f7(0x7fb))){if(_0x292ca0[_0x4910f7(0x2d2)+_0x4910f7(0x6b6)]['starts'+_0x4910f7(0x215)](_0x419a32[_0x4910f7(0x526)]))_0x37ca6a[_0x4910f7(0x26e)+_0x4910f7(0x56a)][_0x4910f7(0x511)](_0x8b9404['axQiu']);}else{const _0x4a5c71=_0x419a1a['filter'];_0x190b32=_0x190b32[_0x4910f7(0x963)](_0x244cb4=>_0x4a5c71[_0x4910f7(0xb89)](_0x14c920=>_0x244cb4['indexO'+'f'](_0x14c920)>=0x0));}}const _0x28cb9e=_0xa67dec[_0x4910f7(0xa6d)](_0xe0819d,_0xa67dec[_0x4910f7(0x4d0)],_0x4910f7(0x6ad)+'d');_0x190b32[_0x4910f7(0x1e7)+'h'](_0x4cba3b=>{const _0x2845d0=_0x4910f7,_0x438d5b={'eWpWo':function(_0x194b76,_0x28cfef){return _0x194b76+_0x28cfef;},'vdSLW':_0xb85581[_0x2845d0(0x2db)],'yXNHH':function(_0x6a4783,_0x2defc8){const _0x1f31dc=_0x2845d0;return _0xb85581[_0x1f31dc(0x9e5)](_0x6a4783,_0x2defc8);},'WDweL':_0x2845d0(0xb4b)+'</div>'},_0x18677a=_0xb85581['IXfGs'](_0xe0819d,_0xb85581['YqhWt'],_0x2845d0(0x62b)+'l');_0x18677a[_0x2845d0(0x225)+_0x2845d0(0xb50)]=_0xb85581[_0x2845d0(0x54f)](_0x2845d0(0x68c)+'rc=\x27/r'+_0x2845d0(0x3b6)+'mg?nam'+'e='+encodeURIComponent(_0x4cba3b),'\x27\x20oner'+_0x2845d0(0x306)+'his.st'+_0x2845d0(0xb16)+_0x2845d0(0xa3c)+'\x27none\x27'+_0x2845d0(0x724)+_0x2845d0(0x658)+_0x2845d0(0x7db)+'>')+_0xb85581[_0x2845d0(0x9e5)](_0x453737,_0x4cba3b)+'</div>',_0x18677a[_0x2845d0(0x8e5)+'k']=()=>{const _0x1679bb=_0x2845d0;_0x172194['innerH'+_0x1679bb(0xb50)]=_0x438d5b[_0x1679bb(0xbab)](_0x438d5b[_0x1679bb(0xbab)](_0x438d5b['vdSLW'],_0x438d5b[_0x1679bb(0x666)](encodeURIComponent,_0x4cba3b))+(_0x1679bb(0x564)+_0x1679bb(0x90b)+_0x1679bb(0x1a0)+_0x1679bb(0x3b3)+'\x20onerr'+_0x1679bb(0x4de)+'is.sty'+'le.dis'+'play=\x27'+_0x1679bb(0xa2d)+_0x1679bb(0x887)+_0x1679bb(0x5e8)+_0x1679bb(0x536)+'>')+_0x453737(_0x4cba3b),_0x438d5b[_0x1679bb(0x8a2)]);},_0x28cb9e['append'+_0x2845d0(0x692)](_0x18677a);}),_0x36960e[_0x4910f7(0x225)+'TML']='',_0x36960e[_0x4910f7(0x4cf)+'Child'](_0x28cb9e);if(!_0x190b32[_0x4910f7(0x6b7)])_0x36960e[_0x4910f7(0x225)+_0x4910f7(0xb50)]=_0xa67dec[_0x4910f7(0x2aa)];}});else{const _0x3f6288=_0x239d9b[_0x54332c(0x94e)+'electo'+'r']('.worka'+_0x54332c(0x7a8));if(_0x3f6288)_0x3f6288[_0x54332c(0x26e)+_0x54332c(0x56a)][_0x54332c(0x8b1)](_0x54332c(0x3c5)+'ode',!!_0x4b870d);const _0x1a555f=_0x137d7b(_0x54332c(0x5a3)+_0x54332c(0x522));if(_0x1a555f)_0x1a555f[_0x54332c(0x913)]['displa'+'y']=_0x4156b5?_0xa67dec[_0x54332c(0x3b9)]:'';}}function _0x4dbe67(_0x20f7bf){const _0x510314=_0x5a199c,_0x3f4cd8={'MczJR':function(_0x4f9ebf,_0x228440){return _0x4f9ebf===_0x228440;}};_0x20ce8e[_0x510314(0x225)+_0x510314(0xb50)]='',_0xa67dec[_0x510314(0x6a1)](_0x1a0f02,_0xa67dec['NIBmR'])[_0x510314(0x493)](_0x3bd443=>{const _0x747e90=_0x510314,_0x37a6e3=_0x3bd443[_0x20f7bf[_0x747e90(0x61c)]];let _0x12c8d4='<div\x20c'+_0x747e90(0xaaf)+_0x747e90(0x2e6)+_0x747e90(0x6f4)+_0x747e90(0x3d3)+_0x747e90(0x1a2)+_0x747e90(0x669)+_0x747e90(0x92b);_0x37a6e3[_0x747e90(0x553)]['forEac'+'h'](_0x43650e=>_0x12c8d4+=_0x747e90(0xb99)+_0x453737(_0x43650e)+_0x747e90(0x75b)),_0x12c8d4+=_0x747e90(0x3ba),_0x37a6e3[_0x747e90(0x681)][_0x747e90(0x1e7)+'h'](_0x255c9c=>{const _0x2ef205=_0x747e90;_0x3f4cd8[_0x2ef205(0x6d1)](_0x2ef205(0xb61),'jMwFs')?(_0x12c8d4+='<tr>',_0x255c9c['forEac'+'h'](_0x3f4064=>_0x12c8d4+='<td>'+_0x453737(_0x3f4064)+_0x2ef205(0x8f2)),_0x12c8d4+=_0x2ef205(0x3ba)):_0x455f7a['innerH'+_0x2ef205(0xb50)]='<div\x20c'+_0x2ef205(0xaaf)+_0x2ef205(0x7e4)+_0x2ef205(0xa22)+_0x2ef205(0x402)+_0x2ef205(0x880);}),_0x12c8d4+=_0xa67dec[_0x747e90(0x3e8)],_0x36960e[_0x747e90(0x225)+_0x747e90(0xb50)]=_0x12c8d4,_0x172194[_0x747e90(0x225)+_0x747e90(0xb50)]=_0x747e90(0x61e)+_0x747e90(0xaaf)+_0x747e90(0x7e4)+_0x747e90(0x688)+_0x747e90(0x697)+_0x747e90(0x47f)+_0x747e90(0x769)+'厦子午流注盘'+'」可按年月日'+_0x747e90(0x8a6)+_0x747e90(0xb8e)+'v>';});}function _0x2a7716(_0x3a8317){const _0x9fbfa7=_0x5a199c,_0x36a007={'WxzsM':function(_0x4d68dd,_0xb12e9f){const _0xc80eae=a0_0x2474;return _0xa67dec[_0xc80eae(0x93c)](_0x4d68dd,_0xb12e9f);},'qgCDR':_0xa67dec[_0x9fbfa7(0x38f)],'SKOil':function(_0x224a47,_0x3a8238){return _0x224a47(_0x3a8238);},'QYltz':function(_0x2d88dc,_0x2531cb){return _0x2d88dc+_0x2531cb;},'ebTFr':function(_0x337c2c,_0x5a985c){return _0x337c2c+_0x5a985c;},'oHKAr':_0xa67dec[_0x9fbfa7(0x6cd)],'AXQvJ':_0xa67dec[_0x9fbfa7(0x809)],'AzUgb':function(_0x59e858,_0x55cb52){return _0x59e858(_0x55cb52);}};if(_0x9fbfa7(0x69d)===_0xa67dec[_0x9fbfa7(0x1f1)])_0x4d6a9d[_0x9fbfa7(0x8e5)+'k']=()=>_0xae5f6e(_0x243ab6[_0x9fbfa7(0x7e7)+_0x9fbfa7(0x7f2)](_0x9fbfa7(0x2c7)),_0x1e510c,_0xa2017d);else{if(!_0x3a8317||!_0x3a8317[_0x9fbfa7(0x6b7)])return'';let _0x3392f0=_0xa67dec[_0x9fbfa7(0x1a1)];return _0x3a8317[_0x9fbfa7(0x1e7)+'h'](_0x1e090d=>{const _0x85bd52=_0x9fbfa7,_0x14c308=_0x36a007[_0x85bd52(0x2d9)](_0x36a007[_0x85bd52(0x252)],_0x36a007['SKOil'](encodeURIComponent,_0x1e090d));_0x3392f0+=_0x36a007[_0x85bd52(0x951)](_0x36a007[_0x85bd52(0xbbf)](_0x36a007[_0x85bd52(0x2d9)](_0x36a007[_0x85bd52(0x951)](_0x36a007[_0x85bd52(0x2d9)](_0x36a007[_0x85bd52(0x9e8)],_0x14c308)+(_0x85bd52(0x45d)+'ank\x27)\x22'+'>'),_0x85bd52(0x61e)+_0x85bd52(0xaaf)+_0x85bd52(0xa25)+_0x85bd52(0x7fe)+_0x85bd52(0x298)+_0x85bd52(0xae9)+'zy\x27\x20sr'+'c=\x27'),_0x14c308),_0x85bd52(0x1a4)+'\x27')+_0x453737(_0x1e090d)+(_0x85bd52(0xb78)+_0x85bd52(0x306)+_0x85bd52(0x2e2)+_0x85bd52(0xb16)+'splay='+'\x27none\x27'+_0x85bd52(0x92f)+'v>'),_0x36a007['AXQvJ'])+_0x36a007['AzUgb'](_0x453737,_0x1e090d)+(_0x85bd52(0xb4b)+_0x85bd52(0xb4b));}),_0x3392f0+_0xa67dec[_0x9fbfa7(0x691)];}}function _0x61e9e8(_0x42f00f){const _0x476ba7=_0x5a199c,_0x1a67c3={'jcpsh':function(_0x137f13,_0x33a48e){return _0x137f13+_0x33a48e;},'sKexh':function(_0x360344,_0x3c9785,_0x1c2453){const _0x24be92=a0_0x2474;return _0xa67dec[_0x24be92(0x3d5)](_0x360344,_0x3c9785,_0x1c2453);},'NzPyd':_0x476ba7(0x653),'kCXWu':_0x476ba7(0x4f6)+_0x476ba7(0xa9a)+_0x476ba7(0x778)+_0x476ba7(0x82b),'fQxrw':function(_0x9d6aec,_0x356916){const _0x2a152b=_0x476ba7;return _0xa67dec[_0x2a152b(0x7b8)](_0x9d6aec,_0x356916);},'wucCh':_0xa67dec[_0x476ba7(0x53f)],'xRSOD':_0x476ba7(0x712)+_0x476ba7(0x665)+_0x476ba7(0x767)+'>','klTql':_0x476ba7(0x7a1)+_0x476ba7(0x1a8)+'nput\x20t'+'ype=\x27d'+_0x476ba7(0x627)+_0x476ba7(0x69c)+_0x476ba7(0x824)+_0x476ba7(0x3e4),'oEIGN':_0xa67dec[_0x476ba7(0x22c)],'HUmOu':_0x476ba7(0xb4b),'DhEtU':function(_0x3f6199,_0x585246){const _0x138f12=_0x476ba7;return _0xa67dec[_0x138f12(0xb8a)](_0x3f6199,_0x585246);},'rtSxW':_0x476ba7(0xb74)+'e'};if(_0x476ba7(0x850)===_0xa67dec[_0x476ba7(0x8d5)])return _0xa67dec['IDvsH'](_0x476ba7(0x61e)+'lass=\x27'+'ht-tex'+_0x476ba7(0x479),_0xa67dec[_0x476ba7(0x959)](_0x369223,_0x42f00f))+_0x476ba7(0xb4b);else{const _0x4b1cca={'yeufD':function(_0x4a4b57,_0x19afe5){const _0x4a1343=_0x476ba7;return _0x1a67c3[_0x4a1343(0x7f1)](_0x4a4b57,_0x19afe5);},'XvxoI':function(_0x39e2fa,_0x5c24ee,_0x3f17a5){return _0x39e2fa(_0x5c24ee,_0x3f17a5);},'mIfEH':function(_0x2fa941,_0x55ddbb,_0x3daa25){const _0xb39fa4=_0x476ba7;return _0x1a67c3[_0xb39fa4(0x433)](_0x2fa941,_0x55ddbb,_0x3daa25);},'vLuuD':_0x1a67c3['NzPyd'],'bnTdR':function(_0x453112,_0xe28b30){return _0x453112+_0xe28b30;},'XxIAY':_0x1a67c3[_0x476ba7(0x991)]};_0x563d07[_0x476ba7(0x225)+_0x476ba7(0xb50)]='';const _0x1b7383=new _0x5a0227();_0x4e7710[_0x476ba7(0x225)+_0x476ba7(0xb50)]=_0x1a67c3['jcpsh'](_0x1a67c3[_0x476ba7(0xbb1)](_0x1a67c3['jcpsh'](_0x1a67c3[_0x476ba7(0x41e)]+_0x1a67c3[_0x476ba7(0x7bc)],_0x1a67c3['klTql'])+_0x1b7383['toISOS'+_0x476ba7(0x3bc)]()['slice'](0x0,0xa),_0x1a67c3[_0x476ba7(0x7d6)])+('<div\x20c'+'lass=\x27'+_0x476ba7(0x21e)+_0x476ba7(0x922)+_0x476ba7(0x2c9)+_0x476ba7(0x282)+'div>')+('<div\x20c'+_0x476ba7(0xaaf)+_0x476ba7(0x7e4)+_0x476ba7(0x4e3)+'界；月柱按二'+_0x476ba7(0xb48)+_0x476ba7(0xbcb)+_0x476ba7(0x926)+'按时辰（每\x20'+_0x476ba7(0x75d)+_0x476ba7(0x607)+_0x476ba7(0x3f2)+'/div>'),_0x1a67c3[_0x476ba7(0x332)]);const _0xa19212=_0x1a67c3[_0x476ba7(0x468)](_0x47de68,_0x1a67c3[_0x476ba7(0x38e)]),_0x168ee9=()=>{const _0x439b19=_0x476ba7,[_0x37f2ed,_0x42d2ba,_0x1443e5]=_0xa19212[_0x439b19(0x2bd)][_0x439b19(0x707)]('-')[_0x439b19(0x2ec)](_0x1e70f);_0x17c03d(_0x4b1cca[_0x439b19(0x589)](_0x4b1cca[_0x439b19(0x9b6)](_0x4b1cca[_0x439b19(0x9b6)](_0x4b1cca[_0x439b19(0x4e6)],_0x37f2ed),_0x439b19(0x848)),_0x42d2ba)+'&d='+_0x1443e5)['then'](_0x5da672=>{const _0x48a848=_0x439b19,_0x5dedf=_0x262bd5(_0x48a848(0x37a));if(!_0x5dedf)return;_0x5dedf[_0x48a848(0x225)+_0x48a848(0xb50)]=_0x4b1cca[_0x48a848(0x589)](_0x4b1cca[_0x48a848(0x589)](_0x4b1cca[_0x48a848(0x734)](_0x2c18c0,'年柱',_0x5da672[_0x48a848(0x24e)])+_0xaff13a('月柱',_0x5da672[_0x48a848(0x702)])+_0x4b1cca[_0x48a848(0x734)](_0x25857b,'日柱',_0x5da672[_0x48a848(0x246)]),_0x4b1cca[_0x48a848(0xa4c)](_0x12f7d1,'生肖',_0x5da672['shengx'+_0x48a848(0x633)])),_0xca733e(_0x4b1cca[_0x48a848(0x544)],_0x5da672['day_id'+'x']));})[_0x439b19(0x9f5)](()=>{});};_0xa19212['oninpu'+'t']=_0x168ee9,_0x168ee9();}}function _0x40ee81(_0x4f7413,_0x13c918){const _0x1093f1=_0x5a199c,_0x77f4a8={'bjXEy':function(_0xa3bc4e,_0x3c7613){return _0xa3bc4e+_0x3c7613;},'Ttgqg':function(_0x86aa8d,_0x4aa101){const _0x1e38e8=a0_0x2474;return _0xa67dec[_0x1e38e8(0x487)](_0x86aa8d,_0x4aa101);},'oLchM':_0x1093f1(0x221),'IvswH':function(_0x23639d,_0x4e192a,_0x450f74,_0x55b34e){const _0x14ac87=_0x1093f1;return _0xa67dec[_0x14ac87(0xad5)](_0x23639d,_0x4e192a,_0x450f74,_0x55b34e);},'ffUTM':_0xa67dec[_0x1093f1(0x98f)],'UIXrT':_0x1093f1(0x8b9)+_0x1093f1(0x21a),'wktPN':function(_0x2f20f2,_0x721d8b){return _0x2f20f2(_0x721d8b);}},_0x439036=_0xa67dec['rjxMD'](_0xe0819d,_0xa67dec[_0x1093f1(0x4d0)],_0xa67dec[_0x1093f1(0x39b)]);return _0x4f7413[_0x1093f1(0x1e7)+'h']((_0x482750,_0x573375)=>{const _0x4e850e=_0x1093f1,_0x1c6f30={'BQDuC':function(_0x4a00a4,_0x1334d6){return _0x4a00a4(_0x1334d6);},'bcTMh':function(_0x40761b,_0x245e7a){const _0xa0fc20=a0_0x2474;return _0x77f4a8[_0xa0fc20(0x22f)](_0x40761b,_0x245e7a);},'ddgvG':function(_0x25cf2c,_0x298adc){const _0x194df3=a0_0x2474;return _0x77f4a8[_0x194df3(0x908)](_0x25cf2c,_0x298adc);},'xGdvk':_0x77f4a8['oLchM'],'LlNHS':_0x4e850e(0x7ee)},_0x3d1ada=_0x77f4a8[_0x4e850e(0xa12)](_0xe0819d,_0x77f4a8[_0x4e850e(0x663)],_0x77f4a8[_0x4e850e(0x5ab)],_0x77f4a8[_0x4e850e(0x7aa)](_0x453737,_0x482750));_0x3d1ada[_0x4e850e(0x8e5)+'k']=()=>{const _0x2b2504=_0x4e850e,_0x1b65ad={'hWjcy':function(_0x482bef,_0x26b722){const _0x121b0a=a0_0x2474;return _0x1c6f30[_0x121b0a(0x873)](_0x482bef,_0x26b722);},'bxeel':function(_0x42f28c,_0x32761d){const _0x541920=a0_0x2474;return _0x1c6f30[_0x541920(0x7c4)](_0x42f28c,_0x32761d);},'aamUN':function(_0x58cebd,_0x4abf1d){return _0x58cebd+_0x4abf1d;},'CjhrT':function(_0x15718f,_0x4404cb){const _0xe8d712=a0_0x2474;return _0x1c6f30[_0xe8d712(0x873)](_0x15718f,_0x4404cb);},'qCqDT':function(_0x37ce83,_0x22abce){return _0x37ce83(_0x22abce);},'MdIsP':function(_0x5e7448){return _0x5e7448();}};if(_0x1c6f30[_0x2b2504(0x8c9)](_0x2b2504(0x929),_0x1c6f30['xGdvk']))_0x1b65ad[_0x2b2504(0x3a7)](_0x1ecca5,_0x2b2504(0x373)+'e')['value']=_0x1b65ad['bxeel'](_0x1b65ad[_0x2b2504(0x95b)](_0x1b65ad[_0x2b2504(0x95b)](_0x1b65ad['aamUN'](_0xa98769['y'],'-'),_0x1b65ad[_0x2b2504(0x753)](_0x2cace1,_0x1b3384['m'])[_0x2b2504(0x7af)+'rt'](0x2,'0')),'-'),_0x1b65ad[_0x2b2504(0x3a7)](_0x761686,_0x38700a['d'])[_0x2b2504(0x7af)+'rt'](0x2,'0')),_0x1b65ad[_0x2b2504(0x753)](_0x53c4a9,_0x2b2504(0x7a0)+'r')[_0x2b2504(0x2bd)]=_0x1b65ad[_0x2b2504(0xa5b)](_0x3b1f4b,_0x45599c['hb']),_0x1b65ad[_0x2b2504(0x59c)](_0x174079);else{const _0x522f70=document[_0x2b2504(0x228)+'mentBy'+'Id'](_0x13c918+_0x573375);if(_0x522f70)_0x522f70[_0x2b2504(0x6f4)+'IntoVi'+'ew']({'block':_0x2b2504(0xb1e),'behavior':'smooth'});[..._0x439036[_0x2b2504(0x56b)+'en']][_0x2b2504(0x1e7)+'h'](_0x357943=>_0x357943[_0x2b2504(0x26e)+_0x2b2504(0x56a)][_0x2b2504(0x1b0)](_0x2b2504(0x7ee))),_0x3d1ada['classL'+_0x2b2504(0x56a)][_0x2b2504(0x511)](_0x1c6f30[_0x2b2504(0x6fc)]);}},_0x439036['append'+'Child'](_0x3d1ada);}),_0x439036;}function _0x476d16(_0x247c3b){const _0x421f96=_0x5a199c,_0x5a5ace={'KhDON':function(_0x2f5fbc,_0x107f07){return _0x2f5fbc+_0x107f07;},'yzAsV':_0xa67dec[_0x421f96(0x2d5)],'gJbCC':_0x421f96(0x7ab)+_0x421f96(0x880),'HFClp':_0xa67dec[_0x421f96(0x88a)],'BghEW':function(_0x1040d6,_0x3d804b){return _0xa67dec['nNYrL'](_0x1040d6,_0x3d804b);},'FKjQe':'<div\x20c'+_0x421f96(0xaaf)+_0x421f96(0x859)+_0x421f96(0x932)+'=\x27htg-','Uscow':function(_0x27cbef,_0x5e83c0){return _0xa67dec['mVFMj'](_0x27cbef,_0x5e83c0);},'zKJjt':_0x421f96(0x946)+_0x421f96(0xbdc)+'t-topi'+_0x421f96(0x815)+'>','VaFsH':function(_0x95092c,_0x383c45){return _0x95092c(_0x383c45);},'tQnXo':function(_0x4ceded,_0x5dc333){const _0x92594a=_0x421f96;return _0xa67dec[_0x92594a(0xb49)](_0x4ceded,_0x5dc333);},'MbfhV':function(_0x2676be,_0x5678f1){return _0x2676be+_0x5678f1;},'IrANY':_0xa67dec['DqUwM'],'Lzwbt':'<div\x20c'+_0x421f96(0xaaf)+'ht-emp'+'ty\x27>该分'+'类暂无内容。'+_0x421f96(0xb4b),'iQVHf':function(_0x21c54b,_0x57796f){const _0x434fe3=_0x421f96;return _0xa67dec[_0x434fe3(0x541)](_0x21c54b,_0x57796f);},'HTBhu':function(_0x224412,_0x13f124){return _0xa67dec['xIpAC'](_0x224412,_0x13f124);},'OStCt':'<div\x20c'+_0x421f96(0xaaf)+_0x421f96(0x21c)+'ro\x27>共\x20'};_0x20ce8e[_0x421f96(0x225)+_0x421f96(0xb50)]='',_0x36960e[_0x421f96(0x225)+_0x421f96(0xb50)]=_0x421f96(0x61e)+_0x421f96(0xaaf)+_0x421f96(0x7e4)+_0x421f96(0x1c8)+_0x421f96(0x288),_0x172194[_0x421f96(0x225)+_0x421f96(0xb50)]=_0xa67dec[_0x421f96(0x6d5)];if(_0xa67dec[_0x421f96(0x3bd)](_0x247c3b['method'],_0xa67dec['YFqFe']))return _0xa67dec[_0x421f96(0x9f2)](_0x4a7b80);_0x1a0f02(_0xa67dec['pEIlf'](_0xa67dec[_0x421f96(0x5cd)]+_0x247c3b[_0x421f96(0x774)],'/all'))[_0x421f96(0x493)](_0x5a241c=>{const _0x3ece04=_0x421f96,_0x5c5faa={'eMPwX':function(_0x534047,_0x58859e){return _0x534047+_0x58859e;},'KvQpb':_0x3ece04(0x61e)+_0x3ece04(0xaaf)+_0x3ece04(0x6e7)+_0x3ece04(0x9f3)+_0x3ece04(0xa4b)+_0x3ece04(0x94d)+_0x3ece04(0x72b)+'·\x20','bDWSE':function(_0x101bce,_0x529a57){return _0x101bce(_0x529a57);},'ATTTw':function(_0x4a9d68,_0x3cfa02){return _0x5a5ace['MbfhV'](_0x4a9d68,_0x3cfa02);},'vlaej':'<div\x20c'+_0x3ece04(0xaaf)+_0x3ece04(0x40a)+_0x3ece04(0x4cd),'NIxyI':function(_0xdbd22f,_0x5016f1){return _0xdbd22f(_0x5016f1);}};if(_0x5a5ace['IrANY']!==_0x5a5ace[_0x3ece04(0x55f)])_0x37e21d+=_0x5a5ace[_0x3ece04(0x1e5)](_0x5a5ace[_0x3ece04(0x6a4)]+_0x219ff2(_0xe0428a[_0x3ece04(0xab0)]),'（')+_0xe057fb[_0x3ece04(0x372)]+_0x5a5ace['gJbCC'],_0x4e71c5['items'][_0x3ece04(0x9ca)](0x0,0x8)['forEac'+'h'](_0x2d9f6d=>{const _0x316ec6=_0x3ece04,_0x3c5c53=_0x2d9f6d['name']||_0x2d9f6d['MZ']||_0x2d9f6d[_0x316ec6(0x671)]||'';_0x3ffed4+=_0x5c5faa['eMPwX'](_0x5c5faa[_0x316ec6(0x32b)],_0x5c5faa[_0x316ec6(0xb15)](_0x1dc533,_0x3c5c53))+_0x316ec6(0xb4b);});else{const _0x154820=_0x5a241c[_0x3ece04(0x1bc)]||[];if(!_0x154820['length']){_0x36960e[_0x3ece04(0x225)+_0x3ece04(0xb50)]='',_0x172194['innerH'+'TML']=_0x5a5ace[_0x3ece04(0x4c8)];return;}_0x36960e['innerH'+_0x3ece04(0xb50)]='',_0x36960e[_0x3ece04(0x4cf)+'Child'](_0x40ee81(_0x154820[_0x3ece04(0x2ec)](_0x514ccd=>_0x514ccd[_0x3ece04(0xab0)]),'htg-'));let _0x28e811=_0x5a5ace['iQVHf'](_0x5a5ace[_0x3ece04(0xb40)](_0x3ece04(0x61e)+_0x3ece04(0xaaf)+_0x3ece04(0xbe3)+_0x3ece04(0x67f)+_0x3ece04(0xa80)+_0x3ece04(0x975)+_0x3ece04(0x887)+_0x3ece04(0x5e8)+'\x27ht-ti'+'tle\x27>',_0x5a5ace[_0x3ece04(0x49e)](_0x453737,_0x5a241c[_0x3ece04(0xab0)]||'')),_0x3ece04(0xb4b));_0x28e811+=_0x5a5ace['KhDON'](_0x5a5ace[_0x3ece04(0x57b)]+_0x154820[_0x3ece04(0x6b7)]+_0x3ece04(0x8e1),_0x154820[_0x3ece04(0x4b6)]((_0x524240,_0x38ccac)=>_0x524240+(_0x38ccac[_0x3ece04(0x56b)+'en']||[])[_0x3ece04(0x6b7)],0x0))+(_0x3ece04(0x7b7)+'（条文\x20+\x20'+'取穴图表）。'+_0x3ece04(0xb4b)),_0x154820[_0x3ece04(0x1e7)+'h']((_0x1d9256,_0x228ce3)=>{const _0x1b1778=_0x3ece04,_0x44f9a4=_0x5a5ace[_0x1b1778(0x358)][_0x1b1778(0x707)]('|');let _0x68b003=0x0;while(!![]){switch(_0x44f9a4[_0x68b003++]){case'0':_0x28e811+=_0x5a5ace[_0x1b1778(0xb40)](_0x5a5ace['FKjQe']+_0x228ce3,'\x27>');continue;case'1':_0x28e811+=_0x1b1778(0xb4b);continue;case'2':(_0x1d9256[_0x1b1778(0x56b)+'en']||[])[_0x1b1778(0x1e7)+'h'](_0x4e7ef0=>{const _0x457b1a=_0x1b1778;_0x28e811+=_0x5c5faa['ATTTw'](_0x5c5faa[_0x457b1a(0x6d3)],_0x5c5faa['NIxyI'](_0x453737,_0x4e7ef0['name']))+'</div>';if(_0x4e7ef0[_0x457b1a(0x517)])_0x28e811+=_0x61e9e8(_0x4e7ef0[_0x457b1a(0x517)]);_0x28e811+=_0x2a7716(_0x4e7ef0[_0x457b1a(0xa1e)]);});continue;case'3':_0x28e811+=_0x5a5ace[_0x1b1778(0xb6c)](_0x5a5ace[_0x1b1778(0x81d)]+_0x5a5ace[_0x1b1778(0x5db)](_0x453737,_0x1d9256[_0x1b1778(0xab0)]),'</h3>');continue;case'4':_0x28e811+=_0x5a5ace['tQnXo'](_0x2a7716,_0x1d9256[_0x1b1778(0xa1e)]);continue;}break;}}),_0x172194[_0x3ece04(0x225)+_0x3ece04(0xb50)]=_0x28e811,_0x172194['scroll'+_0x3ece04(0x96d)]=0x0;}})[_0x421f96(0x9f5)](()=>{const _0x46ee62=_0x421f96;_0x36960e['innerH'+'TML']='',_0x172194[_0x46ee62(0x225)+_0x46ee62(0xb50)]=_0x46ee62(0x61e)+_0x46ee62(0xaaf)+_0x46ee62(0x7e4)+_0x46ee62(0xaa5)+_0x46ee62(0x402)+_0x46ee62(0x880);});}function _0x4a7b80(){const _0x8feb3a=_0x5a199c;_0x1a0f02(_0xa67dec[_0x8feb3a(0x3d6)])[_0x8feb3a(0x493)](_0x5c6174=>{const _0x328324=_0x8feb3a,_0x55d688={'GxYFw':function(_0x369582,_0x334d5e){return _0x369582===_0x334d5e;},'wKjtj':function(_0x2bda3f,_0xd1255c){return _0x2bda3f+_0xd1255c;},'HLRpr':function(_0x374b31,_0x103235){return _0x374b31+_0x103235;},'Dglwt':_0xa67dec[_0x328324(0x322)],'QReGn':function(_0x252102,_0x4dbbdd){return _0x252102(_0x4dbbdd);},'oSKRn':function(_0x198bc5,_0x26ad2e){const _0x394ecd=_0x328324;return _0xa67dec[_0x394ecd(0x534)](_0x198bc5,_0x26ad2e);}},_0xf6f8ab=_0x5c6174[_0x328324(0x9a6)]||[],_0x3ed147=_0x5c6174[_0x328324(0x37c)+'ew']||[];_0x36960e[_0x328324(0x225)+_0x328324(0xb50)]='',_0x36960e[_0x328324(0x4cf)+_0x328324(0x692)](_0xa67dec[_0x328324(0x571)](_0x40ee81,_0xf6f8ab[_0x328324(0x2ec)](_0x5c4dc9=>_0x5c4dc9['name']),_0x328324(0x56c)));let _0x14cca5=_0xa67dec[_0x328324(0x8d0)];if(_0x3ed147[_0x328324(0x6b7)])_0x14cca5+=_0xa67dec[_0x328324(0x3ec)]+_0x3ed147['map'](_0x1118d6=>_0x328324(0x94f)+_0x453737(_0x1118d6)+_0x328324(0x2d1))[_0x328324(0x83c)]('')+(_0x328324(0x75e)+_0x328324(0x880));_0xf6f8ab[_0x328324(0x1e7)+'h']((_0x3dc9a7,_0x4aec43)=>{const _0x235f40=_0x328324;if(_0x55d688[_0x235f40(0xb70)]('HeeSM',_0x235f40(0x7b0)))_0x341ecd['innerH'+'TML']=_0x235f40(0x61e)+'lass=\x27'+_0x235f40(0x7e4)+_0x235f40(0x237)+_0x235f40(0x9f1)+_0x235f40(0xb4b);else{_0x14cca5+=_0x55d688[_0x235f40(0x1b9)](_0x55d688[_0x235f40(0x847)](_0x55d688['Dglwt'],_0x4aec43)+('\x27><h3\x20'+_0x235f40(0x5e8)+'\x27ht-to'+'pic-tt'+'l\x27>')+_0x55d688[_0x235f40(0x1ee)](_0x453737,_0x3dc9a7['name']),_0x235f40(0xbec));if(_0x3dc9a7[_0x235f40(0x517)])_0x14cca5+=_0x61e9e8(_0x3dc9a7[_0x235f40(0x517)]);_0x14cca5+=_0x55d688[_0x235f40(0x82c)](_0x2a7716,_0x3dc9a7[_0x235f40(0x34e)]),_0x14cca5+=_0x235f40(0xb4b);}});if(!_0xf6f8ab['length'])_0x14cca5+=_0x328324(0x61e)+'lass=\x27'+_0x328324(0x431)+_0x328324(0x44b)+_0x328324(0x771)+_0x328324(0x880);_0x172194[_0x328324(0x225)+'TML']=_0x14cca5,_0x172194[_0x328324(0x6f4)+_0x328324(0x96d)]=0x0;})[_0x8feb3a(0x9f5)](()=>{const _0x122ba9=_0x8feb3a;_0x36960e['innerH'+_0x122ba9(0xb50)]='',_0x172194[_0x122ba9(0x225)+'TML']=_0xa67dec[_0x122ba9(0x99d)];});}function _0x492f84(_0x3c4c1d){const _0x2be294=_0x5a199c,_0x1ff7db={'LkWqy':function(_0x39f1c6,_0x158319,_0x22ece0,_0x1eec47){const _0x265b4a=a0_0x2474;return _0xa67dec[_0x265b4a(0x4bc)](_0x39f1c6,_0x158319,_0x22ece0,_0x1eec47);},'BDJrs':_0x2be294(0x6b9)+_0x2be294(0x21a)};_0x20ce8e['innerH'+_0x2be294(0xb50)]='',_0x1a0f02(_0xa67dec['IDvsH'](_0x3c4c1d[_0x2be294(0x770)+'nt'],_0x2be294(0x57f)+_0x2be294(0x545)))[_0x2be294(0x493)](_0x21c293=>{const _0x2b6df3=_0x2be294,_0x536914={'xJtRY':function(_0x3be77a,_0x38b215){return _0x3be77a+_0x38b215;},'osGuw':function(_0x3a061d,_0x4dcccd){return _0x3a061d+_0x4dcccd;},'SQtNS':_0xa67dec['wiWPx'],'jTfcW':_0x2b6df3(0x68c)+'rc=\x27/a'+_0x2b6df3(0x5a5)+_0x2b6df3(0x5cb)+'e/','YbGsP':function(_0x528d1d,_0x2207f9){const _0x159dd8=_0x2b6df3;return _0xa67dec[_0x159dd8(0x5ff)](_0x528d1d,_0x2207f9);},'vAiga':_0xa67dec[_0x2b6df3(0x9e9)]};_0x36960e[_0x2b6df3(0x225)+_0x2b6df3(0xb50)]='';const _0x3bd00b=_0x21c293['items']||[];_0x3bd00b[_0x2b6df3(0x9ca)](0x0,0x190)[_0x2b6df3(0x1e7)+'h']((_0x3fb081,_0x2b16e9)=>{const _0x737680=_0x2b6df3,_0x1124ff=_0x3fb081['name']||_0x3fb081['MZ']||_0x3fb081[_0x737680(0x671)]||'',_0x1d7942=_0x1ff7db['LkWqy'](_0xe0819d,'li',_0x1ff7db['BDJrs'],_0x453737(_0x1124ff));_0x1d7942[_0x737680(0x8e5)+'k']=()=>{const _0xf153c7=_0x737680,_0x5e4fe4={'qGwPy':function(_0x21d2ed,_0x3dc2ef){return _0x21d2ed!==_0x3dc2ef;},'fwUma':_0xf153c7(0xa5e),'HLYpb':function(_0x125ddb,_0x6f0813){return _0x125ddb(_0x6f0813);}};let _0x1a3661=_0x536914[_0xf153c7(0x9ba)](_0x536914[_0xf153c7(0x2e0)](_0xf153c7(0x61e)+_0xf153c7(0xaaf)+_0xf153c7(0x45e)+_0xf153c7(0x3a5)+_0xf153c7(0x5da),_0x453737(_0x1124ff)),_0x536914[_0xf153c7(0x24f)]);Object['keys'](_0x3fb081)[_0xf153c7(0x1e7)+'h'](_0x5ab1ba=>{const _0x1f9e33=_0xf153c7;if(_0x5e4fe4[_0x1f9e33(0x4c2)](_0x5ab1ba,'name')&&_0x5e4fe4[_0x1f9e33(0x4c2)](_0x5ab1ba,'MZ')&&_0x5ab1ba!==_0x1f9e33(0x1ea)&&_0x3fb081[_0x5ab1ba]&&typeof _0x3fb081[_0x5ab1ba]===_0x5e4fe4[_0x1f9e33(0x9c5)])_0x1a3661+=_0x1f9e33(0x61e)+'lass=\x27'+_0x1f9e33(0x65d)+'b>'+_0x5e4fe4[_0x1f9e33(0x255)](_0x453737,_0x5ab1ba)+(_0x1f9e33(0x8d7)+_0x1f9e33(0x3bf))+_0x369223(_0x3fb081[_0x5ab1ba])+_0x1f9e33(0xb4b);});if(_0x3fb081[_0xf153c7(0x1ea)])_0x1a3661+=_0x536914[_0xf153c7(0xba0)]+_0x536914[_0xf153c7(0x8b7)](encodeURIComponent,_0x1124ff)+_0x536914[_0xf153c7(0xa26)];_0x1a3661+=_0xf153c7(0xb4b),_0x172194[_0xf153c7(0x225)+_0xf153c7(0xb50)]=_0x1a3661,_0x172194[_0xf153c7(0x6f4)+'Top']=0x0;},_0x36960e[_0x737680(0x4cf)+_0x737680(0x692)](_0x1d7942);});});}function _0x1b7da2(_0x51856d){const _0x52af54=_0x5a199c;if(_0x51856d['tool']===_0xa67dec['VBTRT'])return _0x42f6f6();if(_0x51856d['tool']===_0x52af54(0xbd0)+'pan')return _0x48301b();if(_0x51856d['tool']===_0xa67dec[_0x52af54(0x93e)])return _0xa67dec[_0x52af54(0x8cb)](_0x52840e);}function _0x42f6f6(){const _0x51f7df=_0x5a199c,_0xac3eed={'pMfRa':function(_0x159800,_0x2ab933){return _0x159800+_0x2ab933;},'DvQOL':function(_0x4b7933,_0x4082cb){return _0x4b7933+_0x4082cb;},'XYtTt':_0xa67dec['OmYqg'],'ywULS':function(_0x32ebab,_0x4d22fe){return _0x32ebab(_0x4d22fe);},'beFUI':function(_0x16c87b,_0x135a5a){return _0x16c87b+_0x135a5a;},'NzJhm':function(_0x496180,_0x21a85c){return _0xa67dec['PtBvk'](_0x496180,_0x21a85c);},'wHqCW':_0xa67dec['jbTSU']};_0x36960e['innerH'+_0x51f7df(0xb50)]='';const _0x33097a=new Date();_0x172194[_0x51f7df(0x225)+_0x51f7df(0xb50)]=_0xa67dec[_0x51f7df(0x6e6)](_0xa67dec['fqNJR'](_0xa67dec['CThGy'](_0xa67dec[_0x51f7df(0x6bb)](_0xa67dec[_0x51f7df(0x53f)]+_0xa67dec[_0x51f7df(0xbc3)],'<label'+_0x51f7df(0x1a8)+'nput\x20t'+'ype=\x27d'+'ate\x27\x20i'+_0x51f7df(0x69c)+_0x51f7df(0x824)+_0x51f7df(0x3e4)),_0x33097a[_0x51f7df(0x6f7)+_0x51f7df(0x3bc)]()['slice'](0x0,0xa))+_0xa67dec['srRMo'],_0xa67dec[_0x51f7df(0x78d)]),'<div\x20c'+_0x51f7df(0xaaf)+'hint\x27>'+_0x51f7df(0x4e3)+_0x51f7df(0x87b)+_0x51f7df(0xb48)+_0x51f7df(0xbcb)+_0x51f7df(0x926)+'按时辰（每\x20'+_0x51f7df(0x75d)+_0x51f7df(0x607)+_0x51f7df(0x3f2)+'/div>')+_0x51f7df(0xb4b);const _0x308a2f=_0xa67dec[_0x51f7df(0x7ef)](_0x4c5254,_0x51f7df(0xb74)+'e'),_0xdc1501=()=>{const _0x579ba2=_0x51f7df,_0x21d80e={'xfjnC':_0x579ba2(0x37a),'OuIQE':function(_0x13b0a6,_0x1f626b){const _0x4bf062=_0x579ba2;return _0xac3eed[_0x4bf062(0x5d4)](_0x13b0a6,_0x1f626b);},'Rpbuv':function(_0xacf6d8,_0x680f22){const _0x541d0c=_0x579ba2;return _0xac3eed[_0x541d0c(0x5d4)](_0xacf6d8,_0x680f22);},'OFWJk':function(_0x567988,_0x4a158a){const _0x1908d3=_0x579ba2;return _0xac3eed[_0x1908d3(0x200)](_0x567988,_0x4a158a);},'YzKSI':function(_0x43fbac,_0x26480a,_0x3dc081){return _0x43fbac(_0x26480a,_0x3dc081);},'ZSJNW':_0xac3eed[_0x579ba2(0x2ff)]},[_0x5a6be6,_0xf2eb5f,_0x22f056]=_0x308a2f[_0x579ba2(0x2bd)][_0x579ba2(0x707)]('-')[_0x579ba2(0x2ec)](Number);_0xac3eed['ywULS'](_0x1a0f02,_0xac3eed[_0x579ba2(0x1b6)](_0xac3eed[_0x579ba2(0x1b6)](_0xac3eed[_0x579ba2(0x74d)]('/api/r'+_0x579ba2(0xa9a)+_0x579ba2(0x778)+_0x579ba2(0x82b),_0x5a6be6)+_0xac3eed[_0x579ba2(0x893)],_0xf2eb5f),'&d=')+_0x22f056)[_0x579ba2(0x493)](_0x4907b5=>{const _0x383c4b=_0x579ba2,_0x397fa1=_0x4c5254(_0x21d80e[_0x383c4b(0x857)]);if(!_0x397fa1)return;_0x397fa1['innerH'+'TML']=_0x21d80e[_0x383c4b(0x7ae)](_0x21d80e[_0x383c4b(0x2ea)](_0x21d80e[_0x383c4b(0x364)](_0x4a2fff('年柱',_0x4907b5[_0x383c4b(0x24e)]),_0x4a2fff('月柱',_0x4907b5['month'])),_0x21d80e[_0x383c4b(0x3c0)](_0x4a2fff,'日柱',_0x4907b5[_0x383c4b(0x246)]))+_0x4a2fff('生肖',_0x4907b5['shengx'+_0x383c4b(0x633)]),_0x4a2fff(_0x21d80e[_0x383c4b(0x9d4)],_0x4907b5[_0x383c4b(0x4fc)+'x']));})[_0x579ba2(0x9f5)](()=>{});};_0x308a2f[_0x51f7df(0x2a6)+'t']=_0xdc1501,_0xa67dec[_0x51f7df(0x9f2)](_0xdc1501);}function _0x4a2fff(_0x576883,_0x26addf){const _0x34ad8b=_0x5a199c;return _0xa67dec['SMfFS'](_0xa67dec[_0x34ad8b(0x81a)](_0x34ad8b(0x61e)+_0x34ad8b(0xaaf)+_0x34ad8b(0x801)+_0x34ad8b(0x285)+_0x34ad8b(0x569)+_0x34ad8b(0x542)+'\x27>'+_0x576883,_0xa67dec[_0x34ad8b(0x603)]),_0xa67dec['AkKbc'](_0x453737,_0x26addf))+_0xa67dec['dfcwS'];}function _0x48301b(){const _0x1a978c=_0x5a199c,_0x53b9d5={'ujFFE':function(_0x1579bc,_0x2474b8,_0x51620a){return _0x1579bc(_0x2474b8,_0x51620a);},'apGCt':function(_0x1b2f58,_0x434358){return _0x1b2f58+_0x434358;},'yqDUo':_0xa67dec[_0x1a978c(0x746)],'tKZMw':function(_0xa99cb1,_0x2defa8){return _0xa99cb1(_0x2defa8);},'anaAh':_0x1a978c(0xb4b),'DvWNC':_0xa67dec[_0x1a978c(0x442)],'obWea':function(_0x274928,_0xd0d45f){return _0x274928+_0xd0d45f;},'VaWPD':function(_0x1f2c72,_0x71e113){const _0x4b569f=_0x1a978c;return _0xa67dec[_0x4b569f(0x983)](_0x1f2c72,_0x71e113);},'DDDqf':function(_0x1fdce0,_0x303ffa){return _0x1fdce0+_0x303ffa;},'vAeNR':_0x1a978c(0x61e)+_0x1a978c(0xaaf)+_0x1a978c(0xa68)+_0x1a978c(0x270)+_0x1a978c(0xbb2),'dgKfl':_0xa67dec[_0x1a978c(0x6b5)],'pGigW':function(_0x482560,_0x45f5e6){return _0x482560(_0x45f5e6);},'zkZTO':_0xa67dec[_0x1a978c(0x655)],'HEXnN':_0x1a978c(0x2a5)+'n'};if(_0xa67dec[_0x1a978c(0x9d6)](_0xa67dec[_0x1a978c(0x782)],_0xa67dec[_0x1a978c(0x782)])){const _0x4fc5d9={'GsEDF':_0xa67dec[_0x1a978c(0x9f6)],'YuqTk':function(_0x4ae1c1,_0x1e2714,_0x42064e){const _0x51bd08=_0x1a978c;return _0xa67dec[_0x51bd08(0x818)](_0x4ae1c1,_0x1e2714,_0x42064e);}},_0x232e91=_0xa67dec[_0x1a978c(0x4bc)](_0x451e82,'li',_0xa67dec['Frnoz'],_0xa67dec['xPDOb'](_0x4a4e84,_0x34fc22[_0x1a978c(0xab0)]));_0x232e91[_0x1a978c(0x8e5)+'k']=()=>{const _0x3abc3a=_0x1a978c;[..._0x489b03[_0x3abc3a(0x94e)+'electo'+_0x3abc3a(0x343)](_0x3abc3a(0x85a)+_0x3abc3a(0x41f))][_0x3abc3a(0x1e7)+'h'](_0x78c34b=>_0x78c34b[_0x3abc3a(0x26e)+'ist'][_0x3abc3a(0x1b0)](_0x3abc3a(0x7ee)+'-row')),_0x232e91[_0x3abc3a(0x26e)+_0x3abc3a(0x56a)]['add'](_0x4fc5d9[_0x3abc3a(0x7e9)]),_0x4fc5d9['YuqTk'](_0xc607b4,_0x202f80['no'],_0xdb65d0[_0x3abc3a(0xab0)]);},_0xd72c51[_0x1a978c(0x4cf)+'Child'](_0x232e91);}else{_0x36960e[_0x1a978c(0x225)+_0x1a978c(0xb50)]='';const _0x51f6cc=new Date();_0x172194[_0x1a978c(0x225)+_0x1a978c(0xb50)]=_0xa67dec[_0x1a978c(0xb2f)](_0xa67dec[_0x1a978c(0x53c)](_0xa67dec['ShQsO'](_0xa67dec['zlMYh'](_0xa67dec[_0x1a978c(0xb20)](_0x1a978c(0x61e)+_0x1a978c(0xaaf)+_0x1a978c(0xbc2)+'anel\x27>',_0x1a978c(0x85c)+'厦子午流注盘'+_0x1a978c(0xbec))+('<label'+'>公历\x20<i'+_0x1a978c(0x585)+'ype=\x27d'+'ate\x27\x20i'+_0x1a978c(0x63c)+_0x1a978c(0x824)+'alue=\x27')+_0x51f6cc['toISOS'+_0x1a978c(0x3bc)]()['slice'](0x0,0xa),_0xa67dec[_0x1a978c(0x334)])+(_0x1a978c(0x7a1)+'>时辰\x20<s'+_0x1a978c(0x75f)+_0x1a978c(0x901)+_0x1a978c(0xb7e))+_0x1f1df1['map']((_0xe03854,_0x3e8149)=>_0x1a978c(0x547)+'n\x20valu'+'e=\x27'+_0x3e8149+'\x27>'+_0xe03854+('时</opt'+_0x1a978c(0x3e0)))['join'](''),_0xa67dec[_0x1a978c(0x800)])+_0xa67dec[_0x1a978c(0x823)],_0x1a978c(0x61e)+'lass=\x27'+_0x1a978c(0x916)+_0x1a978c(0x2c8)+'d=\x27pnO'+_0x1a978c(0x46a)+_0x1a978c(0x880))+_0xa67dec[_0x1a978c(0x3b4)],_0x1a978c(0xb4b));const _0x4fb0ef=()=>{const _0x45d2cd=_0x1a978c,_0x1bdf9f=_0xa67dec[_0x45d2cd(0xa14)](_0x4c5254,_0xa67dec[_0x45d2cd(0xb25)]),_0x4006bf=_0xa67dec[_0x45d2cd(0x814)](Number,_0x4c5254(_0xa67dec[_0x45d2cd(0xa13)])[_0x45d2cd(0x2bd)])||0x0,[_0x30b6cc,_0x95cb97,_0x536f00]=_0x1bdf9f[_0x45d2cd(0x2bd)][_0x45d2cd(0x707)]('-')[_0x45d2cd(0x2ec)](Number);_0x1a0f02(_0xa67dec[_0x45d2cd(0x4ed)](_0xa67dec[_0x45d2cd(0x4ed)](_0xa67dec[_0x45d2cd(0x690)]('/api/r'+_0x45d2cd(0x982)+_0x45d2cd(0xad1)+_0x45d2cd(0x4e1)+_0x45d2cd(0x940)+'iwwu_p'+_0x45d2cd(0xad2)+_0x30b6cc,_0x45d2cd(0x848))+_0x95cb97,_0x45d2cd(0x80b)),_0x536f00)+_0xa67dec[_0x45d2cd(0x5cc)]+_0x4006bf)['then'](_0x5633c2=>{const _0x118c3e=_0x45d2cd,_0x20666a=_0x5633c2[_0x118c3e(0x455)+'s'],_0x4297c6=_0x5633c2['lingui'][_0x118c3e(0xa3a)];_0x4c5254(_0x118c3e(0x89e))[_0x118c3e(0x225)+_0x118c3e(0xb50)]=_0x53b9d5[_0x118c3e(0x5b4)](_0x4a2fff,'年',_0x20666a[_0x118c3e(0x24e)])+_0x53b9d5['ujFFE'](_0x4a2fff,'月',_0x20666a[_0x118c3e(0x702)])+_0x4a2fff('日',_0x20666a[_0x118c3e(0x246)])+_0x4a2fff('时',_0x20666a[_0x118c3e(0xbe8)]);let _0x1d65f0=_0x53b9d5[_0x118c3e(0x23f)](_0x53b9d5[_0x118c3e(0x447)]+(_0x4297c6?_0x53b9d5['apGCt'](_0x118c3e(0xb85),_0x4297c6)+'）':'')+'：',_0x53b9d5[_0x118c3e(0x9c7)](_0x453737,_0x5633c2[_0x118c3e(0xaf6)][_0x118c3e(0x1f2)]))+_0x53b9d5[_0x118c3e(0x988)];_0x1d65f0+=_0x53b9d5[_0x118c3e(0x23f)](_0x53b9d5[_0x118c3e(0x23f)](_0x53b9d5[_0x118c3e(0x9d9)],_0x453737(_0x5633c2[_0x118c3e(0x57e)][_0x118c3e(0x9a7)]))+'）：'+_0x5633c2['nazi'][_0x118c3e(0x9a6)][_0x118c3e(0x963)](Boolean)[_0x118c3e(0x2ec)](_0xaa1431=>_0x453737(_0xaa1431))['join']('；'),'</div>'),_0x1d65f0+=_0x53b9d5[_0x118c3e(0x23f)](_0x53b9d5[_0x118c3e(0x23f)](_0x53b9d5[_0x118c3e(0xa6e)](_0x53b9d5[_0x118c3e(0x344)](_0x53b9d5[_0x118c3e(0x8c2)](_0x53b9d5[_0x118c3e(0x376)],_0x453737(_0x5633c2[_0x118c3e(0x30c)]['zhi']))+_0x53b9d5['dgKfl'],_0x53b9d5['pGigW'](_0x453737,_0x5633c2['najia'][_0x118c3e(0x1f5)]))+_0x118c3e(0x83f),_0x453737(_0x5633c2[_0x118c3e(0x30c)][_0x118c3e(0x57d)]))+_0x53b9d5[_0x118c3e(0x4db)],_0x453737(_0x5633c2['najia']['yuan'])),_0x118c3e(0xb4b)),_0x53b9d5[_0x118c3e(0x9c7)](_0x4c5254,_0x53b9d5[_0x118c3e(0x34c)])[_0x118c3e(0x225)+_0x118c3e(0xb50)]=_0x1d65f0;})[_0x45d2cd(0x9f5)](()=>{});};_0x1a0f02(_0x1a978c(0x4f6)+_0x1a978c(0x982)+_0x1a978c(0xad1)+_0x1a978c(0x4e1)+_0x1a978c(0x940)+_0x1a978c(0x47c)+'an')['then'](_0x12b9c9=>{const _0x5302b8=_0x1a978c;_0x4c5254('#pnDat'+'e')[_0x5302b8(0x2bd)]=_0xa67dec[_0x5302b8(0x1dc)](_0xa67dec['qBtsI'](_0xa67dec[_0x5302b8(0xbc7)](_0x12b9c9['y'],'-'),_0xa67dec[_0x5302b8(0x777)](String,_0x12b9c9['m'])[_0x5302b8(0x7af)+'rt'](0x2,'0')),'-')+String(_0x12b9c9['d'])[_0x5302b8(0x7af)+'rt'](0x2,'0'),_0x4c5254(_0xa67dec[_0x5302b8(0xa13)])[_0x5302b8(0x2bd)]=_0xa67dec[_0x5302b8(0x792)](String,_0x12b9c9['hb']),_0x4fb0ef();})[_0x1a978c(0x9f5)](()=>{}),_0x4c5254(_0x1a978c(0x20e)+'e')[_0x1a978c(0x805)+'ge']=_0x4fb0ef,_0xa67dec[_0x1a978c(0x4a5)](_0x4c5254,_0xa67dec[_0x1a978c(0xa13)])[_0x1a978c(0x805)+'ge']=_0x4fb0ef;}}const _0x3abeef={0x1:['申脉'],0x2:['照海'],0x3:['外关'],0x4:['临泣'],0x6:['公孙'],0x7:['内关'],0x8:['后溪'],0x9:['列缺']},_0x6701ba={0x4:[0x0,0x0],0x9:[0x0,0x1],0x2:[0x0,0x2],0x3:[0x1,0x0],0x5:[0x1,0x1],0x7:[0x1,0x2],0x8:[0x2,0x0],0x1:[0x2,0x1],0x6:[0x2,0x2]};function _0x52840e(){const _0x16adf2=_0x5a199c,_0x2efc0a={'vSCcd':_0xa67dec[_0x16adf2(0x56e)],'aMaki':function(_0x2c7c6c,_0x3c3f32){return _0x2c7c6c<=_0x3c3f32;},'Tehmd':function(_0x30a568,_0x361b94){const _0x3b8fde=_0x16adf2;return _0xa67dec[_0x3b8fde(0x430)](_0x30a568,_0x361b94);},'ELGMI':function(_0x16088d,_0x1c9151){const _0x5c3456=_0x16adf2;return _0xa67dec[_0x5c3456(0x39d)](_0x16088d,_0x1c9151);},'CAawQ':function(_0x3a278d,_0x40d353){return _0xa67dec['hbmjx'](_0x3a278d,_0x40d353);},'Rtlcl':function(_0x2e2162,_0x4c6b63){const _0x433f88=_0x16adf2;return _0xa67dec[_0x433f88(0x8ac)](_0x2e2162,_0x4c6b63);},'nwpsa':function(_0x2bbcba,_0x5b2dce){const _0x17e4c2=_0x16adf2;return _0xa67dec[_0x17e4c2(0xbcf)](_0x2bbcba,_0x5b2dce);},'Wjirt':function(_0x6e4ba8,_0xb00479){return _0x6e4ba8+_0xb00479;},'iQtnQ':_0xa67dec[_0x16adf2(0x3d2)],'PHlQn':'\x27\x20widt'+_0x16adf2(0x72f)+_0x16adf2(0x3e6)+_0x16adf2(0x5bf)+_0x16adf2(0x1db)+_0x16adf2(0x906)+'ct>','WDXxD':function(_0x58af76,_0x12b8c1){return _0x58af76+_0x12b8c1;},'dkIYs':function(_0x58b013,_0x4f3cc7){return _0x58b013+_0x4f3cc7;},'JnSMR':_0xa67dec[_0x16adf2(0x9aa)],'dpQcD':_0xa67dec[_0x16adf2(0x9bc)],'iQbpl':function(_0x29f53d,_0x521fc4){return _0xa67dec['ouarR'](_0x29f53d,_0x521fc4);},'AoLTA':_0xa67dec[_0x16adf2(0x1a9)],'sJqQh':_0x16adf2(0x489)+_0x16adf2(0x5e8)+'\x27lbl\x27\x20'+_0x16adf2(0x3c2),'BuFLK':function(_0x3a6904,_0x7067ad){return _0x3a6904+_0x7067ad;},'blITL':'#dlGZ','pajin':function(_0x468c6a,_0x1be9df){return _0x468c6a===_0x1be9df;},'sqocV':_0xa67dec[_0x16adf2(0x551)],'PTobX':function(_0x4a6c22,_0x3cd7b4){return _0x4a6c22(_0x3cd7b4);},'XjrCI':_0x16adf2(0x373)+'e','dacga':_0xa67dec[_0x16adf2(0x87a)],'oDUOF':function(_0x251345,_0x3f87fd){return _0x251345+_0x3f87fd;},'mQfSa':function(_0x560afb,_0x1386f7){return _0x560afb+_0x1386f7;},'qiaHw':function(_0x508ea4,_0xa3f6f7){const _0x33d59f=_0x16adf2;return _0xa67dec[_0x33d59f(0x7b8)](_0x508ea4,_0xa3f6f7);},'wcinM':_0xa67dec[_0x16adf2(0x4a9)]};_0x36960e['innerH'+_0x16adf2(0xb50)]='';const _0x16dc83=new Date();_0x172194['innerH'+_0x16adf2(0xb50)]=_0xa67dec[_0x16adf2(0x597)](_0xa67dec['fqNJR'](_0xa67dec[_0x16adf2(0x5fd)](_0xa67dec[_0x16adf2(0x6c4)](_0xa67dec[_0x16adf2(0x4dd)](_0xa67dec[_0x16adf2(0x1b8)](_0xa67dec[_0x16adf2(0x541)](_0xa67dec[_0x16adf2(0x67c)]('<div\x20c'+_0x16adf2(0xaaf)+_0x16adf2(0xbc2)+_0x16adf2(0xa0b),_0xa67dec['nggJn']),_0xa67dec[_0x16adf2(0xae6)]),_0x16dc83[_0x16adf2(0x6f7)+_0x16adf2(0x3bc)]()[_0x16adf2(0x9ca)](0x0,0xa)),_0xa67dec['budQi'])+('<label'+_0x16adf2(0x862)+_0x16adf2(0x75f)+_0x16adf2(0x863)+_0x16adf2(0xb7e)),_0x1f1df1['map']((_0x3df115,_0x3f7204)=>_0x16adf2(0x547)+_0x16adf2(0x3b8)+_0x16adf2(0x316)+_0x3f7204+'\x27>'+_0x3df115+('时</opt'+'ion>'))[_0x16adf2(0x83c)]('')),_0xa67dec[_0x16adf2(0x800)]),_0xa67dec['bXpnK'])+(_0x16adf2(0x6df)+_0x16adf2(0x2d4)+_0x16adf2(0x459)+_0x16adf2(0x785)+_0x16adf2(0x9b7)+'=\x27dlGZ'+_0x16adf2(0x6be)+_0x16adf2(0x802)+_0x16adf2(0x658)+'=\x27open'+_0x16adf2(0x587)+_0x16adf2(0x2bb)+_0x16adf2(0x5ed)+_0x16adf2(0x845)+'></div'+_0x16adf2(0x845)+'>'),_0xa67dec[_0x16adf2(0x79c)])+_0xa67dec[_0x16adf2(0x691)];const _0x212368=_0xf1b382=>{const _0x4491fd=_0x16adf2,_0x1a9878=_0x4c5254(_0x2efc0a[_0x4491fd(0x789)]);if(!_0x1a9878)return;let _0x2c50d2='';for(let _0xb4f375=0x1;_0x2efc0a[_0x4491fd(0xa32)](_0xb4f375,0x9);_0xb4f375++){if(_0x2efc0a[_0x4491fd(0x723)](_0xb4f375,0x5))continue;const [_0x271957,_0xb900f7]=_0x6701ba[_0xb4f375],_0x451b4d=0x14+_0x2efc0a[_0x4491fd(0x3b7)](_0xb900f7,0x5a),_0x43b155=0x14+_0x2efc0a['CAawQ'](_0x271957,0x5a),_0x2bc77c=_0x2efc0a['Rtlcl'](_0xb4f375,_0xf1b382);_0x2c50d2+=_0x2efc0a[_0x4491fd(0x980)](_0x2efc0a['Wjirt'](_0x4491fd(0x204)+_0x4491fd(0x5e8)+'\x27cell'+(_0x2bc77c?_0x2efc0a[_0x4491fd(0x213)]:''),_0x4491fd(0xa50)),_0x451b4d)+'\x27\x20y=\x27'+_0x43b155+_0x2efc0a[_0x4491fd(0xa7c)],_0x2c50d2+=_0x2efc0a[_0x4491fd(0x49a)](_0x2efc0a[_0x4491fd(0x574)](_0x2efc0a[_0x4491fd(0x34b)]+(_0x451b4d+0x28),_0x2efc0a[_0x4491fd(0x717)])+_0x2efc0a['iQbpl'](_0x43b155,0x12)+'\x27>'+_0xb4f375,_0x2efc0a[_0x4491fd(0x1ad)]),_0x2c50d2+=_0x2efc0a[_0x4491fd(0x980)](_0x2efc0a[_0x4491fd(0x83b)],_0x2efc0a[_0x4491fd(0xa2a)](_0x451b4d,0x28))+_0x2efc0a[_0x4491fd(0x717)]+_0x2efc0a['iQbpl'](_0x43b155,0x32)+'\x27>'+(_0x3abeef[_0xb4f375][0x0]||'')+(_0x4491fd(0xa45)+'>');}_0x1a9878[_0x4491fd(0x225)+_0x4491fd(0xb50)]=_0x2c50d2;},_0x16787d=()=>{const _0x4dc0a4=_0x16adf2,_0x52f8b9={'DwIqJ':_0x2efc0a['blITL'],'KPDlN':function(_0x584245,_0x1e90d0,_0x4ff4a7){return _0x584245(_0x1e90d0,_0x4ff4a7);},'zDjjG':_0x4dc0a4(0x61e)+_0x4dc0a4(0xaaf)+_0x4dc0a4(0xa68)+_0x4dc0a4(0x7c0)+_0x4dc0a4(0x54d),'uQxhX':'</div>','yzlmb':function(_0x5c5e29,_0x4063b2){return _0x5c5e29(_0x4063b2);},'JpdRc':_0x4dc0a4(0xada),'Zyosy':function(_0x298f40,_0x14cbf3){return _0x298f40+_0x14cbf3;},'RnLKf':function(_0x69a448,_0x263ea5){return _0x69a448+_0x263ea5;},'XXYco':function(_0x32b8a0,_0x36dcb2){return _0x32b8a0(_0x36dcb2);}};if(_0x2efc0a['pajin'](_0x2efc0a['sqocV'],_0x2efc0a[_0x4dc0a4(0x382)])){const _0x4b6842=_0x2efc0a['PTobX'](_0x4c5254,_0x2efc0a[_0x4dc0a4(0xbd6)]),_0x4b7160=_0x2efc0a[_0x4dc0a4(0xabb)](Number,_0x2efc0a[_0x4dc0a4(0xabb)](_0x4c5254,_0x2efc0a[_0x4dc0a4(0xb55)])[_0x4dc0a4(0x2bd)])||0x0,[_0x485a0c,_0x33b1c1,_0x1375d9]=_0x4b6842[_0x4dc0a4(0x2bd)][_0x4dc0a4(0x707)]('-')['map'](Number);_0x2efc0a[_0x4dc0a4(0xabb)](_0x1a0f02,_0x2efc0a[_0x4dc0a4(0x3f6)](_0x2efc0a[_0x4dc0a4(0x1cc)](_0x2efc0a[_0x4dc0a4(0x997)](_0x2efc0a['wcinM'],_0x485a0c)+_0x4dc0a4(0x848)+_0x33b1c1,_0x4dc0a4(0x80b)),_0x1375d9)+_0x4dc0a4(0x64f)+_0x4b7160)['then'](_0x2c11b9=>{const _0xdc6d21=_0x4dc0a4,_0xd92454=_0x2c11b9[_0xdc6d21(0x455)+'s'],_0x2a55d5=_0x2c11b9[_0xdc6d21(0xaf6)][_0xdc6d21(0xa3a)];_0x4c5254(_0x52f8b9[_0xdc6d21(0x470)])['innerH'+_0xdc6d21(0xb50)]=_0x4a2fff('日',_0xd92454['day'])+_0x52f8b9['KPDlN'](_0x4a2fff,'时',_0xd92454[_0xdc6d21(0xbe8)])+(_0x2a55d5?_0x4a2fff('九宫',_0x2a55d5):''),_0x4c5254('#dlOpe'+'n')[_0xdc6d21(0x225)+_0xdc6d21(0xb50)]=_0x52f8b9[_0xdc6d21(0x243)]+_0x453737(_0x2c11b9[_0xdc6d21(0xaf6)][_0xdc6d21(0x1f2)])+_0x52f8b9['uQxhX'],_0x52f8b9[_0xdc6d21(0xb0d)](_0x212368,_0x2a55d5);})[_0x4dc0a4(0x9f5)](()=>{});}else{const _0x479df8=_0x1aff32(_0x52f8b9[_0x4dc0a4(0x3a9)],null,_0x52f8b9[_0x4dc0a4(0x7df)](_0x52f8b9['RnLKf'](_0x52f8b9['XXYco'](_0x39e7e7,_0x152b0c[_0x4dc0a4(0x526)])+'\x20(',_0x4be654[_0x4dc0a4(0x378)]),')'));_0x479df8[_0x4dc0a4(0x8e5)+'k']=()=>_0x1d4485(_0x5632d9),_0x525d3b['append'+_0x4dc0a4(0x692)](_0x479df8);}};_0x212368(0x0),_0xa67dec[_0x16adf2(0x393)](_0x1a0f02,'/api/r'+_0x16adf2(0x982)+'ool_co'+_0x16adf2(0x4e1)+_0x16adf2(0x7d8)+_0x16adf2(0xb71)+'dial')[_0x16adf2(0x493)](_0x48afa8=>{const _0x253047=_0x16adf2;_0xa67dec[_0x253047(0x370)](_0x4c5254,_0xa67dec[_0x253047(0xa5f)])['value']=_0xa67dec[_0x253047(0x20c)](_0x48afa8['y']+'-'+String(_0x48afa8['m'])[_0x253047(0x7af)+'rt'](0x2,'0'),'-')+String(_0x48afa8['d'])[_0x253047(0x7af)+'rt'](0x2,'0'),_0xa67dec['AkKbc'](_0x4c5254,_0xa67dec[_0x253047(0x87a)])[_0x253047(0x2bd)]=_0xa67dec[_0x253047(0x792)](String,_0x48afa8['hb']),_0x16787d();})[_0x16adf2(0x9f5)](()=>{}),_0x4c5254(_0x16adf2(0x373)+'e')['onchan'+'ge']=_0x16787d,_0xa67dec[_0x16adf2(0x959)](_0x4c5254,_0x16adf2(0x7a0)+'r')[_0x16adf2(0x805)+'ge']=_0x16787d;}const _0x109cb9=['子时','丑时','寅时','卯时','辰时','巳时','午时','未时','申时','酉时','戌时','亥时'];function _0x3cbd01(_0x1c13fd){const _0x1c1870=_0x5a199c;return _0xa67dec[_0x1c1870(0x315)](_0x1c13fd,0x0)?0x17:_0x1c13fd*0x2-0x1;}function _0x43649c(){const _0x16c929=_0x5a199c,_0x2eed25=new Date()[_0x16c929(0x68e)+'rs']();return Math['floor'](_0xa67dec[_0x16c929(0x1e4)](_0xa67dec[_0x16c929(0x549)](_0xa67dec['ZPcef'](_0x2eed25,0x1),0x18),0x2));}function _0x4a1500(_0x464eda,_0x4be045){const _0x2ed13c=_0x5a199c,_0x2d06ae=new Date(),_0x591cbf=_0xa67dec['mquhP'](_0x4be045,null)?_0xa67dec[_0x2ed13c(0x86e)](_0x43649c):_0x4be045;return _0xa67dec[_0x2ed13c(0xaf5)](_0xa67dec[_0x2ed13c(0x931)](_0xa67dec[_0x2ed13c(0x29c)](_0xa67dec[_0x2ed13c(0x29a)](_0xa67dec[_0x2ed13c(0x67c)](_0xa67dec['NUmQn'](_0xa67dec['uxncH'](_0xa67dec[_0x2ed13c(0x8ee)]('<div><'+_0x2ed13c(0xa06)+_0x2ed13c(0x6fe)+_0x2ed13c(0x88c)+_0x2ed13c(0x94b)+'pe=\x27nu'+'mber\x27\x20'+'id=\x27',_0x464eda)+_0xa67dec['YaIfS'],_0x2d06ae['getFul'+_0x2ed13c(0x94c)]())+_0xa67dec[_0x2ed13c(0x74e)]+_0xa67dec[_0x2ed13c(0x409)]+_0x464eda,'M\x27\x20min'+_0x2ed13c(0x539)+_0x2ed13c(0x9e2)+_0x2ed13c(0x729)+_0x2ed13c(0x316))+(_0x2d06ae[_0x2ed13c(0x662)+'th']()+0x1),_0x2ed13c(0x6be)+'v>')+_0xa67dec[_0x2ed13c(0xae4)]+_0x464eda+_0xa67dec[_0x2ed13c(0x84c)]+_0x2d06ae[_0x2ed13c(0x868)+'e']()+_0xa67dec[_0x2ed13c(0x74e)],_0x2ed13c(0x6df)+_0x2ed13c(0xa06)+_0x2ed13c(0x328)+_0x2ed13c(0x33f)+_0x2ed13c(0x75f)+'id=\x27')+_0x464eda+_0xa67dec[_0x2ed13c(0x62a)],_0x109cb9[_0x2ed13c(0x2ec)]((_0x7db42a,_0x4ce723)=>_0x2ed13c(0x547)+_0x2ed13c(0x3b8)+_0x2ed13c(0x316)+_0x4ce723+'\x27'+(_0x4ce723===_0x591cbf?_0x2ed13c(0x66d)+_0x2ed13c(0xa3e):'')+'>'+_0x7db42a+(_0x2ed13c(0x820)+_0x2ed13c(0x756)))[_0x2ed13c(0x83c)]('')),'</sele'+'ct></d'+_0x2ed13c(0x9fd))+_0xa67dec['CCRbe'],_0x464eda)+('Go\x27>查询'+'</butt'+_0x2ed13c(0x89a)+_0x2ed13c(0x9fd));}function _0x174b73(_0x4b2fbd){const _0x1f85e0=_0x5a199c,_0x2bc267=Number((_0xa67dec[_0x1f85e0(0x864)](_0x4c5254,_0xa67dec['wmobn']('#'+_0x4b2fbd,'Y'))||{})[_0x1f85e0(0x2bd)])||new Date()[_0x1f85e0(0x1b1)+_0x1f85e0(0x94c)](),_0x2e4377=_0xa67dec[_0x1f85e0(0x5ae)](Number,(_0x4c5254(_0xa67dec[_0x1f85e0(0x931)](_0xa67dec['fbROZ']('#',_0x4b2fbd),'M'))||{})[_0x1f85e0(0x2bd)])||_0xa67dec['soPBZ'](new Date()['getMon'+'th'](),0x1),_0x5aad15=_0xa67dec[_0x1f85e0(0x30f)](Number,(_0x4c5254(_0xa67dec[_0x1f85e0(0x9e7)](_0xa67dec[_0x1f85e0(0x9bb)]('#',_0x4b2fbd),'D'))||{})[_0x1f85e0(0x2bd)])||new Date()[_0x1f85e0(0x868)+'e'](),_0x2098ec=_0xa67dec[_0x1f85e0(0xafb)](Number,(_0xa67dec[_0x1f85e0(0x68f)](_0x4c5254,_0xa67dec[_0x1f85e0(0xb97)]('#',_0x4b2fbd)+'H')||{})[_0x1f85e0(0x2bd)])||0x0;return{'y':_0x2bc267,'m':_0x2e4377,'d':_0x5aad15,'hi':_0x2098ec,'h':_0x3cbd01(_0x2098ec)};}function _0x1b130d(_0x484d9b){const _0x290116=_0x5a199c,_0x36b867={'wIkci':function(_0x57d159,_0x5018be){return _0x57d159(_0x5018be);},'rBzec':function(_0x3a1ffc,_0x291999){return _0xa67dec['SiwfM'](_0x3a1ffc,_0x291999);},'hbtNo':function(_0x565005,_0x4248e5){const _0x5750f0=a0_0x2474;return _0xa67dec[_0x5750f0(0x599)](_0x565005,_0x4248e5);},'fRFca':function(_0x2a2be4,_0x2e6cf3){return _0x2a2be4+_0x2e6cf3;},'RBGje':_0xa67dec['sAgDG'],'jWRSl':function(_0x5cd880,_0x377436){const _0x22dc0e=a0_0x2474;return _0xa67dec[_0x22dc0e(0x85e)](_0x5cd880,_0x377436);},'ykgFN':function(_0x4148d5,_0x4b6ac6){return _0x4148d5+_0x4b6ac6;}};let _0x9c7e9=_0xa67dec[_0x290116(0x86f)]+_0x484d9b[_0x290116(0x553)]['map'](_0x4c7cf7=>_0x290116(0xb99)+_0x453737(_0x4c7cf7)+'</th>')[_0x290116(0x83c)]('')+('</tr><'+_0x290116(0xa8d)+_0x290116(0x472)+'y>');return _0x484d9b['rows'][_0x290116(0x1e7)+'h'](_0x4290ca=>{const _0x4dc534=_0x290116,_0x29d220={'vSMrM':function(_0x2da563,_0x44016e){const _0x38128b=a0_0x2474;return _0x36b867[_0x38128b(0x206)](_0x2da563,_0x44016e);},'jYVDL':function(_0x5295a1,_0xc738a1){return _0x5295a1!==_0xc738a1;},'QmbOd':_0x4dc534(0x457),'gCsJQ':function(_0x379e4e,_0x10c21f){const _0x369114=_0x4dc534;return _0x36b867[_0x369114(0x75c)](_0x379e4e,_0x10c21f);},'DZsRF':function(_0x3dfe65,_0x390bc6){const _0x1b1c67=_0x4dc534;return _0x36b867[_0x1b1c67(0xa73)](_0x3dfe65,_0x390bc6);},'SZTUc':function(_0x41ed24,_0x655801){const _0x12f2cc=_0x4dc534;return _0x36b867[_0x12f2cc(0x1ed)](_0x41ed24,_0x655801);},'qCYzw':function(_0x4b28a9,_0x12595d){return _0x4b28a9+_0x12595d;},'JuFZc':_0x4dc534(0x20b)+'r','SxrqI':_0x36b867['RBGje'],'BnoPF':'<span\x20'+_0x4dc534(0x5e8)+'\x27zw-em'+_0x4dc534(0x876)+_0x4dc534(0x6a6)+'>','OnCCY':_0x4dc534(0x8f2)};_0x9c7e9+=_0x36b867['jWRSl'](_0x36b867[_0x4dc534(0x8bd)](_0x4dc534(0x478)+'ta-k=\x27',_0x453737(String(_0x4290ca[0x0]||'')[_0x4dc534(0x749)]())),'\x27>'),_0x4290ca[_0x4dc534(0x1e7)+'h']((_0x3e8179,_0x2cac02)=>{const _0x1bfda1=_0x4dc534,_0x3d2860={'YWlzh':function(_0xb9abde,_0xf927c){const _0x2485a7=a0_0x2474;return _0x29d220[_0x2485a7(0xaed)](_0xb9abde,_0xf927c);},'ItHQS':function(_0x288964,_0x336de7){return _0x288964+_0x336de7;}};if(_0x29d220['jYVDL'](_0x29d220[_0x1bfda1(0x679)],_0x1bfda1(0x457))){const _0x41a27d=_0x3d2860[_0x1bfda1(0x223)](_0x1823fd,_0x3d2860[_0x1bfda1(0x9a1)]('#',_0x4f40af));if(_0x41a27d)_0x41a27d[_0x1bfda1(0x805)+'ge']=_0x3352d4;}else{const _0x28771d=_0x29d220[_0x1bfda1(0xaed)](String,_0x3e8179==null?'':_0x3e8179)[_0x1bfda1(0x749)]();_0x9c7e9+=_0x29d220[_0x1bfda1(0x705)](_0x29d220['DZsRF'](_0x29d220[_0x1bfda1(0x69b)](_0x29d220['qCYzw'](_0x1bfda1(0x8c6)+_0x1bfda1(0x899),_0x2cac02===0x0?_0x29d220[_0x1bfda1(0xba8)]:''),_0x29d220[_0x1bfda1(0x5e4)])+_0x29d220[_0x1bfda1(0xaed)](_0x453737,_0x484d9b['cols'][_0x2cac02])+'\x27>',_0x28771d?_0x29d220[_0x1bfda1(0xaed)](_0x453737,_0x28771d):_0x29d220[_0x1bfda1(0xb05)]),_0x29d220[_0x1bfda1(0xbb4)]);}}),_0x9c7e9+=_0x4dc534(0x3ba);}),_0x9c7e9+(_0x290116(0x604)+'y></ta'+_0x290116(0x33d));}function _0x4a8ad5(_0x2cf562,_0x423540,_0x5b357c){const _0x35b096=_0x5a199c;if(!_0x2cf562)return;_0x2cf562[_0x35b096(0x94e)+_0x35b096(0x813)+_0x35b096(0x343)](_0xa67dec[_0x35b096(0x9a3)])[_0x35b096(0x1e7)+'h'](_0x13df28=>_0x13df28[_0x35b096(0x26e)+_0x35b096(0x56a)][_0x35b096(0x8b1)]('cur',String(_0x13df28[_0x35b096(0x7e7)+'ribute'](_0x35b096(0x644)))===String(_0x423540||''))),_0x2cf562[_0x35b096(0x94e)+_0x35b096(0x813)+_0x35b096(0x343)](_0xa67dec[_0x35b096(0x347)])['forEac'+'h'](_0x2b7350=>_0x2b7350[_0x35b096(0x26e)+'ist']['toggle'](_0x35b096(0x9f7),String(_0x2b7350[_0x35b096(0x7e7)+_0x35b096(0x7f2)](_0x35b096(0x755)))===String(_0x5b357c||'')));}const _0x3d622b=[['离','列缺'],['坤','后溪'],['兑',_0x5a199c(0xad8)],['乾','公孙'],['坎','申脉'],['艮','内关'],['震','外关'],['巽','照海']];function _0x4a87d6(_0x2db999,_0xa736ad){const _0x5f5b3a=_0x5a199c,_0x3150e3=0xa0,_0x1d2721=0xa0,_0x11c3c9=_0xa67dec['xoovT'](Math['PI'],0xb4),_0x4e92eb=_0x5f5b3a(0x598)+'E',_0x268ea8=_0xa67dec[_0x5f5b3a(0xa17)],_0x316032=_0xa67dec[_0x5f5b3a(0x2e9)],_0x580686=_0x5f5b3a(0x324)+'A';let _0x2cc708=_0xa67dec[_0x5f5b3a(0x321)];_0x2cc708+=_0xa67dec[_0x5f5b3a(0x29c)](_0xa67dec[_0x5f5b3a(0x359)](_0xa67dec[_0x5f5b3a(0x2b9)](_0xa67dec['ntsrt'](_0xa67dec['uiqwZ'](_0x5f5b3a(0xa44)+_0x5f5b3a(0xaac),_0x3150e3),'\x27\x20cy=\x27')+_0x1d2721+(_0x5f5b3a(0x948)+_0x5f5b3a(0x3f4)+_0x5f5b3a(0x232))+_0x580686,_0x5f5b3a(0x27d)+'ke=\x27'),_0x4e92eb),_0x5f5b3a(0x27d)+_0x5f5b3a(0x79f)+_0x5f5b3a(0x52b)+_0x5f5b3a(0x632));for(let _0x13ce9a=0x0;_0x13ce9a<0xc;_0x13ce9a++){const _0x197c67=_0xa67dec[_0x5f5b3a(0xb0f)](_0xa67dec[_0x5f5b3a(0x345)](_0x13ce9a,0x1e),0x5a)*_0x11c3c9,_0x6ba3de=_0xa67dec[_0x5f5b3a(0x621)](_0x3150e3,_0xa67dec[_0x5f5b3a(0x5f1)](Math[_0x5f5b3a(0xbb6)](_0x197c67),0x88)),_0x31211b=_0xa67dec[_0x5f5b3a(0x8cd)](_0x1d2721,Math[_0x5f5b3a(0x554)](_0x197c67)*0x88),_0x1afbd9=_0xa67dec[_0x5f5b3a(0x8ac)](_0xa736ad,_0x1f1df1[_0x13ce9a]);_0x2cc708+=_0xa67dec['XEFtw'](_0xa67dec[_0x5f5b3a(0x751)](_0xa67dec[_0x5f5b3a(0xb8f)](_0xa67dec[_0x5f5b3a(0x44d)](_0xa67dec[_0x5f5b3a(0x1c2)](_0x5f5b3a(0xa44)+'e\x20cx=\x27'+_0x6ba3de+_0x5f5b3a(0x50e),_0x31211b),_0x5f5b3a(0x948)+_0x5f5b3a(0xb2e)+_0x5f5b3a(0x676)),_0x1afbd9?_0xa67dec[_0x5f5b3a(0x601)]:_0x268ea8)+_0xa67dec['Tzaia'],_0x4e92eb),_0x5f5b3a(0x840)),_0x2cc708+=_0xa67dec[_0x5f5b3a(0x2b9)](_0xa67dec[_0x5f5b3a(0x20a)](_0xa67dec['TvPhX'](_0xa67dec[_0x5f5b3a(0x1ca)](_0xa67dec[_0x5f5b3a(0x2af)](_0xa67dec[_0x5f5b3a(0x4ed)]('<text\x20'+_0x5f5b3a(0x3c2)+_0x6ba3de,_0xa67dec[_0x5f5b3a(0x9bc)]),_0xa67dec['BwKuQ'](_0x31211b,4.5))+_0xa67dec[_0x5f5b3a(0x3ab)],_0x1afbd9?_0xa67dec[_0x5f5b3a(0x422)]:_0x316032),'\x27>'),_0x1f1df1[_0x13ce9a]),'</text'+'>');}for(let _0x3cd51b=0x0;_0x3cd51b<0x8;_0x3cd51b++){const _0x48e66a=_0xa67dec[_0x5f5b3a(0x626)](_0xa67dec[_0x5f5b3a(0xb10)](_0x3cd51b,0x2d),0x5a)*_0x11c3c9,_0x44e60f=_0x3150e3+Math[_0x5f5b3a(0xbb6)](_0x48e66a)*0x4c,_0x453520=_0xa67dec['pEIlf'](_0x1d2721,Math[_0x5f5b3a(0x554)](_0x48e66a)*0x4c),_0x5e5062=_0xa67dec[_0x5f5b3a(0x487)](_0x3d622b[_0x3cd51b][0x1],_0x2db999);_0x2cc708+=_0xa67dec['HYmLr'](_0xa67dec[_0x5f5b3a(0x5b0)](_0xa67dec['zlMYh'](_0xa67dec[_0x5f5b3a(0x508)](_0xa67dec[_0x5f5b3a(0x7cc)](_0xa67dec[_0x5f5b3a(0xa01)](_0xa67dec['TnToi'],_0x44e60f),_0xa67dec[_0x5f5b3a(0x397)]),_0x453520)+_0xa67dec[_0x5f5b3a(0x718)],_0x5e5062?_0xa67dec['igNWl']:_0x268ea8),'\x27\x20stro'+_0x5f5b3a(0x27b))+(_0x5e5062?'#E8C97'+'E':_0x5f5b3a(0x88f)+_0x5f5b3a(0x954)+',110,.'+'45)'),_0x5f5b3a(0x27d)+'ke-wid'+_0x5f5b3a(0x6a8))+(_0x5e5062?'3':'1')+_0x5f5b3a(0x840),_0x2cc708+=_0xa67dec['UaQYi'](_0xa67dec[_0x5f5b3a(0xbb8)](_0xa67dec['kGzhX'](_0xa67dec[_0x5f5b3a(0x29c)](_0x5f5b3a(0x489)+'x=\x27'+_0x44e60f,_0xa67dec[_0x5f5b3a(0x9bc)]),_0xa67dec[_0x5f5b3a(0x626)](_0x453520,0x2))+(_0x5f5b3a(0x595)+'-ancho'+_0x5f5b3a(0x972)+_0x5f5b3a(0x31c)+_0x5f5b3a(0x8e3)+_0x5f5b3a(0x9dc)+'\x27\x20fill'+'=\x27#B8A'+_0x5f5b3a(0x726)),_0x3d622b[_0x3cd51b][0x0]),_0x5f5b3a(0xa45)+'>'),_0x2cc708+=_0xa67dec[_0x5f5b3a(0xbcf)](_0xa67dec[_0x5f5b3a(0xba1)](_0xa67dec[_0x5f5b3a(0x4a8)],_0x44e60f)+_0xa67dec[_0x5f5b3a(0x9bc)]+_0xa67dec[_0x5f5b3a(0x70c)](_0x453520,0xc)+_0xa67dec['yditz']+(_0x5e5062?_0xa67dec[_0x5f5b3a(0x422)]:_0x316032)+'\x27>'+_0x3d622b[_0x3cd51b][0x1],_0xa67dec[_0x5f5b3a(0xbea)]);}return _0x2cc708+=_0xa67dec[_0x5f5b3a(0x541)](_0xa67dec[_0x5f5b3a(0xaba)](_0xa67dec[_0x5f5b3a(0xa2f)](_0xa67dec[_0x5f5b3a(0x67c)](_0xa67dec['RecWf'](_0x5f5b3a(0xa44)+'e\x20cx=\x27',_0x3150e3),_0xa67dec['DNfjh']),_0x1d2721),_0xa67dec[_0x5f5b3a(0x826)])+_0x4e92eb,_0x5f5b3a(0x840)),_0x2cc708+=_0xa67dec['HRyip'](_0xa67dec[_0x5f5b3a(0x751)](_0xa67dec['rUmZl'],_0x3150e3)+'\x27\x20y=\x27'+_0xa67dec[_0x5f5b3a(0x7b2)](_0x1d2721,0x3),_0xa67dec[_0x5f5b3a(0xb08)])+_0x268ea8+'\x27>'+_0xa67dec[_0x5f5b3a(0x7ca)](_0x453737,_0xa67dec['gGyIG'](_0x2db999,'—'))+(_0x5f5b3a(0xa45)+'>'),_0x2cc708+=_0xa67dec[_0x5f5b3a(0x70c)](_0xa67dec[_0x5f5b3a(0x4a8)]+_0x3150e3+_0x5f5b3a(0xa81)+_0xa67dec['ZIngL'](_0x1d2721,0x10),_0x5f5b3a(0x595)+_0x5f5b3a(0x519)+_0x5f5b3a(0x972)+_0x5f5b3a(0x31c)+_0x5f5b3a(0x8e3)+_0x5f5b3a(0x590)+'\x27\x20fill'+'=\x27rgba'+'(10,10'+',15,.7'+_0x5f5b3a(0xa08))+_0xa67dec[_0x5f5b3a(0xb0c)](_0x453737,_0xa736ad?_0xa67dec[_0x5f5b3a(0x591)](_0xa736ad,'时'):'')+(_0x5f5b3a(0xa45)+'>'),_0xa67dec['fbROZ'](_0x2cc708,_0x5f5b3a(0xa1d));}function _0x3287dc(_0x2812c2){const _0x2771cd=_0x5a199c,_0x30f160={'iSxTs':_0x2771cd(0x42d)+'li','BGglA':function(_0xb2e136){return _0xb2e136();},'guboW':function(_0x251f2f,_0x5720be){const _0x19a08f=_0x2771cd;return _0xa67dec[_0x19a08f(0x78c)](_0x251f2f,_0x5720be);},'ulnny':_0xa67dec['EUfvM']};if(_0xa67dec[_0x2771cd(0x25e)]===_0xa67dec[_0x2771cd(0x25e)]){const _0x37775e=_0x2812c2[_0x2771cd(0x736)]||{},_0x187d43=_0x2812c2[_0x2771cd(0xade)]||{},_0x5a6a21=_0x2812c2[_0x2771cd(0xaf6)]||{},_0x316b87=_0x2812c2[_0x2771cd(0x29e)+'n']||{},_0x202209=_0x2812c2[_0x2771cd(0x65b)]||{},_0x2aff76=_0x2812c2['najiaf'+'a']||{},_0x558ee8=(_0x27d231,_0x4850d7)=>_0x2771cd(0x6df)+'span\x20c'+_0x2771cd(0xaaf)+_0x2771cd(0xbb3)+_0x453737(_0x27d231)+(_0x2771cd(0x6a6)+_0x2771cd(0x654)+'\x20class'+_0x2771cd(0x24b)+'>')+_0x453737(_0x4850d7||'—')+(_0x2771cd(0x6a6)+'></div'+'>');let _0x3e5838=_0xa67dec['kDtZp'](_0xa67dec[_0x2771cd(0x357)](_0x2771cd(0xa20)+'\x20·\x20'+_0x453737(_0x37775e['year']),'\x20')+_0x453737(_0x37775e[_0x2771cd(0x702)])+'\x20',_0xa67dec['XgbWW'](_0x453737,_0x37775e['day']))+'\x20'+_0xa67dec[_0x2771cd(0x4e9)](_0x453737,_0x37775e[_0x2771cd(0xbe8)])+'时</h3>';return _0x3e5838+=_0xa67dec[_0x2771cd(0x32d)](_0xa67dec[_0x2771cd(0x3a8)](_0xa67dec[_0x2771cd(0xb8f)](_0xa67dec['hBPES'],_0x558ee8('阴历',_0xa67dec[_0x2771cd(0x99c)](_0x187d43[_0x2771cd(0x4da)+'cn']||'',_0x187d43[_0x2771cd(0x934)]||''))),_0x558ee8('生肖',_0x2812c2['shengx'+_0x2771cd(0x633)]))+_0x558ee8(_0x2771cd(0x27a),_0x2812c2['nayin']),_0x558ee8('时辰',_0x316b87[_0x2771cd(0xab0)]))+(_0x2771cd(0xb4b)+_0x2771cd(0xb4b)),_0x3e5838+=_0xa67dec[_0x2771cd(0x591)](_0xa67dec[_0x2771cd(0x5fd)]('<h3>灵龟'+_0x2771cd(0xa09)+_0x2771cd(0x83d)+'v\x20clas'+'s=\x27blk'+_0x2771cd(0x581)+_0x2771cd(0x658)+_0x2771cd(0x362)+'>',_0xa67dec[_0x2771cd(0x1c7)](_0x558ee8,'开穴',_0x5a6a21[_0x2771cd(0x1f2)]))+_0x558ee8('八法序号',_0x5a6a21['num']),_0x558ee8(_0xa67dec['jbmgd'],_0x5a6a21['ganzhi'+'_day']))+_0x558ee8(_0xa67dec[_0x2771cd(0x4df)],_0x5a6a21[_0x2771cd(0x736)+'_hour'])+(_0x2771cd(0xb4b)+_0x2771cd(0xb4b)),_0x3e5838+=_0xa67dec[_0x2771cd(0x289)](_0xa67dec[_0x2771cd(0xa54)](_0x2771cd(0x68d)+_0x2771cd(0xab5)+_0x2771cd(0x408)+_0x2771cd(0x708)+_0x2771cd(0x658)+_0x2771cd(0x3f7)+_0x2771cd(0x887)+'class='+'\x27row\x27>'+_0xa67dec['kXaMH'](_0x558ee8,_0xa67dec['AYTTa'],_0x202209[_0xa67dec[_0x2771cd(0xb1c)]])+_0xa67dec['ROppM'](_0x558ee8,'本穴',_0x202209['本穴'])+_0x558ee8('源穴',_0x202209['源穴']),_0x558ee8(_0x2771cd(0xae7),_0x202209['补泄'])),_0x558ee8(_0xa67dec[_0x2771cd(0x796)],_0x202209['开穴']))+(_0x2771cd(0xb4b)+'</div>'),_0x3e5838+=_0xa67dec[_0x2771cd(0x99c)](_0xa67dec[_0x2771cd(0xa90)](_0xa67dec[_0x2771cd(0x37b)]('<h3>十二'+_0x2771cd(0x70d)+'日干\x20＋\x20时'+_0x2771cd(0x797)+_0x2771cd(0x887)+_0x2771cd(0x5e8)+'\x27blk\x27>'+_0x2771cd(0x61e)+_0x2771cd(0xaaf)+_0x2771cd(0x713),_0x558ee8(_0xa67dec[_0x2771cd(0xae2)],_0x2aff76[_0x2771cd(0xb8c)])),_0x558ee8(_0xa67dec[_0x2771cd(0x3fa)],_0x2aff76[_0x2771cd(0x76a)]))+_0xa67dec[_0x2771cd(0x43f)](_0x558ee8,_0x2771cd(0x36e),_0x2aff76[_0x2771cd(0x36e)]),_0x2771cd(0xb4b)+_0x2771cd(0xb4b)),_0x3e5838;}else{if(_0x265b90[_0x2771cd(0x611)]===_0x30f160[_0x2771cd(0xadd)])return _0x30f160[_0x2771cd(0x25b)](_0x1b9c04);if(_0x30f160[_0x2771cd(0x498)](_0x4092f3[_0x2771cd(0x611)],_0x30f160[_0x2771cd(0x2e4)]))return _0x2ff1b7();if(_0x52ae9c[_0x2771cd(0x611)]===_0x2771cd(0xaf6)+'_dial')return _0x15339b();}}function _0x3d5ec7(){const _0xe245cf=_0x5a199c,_0x21f138={'GtVpA':_0xa67dec['cwTHt'],'IRKpR':'<div\x20c'+'lass=\x27'+_0xe245cf(0x7e4)+_0xe245cf(0x499)+_0xe245cf(0x45c)+'</div>','vVAIu':function(_0x42021f,_0x18148b){const _0x248fd3=_0xe245cf;return _0xa67dec[_0x248fd3(0x54a)](_0x42021f,_0x18148b);},'TBLGK':function(_0x5dddf8,_0x5abf32){return _0x5dddf8+_0x5abf32;},'fSFOP':_0xe245cf(0xb4b)+_0xe245cf(0xb4b),'GDOBc':function(_0x28825f,_0xc45a17){return _0x28825f(_0xc45a17);},'eyvtE':_0xe245cf(0x90c)+_0xe245cf(0x2a1),'cxUyZ':_0xa67dec[_0xe245cf(0x390)],'fRyUT':_0xa67dec[_0xe245cf(0x331)],'Oxokn':'&h=','KxkTi':_0xa67dec[_0xe245cf(0x216)],'OEBhE':function(_0x3ff6a5,_0x2fae0a){const _0x150a1c=_0xe245cf;return _0xa67dec[_0x150a1c(0x920)](_0x3ff6a5,_0x2fae0a);},'ZsiTn':_0xa67dec[_0xe245cf(0x594)],'lbalK':_0xa67dec[_0xe245cf(0x6d4)],'rFGxw':_0xa67dec[_0xe245cf(0x953)],'QNJjn':'<tr>','aUYoV':function(_0x54c568,_0x348d3b){return _0x54c568<_0x348d3b;},'zyjVM':'<td\x20cl'+'ass=\x27e'+'mpty\x27>'+'</td>','eQsZM':function(_0x25995f,_0x59e769){return _0xa67dec['tPQcj'](_0x25995f,_0x59e769);},'vYGvg':_0xe245cf(0x8c6)+_0xe245cf(0x899),'aSsPl':function(_0x268006,_0x1a68a4){return _0x268006===_0x1a68a4;},'fEJsK':_0xa67dec['WEqaC'],'rVEqs':_0xe245cf(0xb4b),'UtDfQ':_0xe245cf(0x61e)+_0xe245cf(0xaaf)+'lun\x27>','LUgny':function(_0x60d714,_0x1d2218){const _0x569970=_0xe245cf;return _0xa67dec[_0x569970(0x2f0)](_0x60d714,_0x1d2218);},'jrMgS':'<div\x20c'+'lass=\x27'+_0xe245cf(0x207),'NyIij':function(_0x5e18eb,_0x5b5776){return _0x5e18eb(_0x5b5776);},'HEnrl':_0xe245cf(0x8f2),'hJpkZ':_0xa67dec[_0xe245cf(0x21b)],'jufBt':_0xe245cf(0x604)+_0xe245cf(0x335)+'ble>','nQDhZ':function(_0x79638e,_0x26c32c){return _0x79638e(_0x26c32c);},'zLHJV':_0xa67dec[_0xe245cf(0x6aa)],'fuqEb':function(_0x262d2b,_0x31b19d){const _0x32e29b=_0xe245cf;return _0xa67dec[_0x32e29b(0x43a)](_0x262d2b,_0x31b19d);},'MBeRG':_0xa67dec['UUQvn'],'aEhSg':function(_0x3566d1,_0x5ea5cb){const _0x25227a=_0xe245cf;return _0xa67dec[_0x25227a(0xa66)](_0x3566d1,_0x5ea5cb);},'WlhLR':_0xa67dec['eQkOl'],'RxrxI':function(_0x5d605f,_0x322bd9){const _0x177580=_0xe245cf;return _0xa67dec[_0x177580(0x417)](_0x5d605f,_0x322bd9);},'rkfdv':function(_0x346719,_0xd8aaa5,_0x27c9b4,_0x7b63f2){const _0x54f5f9=_0xe245cf;return _0xa67dec[_0x54f5f9(0xb53)](_0x346719,_0xd8aaa5,_0x27c9b4,_0x7b63f2);},'bqNUx':function(_0x4e0730,_0x14986b){return _0xa67dec['yrAAB'](_0x4e0730,_0x14986b);},'qNXQL':function(_0x5cae16){return _0x5cae16();}};_0x172194[_0xe245cf(0x225)+_0xe245cf(0xb50)]=_0xa67dec[_0xe245cf(0x84f)](_0xa67dec[_0xe245cf(0x264)](_0xa67dec[_0xe245cf(0x1c2)](_0xa67dec['hzIOX'](_0xa67dec[_0xe245cf(0x931)](_0xa67dec[_0xe245cf(0x6bf)](_0xa67dec['HPUzO'](_0xa67dec[_0xe245cf(0x562)](_0xa67dec[_0xe245cf(0xaba)](_0xa67dec[_0xe245cf(0x81a)](_0xa67dec[_0xe245cf(0x640)],_0xe245cf(0x61e)+_0xe245cf(0xaaf)+_0xe245cf(0x5a4)+_0xe245cf(0xba4)+_0xe245cf(0x65c)+_0xe245cf(0x5dc)+_0xe245cf(0x502)),_0xa67dec[_0xe245cf(0x765)]),_0xe245cf(0x61e)+_0xe245cf(0xaaf)+'lbg-ma'+_0xe245cf(0x64d))+_0xa67dec['iSssA']+('<div\x20c'+'lass=\x27'+_0xe245cf(0x8db)+_0xe245cf(0x8ef)+'iv\x20cla'+_0xe245cf(0xb77)+_0xe245cf(0x451))+_0x4a1500('lbg')+(_0xe245cf(0xb4b)+_0xe245cf(0xb4b)),_0xe245cf(0x61e)+_0xe245cf(0xaaf)+_0xe245cf(0x844)+_0xe245cf(0x53a)+_0xe245cf(0x572)+'ompute'+'d\x27><di'+_0xe245cf(0x569)+_0xe245cf(0x439)+_0xe245cf(0xa15)+_0xe245cf(0x8a0)+_0xe245cf(0x845)+'>')+(_0xe245cf(0x61e)+_0xe245cf(0xaaf)+_0xe245cf(0x219)+_0xe245cf(0x42b)+'Cal\x27><'+_0xe245cf(0x880))+_0xa67dec[_0xe245cf(0x691)],_0xa67dec['fslpR'])+_0xa67dec[_0xe245cf(0x4b9)],_0xa67dec[_0xe245cf(0x854)])+_0xa67dec['ThLRv']+_0xe245cf(0xb4b)+('<div\x20c'+_0xe245cf(0xaaf)+_0xe245cf(0x1c6)+_0xe245cf(0xb92)+_0xe245cf(0x648)+_0xe245cf(0xa4f)+_0xe245cf(0x80f)+_0xe245cf(0x6e2))+(_0xe245cf(0x3ad)+_0xe245cf(0x8a1)+'2>'),_0xe245cf(0x61e)+_0xe245cf(0xaaf)+_0xe245cf(0xbce)+_0xe245cf(0xae8)+'干支\x20×\x20时'+_0xe245cf(0x888)+_0xe245cf(0x58d)+_0xe245cf(0x683)+_0xe245cf(0x73d)+'div>')+_0xa67dec['AObmF'],_0xe245cf(0xb4b)),_0xa67dec[_0xe245cf(0x23e)]),_0xa67dec[_0xe245cf(0x691)]);const _0x37baf8=()=>{const _0x13b00c=_0xe245cf,_0xcc8507={'qFmUb':_0x21f138[_0x13b00c(0x7bf)],'Lrbfh':function(_0x445c70,_0x5ebcbf,_0x7dd1a6){return _0x445c70(_0x5ebcbf,_0x7dd1a6);},'RwvxW':function(_0x1ccd5d,_0x29e8fe){return _0x1ccd5d(_0x29e8fe);},'lWaSK':function(_0x18ff04,_0x5c560e){const _0x45dc68=_0x13b00c;return _0x21f138[_0x45dc68(0x952)](_0x18ff04,_0x5c560e);},'OxWJO':function(_0xcfc705,_0x46fbe8){return _0xcfc705+_0x46fbe8;},'OKHgs':function(_0x4d8647,_0x4f33f2){return _0x4d8647+_0x4f33f2;},'BLHeG':function(_0x42e193,_0x265969){const _0x2b1c9b=_0x13b00c;return _0x21f138[_0x2b1c9b(0x509)](_0x42e193,_0x265969);},'Ohpcw':'<div\x20c'+'lass=\x27'+_0x13b00c(0x3a5)+_0x13b00c(0x61e)+'lass=\x27'+_0x13b00c(0xb06)+_0x13b00c(0x2f8)+_0x13b00c(0x802)+_0x13b00c(0x658)+_0x13b00c(0x24b)+'>','AZMyQ':_0x21f138[_0x13b00c(0x2ce)],'SbEAv':function(_0x1dc76f,_0x536066){const _0x4fb4d6=_0x13b00c;return _0x21f138[_0x4fb4d6(0x8fc)](_0x1dc76f,_0x536066);},'vrEWu':_0x21f138[_0x13b00c(0x46b)]},_0x42e461=_0x21f138[_0x13b00c(0x8fc)](_0x174b73,'lbg');_0x21f138[_0x13b00c(0x8fc)](_0x1a0f02,_0x21f138[_0x13b00c(0x509)](_0x21f138[_0x13b00c(0x509)](_0x13b00c(0x4f6)+_0x13b00c(0x8b6)+_0x13b00c(0xbae)+_0x13b00c(0x918)+'='+_0x42e461['y']+_0x21f138['cxUyZ']+_0x42e461['m'],_0x21f138['fRyUT']),_0x42e461['d'])+_0x21f138['Oxokn']+_0x42e461['h'])['then'](_0xfa16=>{const _0x4eafec=_0x13b00c,_0x5ef7cc=_0x4c5254(_0xcc8507[_0x4eafec(0x6ed)]);if(_0x5ef7cc)_0x5ef7cc[_0x4eafec(0x225)+_0x4eafec(0xb50)]=_0x3287dc(_0xfa16);const _0x3371b4=_0x4c5254(_0x4eafec(0x76f)+'sc');if(_0x3371b4)_0x3371b4[_0x4eafec(0x225)+_0x4eafec(0xb50)]=_0xcc8507[_0x4eafec(0x304)](_0x4a87d6,(_0xfa16['lingui']||{})['xue'],(_0xfa16[_0x4eafec(0x29e)+'n']||{})[_0x4eafec(0x2ba)]);const _0x46cd57=_0xcc8507[_0x4eafec(0x7be)](_0x4c5254,'#lbgIn'+'fo');if(_0x46cd57)_0x46cd57[_0x4eafec(0x225)+'TML']=_0xcc8507[_0x4eafec(0x276)](_0xcc8507[_0x4eafec(0x276)](_0xcc8507[_0x4eafec(0xa21)](_0xcc8507[_0x4eafec(0x3c3)](_0xcc8507['BLHeG'](_0xcc8507[_0x4eafec(0x2d3)](_0xcc8507[_0x4eafec(0x9a9)]+_0xcc8507['RwvxW'](_0x453737,(_0xfa16[_0x4eafec(0x736)]||{})[_0x4eafec(0x246)]||'—'),_0xcc8507[_0x4eafec(0x936)])+(_0x4eafec(0x61e)+_0x4eafec(0xaaf)+_0x4eafec(0x3a5)+_0x4eafec(0x61e)+'lass=\x27'+'lbl\x27>时'+_0x4eafec(0xa6a)+_0x4eafec(0x887)+'class='+_0x4eafec(0xb0b)),_0x453737((_0xfa16[_0x4eafec(0x29e)+'n']||{})[_0x4eafec(0xab0)]||'—')),_0xcc8507[_0x4eafec(0x936)]),_0x4eafec(0x61e)+_0x4eafec(0xaaf)+'card\x27>'+_0x4eafec(0x61e)+'lass=\x27'+'lbl\x27>开'+'穴</div'+_0x4eafec(0x887)+_0x4eafec(0x5e8)+_0x4eafec(0xb0b)),_0x453737((_0xfa16[_0x4eafec(0xaf6)]||{})[_0x4eafec(0x1f2)]||'—')),_0xcc8507[_0x4eafec(0x936)]);_0x4a8ad5(_0xcc8507[_0x4eafec(0x9e6)](_0x4c5254,_0xcc8507['vrEWu']),(_0xfa16[_0x4eafec(0xaf6)]||{})[_0x4eafec(0x736)+_0x4eafec(0x4b8)],(_0xfa16['shiche'+'n']||{})[_0x4eafec(0x2ba)]);})['catch'](()=>{const _0x4bddad=_0x13b00c,_0x19152c=_0x4c5254(_0x21f138[_0x4bddad(0x7bf)]);if(_0x19152c)_0x19152c[_0x4bddad(0x225)+_0x4bddad(0xb50)]=_0x21f138[_0x4bddad(0x296)];});},_0x2a6125=(_0x1b7faf,_0x371634,_0x2da441)=>{const _0x272e56=_0xe245cf,_0x58d183={'PlgMh':function(_0x5752ab,_0x465eeb){return _0x5752ab+_0x465eeb;},'tOVPF':function(_0x3ef8a3,_0x2c8adb){return _0x3ef8a3<_0x2c8adb;},'rXIzv':function(_0x5dc245,_0x10091a){const _0x1eb8e7=a0_0x2474;return _0x21f138[_0x1eb8e7(0x7ac)](_0x5dc245,_0x10091a);},'wnouf':'#lbgM'};_0x272e56(0x8cf)===_0x21f138[_0x272e56(0x81c)]?_0x323f90[_0x272e56(0x225)+'TML']='<div\x20c'+_0x272e56(0xaaf)+'hint\x27>'+'详情加载失败'+_0x272e56(0x402)+_0x272e56(0x880):_0x21f138[_0x272e56(0x7ac)](_0x1a0f02,_0x21f138['TBLGK'](_0x272e56(0x4f6)+'enji/l'+_0x272e56(0x779)+_0x272e56(0xa75)+'y=',_0x1b7faf)+'&m='+_0x371634)[_0x272e56(0x493)](_0x3c4e8f=>{const _0x51e7b6=_0x272e56,_0x3d0e5d=_0x4c5254(_0x51e7b6(0x227)+'l');if(!_0x3d0e5d)return;const _0x4412e8=['日','一','二','三','四','五','六'];let _0x220670=_0x21f138[_0x51e7b6(0x952)](_0x21f138[_0x51e7b6(0x3fb)]+_0x3c4e8f[_0x51e7b6(0x24e)]+_0x51e7b6(0x527),_0x3c4e8f[_0x51e7b6(0x702)])+(_0x51e7b6(0x268)+'v><but'+'ton\x20id'+_0x51e7b6(0x414)+_0x51e7b6(0x881)+_0x51e7b6(0x19c)+'on></d'+_0x51e7b6(0x9fd));_0x220670+=_0x21f138[_0x51e7b6(0x32a)](_0x21f138['ZsiTn'],_0x4412e8[_0x51e7b6(0x2ec)](_0x187c8c=>_0x51e7b6(0xb99)+_0x187c8c+_0x51e7b6(0x75b))[_0x51e7b6(0x83c)](''))+_0x21f138[_0x51e7b6(0x24a)];let _0x58bbc7=0x1;for(let _0x5bc04e=0x0;_0x5bc04e<0x6&&_0x58bbc7<=_0x3c4e8f[_0x51e7b6(0x592)];_0x5bc04e++){if(_0x51e7b6(0x222)===_0x21f138[_0x51e7b6(0x2fe)]){_0x220670+=_0x21f138[_0x51e7b6(0x943)];for(let _0x230931=0x0;_0x230931<0x7;_0x230931++){if(_0x5bc04e===0x0&&_0x21f138['aUYoV'](_0x230931,_0x3c4e8f[_0x51e7b6(0x54e)+_0x51e7b6(0x754)])||_0x58bbc7>_0x3c4e8f[_0x51e7b6(0x592)]){_0x220670+=_0x21f138[_0x51e7b6(0x9d3)];continue;}const _0xa542b6=_0x3c4e8f['days'][_0x58bbc7-0x1]||{};_0x220670+=_0x21f138[_0x51e7b6(0x32a)](_0x21f138[_0x51e7b6(0x96c)](_0x21f138[_0x51e7b6(0x32a)](_0x21f138[_0x51e7b6(0x96c)](_0x21f138[_0x51e7b6(0x32a)](_0x21f138[_0x51e7b6(0x25c)]+(_0x21f138[_0x51e7b6(0x804)](_0x58bbc7,_0x2da441)?_0x21f138[_0x51e7b6(0xaeb)]:'')+(_0x51e7b6(0x7cb)+_0x51e7b6(0x82d))+_0x58bbc7,_0x51e7b6(0x581)+_0x51e7b6(0x658)+_0x51e7b6(0xba6)+_0x51e7b6(0x1c3)),_0x58bbc7)+_0x21f138[_0x51e7b6(0x1f3)],_0x21f138[_0x51e7b6(0x59b)]),_0x453737(_0xa542b6[_0x51e7b6(0xade)]||''))+_0x21f138[_0x51e7b6(0x1f3)]+(_0xa542b6[_0x51e7b6(0x23d)]?_0x21f138[_0x51e7b6(0x90a)](_0x21f138[_0x51e7b6(0x96b)]+_0x21f138[_0x51e7b6(0x1c5)](_0x453737,_0xa542b6[_0x51e7b6(0x23d)]),_0x51e7b6(0xb4b)):''),_0x21f138[_0x51e7b6(0x37d)]),_0x58bbc7++;}_0x220670+=_0x21f138[_0x51e7b6(0x2eb)];}else{if(_0x281a7b){const _0x2c8088=_0x25d52e[_0x51e7b6(0x776)](_0x1269ba,arguments);return _0x5af08d=null,_0x2c8088;}}}_0x3d0e5d['innerH'+_0x51e7b6(0xb50)]=_0x220670+_0x21f138[_0x51e7b6(0x97c)];const _0x5a45db=_0x20b7ab=>{const _0x2a8d0f=_0x51e7b6;let _0x5b13d0=_0x1b7faf,_0x2b5e28=_0x58d183[_0x2a8d0f(0x8e7)](_0x371634,_0x20b7ab);if(_0x58d183[_0x2a8d0f(0xba5)](_0x2b5e28,0x1))_0x2b5e28=0xc,_0x5b13d0--;else _0x2b5e28>0xc&&(_0x2b5e28=0x1,_0x5b13d0++);const _0x4e4dd0=_0x58d183[_0x2a8d0f(0x5d2)](_0x4c5254,'#lbgY'),_0x5a5cb7=_0x4c5254(_0x58d183[_0x2a8d0f(0x914)]);if(_0x4e4dd0)_0x4e4dd0[_0x2a8d0f(0x2bd)]=_0x5b13d0;if(_0x5a5cb7)_0x5a5cb7['value']=_0x2b5e28;_0x2a6125(_0x5b13d0,_0x2b5e28,_0x2da441);},_0xe30d03=_0x21f138[_0x51e7b6(0x84d)](_0x4c5254,'#lbgPr'+'ev'),_0x33b432=_0x4c5254(_0x21f138['zLHJV']);if(_0xe30d03)_0xe30d03[_0x51e7b6(0x8e5)+'k']=()=>_0x5a45db(-0x1);if(_0x33b432)_0x33b432[_0x51e7b6(0x8e5)+'k']=()=>_0x5a45db(0x1);_0x3d0e5d['queryS'+_0x51e7b6(0x813)+'rAll'](_0x51e7b6(0x95e)+'a-d]')[_0x51e7b6(0x1e7)+'h'](_0x21707e=>{const _0x2f3177=_0x51e7b6,_0x52f2c4={'KbUHG':_0x2f3177(0x77c)};_0x21707e[_0x2f3177(0x8e5)+'k']=()=>{const _0x5b574f=_0x2f3177,_0x284dc8=_0x4c5254(_0x52f2c4[_0x5b574f(0xafa)]);if(_0x284dc8)_0x284dc8[_0x5b574f(0x2bd)]=_0x21707e['getAtt'+_0x5b574f(0x7f2)](_0x5b574f(0xb03));_0x244636();};});})['catch'](()=>{const _0x312f93=_0x272e56,_0x39b1a2=_0x58d183[_0x312f93(0x5d2)](_0x4c5254,'#lbgCa'+'l');if(_0x39b1a2)_0x39b1a2['innerH'+_0x312f93(0xb50)]='<div\x20c'+_0x312f93(0xaaf)+_0x312f93(0x7e4)+'日历加载失败'+_0x312f93(0x229)+'>';});},_0x244636=()=>{const _0x32d876=_0xe245cf,_0x2117e8={'iAjov':function(_0xa042db,_0x421bb3){const _0x318b12=a0_0x2474;return _0x21f138[_0x318b12(0xa00)](_0xa042db,_0x421bb3);}};if(_0x32d876(0x486)===_0x21f138[_0x32d876(0xb5b)]){_0x37baf8();const _0x224305=_0x21f138['RxrxI'](_0x174b73,_0x32d876(0x1ab));_0x21f138['rkfdv'](_0x2a6125,_0x224305['y'],_0x224305['m'],_0x224305['d']);}else{const _0x3ce20f=_0x279160(_0x2117e8[_0x32d876(0x56d)]('#',_0x36606d));if(_0x3ce20f)_0x3ce20f[_0x32d876(0x805)+'ge']=_0x5a6dd2;}};[_0xa67dec[_0xe245cf(0x8e8)],_0xa67dec[_0xe245cf(0x3a2)],_0xe245cf(0x7a2)][_0xe245cf(0x1e7)+'h'](_0x1756dc=>{const _0x4bf8ee=_0xe245cf,_0x3d6b20=_0xa67dec['FPqhI'](_0x4c5254,_0xa67dec[_0x4bf8ee(0x5b0)]('#',_0x1756dc));if(_0x3d6b20)_0x3d6b20[_0x4bf8ee(0x805)+'ge']=_0x244636;});const _0xf40762=_0x4c5254(_0xa67dec[_0xe245cf(0x301)]);if(_0xf40762)_0xf40762['onchan'+'ge']=_0x37baf8;const _0x7db746=_0x4c5254(_0xe245cf(0x969));if(_0x7db746)_0x7db746[_0xe245cf(0x8e5)+'k']=_0x244636;_0x1a0f02(_0xa67dec['NIBmR'])[_0xe245cf(0x493)](_0x22cfee=>{const _0x19a4b7=_0xe245cf,_0x5886a2=_0x21f138[_0x19a4b7(0xb1b)](_0x4c5254,_0x19a4b7(0x90c)+_0x19a4b7(0x2a1));if(_0x5886a2&&_0x22cfee[_0x19a4b7(0xaf6)])_0x5886a2[_0x19a4b7(0x225)+_0x19a4b7(0xb50)]=_0x1b130d(_0x22cfee[_0x19a4b7(0xaf6)]);_0x21f138[_0x19a4b7(0x1fc)](_0x37baf8);})['catch'](()=>{});const _0x5f2809=_0xa67dec[_0xe245cf(0x4a5)](_0x174b73,_0xa67dec[_0xe245cf(0x1a6)]);_0x2a6125(_0x5f2809['y'],_0x5f2809['m'],_0x5f2809['d']);}function _0x302cde(){const _0x48217f=_0x5a199c,_0x1b33cb={'XSDLS':function(_0x34f673,_0x5489c3){const _0x52978d=a0_0x2474;return _0xa67dec[_0x52978d(0xbd7)](_0x34f673,_0x5489c3);},'Qotfv':'<div\x20c'+_0x48217f(0xaaf)+_0x48217f(0x45e)+'card\x27>'+'<h4>','PHJRi':_0x48217f(0x6b9)+_0x48217f(0x21a),'XDZrX':_0x48217f(0x617)+'ia','okgIk':function(_0xc1ba38,_0x59c161){return _0xc1ba38+_0x59c161;},'pufOx':function(_0x5c9aaa,_0x379e3b){const _0x5483bc=_0x48217f;return _0xa67dec[_0x5483bc(0x814)](_0x5c9aaa,_0x379e3b);},'MGAGV':'#zwNaz'+'i','TicwK':function(_0x3a024d,_0x204829){return _0x3a024d+_0x204829;},'KnoLr':function(_0x342e42,_0x38f77f){const _0x541e3a=_0x48217f;return _0xa67dec[_0x541e3a(0x375)](_0x342e42,_0x38f77f);},'NOLvI':function(_0x1ed9ab,_0x396b3e){const _0xc8a69d=_0x48217f;return _0xa67dec[_0xc8a69d(0x9a0)](_0x1ed9ab,_0x396b3e);},'VeRhB':function(_0x9a0b8d,_0x58d4c8){return _0x9a0b8d+_0x58d4c8;},'nmoCr':_0xa67dec[_0x48217f(0x53e)],'CVpkD':function(_0x5427ff,_0x599bb2){const _0x590ebc=_0x48217f;return _0xa67dec[_0x590ebc(0x4e9)](_0x5427ff,_0x599bb2);},'bzDWd':function(_0x4e7acc,_0x8e66df){const _0x5bebe3=_0x48217f;return _0xa67dec[_0x5bebe3(0x86b)](_0x4e7acc,_0x8e66df);},'srttq':_0x48217f(0xb8c),'YJfgm':_0xa67dec[_0x48217f(0x3fa)],'IDUVk':function(_0x6c7d26,_0x300cd6,_0x24ad45){return _0x6c7d26(_0x300cd6,_0x24ad45);},'kNcZp':_0xa67dec[_0x48217f(0x5b5)],'LUqDv':function(_0x36b0e5,_0x4ea4c,_0x2c8eb5){return _0x36b0e5(_0x4ea4c,_0x2c8eb5);},'EXGDv':_0x48217f(0x710),'ojKVN':function(_0x408b3f,_0x10172d,_0x28127d){return _0x408b3f(_0x10172d,_0x28127d);},'gfjEq':_0x48217f(0x7ea),'EbBDJ':function(_0x5acd8b,_0x2ae1ad){const _0x317aca=_0x48217f;return _0xa67dec[_0x317aca(0xb8f)](_0x5acd8b,_0x2ae1ad);}};_0x172194['innerH'+_0x48217f(0xb50)]=_0xa67dec['nNYrL'](_0xa67dec[_0x48217f(0x983)](_0xa67dec[_0x48217f(0x1ef)](_0xa67dec[_0x48217f(0x9e7)](_0xa67dec[_0x48217f(0xa7b)](_0xa67dec[_0x48217f(0x230)]+_0xa67dec['iRtqX'],_0xa67dec['WmDCl'])+_0xa67dec[_0x48217f(0x6db)]+_0xa67dec['BWPBh'](_0x4a1500,'zw')+_0xa67dec[_0x48217f(0x3ce)]+('<div\x20c'+_0x48217f(0xaaf)+'zw-lay'+'out\x27>')+_0xa67dec['JiHfE']+(_0x48217f(0x61e)+_0x48217f(0xaaf)+_0x48217f(0xbce)+_0x48217f(0xae8)+_0x48217f(0x7a6)+_0x48217f(0x2bf)+_0x48217f(0x894)+_0x48217f(0x410)+_0x48217f(0x975)+'>'),_0x48217f(0x61e)+_0x48217f(0xaaf)+_0x48217f(0x97f)+_0x48217f(0x3f3)+_0x48217f(0x5e0)+'Najia\x27'+'><div\x20'+'class='+_0x48217f(0x536)+_0x48217f(0xab2)+_0x48217f(0x3cb)+_0x48217f(0x3cb)+_0x48217f(0x880)),_0xa67dec[_0x48217f(0x5b1)])+(_0x48217f(0x61e)+_0x48217f(0xaaf)+_0x48217f(0xbce)+'e\x27>按「时'+_0x48217f(0x212)+_0x48217f(0x3fc)+'穴\x20/\x20泻子'+_0x48217f(0x2a8)+_0x48217f(0x858)+_0x48217f(0x880))+(_0x48217f(0x61e)+_0x48217f(0xaaf)+_0x48217f(0x97f)+_0x48217f(0x3f3)+_0x48217f(0x5e0)+_0x48217f(0x8f9)+_0x48217f(0x61e)+_0x48217f(0xaaf)+_0x48217f(0x7e4)+_0x48217f(0x1c8)+_0x48217f(0xb26)+_0x48217f(0xb26)+'div>'),'</div>')+(_0x48217f(0x61e)+_0x48217f(0xaaf)+_0x48217f(0x99e)+_0x48217f(0x922)+_0x48217f(0x2a2)+_0x48217f(0xa43)+'3>当前推算'+_0x48217f(0xbc8)+'div\x20cl'+_0x48217f(0xbdc)+'int\x27>选'+_0x48217f(0x964)+_0x48217f(0x8b0)+_0x48217f(0xb26)+'div>')+(_0x48217f(0x61e)+_0x48217f(0xaaf)+_0x48217f(0x242)+_0x48217f(0x437)+_0x48217f(0xbc6)+_0x48217f(0xa0e)+_0x48217f(0x3fe)+'法（原「人纪'+'针灸」软件内'+_0x48217f(0x520)+_0x48217f(0x9fd)),_0x48217f(0xb4b));const _0x25afc2=()=>{const _0x148d0c=_0x48217f;if(_0xa67dec['bHUqb'](_0x148d0c(0x349),_0x148d0c(0x349))){const _0x4fe839={'mDCYR':function(_0x4c771a,_0x5dbe92){return _0x4c771a+_0x5dbe92;},'PeQYm':function(_0x56bee8,_0x3d997d){return _0x1b33cb['XSDLS'](_0x56bee8,_0x3d997d);},'KUqOf':function(_0x1d72c1,_0x584c87){const _0x138358=_0x148d0c;return _0x1b33cb[_0x138358(0x281)](_0x1d72c1,_0x584c87);},'TOgit':function(_0x1afb81,_0x1e0dda){const _0x32f6ee=_0x148d0c;return _0x1b33cb[_0x32f6ee(0x281)](_0x1afb81,_0x1e0dda);},'EqEzM':_0x1b33cb['Qotfv'],'hnOge':_0x148d0c(0x4e8),'nnVPm':'）</div'+_0x148d0c(0x845)+'>'},_0x3b35b7=_0x36b8ec('li',_0x1b33cb[_0x148d0c(0x7a3)],_0x5a1fae(_0x5a6707['id']));_0x3b35b7[_0x148d0c(0x8e5)+'k']=()=>{const _0x27e609=_0x148d0c;_0x47a63f[_0x27e609(0x225)+_0x27e609(0xb50)]=_0x4fe839['mDCYR'](_0x4fe839['PeQYm'](_0x4fe839[_0x27e609(0x6ce)](_0x4fe839[_0x27e609(0x1d7)](_0x4fe839[_0x27e609(0x1d7)](_0x4fe839[_0x27e609(0xa60)](_0x4fe839[_0x27e609(0x6eb)](_0x4fe839[_0x27e609(0xaa6)],_0x1f258e(_0x1e133e['id'])),_0x27e609(0xb9d)),_0x27e609(0x61e)+_0x27e609(0xaaf)+_0x27e609(0xab7)+_0x27e609(0x495)),_0x575d7f[_0x27e609(0x960)])+_0x27e609(0x64e)+_0x3c8667[_0x27e609(0xad4)],_0x27e609(0x5b8))+_0x2049b7['h']+_0x27e609(0x2a0),_0x54dab9['v'])+_0x4fe839[_0x27e609(0xa55)]+_0x2567b8['y'],_0x4fe839[_0x27e609(0xab9)]);},_0xe8376b['append'+_0x148d0c(0x692)](_0x3b35b7);}else{const _0xccc0cd=_0x174b73('zw');_0xa67dec[_0x148d0c(0x65a)](_0x1a0f02,_0xa67dec[_0x148d0c(0x22a)](_0xa67dec[_0x148d0c(0x8ee)](_0xa67dec[_0x148d0c(0x786)](_0x148d0c(0x4f6)+_0x148d0c(0x8b6)+_0x148d0c(0xbae)+_0x148d0c(0x918)+'='+_0xccc0cd['y']+_0xa67dec[_0x148d0c(0x390)]+_0xccc0cd['m']+_0xa67dec['kcYmf'],_0xccc0cd['d']),_0x148d0c(0x1a5)),_0xccc0cd['h']))[_0x148d0c(0x493)](_0x96770=>{const _0x588030=_0x148d0c,_0x5e76ba=_0x96770[_0x588030(0x736)]||{},_0x55385d=_0x96770[_0x588030(0x29e)+'n']||{},_0xe3056f=_0x96770[_0x588030(0x65b)]||{},_0x101197=_0x96770[_0x588030(0x60f)+'a']||{};_0x4a8ad5(_0x4c5254(_0x1b33cb['XDZrX']),_0x1b33cb[_0x588030(0x52a)](_0x1b33cb[_0x588030(0x43c)](String,_0x5e76ba['day']||''),_0x1b33cb[_0x588030(0x43c)](String,_0x55385d['zhi']||'')),_0x55385d[_0x588030(0x2ba)]),_0x4a8ad5(_0x4c5254(_0x1b33cb['MGAGV']),_0x55385d[_0x588030(0x2ba)],_0x55385d[_0x588030(0x2ba)]);const _0x5b6898=_0x4c5254(_0x588030(0x3da));if(_0x5b6898){const _0x2dea17=(_0x235e50,_0x1a26fb)=>_0x588030(0x6df)+_0x588030(0x9fc)+'lass=\x27'+_0x588030(0x36c)+'\x27>'+_0x453737(_0x235e50)+('</span'+'><span'+_0x588030(0x658)+_0x588030(0x909)+_0x588030(0x4aa))+_0x453737(_0x1a26fb||'—')+(_0x588030(0x6a6)+'></div'+'>');_0x5b6898[_0x588030(0x225)+'TML']=_0x1b33cb[_0x588030(0x281)](_0x1b33cb[_0x588030(0x4d4)](_0x1b33cb['TicwK'](_0x1b33cb[_0x588030(0x636)](_0x1b33cb[_0x588030(0x52a)](_0x1b33cb[_0x588030(0x636)](_0x1b33cb['okgIk'](_0x1b33cb[_0x588030(0x4d4)](_0x1b33cb[_0x588030(0x82a)](_0x1b33cb['KnoLr'](_0x1b33cb[_0x588030(0x636)](_0x1b33cb[_0x588030(0x3a0)](_0x1b33cb[_0x588030(0x281)](_0x1b33cb[_0x588030(0x1e0)],_0x453737(_0x5e76ba[_0x588030(0x24e)])),'\x20'),_0x1b33cb[_0x588030(0x43c)](_0x453737,_0x5e76ba[_0x588030(0x702)])),'\x20')+_0x1b33cb[_0x588030(0x6e5)](_0x453737,_0x5e76ba['day'])+'\x20',_0x453737(_0x5e76ba[_0x588030(0xbe8)]))+'时（',_0x1b33cb['bzDWd'](_0x453737,_0x55385d[_0x588030(0xab0)]))+(_0x588030(0x333)+_0x588030(0x61e)+'lass=\x27'+'zw-row'+'\x27>')+_0x2dea17(_0x588030(0xb8c),_0x101197[_0x1b33cb[_0x588030(0x652)]])+_0x2dea17(_0x1b33cb['YJfgm'],_0x101197[_0x1b33cb['YJfgm']]),_0x1b33cb['IDUVk'](_0x2dea17,_0x1b33cb['kNcZp'],_0x101197[_0x1b33cb['kNcZp']])),_0x2dea17(_0x588030(0xb41),_0xe3056f['流经脏腑经络']))+_0x1b33cb['LUqDv'](_0x2dea17,'本穴',_0xe3056f['本穴']),_0x1b33cb['LUqDv'](_0x2dea17,'原穴',_0xe3056f['源穴'])),_0x2dea17('补母穴',_0xe3056f['补泄'])),_0x2dea17(_0x1b33cb[_0x588030(0x266)],_0xe3056f['开穴'])),_0x1b33cb[_0x588030(0x58e)](_0x2dea17,_0x1b33cb[_0x588030(0x8a5)],(_0x96770[_0x588030(0xaf6)]||{})[_0x588030(0x1f2)])),_0x588030(0xb4b));}})[_0x148d0c(0x9f5)](()=>{});}};_0x1a0f02(_0xa67dec[_0x48217f(0x721)])[_0x48217f(0x493)](_0x281dc3=>{const _0x2d6f3d=_0x48217f,_0x118315=_0x1b33cb[_0x2d6f3d(0x6e5)](_0x4c5254,_0x1b33cb[_0x2d6f3d(0x4f7)]),_0x402710=_0x1b33cb[_0x2d6f3d(0x43c)](_0x4c5254,_0x1b33cb[_0x2d6f3d(0x506)]);if(_0x118315&&_0x281dc3[_0x2d6f3d(0x57e)])_0x118315[_0x2d6f3d(0x225)+_0x2d6f3d(0xb50)]=_0x1b130d(_0x281dc3[_0x2d6f3d(0x57e)]);if(_0x402710&&_0x281dc3[_0x2d6f3d(0x30c)])_0x402710['innerH'+_0x2d6f3d(0xb50)]=_0x1b33cb['bzDWd'](_0x1b130d,_0x281dc3[_0x2d6f3d(0x30c)]);_0x25afc2();})[_0x48217f(0x9f5)](()=>{});const _0x58d2c4=_0x4c5254(_0x48217f(0x7c2));if(_0x58d2c4)_0x58d2c4[_0x48217f(0x805)+'ge']=_0x25afc2;[_0x48217f(0x737),_0x48217f(0x415),_0xa67dec['lvJmS']][_0x48217f(0x1e7)+'h'](_0x4ab017=>{const _0x4b70ed=_0x48217f,_0x4da900=_0x4c5254(_0x1b33cb[_0x4b70ed(0x89b)]('#',_0x4ab017));if(_0x4da900)_0x4da900[_0x4b70ed(0x805)+'ge']=_0x25afc2;});const _0x3910d1=_0x4c5254(_0xa67dec[_0x48217f(0x2ca)]);if(_0x3910d1)_0x3910d1[_0x48217f(0x8e5)+'k']=_0x25afc2;}const _0x264c5f={'肺经':_0xa67dec[_0x5a199c(0x6bd)],'大肠经':_0x5a199c(0x71c)+'0\x20L60,'+_0x5a199c(0x4ab)+_0x5a199c(0x8ff)+_0x5a199c(0x1d3)+'30','胃经':_0xa67dec['SSpXs'],'脾经':_0xa67dec[_0x5a199c(0x44f)],'心经':_0x5a199c(0x43b)+_0x5a199c(0x428)+_0x5a199c(0x81e)+'L120,1'+'80','小肠经':_0x5a199c(0x8be)+_0x5a199c(0x5f5)+_0x5a199c(0x8e6)+_0x5a199c(0x8c3)+'00\x20L14'+'0,350','膀胱经':_0xa67dec[_0x5a199c(0x9c3)],'肾经':_0xa67dec[_0x5a199c(0x993)],'心包经':_0xa67dec[_0x5a199c(0x9c4)],'三焦经':_0x5a199c(0x327)+_0x5a199c(0x57c)+_0x5a199c(0x6e4)+_0x5a199c(0xa30)+_0x5a199c(0x5dd)+'5,350','胆经':_0xa67dec[_0x5a199c(0x83a)],'肝经':_0x5a199c(0x1e1)+_0x5a199c(0xb18)+',150\x20L'+_0x5a199c(0x25a)+_0x5a199c(0x48b)+_0x5a199c(0x90e),'督脉':'M100,1'+'2\x20L100'+',40\x20L1'+_0x5a199c(0x682)+'\x20L100,'+_0x5a199c(0x505)+_0x5a199c(0x4f9)+_0x5a199c(0x2c5)+_0x5a199c(0xa4a),'任脉':_0x5a199c(0x46f)+_0x5a199c(0x310)+_0x5a199c(0x783)+_0x5a199c(0xb35)+_0x5a199c(0xb5f)+_0x5a199c(0x7b6)+_0x5a199c(0x538)+'0','冲脉':_0xa67dec[_0x5a199c(0x2b5)],'带脉':_0xa67dec['wEPtR'],'阴维脉':_0x5a199c(0x330)+_0x5a199c(0x70b)+'60\x20L95'+',260\x20L'+_0x5a199c(0x6e0),'阳维脉':_0x5a199c(0x64a)+_0x5a199c(0x407)+_0x5a199c(0x937)+_0x5a199c(0x6a9)+'0\x20L125'+',350','阳跷脉':_0x5a199c(0x885)+'0\x20L150'+_0x5a199c(0x860)+_0x5a199c(0x4eb)+_0x5a199c(0x32e)+',370','阴跷脉':_0xa67dec[_0x5a199c(0x1e8)]},_0x1748a8=['肺经',_0xa67dec[_0x5a199c(0xa86)],'胃经','脾经','心经',_0xa67dec[_0x5a199c(0x4ce)],_0xa67dec[_0x5a199c(0x641)],'肾经',_0xa67dec['ZQwvJ'],_0xa67dec[_0x5a199c(0xa79)],'胆经','肝经'],_0x1930e3=['督脉','任脉','冲脉','带脉',_0xa67dec[_0x5a199c(0xb87)],_0xa67dec['yozba'],_0xa67dec[_0x5a199c(0x205)],_0xa67dec[_0x5a199c(0x424)]];function _0xa7a42e(_0x1b2aa6){const _0x4dd64f=_0x5a199c,_0x2b2e7f={'sLQao':function(_0x1bb161,_0x493324){return _0x1bb161===_0x493324;},'NxKFz':_0xa67dec[_0x4dd64f(0x5ee)],'lVRqy':function(_0x580c96,_0x3812b6){const _0x1d4cd2=_0x4dd64f;return _0xa67dec[_0x1d4cd2(0x76e)](_0x580c96,_0x3812b6);},'yUfYk':function(_0x2074a7,_0x1fd443){return _0x2074a7+_0x1fd443;},'GABUj':_0xa67dec['osuQM'],'DpDJa':_0xa67dec[_0x4dd64f(0x71f)],'gWXWL':_0xa67dec['OJwYE'],'hNLBq':function(_0x4df454,_0x1e3f3f){return _0xa67dec['ZIngL'](_0x4df454,_0x1e3f3f);},'IBiZk':_0xa67dec[_0x4dd64f(0x6af)],'ErfGA':function(_0x5adb08,_0xb820b4,_0x154bc4){const _0x34147f=_0x4dd64f;return _0xa67dec[_0x34147f(0xa6d)](_0x5adb08,_0xb820b4,_0x154bc4);},'kzypS':_0xa67dec['xVaWM'],'RbZXp':function(_0x58d3d1,_0x238209){return _0x58d3d1+_0x238209;},'mhZiS':'<img\x20s'+_0x4dd64f(0x3d9)+_0x4dd64f(0x3b6)+_0x4dd64f(0x9b3)+'e=','veRce':function(_0x50b7e8,_0x4a52ee){return _0x50b7e8(_0x4a52ee);},'ehXEA':_0x4dd64f(0xb78)+_0x4dd64f(0x306)+_0x4dd64f(0x2e2)+_0x4dd64f(0xb16)+'splay='+_0x4dd64f(0x458)+_0x4dd64f(0x724)+_0x4dd64f(0x658)+_0x4dd64f(0x7db)+'>','RjAFQ':function(_0x3df1c0,_0x30a6e1){return _0x3df1c0(_0x30a6e1);},'LDfUD':_0xa67dec[_0x4dd64f(0x691)]};if(_0xa67dec['BDSpJ']===_0xa67dec['BDSpJ']){_0x20ce8e[_0x4dd64f(0x225)+'TML']='';const _0x336df5=_0x1b2aa6[_0x4dd64f(0x8e9)]===_0xa67dec[_0x4dd64f(0x1af)]?_0x1748a8:_0x1930e3,_0x5cc952=['#ff6b6'+'b',_0xa67dec[_0x4dd64f(0x496)],'#06d6a'+'0','#4d96f'+'f',_0xa67dec[_0x4dd64f(0x1be)],_0x4dd64f(0x2da)+'c',_0xa67dec['RnUZT'],_0x4dd64f(0x92a)+'6',_0xa67dec[_0x4dd64f(0x99f)],'#457b9'+'d','#f4a26'+'1',_0x4dd64f(0x91e)+'d',_0x4dd64f(0x675)+'6',_0xa67dec['CLNIw'],'#b5179'+'e',_0xa67dec[_0x4dd64f(0x5d8)],_0xa67dec[_0x4dd64f(0x356)],'#57759'+'0'];let _0x3c0567=_0x4dd64f(0x379)+_0x4dd64f(0xaaf)+'anim-s'+_0x4dd64f(0x8c7)+_0x4dd64f(0x38b)+_0x4dd64f(0x9eb)+_0x4dd64f(0xa11)+'20\x27\x20st'+_0x4dd64f(0x450)+_0x4dd64f(0x51d)+_0x4dd64f(0x625)+_0x4dd64f(0x838)+_0x4dd64f(0xb34)+_0x4dd64f(0x709);_0x3c0567+=_0x4dd64f(0xb24)+_0x4dd64f(0x82e)+_0x4dd64f(0x762)+_0x4dd64f(0x869)+_0x4dd64f(0x68b)+'\x20cy=\x274'+_0x4dd64f(0x3a6)+_0x4dd64f(0x9a4)+_0x4dd64f(0x440)+_0x4dd64f(0x6e9)+_0x4dd64f(0x5c6)+_0x4dd64f(0x449)+_0x4dd64f(0x3ed)+_0x4dd64f(0x90d)+_0x4dd64f(0x3cd)+_0x4dd64f(0x293)+_0x4dd64f(0x269)+_0x4dd64f(0x5aa)+_0x4dd64f(0xb76)+_0x4dd64f(0xa6f)+'/>',_0x3c0567+=_0xa67dec[_0x4dd64f(0x687)],_0x3c0567+=_0xa67dec[_0x4dd64f(0x6a0)];let _0xb705ea=_0xa67dec[_0x4dd64f(0xb2b)];_0x336df5['forEac'+'h']((_0x123c2c,_0x58fe53)=>{const _0x3320ef=_0x4dd64f,_0x508010={'chrXe':function(_0x22ca3e,_0x297c7b){return _0x22ca3e(_0x297c7b);}};_0x2b2e7f[_0x3320ef(0x70a)](_0x2b2e7f[_0x3320ef(0x4c0)],'wvubX')?_0xb705ea+=_0x2b2e7f[_0x3320ef(0x46c)](_0x2b2e7f[_0x3320ef(0x46c)](_0x2b2e7f[_0x3320ef(0xa6b)](_0x2b2e7f['yUfYk'](_0x2b2e7f[_0x3320ef(0xa6b)](_0x2b2e7f['GABUj'],_0x123c2c),_0x2b2e7f[_0x3320ef(0x8fb)]),_0x5cc952[_0x58fe53%_0x5cc952[_0x3320ef(0x6b7)]]),'\x27>')+_0x123c2c,_0x2b2e7f[_0x3320ef(0x33a)]):_0x508010['chrXe'](_0x2753f5,_0x23b916)[_0x3320ef(0x493)](_0x52e57c=>_0x52e57c['json']())[_0x3320ef(0x493)](_0x1ce305)['catch'](_0x56c91b);}),_0xb705ea+=_0xa67dec[_0x4dd64f(0x691)],_0x36960e[_0x4dd64f(0x225)+_0x4dd64f(0xb50)]=_0xb705ea;const _0x2924fa=_0x1b2aa6[_0x4dd64f(0x8e9)]===_0xa67dec[_0x4dd64f(0x1af)]?_0x494af0:_0x4c9532;_0x172194[_0x4dd64f(0x225)+_0x4dd64f(0xb50)]=_0xa67dec[_0x4dd64f(0x917)](_0xa67dec[_0x4dd64f(0x45a)]+_0xa67dec[_0x4dd64f(0x393)](_0x453737,_0x2924fa),_0xa67dec['ThLRv']),_0x36960e[_0x4dd64f(0x94e)+'electo'+_0x4dd64f(0x343)](_0x4dd64f(0xada))[_0x4dd64f(0x1e7)+'h'](_0x135941=>{const _0x1f8a73=_0x4dd64f;_0x135941[_0x1f8a73(0x8e5)+'k']=()=>_0x54ed83(_0x135941['getAtt'+_0x1f8a73(0x7f2)]('data-m'),_0x5cc952,_0x336df5);});}else{const _0x49a5d9={'owmlC':function(_0x3a6ede,_0x44b121){return _0x3a6ede+_0x44b121;},'LOKRC':function(_0x46b1ea,_0x952577){const _0x29b183=_0x4dd64f;return _0x2b2e7f[_0x29b183(0xb17)](_0x46b1ea,_0x952577);},'AOazG':function(_0x5653c4,_0x369914){return _0x5653c4(_0x369914);},'bENaS':_0x2b2e7f['IBiZk']},_0x25b39c=_0x2b2e7f['ErfGA'](_0x5d359d,_0x2b2e7f[_0x4dd64f(0x72e)],_0x4dd64f(0x62b)+'l');_0x25b39c[_0x4dd64f(0x225)+'TML']=_0x2b2e7f[_0x4dd64f(0x46c)](_0x2b2e7f[_0x4dd64f(0x22d)](_0x2b2e7f['mhZiS'],_0x2b2e7f[_0x4dd64f(0x696)](_0x75f008,_0xe07bab))+_0x2b2e7f[_0x4dd64f(0xac3)],_0x2b2e7f[_0x4dd64f(0x4ad)](_0xa7a71a,_0x1cdaf4))+_0x2b2e7f[_0x4dd64f(0x3ee)],_0x25b39c[_0x4dd64f(0x8e5)+'k']=()=>{const _0x289698=_0x4dd64f;_0x20664e[_0x289698(0x225)+_0x289698(0xb50)]=_0x49a5d9[_0x289698(0x2c1)](_0x49a5d9[_0x289698(0x27e)]('<div\x20c'+_0x289698(0xaaf)+_0x289698(0x871)+_0x289698(0x7de)+_0x289698(0x68c)+'rc=\x27/r'+_0x289698(0x3b6)+'mg?nam'+'e='+_0x49a5d9[_0x289698(0x807)](_0x55c9ea,_0x4774e9),_0x49a5d9[_0x289698(0xb6f)])+_0x49a5d9[_0x289698(0x807)](_0x46f2f3,_0x69cbd5),_0x289698(0xb4b)+_0x289698(0xb4b));},_0x3bb92d['append'+'Child'](_0x25b39c);}}const _0x45534={'肺经':_0xa67dec[_0x5a199c(0x39a)],'大肠经':_0x5a199c(0x1de),'胃经':_0x5a199c(0x4d1),'脾经':'pi','心经':_0xa67dec['JkGmH'],'小肠经':_0xa67dec[_0x5a199c(0x309)],'膀胱经':_0xa67dec[_0x5a199c(0x473)],'肾经':_0x5a199c(0x50a),'心包经':_0x5a199c(0xa98),'三焦经':_0xa67dec[_0x5a199c(0x1f9)],'胆经':_0xa67dec['BCNxj'],'肝经':_0xa67dec[_0x5a199c(0x7d2)],'任脉':'ren','督脉':'du'};function _0x54ed83(_0x24da84,_0x17da23,_0x5d04d0){const _0x24ab3e=_0x5a199c,_0x5291ea=_0x5d04d0[_0x24ab3e(0x4c6)+'f'](_0x24da84),_0x3dc86a=_0x17da23[_0xa67dec[_0x24ab3e(0x41a)](_0x5291ea,_0x17da23[_0x24ab3e(0x6b7)])],_0x1bb7ce=_0x45534[_0x24da84]||'',_0x50f961=_0x264c5f[_0x24da84]||_0xa67dec[_0x24ab3e(0x974)],_0x35d151=_0xa67dec['kGzhX'](_0xa67dec[_0x24ab3e(0x7dc)](_0xa67dec[_0x24ab3e(0x27f)](_0xa67dec[_0x24ab3e(0x395)](_0xa67dec[_0x24ab3e(0xb21)](_0x24ab3e(0x61e)+_0x24ab3e(0xaaf)+_0x24ab3e(0x871)+'tage\x27>'+_0x24ab3e(0xb3c)+'iewBox'+_0x24ab3e(0x37e)+_0x24ab3e(0x79b)+'0\x27\x20sty'+_0x24ab3e(0xa23)+'dth:10'+_0x24ab3e(0x9d1)+_0x24ab3e(0x1a0)+_0x24ab3e(0x768)+'\x27>'+(_0x24ab3e(0xb24)+_0x24ab3e(0x82e)+_0x24ab3e(0x762)+'dy\x27\x20cx'+_0x24ab3e(0x68b)+'\x20cy=\x274'+_0x24ab3e(0x3a6)+_0x24ab3e(0x9a4)+_0x24ab3e(0x440)+_0x24ab3e(0x6e9)+_0x24ab3e(0x5c6)+'s=\x27bod'+_0x24ab3e(0x3ed)+_0x24ab3e(0x90d)+_0x24ab3e(0x3cd)+_0x24ab3e(0x293)+_0x24ab3e(0x269)+_0x24ab3e(0x5aa)+_0x24ab3e(0xb76)+_0x24ab3e(0xa6f)+'/>'),_0x24ab3e(0x204)+_0x24ab3e(0x5e8)+_0x24ab3e(0x1d9)+_0x24ab3e(0xab4)+_0x24ab3e(0x5ce)+'8\x27\x20wid'+_0x24ab3e(0x74a)+_0x24ab3e(0x552)+'ht=\x2710'+_0x24ab3e(0xa97)+'\x2711\x27/>'+_0x24ab3e(0x204)+_0x24ab3e(0x5e8)+_0x24ab3e(0x1d9)+_0x24ab3e(0x6d6)+'4\x27\x20y=\x27'+'78\x27\x20wi'+_0x24ab3e(0x9b4)+_0x24ab3e(0x67b)+_0x24ab3e(0xa57)+_0x24ab3e(0xa10)+_0x24ab3e(0x49d)+'>'),_0xa67dec[_0x24ab3e(0x5b9)]),_0xa67dec[_0x24ab3e(0x60a)]),_0x50f961)+_0xa67dec['Tzaia']+_0x3dc86a+_0xa67dec[_0x24ab3e(0x44a)]+_0xa67dec[_0x24ab3e(0x2f1)]+_0x3dc86a+_0xa67dec[_0x24ab3e(0xa5d)]+_0x50f961+(_0x24ab3e(0x1c4)+_0x24ab3e(0x2c3)),_0x24ab3e(0xa1d)+_0x24ab3e(0xb4b)),_0x470c19=_0x1bb7ce?_0xa67dec['UqghT'](_0xa67dec['wmobn'](_0xa67dec['rINAW'](_0xa67dec['JYVIU']+_0x1bb7ce+_0xa67dec['cdMLH'],_0x453737(_0x24da84))+_0xa67dec['BBeRD']+(_0x24ab3e(0x351)+'r=\x22thi'+_0x24ab3e(0x239)+_0x24ab3e(0x287)+_0x24ab3e(0x2a7)+'one\x27;v'+'ar\x20f=d'+_0x24ab3e(0x5f9)+_0x24ab3e(0xb4f)+_0x24ab3e(0x897)+_0x24ab3e(0x475)+_0x24ab3e(0x500)+_0x24ab3e(0x6d0)+_0x24ab3e(0xb2d)+_0x24ab3e(0x427)+_0x24ab3e(0x7f8)+_0x24ab3e(0xaea)+_0x24ab3e(0x694)+'div>'),_0xa67dec['igxeM'])+_0x35d151,_0xa67dec[_0x24ab3e(0x691)]):_0x35d151;_0x172194[_0x24ab3e(0x225)+_0x24ab3e(0xb50)]=_0xa67dec['zjrvE'](_0xa67dec['HdMGQ'](_0xa67dec[_0x24ab3e(0x1c2)](_0xa67dec[_0x24ab3e(0x4d3)](_0xa67dec['PvVeO'](_0xa67dec['jaTEj']('<div\x20c'+_0x24ab3e(0xaaf)+_0x24ab3e(0x462)+'ap\x27\x20st'+'yle=\x27c'+'olor:'+_0x3dc86a,'\x27>')+_0xa67dec[_0x24ab3e(0xb8a)](_0x453737,_0x24da84),_0xa67dec[_0x24ab3e(0x8cc)])+_0x470c19,'<div\x20c'+'lass=\x27'+'hint\x27>'),_0x1bb7ce?_0xa67dec[_0x24ab3e(0xb3e)]:'原软件未提供'+_0x24ab3e(0x2b8)+_0x24ab3e(0x4d7)+'次序以\x20SV'+_0x24ab3e(0x7e2)+_0x24ab3e(0xb66))+_0xa67dec[_0x24ab3e(0x691)],'<div\x20c'+_0x24ab3e(0xaaf)+_0x24ab3e(0x8e2)+'\x27\x20id=\x27'+_0x24ab3e(0x728)+_0x24ab3e(0x845)+'>')+_0xa67dec[_0x24ab3e(0xaab)]+_0x453737(_0x24da84==='任脉'||_0x24da84==='督脉'||_0x1930e3['indexO'+'f'](_0x24da84)>=0x0?_0x4c9532:_0x494af0),_0xa67dec[_0x24ab3e(0x691)]);if(_0x1bb7ce)_0x4f69a3(_0x1bb7ce,_0x24da84);}function _0x4f69a3(_0x26172a,_0x9475d5){const _0x119aa8=_0x5a199c,_0xef56b={'PleKY':function(_0x5c0efa,_0x54ad9f){const _0x2755a4=a0_0x2474;return _0xa67dec[_0x2755a4(0x8cd)](_0x5c0efa,_0x54ad9f);},'QgwQA':function(_0x1a86cb,_0x1725ef){const _0x527559=a0_0x2474;return _0xa67dec[_0x527559(0x99c)](_0x1a86cb,_0x1725ef);},'TPiot':function(_0x4e7186,_0x1e3683){const _0x52c4fb=a0_0x2474;return _0xa67dec[_0x52c4fb(0x238)](_0x4e7186,_0x1e3683);},'tvwig':function(_0x3f9977,_0x244e8a){const _0x7dbf07=a0_0x2474;return _0xa67dec[_0x7dbf07(0x92e)](_0x3f9977,_0x244e8a);},'OhjBo':_0x119aa8(0x7e6)+'oading'+'=\x27lazy'+'\x27\x20src='+_0x119aa8(0x515)+_0x119aa8(0x89d),'XzzZu':function(_0x413b24,_0x3dd4eb){return _0xa67dec['lGuvC'](_0x413b24,_0x3dd4eb);},'jEarT':_0x119aa8(0x1a4)+'\x27','ZMReN':'onerro'+_0x119aa8(0xa4e)+_0x119aa8(0x239)+_0x119aa8(0x287)+_0x119aa8(0x2a7)+_0x119aa8(0x822),'zJQGD':'<div\x20c'+'lass=\x27'+_0x119aa8(0x5c8),'vHjUz':'</div>'+'</div>','qYDeU':_0xa67dec[_0x119aa8(0xa33)],'VXUYU':_0x119aa8(0xb51)+_0x119aa8(0xafe),'PqVAi':_0x119aa8(0x278),'qMDAI':function(_0x50f27f,_0x1cad83){return _0x50f27f===_0x1cad83;},'yAWan':_0xa67dec[_0x119aa8(0xaa9)],'FEEIU':function(_0x471329,_0x48cd9d){return _0x471329===_0x48cd9d;},'GjhUo':function(_0x5244ae,_0x49ac7c){const _0x1f6449=_0x119aa8;return _0xa67dec[_0x1f6449(0xa31)](_0x5244ae,_0x49ac7c);},'NRRhT':_0x119aa8(0x78f)+_0x119aa8(0x48c),'mTHYQ':'\x20穴）</d'+_0x119aa8(0x84e)+'v\x20clas'+_0x119aa8(0x56f)+_0x119aa8(0x62c),'omCcp':_0xa67dec['ynZmk'],'cJrgm':_0x119aa8(0x61e)+_0x119aa8(0xaaf)+_0x119aa8(0x7e4)+_0x119aa8(0x237)+_0x119aa8(0x9f1)+_0x119aa8(0xb4b)},_0x4b835c=_0xa67dec[_0x119aa8(0x6a1)](_0x4c5254,_0xa67dec['jFOYN']);if(!_0x4b835c)return;_0x4b835c[_0x119aa8(0x225)+_0x119aa8(0xb50)]=_0xa67dec[_0x119aa8(0x43d)],_0x1a0f02(_0xa67dec[_0x119aa8(0x3e7)](_0x119aa8(0x35d)+_0x119aa8(0x5e9)+'cat=',encodeURIComponent(_0x26172a))+_0xa67dec[_0x119aa8(0x4a0)])['then'](_0x5891d9=>{const _0x4b1dcb=_0x119aa8,_0x57460e={'ZYMrL':function(_0x3bec99,_0x3179eb){const _0x49703a=a0_0x2474;return _0xef56b[_0x49703a(0x732)](_0x3bec99,_0x3179eb);},'EBXVL':_0xef56b[_0x4b1dcb(0xb6b)]};if(_0xef56b[_0x4b1dcb(0x5b3)](_0x4b1dcb(0x2f4),'gVlkU')){if(_0x57460e[_0x4b1dcb(0xaad)](_0x464ed0[_0x4b1dcb(0x9a7)],_0x57460e['EBXVL']))_0x32e491(_0x571525['value']);}else{let _0x41d3ef='';const _0xa376fd=(_0x5891d9[_0x4b1dcb(0x9a6)]||[])[_0x4b1dcb(0x963)](_0x49a095=>(_0x49a095[_0x4b1dcb(0x70f)]||[])['length']);_0xa376fd[_0x4b1dcb(0x6b7)]?(_0x41d3ef+=_0xef56b['GjhUo'](_0x4b1dcb(0x61e)+_0x4b1dcb(0xaaf)+_0x4b1dcb(0x8e2)+_0x4b1dcb(0xaf9)+_0x453737(_0x9475d5)+_0xef56b[_0x4b1dcb(0x411)],_0xa376fd['length'])+_0xef56b[_0x4b1dcb(0x8df)],_0xa376fd[_0x4b1dcb(0x1e7)+'h']((_0x34941c,_0x232303)=>{const _0x1cd921=_0x4b1dcb;_0x41d3ef+=_0xef56b[_0x1cd921(0x9da)](_0xef56b['QgwQA'](_0xef56b['TPiot'](_0xef56b[_0x1cd921(0x1bb)](_0xef56b[_0x1cd921(0x1bb)](_0xef56b[_0x1cd921(0x619)]('<div\x20c'+'lass=\x27'+_0x1cd921(0x62b)+_0x1cd921(0x6ff)+'a-i=\x27'+_0x232303,'\x27>')+_0xef56b[_0x1cd921(0x956)],_0xef56b[_0x1cd921(0xad0)](encodeURIComponent,_0x34941c[_0x1cd921(0x70f)][0x0])),_0xef56b[_0x1cd921(0x6ee)])+_0x453737(_0x34941c[_0x1cd921(0xab0)]),'\x27\x20'),_0xef56b[_0x1cd921(0x71a)])+_0xef56b[_0x1cd921(0x60c)]+_0x453737(_0x34941c['name']),_0xef56b[_0x1cd921(0xaa0)]);}),_0x41d3ef+='</div>'+_0x4b1dcb(0x4bb)+_0x4b1dcb(0x944)+_0x4b1dcb(0x635)+_0x4b1dcb(0x887)+_0x4b1dcb(0x5e8)+_0x4b1dcb(0x536)+_0x4b1dcb(0x492)+_0x4b1dcb(0xb1f)+_0x4b1dcb(0x26b)+_0x4b1dcb(0x1d6)+'方法。</d'+'iv></d'+_0x4b1dcb(0x9fd)):_0x41d3ef=_0xef56b[_0x4b1dcb(0x5ea)],_0x4b835c['innerH'+_0x4b1dcb(0xb50)]=_0x41d3ef,_0x4b835c[_0x4b1dcb(0x94e)+_0x4b1dcb(0x813)+_0x4b1dcb(0x343)](_0x4b1dcb(0xa8f)+'ll')[_0x4b1dcb(0x1e7)+'h'](_0x1d5b1a=>{const _0x363f20=_0x4b1dcb,_0x21c9b5={'hNrAQ':_0xef56b['qYDeU'],'cnGcL':function(_0x3a57c4,_0x54ab82,_0x537d15,_0x4126b4){return _0x3a57c4(_0x54ab82,_0x537d15,_0x4126b4);},'yjIrZ':function(_0x5c7a70,_0x25ce22){const _0x3d114c=a0_0x2474;return _0xef56b[_0x3d114c(0xad0)](_0x5c7a70,_0x25ce22);},'UFQDV':_0xef56b['VXUYU'],'YexFj':_0x363f20(0x9ed)};if(_0xef56b['PqVAi']==='WxMMP'){const _0x25a417={'yJwje':_0x21c9b5[_0x363f20(0x6b3)],'WwpKz':'active'},_0x151f37=_0x21c9b5['cnGcL'](_0x590347,'button',_0x363f20(0x8b9)+_0x363f20(0x21a),_0x21c9b5[_0x363f20(0x342)](_0x1c5f4f,_0x4fb11e));_0x151f37['onclic'+'k']=()=>{const _0x280b02=_0x363f20,_0x5c2542=_0x3fba88[_0x280b02(0x228)+_0x280b02(0x220)+'Id'](_0x5341f0+_0x36f0eb);if(_0x5c2542)_0x5c2542[_0x280b02(0x6f4)+_0x280b02(0xb43)+'ew']({'block':'start','behavior':_0x25a417[_0x280b02(0x5bd)]});[..._0x2d197f[_0x280b02(0x56b)+'en']][_0x280b02(0x1e7)+'h'](_0x5989d6=>_0x5989d6[_0x280b02(0x26e)+'ist'][_0x280b02(0x1b0)]('active')),_0x151f37[_0x280b02(0x26e)+_0x280b02(0x56a)][_0x280b02(0x511)](_0x25a417[_0x280b02(0x706)]);},_0x1d3b30[_0x363f20(0x4cf)+_0x363f20(0x692)](_0x151f37);}else _0x1d5b1a['onclic'+'k']=()=>{const _0x33c585=_0x363f20,_0x4ca543=_0x4c5254(_0x21c9b5['UFQDV']);if(_0x4ca543)_0x4ca543[_0x33c585(0x225)+_0x33c585(0xb50)]=_0x21c9b5['yjIrZ'](_0x2b6099,_0xa376fd[parseInt(_0x1d5b1a[_0x33c585(0x7e7)+_0x33c585(0x7f2)](_0x21c9b5[_0x33c585(0x2be)]),0xa)]);};});}})[_0x119aa8(0x9f5)](()=>{const _0x46d9d4=_0x119aa8;_0x4b835c[_0x46d9d4(0x225)+_0x46d9d4(0xb50)]=_0xef56b[_0x46d9d4(0x7b9)];});}const _0x494af0=_0x5a199c(0xa42)+_0x5a199c(0x34a)+_0x5a199c(0x5de)+_0x5a199c(0xa36)+_0x5a199c(0x311)+_0x5a199c(0x5e7)+_0x5a199c(0x248)+'手阳明大肠经'+_0x5a199c(0x757)+_0x5a199c(0xb58)+_0x5a199c(0x6ba)+_0x5a199c(0x5f6)+_0x5a199c(0x7e8)+_0x5a199c(0x8d9)+_0x5a199c(0x606)+_0x5a199c(0x4fb)+_0x5a199c(0x98e)+'少阳胆经、足'+_0x5a199c(0x96a)+'\x0a其流注次序'+_0x5a199c(0x504)+'肺经开始，依'+_0x5a199c(0x6fd)+'大肠经、足阳'+'明胃经、足太'+_0x5a199c(0x902)+'阴心经、手太'+'阳小肠经、足'+_0x5a199c(0x9e1)+_0x5a199c(0x8aa)+_0x5a199c(0x699)+_0x5a199c(0x98c)+'经、足少阳胆'+_0x5a199c(0x249)+_0x5a199c(0x2b0)+_0x5a199c(0x605)+_0x5a199c(0x90f)+_0x5a199c(0x95a)+_0x5a199c(0x7f0)+_0x5a199c(0xbd8)+_0x5a199c(0x1ff)+_0x5a199c(0x257)+'足三阴从足走'+_0x5a199c(0x4b1)+_0x5a199c(0x985)+_0x5a199c(0x400),_0x4c9532='奇经八脉循行'+_0x5a199c(0x34a)+_0x5a199c(0x5de)+_0x5a199c(0xa36)+_0x5a199c(0x1a7)+_0x5a199c(0x9cd)+_0x5a199c(0x999)+_0x5a199c(0x2e1)+_0x5a199c(0x77b)+_0x5a199c(0x88d)+'也。\x0a\x0a督脉'+_0x5a199c(0x33e)+_0x5a199c(0xab1)+_0x5a199c(0x927)+_0x5a199c(0x1c1)+_0x5a199c(0x63b)+'冲脉为血海，'+'渗灌诸经；带'+_0x5a199c(0x6a7)+'约束纵行诸脉'+'；阴维、阳维'+_0x5a199c(0x677)+_0x5a199c(0x284)+_0x5a199c(0x843)+_0x5a199c(0x791)+_0x5a199c(0x3e3)+_0x5a199c(0x1c0)+_0x5a199c(0x622)+'其中公孙（脾'+_0x5a199c(0x1a3)+_0x5a199c(0x7b3)+_0x5a199c(0x69a)+_0x5a199c(0x584)+'（小肠）→申'+_0x5a199c(0xbc5)+_0x5a199c(0xaaa)+_0x5a199c(0x85b)+_0x5a199c(0x55a)+'法与飞腾八法'+_0x5a199c(0xae5);function _0x2d3754(){const _0x329db3=_0x5a199c,_0x1ff137=_0x4c5254(_0x329db3(0x3c4)+_0x329db3(0x6ae));_0x1ff137&&(_0x1ff137[_0x329db3(0x913)][_0x329db3(0x6f8)+'y']=_0x329db3(0x846),_0x1ff137[_0x329db3(0x225)+_0x329db3(0xb50)]='');}function _0x30d74d(_0x4836c8){const _0x194b7f=_0x5a199c,_0x15fec8={'HuWgV':function(_0x131ad8,_0x49712f){return _0x131ad8(_0x49712f);},'zCpoE':_0xa67dec[_0x194b7f(0x1a6)],'yapvh':function(_0x52bd8c,_0x468768){return _0x52bd8c+_0x468768;},'bAben':function(_0x215b07,_0x4bfaac){return _0x215b07+_0x4bfaac;},'FgIde':function(_0x41bd9f,_0x4dff83){return _0x41bd9f+_0x4dff83;},'PoACF':_0x194b7f(0x1a5),'cmLWG':function(_0x2f1585,_0x3dd69b){return _0x2f1585(_0x3dd69b);},'vfGTh':'#lbgIn'+'fo','rPcns':'<div\x20c'+'lass=\x27'+_0x194b7f(0x3a5)+_0x194b7f(0x61e)+_0x194b7f(0xaaf)+_0x194b7f(0xb06)+_0x194b7f(0x2f8)+_0x194b7f(0x802)+_0x194b7f(0x658)+'=\x27val\x27'+'>','syxaq':_0xa67dec[_0x194b7f(0x904)],'EKrhL':'#lbgTa'+_0x194b7f(0x2a1),'pAylU':_0xa67dec[_0x194b7f(0xa5a)],'aEGQx':_0x194b7f(0x5c5)+_0x194b7f(0x418)+'up','sdGHY':_0x194b7f(0xada),'cciTO':_0x194b7f(0x1fd),'kEuCc':'block','xmpBE':_0x194b7f(0x353)+_0x194b7f(0x340),'boulX':_0xa67dec[_0x194b7f(0x303)]};if(_0xa67dec[_0x194b7f(0x4d9)]===_0x194b7f(0x656))_0x20ce8e['innerH'+_0x194b7f(0xb50)]='',_0x519d11['style'][_0x194b7f(0x6f8)+'y']=_0xa67dec['yuMhd'],_0x172194[_0x194b7f(0x225)+_0x194b7f(0xb50)]=_0x194b7f(0x61e)+'lass=\x27'+_0x194b7f(0x7e4)+'加载篇目…<'+_0x194b7f(0x880),_0xa67dec['YBZCs'](_0x1a0f02,'/api/r'+_0x194b7f(0x608)+_0x194b7f(0x81f)+'chapte'+'rs')[_0x194b7f(0x493)](_0x246504=>{const _0x246dba=_0x194b7f,_0x13b85e={'aBQhB':_0x246dba(0x76f)+'sc','ulLEu':function(_0x4f25c0,_0x59cfb7){const _0x2c009e=_0x246dba;return _0x15fec8[_0x2c009e(0x66c)](_0x4f25c0,_0x59cfb7);},'BKDIy':_0x15fec8[_0x246dba(0x44c)],'COkwa':function(_0x5a2577,_0x248da6){const _0x59d9d1=_0x246dba;return _0x15fec8[_0x59d9d1(0x839)](_0x5a2577,_0x248da6);},'CBgzg':function(_0x1f6966,_0x129ec8){const _0x728d3e=_0x246dba;return _0x15fec8[_0x728d3e(0x661)](_0x1f6966,_0x129ec8);},'mqGzn':function(_0x382c31,_0x4327c7){return _0x382c31+_0x4327c7;},'FzeWW':_0x15fec8[_0x246dba(0x490)],'UBIhK':_0x15fec8[_0x246dba(0x412)],'XADXh':_0x246dba(0x61e)+_0x246dba(0xaaf)+_0x246dba(0x3a5)+'<div\x20c'+_0x246dba(0xaaf)+'lbl\x27>开'+'穴</div'+_0x246dba(0x887)+_0x246dba(0x5e8)+_0x246dba(0xb0b),'cSffK':function(_0xc77e0e,_0x13dd1f){return _0xc77e0e(_0x13dd1f);},'IrbWA':_0x15fec8['EKrhL'],'ZlrzU':_0x246dba(0xac0)+_0x246dba(0x7c5),'LkDyz':function(_0x106bb3,_0x3c1b44){return _0x106bb3===_0x3c1b44;},'adFHx':_0x246dba(0xa24),'SyThJ':_0x15fec8['pAylU'],'ysKFK':_0x246dba(0x7ee),'GuGlU':_0x246dba(0xad3),'AhpRX':_0x15fec8[_0x246dba(0x6ca)],'opgCS':function(_0x3e985b,_0x575b2d){const _0x264ff9=_0x246dba;return _0x15fec8[_0x264ff9(0x66c)](_0x3e985b,_0x575b2d);},'bxkQf':_0x246dba(0x1cd),'yIkja':function(_0x5f0bc0,_0x4999a0,_0x538912){return _0x5f0bc0(_0x4999a0,_0x538912);},'sxaeZ':_0x15fec8[_0x246dba(0x4e5)],'MFMBl':function(_0x44b6d1,_0x522656){return _0x44b6d1+_0x522656;}},_0x389639=_0x246504[_0x246dba(0x9a6)]||[],_0x52456d=_0x4c5254(_0x246dba(0x3c4)+_0x246dba(0x6ae));if(_0x52456d){if(_0x15fec8[_0x246dba(0x634)]!==_0x246dba(0x1fd)){const _0x26b5f2=_0x15fec8[_0x246dba(0xab8)](_0x1077fd,_0x15fec8[_0x246dba(0x363)]);_0x53d586(_0x15fec8[_0x246dba(0x661)](_0x15fec8[_0x246dba(0x839)](_0x15fec8[_0x246dba(0x986)](_0x246dba(0x4f6)+_0x246dba(0x8b6)+'bg_com'+_0x246dba(0x918)+'=',_0x26b5f2['y'])+_0x246dba(0x848)+_0x26b5f2['m'],_0x246dba(0x80b)),_0x26b5f2['d'])+_0x15fec8[_0x246dba(0x657)]+_0x26b5f2['h'])[_0x246dba(0x493)](_0x27827e=>{const _0x4bbf6b=_0x246dba,_0x2ce36e=_0x52e37e(_0x4bbf6b(0xac0)+_0x4bbf6b(0x7c5));if(_0x2ce36e)_0x2ce36e['innerH'+_0x4bbf6b(0xb50)]=_0x2cf295(_0x27827e);const _0x30c90f=_0x533a7e(_0x13b85e[_0x4bbf6b(0x384)]);if(_0x30c90f)_0x30c90f[_0x4bbf6b(0x225)+_0x4bbf6b(0xb50)]=_0x45ee8c((_0x27827e[_0x4bbf6b(0xaf6)]||{})[_0x4bbf6b(0x1f2)],(_0x27827e[_0x4bbf6b(0x29e)+'n']||{})[_0x4bbf6b(0x2ba)]);const _0x5d5895=_0x13b85e[_0x4bbf6b(0x3f0)](_0x1ec2cf,_0x13b85e[_0x4bbf6b(0x672)]);if(_0x5d5895)_0x5d5895[_0x4bbf6b(0x225)+_0x4bbf6b(0xb50)]=_0x13b85e[_0x4bbf6b(0xa61)](_0x13b85e['CBgzg'](_0x13b85e['mqGzn'](_0x13b85e['FzeWW']+_0x13b85e['ulLEu'](_0x346ae6,(_0x27827e['ganzhi']||{})[_0x4bbf6b(0x246)]||'—')+_0x13b85e[_0x4bbf6b(0xa1f)],_0x4bbf6b(0x61e)+_0x4bbf6b(0xaaf)+_0x4bbf6b(0x3a5)+_0x4bbf6b(0x61e)+_0x4bbf6b(0xaaf)+_0x4bbf6b(0x484)+_0x4bbf6b(0xa6a)+_0x4bbf6b(0x887)+_0x4bbf6b(0x5e8)+'\x27val\x27>'),_0x13b85e['ulLEu'](_0x1719be,(_0x27827e[_0x4bbf6b(0x29e)+'n']||{})[_0x4bbf6b(0xab0)]||'—'))+_0x13b85e[_0x4bbf6b(0xa1f)],_0x13b85e[_0x4bbf6b(0x968)])+_0x5d93d7((_0x27827e[_0x4bbf6b(0xaf6)]||{})[_0x4bbf6b(0x1f2)]||'—')+(_0x4bbf6b(0xb4b)+_0x4bbf6b(0xb4b));_0x188915(_0x13b85e[_0x4bbf6b(0x80a)](_0x7df292,_0x13b85e[_0x4bbf6b(0x781)]),(_0x27827e[_0x4bbf6b(0xaf6)]||{})[_0x4bbf6b(0x736)+_0x4bbf6b(0x4b8)],(_0x27827e[_0x4bbf6b(0x29e)+'n']||{})[_0x4bbf6b(0x2ba)]);})['catch'](()=>{const _0x264c85=_0x246dba,_0x5cb8cf=_0x13b85e[_0x264c85(0x80a)](_0x308077,_0x13b85e[_0x264c85(0x96e)]);if(_0x5cb8cf)_0x5cb8cf[_0x264c85(0x225)+_0x264c85(0xb50)]=_0x264c85(0x61e)+_0x264c85(0xaaf)+'hint\x27>'+_0x264c85(0x499)+_0x264c85(0x45c)+'</div>';});}else _0x52456d[_0x246dba(0x913)]['displa'+'y']=_0x15fec8[_0x246dba(0xb38)],_0x52456d[_0x246dba(0x225)+'TML']='',_0x52456d['append'+_0x246dba(0x692)](_0xe0819d(_0x246dba(0xad3),_0x15fec8[_0x246dba(0xb23)],_0x15fec8['boulX'])),_0x389639[_0x246dba(0x1e7)+'h']((_0x4cb8a8,_0x246675)=>{const _0x72c35f=_0x246dba;if(_0x13b85e[_0x72c35f(0x19b)]===_0x72c35f(0x1cd)){const _0x2f3c3e=_0x13b85e[_0x72c35f(0x5b6)](_0xe0819d,_0x13b85e[_0x72c35f(0x2b1)],_0x13b85e[_0x72c35f(0x6ac)](_0x72c35f(0x353)+_0x72c35f(0x21a),_0x13b85e[_0x72c35f(0xa38)](_0x246675,0x0)?'\x20activ'+'e':''));_0x2f3c3e[_0x72c35f(0x225)+_0x72c35f(0xb50)]=_0x13b85e[_0x72c35f(0xa61)](_0x13b85e[_0x72c35f(0xa61)](_0x13b85e[_0x72c35f(0x5c4)](_0x72c35f(0x54b)+_0x72c35f(0x5e8)+_0x72c35f(0x5ad)+_0x72c35f(0x624),_0x13b85e['opgCS'](_0x453737,_0x4cb8a8[_0x72c35f(0x5be)]||_0x4cb8a8[_0x72c35f(0xab0)])),'</span'+'>')+(_0x72c35f(0xa64)+_0x72c35f(0x525)+'n-coun'+'t\x27>'),_0x4cb8a8['count'])+'</em>',_0x2f3c3e[_0x72c35f(0x671)]='第'+_0x4cb8a8['no']+'篇\x20'+_0x4cb8a8[_0x72c35f(0xab0)],_0x2f3c3e[_0x72c35f(0x8e5)+'k']=()=>{const _0x50c479=_0x72c35f;_0x13b85e['LkDyz'](_0x13b85e[_0x50c479(0x870)],_0x13b85e['SyThJ'])?(_0x3de0ea=0x1,_0x1f09d3++):([..._0x52456d[_0x50c479(0x94e)+_0x50c479(0x813)+_0x50c479(0x343)](_0x50c479(0x6f0)+_0x50c479(0x262))][_0x50c479(0x1e7)+'h'](_0x5bb718=>_0x5bb718[_0x50c479(0x26e)+_0x50c479(0x56a)][_0x50c479(0x1b0)]('active')),_0x2f3c3e[_0x50c479(0x26e)+_0x50c479(0x56a)][_0x50c479(0x511)](_0x13b85e['ysKFK']),_0x13b85e[_0x50c479(0x80a)](_0x2a8706,_0x4cb8a8['no']));},_0x52456d['append'+_0x72c35f(0x692)](_0x2f3c3e);}else _0x194b44[_0x72c35f(0x4cf)+'Child'](_0x345e44(_0x13b85e[_0x72c35f(0xb98)],_0x13b85e[_0x72c35f(0x91a)],_0x13b85e[_0x72c35f(0x51b)](_0x4c73e8,_0x150633[_0x72c35f(0xab0)]))),_0x13b85e[_0x72c35f(0x80a)](_0x9e8e1d,_0x1d25f2[_0x72c35f(0xb2a)]);});}if(_0x389639[0x0])_0x2a8706(_0x389639[0x0]['no']);else _0x36960e[_0x246dba(0x225)+_0x246dba(0xb50)]=_0x246dba(0x61e)+_0x246dba(0xaaf)+_0x246dba(0x7e4)+_0x246dba(0x7a5)+_0x246dba(0x229)+'>';})[_0x194b7f(0x9f5)](()=>{const _0x44d584=_0x194b7f;_0x172194[_0x44d584(0x225)+_0x44d584(0xb50)]=_0x44d584(0x61e)+_0x44d584(0xaaf)+_0x44d584(0x7e4)+_0x44d584(0x596)+_0x44d584(0x402)+_0x44d584(0x880);});else{const _0x4ec3e3=_0x5ea7f3?function(){const _0x88b19e=_0x194b7f;if(_0xe3d9ed){const _0x59f7c5=_0x175b42[_0x88b19e(0x776)](_0x4589a8,arguments);return _0x5dbce1=null,_0x59f7c5;}}:function(){};return _0x28c05b=![],_0x4ec3e3;}}function _0x2a8706(_0x542458){const _0x5e5b6b=_0x5a199c,_0x4f1199={'tjFYH':function(_0x4c6318,_0x5f67ad){return _0x4c6318(_0x5f67ad);},'avHYS':function(_0x3271ea,_0x2b7dc0){return _0xa67dec['xhxKf'](_0x3271ea,_0x2b7dc0);},'eMlCT':function(_0x20bcc0,_0x1ae650){const _0x530905=a0_0x2474;return _0xa67dec[_0x530905(0x1dd)](_0x20bcc0,_0x1ae650);},'seQGx':_0x5e5b6b(0x1f4),'REbid':function(_0x3e816a,_0x2ed927){return _0x3e816a+_0x2ed927;},'hIkWo':function(_0x21fc34,_0x316ebf){const _0x175618=_0x5e5b6b;return _0xa67dec[_0x175618(0x651)](_0x21fc34,_0x316ebf);},'ebHib':_0x5e5b6b(0x93a)+_0x5e5b6b(0x8d8)+'剂详解</h'+'2>','lsTyT':_0xa67dec['xfMvD'],'hDCNc':function(_0x595a70,_0x26d73a){return _0xa67dec['vXulx'](_0x595a70,_0x26d73a);},'XJhOS':function(_0x44e444,_0x5439e8){const _0xa2f1b=_0x5e5b6b;return _0xa67dec[_0xa2f1b(0x562)](_0x44e444,_0x5439e8);},'mmNKD':_0xa67dec['OTlaL'],'bkzpt':function(_0x45c4d8,_0x7358e7,_0x2b3be8){const _0x5bd646=_0x5e5b6b;return _0xa67dec[_0x5bd646(0x571)](_0x45c4d8,_0x7358e7,_0x2b3be8);},'yQkWQ':_0x5e5b6b(0x3d4)};if(_0x5e5b6b(0x86d)===_0x5e5b6b(0x421)){const _0x3be4ab=_0x313113[_0x5e5b6b(0x776)](_0x100cad,arguments);return _0x4dddd0=null,_0x3be4ab;}else _0x1a0f02(_0xa67dec['DqzCP'](_0x5e5b6b(0x4f6)+_0x5e5b6b(0x608)+_0x5e5b6b(0x81f)+_0x5e5b6b(0x872)+'r/',_0x542458))[_0x5e5b6b(0x493)](_0x63de76=>{const _0x129ec1=_0x5e5b6b,_0x517453={'wLyRU':function(_0x4648b,_0x1288dc){const _0x3370c8=a0_0x2474;return _0x4f1199[_0x3370c8(0xbe4)](_0x4648b,_0x1288dc);},'SKJYQ':_0x4f1199[_0x129ec1(0x41c)],'sQqLD':'active'+_0x129ec1(0x884)},_0x5e0b78=_0x63de76[_0x129ec1(0x9a6)]||[];_0x36960e[_0x129ec1(0x225)+'TML']='',_0x5e0b78[_0x129ec1(0x1e7)+'h'](_0x3df4a0=>{const _0x454777=_0x129ec1,_0x467e1b={'TQbTd':function(_0x52f056,_0x97f1b1){return _0x52f056(_0x97f1b1);},'xrFeV':function(_0x53bf3a,_0x28c91b){const _0x1bb3bb=a0_0x2474;return _0x4f1199[_0x1bb3bb(0x2f9)](_0x53bf3a,_0x28c91b);},'LcQMX':function(_0x9bbef8,_0x14ee1b){return _0x9bbef8+_0x14ee1b;},'UKrMM':function(_0x416a1e,_0x7bb27d){return _0x416a1e(_0x7bb27d);},'YhLmM':function(_0x20890c,_0x1628eb){const _0x1ab8aa=a0_0x2474;return _0x4f1199[_0x1ab8aa(0x529)](_0x20890c,_0x1628eb);},'djPNy':function(_0x21492c,_0x269594){return _0x21492c(_0x269594);},'PWqew':function(_0x39d752,_0x16142d){return _0x39d752(_0x16142d);}},_0x237453=_0xe0819d('li','result'+'-item',_0x453737(_0x3df4a0['name']));_0x237453[_0x454777(0x8e5)+'k']=()=>{const _0x54ca42=_0x454777;if(_0x517453['wLyRU'](_0x517453[_0x54ca42(0x3e5)],'cjYEn'))[..._0x36960e['queryS'+_0x54ca42(0x813)+_0x54ca42(0x343)](_0x54ca42(0x85a)+'t-item')][_0x54ca42(0x1e7)+'h'](_0x462f69=>_0x462f69['classL'+_0x54ca42(0x56a)][_0x54ca42(0x1b0)]('active'+_0x54ca42(0x884))),_0x237453[_0x54ca42(0x26e)+_0x54ca42(0x56a)][_0x54ca42(0x511)](_0x517453[_0x54ca42(0x841)]),_0x48cc65(_0x3df4a0['no'],_0x3df4a0['name']);else{const _0x1fc712=_0x467e1b['TQbTd'](_0x1e8617,(_0x467e1b[_0x54ca42(0x7a9)](_0x54e2e3,_0x467e1b['LcQMX']('#'+_0x2b7a9b,'Y'))||{})[_0x54ca42(0x2bd)])||new _0x23d941()['getFul'+_0x54ca42(0x94c)](),_0x3d6796=_0x2665a9((_0x3c0eea('#'+_0x46c18c+'M')||{})['value'])||new _0x24f6ec()[_0x54ca42(0x662)+'th']()+0x1,_0x92b60b=_0x467e1b['xrFeV'](_0xaa04db,(_0x467e1b[_0x54ca42(0xbbe)](_0x13340e,'#'+_0x8c8954+'D')||{})[_0x54ca42(0x2bd)])||new _0x4d9c32()[_0x54ca42(0x868)+'e'](),_0xfd4f86=_0x467e1b[_0x54ca42(0x6d2)](_0x1537b8,(_0x467e1b[_0x54ca42(0x9ee)](_0xdcc348,'#'+_0x353e3c+'H')||{})[_0x54ca42(0x2bd)])||0x0;return{'y':_0x1fc712,'m':_0x3d6796,'d':_0x92b60b,'hi':_0xfd4f86,'h':_0x467e1b[_0x54ca42(0x73b)](_0x29871d,_0xfd4f86)};}},_0x36960e[_0x454777(0x4cf)+_0x454777(0x692)](_0x237453);}),_0x5cdf49[_0x129ec1(0x225)+_0x129ec1(0xb50)]=_0x4f1199[_0x129ec1(0xabf)](_0x4f1199['hIkWo'](_0x4f1199[_0x129ec1(0x878)](_0x4f1199[_0x129ec1(0x719)]+('<p\x20cla'+_0x129ec1(0x1ac)+_0x129ec1(0x530)+'b\x27>第')+_0x63de76['no'],'篇\x20')+_0x453737(_0x63de76['name'])+'（',_0x5e0b78[_0x129ec1(0x6b7)]),_0x4f1199[_0x129ec1(0xa65)]),_0x172194[_0x129ec1(0x225)+_0x129ec1(0xb50)]=_0x4f1199['hDCNc'](_0x4f1199[_0x129ec1(0x8ba)](_0x4f1199[_0x129ec1(0x30b)],_0x5e0b78[_0x129ec1(0x6b7)]),'\x20首方剂。点'+_0x129ec1(0x7ad)+_0x129ec1(0x1bd)+_0x129ec1(0x856)+_0x129ec1(0x280)+_0x129ec1(0x31d)+_0x129ec1(0x6de)+'\x20方歌\x20·\x20'+_0x129ec1(0x72c)+'海厦讲解\x20·'+_0x129ec1(0xabd)+_0x129ec1(0x229)+'>');})[_0x5e5b6b(0x9f5)](()=>{const _0x37c87c=_0x5e5b6b,_0xdeec05={'nnKxu':function(_0x2988ea,_0x52892f,_0x1b9a3e){const _0x59fd5b=a0_0x2474;return _0x4f1199[_0x59fd5b(0x8c5)](_0x2988ea,_0x52892f,_0x1b9a3e);}};if(_0x4f1199[_0x37c87c(0xbe4)](_0x37c87c(0xa91),_0x4f1199['yQkWQ']))_0x172194[_0x37c87c(0x225)+_0x37c87c(0xb50)]=_0x37c87c(0x61e)+_0x37c87c(0xaaf)+_0x37c87c(0x7e4)+_0x37c87c(0xa1c)+_0x37c87c(0x402)+'/div>';else{const _0x120231=_0xdeec05[_0x37c87c(0x600)](_0x184e2f,_0x37c87c(0xad3),'board-'+'dd-ite'+'m');if(_0x5a450c===_0x1e75ca)_0x120231[_0x37c87c(0x26e)+_0x37c87c(0x56a)][_0x37c87c(0x511)]('active');_0x120231[_0x37c87c(0x2d2)+'ntent']=_0x4dd64c[_0x37c87c(0xab0)],_0x120231[_0x37c87c(0x8e5)+'k']=_0x46c87a=>{const _0x28ca0c=_0x37c87c;_0x46c87a[_0x28ca0c(0x32c)+_0x28ca0c(0x48a)+_0x28ca0c(0xb44)](),_0x9eed99(_0x46e63b);},_0x654f99[_0x37c87c(0x4cf)+'Child'](_0x120231);}});}function _0x48cc65(_0x34cae4,_0x561e18){const _0x1aa8be=_0x5a199c,_0x5177fc={'JXySh':_0x1aa8be(0x9ed),'cOZRZ':_0xa67dec[_0x1aa8be(0x890)],'umjdh':_0xa67dec[_0x1aa8be(0xbba)],'IJxUH':_0x1aa8be(0x29b)+_0x1aa8be(0x61a)+'b>','EZHKZ':function(_0x431673,_0x5ba7cc){return _0x431673+_0x5ba7cc;},'CohoR':_0xa67dec[_0x1aa8be(0x87d)],'hoykv':function(_0xe6a58e,_0x1fdb6c){return _0xe6a58e(_0x1fdb6c);},'PhWSf':function(_0x100a66,_0x184efd){const _0x4f21de=_0x1aa8be;return _0xa67dec[_0x4f21de(0x314)](_0x100a66,_0x184efd);},'Wuyrg':'\u3000<span'+'\x20style'+_0x1aa8be(0xa62)+_0x1aa8be(0x4fe)+_0x1aa8be(0x8a8)+_0x1aa8be(0x6b4)+_0x1aa8be(0x48e),'usbxr':function(_0x4074a5,_0x368484,_0xac538b){return _0x4074a5(_0x368484,_0xac538b);},'NtjyH':_0x1aa8be(0x861)+'文）','auJIj':_0x1aa8be(0x66e),'yKqmj':function(_0x1baf2b,_0x251321,_0x3b9761){const _0x4646c8=_0x1aa8be;return _0xa67dec[_0x4646c8(0x8f7)](_0x1baf2b,_0x251321,_0x3b9761);},'TpIhG':_0xa67dec['ThLRv'],'VUVjJ':_0x1aa8be(0x61e)+'lass=\x27'+_0x1aa8be(0xb64)+_0x1aa8be(0x1e3)+_0x1aa8be(0x610)+'e=\x27col'+_0x1aa8be(0xb04)+_0x1aa8be(0x1b3)+_0x1aa8be(0xacc),'roXQJ':_0x1aa8be(0x61e)+'lass=\x27'+_0x1aa8be(0x7e4)+_0x1aa8be(0xa22)+'，请重试。<'+_0x1aa8be(0x880)};if(_0x1aa8be(0x97a)!==_0x1aa8be(0x97a)){const _0x1dd7b0=_0x446882(_0x1aa8be(0xb51)+_0x1aa8be(0xafe));if(_0x1dd7b0)_0x1dd7b0['innerH'+'TML']=_0x29fb1f(_0x31f43f[_0x4f76b7(_0x4613d5[_0x1aa8be(0x7e7)+_0x1aa8be(0x7f2)](_0x5177fc[_0x1aa8be(0x886)]),0xa)]);}else _0x1a0f02(_0x1aa8be(0x4f6)+_0x1aa8be(0x608)+'ingui/'+_0x1aa8be(0x6dc)+'o='+_0x34cae4)['then'](_0x1c9f59=>{const _0x4892ff=_0x1aa8be,_0x2c75f4={'tiwRk':function(_0x31161c,_0x564761){return _0x31161c+_0x564761;},'tLAWr':function(_0x3587a9,_0xca0b25){return _0x3587a9+_0xca0b25;},'wSAZu':_0x5177fc[_0x4892ff(0x279)],'lXIza':function(_0x1a1906,_0x1dc919){return _0x1a1906(_0x1dc919);},'EZMwz':'\u3000<span'+'\x20style'+'=\x27opac'+_0x4892ff(0x4fe)+'\x27>','wOGpx':_0x5177fc['umjdh'],'BQhDI':_0x5177fc[_0x4892ff(0x647)],'IzyDm':function(_0x49f0b3,_0x37e008){const _0x33e9b5=_0x4892ff;return _0x5177fc[_0x33e9b5(0xa18)](_0x49f0b3,_0x37e008);},'PPhHD':_0x5177fc[_0x4892ff(0x341)],'HhUda':function(_0x54ffcf,_0x1ad1e6){const _0x5d24d1=_0x4892ff;return _0x5177fc[_0x5d24d1(0xb59)](_0x54ffcf,_0x1ad1e6);}},_0x2a1209=(_0x3544b4,_0x44ba50)=>_0x44ba50&&String(_0x44ba50)[_0x4892ff(0x749)]()?'<div\x20c'+_0x4892ff(0xaaf)+_0x4892ff(0x65d)+'b>'+_0x3544b4+(_0x4892ff(0x8d7)+_0x4892ff(0x3bf))+_0x369223(_0x44ba50)+_0x4892ff(0xb4b):'';let _0x141d93=_0x5177fc[_0x4892ff(0x5fe)]('<div\x20c'+_0x4892ff(0xaaf)+_0x4892ff(0x45e)+'card\x27>'+'<h4>'+_0x453737(_0x1c9f59[_0x4892ff(0xab0)])+_0x5177fc['Wuyrg'],_0x453737(_0x1c9f59[_0x4892ff(0x872)+'r']))+('】</spa'+_0x4892ff(0xaa2)+'>');_0x141d93+=_0x5177fc[_0x4892ff(0x6f3)](_0x2a1209,_0x4892ff(0x467),_0x1c9f59['pian']),_0x141d93+=_0x2a1209(_0x5177fc[_0x4892ff(0x4bf)],_0x1c9f59[_0x4892ff(0xa40)+'n']),_0x141d93+=_0x2a1209(_0x5177fc[_0x4892ff(0xbcd)],_0x1c9f59[_0x4892ff(0xace)+'g']),_0x141d93+=_0x2a1209(_0x4892ff(0x423),_0x1c9f59[_0x4892ff(0x9af)]),_0x141d93+=_0x5177fc[_0x4892ff(0x53b)](_0x2a1209,'主治',_0x1c9f59[_0x4892ff(0x95f)]),_0x141d93+=_0x2a1209('方歌',_0x1c9f59['gejue']),_0x141d93+=_0x2a1209('方解',_0x1c9f59[_0x4892ff(0x274)+'e']),(_0x1c9f59[_0x4892ff(0x7fa)+'ie']||[])[_0x4892ff(0x6b7)]&&(_0x141d93+=_0x4892ff(0x61e)+_0x4892ff(0xaaf)+_0x4892ff(0xb64)+_0x4892ff(0x1e3)+'b\x20styl'+_0x4892ff(0x50b)+_0x4892ff(0xb04)+'A96E\x27>'+_0x4892ff(0x396)+_0x4892ff(0x2df),_0x1c9f59[_0x4892ff(0x7fa)+'ie'][_0x4892ff(0x1e7)+'h'](_0x34a954=>{const _0x5af7c4=_0x4892ff;_0x141d93+=_0x5af7c4(0x61e)+_0x5af7c4(0xaaf)+_0x5af7c4(0x4b7)+_0x369223(_0x34a954)+_0x5af7c4(0xb4b);}),_0x141d93+=_0x5177fc[_0x4892ff(0x361)]),(_0x1c9f59[_0x4892ff(0xb79)]||[])['length']&&(_0x141d93+=_0x5177fc[_0x4892ff(0x5fe)](_0x5177fc['VUVjJ']+_0x1c9f59[_0x4892ff(0xb79)][_0x4892ff(0x6b7)],_0x4892ff(0xb5e)),_0x1c9f59[_0x4892ff(0xb79)][_0x4892ff(0x1e7)+'h'](_0x2fc0a0=>{const _0x5bab9f=_0x4892ff;_0x141d93+=_0x2c75f4[_0x5bab9f(0x429)](_0x2c75f4[_0x5bab9f(0x429)](_0x2c75f4[_0x5bab9f(0x429)](_0x2c75f4['tLAWr'](_0x2c75f4['wSAZu']+_0x2c75f4[_0x5bab9f(0x60e)](_0x453737,_0x2fc0a0[_0x5bab9f(0x671)]||'医案'),_0x5bab9f(0x5a8))+(_0x2fc0a0[_0x5bab9f(0x631)]?_0x2c75f4['tiwRk'](_0x2c75f4['EZMwz'],_0x453737(_0x2fc0a0[_0x5bab9f(0x631)]))+_0x2c75f4[_0x5bab9f(0x67a)]:''),_0x2fc0a0[_0x5bab9f(0x337)+'e']?_0x2c75f4['tLAWr'](_0x2c75f4['BQhDI'],_0x2c75f4[_0x5bab9f(0x60e)](_0x453737,_0x2fc0a0['diseas'+'e'])):''),_0x2fc0a0[_0x5bab9f(0x4ea)+'g']?_0x2c75f4['IzyDm'](_0x2c75f4[_0x5bab9f(0x811)],_0x2c75f4['lXIza'](_0x453737,_0x2fc0a0[_0x5bab9f(0x4ea)+'g'])):'')+_0x5bab9f(0x210)+_0x2c75f4[_0x5bab9f(0xba7)](_0x369223,_0x2fc0a0['conten'+'t']||''),_0x5bab9f(0xb4b));}),_0x141d93+=_0x4892ff(0xb4b)),_0x141d93+=_0x5177fc['TpIhG'],_0x172194[_0x4892ff(0x225)+_0x4892ff(0xb50)]=_0x141d93,_0x172194['scroll'+_0x4892ff(0x96d)]=0x0;})[_0x1aa8be(0x9f5)](()=>{const _0x19bfbb=_0x1aa8be;_0x172194['innerH'+_0x19bfbb(0xb50)]=_0x5177fc[_0x19bfbb(0x535)];});}function _0x20607f(_0x2a1522){const _0x71a067=_0x5a199c,_0x35c2b6={'srCWl':function(_0x1e3831,_0x44ce1c){return _0x1e3831(_0x44ce1c);},'doTcQ':function(_0x258bd2,_0x2a1db7){const _0x20e7b7=a0_0x2474;return _0xa67dec[_0x20e7b7(0x39f)](_0x258bd2,_0x2a1db7);},'leUrX':function(_0x33a68f,_0x19f01c){const _0xb50c50=a0_0x2474;return _0xa67dec[_0xb50c50(0xbb8)](_0x33a68f,_0x19f01c);},'McHpn':'<div\x20c'+_0x71a067(0xaaf)+_0x71a067(0xa68)+'>'};if(!_0x2a1522)return;_0x40abf7(![]),_0x5cdf49[_0x71a067(0x225)+_0x71a067(0xb50)]=_0xa67dec['yuSDo'],_0x172194[_0x71a067(0x225)+_0x71a067(0xb50)]=_0xa67dec[_0x71a067(0x211)],_0xa67dec[_0x71a067(0xa14)](_0x1a0f02,_0x71a067(0x354)+_0x71a067(0x405)+'q='+_0xa67dec[_0x71a067(0x668)](encodeURIComponent,_0x2a1522))[_0x71a067(0x493)](_0x1b813f=>{const _0x1389d9=_0x71a067,_0x52c530={'IKuII':function(_0x22c67b,_0x24d517){const _0xe4d5d5=a0_0x2474;return _0xa67dec[_0xe4d5d5(0x537)](_0x22c67b,_0x24d517);},'YFhui':function(_0x133e4e,_0x225d41){return _0xa67dec['jPoji'](_0x133e4e,_0x225d41);},'QALlY':_0x1389d9(0x53d),'GfTyU':function(_0x1e2197,_0x31f983,_0x2c8906){return _0xa67dec['WmLdU'](_0x1e2197,_0x31f983,_0x2c8906);},'LcqjC':function(_0x4eb783,_0x2ec503){const _0x570939=_0x1389d9;return _0xa67dec[_0x570939(0x4dc)](_0x4eb783,_0x2ec503);},'rljgG':function(_0x456dee,_0x31b5cd){const _0x335987=_0x1389d9;return _0xa67dec[_0x335987(0x319)](_0x456dee,_0x31b5cd);},'KvxyP':_0x1389d9(0x61e)+_0x1389d9(0xaaf)+'op\x27><b'+_0x1389d9(0x7c0)+_0x1389d9(0x54d),'izTve':function(_0x23f54e,_0x32214b){return _0x23f54e===_0x32214b;},'VipME':_0xa67dec[_0x1389d9(0xb5d)],'jYtuI':function(_0x6569d1,_0x38ad7b){return _0x6569d1(_0x38ad7b);}};if(_0x1389d9(0x6c8)!==_0xa67dec[_0x1389d9(0x63f)])return _0x50d5a8===0x0?0x17:_0x52c530[_0x1389d9(0x9f8)](_0x52c530[_0x1389d9(0x548)](_0x26b8a6,0x2),0x1);else{let _0x3245f6=_0x1389d9(0x61e)+_0x1389d9(0xaaf)+_0x1389d9(0x916)+'ist\x27>';(_0x1b813f[_0x1389d9(0x577)]||[])[_0x1389d9(0x1e7)+'h'](_0x3a6bd0=>{const _0x549626=_0x1389d9,_0x5bf049={'uqCxR':function(_0x16047b,_0x3bf5c1){return _0x16047b(_0x3bf5c1);},'YylDP':_0x549626(0x373)+'e','sawIP':function(_0x4eab90,_0x42cc82){const _0x4de70b=_0x549626;return _0x35c2b6[_0x4de70b(0x22b)](_0x4eab90,_0x42cc82);},'rlHNY':'#dlHou'+'r','ZPYyT':function(_0x43f2d7,_0x49c9a8){const _0x4a72f0=_0x549626;return _0x35c2b6[_0x4a72f0(0x7c3)](_0x43f2d7,_0x49c9a8);},'ymfSG':function(_0x42911a,_0x406618){return _0x42911a+_0x406618;},'sxpNT':_0x549626(0x64f)};_0x3245f6+=_0x35c2b6['leUrX'](_0x35c2b6[_0x549626(0x9cf)]+_0x35c2b6[_0x549626(0x22b)](_0x453737,_0x3a6bd0[_0x549626(0xab0)])+'（',_0x3a6bd0[_0x549626(0x372)])+(_0x549626(0x7ab)+_0x549626(0x880)),_0x3a6bd0[_0x549626(0x9a6)]['slice'](0x0,0x8)[_0x549626(0x1e7)+'h'](_0x4d3c37=>{const _0x1f4410=_0x549626,_0x38b9d2={'PZQGa':_0x52c530[_0x1f4410(0x2b6)],'SZTRt':function(_0x17120c,_0x73eb72,_0x4cfd7f){return _0x52c530['GfTyU'](_0x17120c,_0x73eb72,_0x4cfd7f);},'dgKbv':function(_0x7be9d4,_0x43ea9d){const _0xa1ea9f=_0x1f4410;return _0x52c530[_0xa1ea9f(0xb9b)](_0x7be9d4,_0x43ea9d);},'ADBwE':function(_0x178fc8,_0x2d5f7c){return _0x52c530['rljgG'](_0x178fc8,_0x2d5f7c);},'LwQBh':_0x52c530[_0x1f4410(0x7f7)]};if(_0x52c530['izTve'](_0x52c530[_0x1f4410(0x3cf)],_0x1f4410(0x32f))){const _0x3981a3=_0x5bf049['uqCxR'](_0x498d71,_0x5bf049[_0x1f4410(0x8d6)]),_0x385881=_0x491d21(_0x5bf049['sawIP'](_0x37d552,_0x5bf049[_0x1f4410(0x22e)])['value'])||0x0,[_0x48f3cf,_0x50c254,_0x1fa008]=_0x3981a3[_0x1f4410(0x2bd)][_0x1f4410(0x707)]('-')[_0x1f4410(0x2ec)](_0x3ffdfb);_0x5f22fc(_0x5bf049[_0x1f4410(0x234)](_0x5bf049[_0x1f4410(0x234)](_0x5bf049[_0x1f4410(0x234)](_0x5bf049[_0x1f4410(0x491)](_0x1f4410(0x4f6)+'enji/t'+_0x1f4410(0xad1)+'mpute?'+_0x1f4410(0x7d8)+_0x1f4410(0xb71)+_0x1f4410(0x3f5)+'=',_0x48f3cf),_0x1f4410(0x848))+_0x50c254+'&d=',_0x1fa008),_0x5bf049['sxpNT'])+_0x385881)[_0x1f4410(0x493)](_0x362f18=>{const _0x220d64=_0x1f4410,_0x173e78=_0x362f18[_0x220d64(0x455)+'s'],_0x32513b=_0x362f18[_0x220d64(0xaf6)][_0x220d64(0xa3a)];_0x7bd97d(_0x38b9d2[_0x220d64(0x308)])[_0x220d64(0x225)+'TML']=_0x38b9d2[_0x220d64(0xaf3)](_0x5eff77,'日',_0x173e78['day'])+_0x3148bc('时',_0x173e78['hour'])+(_0x32513b?_0x5b3adc('九宫',_0x32513b):''),_0x38b9d2[_0x220d64(0x2bc)](_0x45706e,_0x220d64(0x613)+'n')[_0x220d64(0x225)+_0x220d64(0xb50)]=_0x38b9d2[_0x220d64(0xb1d)](_0x38b9d2[_0x220d64(0x6bc)],_0xf88b53(_0x362f18[_0x220d64(0xaf6)][_0x220d64(0x1f2)]))+_0x220d64(0xb4b),_0x234eca(_0x32513b);})[_0x1f4410(0x9f5)](()=>{});}else{const _0x554507=_0x4d3c37[_0x1f4410(0xab0)]||_0x4d3c37['MZ']||_0x4d3c37[_0x1f4410(0x671)]||'';_0x3245f6+=_0x52c530[_0x1f4410(0xbb7)](_0x1f4410(0x61e)+'lass=\x27'+'hint\x27\x20'+_0x1f4410(0x9f3)+'\x27paddi'+_0x1f4410(0x94d)+_0x1f4410(0x72b)+'·\x20',_0x52c530['jYtuI'](_0x453737,_0x554507))+_0x1f4410(0xb4b);}});}),_0x3245f6+=_0x1389d9(0xb4b);if(!_0x1b813f[_0x1389d9(0x577)]||!_0x1b813f[_0x1389d9(0x577)][_0x1389d9(0x6b7)])_0x3245f6=_0x1389d9(0x61e)+_0x1389d9(0xaaf)+_0x1389d9(0x7e4)+'未找到相关人'+_0x1389d9(0x87e)+'div>';_0x172194['innerH'+'TML']=_0x3245f6,_0x36960e[_0x1389d9(0x225)+_0x1389d9(0xb50)]='';}});}function _0x239233(){const _0x17c4a8=_0x5a199c,_0x2c9b38=_0xa67dec[_0x17c4a8(0x417)](_0x4c5254,_0xa67dec['NVCic']),_0x1e7058=_0xa67dec[_0x17c4a8(0x5ff)](_0x4c5254,_0xa67dec[_0x17c4a8(0x42e)]);if(_0x2c9b38)_0x2c9b38[_0x17c4a8(0x8e5)+'k']=()=>_0x20607f(_0x1e7058[_0x17c4a8(0x2bd)]);if(_0x1e7058)_0x1e7058[_0x17c4a8(0x474)+_0x17c4a8(0xaa3)]=_0x32b20f=>{const _0x2c70ad=_0x17c4a8;if(_0x32b20f[_0x2c70ad(0x9a7)]===_0x2c70ad(0x638))_0xa67dec['nFmCr'](_0x20607f,_0x1e7058[_0x2c70ad(0x2bd)]);};_0x1a0f02(_0xa67dec[_0x17c4a8(0xa1b)])['then'](_0x2222c9=>{const _0x38b44d=_0x17c4a8,_0x22f7c9={'nBfSS':function(_0x5137b3,_0x23e307){return _0x5137b3(_0x23e307);}};if('EJUvl'===_0xa67dec[_0x38b44d(0x295)])return _0x22f7c9[_0x38b44d(0x231)](_0x4105d6,_0x4aad83)[_0x38b44d(0x582)+'e'](/\r?\n/g,_0x38b44d(0x210));else{_0x41985d=_0x2222c9;if(_0x41985d[0x0])_0x19ba8c(_0x41985d[0x0],!![]);}});}if(_0xa67dec['PJuck'](document['readyS'+_0x5a199c(0x816)],_0x5a199c(0xb67)+'g'))document['addEve'+_0x5a199c(0x5c1)+_0x5a199c(0x256)](_0xa67dec[_0x5a199c(0xaa4)],_0x239233);else _0x239233();}()));
+/* 人纪学习系统 · 前端（独立，不依赖 app.js）
+ * 五大板块：穴位详解 / 灵龟八法 / 子午流注 / 汉唐取穴 / 动画演示
+ * 与「人纪针灸」EXE 菜单一致。
+ */
+(function () {
+  "use strict";
+
+  // ---------- 注入样式 ----------
+  const CSS = `
+  .app{display:flex;flex-direction:column;height:100vh}
+  .layout{flex:1;flex-direction:column;min-height:0}
+  .tu-list{display:flex;flex-direction:column;gap:6px;padding:8px 14px 16px}
+  .tu-cell{display:flex;align-items:center;gap:10px;margin:0;padding:6px 8px;border:1px solid #245;background:#0f2a40;border-radius:8px;cursor:pointer;transition:border-color .15s,box-shadow .15s;overflow:hidden}
+  .tu-cell:hover{border-color:#ffd479;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+  .tu-cell.active{border-color:#ffd479;box-shadow:0 0 0 3px rgba(255,212,121,.35)}
+  .tu-thumb{flex:0 0 auto;width:34px;height:34px;border-radius:5px;overflow:hidden;background:#fff}
+  .tu-thumb img{width:100%;height:100%;object-fit:cover;display:block;background:#fff}
+  .tu-name{flex:1;min-width:0;font-size:14px;line-height:1.35;color:#dfeefb;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .tool-panel{padding:14px;color:#dfeefb}
+  .tool-panel label{display:inline-block;margin:4px 8px 4px 0;color:#bcd}
+  .tool-panel input,.tool-panel select{padding:5px 8px;border-radius:6px;border:1px solid #357;
+    background:#0c2236;color:#fff;font-size:14px}
+  .gz-result{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+  .gz-card{background:#0f2a40;border:1px solid #2a5;border-radius:8px;padding:8px 12px;text-align:center;min-width:78px}
+  .gz-card .lab{font-size:12px;color:#9fc1da}
+  .gz-card .val{font-size:20px;font-weight:700;color:#ffd479}
+  .open-list{margin-top:10px}
+  .open-list .op{background:#0f2a40;border-left:3px solid #ffd479;padding:6px 10px;margin:5px 0;border-radius:4px}
+  .dial-wrap{display:flex;gap:20px;flex-wrap:wrap;align-items:center}
+  .dial{width:340px;height:340px}
+  .dial .cell{fill:#0f2a40;stroke:#2a5;stroke-width:1.5}
+  .dial .cell.hot{fill:#ffd479;stroke:#fff}
+  .dial .lbl{fill:#dfeefb;font-size:15px;text-anchor:middle;font-weight:600}
+  .dial .num{fill:#7fa;font-size:11px;text-anchor:middle}
+  .detail-pane.tu-stage{padding-top:0}
+  .anim-stage{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:10px;background:#04121f;border-radius:10px;padding:0}
+  .anim-stage img{max-width:100%;width:auto;height:auto;display:block;border-radius:8px;background:#fff}
+  .anim-stage .hint{font-size:13px;color:#9fc1da;padding:6px 8px}
+  .anim-stage .body{stroke:#3a6f9a;stroke-width:2;fill:#0a2236}
+  .mer-path{fill:none;stroke-width:3;stroke-linecap:round;opacity:.85}
+  .mer-dot{fill:#fff;r:5}
+  .mer-comet{fill:#ffd479;r:6}
+  .anim-cap{color:#ffd479;font-weight:700;font-size:16px;margin:6px 0}
+  .anim-art{color:#cfe3f2;line-height:1.8;white-space:pre-wrap;max-height:300px;overflow:auto;
+    background:#0c2236;padding:10px;border-radius:8px;margin-top:8px}
+  .point-card{border:1px solid #2a5;background:#0f2a40;border-radius:8px;padding:10px;margin:8px 0}
+  .point-card h4{color:#ffd479;margin:0 0 6px}
+  .point-card .sec{margin:4px 0}
+  .point-card .sec b{color:#9fc1da}
+  .nishi-box{border-top:1px dashed #2a5;margin-top:8px;padding-top:6px}
+  .table-scroll{overflow:auto}
+  table.zi{border-collapse:collapse;width:100%;font-size:13px}
+  table.zi th,table.zi td{border:1px solid #2a5;padding:4px 8px;text-align:center;color:#dfeefb;white-space:nowrap}
+  table.zi th{background:#11304a;color:#ffd479}
+  .flow-wrap{display:grid;grid-template-columns:minmax(260px,440px) 1fr;gap:16px;align-items:start}
+  @media (max-width:820px){.flow-wrap{grid-template-columns:1fr}}
+  .flow-body{background:#04121f;border:1px solid #16344d;border-radius:10px;padding:6px;overflow:auto;max-height:84vh}
+  .flow-svg{display:block;width:100%;height:auto}
+  .flow-img{display:block}
+  .flow-line{fill:none;stroke:#c0392b;stroke-width:3;stroke-linecap:round;opacity:.85}
+  .flow-anim{fill:none;stroke:#fff;stroke-width:2;stroke-dasharray:12 8;opacity:.95;animation:flowdash 2.5s linear infinite}
+  @keyframes flowdash{to{stroke-dashoffset:-200}}
+  .flow-dot circle{fill:#c0392b;stroke:#fff;stroke-width:2.5;opacity:.9;transition:r .12s}
+  .flow-dot.active circle{fill:#e67e22}
+  .flow-num{fill:#fff;font-size:12px;font-weight:bold;text-anchor:middle;dominant-baseline:middle;paint-order:stroke;stroke:#000;stroke-width:3px}
+  .flow-name{fill:#000;font-size:11px;font-weight:bold;text-anchor:middle;dominant-baseline:middle;paint-order:stroke;stroke:#fff;stroke-width:3px}
+  .flow-meta{font-size:13px;color:#cfe3f2;display:flex;flex-wrap:wrap;gap:6px 14px;margin-bottom:10px}
+  .flow-meta b{color:#ffd479}
+  .flow-legend{font-size:11px;color:#9fc1da;display:flex;gap:14px;margin:2px 0 12px}
+  .flow-legend .sw{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:middle;margin-right:4px}
+  .flow-legend .sw-flow{background:#fff;border:2px solid #c0392b}
+  .flow-pts{background:#0c2236;border:1px solid #16344d;border-radius:8px;padding:8px;max-height:70vh;overflow:auto}
+  .flow-pts-host{margin-top:10px}
+  .flow-pttl{font-size:13px;color:#ffd479;margin-bottom:6px}
+  .flow-pt{display:flex;gap:8px;align-items:center;padding:3px 6px;border-radius:4px;cursor:pointer;font-size:13px;color:#dfeefb}
+  .flow-pt:hover{background:#0f2a40}
+  .flow-pt.cur{background:#fdebd0;color:#c0392b;font-weight:700}
+  .flow-pt.miss{opacity:.5}
+  .flow-pt .fp-num{width:26px;color:#9fc1da}
+  .flow-pt .fp-name{width:88px;font-weight:600}
+  .flow-pt .fp-xy{color:#7fd1a0;font-family:monospace;font-size:11px}
+  .flow-placeholder{text-align:center;color:#9fc1da;padding:6px 0}
+  .flow-placeholder img{width:100%;max-width:360px;max-height:62vh;object-fit:contain;display:block;margin:0 auto 10px;border-radius:8px;background:#fff}
+  .flow-phcap{font-size:14px;color:#ffd479;margin-bottom:10px}
+  `;
+  const st = document.createElement("style");
+  st.textContent = CSS;
+  document.head.appendChild(st);
+
+  // ---------- 工具 ----------
+  const $ = (s, r) => (r || document).querySelector(s);
+  const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+  function isMobile() {
+    try { return window.matchMedia("(max-width:820px)").matches; } catch (e) { return false; }
+  }
+  // 移动端：把「顶部横栏之下的内容列表」转成下拉菜单（每个穴位/条目通过下拉选择）。
+  // - #resultList 的条目（穴位/中药/医案…）=> #mListSelect 下拉，选中即渲染详情，默认首项。
+  // - #filterBar 的可点击筛选按钮（如各经络）=> #mFilterSelect 下拉。
+  // MutationObserver 自动适配列表刷新；桌面端自动还原为列表。顶部横栏菜单保持不变。
+  let _mObservers = null, _mTO = null;
+  let _mOpenSel = null;       // 当前已打开（focus）的原生 select；重建前若命中则跳过，避免原生选择器被销毁而「闪退」
+  let _mWasMobile = null;     // 上次 isMobile() 状态；resize 仅跨断点时响应（避免移动端地址栏收起误触发重建）
+  let _mListSig = "";         // resultList 内容签名；仅在列表内容真正变化时自动选中首项（避免重复点击/循环）
+  let _mActiveFilter = null;  // 用户已选的筛选下拉索引，重建后保留显示
+  function itemLabel(it) {
+    const t = it.querySelector(".t, .ri-title, .rp-title, .tu-name, .name, h3, h4, strong");
+    if (t && t.textContent.trim()) return t.textContent.trim();
+    if (it.dataset && it.dataset.title) return it.dataset.title;
+    return it.textContent.replace(/\s+/g, " ").trim().slice(0, 48);
+  }
+  function listSignature(ul) {
+    const its = [...ul.children].filter(c => c.onclick || c.classList.contains("result-item"));
+    return its.length + "|" + its.slice(0, 3).map(itemLabel).join("/");
+  }
+  function mobileListToSelect() {
+    const ul = document.getElementById("resultList");
+    if (!ul) return;
+    const old = document.getElementById("mListSelect");
+    if (old && old === _mOpenSel) return;   // 用户正打开此下拉，跳过重建（防闪退）
+    if (old) old.remove();
+    if (!isMobile()) { ul.style.display = ""; return; }   // 桌面：保持原始列表
+    const items = [...ul.children].filter(c => c.onclick || c.classList.contains("result-item"));
+    if (!items.length) { ul.style.display = ""; return; }
+    const sel = el("select", "m-list-select", "");
+    sel.id = "mListSelect";
+    const ph = document.createElement("option");
+    ph.value = ""; ph.textContent = "选择条目…"; ph.disabled = true; ph.selected = true;
+    sel.appendChild(ph);
+    items.forEach((it, i) => {
+      const o = document.createElement("option");
+      o.value = String(i); o.textContent = itemLabel(it); o._item = it;
+      sel.appendChild(o);
+    });
+    sel.onchange = () => { const it = items[Number(sel.value)]; if (it) it.click(); };
+    // focus/blur 跟踪当前打开的下拉；关闭后补一次列表同步（不抢焦点）
+    sel.addEventListener("focus", () => { _mOpenSel = sel; });
+    sel.addEventListener("blur", () => {
+      if (_mOpenSel === sel) _mOpenSel = null;
+      if (_mWasMobile && isMobile()) setTimeout(syncMobileList, 0);
+    });
+    ul.parentNode.insertBefore(sel, ul);
+    ul.style.display = "none";          // 手机端用下拉替代列表
+    const sig = listSignature(ul);
+    if (sig !== _mListSig) {            // 仅列表内容真正变化时自动选中首项（避免重复点击/循环）
+      _mListSig = sig;
+      sel.value = "0"; items[0].click();
+    }
+  }
+  function mobileFilterToSelect() {
+    const fb = document.getElementById("filterBar");
+    if (!fb) return;
+    const old = document.getElementById("mFilterSelect");
+    if (old && old === _mOpenSel) return;   // 用户正打开此下拉，跳过重建（防闪退）
+    if (old) old.remove();
+    if (!isMobile()) { [...fb.querySelectorAll("button")].forEach(b => b.style.display = ""); return; }
+    const btns = [...fb.querySelectorAll("button")].filter(b => b.onclick);
+    if (btns.length < 2) return;        // 非列表（提示/单按钮）保持原样
+    const sel = el("select", "m-filter-select", "");
+    sel.id = "mFilterSelect";
+    const ph = document.createElement("option");
+    ph.value = ""; ph.textContent = "选择分类…"; ph.disabled = true; ph.selected = true;
+    sel.appendChild(ph);
+    btns.forEach((b, i) => {
+      const o = document.createElement("option");
+      o.value = String(i); o.textContent = b.textContent.trim(); o._btn = b;
+      sel.appendChild(o);
+    });
+    sel.onchange = () => { const b = btns[Number(sel.value)]; if (b) { _mActiveFilter = Number(sel.value); b.click(); } };
+    sel.addEventListener("focus", () => { _mOpenSel = sel; });
+    sel.addEventListener("blur", () => { if (_mOpenSel === sel) _mOpenSel = null; });
+    // 关键：把下拉插为 #filterBar 的【同级兄弟】而非子节点——否则它的增删会触发被监听的
+    // #filterBar，造成 MutationObserver 无限回环（桌面 isMobile() 早返回故无此问题）。
+    fb.parentNode.insertBefore(sel, fb);
+    btns.forEach(b => b.style.display = "none");
+    // 保留用户已选分类的显示；仅当尚未加载任何内容时自动选首项（避免循环）。
+    if (_mActiveFilter != null && _mActiveFilter < btns.length) sel.value = String(_mActiveFilter);
+    const _rl = document.getElementById("resultList");
+    if ((!_rl || _rl.children.length === 0) && (!_mActiveFilter || _mActiveFilter >= btns.length)) { sel.value = "0"; _mActiveFilter = 0; btns[0].click(); }
+  }
+  function runMobileSelects() {
+    if (_mOpenSel) return;   // 用户正在操作某个下拉，绝不重建（防雷退）
+    mobileListToSelect(); mobileFilterToSelect();
+  }
+  function syncMobileList() {       // 关闭下拉后补一次列表同步（不影响焦点）
+    if (_mOpenSel) return;
+    mobileListToSelect();
+  }
+  function observeMobileList() {
+    if (_mObservers) return;
+    _mObservers = {};
+    _mWasMobile = isMobile();
+    const cb = () => { if (_mOpenSel) return; if (_mTO) clearTimeout(_mTO); _mTO = setTimeout(runMobileSelects, 60); };
+    const ul = document.getElementById("resultList");
+    const fb = document.getElementById("filterBar");
+    if (ul) { _mObservers.ul = new MutationObserver(cb); _mObservers.ul.observe(ul, { childList: true, subtree: true }); }
+    if (fb) { _mObservers.fb = new MutationObserver(cb); _mObservers.fb.observe(fb, { childList: true, subtree: true }); }
+    // 仅当跨移动/桌面断点时响应 resize；移动端地址栏收起会触发 resize，但不应重建下拉（导致闪退）
+    window.addEventListener("resize", () => {
+      const m = isMobile();
+      if (_mWasMobile === m) return;
+      _mWasMobile = m;
+      if (_mTO) clearTimeout(_mTO);
+      _mTO = setTimeout(runMobileSelects, 200);
+    });
+  }
+  function getJSON(url) {
+    return new Promise((res, rej) => {
+      fetch(url).then(r => r.json()).then(res).catch(rej);
+    });
+  }
+  function esc(s) { return (s == null ? "" : String(s)).replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c])); }
+
+  const boardTabs = $("#boardTabs"),
+        moduleHead = $("#moduleHead"), listHint = $("#listHint"),
+        resultList = $("#resultList"), detailPane = $("#detailPane"),
+        filterBar = $("#filterBar"), pager = $("#pager");
+
+  let BOARDS = [], CUR_BOARD = null, CUR_SUB = null;
+
+  // ---------- 干支算法（万年历 / 四柱） ----------
+  const GAN = ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"];
+  const ZHI = ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"];
+  const ZHI_HOUR = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]; // 子丑寅卯辰巳午未申酉戌亥
+  function gzIdx(g, z) { for (let i = 0; i < 60; i++) if (i % 10 === g && i % 12 === z) return i; return 0; }
+  function yearGZ(y) { return GAN[((y - 4) % 10 + 10) % 10] + ZHI[((y - 4) % 12 + 12) % 12]; }
+  function jdn(y, m, d) {
+    const a = Math.floor((14 - m) / 12);
+    const yy = y + 4800 - a, mm = m + 12 * a - 3;
+    return d + Math.floor((153 * mm + 2) / 5) + 365 * yy + Math.floor(yy / 4)
+         - Math.floor(yy / 100) + Math.floor(yy / 400) - 32045;
+  }
+  function dayGZ(y, m, d) {
+    const j = jdn(y, m, d);
+    const idx = ((j + 49) % 60 + 60) % 60;
+    return { idx, g: idx % 10, z: idx % 12, str: GAN[idx % 10] + ZHI[idx % 12] };
+  }
+  // 节气近似（用于定月柱起点）：返回该年各「节」的公历月-日（寅月起）
+  const SOLAR = [[2,4],[3,6],[4,5],[5,6],[6,6],[7,7],[8,8],[9,8],[10,8],[11,7],[12,7],[1,6]];
+  function monthIndex(y, m, d) {
+    for (let i = 0; i < 12; i++) { const [sm, sd] = SOLAR[i];
+      const ny = (i === 11) ? y + 1 : y;
+      const cur = (m === sm && d >= sd);
+      const prevM = SOLAR[(i + 11) % 12][0], prevY = (i === 0) ? y - 1 : y, prevD = SOLAR[(i + 11) % 12][1];
+      const prev = (m === prevM && d >= prevD) || (m === sm && d < sd && (i !== 0 || true));
+      if (m === sm && d >= sd) return i;
+      if (i > 0 && m === SOLAR[i - 1][0] && d >= SOLAR[i - 1][1] && d < sd) return i - 1;
+    }
+    // 1月6日前属上年丑月(index 11)
+    if (m === 1 && d < 6) return 11;
+    return 0;
+  }
+  function monthGZ(y, m, d) {
+    const mi = monthIndex(y, m, d); // 0=寅
+    const ys = ((y - 4) % 10 + 10) % 10; // 年干
+    const base = (ys * 2 + 2) % 10;       // 五虎遁 寅月天干
+    const g = (base + mi) % 10;
+    const z = (2 + mi) % 12;              // 寅=2
+    return { str: GAN[g] + ZHI[z], mi };
+  }
+  function hourBranch(h) { return Math.floor(((h + 1) % 24) / 2); } // 23-1子...
+  function hourGZ(h, dayG) {
+    const b = hourBranch(h);
+    const base = (dayG * 2) % 10; // 五鼠遁 子时天干
+    const g = (base + b) % 10;
+    return { str: GAN[g] + ZHI[b], b };
+  }
+
+  // ---------- 板块 / 子模块 渲染 ----------
+  // 顶部板块/工具标签条（横向，桌面/移动一致；移动端由 CSS .board-tabs{flex-wrap} 自动换行）
+  function closeDropdowns() {
+    [...boardTabs.querySelectorAll(".board-tab.open")].forEach(t => t.classList.remove("open"));
+  }
+  document.addEventListener("click", closeDropdowns);
+
+  // ---------- 移动端下拉（仿天纪 .tj-mobile-select）；桌面侧栏已移除（遵从"电脑版不动"，桌面仅保留顶部 board-tabs） ----------
+  function navLeaf(text, onClick, obj) {
+    const l = el("div", "tj-leaf", "");
+    l.textContent = text;
+    if (obj) l._nav = obj;
+    l.onclick = () => { onClick(); applyNavActive(); };
+    return l;
+  }
+  // 递归渲染侧栏节点；depth 用于缩进
+  function renderSidebarNode(s, parent, depth) {
+    if (s.subs && s.subs.length) {
+      const node = el("div", "tj-node open");
+      const head = el("div", "tj-node-head",
+        "<span class='tj-toggle'>▾</span><span class='tj-node-title'>" + esc(s.name) + "</span>");
+      head.onclick = () => {
+        node.classList.toggle("open");
+        head.querySelector(".tj-toggle").textContent = node.classList.contains("open") ? "▾" : "▸";
+      };
+      node.appendChild(head);
+      const kids = el("div", "tj-node-children", "");
+      s.subs.forEach(c => renderSidebarNode(c, kids, depth + 1));
+      node.appendChild(kids);
+      parent.appendChild(node);
+    } else {
+      const indent = depth > 1 ? "　".repeat(depth - 1) : "";
+      parent.appendChild(navLeaf(indent + s.name, () => selectSub(s), s));
+    }
+  }
+  function renderRenjiSidebar() {
+    const side = document.getElementById("sidebar");
+    if (!side) return;
+    side.innerHTML = "";
+    BOARDS.forEach(b => {
+      if (b.kind) {                 // 整页板块（灵龟八法 / 子午流注）：顶层可点击项
+        side.appendChild(navLeaf(b.name, () => selectBoardPage(b), b));
+      } else {
+        const root = el("div", "tj-root", esc(b.name));
+        side.appendChild(root);
+        (b.subs || []).forEach(s => renderSidebarNode(s, side, 1));
+      }
+    });
+  }
+  // 移动端：把 板块/子模块 压平成一个 <select>（禁用项作分组标题），选中即渲染
+  function renderRenjiMobileNav() {
+    const wrap = document.getElementById("renjiMobileNavWrap");
+    if (!wrap) return;
+    wrap.innerHTML = "";
+    const sel = el("select", "tj-mobile-select", "");
+    sel.id = "renjiMobileNav";
+    const ph = document.createElement("option");
+    ph.value = ""; ph.textContent = "选择板块 / 子模块"; ph.disabled = true; ph.selected = true;
+    sel.appendChild(ph);
+    const mi = { n: 0 };
+    BOARDS.forEach(b => {
+      if (b.kind) {                 // 整页板块（灵龟八法 / 子午流注）：直接作为可选项，不加禁用分组标题
+        const o = document.createElement("option");
+        o.value = "b" + (mi.n++); o.textContent = b.name; o._act = () => selectBoardPage(b);
+        sel.appendChild(o);
+      } else {
+        const sep = document.createElement("option");
+        sep.disabled = true; sep.textContent = "▸ " + b.name; sel.appendChild(sep);
+        (b.subs || []).forEach(s => appendMobileLeaf(sel, s, 1, mi));
+      }
+    });
+    sel.onchange = () => {
+      const o = sel.selectedOptions && sel.selectedOptions[0];
+      if (o && o._act) o._act();
+    };
+    wrap.appendChild(sel);
+  }
+  function appendMobileLeaf(sel, s, depth, mi) {
+    if (s.subs && s.subs.length) {
+      s.subs.forEach(c => appendMobileLeaf(sel, c, depth + 1, mi));
+    } else {
+      const o = document.createElement("option");
+      o.value = "m" + (mi.n++); o.textContent = "　".repeat(depth) + s.name;
+      o._act = () => selectSub(s);
+      sel.appendChild(o);
+    }
+  }
+  function applyNavActive() {
+    const side = document.getElementById("sidebar");
+    if (side) {
+      side.querySelectorAll(".tj-leaf").forEach(l => {
+        const on = (l._nav === CUR_SUB) || (l._nav === CUR_BOARD && !CUR_SUB);
+        l.classList.toggle("active", !!on);
+      });
+    }
+  }
+  // 顶部板块/工具标签条（横向，桌面/移动一致；移动端由 CSS .board-tabs{flex-wrap} 自动换行）
+  // 桌面：仅顶部标签条（还原原始布局，无侧栏）；移动端：另构建下拉（仿天纪），与顶部栏共享状态。
+  function renderBoards() {
+    boardTabs.innerHTML = "";
+    BOARDS.forEach(b => {
+      const t = el("div", "board-tab" + (b === CUR_BOARD ? " active" : ""));
+      t.innerHTML = esc(b.name) + (b.subs ? " <span class='bt-count'>(" + b.count + ")</span>" : "");
+      const dd = el("div", "board-dropdown");
+      const walk = (subs) => subs.forEach(s => {
+        if (s.subs) {
+          dd.appendChild(el("div", "board-dd-group", esc(s.name)));
+          walk(s.subs);
+        } else {
+          const it = el("div", "board-dd-item");
+          if (s === CUR_SUB) it.classList.add("active");
+          it.textContent = s.name;
+          it.onclick = (e) => { e.stopPropagation(); selectSub(s); };
+          dd.appendChild(it);
+        }
+      });
+      if (b.subs) walk(b.subs);
+      t.appendChild(dd);
+      t.onclick = (e) => {
+        e.stopPropagation();
+        if (b.kind) {  // 板块级整页（无下拉菜单）：直接渲染整页
+          selectBoardPage(b);
+          return;
+        }
+        const wasOpen = t.classList.contains("open");
+        closeDropdowns();
+        if (wasOpen) return;
+        if (b !== CUR_BOARD) {
+          CUR_BOARD = b;
+          [...boardTabs.children].forEach(c => c.classList.remove("active"));
+          t.classList.add("active");
+        }
+        t.classList.add("open");
+      };
+      boardTabs.appendChild(t);
+    });
+  }
+  function selectBoard(b, autoFirst) {
+    CUR_BOARD = b; CUR_SUB = null;
+    const lp = document.getElementById("listPane"); if (lp) lp.style.display = "";
+    renderBoards();
+    if (autoFirst) {
+      const first = firstLeaf(b);
+      if (first) selectSub(first);
+    }
+  }
+  function firstLeaf(b) {
+    for (const s of b.subs) { if (s.subs) { const f = firstLeaf({ subs: s.subs }); if (f) return f; } else return s; }
+    return null;
+  }
+  function selectSub(s) {
+    CUR_SUB = s;
+    const lp = document.getElementById("listPane"); if (lp) lp.style.display = "";
+    moduleHead.innerHTML = "<h2>" + esc(s.name) + "</h2><p class='brand-sub'>" + esc(s.desc || "") + "</p>";
+    listHint.style.display = "none";
+    pager.innerHTML = ""; filterBar.innerHTML = "";
+    [...boardTabs.querySelectorAll(".board-dd-item")].forEach(x =>
+      x.classList.toggle("active", x.textContent.trim() === s.name));
+    dispatchSub(s);
+    closeDropdowns();
+  }
+
+  // 板块级整页（无子菜单下拉）：点击板块标签即渲染整页内容
+  function selectBoardPage(b) {
+    CUR_BOARD = b; CUR_SUB = null;
+    const lp = document.getElementById("listPane");
+    if (lp) lp.style.display = (b.kind === "lbg_page" || b.kind === "ziwwu_page") ? "none" : "";
+    const wa = document.querySelector(".workarea");
+    if (wa) wa.classList.toggle("page-mode", b.kind === "lbg_page" || b.kind === "ziwwu_page");
+    renderBoards();
+    moduleHead.innerHTML = "<h2>" + esc(b.name) + "</h2><p class='brand-sub'>" + esc(b.desc || "") + "</p>";
+    listHint.style.display = "none";
+    pager.innerHTML = ""; filterBar.innerHTML = "";
+    dispatchBoard(b);
+    closeDropdowns();
+  }
+  function dispatchBoard(b) {
+    resultList.innerHTML = "";
+    detailPane.innerHTML = "";
+    if (b.kind === "ziwwu_page") return renderZiwwuPage(b);
+    if (b.kind === "lbg_page") return renderLbgPage(b);
+    detailPane.innerHTML = "<div class='hint'>请从上方导航菜单选择子模块。</div>";
+  }
+
+  function dispatchSub(s) {
+    resultList.innerHTML = ""; detailPane.className = "detail-pane"; detailPane.innerHTML = "<div class='hint'>请从上方导航菜单选择子模块，点击条目查看详情。</div>";
+    const k = s.kind;
+    if (s.key === "yaotu") return renderYaotuGallery();   // 药图：用药图列表.html 的 467 张图鉴内容
+    if (s.key === "herbs") return renderZhongyao();        // 中药查询：用中药查询.html 的 719 味内容替换
+    if (k === "meridians") return renderMeridians(s);
+    if (k === "points") return renderPoints(s);
+    if (k === "fields") return renderFields(s);
+    if (k === "image") return renderImages(s);
+    if (k === "ziwwu_table") return renderZiwwuTable(s);
+    if (k === "hantang_method") return renderHantang(s);
+    if (k === "cross") return renderCross(s);
+    if (k === "tool") return renderTool(s);
+    if (k === "animation") return renderAnimation(s);
+    if (k === "jingui_fangji") return renderJinguiFangji(s);
+  }
+
+  // ---------- 金匮要略（人纪经方） ----------
+  // 「方剂详解」三级布局：filterBar 选篇目（一级）+ resultList 列方剂（二级）+ detailPane 看详解；
+  // 其余 4 项（百病/辨症/脏腑/症状）复用全局 fields 渲染。样式全部复用本页既有类。
+  const nl2br = (s) => (s == null ? "" : String(s).replace(/\r?\n/g, "<br>"));
+  function renderJinguiFangji(s) {
+    filterBar.innerHTML = "<span class='fb-title'>金匮要略 · 篇目</span>";
+    listHint.style.display = "none";
+    resultList.innerHTML = "";
+    detailPane.innerHTML = "<div class='hint'>加载篇目…</div>";
+    getJSON("/api/renji/jingui/chapters").then(d => {
+      const chapters = d.items || [];
+      chapters.forEach((ch, idx) => {
+        const b = el("button", idx === 0 ? "active" : "",
+          "<span class='cn-label'>" + esc(ch.short || ch.name) + "</span>" +
+          "<em class='cn-count'>" + ch.count + "</em>");
+        b.title = "第" + ch.no + "篇 " + ch.name;
+        b.onclick = () => {
+          [...filterBar.querySelectorAll("button")].forEach(x => x.classList.remove("active"));
+          b.classList.add("active");
+          loadJinguiChapter(ch.no);
+        };
+        filterBar.appendChild(b);
+      });
+      if (chapters[0]) loadJinguiChapter(chapters[0].no);
+      else resultList.innerHTML = "<div class='hint'>暂无方剂数据。</div>";
+    }).catch(() => {
+      detailPane.innerHTML = "<div class='hint'>篇目加载失败，请重试。</div>";
+    });
+  }
+  function loadJinguiChapter(no) {
+    getJSON("/api/renji/jingui/chapter/" + no).then(d => {
+      const items = d.items || [];
+      resultList.innerHTML = "";
+      items.forEach(it => {
+        const li = el("li", "result-item", esc(it.name));
+        li.onclick = () => {
+          [...resultList.querySelectorAll(".result-item")].forEach(x => x.classList.remove("active-row"));
+          li.classList.add("active-row");
+          showJinguiFormula(it.no, it.name);
+        };
+        resultList.appendChild(li);
+      });
+      moduleHead.innerHTML = "<h2>金匮要略 · 方剂详解</h2>" +
+        "<p class='brand-sub'>第" + d.no + "篇 " + esc(d.name) + "（" + items.length + " 首方剂）</p>";
+      detailPane.innerHTML = "<div class='hint'>本篇共 " + items.length +
+        " 首方剂。点击中间方剂查看【脉证治方（条文）· 方组与用量 · 煎服法 · 主治 · 方歌 · 方解 · 倪海厦讲解 · 现代医案】。</div>";
+    }).catch(() => {
+      detailPane.innerHTML = "<div class='hint'>章节加载失败，请重试。</div>";
+    });
+  }
+  function showJinguiFormula(no, name) {
+    getJSON("/api/renji/jingui/item?no=" + no).then(rec => {
+      const sec = (label, val) => (val && String(val).trim())
+        ? "<div class='sec'><b>" + label + "：</b><br>" + nl2br(val) + "</div>" : "";
+      let h = "<div class='point-card'><h4>" + esc(rec.name) +
+        "　<span style='opacity:.6;font-size:13px'>【" + esc(rec.chapter) + "】</span></h4>";
+      h += sec("原文篇目", rec.pian);
+      h += sec("脉证治方（条文）", rec.tiaowen);
+      h += sec("方组与用量", rec.zucheng);
+      h += sec("煎服法", rec.jianfu);
+      h += sec("主治", rec.zhuzhi);
+      h += sec("方歌", rec.gejue);
+      h += sec("方解", rec.fangjie);
+      if ((rec.jiangjie || []).length) {
+        h += "<div class='nishi-box'><b style='color:#ffd479'>倪海厦讲解</b>";
+        rec.jiangjie.forEach(t => { h += "<div class='sec'>" + nl2br(t) + "</div>"; });
+        h += "</div>";
+      }
+      if ((rec.yian || []).length) {
+        h += "<div class='nishi-box'><b style='color:#ffd479'>现代医案（" + rec.yian.length + "）</b>";
+        rec.yian.forEach(y => {
+          h += "<div class='sec'><b>" + esc(y.title || "医案") + "</b>" +
+            (y.date ? "　<span style='opacity:.6'>" + esc(y.date) + "</span>" : "") +
+            (y.disease ? "<br><b>病症：</b>" + esc(y.disease) : "") +
+            (y.liujing ? "　<b>六经：</b>" + esc(y.liujing) : "") +
+            "<br>" + nl2br(y.content || "") + "</div>";
+        });
+        h += "</div>";
+      }
+      h += "</div>";
+      detailPane.innerHTML = h;
+      detailPane.scrollTop = 0;
+    }).catch(() => {
+      detailPane.innerHTML = "<div class='hint'>详情加载失败，请重试。</div>";
+    });
+  }
+
+  // ---------- 穴位详解：十四经络 ----------
+  function renderMeridians(s) {
+    // 真人全身经络穴位图移到右侧，与「穴位详情」并排（左侧仅留经络筛选 + 穴位列表）
+    detailPane.className = "detail-pane mer-detail-pane";
+    detailPane.innerHTML = "<div class='mer-point'><div class='hint'>点击左侧穴位查看定位 / 主治 / 针刺方法与配图。</div></div>";
+    // 经络筛选按钮放进 #filterBar（.filter-bar，与 #resultList 平级，合法的 flex 容器），
+    // 绝不能再塞进 <ul id="resultList"> 里（<div> 直接做 <ul> 子节点是非法 HTML，
+    // 浏览器纠错后会打乱列表宽度/折行，旧版甚至把穴位渲染成两列网格）。
+    filterBar.innerHTML = "<span class='fb-title'>十四经络穴位</span>";
+    resultList.innerHTML = "";
+    getJSON("/api/renji/meridians").then(ms => {
+      ms.forEach(m => {
+        const b = el("button", "filter-tab", esc(m.label) + " (" + m.count + ")");
+        b.onclick = () => loadMeridian(m);
+        filterBar.appendChild(b);
+      });
+      resultList._ms = ms;
+      if (ms[0]) loadMeridian(ms[0]);
+    });
+  }
+  function loadMeridian(m) {
+    [...filterBar.querySelectorAll("button")].forEach(b => b.classList.remove("active"));
+    [...filterBar.querySelectorAll("button")].forEach(b => { if (b.textContent.startsWith(m.label)) b.classList.add("active"); });
+    getJSON("/api/renji/meridian/" + m.key).then(d => {
+      // #resultList 只装 <li> 穴位项，保证单列、占满左栏宽度
+      resultList.innerHTML = "";
+      d.items.forEach((p, i) => {
+        const li = el("li", "result-item", "<div class=\"t\">" + esc(p.name) + "</div>" + (p.sub ? "<div class=\"s\">" + esc(p.sub) + "</div>" : ""));
+        li.onclick = () => showPoint(p);
+        resultList.appendChild(li);
+      });
+    });
+  }
+  function showPoint(p) {
+    let h = "<div class='point-card'><h4>" + esc(p.name) + "　<span style='opacity:.6'>「" + esc(p.cat_name) + "」</span></h4>";
+    const secs = [["治疗症状", "治疗症状"], ["取穴位置", "取穴位置"], ["针刺方法", "针刺方法"]];
+    // 主系统 content 分段
+    const c = p.content || "";
+    const blocks = {};
+    c.split(/\n/).forEach(line => {
+      const mm = line.match(/^\[(.+?)\]/);
+      if (mm) { blocks[mm[1]] = ""; blocks._cur = mm[1]; }
+      else if (blocks._cur) blocks[blocks._cur] += line + "\n";
+    });
+    ["治疗症状", "取穴位置", "针刺方法"].forEach(k => {
+      if (blocks[k]) h += "<div class='sec'><b>" + k + "：</b><br>" + esc(blocks[k].trim()) + "</div>";
+    });
+    const nishi = p.nishi || {};
+    const nk = Object.keys(nishi).filter(k => nishi[k] && nishi[k].trim());
+    if (nk.length) {
+      h += "<div class='nishi-box'><b style='color:#ffd479'>倪师穴位详解</b>";
+      nk.forEach(k => h += "<div class='sec'><b>" + esc(k) + "</b><br>" + esc(nishi[k]) + "</div>");
+      h += "</div>";
+    }
+    if (p.images && p.images.length) {
+      h += "<div class='sec'><b>图谱：</b><br>";
+      // 穴位图谱已随站部署到 public/img/xuewei（Vercel 静态托管，根路径 /img/xuewei/...）。
+      // /extimg 走服务端函数读取 public/，在 Vercel serverless 下读不到 → 404，故此处改用静态路径。
+      p.images.forEach(im => {
+        const src = im.replace(/^穴位\//, "/api/img/xuewei/");
+        const finalSrc = src === im ? ("/extimg?p=" + encodeURIComponent(im)) : src;
+        h += "<img src='" + finalSrc + "' style='max-width:160px;margin:4px;border:1px solid #2a5;border-radius:6px;background:#fff' onerror=\"this.style.display='none'\">";
+      });
+      h += "</div>";
+    }
+    h += "</div>";
+    const mp = detailPane.querySelector(".mer-point");
+    if (mp) mp.innerHTML = h; else detailPane.innerHTML = h;
+  }
+
+  // ---------- 人体穴位图（points） ----------
+  function renderPoints(s) {
+    filterBar.innerHTML = "<div class='hint' style='padding:4px'>按原软件坐标的可点击人体穴位图（共 " + "348" + " 穴）</div>";
+    getJSON("/api/renji/list?sub=points").then(pts => {
+      const items = pts.items || [];
+      // 简化 SVG 人体 + 点位
+      const svg = "<svg class='anim-stage' viewBox='0 0 200 420' style='width:100%;max-width:320px'>" +
+        "<ellipse class='body' cx='100' cy='40' rx='26' ry='30'/>" +
+        "<rect class='body' x='70' y='70' width='60' height='150' rx='22'/>" +
+        "<rect class='body' x='40' y='80' width='24' height='110' rx='12'/>" +
+        "<rect class='body' x='136' y='80' width='24' height='110' rx='12'/>" +
+        "<rect class='body' x='80' y='220' width='18' height='120' rx='9'/>" +
+        "<rect class='body' x='102' y='220' width='18' height='120' rx='9'/>";
+      let dots = "";
+      items.forEach(p => {
+        const x = 30 + (p.left % 160), y = 30 + (p.top % 360);
+        dots += "<circle class='mer-dot' cx='" + x + "' cy='" + y + "' data-n='" + esc(p.id) + "'></circle>";
+      });
+      detailPane.innerHTML =
+        "<div class='anim-stage'>" + svg + dots + "</svg><div class='hint'>点击圆点查看穴位（坐标来自原软件 SELFDATA，已按比例映射到示意人体）。</div></div>";
+      // 列表
+      items.slice(0, 200).forEach(p => {
+        const li = el("li", "result-item", "<div class=\"t\">" + esc(p.id) + "</div>");
+        li.onclick = () => { detailPane.innerHTML = "<div class='point-card'><h4>" + esc(p.id) + "</h4>" +
+          "<div class='sec'>坐标：左 " + p.left + " 上 " + p.top + "（H1=" + p.h + " V1=" + p.v + " Y=" + p.y + "）</div></div>"; };
+        resultList.appendChild(li);
+      });
+    });
+  }
+
+  // ---------- 倪师注解型（fields） ----------
+  function renderFields(s) {
+    filterBar.innerHTML = "";
+    getJSON("/api/renji/list?sub=" + s.src).then(d => {
+      resultList.innerHTML = "";
+      d.items.forEach(it => {
+        const li = el("li", "result-item", "<div class=\"t\">" + esc(it.name) + "</div>");
+        li.onclick = () => {
+          getJSON("/api/renji/item?sub=" + s.src + "&i=" + it.i).then(rec => {
+            let h = "<div class='point-card'><h4>" + esc(rec.name) + "</h4>";
+            const f = rec.fields || {};
+            Object.keys(f).forEach(k => { if (f[k]) h += "<div class='sec'><b>" + esc(k) + "：</b><br>" + esc(f[k]) + "</div>"; });
+            h += "</div>";
+            detailPane.innerHTML = h;
+          });
+        };
+        resultList.appendChild(li);
+      });
+    });
+  }
+
+  // ---------- 倪师图集（image） ----------
+  function renderImages(s) {
+    filterBar.innerHTML = "";
+    getJSON("/api/renji/list?sub=tu").then(d => {
+      let names = d.items.map(x => x.name);
+      if (s.filter) {
+        const kw = s.filter;
+        names = names.filter(n => kw.some(k => n.indexOf(k) >= 0));
+      }
+      resultList.className = "result-list tu-list";
+      resultList.innerHTML = "";
+      const cells = [];
+      names.forEach(n => {
+        const li = el("li", "result-item tu-cell");
+        li.innerHTML =
+          "<div class='tu-thumb'><img loading='lazy' src='/renji/img?name=" + encodeURIComponent(n) + "' alt='" + esc(n) + "' onerror=\"this.style.display='none'\"></div>" +
+          "<div class='tu-name'>" + esc(n) + "</div>";
+        li.onclick = () => show(n, li);
+        resultList.appendChild(li);
+        cells.push(li);
+      });
+      if (!names.length) resultList.innerHTML = "<div class='hint'>无匹配图表。</div>";
+
+      function show(n, li) {
+        cells.forEach(c => c.classList.remove("active"));
+        if (li) li.classList.add("active");
+        detailPane.className = "detail-pane tu-stage";
+        detailPane.innerHTML = "<div class='anim-stage'><img src='/renji/img?name=" +
+          encodeURIComponent(n) + "' style='max-width:100%;height:auto;display:block' onerror=\"this.style.display='none'\"><div class='hint'>" + esc(n) + "</div></div>";
+      }
+      if (names.length) show(names[0], cells[0]);
+    });
+  }
+
+  // ---------- 子午流注 / 灵龟八法 表 ----------
+  function ziwwuTableHTML(t) {
+    let h = "<div class='table-scroll'><table class='zi'><tr>";
+    t.cols.forEach(c => h += "<th>" + esc(c) + "</th>");
+    h += "</tr>";
+    t.rows.forEach(r => { h += "<tr>"; r.forEach(c => h += "<td>" + esc(c) + "</td>"); h += "</tr>"; });
+    h += "</table></div>";
+    return h;
+  }
+  function renderZiwwuTable(s) {
+    filterBar.innerHTML = "";
+    getJSON("/api/renji/ziwwu").then(z => {
+      resultList.innerHTML = ziwwuTableHTML(z[s.table]);
+      detailPane.innerHTML = "<div class='hint'>点击表格查看（此为静态 lookup 表，「倪海厦子午流注盘」可按年月日时自动查开穴）。</div>";
+    });
+  }
+
+
+  // ---------- 子午流注 整页（按 人纪学习系统/子午流注.html 复刻：时间选择器 + 纳甲表(左) + 纳子表(右) + 当前结果） ----------
+  // 源 HTML 自带 NAJIA/NAZI 表 + 「1900年起累加」干支算法（纯客户端）；
+  // 服务端 /api/renji/lbg_compute 当前 400（cnlunar 异常），故内嵌源算法，保证与源一致且必出值。
+  let ZWWU_DATA = null;
+  function renderZiwwuPage(b) {
+    filterBar.innerHTML = "";
+    detailPane.innerHTML = "<div class='hint'>加载子午流注数据…</div>";
+    const load = ZWWU_DATA ? Promise.resolve(ZWWU_DATA)
+                           : getJSON("/static/ziwwu_data.json?v=1").then(d => (ZWWU_DATA = d));
+    load.then(LD => { ZWWU_DATA = LD; mountZiwwu(LD); })
+         .catch(e => { detailPane.innerHTML = "<div class='hint'>数据加载失败：" + esc(e && e.message) + "</div>"; });
+  }
+
+  function mountZiwwu(LD) {
+    const { NAJIA, NAZI, HOURS, TG, NAZI_ORDER } = LD;
+
+    detailPane.innerHTML =
+      "<div class='zw-wrap'>"
+      + "<div class='zw-selector'>"
+        + "<label>年<input type='number' id='zw-y' min='1900' max='2100' value='2026'></label>"
+        + "<label>月<input type='number' id='zw-m' min='1' max='12' value='8'></label>"
+        + "<label>日<input type='number' id='zw-d' min='1' max='31' value='9'></label>"
+        + "<label>时辰<select id='zw-h'>"
+          + "<option value='0'>子 23-1</option><option value='1'>丑 1-3</option>"
+          + "<option value='2'>寅 3-5</option><option value='3'>卯 5-7</option>"
+          + "<option value='4'>辰 7-9</option><option value='5'>巳 9-11</option>"
+          + "<option value='6'>午 11-13</option><option value='7'>未 13-15</option>"
+          + "<option value='8'>申 15-17</option><option value='9'>酉 17-19</option>"
+          + "<option value='10'>戌 19-21</option><option value='11'>亥 21-23</option>"
+        + "</select></label>"
+        + "<button id='zw-now' type='button'>现在</button>"
+        + "<div class='zw-hint' id='zw-cur-hint'>—</div>"
+      + "</div>"
+      + "<div class='zw-layout'>"
+        + "<div class='zw-panel'>"
+          + "<h2>十二经纳甲法表（按时辰 · 12 行）</h2>"
+          + "<div class='zw-note'>流经脏腑经络 / 补母穴 / 泻子穴 / 流注输穴 / 经原穴 —— MDB najia 表</div>"
+          + "<div class='zw-tblwrap' id='zw-wrap-najia'><table class='zw-tab' id='zw-tbl-najia'></table></div>"
+        + "</div>"
+        + "<div class='zw-panel'>"
+          + "<h2>十二经脉纳子法表（日干×时辰 · 120 行）</h2>"
+          + "<div class='zw-note'>日干 + 时辰 → 穴1 / 穴2 / 穴3 —— MDB nazi 表</div>"
+          + "<div class='zw-tblwrap' id='zw-wrap-nazi'><table class='zw-tab' id='zw-tbl-nazi'></table></div>"
+        + "</div>"
+      + "</div>"
+      + "<div class='zw-result'>"
+        + "<h3>当前选择：<span id='zw-cur-label'>—</span></h3>"
+        + "<div class='zw-row' id='zw-cur-result'></div>"
+      + "</div>"
+      + "<div class='zw-foot'>"
+        + "数据：人纪 MDB najia(12×6) / nazi(120×4) · 纳甲按「时辰」，纳子按「日干+时辰」 · 当前行橙色高亮"
+      + "</div>"
+      + "</div>";
+
+    // ===== 源算法（与 子午流注.html 完全一致） =====
+    function isLeap(y) { return (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0; }
+    function daysInMonth(y, m) { return [31, isLeap(y) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][m - 1]; }
+    function yearGZ(y, m, d) {
+      const y2 = (m < 2 || (m === 2 && d < 4)) ? y - 1 : y;
+      const idx = ((y2 - 4) % 60 + 60) % 60;
+      return { stem: TG[idx % 10], branch: HOURS[idx % 12], idx };
+    }
+    function dayGZ(y, m, d) {
+      let total = 0;
+      for (let i = 1900; i < y; i++) total += isLeap(i) ? 366 : 365;
+      for (let i = 1; i < m; i++) total += daysInMonth(y, i);
+      total += d - 1;
+      const idx = (10 + total % 60 + 60) % 60;
+      return { stem: TG[idx % 10], branch: HOURS[idx % 12], idx };
+    }
+    function monthGZ(yearStemIdx, m) {
+      const monthStemStart = [2, 4, 0, 6, 8][yearStemIdx % 5];
+      const monthBranchIdx = (m + 1) % 12;
+      const monthStemIdx = (monthStemStart + (monthBranchIdx - 2 + 12) % 12) % 10;
+      return { stem: TG[monthStemIdx], branch: HOURS[monthBranchIdx] };
+    }
+    function hourGZ(dayStemIdx, h) {
+      const hourStemStart = [0, 2, 4, 6, 8][dayStemIdx % 5];
+      return { stem: TG[(hourStemStart + h) % 10], branch: HOURS[h] };
+    }
+
+    function renderTables() {
+      const y = parseInt(document.getElementById('zw-y').value);
+      const m = parseInt(document.getElementById('zw-m').value);
+      const d = parseInt(document.getElementById('zw-d').value);
+      const h = parseInt(document.getElementById('zw-h').value);
+
+      const yy = yearGZ(y, m, d);
+      const dd = dayGZ(y, m, d);
+      const mm = monthGZ(yy.idx % 10, m);
+      const hh = hourGZ(dd.idx % 10, h);
+
+      const curHour = HOURS[h];
+      const curDayStem = dd.stem;
+      const curKey = curDayStem + curHour;
+
+      document.getElementById('zw-cur-hint').textContent =
+        y + '年' + m + '月' + d + '日 ' + yy.stem + yy.branch + '年 ' + mm.stem + mm.branch + '月 ' +
+        dd.stem + dd.branch + '日 ' + hh.stem + hh.branch + '时 · 日干=' + curDayStem + ' 时辰=' + curHour;
+      document.getElementById('zw-cur-label').textContent =
+        curKey + '（' + curDayStem + '日 ' + curHour + '时）';
+
+      // ---- 左：纳甲法表（12 行） ----
+      let na1 = '<thead><tr><th>时辰</th><th>流经脏腑经络</th><th>补母穴</th><th>泻子穴</th><th>流注输穴</th><th>经原穴</th></tr></thead><tbody>';
+      for (const hr of HOURS) {
+        const r = NAJIA[hr] || {};
+        const cls = hr === curHour ? ' class="cur"' : '';
+        na1 += '<tr' + cls + '><td class="zw-hour">' + hr + '时</td>'
+          + '<td>' + (r['流经脏腑经络'] || '-') + '</td>'
+          + '<td>' + (r['补母穴'] || '-') + '</td>'
+          + '<td>' + (r['泻子穴'] || '-') + '</td>'
+          + '<td>' + (r['流注输穴'] || '-') + '</td>'
+          + '<td>' + (r['经原穴'] || '-') + '</td></tr>';
+      }
+      na1 += '</tbody>';
+      document.getElementById('zw-tbl-najia').innerHTML = na1;
+
+      // ---- 右：纳子法表（120 行） ----
+      let na2 = '<thead><tr><th>日干时辰</th><th>穴1</th><th>穴2</th><th>穴3</th></tr></thead><tbody>';
+      let curRowId = '';
+      NAZI_ORDER.forEach((key, i) => {
+        const r = NAZI[key] || {};
+        const cls = key === curKey ? ' class="cur"' : '';
+        if (key === curKey) curRowId = 'zw-row-' + i;
+        na2 += '<tr' + cls + ' id="zw-row-' + i + '"><td class="zw-hour">' + key + '</td>'
+          + '<td>' + (r['穴1'] || '<span class="zw-empty">—</span>') + '</td>'
+          + '<td>' + (r['穴2'] || '<span class="zw-empty">—</span>') + '</td>'
+          + '<td>' + (r['穴3'] || '<span class="zw-empty">—</span>') + '</td></tr>';
+      });
+      na2 += '</tbody>';
+      document.getElementById('zw-tbl-nazi').innerHTML = na2;
+
+      if (curRowId) {
+        const el = document.getElementById(curRowId);
+        if (el) el.scrollIntoView({ block: 'center' });
+      }
+
+      // ---- 当前结果 ----
+      const na = NAJIA[curHour] || {};
+      const nz = NAZI[curKey] || {};
+      document.getElementById('zw-cur-result').innerHTML =
+        '<div><span class="zw-lbl">纳甲·流经脏腑经络</span><span class="zw-val">' + (na['流经脏腑经络'] || '-') + '</span></div>'
+        + '<div><span class="zw-lbl">纳甲·补母穴</span><span class="zw-val">' + (na['补母穴'] || '-') + '</span></div>'
+        + '<div><span class="zw-lbl">纳甲·泻子穴</span><span class="zw-val">' + (na['泻子穴'] || '-') + '</span></div>'
+        + '<div><span class="zw-lbl">纳甲·流注输穴</span><span class="zw-val">' + (na['流注输穴'] || '-') + '</span></div>'
+        + '<div><span class="zw-lbl">纳甲·经原穴</span><span class="zw-val">' + (na['经原穴'] || '-') + '</span></div>'
+        + '<div><span class="zw-lbl">纳子·穴1</span><span class="zw-val">' + (nz['穴1'] || '—') + '</span></div>'
+        + '<div><span class="zw-lbl">纳子·穴2</span><span class="zw-val">' + (nz['穴2'] || '—') + '</span></div>'
+        + '<div><span class="zw-lbl">纳子·穴3</span><span class="zw-val">' + (nz['穴3'] || '—') + '</span></div>';
+    }
+
+    ['zw-y', 'zw-m', 'zw-d', 'zw-h'].forEach(id => document.getElementById(id).addEventListener('change', renderTables));
+    document.getElementById('zw-now').addEventListener('click', () => {
+      const dt = new Date();
+      document.getElementById('zw-y').value = dt.getFullYear();
+      document.getElementById('zw-m').value = dt.getMonth() + 1;
+      document.getElementById('zw-d').value = dt.getDate();
+      document.getElementById('zw-h').value = Math.floor((dt.getHours() + 1) / 2) % 12;
+      renderTables();
+    });
+    renderTables();
+  }
+
+  // ---------- 灵龟八法 整页（按 人纪学习系统/灵龟八法页面.html 复刻：万年历 + 子午流注盘 + 圆形灵龟八法盘 + 灵龟八法表） ----------
+  // 源 HTML 用内嵌 LINGGUI/NAJIA 字面值 + 「1900年起累加」干支算法客户端计算；
+  // 服务端 /api/renji/lbg_compute 当前 400（cnlunar 异常），故此处内嵌源算法，保证与源一致且必出值。
+  let LBG_DATA = null;
+  function renderLbgPage(b) {
+    filterBar.innerHTML = "";
+    detailPane.innerHTML = "<div class='hint'>加载灵龟八法数据…</div>";
+    const load = LBG_DATA ? Promise.resolve(LBG_DATA)
+                          : getJSON("/static/lingui_data.json?v=1").then(d => (LBG_DATA = d));
+    load.then(LD => { LBG_DATA = LD; mountLingui(LD); })
+         .catch(e => { detailPane.innerHTML = "<div class='hint'>数据加载失败：" + esc(e && e.message) + "</div>"; });
+  }
+
+  function mountLingui(LD) {
+    const { LINGGUI, NAJIA, TG, DZ, SX, JING_ABBR, ACS, GUA, GUA_SYM, ACS_COLOR, ACS_ACTIVE,
+            SITIAN, ZAIQUAN, ZHONGYUN, ZHUQI_PRIMARY, SAN_YIN_SAN_YANG } = LD;
+
+    detailPane.innerHTML = `
+      <div class='lbg-wrap'>
+        <div class='lbg-main'>
+          <div class='lbg-left'>
+            <div class='selector'>
+              <div class='row1'>
+                <label>年<input type='number' id='lg-y' min='1900' max='2100' value='2026'></label>
+                <label>月<input type='number' id='lg-m' min='1' max='12' value='8'></label>
+                <label>日<input type='number' id='lg-d' min='1' max='31' value='9'></label>
+                <label>时辰<select id='lg-h'>
+                  <option value='0'>子 23-1</option><option value='1'>丑 1-3</option>
+                  <option value='2'>寅 3-5</option><option value='3'>卯 5-7</option>
+                  <option value='4'>辰 7-9</option><option value='5'>巳 9-11</option>
+                  <option value='6'>午 11-13</option><option value='7'>未 13-15</option>
+                  <option value='8'>申 15-17</option><option value='9'>酉 17-19</option>
+                  <option value='10'>戌 19-21</option><option value='11'>亥 21-23</option>
+                </select></label>
+                <button id='lg-now' type='button'>现在</button>
+              </div>
+            </div>
+            <div class='computed'>
+              <h3>四柱 / 生肖</h3><div class='blk' id='r-sizhu'></div>
+              <h3>① 十二经纳子法（按时辰的本穴/源穴/补母/泻子）</h3><div class='blk' id='r-nazi'></div>
+              <h3>② 十二经纳甲法（按时辰的流注输穴/经原/补母/泻子）</h3><div class='blk' id='r-najia'></div>
+              <h3>③ 灵龟八法开穴（日干支 × 时辰）</h3><div class='blk' id='r-lgb'></div>
+            </div>
+            <div class='cal'>
+              <div class='calhead'>
+                <button id='lg-prev' type='button'>◀</button>
+                <span class='ym' id='lg-cal-ym'></span>
+                <button id='lg-next' type='button'>▶</button>
+              </div>
+              <table class='cal-tbl'><thead><tr><th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th></tr></thead>
+              <tbody id='lg-cal-body'></tbody></table>
+            </div>
+          </div>
+          <div class='rightcol'>
+            <div class='disc-wrap'>
+              <svg id='lg-disc' class='lbg-svg' viewBox='0 0 700 720' xmlns='http://www.w3.org/2000/svg'>
+                <defs>
+                  <radialGradient id='lg-discBg' cx='50%' cy='50%' r='50%'>
+                    <stop offset='0%' stop-color='#fefcf0'/><stop offset='100%' stop-color='#f7eccf'/>
+                  </radialGradient>
+                  <marker id='lg-arrowhead' markerWidth='10' markerHeight='10' refX='5' refY='3' orient='auto'>
+                    <polygon points='0 0,6 3,0 6' fill='#c0392b'/>
+                  </marker>
+                </defs>
+              </svg>
+            </div>
+            <div class='yq-info'>
+              <div class='card'><div class='lbl'>年干支</div><div class='val' id='lg-yq-y'>—</div></div>
+              <div class='card'><div class='lbl'>中运</div><div class='val' id='lg-yq-zy'>—</div></div>
+              <div class='card'><div class='lbl'>司天 / 在泉</div><div class='val' id='lg-yq-sq'>—</div></div>
+              <div class='card'><div class='lbl'>当前节气</div><div class='val' id='lg-yq-jq'>—</div></div>
+              <div class='card'><div class='lbl'>主气</div><div class='val' id='lg-yq-zq'>—</div></div>
+              <div class='card'><div class='lbl'>客气</div><div class='val' id='lg-yq-kq'>—</div></div>
+            </div>
+          </div>
+        </div>
+        <div class='foot'>数据源：人纪 MDB linggui/najia/nazi · 阴历数据 cnlunar 预抽 2024-2030 共 2557 天 · 圆盘 SVG 按原软件截图结构重建</div>
+      </div>
+      `;
+
+    // ===== 源算法（与 灵龟八法页面.html 完全一致） =====
+    function isLeap(y) { return (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0; }
+    function daysInMonth(y, m) { return [31, isLeap(y) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][m - 1]; }
+    function yearGZ(y, m, d) {
+      const y2 = (m < 2 || (m === 2 && d < 4)) ? y - 1 : y;
+      const idx = ((y2 - 4) % 60 + 60) % 60;
+      return { stem: TG[idx % 10], branch: DZ[idx % 12], idx };
+    }
+    function dayGZ(y, m, d) {
+      let total = 0;
+      for (let i = 1900; i < y; i++) total += isLeap(i) ? 366 : 365;
+      for (let i = 1; i < m; i++) total += daysInMonth(y, i);
+      total += d - 1;
+      const idx = (10 + total % 60 + 60) % 60;
+      return { stem: TG[idx % 10], branch: DZ[idx % 12], idx };
+    }
+    function monthGZ(yearStemIdx, m) {
+      const monthStemStart = [2, 4, 0, 6, 8][yearStemIdx % 5];
+      const monthBranchIdx = (m + 1) % 12;
+      const monthStemIdx = (monthStemStart + (monthBranchIdx - 2 + 12) % 12) % 10;
+      return { stem: TG[monthStemIdx], branch: DZ[monthBranchIdx] };
+    }
+    function hourGZ(dayStemIdx, h) {
+      const hourStemStart = [0, 2, 4, 6, 8][dayStemIdx % 5];
+      const hourStemIdx = (hourStemStart + h) % 10;
+      return { stem: TG[hourStemIdx], branch: DZ[h] };
+    }
+    function nayin60(idx) {
+      const arr = ['海中金','炉中火','大林木','路旁土','剑锋金','山头火','涧下水','城头土','白蜡金','杨柳木','泉中水','大海水','沙中金','山下火','平地木','壁上土','金箔金','覆灯火','天河水','大驿土','钗钏金','桑柘木','大溪水','沙中土','天上火','石榴木','大海水'];
+      return arr[Math.floor(idx / 2) % 26];
+    }
+    function keqi(sitian, step) {
+      const idx = SAN_YIN_SAN_YANG.indexOf(sitian);
+      if (idx < 0) return '';
+      return SAN_YIN_SAN_YANG[(idx + step - 3 + 18) % 6];
+    }
+    const JIEQI_24 = [[1,5,'小寒'],[1,20,'大寒'],[2,4,'立春'],[2,19,'雨水'],[3,5,'惊蛰'],[3,20,'春分'],[4,4,'清明'],[4,19,'谷雨'],[5,5,'立夏'],[5,20,'小满'],[6,5,'芒种'],[6,21,'夏至'],[7,7,'小暑'],[7,22,'大暑'],[8,7,'立秋'],[8,23,'处暑'],[9,7,'白露'],[9,22,'秋分'],[10,8,'寒露'],[10,23,'霜降'],[11,7,'立冬'],[11,22,'小雪'],[12,7,'大雪'],[12,21,'冬至']];
+    const JIEQI_6 = [[1,20,1],[3,20,2],[5,21,3],[7,22,4],[9,23,5],[11,22,6]];
+    function getStep(y, m, d) {
+      let curName = '小寒', curStep = 1;
+      for (const [mm, dd, n] of JIEQI_24) if (mm < m || (mm === m && dd <= d)) curName = n;
+      for (const [mm, dd, s] of JIEQI_6) if (mm < m || (mm === m && dd <= d)) curStep = s;
+      return { name: curName, step: curStep };
+    }
+    const SVGNS = 'http://www.w3.org/2000/svg';
+    function svgEl(name, attrs) { const e = document.createElementNS(SVGNS, name); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; }
+
+    // ===== 圆形灵龟八法盘（按源 HTML drawDisc 重建，浅色主题） =====
+    function drawDisc(h, dayBranchIdx) {
+      const svg = document.getElementById('lg-disc');
+      if (!svg) return;
+      // 清空并以纯 SVG DOM 重建 defs（避免 innerHTML 命名空间隐患，确保各浏览器一致渲染）
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+      const defs = svgEl('defs', {});
+      const grad = svgEl('radialGradient', { id: 'lg-discBg', cx: '50%', cy: '50%', r: '50%' });
+      grad.appendChild(svgEl('stop', { offset: '0%', 'stop-color': '#fefcf0' }));
+      grad.appendChild(svgEl('stop', { offset: '100%', 'stop-color': '#f7eccf' }));
+      defs.appendChild(grad);
+      const marker = svgEl('marker', { id: 'lg-arrowhead', markerWidth: '10', markerHeight: '10', refX: '5', refY: '3', orient: 'auto' });
+      marker.appendChild(svgEl('polygon', { points: '0 0,6 3,0 6', fill: '#c0392b' }));
+      defs.appendChild(marker);
+      svg.appendChild(defs);
+      const cx = 350, cy = 360;
+      const R_HOUR = 310, R_TIANGAN = 270, R_SHICHEN = 240, R_JING = 200, R_ACS_IN = 100, R_ACS_OUT = 175;
+      const pos = (hour, r) => { const a = (hour * 15 - 90) * Math.PI / 180; return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) }; };
+      svg.appendChild(svgEl('circle', { cx, cy, r: R_HOUR + 8, fill: 'url(#lg-discBg)', stroke: '#5a4a30', 'stroke-width': 2 }));
+      // 1. 24 小时数字外环
+      for (let hh = 0; hh < 24; hh++) {
+        const p = pos(hh, R_HOUR);
+        const t = svgEl('text', { x: p.x, y: p.y, 'text-anchor': 'middle', 'dominant-baseline': 'middle', 'font-size': hh % 3 === 0 ? 13 : 11, fill: '#5a4a30' });
+        t.textContent = hh; svg.appendChild(t);
+      }
+      // 2. 12 时辰环
+      const SHICHEN_NAMES = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+      for (let i = 0; i < 12; i++) {
+        const p = pos((23 + i * 2) % 24, R_TIANGAN);
+        const t = svgEl('text', { x: p.x, y: p.y, 'text-anchor': 'middle', 'dominant-baseline': 'middle', 'font-size': 14, 'font-weight': 'bold', fill: '#2d5a4f' });
+        t.textContent = SHICHEN_NAMES[i]; svg.appendChild(t);
+      }
+      // 3. 12 经脉简写环
+      for (let i = 0; i < 12; i++) {
+        const p = pos((23 + i * 2) % 24, R_JING);
+        const t = svgEl('text', { x: p.x, y: p.y, 'text-anchor': 'middle', 'dominant-baseline': 'middle', 'font-size': 11, fill: '#5a4a30' });
+        t.textContent = JING_ABBR[i]; svg.appendChild(t);
+      }
+      // 4. 八脉交穴 8 段扇形（卦 + 交穴），高亮当前开穴
+      const dayGZKey = TG[dayBranchIdx % 10] + DZ[dayBranchIdx % 12];
+      const kx = LINGGUI[dayGZKey] ? LINGGUI[dayGZKey][DZ[h]] : '';
+      const kxName = kx ? kx.replace(/[0-9]/g, '').trim() : '';
+      const activeIdx = ACS.indexOf(kxName);
+      for (let i = 0; i < 8; i++) {
+        const a1 = (i * 45 + 345 - 22.5 - 90) * Math.PI / 180;
+        const a2 = (i * 45 + 345 + 22.5 - 90) * Math.PI / 180;
+        const x1 = cx + R_ACS_OUT * Math.cos(a1), y1 = cy + R_ACS_OUT * Math.sin(a1);
+        const x2 = cx + R_ACS_OUT * Math.cos(a2), y2 = cy + R_ACS_OUT * Math.sin(a2);
+        const x3 = cx + R_ACS_IN * Math.cos(a2), y3 = cy + R_ACS_IN * Math.sin(a2);
+        const x4 = cx + R_ACS_IN * Math.cos(a1), y4 = cy + R_ACS_IN * Math.sin(a1);
+        const dpath = "M" + x1.toFixed(1) + "," + y1.toFixed(1) + " A" + R_ACS_OUT + "," + R_ACS_OUT + " 0 0 1 " + x2.toFixed(1) + "," + y2.toFixed(1)
+          + " L" + x3.toFixed(1) + "," + y3.toFixed(1) + " A" + R_ACS_IN + "," + R_ACS_IN + " 0 0 0 " + x4.toFixed(1) + "," + y4.toFixed(1) + " Z";
+        const isActive = (i === activeIdx);
+        svg.appendChild(svgEl('path', { d: dpath, fill: isActive ? ACS_ACTIVE : ACS_COLOR[i], stroke: '#8b6f47', 'stroke-width': 1 }));
+        const ta = (a1 + a2) / 2, tr = (R_ACS_IN + R_ACS_OUT) / 2;
+        const tx = cx + tr * Math.cos(ta), ty = cy + tr * Math.sin(ta);
+        const t = svgEl('text', { x: tx, y: ty - 4, 'text-anchor': 'middle', 'dominant-baseline': 'middle', 'font-size': isActive ? 14 : 12, 'font-weight': 'bold', fill: isActive ? '#1e4a3f' : '#2d5a4f' });
+        const ts1 = svgEl('tspan', { x: tx, dy: 0 }); ts1.textContent = GUA[i] + GUA_SYM[i];
+        const ts2 = svgEl('tspan', { x: tx, dy: 15 }); ts2.textContent = ACS[i];
+        t.appendChild(ts1); t.appendChild(ts2); svg.appendChild(t);
+      }
+      // 5. 九宫 3x3 中心
+      const JG = [[4,9,2],[3,5,7],[8,1,6]];
+      for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) {
+        const x = cx - 30 + c * 30, y = cy - 30 + r * 30;
+        svg.appendChild(svgEl('circle', { cx: x, cy: y, r: 9, fill: '#fdebd0', stroke: '#8b6f47' }));
+        const t = svgEl('text', { x, y, 'text-anchor': 'middle', 'dominant-baseline': 'middle', 'font-size': 12, 'font-weight': 'bold', fill: '#2d5a4f' });
+        t.textContent = JG[r][c]; svg.appendChild(t);
+      }
+      // 6. 当前时间指针（红箭头指向当前时辰）
+      const curPos = (h * 2 + 1) % 24;
+      const pp = pos(curPos, R_HOUR - 20);
+      svg.appendChild(svgEl('line', { x1: cx, y1: cy, x2: pp.x, y2: pp.y, stroke: '#c0392b', 'stroke-width': 3, 'marker-end': 'url(#lg-arrowhead)' }));
+      // 7. 中心当前开穴文字
+      const center = svgEl('text', { x: cx, y: cy + 70, 'text-anchor': 'middle', 'font-size': 14, 'font-weight': 'bold', fill: '#c0392b' });
+      center.textContent = '开穴：' + kx; svg.appendChild(center);
+    }
+
+    // ===== 月历（用服务端 /api/renji/lbg_calendar，cnlunar 阴历/节气） =====
+    function drawCal(y, m, curD) {
+      document.getElementById('lg-cal-ym').textContent = y + '年' + m + '月';
+      getJSON("/api/renji/lbg_calendar?y=" + y + "&m=" + m).then(cal => {
+        let html = "<tr>";
+        let cell = 0;
+        for (let i = 0; i < cal.first_sun; i++) { html += "<td class='empty'></td>"; cell++; }
+        cal.days.forEach(day => {
+          const isCur = (day.d === curD);
+          let h2 = "<div class='solar'>" + day.d + "</div>";
+          if (day.term) h2 += "<span class='jq'>" + esc(day.term) + "</span>";
+          h2 += "<div class='lun'>" + esc(day.lunar || '') + "</div>";
+          html += "<td class='" + (isCur ? 'cur' : '') + "'>" + h2 + "</td>";
+          cell++;
+          if (cell % 7 === 0 && day.d !== cal.days[cal.days.length - 1].d) html += "</tr><tr>";
+        });
+        while (cell % 7 !== 0) { html += "<td class='empty'></td>"; cell++; }
+        html += "</tr>";
+        document.getElementById('lg-cal-body').innerHTML = html;
+      }).catch(() => { document.getElementById('lg-cal-body').innerHTML = "<tr><td colspan='7'>月历加载失败</td></tr>"; });
+    }
+
+    // ===== 主渲染（结构与源 HTML render() 一致） =====
+    function render() {
+      const y = parseInt(document.getElementById('lg-y').value);
+      const m = parseInt(document.getElementById('lg-m').value);
+      const d = parseInt(document.getElementById('lg-d').value);
+      const h = parseInt(document.getElementById('lg-h').value);
+      const yy = yearGZ(y, m, d);
+      const dd = dayGZ(y, m, d);
+      const mm = monthGZ(yy.idx % 10, m);
+      const hh = hourGZ(dd.idx % 10, h);
+      const dayGZKey = dd.stem + dd.branch;
+      const kx = LINGGUI[dayGZKey] ? LINGGUI[dayGZKey][DZ[h]] : '—';
+      const nj = NAJIA[DZ[h]] || {};
+      document.getElementById('r-sizhu').innerHTML =
+        "<div class='row'>"
+        + "<div><span class='lbl'>公历</span><span class='val'>" + y + '年' + m + '月' + d + '日' + "</span></div>"
+        + "<div><span class='lbl'>年柱</span><span class='val'>" + yy.stem + yy.branch + '年' + "</span></div>"
+        + "<div><span class='lbl'>月柱</span><span class='val'>" + mm.stem + mm.branch + '月' + "</span></div>"
+        + "<div><span class='lbl'>日柱</span><span class='val'>" + dd.stem + dd.branch + '日' + "</span></div>"
+        + "<div><span class='lbl'>时柱</span><span class='val'>" + hh.stem + hh.branch + '时' + "</span></div>"
+        + "<div><span class='lbl'>生肖</span><span class='val'>" + SX[yy.idx % 12] + "</span></div>"
+        + "<div><span class='lbl'>纳音</span><span class='val'>" + nayin60(yy.idx) + "</span></div>"
+        + "</div>";
+      document.getElementById('r-nazi').innerHTML =
+        "<div class='row'>"
+        + "<div><span class='lbl'>流经脏腑经络</span><span class='val'>" + esc(nj['流经脏腑经络'] || '') + "</span></div>"
+        + "<div><span class='lbl'>本穴</span><span class='val'>" + esc(nj['流注输穴'] || '') + "</span></div>"
+        + "<div><span class='lbl'>源穴</span><span class='val'>" + esc(nj['经原穴'] || '') + "</span></div>"
+        + "<div><span class='lbl'>补母穴</span><span class='val'>" + esc(nj['补母穴'] || '') + "</span></div>"
+        + "<div><span class='lbl'>泻子穴</span><span class='val'>" + esc(nj['泻子穴'] || '') + "</span></div>"
+        + "</div>";
+      document.getElementById('r-najia').innerHTML =
+        "<div class='row'>"
+        + "<div><span class='lbl'>流注时辰</span><span class='val'>" + DZ[h] + '时' + "</span></div>"
+        + "<div><span class='lbl'>流经脏腑经络</span><span class='val'>" + esc(nj['流经脏腑经络'] || '') + "</span></div>"
+        + "<div><span class='lbl'>流注输穴</span><span class='val'>" + esc(nj['流注输穴'] || '') + "</span></div>"
+        + "<div><span class='lbl'>经原穴</span><span class='val'>" + esc(nj['经原穴'] || '') + "</span></div>"
+        + "<div><span class='lbl'>补母穴</span><span class='val'>" + esc(nj['补母穴'] || '') + "</span></div>"
+        + "<div><span class='lbl'>泻子穴</span><span class='val'>" + esc(nj['泻子穴'] || '') + "</span></div>"
+        + "</div>";
+      document.getElementById('r-lgb').innerHTML =
+        "<div class='row'>"
+        + "<div><span class='lbl'>日干支</span><span class='val'>" + dayGZKey + "</span></div>"
+        + "<div><span class='lbl'>时辰</span><span class='val'>" + DZ[h] + '时' + "</span></div>"
+        + "<div><span class='lbl'>灵龟八法开穴</span><span class='val'>" + esc(kx) + "</span></div>"
+        + "</div>";
+      try { drawDisc(h, dd.idx); } catch (e) { console.error('[灵龟八法] 圆盘绘制失败：', e); }
+      const yz = yy.stem + yy.branch;
+      const st = SITIAN[yy.branch + ''] || SITIAN[yy.branch] || '';
+      const zy = ZHONGYUN[yy.stem] || '';
+      const zq = ZAIQUAN[yy.branch] || '';
+      document.getElementById('lg-yq-y').textContent = yz + '年';
+      document.getElementById('lg-yq-zy').textContent = zy;
+      document.getElementById('lg-yq-sq').textContent = st + ' / ' + zq;
+      const { name: jq, step } = getStep(y, m, d);
+      document.getElementById('lg-yq-jq').textContent = jq;
+      document.getElementById('lg-yq-zq').textContent = ZHUQI_PRIMARY[step - 1];
+      document.getElementById('lg-yq-kq').textContent = keqi(st, step);
+      drawCal(y, m, d);
+    }
+
+    ['lg-y','lg-m','lg-d','lg-h'].forEach(id => document.getElementById(id).addEventListener('change', render));
+    document.getElementById('lg-now').addEventListener('click', () => {
+      const dt = new Date();
+      document.getElementById('lg-y').value = dt.getFullYear();
+      document.getElementById('lg-m').value = dt.getMonth() + 1;
+      document.getElementById('lg-d').value = dt.getDate();
+      document.getElementById('lg-h').value = Math.floor((dt.getHours() + 1) / 2) % 12;
+      render();
+    });
+    document.getElementById('lg-prev').addEventListener('click', () => {
+      let m = parseInt(document.getElementById('lg-m').value);
+      let y = parseInt(document.getElementById('lg-y').value);
+      m--; if (m < 1) { m = 12; y--; }
+      document.getElementById('lg-m').value = m;
+      document.getElementById('lg-y').value = y;
+      render();
+    });
+    document.getElementById('lg-next').addEventListener('click', () => {
+      let m = parseInt(document.getElementById('lg-m').value);
+      let y = parseInt(document.getElementById('lg-y').value);
+      m++; if (m > 12) { m = 1; y++; }
+      document.getElementById('lg-m').value = m;
+      document.getElementById('lg-y').value = y;
+      render();
+    });
+    render();
+  }
+
+// ---------- 汉唐取穴（临床取穴图表 + 针刺手法） ----------
+  // ---------- 汉唐取穴（文档式：分类 → 主题 → 条文 + 取穴图表；针刺手法章节树） ----------
+  function renderHantang(s) {
+    if (s.method === "shoufa") return renderHantangShoufa();
+    const catLabel = esc(s.method);
+    // 左侧目录改为层级（组标题 + 嵌套条目）；顶部仅显示面包屑路径
+    filterBar.innerHTML = "<div class='ht-crumb'>汉唐取穴 › " + catLabel + "</div>";
+    resultList.innerHTML = "<div class='loading'>加载中…</div>";
+    detailPane.innerHTML = "<div class='hint'>请从左侧目录选择条目，查看详细辩证选穴条文与取穴图表。</div>";
+    getJSON("/api/renji/hantang/" + s.method + "/all").then(d => {
+      const catName = d.name || s.method;
+      const groups = d.tree || [];
+      resultList.innerHTML = "";
+      if (!groups.length) {
+        resultList.innerHTML = "<div class='hint'>该分类暂无可归类条目。</div>";
+        return;
+      }
+      let firstLeaf = null;
+      // 递归渲染层级树：组(经脉/系/腑/病症分类/子分类)为二级标签，条目为可点叶节点
+      function walk(nodes, path, charts) {
+        (nodes || []).forEach(node => {
+          if (node.children && node.children.length) {
+            const gh = el("div", "ht-group-h", esc(node.name));
+            const gc = node.charts || [];
+            gh.onclick = () => {
+              resultList.querySelectorAll(".active-row").forEach(x => x.classList.remove("active-row"));
+              resultList.querySelectorAll(".ht-group-h").forEach(x => x.classList.remove("active-group"));
+              gh.classList.add("active-group");
+              showHantangGroup(node, catName);
+            };
+            resultList.appendChild(gh);
+            walk(node.children, path.concat(node.name), gc.length ? gc : charts);
+          } else {
+            const li = el("div", "result-item ht-leaf", "<div class=\"t\">" + esc(node.name) + "</div>");
+            li.dataset.label = path.concat(node.name).join(" / ");
+            li.onclick = () => {
+              resultList.querySelectorAll(".result-item").forEach(x => x.classList.remove("active-row"));
+              li.classList.add("active-row");
+              showHantangItem(node, catName, charts);
+            };
+            resultList.appendChild(li);
+            if (!firstLeaf) firstLeaf = li;
+          }
+        });
+      }
+      walk(groups, [], null);
+      if (firstLeaf) firstLeaf.onclick();
+    }).catch(() => {
+      resultList.innerHTML = "<div class='hint'>目录加载失败，请重试。</div>";
+    });
+  }
+
+  function showHantangItem(t, catName, groupCharts) {
+    let h = "<div class='ht-bread'>汉唐取穴 › " + esc(catName) + "</div>";
+    h += "<h2 class='ht-title'>" + esc(t.name) + "</h2>";
+    h += "<div class='ht-intro'>辩证选穴条文自人纪软件 EXE（导航树）+ LILUN.mdb 提取；取穴图表取自人纪 MDB <b>nishitu</b> 表（倪师取穴图）。点击图表可放大查看。</div>";
+    if (t.text && t.text.trim()) {
+      h += "<div class='ht-text'>" + esc(t.text) + "</div>";
+    } else {
+      h += "<div class='ht-empty'>（暂无辩证选穴条文）</div>";
+    }
+    const charts = (groupCharts && groupCharts.length) ? groupCharts : (t.charts || []);
+    if (!charts.length) {
+      h += "<div class='ht-empty'>（暂无匹配图表）</div>";
+    } else {
+      h += "<div class='ht-sec-ttl'>取穴图表（" + charts.length + "）</div>";
+      h += "<div class='ht-grid'>";
+      charts.forEach(c => {
+        h += "<div class='ht-cell' data-img=\"/renji/img?name=" + encodeURIComponent(c) + "\" data-cap=\"" + esc(c) + "\">"
+           + "<div class='imgbox'><img src=\"/renji/img?name=" + encodeURIComponent(c) + "\" loading=\"lazy\" alt=\"" + esc(c) + "\"></div>"
+           + "<div class='nm'>" + esc(c) + "</div></div>";
+      });
+      h += "</div>";
+    }
+    detailPane.innerHTML = h;
+  }
+
+  function showHantangGroup(g, catName) {
+    let h = "<div class='ht-bread'>汉唐取穴 › " + esc(catName) + "</div>";
+    h += "<h2 class='ht-title'>" + esc(g.name) + "</h2>";
+    h += "<div class='ht-intro'>以下为该分类的取穴图表；点击下方具体条目可查看对应辩证选穴条文。</div>";
+    const charts = g.charts || [];
+    if (!charts.length) {
+      h += "<div class='ht-empty'>（该分类暂无配套取穴图表）</div>";
+    } else {
+      h += "<div class='ht-sec-ttl'>取穴图表（" + charts.length + "）</div>";
+      h += "<div class='ht-grid'>";
+      charts.forEach(c => {
+        h += "<div class='ht-cell' data-img=\"/renji/img?name=" + encodeURIComponent(c) + "\" data-cap=\"" + esc(c) + "\">"
+           + "<div class='imgbox'><img src=\"/renji/img?name=" + encodeURIComponent(c) + "\" loading=\"lazy\" alt=\"" + esc(c) + "\"></div>"
+           + "<div class='nm'>" + esc(c) + "</div></div>";
+      });
+      h += "</div>";
+    }
+    detailPane.innerHTML = h;
+  }
+
+  function renderHantangShoufa() {
+    filterBar.innerHTML = "";
+    resultList.innerHTML = "<div class='loading'>加载中…</div>";
+    detailPane.innerHTML = "<div class='hint'>请从左侧目录选择手法，查看说明与演示图。</div>";
+    getJSON("/static/shoufa.json?v=1").then(d => {
+      const sf = d.shoufa || [];
+      const gallery = d.gallery || [];
+      const imgUrl = (b) => "/api/img/shoufa/" + encodeURIComponent(b);
+      const showItem = (s) => {
+        let h = "<h2 class='ht-title'>" + esc(s.name) + "</h2>";
+        if (s.text && s.text.trim()) h += "<div class='ht-text'>" + esc(s.text) + "</div>";
+        if (s.imgs && s.imgs.length) {
+          h += "<div class='ht-sec-ttl'>手法图（" + s.imgs.length + "）</div>";
+          h += "<div class='ht-grid'>";
+          s.imgs.forEach(im => {
+            h += "<div class='ht-cell' data-img=\"" + imgUrl(im) + "\" data-cap=\"" + esc(s.name) + " 手法图\">"
+               + "<div class='imgbox'><img src=\"" + imgUrl(im) + "\" loading='lazy' alt=\"" + esc(s.name) + "\"></div>"
+               + "<div class='nm'>" + esc(s.name) + " 手法图</div></div>";
+          });
+          h += "</div>";
+        }
+        detailPane.innerHTML = h;
+      };
+      const showGallery = () => {
+        let h = "<h2 class='ht-title'>针刺手法总览图</h2>";
+        h += "<div class='ht-grid'>";
+        gallery.forEach(im => {
+          h += "<div class='ht-cell' data-img=\"" + imgUrl(im) + "\" data-cap='手法演示图'>"
+             + "<div class='imgbox'><img src=\"" + imgUrl(im) + "\" loading='lazy' alt='手法图'></div>"
+             + "<div class='nm'>手法演示图</div></div>";
+        });
+        h += "</div>";
+        detailPane.innerHTML = h;
+      };
+      resultList.innerHTML = "";
+      let first = null;
+      sf.forEach((s) => {
+        const li = el("div", "result-item", "<div class=\"t\">" + esc(s.name) + "</div>");
+        li.dataset.label = s.name;
+        li.onclick = () => {
+          resultList.querySelectorAll(".result-item").forEach(x => x.classList.remove("active-row"));
+          li.classList.add("active-row");
+          showItem(s);
+        };
+        resultList.appendChild(li);
+        if (!first) first = li;
+      });
+      if (gallery.length) {
+        const li = el("div", "result-item", "<div class=\"t\">针刺手法总览图</div>");
+        li.dataset.label = "针刺手法总览图";
+        li.onclick = () => {
+          resultList.querySelectorAll(".result-item").forEach(x => x.classList.remove("active-row"));
+          li.classList.add("active-row");
+          showGallery();
+        };
+        resultList.appendChild(li);
+      }
+      if (first) first.onclick();
+    }).catch(() => {
+      resultList.innerHTML = "<div class='hint'>目录加载失败，请重试。</div>";
+      detailPane.innerHTML = "<div class='hint'>针刺手法数据载入失败，请重试。</div>";
+    });
+  }
+
+  // 汉唐取穴 图片点击放大（复用 style.css .lightbox）
+  let _lb = null;
+  function openLb(src, cap) {
+    if (!_lb) {
+      _lb = document.createElement("div");
+      _lb.className = "lightbox";
+      _lb.setAttribute("role", "dialog");
+      _lb.setAttribute("aria-label", "图片放大查看");
+      _lb.addEventListener("click", () => { if (_lb) { _lb.remove(); _lb = null; } });
+      document.body.appendChild(_lb);
+    }
+    _lb.innerHTML = "";
+    const im = document.createElement("img");
+    im.src = src; im.alt = cap || "";
+    im.onerror = () => { if (_lb) { _lb.remove(); _lb = null; } };
+    _lb.appendChild(im);
+  }
+  document.addEventListener("click", (ev) => {
+    if (ev.target && ev.target.closest) {
+      const btn = ev.target.closest(".bi-btn");
+      if (btn) {
+        const ref = btn.closest(".body-ref");
+        if (ref) {
+          const view = btn.getAttribute("data-bi");
+          const img = ref.querySelector(".body-ref-img img");
+          if (img && BODY_VIEWS[view]) img.src = "/renji/img?name=" + encodeURIComponent(BODY_VIEWS[view]);
+          ref.querySelectorAll(".bi-btn").forEach(b => b.classList.toggle("active", b === btn));
+        }
+        return;
+      }
+      const cell = ev.target.closest(".ht-cell");
+      if (cell && cell.dataset.img) {
+        ev.preventDefault();
+        openLb(cell.dataset.img, cell.dataset.cap);
+      }
+    }
+  });
+  document.addEventListener("keydown", (ev) => {
+    if (ev.key === "Escape" && _lb) { _lb.remove(); _lb = null; }
+  });
+
+  // ---------- 跨系统：中药 / 药图 ----------
+  function renderCross(s) {
+    filterBar.innerHTML = "";
+    getJSON(s.endpoint + "?size=2000").then(d => {
+      resultList.innerHTML = "";
+      const items = d.items || [];
+      items.slice(0, 2000).forEach((it, i) => {
+        // herbs 接口用 MZ 命名字段，yaotu 接口用 name；统一取名称（修复下拉/列表项空白）
+        const name = it.name || it.MZ || it.title || "";
+        const li = el("li", "result-item", "<div class=\"t\">" + esc(name) + "</div>");
+        li.onclick = () => {
+          let h = "<div class='point-card'><h4>" + esc(name) + "</h4>";
+          Object.keys(it).forEach(k => {
+            // name/MZ 已作标题；_image/_rel/_folder 为内部字段，均不展示为原始键名
+            if (k === "name" || k === "MZ" || k === "_image" || k === "_rel" || k === "_folder") return;
+            if (it[k] && typeof it[k] === "string")
+              h += "<div class='sec'><b>" + esc(k) + "：</b><br>" + esc(it[k]) + "</div>";
+          });
+          // 药图：MDB 派生（原态/药材/饮片）走 /api/herb_image；本草/中药图片 文件夹图走 /extimg（已随站部署）
+          const imgName = it._image || name;
+          if (imgName) {
+            const imgSrc = it._folder
+              ? ("/extimg?p=" + encodeURIComponent(it._rel))
+              : ("/api/herb_image/" + encodeURIComponent(imgName));
+            h += "<img src='" + imgSrc + "' style='max-width:160px;margin:4px;background:#fff;border-radius:6px' onerror=\"this.style.display='none'\">";
+          }
+          h += "</div>";
+          detailPane.innerHTML = h;
+        };
+        resultList.appendChild(li);
+      });
+    });
+  }
+
+  // ---------- 药图画廊（药图列表.html 内容：467 张图鉴）----------
+  let _ytKeyHandler = null;
+  const YT_PAGE = 20;
+  function renderYaotuGallery() {
+    filterBar.className = "yt-filterbar";
+    filterBar.innerHTML =
+      '<div class="yt-cats" id="ytCats"></div>' +
+      '<div class="yt-search"><input id="ytSearch" placeholder="搜索药名…" autocomplete="off"></div>';
+    resultList.className = "result-list";
+    detailPane.className = "detail-pane yt-pane";
+    detailPane.innerHTML =
+      '<div class="yt-preview"><img id="ytBig" alt=""></div>' +
+      '<div class="yt-pname" id="ytPname"></div>' +
+      '<div class="yt-phint">点击左侧缩略图查看大图 · ← / → 键切换</div>';
+    const catsWrap = $("#ytCats"), big = $("#ytBig"), pname = $("#ytPname");
+    const CATS = ["上经", "中经", "下经", "增补", "其他"];
+    const ytLabel = (c) => (c.num != null ? c.num + "、" : "") + c.n;
+    let charts = [], view = [], cur = -1, page = 0, curCat = "", curQ = "";
+    const pageOf = (pos) => Math.floor(pos / YT_PAGE);
+
+    function buildCats() {
+      const counts = {};
+      charts.forEach(c => { const k = c.c || "其他"; counts[k] = (counts[k] || 0) + 1; });
+      let html = '<button class="yt-cat' + (curCat === "" ? " active" : "") + '" data-c="">全部 <i>' + charts.length + '</i></button>';
+      CATS.forEach(ct => {
+        if (counts[ct]) html += '<button class="yt-cat' + (curCat === ct ? " active" : "") + '" data-c="' + ct + '">' + ct + ' <i>' + counts[ct] + '</i></button>';
+      });
+      catsWrap.innerHTML = html;
+      catsWrap.querySelectorAll(".yt-cat").forEach(b => {
+        b.onclick = () => { curCat = b.dataset.c; applyFilter(); };
+      });
+    }
+
+    function applyFilter() {
+      view = [];
+      charts.forEach((c, i) => {
+        if (curCat && (c.c || "其他") !== curCat) return;
+        if (curQ && c.n.indexOf(curQ) < 0) return;
+        view.push(i);
+      });
+      page = 0;
+      renderPage();
+    }
+
+    function renderPage() {
+      const total = view.length;
+      const pages = Math.max(1, Math.ceil(total / YT_PAGE));
+      if (page >= pages) page = pages - 1;
+      if (page < 0) page = 0;
+      const start = page * YT_PAGE;
+      const slice = view.slice(start, start + YT_PAGE);
+      let html = '<div class="yt-count">共 ' + total + ' 张 · 第 ' + (page + 1) + ' / ' + pages + ' 页</div>';
+      html += '<div class="yt-grid" id="ytGrid">';
+      if (!slice.length) {
+        html += '<div class="yt-empty">未找到匹配的药图</div>';
+      } else {
+        slice.forEach((idx, k) => {
+          const c = charts[idx];
+          const pos = start + k;
+          html += '<div class="yt-item' + (idx === cur ? " active" : "") + '" data-pos="' + pos + '" data-idx="' + idx + '">' +
+            '<div class="yt-thumb"><img loading="lazy" src="' + c.f + '" alt="' + esc(c.n) + '"></div>' +
+            '<div class="yt-cap">' + esc(ytLabel(c)) + '</div></div>';
+        });
+      }
+      html += '</div>';
+      html += '<div class="yt-pager">' +
+        '<button class="yt-pbtn" id="ytPrev"' + (page <= 0 ? " disabled" : "") + '>‹ 上一页</button>' +
+        '<span class="yt-pinfo">' + (total ? (start + 1) + '–' + Math.min(start + YT_PAGE, total) : 0) + ' / ' + total + '</span>' +
+        '<button class="yt-pbtn" id="ytNext"' + (page >= pages - 1 ? " disabled" : "") + '>下一页 ›</button>' +
+        '</div>';
+      resultList.innerHTML = html;
+      const g = $("#ytGrid");
+      if (g) g.querySelectorAll(".yt-item").forEach(it => {
+        it.onclick = () => show(Number(it.dataset.idx), Number(it.dataset.pos));
+      });
+      const pv = $("#ytPrev"), nx = $("#ytNext");
+      if (pv) pv.onclick = () => { if (page > 0) { page--; renderPage(); } };
+      if (nx) nx.onclick = () => { if (page < pages - 1) { page++; renderPage(); } };
+    }
+
+    function show(idx, pos) {
+      cur = idx;
+      const np = pageOf(pos);
+      if (np !== page) { page = np; renderPage(); }
+      const c = charts[idx];
+      big.src = c.f; pname.textContent = ytLabel(c);
+      const g = $("#ytGrid");
+      if (g) g.querySelectorAll(".yt-item").forEach(e => e.classList.toggle("active", Number(e.dataset.idx) === idx));
+    }
+
+    getJSON("/static/yaotu_gallery.json?v=2").then(d => {
+      charts = d || [];
+      const CATI = {"上经":0,"中经":1,"下经":2,"增补":3,"其他":4};
+      charts.sort((a,b)=>{
+        const ca = CATI[a.c]!=null?CATI[a.c]:9, cb = CATI[b.c]!=null?CATI[b.c]:9;
+        if(ca!==cb) return ca-cb;
+        const na = a.num==null?1e9:a.num, nb = b.num==null?1e9:b.num;
+        return na-nb;
+      });
+      buildCats();
+      applyFilter();
+      if (view.length) show(view[0], 0);
+    }).catch(() => {
+      detailPane.innerHTML = '<div class="hint">药图清单加载失败，请刷新重试。</div>';
+    });
+
+    const box = $("#ytSearch");
+    if (box) box.oninput = () => {
+      curQ = box.value.trim();
+      applyFilter();
+      if (view.length) show(view[0], 0);
+    };
+
+    if (_ytKeyHandler) document.removeEventListener("keydown", _ytKeyHandler);
+    _ytKeyHandler = (e) => {
+      if (!view.length) return;
+      const i = view.indexOf(cur);
+      if (e.key === "ArrowRight") { const ni = Math.min(i + 1, view.length - 1); show(view[ni], ni); }
+      else if (e.key === "ArrowLeft") { const ni = Math.max(i - 1, 0); show(view[ni], ni); }
+    };
+    document.addEventListener("keydown", _ytKeyHandler);
+  }
+
+  // ---------- 中药查询（中药查询.html 内容接入，替换原 cross/herbs）----------
+  let _zyState = null;
+  let _zyKeyHandler = null;
+  function renderZhongyao() {
+    filterBar.innerHTML = "";
+    resultList.innerHTML = "";
+    if (listHint) listHint.style.display = "none";
+    if (pager) pager.style.display = "";
+    detailPane.innerHTML = "<div class='hint'>载入中…</div>";
+    getJSON("/static/zhongyao_herbs_meta.json?v=3").then(meta => {
+      const CATS = ["上经", "中经", "下经", "增补", "其他"];
+      const QIS = ["热", "温", "平", "凉", "寒"];
+      const ZY_PAGE = 20;
+      const VER = "?v=3";
+      const CAT_FILE = { "上经":"zhongyao_herbs_shang.json", "中经":"zhongyao_herbs_zhong.json", "下经":"zhongyao_herbs_xia.json", "增补":"zhongyao_herbs_zeng.json", "其他":"zhongyao_herbs_qita.json" };
+      const _cache = {};      // cat -> 已加载数组（缓存复用）
+      const _loading = {};    // cat -> 进行中的 Promise
+      let _meta = meta || null;
+      function loadCat(cat) {
+        if (_cache[cat]) return Promise.resolve(_cache[cat]);
+        if (_loading[cat]) return _loading[cat];
+        const p = getJSON("/static/" + CAT_FILE[cat] + VER).then(arr => { _cache[cat] = arr; return arr; });
+        _loading[cat] = p;
+        return p;
+      }
+      function loadCats(cats) {
+        if (cats.length === 1 && cats[0] === "") return Promise.all(CATS.map(loadCat)).then(a => [].concat(...a));
+        return Promise.all(cats.map(loadCat)).then(a => [].concat(...a));
+      }
+      const st = { HERBS: [], curCat: "", curQi: "", curQ: "", activeIdx: null, page: 1 };
+      _zyState = st;
+
+      function countCat(c) {
+        if (c === "") return _meta ? _meta.total : st.HERBS.length;
+        return _meta ? (_meta.counts[c] || 0) : st.HERBS.filter(h => h.c === c).length;
+      }
+      function countQi(q) {
+        const base = (st.curCat === "" ? st.HERBS : st.HERBS.filter(h => h.c === st.curCat));
+        return q === "" ? base.length : base.filter(h => h.qi === q).length;
+      }
+      function hl(s, q) {
+        s = s || "";
+        if (!q) return esc(s);
+        try {
+          return esc(s).replace(new RegExp("(" + q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi"), "<span class='hl'>$1</span>");
+        } catch (e) { return esc(s); }
+      }
+      function filtered() {
+        const q = st.curQ.trim().toLowerCase();
+        return st.HERBS.filter(h => {
+          if (st.curCat && h.c !== st.curCat) return false;
+          if (st.curQi && h.qi !== st.curQi) return false;
+          if (q) {
+            const hay = (h.n + " " + (h.g || "") + " " + (h.x || "") + " " + (h.b || "") + " " + (h.bj || "")).toLowerCase();
+            if (!hay.includes(q)) return false;
+          }
+          return true;
+        });
+      }
+      function zyLabel(h) { return (h.num != null ? (h.num + "、") : "") + h.n; }
+
+      function renderTags() {
+        let tb = "<div class='zy-toolbar'>";
+        tb += "<input class='zy-search' id='zySearch' placeholder='搜索药名 / 功效 / 性味 / 本经原文…' value='" + esc(st.curQ) + "'>";
+        tb += "<div class='zy-ftitle'>《神农本草经》分类</div><div class='zy-ftags'>";
+        [["", "全部"]].concat(CATS.map(c => [c, c])).forEach(([k, label]) => {
+          tb += "<button class='zy-ftag" + (k === st.curCat ? " active" : "") + "' data-cat='" + k + "'>" + label + "<span class='ct'>" + countCat(k) + "</span></button>";
+        });
+        tb += "</div><div class='zy-ftitle'>性味（气）</div><div class='zy-ftags'>";
+        [["", "全部"]].concat(QIS.map(q => [q, q])).forEach(([k, label]) => {
+          tb += "<button class='zy-ftag" + (k === st.curQi ? " active" : "") + "' data-qi='" + k + "'>" + label + "<span class='ct'>" + countQi(k) + "</span></button>";
+        });
+        tb += "</div></div>";
+        filterBar.innerHTML = tb;
+        const se = document.getElementById("zySearch");
+        se.addEventListener("input", () => { st.curQ = se.value; st.page = 1; renderList(); });
+        filterBar.querySelectorAll("[data-cat]").forEach(b => {
+          b.onclick = () => applyCat(b.getAttribute("data-cat"));
+        });
+        filterBar.querySelectorAll("[data-qi]").forEach(b => {
+          b.onclick = () => { st.curQi = b.getAttribute("data-qi"); st.page = 1; applyCat(st.curCat); };
+        });
+      }
+
+      function renderList() {
+        const data = filtered();
+        const isMB = isMobile();
+        const total = data.length;
+        const pages = Math.max(1, Math.ceil(total / ZY_PAGE));
+        if (st.page > pages) st.page = pages;
+        if (st.page < 1) st.page = 1;
+        const q = st.curQ.trim();
+        resultList.innerHTML = "";
+        if (!total) {
+          resultList.innerHTML = "<li class='hint'>无匹配结果</li>";
+          if (pager) pager.innerHTML = "";
+          return;
+        }
+        const view = isMB ? data : data.slice((st.page - 1) * ZY_PAGE, st.page * ZY_PAGE);
+        view.forEach(h => {
+          const li = el("li", "result-item zy-item" + (st.activeIdx !== null && st.HERBS[st.activeIdx] === h ? " active" : ""));
+          li.dataset.label = zyLabel(h);
+          const badgeCls = h.sh ? "zy-badge fill" : (h.c === "其他" ? "zy-badge other" : "zy-badge");
+          const badgeTxt = h.sh ? "神农·补全" : (h.c === "其他" ? "后世本草" : h.c);
+          li.innerHTML =
+            (h.num != null ? "<span class='zy-num'>" + h.num + "、</span>" : "") +
+            "<span class='zy-nm'>" + esc(h.n) + "</span>" +
+            "<span class='" + badgeCls + "'>" + badgeTxt + "</span>" +
+            (h.qi ? "<span class='zy-qi'>" + esc(h.qi) + "</span>" : "");
+          li.onclick = () => show(h);
+          resultList.appendChild(li);
+        });
+        if (!isMB) renderPager(total, pages);
+        else if (pager) pager.innerHTML = "";
+      }
+
+      function renderPager(total, pages) {
+        if (!pager) return;
+        pager.innerHTML = "";
+        const mk = (label, page, dis) => {
+          const b = document.createElement("button");
+          b.textContent = label; b.disabled = dis;
+          b.onclick = () => { st.page = page; renderList(); };
+          return b;
+        };
+        pager.appendChild(mk("上一页", st.page - 1, st.page <= 1));
+        const info = document.createElement("span");
+        info.style.cssText = "align-self:center;font-size:13px;color:#5b5246";
+        info.textContent = "第 " + st.page + " / " + pages + " 页（共 " + total + " 条）";
+        pager.appendChild(info);
+        pager.appendChild(mk("下一页", st.page + 1, st.page >= pages));
+      }
+
+      function show(h) {
+        st.activeIdx = st.HERBS.indexOf(h);
+        const data = filtered();
+        const idx = data.indexOf(h);
+        if (idx >= 0 && !isMobile()) {
+          const pg = Math.floor(idx / ZY_PAGE) + 1;
+          if (pg !== st.page) st.page = pg;
+        }
+        renderList();
+        const seqLine = (h.c !== "其他" && h.cs != null)
+          ? "《神农本草经》· " + esc(h.c) + " · 本经第 " + h.cs + " 味（全书总第 " + h.s + " 味）"
+          : (h.c !== "其他" ? "《神农本草经》· " + esc(h.c) : (h.sh ? "神农本草经 · 补全（仅存本经原文与倪师注解）" : "后世本草（非神农本经收录）"));
+        const rows = [
+          ["性能（性味归经）", h.x],
+          ["功效", h.g],
+          ["用法用量", h.y],
+          ["使用注意", h.z],
+          ["神农本经原文", h.bj],
+          ["倪师注解", h.nt],
+          ["古籍摘要", h.j],
+          ["现代研究", h.m],
+          ["简述", h.b],
+        ];
+        let html = "<div class='zy-detail'><div class='zy-ph'><div class='nm'>" + esc(h.n) + "</div><div class='zy-seq'>" + seqLine + "</div>";
+        rows.forEach(([k, v]) => {
+          if (v && v.trim()) html += "<div class='zy-row'><span class='k'>" + k + "</span><div class='v'>" + hl(v, st.curQ.trim()) + "</div></div>";
+        });
+        if (h.img) {
+          html += "<img class='zy-herb' src='" + esc(h.img) + "' alt='" + esc(h.n) + "' onerror=\"this.style.display='none'\">";
+        }
+        html += "</div></div>";
+        detailPane.innerHTML = html;
+        const li = resultList.querySelector(".result-item.active");
+        if (li) li.scrollIntoView({ block: "nearest" });
+      }
+
+      function applyCat(cat) {
+        st.curCat = cat;
+        st.page = 1;
+        st.activeIdx = null;
+        detailPane.innerHTML = "<div class='hint'>载入中…</div>";
+        renderTags();
+        loadCats([cat]).then(arr => {
+          st.HERBS = arr;
+          renderList();
+          renderTags();
+        }).catch(err => {
+          detailPane.innerHTML = "<div class='hint'>中药数据载入失败：" + esc(String(err)) + "</div>";
+        });
+      }
+
+      // 初始：meta 已载入（含分类计数），按需懒加载具体分类数据，避免一次性下载全量
+      renderTags();
+      resultList.innerHTML = "<li class='hint'>请选择上方《神农本草经》分类查看（点『全部』载入全部 " + (_meta ? _meta.total : "") + " 味）</li>";
+      if (pager) pager.innerHTML = "";
+
+      if (_zyKeyHandler) document.removeEventListener("keydown", _zyKeyHandler);
+      _zyKeyHandler = (e) => {
+        if (e.target && e.target.tagName === "INPUT") return;
+        const data = filtered();
+        if (!data.length) return;
+        let i = st.activeIdx === null ? -1 : data.indexOf(st.HERBS[st.activeIdx]);
+        if (e.key === "ArrowDown") { i = Math.min(i + 1, data.length - 1); show(data[i]); e.preventDefault(); }
+        else if (e.key === "ArrowUp") { i = Math.max(i - 1, 0); show(data[i]); e.preventDefault(); }
+      };
+      document.addEventListener("keydown", _zyKeyHandler);
+    }).catch(err => {
+      detailPane.innerHTML = "<div class='hint'>中药数据载入失败：" + esc(String(err)) + "</div>";
+    });
+  }
+
+  // ---------- 交互工具 ----------
+  function renderTool(s) {
+    if (s.tool === "wanianli") return toolWanianli();
+    if (s.tool === "ziwwu_pan") return toolZiwwuPan();
+    if (s.tool === "lingui_dial") return toolLinguiDial();
+  }
+  function toolWanianli() {
+    resultList.innerHTML = "";
+    const now = new Date();
+    detailPane.innerHTML = "<div class='tool-panel'>" +
+      "<h3>万年历 · 四柱干支</h3>" +
+      "<label>公历 <input type='date' id='wlDate' value='" + now.toISOString().slice(0,10) + "'></label>" +
+      "<div class='gz-result' id='wlOut'></div>" +
+      "<div class='hint'>年柱以立春为界近似；月柱按二十四节气定月；日柱以儒略日推算；时柱按时辰（每 2 小时一辰）。</div>" +
+      "</div>";
+    const inp = $("#wlDate");
+    const calc = () => {
+      const [y, m, d] = inp.value.split("-").map(Number);
+      const yg = yearGZ(y), mg = monthGZ(y, m, d), dg = dayGZ(y, m, d);
+      const out = $("#wlOut");
+      out.innerHTML = card("年柱", yg.str) + card("月柱", mg.str) + card("日柱", dg.str) +
+        card("生肖", ZOO(dg.z)) + card("日干支序", dg.idx);
+    };
+    inp.oninput = calc; calc();
+  }
+  function ZOO(z) { return ["鼠","牛","虎","兔","龙","蛇","马","羊","猴","鸡","狗","猪"][z]; }
+  function card(lab, val) { return "<div class='gz-card'><div class='lab'>" + lab + "</div><div class='val'>" + esc(val) + "</div></div>"; }
+
+  function toolZiwwuPan() {
+    resultList.innerHTML = "";
+    const now = new Date();
+    const hh = now.getHours();
+    detailPane.innerHTML = "<div class='tool-panel'>" +
+      "<h3>倪海厦子午流注盘</h3>" +
+      "<label>公历 <input type='date' id='pnDate' value='" + now.toISOString().slice(0,10) + "'></label> " +
+      "<label>时辰 <select id='pnHour'>" + ZHI.map((z, i) => "<option value='" + i + "'" + (hourBranch(hh) === i ? " selected" : "") + ">" + z + "时</option>").join("") + "</select></label>" +
+      "<div class='gz-result' id='pnGZ'></div>" +
+      "<div class='open-list' id='pnOpen'></div>" +
+      "<div class='hint'>输入年月日时，自动计算四柱干支，并查表给出：纳甲当旺经脉 / 纳子取穴 / 灵龟八法开穴。</div>" +
+      "</div>";
+    let Z = null;
+    getJSON("/api/renji/tool/ziwwu_pan").then(d => { Z = d.ziwwu; recalc(); });
+    const recalc = () => {
+      if (!Z) return;
+      const inp = $("#pnDate"), hb = Number($("#pnHour").value);
+      const [y, m, d] = inp.value.split("-").map(Number);
+      const yg = yearGZ(y), mg = monthGZ(y, m, d), dg = dayGZ(y, m, d), hg = hourGZ(hb, dg.g);
+      $("#pnGZ").innerHTML = card("年", yg.str) + card("月", mg.str) + card("日", dg.str) + card("时", hg.str);
+      // 灵龟八法开穴：直接查权威 lingui 表（日干支 → 时辰列），再由开穴穴名反查九宫。
+      const linguiRow = Z.lingui.rows.find(r => r[0] === dg.str) || Z.lingui.rows[0];
+      const openLing = (linguiRow[1 + hb] || "").trim();
+      const gj = acupointGong(openLing);
+      // 纳子取穴：日干+时辰（如 甲子）
+      const nzKey = dg.str[0] + ZHI[hb];
+      const nzRow = Z.nazi.rows.find(r => r[0] === nzKey) || ["", "", "", ""];
+      // 纳甲当旺（按时辰）
+      const najRow = Z.najia.rows.find(r => r[0] === ZHI[hb]) || [];
+      let html = "<div class='op'><b>灵龟八法开穴</b>" + (gj ? "（九宫 " + gj + "）" : "") + "：" + esc(openLing) + "</div>";
+      html += "<div class='op'><b>纳子取穴</b>（" + esc(nzKey) + "）：" +
+        [nzRow[1], nzRow[2], nzRow[3]].filter(Boolean).map(x => esc(x.trim())).join("；") + "</div>";
+      html += "<div class='op'><b>纳甲当旺经脉</b>（" + esc(ZHI[hb]) + "时）：" + esc((najRow[1] || "").trim()) +
+        "；本穴 " + esc((najRow[4] || "").trim()) + "；原穴 " + esc((najRow[5] || "").trim()) + "</div>";
+      $("#pnOpen").innerHTML = html;
+    };
+    $("#pnDate").onchange = recalc; $("#pnHour").onchange = recalc;
+  }
+
+  // 灵龟八法 九宫配穴（洛书方位）
+  const JIUGONG = { 1:["申脉"], 2:["照海"], 3:["外关"], 4:["临泣"], 6:["公孙"], 7:["内关"], 8:["后溪"], 9:["列缺"] };
+  const JG_LAYOUT = { 4:[0,0], 9:[0,1], 2:[0,2], 3:[1,0], 5:[1,1], 7:[1,2], 8:[2,0], 1:[2,1], 6:[2,2] };
+  // 由开穴穴名反查其所属九宫（以权威 lingui 表的开穴名为准，避免干支代数法的流派误差）。
+  function acupointGong(name) {
+    if (!name) return 0;
+    for (let g = 1; g <= 9; g++) {
+      if (g === 5) continue;
+      const arr = JIUGONG[g] || [];
+      for (const a of arr) if (name.indexOf(a) >= 0) return g;
+    }
+    return 0;
+  }
+  function toolLinguiDial() {
+    resultList.innerHTML = "";
+    const now = new Date();
+    detailPane.innerHTML = "<div class='tool-panel'>" +
+      "<h3>圆形灵龟八法盘</h3>" +
+      "<label>公历 <input type='date' id='dlDate' value='" + now.toISOString().slice(0,10) + "'></label> " +
+      "<label>时辰 <select id='dlHour'>" + ZHI.map((z, i) => "<option value='" + i + "'>" + z + "时</option>").join("") + "</select></label>" +
+      "<div class='dial-wrap'><svg class='dial' id='dlSvg' viewBox='0 0 300 300'></svg>" +
+      "<div><div class='gz-result' id='dlGZ'></div><div class='open-list' id='dlOpen'></div></div></div>" +
+      "<div class='hint'>九宫洛书：戴九履一、左三右七、二四为肩、六八为足、五居中。按「日干支序 + 时干支序」mod 9 定开穴九宫。</div>" +
+      "</div>";
+    let Z = null;
+    getJSON("/api/renji/tool/lingui_dial").then(d => { Z = d; drawDial(0); });
+    const drawDial = (hot) => {
+      const svg = $("#dlSvg"); const sz = 100, gap = 0;
+      let s = "";
+      for (let g = 1; g <= 9; g++) {
+        if (g === 5) continue;
+        const [r, c] = JG_LAYOUT[g];
+        const x = 20 + c * 90, y = 20 + r * 90;
+        const hotc = (g === hot);
+        s += "<rect class='cell" + (hotc ? " hot" : "") + "' x='" + x + "' y='" + y + "' width='80' height='80' rx='8'></rect>";
+        s += "<text class='num' x='" + (x + 40) + "' y='" + (y + 18) + "'>" + g + "宫</text>";
+        s += "<text class='lbl' x='" + (x + 40) + "' y='" + (y + 50) + "'>" + (JIUGONG[g][0] || "") + "</text>";
+      }
+      svg.innerHTML = s;
+    };
+    const recalc = () => {
+      if (!Z) return;
+      const inp = $("#dlDate"), hb = Number($("#dlHour").value);
+      const [y, m, d] = inp.value.split("-").map(Number);
+      const dg = dayGZ(y, m, d), hg = hourGZ(hb, dg.g);
+      const linguiRow = Z.rows.find(r => r[0] === dg.str) || Z.rows[0];
+      const openLing = (linguiRow[1 + hb] || "").trim();
+      const gj = acupointGong(openLing);
+      $("#dlGZ").innerHTML = card("日", dg.str) + card("时", hg.str) + (gj ? card("九宫", gj) : "");
+      $("#dlOpen").innerHTML = "<div class='op'><b>灵龟八法开穴</b>：" + esc(openLing) + "</div>";
+      drawDial(gj);
+    };
+    $("#dlDate").onchange = recalc; $("#dlHour").onchange = recalc;
+  }
+
+  // ---------- 动画演示：穴位走向（依 穴位走向动画.html + SELFDATA 真实坐标重建）----------
+  // 真实坐标见 /static/meridian_flow.json（viewBox 0 0 1278 2304，与全身背面经络穴位图像素一致）。
+  const SHIER = ["肺经","大肠经","胃经","脾经","心经","小肠经","膀胱经","肾经","心包经","三焦经","胆经","肝经"];
+  const QIJING = ["督脉","任脉","冲脉","带脉","阴维脉","阳维脉","阳跷脉","阴跷脉"];
+
+  // 真人全身经络穴位图（自 EXE 提取，2026-08-09 集成进 /renji）
+  // 膀胱经 / 督脉 行于背后 → 默认背面图；其余正面图。
+  const BODY_VIEWS = {
+    "正面": "全身正面经络穴位图",
+    "背面": "全身背面经络穴位图",
+    "侧面": "全身侧面经络穴位图"
+  };
+  function bodyRefBlock(view) {
+    let h = "<div class='body-ref'>";
+    h += "<div class='body-ref-bar'>";
+    Object.keys(BODY_VIEWS).forEach(k => {
+      h += "<button type='button' class='bi-btn" + (k === view ? " active" : "") + "' data-bi='" + k + "'>" + k + "</button>";
+    });
+    h += "</div>";
+    h += "<div class='body-ref-img'><img src='/renji/img?name=" + encodeURIComponent(BODY_VIEWS[view]) +
+         "' alt='" + view + "经络穴位图' loading='lazy'></div>";
+    h += "</div>";
+    return h;
+  }
+  // 短名 → meridian_flow.json 的 key（原软件全称）
+  const FLOW_KEY_MAP = {
+    "肺经":"手太阴肺经","大肠经":"手阳明大肠经","胃经":"足阳明胃经","脾经":"足太阴脾经",
+    "心经":"手少阴心经","小肠经":"手太阳小肠经","膀胱经":"足太阳膀胱经","肾经":"足少阴肾经",
+    "心包经":"手厥阴心包经","三焦经":"手少阳三焦经","胆经":"足少阳胆经","肝经":"足厥阴肝经",
+    "督脉":"督脉经穴","任脉":"任脉经穴"
+  };
+  function FLOW_KEY_OF(short) { return FLOW_KEY_MAP[short] || null; }
+  // 每条经络对应的正确人体方位图（解剖学：膀胱经/督脉行于背后→背面；胆经行于体侧→侧面；其余正面）
+  const MERIDIAN_VIEW = {
+    "膀胱经": "背面", "督脉": "背面", "胆经": "侧面"
+  };
+  // 三张人体图真实像素尺寸（取自图片文件），用于按图设定 SVG viewBox，使坐标按比例贴合
+  const BODY_IMG_DIMS = {
+    "正面": [1793, 3200], "背面": [1278, 2304], "侧面": [1283, 2304]
+  };
+  function flowViewOf(name) { return MERIDIAN_VIEW[name] || "正面"; }
+  function flowImgOf(view) { return "/renji/img?name=" + encodeURIComponent(BODY_VIEWS[view]); }
+  let FLOW_DATA = null;
+  let FLOW_ACTIVE = 0;
+  function flowGetData() {
+    if (FLOW_DATA) return Promise.resolve(FLOW_DATA);
+    return getJSON("/static/meridian_flow.json?v=2").then(d => (FLOW_DATA = d));
+  }
+
+  // （已删除原有的示意人体 bodyShapes，改由真实人体图 + SELFDATA 坐标叠加）
+  function renderAnimation(s) {
+    const list = s.group === "shier" ? SHIER : QIJING;
+    // 经络切换按钮放进 #filterBar（与 #resultList 平级），不再把 <div> 塞进 <ul>
+    filterBar.innerHTML = "";
+    list.forEach(m => {
+      const b = el("button", "filter-tab", m);
+      b.onclick = () => playMeridian(m);
+      filterBar.appendChild(b);
+    });
+    // #resultList 只承载 #flowPtsHost（穴位顺序列表），playMeridian 仍按此查询
+    resultList.innerHTML = "<div id='flowPtsHost' class='flow-pts-host'></div>";
+    const art = s.group === "shier" ? ART_SHIER : ART_QIJING;
+    const pv = "正面", pvImg = flowImgOf(pv);
+    detailPane.innerHTML =
+      "<div class='flow-placeholder'>" +
+        "<img src='" + pvImg + "' alt='全身正面经络穴位图' onerror=\"this.style.display='none'\">" +
+        "<div class='flow-phcap'>点击左侧经络，查看其穴位循行走向（基于 SELFDATA 真实坐标叠加；按经络自动切换正/背/侧人体图）</div>" +
+      "</div>" +
+      "<div class='anim-art'>" + esc(art) + "</div>";
+  }
+  function playMeridian(name) {
+    if (!FLOW_DATA) { flowGetData().then(() => playMeridian(name)); return; }
+    const key = FLOW_KEY_OF(name);
+    const info = FLOW_DATA[key];
+    FLOW_ACTIVE = 0;
+    if (!info) {
+      // 无 SELFDATA 独立坐标的奇经（冲/带/维/跷）：仅文字说明
+      detailPane.innerHTML =
+        "<div class='anim-cap'>" + esc(name) + " · 穴位走向</div>" +
+        "<div class='hint'>该奇经（冲 / 带 / 维 / 跷）无 SELFDATA 独立穴位坐标，无法绘制循行路径；以下为循行说明。</div>" +
+        "<div class='anim-art'>" + esc(ART_QIJING) + "</div>";
+      return;
+    }
+    const pts = info.points.filter(p => p.x != null);
+    const d = pts.map((p, i) => (i === 0 ? "M" : "L") + p.x + "," + p.y).join(" ");
+    let dots = "";
+    info.points.forEach((p, idx) => {
+      if (p.x == null) return;
+      const act = idx === FLOW_ACTIVE;
+      dots += "<g class='flow-dot" + (act ? " active" : "") + "' data-idx='" + idx + "'>" +
+                "<circle cx='" + p.x + "' cy='" + p.y + "' r='" + (act ? 9 : 6) + "'></circle>" +
+                "<text class='flow-num' x='" + p.x + "' y='" + p.y + "'>" + p.i + "</text>" +
+                "<text class='flow-name' x='" + p.x + "' y='" + (p.y - 14) + "'>" + esc(p.name) + "</text>" +
+              "</g>";
+    });
+    const view = flowViewOf(name), vd = BODY_IMG_DIMS[view], vimg = flowImgOf(view);
+    const svg = "<svg class='flow-svg' viewBox='0 0 " + vd[0] + " " + vd[1] + "' preserveAspectRatio='xMidYMid meet'>" +
+        "<image class='flow-img' href='" + vimg + "' xlink:href='" + vimg + "' x='0' y='0' width='" + vd[0] + "' height='" + vd[1] + "'/>" +
+        "<path class='flow-line' d='" + d + "'></path>" +
+        "<path class='flow-anim' d='" + d + "'></path>" +
+        dots + "</svg>";
+    const meta = "<div class='flow-meta'>" +
+        "<span><b>" + esc(name) + "</b>（" + esc(info.code) + "）</span>" +
+        "<span>人体视图：<b>" + view + "</b></span>" +
+        "<span>阴阳：<b>" + (info.yin === "yin" ? "阴经" : "阳经") + "</b></span>" +
+        "<span>五行：<b>" + esc(info.element) + "</b></span>" +
+        "<span>走向：<b>" + esc(info.direction) + "</b></span>" +
+        "<span>穴位：<b>" + info.points.length + "</b></span>" +
+      "</div>";
+    let plist = "<div class='flow-pts'><div class='flow-pttl'>穴位顺序（点击联动高亮）</div>";
+    info.points.forEach((p, idx) => {
+      const cur = idx === FLOW_ACTIVE ? " cur" : "";
+      const miss = p.x == null ? " miss" : "";
+      const xy = p.x == null ? "坐标缺" : "(" + p.x + "," + p.y + ")";
+      plist += "<div class='flow-pt" + cur + miss + "' data-idx='" + idx + "'>" +
+          "<span class='fp-num'>" + p.i + ".</span>" +
+          "<span class='fp-name'>" + esc(p.name) + "</span>" +
+          "<span class='fp-xy'>" + xy + "</span></div>";
+    });
+    plist += "</div>";
+    const host = resultList.querySelector("#flowPtsHost");
+    if (host) host.innerHTML = plist;
+    detailPane.innerHTML =
+      "<div class='flow-wrap'>" +
+        "<div class='flow-body'>" + svg + "</div>" +
+        "<div class='flow-detail'>" + meta + flowLegend() + "</div>" +
+      "</div>";
+    detailPane.querySelectorAll(".flow-dot").forEach(g => {
+      g.style.cursor = "pointer";
+      g.addEventListener("click", () => setFlowActive(parseInt(g.getAttribute("data-idx"), 10)));
+    });
+    resultList.querySelectorAll(".flow-pt").forEach(el => {
+      el.addEventListener("click", () => setFlowActive(parseInt(el.getAttribute("data-idx"), 10)));
+    });
+  }
+  function flowLegend() {
+    return "<div class='flow-legend'>" +
+      "<span><i class='sw' style='background:#c0392b'></i>穴位</span>" +
+      "<span><i class='sw' style='background:#e67e22'></i>当前选中</span>" +
+      "<span><i class='sw sw-flow'></i>流动路径</span></div>";
+  }
+  function setFlowActive(idx) {
+    FLOW_ACTIVE = idx;
+    detailPane.querySelectorAll(".flow-dot").forEach(g => {
+      const i = parseInt(g.getAttribute("data-idx"), 10);
+      g.classList.toggle("active", i === idx);
+      const c = g.querySelector("circle");
+      if (c) c.setAttribute("r", i === idx ? 9 : 6);
+    });
+    resultList.querySelectorAll(".flow-pt").forEach(el => {
+      el.classList.toggle("cur", parseInt(el.getAttribute("data-idx"), 10) === idx);
+    });
+    const cur = resultList.querySelector(".flow-pt.cur");
+    if (cur && cur.scrollIntoView) cur.scrollIntoView({ block: "nearest" });
+  }
+  const ART_SHIER = "十二经脉循行走向（说明，逆向自「人纪针灸」EXE）\n\n十二经脉的名称为：手太阴肺经、手阳明大肠经、足阳明胃经、足太阴脾经、手少阴心经、手太阳小肠经、足太阳膀胱经、足少阴肾经、手厥阴心包经、手少阳三焦经、足少阳胆经、足厥阴肝经。\n\n其流注次序是：从手太阴肺经开始，依次传至手阳明大肠经、足阳明胃经、足太阴脾经、手少阴心经、手太阳小肠经、足太阳膀胱经、足少阴肾经、手厥阴心包经、手少阳三焦经、足少阳胆经、足厥阴肝经，再复注于手太阴肺经，如环无端，周而复始。\n\n手三阴从胸走手，手三阳从手走头，足三阳从头走足，足三阴从足走腹（胸）。阴阳相贯，气血周流不息。";
+  const ART_QIJING = "奇经八脉循行走向（说明，逆向自「人纪针灸」EXE）\n\n奇经八脉者：督脉、任脉、冲脉、带脉、阴维脉、阳维脉、阴跷脉、阳跷脉也。\n\n督脉行于腰背正中，总督一身之阳；任脉行于胸腹正中，总任一身之阴；冲脉为血海，渗灌诸经；带脉环腰一周，约束纵行诸脉；阴维、阳维分别维络一身之阴经与阳经；阴跷、阳跷分主一身左右之阴阳跷捷。\n\n八脉交会于十二正经，其中公孙（脾）→内关（心包）、临泣（胆）→外关（三焦）、后溪（小肠）→申脉（膀胱）、列缺（肺）→照海（肾）四组，为灵龟八法与飞腾八法之根基。";
+
+  // ---------- 搜索 ----------
+  function searchItemName(it) { return it.name || it.MZ || it.n || it.title || "(未命名)"; }
+  let _searchCache = null;   // 保存最近一次搜索结果，供「显示全部」复用
+
+  // 把搜索命中的某条记录渲染为详情（右侧 detailPane；按模块复用既有渲染或通用字段渲染）。
+  function searchDetailHTML(item, module) {
+    if (module === "xuewei") {
+      // 复用穴位详情渲染（showPoint 接收含 name/cat_name/content/images 的点对象）。
+      showPoint({ name: item.name, cat_name: item.cat_name, content: item.content || "", images: item.images || [] });
+      return;
+    }
+    if (module === "yaotu") {
+      const name = item.name || "";
+      // 候选图：优先 API 给的 _rel；否则按 name 拼；再依次尝试 原态/药材/饮片 三种后缀。
+      const cands = [];
+      if (item._rel) cands.push(item._rel);
+      const _base = name.replace(/[-－](原态|药材|饮片)$/, "");
+      // 药材/饮片 在磁盘上最常见，优先尝试可避免无谓的 404 日志噪声（图片仍能正确显示）。
+      ["药材", "饮片", "原态"].forEach(suf => {
+        cands.push("/api/img/yaotu_list/" + encodeURIComponent(_base + "-" + suf) + ".jpg");
+      });
+      cands.push("/api/img/yaotu_list/" + encodeURIComponent(name) + ".jpg"); // 兜底：原样名
+      const uniq = [...new Set(cands)];
+      let h = "<div class='point-card'><h4>" + esc(name) + "</h4>";
+      h += "<div class='sec'><img id='yaotuImg' src='" + uniq[0] + "' alt='" + esc(name) +
+           "' style='max-width:100%;border:1px solid #2a5;border-radius:6px;background:#fff'></div>";
+      h += "</div>";
+      detailPane.innerHTML = h;
+      // 候选链：依次尝试，全部失败才隐藏（避免 404 导致裂图）。
+      const img = document.getElementById("yaotuImg");
+      let ci = 0;
+      img.onerror = () => { ci++; if (ci < uniq.length) img.src = uniq[ci]; else { img.onerror = null; img.style.display = "none"; } };
+      return;
+    }
+    if (module === "herbs") {
+      const name = item.MZ || item.n || item.name || "";
+      const rows = [["性能（性味归经）", item.x], ["功效", item.g], ["用法用量", item.y],
+                    ["使用注意", item.z], ["神农本经原文", item.bj], ["倪师注解", item.nt],
+                    ["古籍摘要", item.j], ["现代研究", item.m], ["简述", item.b]];
+      let h = "<div class='zy-detail'><div class='zy-ph'><div class='nm'>" + esc(name) + "</div>";
+      if (item._cat) h += "<div class='zy-seq'>《神农本草经》· " + esc(item._cat) + "</div>";
+      rows.forEach(([k, v]) => { if (v && String(v).trim()) h += "<div class='zy-row'><span class='k'>" + k + "</span><div class='v'>" + esc(String(v)) + "</div></div>"; });
+      if (item.img) h += "<img class='zy-herb' src='" + esc(item.img) + "' alt='" + esc(name) + "' onerror=\"this.style.display='none'\">";
+      h += "</div></div>";
+      detailPane.innerHTML = h;
+      return;
+    }
+    // cases / articles / ref：通用字段渲染（MDB 大写字段 + 已知标签映射）。
+    const LABELS = { MZ: "名称", NR: "内容", BBXX: "基本信息", BZDZ: "辨证论治",
+                     ZFBZ: "治法方药", ZJDCJL: "诊疗记录", ID: "编号", _table: "来源表", title: "标题" };
+    const skip = ["_image", "_folder", "_rel", "module", "single"];
+    let html = "<div class='point-card'><h4>" + esc(item.MZ || item.name || item.title || "(无标题)") + "</h4>";
+    Object.keys(item).forEach(k => {
+      if (skip.indexOf(k) >= 0) return;
+      const v = item[k];
+      if (v == null || (typeof v === "string" && !v.trim())) return;
+      const lab = LABELS[k] || k;
+      html += "<div class='sec'><b>" + esc(lab) + "：</b><br>" + esc(v) + "</div>";
+    });
+    html += "</div>";
+    detailPane.innerHTML = html;
+  }
+
+  function markActiveSearchItem(li) {
+    resultList.querySelectorAll(".result-item.active").forEach(x => x.classList.remove("active"));
+    if (li) li.classList.add("active");
+  }
+
+  // 将搜索结果渲染到左侧 resultList（与全站一致：左列列表、右栏详情），点击只更新 detailPane。
+  function renderSearchList(groups, q) {
+    resultList.className = "result-list";
+    resultList.innerHTML = "";
+    if (resultList) resultList.style.display = "";
+    let total = 0;
+    groups.forEach(g => {
+      total += g.total;
+      const gh = document.createElement("li");
+      gh.className = "search-group-head";
+      gh.innerHTML = esc(g.name) + " <span style='color:var(--mut);font-weight:400'>(" + g.total + ")</span>" +
+        (g.total > g.items.length ? " <span class='search-more' data-module='" + esc(g.module) + "'>显示全部 " + g.total + " 条 ›</span>" : "");
+      resultList.appendChild(gh);
+      g.items.forEach((it, idx) => {
+        const li = document.createElement("li");
+        li.className = "result-item search-item";
+        li.textContent = searchItemName(it);
+        li.dataset.module = g.module;
+        li.dataset.idx = idx;
+        li.onclick = () => { searchDetailHTML(it, g.module); markActiveSearchItem(li); };
+        resultList.appendChild(li);
+      });
+    });
+    detailPane.innerHTML = "<div class='hint'>共 " + total + " 条结果，点击左侧条目查看详情。</div>";
+    resultList.querySelectorAll(".search-more").forEach(el => {
+      el.onclick = (e) => { e.stopPropagation(); loadModuleSearch(q, el.dataset.module); };
+    });
+    // 移动端：把 resultList 转成下拉（既有逻辑），选择即查看详情。
+    runMobileSelects();
+  }
+
+  // 按模块拉取全部命中（分页默认 50 条），用于「显示全部」展开。
+  function loadModuleSearch(q, module) {
+    const more = resultList.querySelector(".search-more[data-module='" + module + "']");
+    if (more) more.textContent = "加载中…";
+    getJSON("/api/search?q=" + encodeURIComponent(q) + "&module=" + encodeURIComponent(module)).then(d => {
+      const grp = (d.groups || [])[0];
+      if (!grp || !grp.items.length) { detailPane.innerHTML = "<div class='hint'>无结果。</div>"; return; }
+      renderSearchList([grp], q);
+    }).catch(() => { detailPane.innerHTML = "<div class='hint'>加载失败，请重试。</div>"; });
+  }
+
+  function doSearch(q) {
+    if (!q) return;
+    moduleHead.innerHTML = "<h2>搜索：人纪</h2>";
+    resultList.innerHTML = "<div class='loading'>搜索中…</div>";
+    if (resultList) resultList.style.display = "";
+    detailPane.innerHTML = "<div class='hint'>请在左侧列表选择搜索结果查看详情。</div>";
+    getJSON("/api/search?q=" + encodeURIComponent(q)).then(d => {
+      const groups = d.groups || [];
+      _searchCache = d;
+      if (!groups.length) { resultList.innerHTML = "<div class='hint'>未找到相关人纪内容。</div>"; return; }
+      renderSearchList(groups, q);
+    }).catch(() => {
+      resultList.innerHTML = "<div class='hint'>搜索失败，请重试。</div>";
+    });
+  }
+
+  // ---------- 初始化 ----------
+  function init() {
+    const sb = $("#searchBtn"), si = $("#search");
+    if (sb) sb.onclick = () => doSearch(si.value);
+    if (si) si.onkeydown = e => { if (e.key === "Enter") doSearch(si.value); };
+    getJSON("/api/renji/modules").then(bs => {
+      BOARDS = bs;
+      observeMobileList();
+      if (BOARDS[0]) {
+        selectBoard(BOARDS[0], true);
+      }
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();

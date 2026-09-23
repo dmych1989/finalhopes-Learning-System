@@ -50,10 +50,6 @@ tools/verify_decrypt.py
 # slim committed version. The deploy script reads public/img/** from disk, not git.
 web_app/data_full.db
 
-# 前端「可读源码」不随公开仓库 / 部署发布（防止算法被直接读取）。
-# 仅本地保留，供 tools/obfuscate_web_js.ps1 生成混淆后的 static/*.js。
-web_app/js_src/
-
 # Static images are deployed via vercel_deploy.py (reads public/img/** from disk),
 # never committed to git.
 public/

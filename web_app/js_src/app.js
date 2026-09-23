@@ -34,9 +34,8 @@ let subSubs = [], subKey = "", subMeta = null, subQ = "", subTotal = 0;
 
 const $ = (s) => document.querySelector(s);
 
-// 当前所属系统：lilun（论文医案查询系统）/ renji（人纪学习系统）/ tianji（天纪学习系统）
-// / mingli（命理系统，从天纪拆出的独立页面）。各系统是完全独立的不同页面，由各自
-// HTML 的 window.SYSTEM 决定，互不在对方侧栏出现。
+// 当前所属系统：lilun（医学论文医案查询系统）/ renji（人纪学习系统）/ tianji（天纪学习系统）。
+// 三个系统是完全独立的不同页面，由各自 HTML 的 window.SYSTEM 决定，互不在对方侧栏出现。
 const SYSTEM = window.SYSTEM || "lilun";
 
 // 子系统配置：人纪 / 天纪 共用一套「左侧即子模块」渲染逻辑，仅 API 前缀 / 图片路由 /
@@ -86,59 +85,8 @@ async function api(path, opts) {
 function buildSidebar(modules) {
   const bar = $("#boardTabs");
   const side = $("#sidebar");
-  if (bar && SYSTEM === "tianji") {
-    // 天纪：顶部三标签（命理系统 / 斗数 / 四柱）
-    bar.innerHTML = "";
-    // 斗数/四柱 根下的一级分区：作为对应按钮的下拉菜单（点击直接跳转到对应分区）。
-    const TJ_TAB_SECTIONS = {
-      dou: ["基础理论", "断法细则", "天纪卦象查询"],
-      sizhu: ["断法分类", "基础理论", "断法细则", "验证时辰法", "案例查询"],
-    };
-    const tjTabs = [
-      { key: "mingli", label: "命理系统" },
-      { key: "dou", label: "斗数" },
-      { key: "sizhu", label: "四柱" },
-    ];
-    tjTabs.forEach((t) => {
-      const d = document.createElement("div");
-      d.className = "board-tab";
-      d.dataset.tab = t.key;
-      d.innerHTML = `<span>${esc(t.label)}</span>`;
-      const sections = TJ_TAB_SECTIONS[t.key];
-      if (sections && sections.length) {
-        const caret = document.createElement("span");
-        caret.className = "board-tab-caret";
-        caret.textContent = "▾";
-        d.appendChild(caret);
-        const dd = document.createElement("div");
-        dd.className = "board-dropdown";
-        sections.forEach((sec) => {
-          const it = document.createElement("div");
-          it.className = "board-dd-item";
-          it.textContent = sec;
-          it.onclick = (ev) => {
-            ev.stopPropagation();
-            closeTianjiTabDDs();
-            showTianjiSection(t.key, sec);
-          };
-          dd.appendChild(it);
-        });
-        d.appendChild(dd);
-        // 斗数/四柱：按钮本身不可导航，整颗按钮（含文字与 ▾）点击即展开下拉菜单。
-        // stopPropagation 避免冒泡触发 document 监听把刚展开的下拉又关掉。
-        d.onclick = (ev) => { ev.stopPropagation(); toggleTianjiTabDD(d); };
-      } else {
-        // 命理系统：无下拉分区，仍是可点击的导航项（渲染排盘工具）。
-        d.onclick = () => showTianjiTab(t.key, d);
-      }
-      bar.appendChild(d);
-    });
-    if (!tianjiTabDDBound) {
-      tianjiTabDDBound = true;
-      document.addEventListener("click", closeTianjiTabDDs);
-    }
-  } else if (bar) {
-    // lilun：模块标签始终横向排列（桌面/移动一致）；移动端由 CSS .board-tabs{flex-wrap} 自动换行。
+  if (bar) {
+    // lilun：模块标签横向排在顶部（与 renji 顶栏一致）
     bar.innerHTML = "";
     modules.forEach((m) => {
       const d = document.createElement("div");
@@ -148,9 +96,10 @@ function buildSidebar(modules) {
       d.onclick = () => selectModule(m, d);
       bar.appendChild(d);
     });
-    bar.style.display = "";
   } else if (side) {
+    // tianji：顶部只放工具类（排盘/命理），左侧渲染按 列表.txt 重组的目录树
     side.innerHTML = "";
+    buildTianjiTools(modules);
     buildTianjiTree();
   }
 }
@@ -177,529 +126,27 @@ function buildTianjiTools(modules) {
   });
 }
 
-// 天纪目录树数据（供顶部「理论」下拉跳转定位）。两个根：斗数 / 四柱。
-let tianjiTreeData = null;
-// 顶部「理论」下拉菜单配置：标签 -> 对应根下分区标题（点击跳转左侧目录）。
-const TIANJI_THEORY = {
-  "斗数理论": ["基础理论", "断法细则", "天纪卦象查询"],
-  "四柱理论": ["断法分类", "基础理论", "断法细则", "验证时辰法"]
-};
-const TIANJI_THEORY_ROOT = { "斗数理论": "斗数", "四柱理论": "四柱" };
-
-// 命理系统 hub 顶部菜单栏：各根下拉仅列出这些一级分区（其余如四柱的「子女」不进下拉，仍可经左侧目录树访问）。
-const ML_MENU_SECTIONS = {
-  "斗数": ["基础理论", "断法细则", "天纪卦象查询"],
-  "四柱": ["断法分类", "基础理论", "断法细则", "验证时辰法", "案例查询"]
-};
-
-// 天纪某分区（斗数/四柱 下拉项）三栏面板：左=一级分类(子类) / 中=二级条目 / 右=内容。
-// 数据来自 tianjiTreeData：section.children = 左侧一级；其 children = 中间二级（带 src/idx 即叶子）。
-// 适用于斗数、四柱的全部下拉分区（基础理论/断法细则/天纪卦象查询/断法分类/时辰效验/案例查询 等）。
-// 一级分类本身可能是叶子（如「验证时辰法」）→ 中间列留空、直接加载内容；空分类 → 提示暂无内容。
-async function renderTianjiSectionPanel(rootName, secName) {
-  const panel = document.getElementById("douJichuPanel");
-  if (!panel) return;
-  const side = document.getElementById("sidebar"); if (side) side.style.display = "none";
-  const wa = document.querySelector(".workarea"); if (wa) wa.style.display = "none";  // 整体隐藏工作区（避免 .workarea 与 .dj 同时 flex:1 平分空间，导致 .dj 被挤压到中部）
-  const lp = document.getElementById("listPane"); if (lp) lp.style.display = "none";
-  const dp = document.getElementById("detailPane"); if (dp) dp.style.display = "none";
-  const mh = document.getElementById("moduleHead");
-  if (mh) mh.innerHTML = '<div class="mh-left"><h2>' + esc(rootName) + ' · ' + esc(secName) + '</h2><p>' +
-    (isMobile() ? '选择分类与文章，查看内容' : '左侧分类 → 中间条目 → 右侧内容') + '</p></div>';
-  await loadTianjiTree();
-  const root = (tianjiTreeData || []).find((r) => r.t === rootName);
-  const find = (n, name) => n && (n.children || []).find((c) => c.t === name);
-  const sec = root && find(root, secName);
-  const cats = (sec && sec.children) || [];
-  panel.style.display = "";
-  panel.innerHTML = "";
-
-  if (isMobile()) {
-    // 移动端：目录做成两个下拉（一级=分类、二级=该分类下文章）；文章全文显示、整页滚动（非嵌入式）。
-    const lvl1 = document.createElement("select");
-    lvl1.className = "tj-mobile-select";
-    lvl1.id = "tjLevel1";
-    const ph1 = document.createElement("option");
-    ph1.value = ""; ph1.textContent = "选择分类"; ph1.disabled = true; ph1.selected = true;
-    lvl1.appendChild(ph1);
-
-    const lvl2 = document.createElement("select");
-    lvl2.className = "tj-mobile-select";
-    lvl2.id = "tjLevel2";
-    const ph2 = document.createElement("option");
-    ph2.value = ""; ph2.textContent = "选择文章"; ph2.disabled = true; ph2.selected = true;
-    lvl2.appendChild(ph2);
-
-    const content = document.createElement("div");
-    content.className = "dj-main";
-    content.id = "djMobileContent";
-
-    if (!cats.length) {
-      if (sec && sec.src) {
-        // 分区本身即单篇内容（如「验证时辰法」）：直接加载，无需中间列
-        selectTJ2(sec, content);
-      } else {
-        content.innerHTML = '<div class="hint">（该分区暂无内容）</div>';
-      }
-      panel.appendChild(lvl1); panel.appendChild(lvl2); panel.appendChild(content);
-      return;
-    }
-
-    cats.forEach((cat, i) => {
-      const o = document.createElement("option");
-      o.value = "c" + i; o.textContent = cat.t; o._cat = cat;
-      lvl1.appendChild(o);
-    });
-
-    // 根据一级分类填充二级下拉（文章），并自动展示首篇
-    const fillLevel2 = (cat) => {
-      lvl2.innerHTML = "";
-      const ph = document.createElement("option");
-      ph.value = ""; ph.textContent = "选择文章"; ph.disabled = true; ph.selected = true;
-      lvl2.appendChild(ph);
-      const leaves = collectTianjiLeaves(cat, []);
-      if (!leaves.length && cat.src) {
-        const o = document.createElement("option");
-        o.value = "l0"; o.textContent = "📄 " + cat.t; o._leaf = cat;
-        lvl2.appendChild(o);
-      } else {
-        leaves.forEach((leaf, j) => {
-          const o = document.createElement("option");
-          o.value = "l" + j; o.textContent = leaf.t; o._leaf = leaf;
-          lvl2.appendChild(o);
-        });
-      }
-      const first = [...lvl2.options].find((x) => x._leaf);
-      if (first) { lvl2.value = first.value; selectTJ2(first._leaf, content); }
-      else content.innerHTML = '<div class="hint">（该分类暂无内容）</div>';
-    };
-
-    lvl1.addEventListener("change", () => {
-      const opt = lvl1.selectedOptions && lvl1.selectedOptions[0];
-      if (!opt || !opt._cat) return;
-      fillLevel2(opt._cat);
-    });
-    lvl2.addEventListener("change", () => {
-      const opt = lvl2.selectedOptions && lvl2.selectedOptions[0];
-      if (!opt || !opt._leaf) return;
-      selectTJ2(opt._leaf, content);
-    });
-
-    // 默认选中第一个分类并展示其首篇（打开网页自动显示第一项内容）
-    lvl1.value = "c0";
-    fillLevel2(cats[0]);
-
-    panel.appendChild(lvl1);
-    panel.appendChild(lvl2);
-    panel.appendChild(content);
-    return;
-  }
-
-  // 桌面：保持三栏（左分类 / 中条目 / 右内容）
-  const col1 = document.createElement("div"); col1.className = "dj-side";
-  const col2 = document.createElement("div"); col2.className = "dj-mid";
-  const col3 = document.createElement("div"); col3.className = "dj-main";
-  panel.appendChild(col1); panel.appendChild(col2); panel.appendChild(col3);
-  if (!cats.length) {
-    if (sec && sec.src) {
-      // 分区本身即单篇内容（如「验证时辰法」）：直接加载，省略中间分类列
-      col1.innerHTML = '<div class="hint">（本分区为单篇内容）</div>';
-      col2.innerHTML = '<div class="hint">（无子分类）</div>';
-      selectTJ2(sec, col3);
-    } else {
-      col1.innerHTML = '<div class="hint">（该分区暂无分类）</div>';
-      col2.innerHTML = '<div class="hint">（暂无条目）</div>';
-      col3.innerHTML = '<div class="hint">暂无内容</div>';
-    }
-    return;
-  }
-  cats.forEach((cat, i) => {
-    const b = document.createElement("button");
-    b.type = "button"; b.className = "dj-1tab"; b.textContent = cat.t;
-    b.onclick = () => selectTJ1(cat, col1, col2, col3);
-    col1.appendChild(b);
-    if (i === 0) b.classList.add("active");
-  });
-  selectTJ1(cats[0], col1, col2, col3);
-}
-
-// 一级分类点击：有子项→中间列显示二级条目；本身即叶子(单篇内容)→直接加载；否则提示暂无内容。
-function selectTJ1(cat, col1, col2, col3) {
-  col1.querySelectorAll(".dj-1tab").forEach((b) => b.classList.toggle("active", b.textContent === cat.t));
-  col2.innerHTML = "";
-  const kids = cat.children || [];
-  if (!kids.length) {
-    if (cat.src) {
-      col2.innerHTML = '<div class="hint">（本项为单篇内容）</div>';
-      selectTJ2(cat, col3);
-    } else {
-      col2.innerHTML = '<div class="hint">（该分类暂无条目）</div>';
-      col3.innerHTML = '<div class="hint">暂无内容</div>';
-    }
-    return;
-  }
-  const wrap = document.createElement("div"); wrap.className = "dj-2tabs";
-  kids.forEach((leaf, i) => {
-    const t = document.createElement("button");
-    t.type = "button"; t.className = "dj-2tab"; t.textContent = leaf.t;
-    t.onclick = () => {
-      wrap.querySelectorAll(".dj-2tab").forEach((x) => x.classList.toggle("active", x.textContent === leaf.t));
-      selectTJ2(leaf, col3);
-    };
-    wrap.appendChild(t);
-    if (i === 0) t.classList.add("active");
-  });
-  col2.appendChild(wrap);
-  selectTJ2(kids[0], col3);
-}
-
-// 二级条目（叶子）点击 → 经 /api/tianji/item 加载详情到右侧内容区。
-async function selectTJ2(leaf, col3) {
-  if (!leaf.src) { col3.innerHTML = '<div class="hint">暂无内容</div>'; return; }
-  col3.innerHTML = '<div class="hint">加载中…</div>';
-  try {
-    const item = await api(`${sysCfg.api}/item?sub=${enc(leaf.src)}&i=${leaf.idx}`);
-    const fields = item.fields || {};
-    const meta = CAT_SUB_META[leaf.src] || {};
-    let h = `<div class="detail-card"><h3>${esc(item.name)}</h3>`;
-    // 卦图（人间道 / 六十四卦 src=gua 默认带原版卦图）
-    if (meta.hasImg) {
-      h += `<div class="gua-img"><img src="${sysCfg.img}?name=${enc(item.name)}" ` +
-           `alt="${esc(item.name)}" onerror="this.style.display='none'"></div>`;
-    }
-    // 卦象线（阴阳爻）
-    if (item.dd && /^[01]{6}$/.test(item.dd)) {
-      h += `<div class="gua-dd" title="上爻→初爻">`;
-      for (let k = 0; k < 6; k++) {
-        const yang = item.dd[k] === "1";
-        h += `<div class="gua-line ${yang ? "yang" : "yin"}">` + (yang ? "" : `<span></span><span></span>`) + `</div>`;
-      }
-      h += `</div>`;
-    }
-    Object.keys(fields).forEach((kk) => {
-      const v = fields[kk];
-      if (v == null || v === "") return;
-      // 收紧段落之间的空行：吃掉换行前后的空白、合并连续换行（保留段落分隔，去掉整行空白）
-      const vv = String(v).replace(/\r\n/g, "\n").replace(/[ \t]*\n[ \t]*/g, "\n").replace(/\n{2,}/g, "\n").trim();
-      // 概述段（与文章同名或「正文」）不加小标题，直接作正文；其余（如合并后的「工作一」）作小节
-      if (kk === item.name || kk === "正文") {
-        h += `<div class="sec-b sec-lead">${esc(vv)}</div>`;
-      } else {
-        h += `<div class="sec-h">${esc(kk)}</div><div class="sec-b">${esc(vv)}</div>`;
-      }
-    });
-    if (!Object.keys(fields).length && !meta.hasImg && !item.dd) h += '<div class="hint">（本条暂无内容）</div>';
-    h += "</div>";
-    col3.innerHTML = h;
-  } catch (e) {
-    col3.innerHTML = '<div class="hint">详情加载失败，请重试。</div>';
-  }
-}
-
-// 确保 #listMain 内含标准结果列表骨架（#filterBar/#listHint/#resultList/#pager）。
-// 命理排盘板 renderTool 会整体重写 #listMain，销毁 #resultList；搜索前必须复位，
-// 否则 $("#resultList") 为 null 导致渲染抛异常（即「搜索无法使用」的根因之一）。
-function ensureResultList() {
-  let lm = $("#listMain");
-  if (!lm) {
-    const lp = document.getElementById("listPane");
-    if (lp) { lp.innerHTML = '<div class="list-main" id="listMain"></div>'; lm = $("#listMain"); }
-  }
-  if (!lm) return false;
-  if (!$("#resultList")) {
-    lm.innerHTML =
-      '<div class="filter-bar" id="filterBar"></div>' +
-      '<div class="hint" id="listHint"></div>' +
-      '<ul id="resultList" class="result-list"></ul>' +
-      '<div class="pager" id="pager"></div>';
-  }
-  return true;
-}
-
-// 天纪站内搜索：隐藏三栏面板、切到工作区（列表 + 详情），拉 /api/tianji/search 渲染分组结果。
-async function doTianjiSearch(q) {
-  currentSearchQ = q;
-  const dj = document.getElementById("douJichuPanel"); if (dj) dj.style.display = "none";
-  const lp = document.getElementById("listPane"); if (lp) lp.style.display = "";
-  const dp = document.getElementById("detailPane"); if (dp) dp.style.display = "";
-  const side = document.getElementById("sidebar"); if (side) side.style.display = "none";
-  const wa = document.querySelector(".workarea"); if (wa) wa.classList.remove("mingli-mode");
-  const mh = document.getElementById("moduleHead");
-  if (mh) mh.innerHTML = '<div class="mh-left"><h2>天纪搜索</h2><p>关键词：' + esc(q) + '</p></div>';
-  ensureResultList();
-  const ul = $("#resultList"); if (ul) { ul.className = "result-list"; ul.innerHTML = ""; }
-  const hint = $("#listHint");
-  if (hint) { hint.style.display = "block"; hint.textContent = "搜索中…"; }
-  const fb = $("#filterBar"); if (fb) fb.style.display = "none";
-  const pg = $("#pager"); if (pg) pg.innerHTML = "";
-  let data;
-  try { data = await api(`/api/tianji/search?q=${enc(q)}`); }
-  catch (e) {
-    if (hint) { hint.style.display = "block"; hint.textContent = "搜索失败，请重试。"; }
-    return;
-  }
-  const groups = (data && data.groups) || [];
-  const total = groups.reduce((s, g) => s + g.items.length, 0);
-  if (!total) {
-    if (hint) { hint.style.display = "block"; hint.textContent = `未找到与 “${q}” 相关的内容`; }
-    return;
-  }
-  if (hint) hint.style.display = "none";
-  groups.forEach((g) => {
-    const gh = document.createElement("li");
-    gh.className = "result-group-head";
-    gh.textContent = `${g.name}（${g.total}）`;
-    ul.appendChild(gh);
-    g.items.forEach((it) => {
-      const li = document.createElement("li");
-      li.className = "result-item";
-      li.innerHTML = `<div class="t">${esc(it.name)}</div><div class="s">${esc(g.name)}</div>`;
-      li.onclick = () => loadTianjiSearchItem(g.module, it.i);
-      ul.appendChild(li);
-    });
-  });
-}
-
-async function loadTianjiSearchItem(sub, i) {
-  let item;
-  try { item = await api(`${sysCfg.api}/item?sub=${enc(sub)}&i=${i}`); }
-  catch (e) { $("#detailPane").innerHTML = '<div class="hint">详情加载失败，请重试。</div>'; return; }
-  renderTianjiItem(sub, item);
-}
-
-function renderTianjiItem(sub, item) {
-  const meta = CAT_SUB_META[sub] || {};
-  const imgBase = (sysCfg && sysCfg.img) ? sysCfg.img : "/api/tianji/img";
-  let h = `<div class="detail-card"><h3>${esc(item.name)}</h3>`;
-  if (meta.hasImg) {
-    h += `<div class="gua-img"><img src="${imgBase}?name=${enc(item.name)}" ` +
-         `alt="${esc(item.name)}" onerror="this.style.display='none'"></div>`;
-  }
-  if (item.dd && /^[01]{6}$/.test(item.dd)) {
-    h += `<div class="gua-dd" title="上爻→初爻">`;
-    for (let k = 0; k < 6; k++) {
-      const yang = item.dd[k] === "1";
-      h += `<div class="gua-line ${yang ? "yang" : "yin"}">` + (yang ? "" : `<span></span><span></span>`) + `</div>`;
-    }
-    h += `</div>`;
-  }
-  const fields = item.fields || {};
-  const keys = Object.keys(fields);
-  if (!keys.length && !meta.hasImg && !item.dd) h += `<div class="hint">（本条暂无内容）</div>`;
-  keys.forEach((k) => {
-    const v = fields[k];
-    if (v == null || v === "") return;
-    const vv = String(v).replace(/\r\n/g, "\n").replace(/[ \t]*\n[ \t]*/g, "\n").replace(/\n{2,}/g, "\n").trim();
-    if (k === item.name || k === "正文") {
-      h += `<div class="sec-b sec-lead">${esc(vv)}</div>`;
-    } else {
-      h += `<div class="sec-h">${esc(k)}</div><div class="sec-b">${esc(vv)}</div>`;
-    }
-  });
-  h += `</div>`;
-  $("#detailPane").innerHTML = h;
-}
-
-// 退出三栏面板、恢复常规（工作区 + 列表 + 详情）。
-function restoreMingliNormal() {
-  const panel = document.getElementById("douJichuPanel");
-  if (panel) panel.style.display = "none";
-  const wa = document.querySelector(".workarea"); if (wa) wa.style.display = "";   // 恢复工作区（与 renderTianjiSectionPanel 隐藏配对）
-  const lp = document.getElementById("listPane"); if (lp) lp.style.display = "";
-  const dp = document.getElementById("detailPane"); if (dp) dp.style.display = "";
-  const side = document.getElementById("sidebar"); if (side) side.style.display = "";
-}
-
-// 目录树数据（可能含多根：斗数 / 四柱），每个叶子带 src/idx，点击复用 /api/tianji/item 渲染详情。
-async function loadTianjiTree() {
-  if (tianjiTreeData) return tianjiTreeData;
-  tianjiTreeData = (await api("/api/tianji/tree")).tree;
-  return tianjiTreeData;
-}
-
-// 天纪顶部三标签切换：命理系统=排盘工具；斗数/四柱=对应根目录树 + 文章。
-let tianjiTab = "mingli";
-let tianjiTabDDBound = false;
-let tianjiView = { type: "mingli" };   // 当前天纪视图（命理工具 / 分区三栏），供跨断点重建目录复用
-function toggleTianjiTabDD(tab) {
-  const wasOpen = tab.classList.contains("open");
-  closeTianjiTabDDs();
-  if (!wasOpen) tab.classList.add("open");
-}
-function closeTianjiTabDDs() {
-  document.querySelectorAll("#boardTabs .board-tab.open").forEach((t) => t.classList.remove("open"));
-}
-// 点击「斗数/四柱」下拉中的分区：切到对应标签，并在主内容区渲染该分区的三栏面板
-// （左=一级分类 / 中=二级条目 / 右=内容），不再展开左侧目录树。
-async function showTianjiSection(tabKey, sec) {
-  const rootName = tabKey === "dou" ? "斗数" : "四柱";
-  tianjiTab = tabKey;
-  tianjiView = { type: "section", rootName, secName: sec };
-  const tabEl = document.querySelector('#boardTabs .board-tab[data-tab="' + tabKey + '"]');
-  setActive(tabEl);
-  await renderTianjiSectionPanel(rootName, sec);
-}
-function showTianjiTab(tab, el) {
-  tianjiTab = tab;
-  setActive(el);
-  restoreMingliNormal();
-  const side = document.getElementById("sidebar");
-  if (tab === "mingli") {
-    if (side) side.style.display = "none";
-    tianjiView = { type: "mingli" };
-    const mh = document.getElementById("moduleHead");
-    if (mh) mh.innerHTML = '';
-    renderTool();
-    return;
-  }
-  // 斗数 / 四柱：显示侧栏目录树
-  if (side) side.style.display = "";
-  const rootName = tab === "dou" ? "斗数" : "四柱";
-  const mh = document.getElementById("moduleHead");
-  if (mh) mh.innerHTML = '<div class="mh-left"><h2>' + esc(rootName) + '</h2><p>点击左侧目录浏览文章</p></div>';
-  buildTianjiTree(rootName);
-  const lm = $("#listMain"); if (lm) lm.innerHTML = '<div class="hint">请选择左侧目录查看文章。</div>';
-  const dp = $("#detailPane"); if (dp) dp.innerHTML = '<div class="hint">点击左侧条目查看详情。</div>';
-  const fb = $("#filterBar"); if (fb) fb.style.display = "none";
-  const pg = $("#pager"); if (pg) pg.innerHTML = "";
-}
-
-// 左侧目录树：可选 rootName 参数，仅渲染指定根（斗数 / 四柱）。
-async function buildTianjiTree(rootName) {
+// 左侧目录树：按 列表.txt 重组（斗数 > 基础理论/断法细则/卦象/子女/时辰效验/案例查询）。
+// 每个叶子带 src/idx，点击复用 /api/tianji/item 渲染详情。
+async function buildTianjiTree() {
   const side = document.getElementById("sidebar");
   if (!side) return;
   side.innerHTML = '<div class="hint">目录加载中…</div>';
+  let tree;
   try {
-    await loadTianjiTree();
+    tree = (await api("/api/tianji/tree")).tree;
   } catch (e) {
     side.innerHTML = '<div class="hint">目录加载失败，请刷新页面重试。</div>';
     return;
   }
-  if (!tianjiTreeData || !tianjiTreeData.length) { side.innerHTML = '<div class="hint">暂无目录。</div>'; return; }
+  if (!tree || !tree.length) { side.innerHTML = '<div class="hint">暂无目录。</div>'; return; }
   side.innerHTML = "";
-  const roots = rootName
-    ? tianjiTreeData.filter((r) => r.t === rootName)
-    : tianjiTreeData;
-  roots.forEach((root) => {
-    const title = document.createElement("div");
-    title.className = "tj-root";
-    title.textContent = root.t;
-    side.appendChild(title);
-    renderTianjiTree(root.children, side, 0, root);
-  });
-}
-
-// 是否处于移动端断点（与 CSS @media(max-width:820px) 保持一致）
-function isMobile() {
-  try { return window.matchMedia("(max-width:820px)").matches; } catch (e) { return false; }
-}
-
-// 移动端：把文章列表（#resultList 的 .result-item）转成「二级目录」下拉，选中即渲染详情；默认自动展示首项。
-// 通过 MutationObserver 自动适配所有会刷新列表的模块（分页 / 栏目切换 / 子模块切换 / 搜索结果等），
-// 无需逐个渲染函数挂钩。非列表型内容（工具 / 表格 / 图集 / 动画）不含 .result-item，下拉不生成，整页滚动全文显示。
-let _mListObserver = null, _mListTO = null;
-function mobileListToSelect() {
-  const ul = document.getElementById("resultList");
-  if (!ul) return;
-  let sel = document.getElementById("mListSelect");
-  if (!isMobile()) {
-    if (sel) sel.remove();
-    ul.style.display = "";
-    return;
-  }
-  const items = ul.querySelectorAll(".result-item");
-  if (!items.length) {
-    if (sel) sel.style.display = "none";
-    ul.style.display = "";
-    return;
-  }
-  if (!sel) {
-    sel = document.createElement("select");
-    sel.id = "mListSelect";
-    sel.className = "tj-mobile-select";
-    ul.parentNode.insertBefore(sel, ul);
-  }
-  sel.style.display = "";
-  ul.style.display = "none";
-  sel.innerHTML = "";
-  const ph = document.createElement("option");
-  ph.value = ""; ph.textContent = "选择文章"; ph.disabled = true; ph.selected = true;
-  sel.appendChild(ph);
-  items.forEach((li, i) => {
-    const o = document.createElement("option");
-    o.value = "i" + i; o.textContent = li.textContent.trim(); o._li = li;
-    sel.appendChild(o);
-  });
-  sel.onchange = () => {
-    const o = sel.selectedOptions && sel.selectedOptions[0];
-    if (o && o._li && o._li.onclick) o._li.onclick();
-  };
-  // 自动展示首项（打开网页 / 切换模块 / 翻页后均落到第一条）
-  if (sel.options.length > 1) { sel.selectedIndex = 1; sel.onchange(); }
-}
-function observeMobileList() {
-  if (_mListObserver) return;
-  const ul = document.getElementById("resultList");
-  if (!ul) return;
-  _mListObserver = new MutationObserver(() => {
-    if (_mListTO) clearTimeout(_mListTO);
-    _mListTO = setTimeout(mobileListToSelect, 60);
-  });
-  _mListObserver.observe(ul, { childList: true, subtree: true });
-}
-
-// 命理 · 八字命例列表：移动端由 .case-item 卡片转 #mCaseSelect 下拉，选择即排盘。
-let _mCaseObserver = null, _mCaseTO = null;
-function mobileCaseListToSelect() {
-  const ul = document.getElementById("caseList");
-  if (!ul) return;
-  let sel = document.getElementById("mCaseSelect");
-  if (!isMobile()) {
-    if (sel) sel.remove();
-    ul.style.display = "";
-    return;
-  }
-  const items = ul.querySelectorAll(".case-item");
-  if (!items.length) {
-    if (sel) sel.style.display = "none";
-    ul.style.display = "";
-    return;
-  }
-  if (!sel) {
-    sel = document.createElement("select");
-    sel.id = "mCaseSelect";
-    sel.className = "tj-mobile-select";
-    ul.parentNode.insertBefore(sel, ul);
-  }
-  sel.style.display = "";
-  ul.style.display = "none";
-  sel.innerHTML = "";
-  const ph = document.createElement("option");
-  ph.value = ""; ph.textContent = "选择命例"; ph.disabled = true; ph.selected = true;
-  sel.appendChild(ph);
-  items.forEach((li) => {
-    const o = document.createElement("option");
-    const nm = li.querySelector(".ci-name");
-    o.value = li.dataset.i; o.textContent = (nm ? nm.textContent : "").trim();
-    o._i = li.dataset.i;
-    sel.appendChild(o);
-  });
-  sel.onchange = () => {
-    const o = sel.selectedOptions && sel.selectedOptions[0];
-    if (o && o._i) selectCase(parseInt(o._i, 10));
-  };
-  // 自动展示首条命例（打开网页 / 切换筛选 / 搜索后均落到第一条）
-  if (sel.options.length > 1) { sel.selectedIndex = 1; sel.onchange(); }
-}
-function observeMobileCaseList() {
-  if (_mCaseObserver) return;
-  const ul = document.getElementById("caseList");
-  if (!ul) return;
-  _mCaseObserver = new MutationObserver(() => {
-    if (_mCaseTO) clearTimeout(_mCaseTO);
-    _mCaseTO = setTimeout(mobileCaseListToSelect, 60);
-  });
-  _mCaseObserver.observe(ul, { childList: true, subtree: true });
+  const root = tree[0];
+  const title = document.createElement("div");
+  title.className = "tj-root";
+  title.textContent = root.t;
+  side.appendChild(title);
+  renderTianjiTree(root.children, side, 0);
 }
 
 function countTianjiLeaves(node) {
@@ -709,10 +156,8 @@ function countTianjiLeaves(node) {
   return n;
 }
 
-// parent：父节点引用（用于下拉跳转时回溯展开祖先）；同时为节点挂 _li/_head 供跳转定位。
-function renderTianjiTree(nodes, container, level, parent) {
+function renderTianjiTree(nodes, container, level) {
   nodes.forEach((node) => {
-    node._parent = parent;
     if (node.children && node.children.length) {
       const li = document.createElement("div");
       li.className = "tj-node" + (level < 1 ? " open" : "");
@@ -729,10 +174,8 @@ function renderTianjiTree(nodes, container, level, parent) {
       li.appendChild(head);
       const wrap = document.createElement("div");
       wrap.className = "tj-node-children";
-      renderTianjiTree(node.children, wrap, level + 1, node);
+      renderTianjiTree(node.children, wrap, level + 1);
       li.appendChild(wrap);
-      node._li = li;
-      node._head = head;
       container.appendChild(li);
     } else {
       const leaf = document.createElement("div");
@@ -741,145 +184,9 @@ function renderTianjiTree(nodes, container, level, parent) {
       leaf.dataset.src = node.src || "";
       leaf.dataset.idx = (node.idx != null) ? String(node.idx) : "";
       leaf.onclick = () => openTianjiLeaf(leaf);
-      node._li = null;
       container.appendChild(leaf);
     }
   });
-}
-
-// 顶部「理论」下拉（斗数理论 / 四柱理论）：追加到 #tjTools 右侧，点击分区跳转到左侧对应目录并展开渲染。
-function buildTianjiTheoryNav() {
-  const box = document.getElementById("tjTools");
-  if (!box) return;
-  Object.keys(TIANJI_THEORY).forEach((label, i) => {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "tj-tool has-dd" + (i === 0 ? " right-push" : "");
-    btn.innerHTML = esc(label) + ' <span class="caret">▾</span>';
-    const dd = document.createElement("div");
-    dd.className = "tj-dropdown";
-    TIANJI_THEORY[label].forEach((sec) => {
-      const it = document.createElement("div");
-      it.className = "tj-dd-item";
-      it.textContent = sec;
-      it.dataset.root = TIANJI_THEORY_ROOT[label];
-      it.dataset.section = sec;
-      it.onclick = (ev) => {
-        ev.stopPropagation();
-        btn.classList.remove("open");
-        jumpToTianjiSection(it.dataset.root, sec);
-      };
-      dd.appendChild(it);
-    });
-    btn.appendChild(dd);
-    btn.onclick = (ev) => {
-      ev.stopPropagation();
-      document.querySelectorAll(".tj-tool.has-dd.open").forEach((b) => { if (b !== btn) b.classList.remove("open"); });
-      btn.classList.toggle("open");
-    };
-    box.appendChild(btn);
-  });
-  // 点击空白处关闭所有下拉
-  document.addEventListener("click", () => {
-    document.querySelectorAll(".tj-tool.has-dd.open").forEach((b) => b.classList.remove("open"));
-  });
-}
-
-// 在目录树中按标题查找节点（含根自身）。
-function findTianjiNode(root, title) {
-  if (root.t === title) return root;
-  for (const c of (root.children || [])) {
-    const r = findTianjiNode(c, title);
-    if (r) return r;
-  }
-  return null;
-}
-
-// 展开某节点及其全部祖先，并同步折叠箭头。
-function expandTianjiAncestors(node) {
-  let p = node;
-  while (p) { if (p._li) p._li.classList.add("open"); p = p._parent; }
-  syncTianjiToggles();
-}
-
-function syncTianjiToggles() {
-  document.querySelectorAll("#sidebar .tj-node").forEach((li) => {
-    const head = li.firstElementChild;
-    const tg = head ? head.querySelector(".tj-toggle") : null;
-    if (tg) tg.textContent = li.classList.contains("open") ? "▾" : "▸";
-  });
-}
-
-// 顶部「理论」下拉 -> 跳转左侧目录对应分区：展开该分区并列出其下属文章。
-function jumpToTianjiSection(rootName, sectionTitle) {
-  if (!tianjiTreeData) return;
-  const root = tianjiTreeData.find((r) => r.t === rootName);
-  if (!root) return;
-  const node = findTianjiNode(root, sectionTitle);
-  if (!node) { renderTianjiSectionEmpty(rootName, sectionTitle); return; }
-  expandTianjiAncestors(node);
-  if (node._head) node._head.scrollIntoView({ block: "center", behavior: "smooth" });
-  renderTianjiNodeList(node, rootName);
-}
-
-// 收集节点下所有带 src 的叶子（递归）。
-function collectTianjiLeaves(node, out) {
-  if (node.children && node.children.length) {
-    node.children.forEach((c) => collectTianjiLeaves(c, out));
-  } else if (node.src) {
-    out.push(node);
-  }
-  return out;
-}
-
-// 在右侧列表区渲染某分区的全部文章（点击即看详情），复用 openTianjiLeaf。
-function renderTianjiNodeList(node, rootName) {
-  const leaves = collectTianjiLeaves(node, []);
-  const ul = document.getElementById("resultList");
-  const hint = document.getElementById("listHint");
-  const fb = document.getElementById("filterBar");
-  const pg = document.getElementById("pager");
-  const mh = document.getElementById("moduleHead");
-  const dp = document.getElementById("detailPane");
-  if (fb) { fb.innerHTML = ""; fb.style.display = "none"; }
-  if (pg) pg.innerHTML = "";
-  if (hint) hint.style.display = "none";
-  if (mh) mh.innerHTML = `<div class="mh-left"><h2>${esc(rootName)} · ${esc(node.t)}</h2><p>共 ${leaves.length} 条内容</p></div>`;
-  if (dp) dp.innerHTML = '<div class="hint">点击上方条目查看详情。</div>';
-  if (!ul) return;
-  ul.innerHTML = "";
-  if (!leaves.length) {
-    ul.innerHTML = '<li class="hint">此分类暂无内容。</li>';
-    return;
-  }
-  leaves.forEach((leaf) => {
-    const li = document.createElement("li");
-    li.className = "result-item";
-    li.textContent = leaf.t;
-    li.onclick = () => {
-      const tmp = document.createElement("div");
-      tmp.dataset.src = leaf.src || "";
-      tmp.dataset.idx = (leaf.idx != null) ? String(leaf.idx) : "";
-      tmp.textContent = leaf.t;
-      openTianjiLeaf(tmp);
-      document.querySelectorAll("#resultList .result-item.active").forEach((d) => d.classList.remove("active"));
-      li.classList.add("active");
-    };
-    ul.appendChild(li);
-  });
-}
-
-function renderTianjiSectionEmpty(rootName, sectionTitle) {
-  const mh = document.getElementById("moduleHead");
-  if (mh) mh.innerHTML = `<div class="mh-left"><h2>${esc(rootName)} · ${esc(sectionTitle)}</h2><p>暂无内容</p></div>`;
-  const ul = document.getElementById("resultList");
-  const hint = document.getElementById("listHint");
-  const fb = document.getElementById("filterBar");
-  if (fb) { fb.innerHTML = ""; fb.style.display = "none"; }
-  if (hint) hint.style.display = "none";
-  if (ul) ul.innerHTML = '<li class="hint">此分类（' + esc(sectionTitle) + '）暂无内容。</li>';
-  const dp = document.getElementById("detailPane");
-  if (dp) dp.innerHTML = '<div class="hint">点击左侧条目查看详情。</div>';
 }
 
 // 点击目录树叶子：设置数据源并复用 /api/tianji/item 取详情（showSubDetail 已支持 gua 图+卦象）。
@@ -985,22 +292,18 @@ function selectModule(m, el) {
 
 function endpointFor(q) {
   const k = state.module;
-  const sz = isMobile() ? 19999 : state.size;   // 移动端一次取全量（去掉翻页）；桌面仍按原分页
-  if (k === "cases") return `/api/cases?cat=${enc(state.caseCat || "")}&q=${enc(q)}&page=${state.page}&size=${sz}`;
-  if (k === "herbs") return `/api/herbs?q=${enc(q)}&cat=${enc(state.herbCat)}&page=${state.page}&size=${sz}`;
-  if (k === "articles") return `/api/articles?cat=${enc(state.articleCat || "")}&q=${enc(q)}&page=${state.page}&size=${sz}`;
-  if (k === "hdwj") return `/api/hdwj?q=${enc(q)}&page=${state.page}&size=${sz}`;
-  if (k === "bz") return `/api/bz?cat=${enc(state.bzCat || "")}&q=${enc(q)}&page=${state.page}&size=${sz}`;
-  if (k === "sspl") return `/api/sspl?cat=${enc(state.ssplCat || "")}&q=${enc(q)}&page=${state.page}&size=${sz}`;
-  if (REF_TABLES[k]) return `/api/ref/${REF_TABLES[k]}?q=${enc(q)}&page=${state.page}&size=${sz}`;
+  if (k === "cases") return `/api/cases?cat=${enc(state.caseCat || "")}&q=${enc(q)}&page=${state.page}&size=${state.size}`;
+  if (k === "herbs") return `/api/herbs?q=${enc(q)}&cat=${enc(state.herbCat)}&page=${state.page}&size=${state.size}`;
+  if (k === "articles") return `/api/articles?cat=${enc(state.articleCat || "")}&q=${enc(q)}&page=${state.page}&size=${state.size}`;
+  if (k === "hdwj") return `/api/hdwj?q=${enc(q)}&page=${state.page}&size=${state.size}`;
+  if (k === "bz") return `/api/bz?cat=${enc(state.bzCat || "")}&q=${enc(q)}&page=${state.page}&size=${state.size}`;
+  if (k === "sspl") return `/api/sspl?cat=${enc(state.ssplCat || "")}&q=${enc(q)}&page=${state.page}&size=${state.size}`;
+  if (REF_TABLES[k]) return `/api/ref/${REF_TABLES[k]}?q=${enc(q)}&page=${state.page}&size=${state.size}`;
   return null;
 }
 const enc = (s) => encodeURIComponent(s || "");
 
 async function loadList(q) {
-  const wa = document.querySelector(".workarea");
-  if (wa) wa.classList.toggle("hdwj-mode", state.module === "hdwj");
-  if (wa) wa.classList.remove("mingli-mode");
   const ep = endpointFor(q);
   if (!ep) return;
   const my = ++loadSeq;
@@ -1047,62 +350,10 @@ async function loadList(q) {
   }
 }
 
-// 移动端：把分类侧栏（评论/病症/按证型/论文栏目）渲染为单个下拉菜单；桌面保持按钮列表。
-// onPick(null) 表示选中「全部」；否则传入对应分类对象。
-// 关键修复：loadList 每次都会重渲染本侧栏，若每次都重建 <select> 会把选中项弹回占位符（表现为「无法切换」）。
-//   故复用同一 select 元素（按 _items 引用判断分类集合是否变化），重建后仅靠 activeValue 同步选中项。
-function renderCatNavSelect(nav, title, items, onPick, allLabel, activeValue) {
-  nav.style.display = "block";
-  let sel = nav.querySelector("#mCatSelect");
-  if (!sel || sel._items !== (items || [])) {
-    nav.innerHTML = "";
-    sel = document.createElement("select");
-    sel.id = "mCatSelect";
-    sel.className = "tj-mobile-select";
-    sel._items = items || [];
-    const ph = document.createElement("option");
-    ph.value = ""; ph.textContent = title; ph.disabled = true; ph.selected = true;
-    sel.appendChild(ph);
-    if (allLabel) {
-      const o = document.createElement("option");
-      o.value = "__all"; o.textContent = allLabel;
-      sel.appendChild(o);
-    }
-    (items || []).forEach((c, i) => {
-      const o = document.createElement("option");
-      o.value = "c" + i;
-      o.textContent = (c.label != null ? c.label : c.name) + (c.count != null ? "（" + c.count + "）" : "");
-      o._c = c;
-      sel.appendChild(o);
-    });
-    sel.onchange = () => {
-      const o = sel.selectedOptions && sel.selectedOptions[0];
-      if (!o) return;
-      onPick(o.value === "__all" ? null : (o._c || null));
-    };
-    nav.appendChild(sel);
-  }
-  // 同步当前选中项：保持用户所选，不再弹回占位符。
-  let want = "";
-  if (activeValue === "__all" || activeValue === "all" || activeValue === "" || activeValue == null) {
-    want = allLabel ? "__all" : "";
-  } else {
-    const hit = Array.prototype.slice.call(sel.options).find(
-      (o) => o._c && (o._c.key === activeValue || o._c.name === activeValue));
-    if (hit) want = hit.value;
-  }
-  if (want) sel.value = want;
-}
-
 // 医案「按证型浏览」左侧分类侧栏
 function renderCasesCatNav(cats, activeKey) {
   const nav = $("#casesCatNav");
   if (!nav) return;
-  if (isMobile()) {
-    renderCatNavSelect(nav, "按证型浏览", cats,
-      (c) => { state.caseCat = c ? c.key : "all"; state.page = 1; loadList($("#search").value); }, "全部证型", activeKey);
-    return;
-  }
   nav.style.display = "block";
   nav.innerHTML = "";
   const title = document.createElement("div");
@@ -1122,11 +373,6 @@ function renderCasesCatNav(cats, activeKey) {
 function renderArticleCatNav(cats, activeKey) {
   const nav = $("#articleCatNav");
   if (!nav) return;
-  if (isMobile()) {
-    renderCatNavSelect(nav, "论文栏目", cats,
-      (c) => { state.articleCat = c ? c.key : ""; state.page = 1; loadList($("#search").value); }, "全部论文", activeKey);
-    return;
-  }
   nav.style.display = "block";
   nav.innerHTML = "";
   const title = document.createElement("div");
@@ -1152,11 +398,6 @@ function renderArticleCatNav(cats, activeKey) {
 function renderBzCatNav(cats, activeKey, stateKey, titleText, allLabel, allCount) {
   const nav = $("#articleCatNav");
   if (!nav) return;
-  if (isMobile()) {
-    renderCatNavSelect(nav, titleText, cats,
-      (c) => { state[stateKey] = c ? c.key : ""; state.page = 1; loadList($("#search").value); }, allLabel, activeKey);
-    return;
-  }
   nav.style.display = "block";
   nav.innerHTML = "";
   const title = document.createElement("div");
@@ -1240,7 +481,6 @@ function renderList() {
 function renderPager() {
   const p = $("#pager");
   if (!p) return;
-  if (isMobile()) { p.innerHTML = ""; return; }   // 移动端去掉翻页，列表一次取全量、整页滚动
   p.innerHTML = "";
   const totalPages = Math.max(1, Math.ceil(state.total / state.size));
   const mk = (label, page, dis) => {
@@ -1258,15 +498,12 @@ function renderPager() {
 }
 
 function showDetail(k, rec) {
-  const wa = document.querySelector(".workarea");
-  if (wa) wa.classList.toggle("hdwj-mode", k === "hdwj");
-  if (wa) wa.classList.remove("mingli-mode");
   if (k === "cases") return showCase(rec);
   if (k === "herbs") return showHerb(rec);
-  if (k === "articles") return showArticle(rec, k);
-  if (k === "hdwj") return showHdwj(rec);
-  if (k === "bz") return showArticle(rec, k);
-  if (k === "sspl") return showArticle(rec, k);
+  if (k === "articles") return showArticle(rec);
+  if (k === "hdwj") return showArticle(rec);
+  if (k === "bz") return showArticle(rec);
+  if (k === "sspl") return showArticle(rec);
   if (k === "hantang") return showHantang(rec);
   return showGeneric(rec, k);
 }
@@ -1276,7 +513,7 @@ function showUniversal(module, rec) {
   if (module === "ref" && rec._table) module = rec._table.toLowerCase(); // 搜索结果里的参考表
   if (module === "cases") return showCase(rec);
   if (module === "herbs") return showHerb(rec);
-  if (module === "articles") return showArticle(rec, module);
+  if (module === "articles") return showArticle(rec);
   if (module === "yaotu") return showYaotuDetail(rec);
   if (module === "xuewei") return showXueweiDetail(rec);
   if (module === "hantang") return showHantang(rec);
@@ -1343,7 +580,7 @@ function showHantang(rec) {
   $("#detailPane").innerHTML = h;
 }
 
-function showArticle(rec, module) {
+function showArticle(rec) {
   let body = rec.NR || "";
   const title = (rec.MZ || "").trim();
   // The article body usually repeats the title as its first line; drop it.
@@ -1352,193 +589,10 @@ function showArticle(rec, module) {
   }
   // 《外经微言》标注原书篇次（第 N 篇），其余文章无 _idx 则不加。
   const idxTag = (rec._idx != null) ? `<span class="seq-badge">第 ${rec._idx} 篇</span> ` : "";
-  const h = `<div class="detail-card"><h3>${idxTag}${esc(rec.MZ || "(无标题)")}</h3>` +
-            beautifyArticle(body, module) +
-            `</div>`;
-  $("#detailPane").innerHTML = h;
-}
-
-/* ===== 文章美化：报道 / 老师评语 / 小标题 区分渲染 =====
- * 段落按空行切分；识别「老师评语 / 评语 / 倪师曰」分隔线，将全文分为
- * 「报告·医案」与「老师评语」两块，分别加不同底色与标签；并把初诊/二诊/
- * 治则/处方 等小标题、◎就诊标记、【】框题、1. 2. 编号要点做视觉强化。 */
-const ART_DIV_RE   = /^(老师评语|倪师评语|倪师曰|倪师按|评语|评论|编按|编者按|按语)[：:　\s]*$/;
-const ART_SUB_RE   = /^(初诊|二诊|三诊|四诊|五诊|六诊|七诊|八诊|九诊|十诊|复诊|再诊|末诊|回诊|治则|处方|辨证|辨症|针灸|针方|治法|食疗|说明|注|讨论|分析|结论|诊断|按)[：:]?/;
-const ART_VISIT_RE = /^[◎○●◉\s]/;
-const ART_VISITDATE_RE = /^\d{1,2}[.、]\d{1,2}\s*[，,]\s*(初诊|二诊|三诊|四诊|五诊|六诊|七诊|八诊|九诊|十诊|复诊|再诊|末诊|回诊|诊)/;
-const ART_BOXED_RE = /^【[^】]{1,24}】\s*$/;
-// 编号要点：要求点号后紧跟非数字/非空白字符，避免把「98.1.30」这类日期误判为要点
-const ART_NUM_RE   = /^\d{1,3}[.、]\s*[^\d\s]/;
-
-// 编号要点：把开头的「N.」/「N、」高亮
-function _artPointInner(s) {
-  const m = s.match(/^(\d{1,3}[.、])\s*([\s\S]*)$/);
-  if (m) return `<span class="art-point-n">${esc(m[1])}</span>${esc(m[2])}`;
-  return esc(s);
-}
-
-/* 日期 / 报道平台（来源）抽取，渲染为文章头部的「元信息」芯片。
- * 仅扫描正文前若干行（日期、记者、来源通常出现在文首），匹配到的整行
- * 若仅由「日期 / 来源 / 更新日期 / 记者 / 冒号 / 空白」构成，则整行被芯片取代，
- * 不再重复出现在正文里。 */
-const ART_DATE_RE = /(更新日期\s*[:：]?\s*)?(\d{4})[/年.\-](\d{1,2})[/月.\-](\d{1,2})(?:\s*(\d{1,2}):(\d{2}))?/;
-function _extractMeta(lines) {
-  const chips = [];
-  const keep = [];
-  const N = Math.min(lines.length, 8);
-  for (let i = 0; i < lines.length; i++) {
-    const t = lines[i].trim();
-    if (i >= N && chips.length) { keep.push(lines[i]); continue; }   // 元信息只取文首
-    if (t === "") { keep.push(lines[i]); continue; }
-    let consumed = false;
-    let work = t;
-    const dm = t.match(ART_DATE_RE);
-    if (dm) {
-      chips.push({ cls: "art-chip--date", icon: "📅",
-        text: `${dm[2]}年${dm[3]}月${dm[4]}日` + (dm[5] != null ? ` ${dm[5]}:${dm[6]}` : "") });
-      work = work.replace(dm[0], "");
-    }
-    // 报道平台 / 来源
-    const bm = t.match(/[【〔]([^】〕]*?(?:报导|報導)[^】〕]*?)[】〕]/);
-    let src = null;
-    if (bm) src = bm[1];
-    else if (/记者\s*[:：]?/.test(t) && /(?:报导|報導)/.test(t)) {
-      const sm = t.match(/记者\s*[:：]?\s*([^【〔]*?(?:报导|報導))/);
-      if (sm) src = sm[1];
-    }
-    if (src) { chips.push({ cls: "art-chip--src", icon: "📰", text: src }); }
-    // 判断整行是否仅由元信息构成 → 用芯片取代，不再保留原文行
-    work = work.replace(/[【〔][^】〕]*[】〕]/g, "");
-    work = work.replace(/资料?来源\s*[:：].*/g, "");
-    work = work.replace(/记者\s*[:：]?/g, "");
-    work = work.replace(/更新日期/g, "");
-    work = work.replace(/[：:\s]/g, "");
-    if (work === "") consumed = true;
-    if (consumed) continue;
-    keep.push(lines[i]);
-  }
-  const seen = new Set(); const uniq = [];
-  for (const c of chips) { if (!seen.has(c.text)) { seen.add(c.text); uniq.push(c); } }
-  return { chips: uniq, keep };
-}
-
-// 内联（半角括号）倪师按语 → 醒目内联批注；仅当括号内含中文时才处理，
-// 避免把网址、缩写等误标。传入串已 esc()，括号与中文均为字面量，安全。
-function _artInline(s) {
-  return s.replace(/\(([^()]*[一-龥][^()]*)\)/g, '<span class="art-note">($1)</span>');
-}
-
-/* 逐行状态机：
- *  - 小标题（初诊/二诊/治则/处方/◎标记/「M.D，X诊」就诊标记/【】框题）→ 独立区块
- *  - 编号要点（N. 后接中文，非日期）→ 要点卡片
- *  - 其余行合并为普通段落（pre-wrap 保留换行），使正文紧凑易读
- * 原文无空行、仅靠换行分行，故不依赖空行切段。 */
-function _artRenderSegment(segLines) {
-  let out = "";
-  let pLines = null;                                  // 累积中的普通段落
-  const flushP = () => { if (pLines && pLines.length) { out += `<p class="art-p">${_artInline(esc(pLines.join("\n")))}</p>`; pLines = null; } };
-  let secBody = null;                                 // 处于小标题区块内时累积正文
-  const flushSec = () => { if (secBody !== null) { out += `<div class="art-sec-body">${_artInline(esc(secBody.join("\n")))}</div></div>`; secBody = null; } };
-
-  for (const ln of segLines) {
-    const t = ln.trim();
-    if (t === "") { flushP(); flushSec(); continue; }
-    const isBoxed = ART_BOXED_RE.test(t);
-    const isNum   = ART_NUM_RE.test(t);
-    const isSub   = ART_SUB_RE.test(t) || ART_VISIT_RE.test(t) || ART_VISITDATE_RE.test(t);
-    if (isBoxed) { flushP(); flushSec(); out += `<div class="art-sub art-sub--boxed">${esc(t)}</div>`; continue; }
-    if (isSub) {
-      flushP(); flushSec();
-      out += `<div class="art-sec"><div class="art-sub">${esc(t)}</div>`;
-      secBody = [];
-      continue;
-    }
-    if (isNum) { flushP(); flushSec(); out += `<div class="art-point">${_artInline(_artPointInner(t))}</div>`; continue; }
-    if (secBody !== null) { secBody.push(t); continue; }   // 小标题区块正文
-    if (pLines) pLines.push(t); else pLines = [t];          // 连续普通行合并为一个段落
-  }
-  flushP(); flushSec();
-  return out;
-}
-
-function beautifyArticle(body, module) {
-  const text = (body || "").replace(/\r\n/g, "\n");
-  const lines = text.split("\n");
-
-  // 文首日期 / 报道平台（来源）抽取为元信息芯片
-  const meta = _extractMeta(lines);
-
-  let divIdx = -1;
-  for (let i = 0; i < meta.keep.length; i++) {
-    if (ART_DIV_RE.test(meta.keep[i].trim())) { divIdx = i; break; }
-  }
-  const mainLines = divIdx >= 0 ? meta.keep.slice(0, divIdx) : meta.keep;
-  const teacherLines = divIdx >= 0 ? meta.keep.slice(divIdx) : [];
-
-  let html = "";
-  // 元信息芯片：日期 + 报道平台/来源
-  if (meta.chips.length) {
-    html += `<div class="art-meta">` +
-            meta.chips.map((c) => `<span class="art-chip ${c.cls}">${c.icon} ${esc(c.text)}</span>`).join("") +
-            `</div>`;
-  }
-  // 「报道」横幅：仅时事评论(sspl)模块中真正含媒体/报道信号的文章显示，
-  // 论文、医案里偶然出现「报道」二字一律不标，避免误判。
-  const mainText = mainLines.join("\n");
-  if (module === "sspl" && /(报道|报导|媒体|记者|采访|新闻|纪录片|影片|电视台)/.test(mainText)) {
-    html += `<div class="art-banner art-banner--report">📰 报道 / 媒体评论</div>`;
-  }
-  html += `<div class="art-main">${_artRenderSegment(mainLines)}</div>`;
-  if (teacherLines.length > 1) {
-    const head = teacherLines[0].trim() || "老师评语";
-    const tbody = teacherLines.slice(1).join("\n");
-    if (tbody.trim()) {
-      html += `<div class="art-teacher">` +
-              `<div class="art-teacher-h">💬 ${esc(head)}</div>` +
-              `<div class="art-teacher-body">${_artRenderSegment(teacherLines.slice(1))}</div>` +
-              `</div>`;
-    }
-  }
-  return html;
-}
-
-/* ===== 黄帝外经：原文（文言文）/ 译文（现代白话）对照 =====
- * 左侧目录收窄（.workarea.hdwj-mode），正文区更宽；原文与译文分卡区分，
- * 顶部「对照 / 原文 / 译文」切换。 */
-function showHdwj(rec) {
-  let body = rec.NR || "";
-  const title = (rec.MZ || "").trim();
-  if (title && body.startsWith(title)) {
-    body = body.slice(title.length).replace(/^\s*[\r\n]+/, "");
-  }
-  const yi = rec.yi || "";
-  const hasYi = yi.trim().length > 0;
-  const idxTag = (rec._idx != null) ? `<span class="seq-badge">第 ${rec._idx} 篇</span> ` : "";
-  let h = `<div class="detail-card hdwj-card"><h3>${idxTag}${esc(rec.MZ || "(无标题)")}</h3>`;
-  h += `<div class="hdwj-tabs">`;
-  h += `<button class="hdwj-tab active" data-v="both">对照</button>`;
-  h += `<button class="hdwj-tab" data-v="orig">原文</button>`;
-  if (hasYi) h += `<button class="hdwj-tab" data-v="yi">译文</button>`;
+  let h = `<div class="detail-card"><h3>${idxTag}${esc(rec.MZ || "(无标题)")}</h3>`;
+  h += `<div class="article-body">${esc(body)}</div>`;
   h += `</div>`;
-  // data-mode 由 CSS 控制各 section 显隐，避免内联 style 时序问题，切换必然生效
-  h += `<div class="hdwj-body" data-mode="both">`;
-  h += `<section class="hdwj-sec hdwj-orig"><div class="hdwj-sec-h">📜 原文（古籍 · 文言文）</div>` +
-       `<div class="hdwj-text hdwj-text--orig">${esc(body)}</div></section>`;
-  if (hasYi) h += `<section class="hdwj-sec hdwj-yi"><div class="hdwj-sec-h">📖 译文（现代白话）</div>` +
-       `<div class="hdwj-text">${esc(yi)}</div></section>`;
-  h += `</div></div>`;
   $("#detailPane").innerHTML = h;
-
-  const bodyEl = $("#detailPane").querySelector(".hdwj-body");
-  const tabs = $("#detailPane").querySelectorAll(".hdwj-tab");
-  tabs.forEach((t) => {
-    t.onclick = () => {
-      tabs.forEach((x) => x.classList.remove("active"));
-      t.classList.add("active");
-      const v = t.getAttribute("data-v");
-      if (bodyEl) bodyEl.setAttribute("data-mode", v);
-    };
-  });
 }
 
 // 参考类表（辨证论治/正副辨证/针灸记录等）字段的中文标签。
@@ -2225,8 +1279,6 @@ async function loadSubList() {
   const meta = (subSubs || []).find((m) => m.key === subKey);
   if (!meta) return;
   const kind = meta.kind;
-  const wa = document.querySelector(".workarea");
-  if (wa) wa.classList.toggle("mingli-mode", subKey === "mingli");
   if (kind === "tool") { renderTool(); return; }
   if (kind === "catalog") { renderCatalogTree(); return; }
   const my = ++loadSeq;
@@ -2313,12 +1365,7 @@ function showSubDetail(item) {
   keys.forEach((k) => {
     const v = fields[k];
     if (v == null || v === "") return;
-    const vv = String(v).replace(/\r\n/g, "\n").replace(/[ \t]*\n[ \t]*/g, "\n").replace(/\n{2,}/g, "\n").trim();
-    if (k === item.name || k === "正文") {
-      h += `<div class="sec-b sec-lead">${esc(vv)}</div>`;
-    } else {
-      h += `<div class="sec-h">${esc(k)}</div><div class="sec-b">${esc(vv)}</div>`;
-    }
+    h += `<div class="sec-h">${esc(k)}</div><div class="sec-b">${esc(v)}</div>`;
   });
   h += `</div>`;
   $("#detailPane").innerHTML = h;
@@ -2470,45 +1517,6 @@ function showSubImage(name) {
     `src="${sysCfg.img}?name=${enc(name)}" alt="${esc(name)}" onerror="this.style.display='none'"></div>`;
 }
 
-// ---- 图片点击放大（lightbox）----
-// 全局事件委托：点击卦图(.gua-img img)或药材图(.herb-img) → 全屏放大查看。
-// 复用 style.css 既有的 .lightbox 样式（此前只定义了样式、未接逻辑，故点击无反应）。
-// 用 DOM 属性设置 src/alt，避免任何注入风险；点击遮罩或图片本身、按 Esc 均可关闭。
-(function initLightbox() {
-  let lb = null;
-  function open(src, alt) {
-    if (!lb) {
-      lb = document.createElement("div");
-      lb.id = "lightbox";
-      lb.className = "lightbox";
-      lb.setAttribute("role", "dialog");
-      lb.setAttribute("aria-label", "图片放大查看");
-      lb.addEventListener("click", () => { if (lb) { lb.remove(); lb = null; } });
-      document.body.appendChild(lb);
-    }
-    lb.innerHTML = "";
-    const im = document.createElement("img");
-    im.src = src;
-    im.alt = alt || "";
-    im.onerror = () => { if (lb) { lb.remove(); lb = null; } };
-    lb.appendChild(im);
-  }
-  document.addEventListener("click", (ev) => {
-    const t = ev.target;
-    if (t && t.tagName === "IMG" &&
-        (t.closest(".gua-img") || t.classList.contains("herb-img"))) {
-      ev.preventDefault();
-      open(t.getAttribute("src"), t.getAttribute("alt"));
-    }
-  });
-  document.addEventListener("keydown", (ev) => {
-    if (ev.key === "Escape") {
-      const ex = document.getElementById("lightbox");
-      if (ex) { ex.remove(); lb = null; }
-    }
-  });
-})();
-
 // ---- points 型：SELFDATA 坐标人体穴位图 ----
 function renderSubPoints(items) {
   const ul = $("#resultList");
@@ -2648,39 +1656,22 @@ async function doGlobalSearch(q) {
   // 子系统（人纪 / 天纪）：左侧模块即各子模块，loadSubList 需据此查 sub 的 kind。
   if (sysCfg) subSubs = modules;
   buildSidebar(modules);
-  observeMobileList();
-  // 天纪：顶部三标签（命理系统/斗数/四柱）。默认进入「命理系统」（排盘/紫微），
-  // 斗数/四柱 仍可在顶栏点选，但不再自动落到空目录页。
-  if (SYSTEM === "tianji") {
-    try { await loadTianjiTree(); } catch (e) {}
-    if (isMobile()) {
-      // 移动端默认直接落到「斗数·基础理论」并自动展示首篇（整页滚动、双下拉目录）
-      await showTianjiSection("dou", "基础理论");
-    } else {
-      const firstTab = document.querySelector('#boardTabs .board-tab[data-tab="mingli"]');
-      if (firstTab) showTianjiTab("mingli", firstTab);
+  // 初始默认激活：优先恢复上次停留在的模块（按系统分别记忆），否则激活第一个模块
+  let target = modules[0];
+  try {
+    const saved = localStorage.getItem("nihai_active_module_" + SYSTEM);
+    if (saved) {
+      const found = modules.find((m) => m.key === saved);
+      if (found) target = found;
     }
-  } else {
-    // 其他子系统：初始默认激活优先恢复上次模块，否则第一个模块
-    let target = modules[0];
-    try {
-      const saved = localStorage.getItem("nihai_active_module_" + SYSTEM);
-      if (saved) {
-        const found = modules.find((m) => m.key === saved);
-        if (found) target = found;
-      }
-    } catch (e) {}
-    if (target) selectModule(target, target._el);
-  }
+  } catch (e) {}
+  if (target) selectModule(target, target._el);
   const doSearch = () => {
     const q = $("#search").value.trim();
     state.page = 1;
     // 子系统（人纪 / 天纪）是独立页面：无论空查询还是有查询，都走自身的子模块内
     // 搜索/列表（避免与医案系统的同名模块 key 如 xuewei/bbxx 冲突）。
     if (sysCfg) {
-      // 天纪：有查询走站内全局搜索（/api/tianji/search），覆盖斗数/四柱/卦象/命例全部内容；
-      // 空查询仍浏览当前子模块（保持原行为）。人纪仍走 loadSubList。
-      if (SYSTEM === "tianji" && q) { return doTianjiSearch(q); }
       subQ = q;
       return loadSubList();
     }
@@ -2700,23 +1691,6 @@ async function doGlobalSearch(q) {
   };
   $("#searchBtn").onclick = doSearch;
   $("#search").addEventListener("keydown", (e) => { if (e.key === "Enter") doSearch(); });
-
-  // 天纪：跨断点（桌面<->移动）时重建目录——移动端用下拉菜单、桌面用树。
-  if (SYSTEM === "tianji") {
-    let _lastMobile = isMobile();
-    let _rzTimer = null;
-    window.addEventListener("resize", () => {
-      if (_rzTimer) clearTimeout(_rzTimer);
-      _rzTimer = setTimeout(() => {
-        const m = isMobile();
-        if (m === _lastMobile) return;
-        _lastMobile = m;
-        if (tianjiView.type === "section") {
-          renderTianjiSectionPanel(tianjiView.rootName, tianjiView.secName);
-        }
-      }, 200);
-    });
-  }
 })();
 
 // ===== 天纪 · 排盘系统 / 命理系统（tool 型模块，顶层作用域，供 loadSubList 调用） =====
@@ -2724,18 +1698,13 @@ let lastPaipan = null;       // 最近一次排盘结果（含 analysis / case�
 let lastCase = null;         // 当前命例（用于导出）
 
 function renderTool() {
-  // 命理工具视图：给 workarea 挂 mingli-mode，让 .workarea.mingli-mode 系列规则（含左栏 250px 宽度）生效
-  const wa = document.querySelector(".workarea");
-  if (wa) wa.classList.add("mingli-mode");
   // 左：命理（八字命例列表，点击即排双盘）
   const lm = $("#listMain");
   lm.innerHTML =
     '<div class="pp-mingli">' +
     '<h3>命理 · 八字命例</h3>' +
-    '<div id="ppCatNav" class="pp-catnav"></div>' +
     '<input id="ppSearch" class="pp-search" type="text" placeholder="搜索姓名 / 四柱…">' +
     '<div id="caseList" class="case-list"></div>' +
-    '<div id="casePager" class="case-pager"></div>' +
     '</div>';
   const fb = $("#filterBar"); if (fb) fb.style.display = "none";
   const lh = $("#listHint"); if (lh) lh.style.display = "none";
@@ -2760,10 +1729,7 @@ function renderTool() {
     '</div>';
   $("#ppBtn").onclick = doPaipan;
   $("#ppExport").onclick = exportDujie;
-  const ps = $("#ppSearch"); if (ps) ps.oninput = () => { window.__casePage = 1; if (window.__caseCache) renderCaseList(window.__caseCache); };
-  // 命例筛选状态复位并渲染分类标签
-  window.__caseCat = ""; window.__casePage = 1;
-  renderCaseCats();
+  const ps = $("#ppSearch"); if (ps) ps.oninput = () => { if (window.__caseCache) renderCaseList(window.__caseCache); };
   loadCases();
 }
 
@@ -2785,51 +1751,16 @@ async function loadCases() {
   catch (e) { box.innerHTML = '<div class="hint">命例加载失败</div>'; return; }
   window.__caseCache = data.cases || [];
   renderCaseList(window.__caseCache);
-  observeMobileCaseList();
-  mobileCaseListToSelect();
-}
-
-const CASE_PAGE_SIZE = 10;
-
-// 顶部分类筛选标签：全部 / 男 / 女（命例数据自带性别字段）
-function renderCaseCats() {
-  const nav = $("#ppCatNav"); if (!nav) return;
-  const cats = [["全部", ""], ["男", "男"], ["女", "女"]];
-  nav.innerHTML = cats.map(c =>
-    '<button type="button" class="pp-cat' + ((window.__caseCat || "") === c[1] ? " active" : "") +
-    '" data-cat="' + esc(c[1]) + '">' + esc(c[0]) + '</button>').join("");
-  nav.querySelectorAll(".pp-cat").forEach(b => {
-    b.onclick = () => {
-      window.__caseCat = b.dataset.cat;
-      window.__casePage = 1;
-      renderCaseCats();
-      if (window.__caseCache) renderCaseList(window.__caseCache);
-    };
-  });
 }
 
 function renderCaseList(cases) {
   const box = $("#caseList"); if (!box) return;
-  const cat = window.__caseCat || "";
-  const q = (($("#ppSearch") || {}).value || "").trim();
+  const q = ($("#ppSearch").value || "").trim();
   const list = cases.filter(c =>
-    (!cat || c.gender === cat) &&
-    (!q || c.name.toLowerCase().includes(q.toLowerCase()) ||
-     (c.pillars || "").includes(q) || (c.birth || "").includes(q)));
-  const total = list.length;
-  // 移动端不分页：一次列出全部命例（与全文整页滚动的手机版取向一致）
-  const pageSize = isMobile() ? Math.max(1, total) : CASE_PAGE_SIZE;
-  const pages = Math.max(1, Math.ceil(total / pageSize));
-  if (window.__casePage < 1) window.__casePage = 1;
-  if (window.__casePage > pages) window.__casePage = pages;
-  const start = (window.__casePage - 1) * pageSize;
-  const pageItems = list.slice(start, start + pageSize);
-  if (!total) {
-    box.innerHTML = '<div class="hint">无匹配命例</div>';
-    renderCasePager(total, pages);
-    return;
-  }
-  box.innerHTML = pageItems.map(c =>
+    !q || c.name.toLowerCase().includes(q.toLowerCase()) ||
+    (c.pillars || "").includes(q) || (c.birth || "").includes(q));
+  if (!list.length) { box.innerHTML = '<div class="hint">无匹配命例</div>'; return; }
+  box.innerHTML = list.map(c =>
     '<div class="case-item" data-i="' + c.i + '">' +
       '<div class="ci-name">' + esc(c.name) + ' <span class="ci-gender">' + esc(c.gender) + '</span></div>' +
       '<div class="ci-zhu">' + esc(c.pillars) + '</div>' +
@@ -2837,27 +1768,6 @@ function renderCaseList(cases) {
     '</div>').join("");
   box.querySelectorAll(".case-item").forEach(el => {
     el.onclick = () => selectCase(parseInt(el.dataset.i, 10));
-  });
-  renderCasePager(total, pages);
-}
-
-// 分页控件：上一页 / 第 X / Y 页 / 下一页（每页 CASE_PAGE_SIZE 条）
-function renderCasePager(total, pages) {
-  const pg = $("#casePager"); if (!pg) return;
-  if (pages <= 1) { pg.innerHTML = '<div class="cp-info">共 ' + total + ' 例</div>'; return; }
-  const cur = window.__casePage;
-  let html = '<button type="button" class="cp-btn" data-go="prev"' + (cur <= 1 ? " disabled" : "") + '>‹ 上一页</button>';
-  html += '<span class="cp-info">第 ' + cur + ' / ' + pages + ' 页 · 共 ' + total + ' 例</span>';
-  html += '<button type="button" class="cp-btn" data-go="next"' + (cur >= pages ? " disabled" : "") + '>下一页 ›</button>';
-  pg.innerHTML = html;
-  pg.querySelectorAll(".cp-btn").forEach(b => {
-    b.onclick = () => {
-      const go = b.dataset.go;
-      if (go === "prev" && window.__casePage > 1) window.__casePage--;
-      else if (go === "next" && window.__casePage < pages) window.__casePage++;
-      else return;
-      if (window.__caseCache) renderCaseList(window.__caseCache);
-    };
   });
 }
 
@@ -2898,10 +1808,7 @@ async function doPaipan() {
   const gender = $("#ppGender").value;
   const place = ($("#ppPlace").value || "").trim();
   if (!date) { alert("请填写出生日期"); return; }
-  // 时辰索引(0=子…11=亥) → 钟点 = index*2（与后端 _hour_zhi((h+1)//2) 一一反向对应，
-  // 经 12 时辰全验证：index*2 还原后恰为该时辰；之前漏 *2 导致相邻时辰塌缩、命盘时辰不对应）。
-  const clockHour = hour * 2;
-  const solar = date + " " + String(clockHour).padStart(2, "0") + ":00";
+  const solar = date + " " + String(hour).padStart(2, "0") + ":30";
   const dp = $("#ppDujie"); if (dp) dp.innerHTML = '<div class="hint">排盘中…</div>';
   let data;
   try {
@@ -2931,63 +1838,24 @@ function pillarCell(p, label) {
 
 function renderPaipanSystem(d) {
   const b = d.bazi, z = d.ziwei, g = d.gua;
-  // ---- 紫微盘：4×4 传统方阵布局 ----
-  // 地支绝对方位 → [row, col]（子=底部中央，顺时针环绕）
-  const ZHI_POS = {
-    '巳':[0,0],'午':[0,1],'未':[0,2],'申':[0,3],
-    '辰':[1,0],                  '酉':[1,3],
-    '卯':[2,0],                  '戌':[2,3],
-    '寅':[3,0],'丑':[3,1],'子':[3,2],'亥':[3,3],
-  };
-  const cells = new Array(16).fill(null);
-  z.palace.forEach(pal => {
-    const pos = ZHI_POS[pal.zhi];
-    if (pos) cells[pos[0]*4 + pos[1]] = pal;
-  });
+  // ---- 紫微盘 ----
   let zh = '<div class="pp-summary">' +
     '<span>阳历 <b>' + esc(b.solar) + '</b></span>' +
     '<span>农历 <b>' + esc(b.lunar) + '</b></span>' +
+    '<span>生肖 <b>' + esc(b.zodiac) + '</b></span>' +
+    '<span>性别 <b>' + esc(b.gender) + '</b></span>' +
     '<span>五行局 <b>' + esc(z.ju) + '</b></span>' +
     '<span>命宫 <b>' + esc(z.ming_gong.gz) + '</b></span>' +
     '<span>身宫 <b>' + esc(z.shen_gong.zhi) + '</b></span></div>';
-  zh += '<div class="star-toggle-bar">' +
-    '<button type="button" class="star-toggle" id="btnMinor">辅星</button>' +
-    '<button type="button" class="star-toggle" id="btnAdj">杂曜</button>' +
-    '</div>';
   zh += '<div class="ziwei-grid">';
-  cells.forEach((pal, i) => {
-    if (!pal) {
-      // 中心 2×2 区域：仅在 [1,1]（index=5）渲染，跨 2 列 2 行
-      if (i === 5) {
-        const sizhu = (b.pillars || []).map(p => p.gz).join(' ');
-        zh += '<div class="ziwei-center">';
-        zh += '<div class="zc-sizhu">' + esc(sizhu) + '</div>';
-        zh += '<div class="zc-meta"><span>五行局</span><b>' + esc(z.ju) + '</b></div>';
-        zh += '<div class="zc-meta"><span>命宫</span><b>' + esc(z.ming_gong.gz) + '</b></div>';
-        zh += '<div class="zc-meta"><span>身宫</span><b>' + esc(z.shen_gong.zhi) + '</b></div>';
-        zh += '</div>';
-      }
-      return;
-    }
+  z.palace.forEach(pal => {
     const isMing = pal.gong === "命宫";
-    const isShen = pal.zhi === z.shen_gong.zhi;
-    zh += '<div class="palace-card' + (isMing ? ' ming' : '') + (isShen ? ' shen' : '') + '">';
-    zh += '<div class="pc-head"><span class="pc-name">' + esc(pal.gong) + '</span><span class="pc-zhi">' + esc(pal.zhi) + '</span></div>';
-    zh += '<div class="pc-stars">';
+    zh += '<div class="palace-card' + (isMing ? ' ming' : '') + '">';
+    zh += '<div class="pc-head">' + esc(pal.gong) + ' <span class="pc-zhi">' + esc(pal.zhi) + '</span></div><div class="pc-stars">';
     if (!pal.stars.length) zh += '<span class="pc-empty">（空宫）</span>';
     pal.stars.forEach(s => {
-      let cls = "star-chip", col;
-      if (s.kind === "minor") { cls += " minor-star"; col = "#5b9bd5"; }
-      else if (s.kind === "adjective") { cls += " adj-star"; col = "#9a9a9a"; }
-      else { col = SIHUA_COLOR[s.sihua] || "var(--star)"; }
-      // 亮度（庙/旺/得/利/平/不/陷），仅主星与部分辅星有数据
-      let bright = "";
-      if (s.brightness) {
-        const lv = {"庙":"best","旺":"best","得":"good","利":"good",
-                    "平":"mid","不":"weak","陷":"weak"}[s.brightness] || "mid";
-        bright = '<i class="bright bright-' + lv + '" title="亮度：' + s.brightness + '">' + s.brightness + '</i>';
-      }
-      zh += '<span class="' + cls + '" style="color:' + col + '" title="' + ziweiStarTip(s.name) + '">' + esc(s.name) + (s.sihua ? '<i class="sihua">' + s.sihua + '</i>' : '') + bright + '</span>';
+      const col = SIHUA_COLOR[s.sihua] || "var(--star)";
+      zh += '<span class="star-chip" style="color:' + col + '" title="' + ziweiStarTip(s.name) + '">' + esc(s.name) + (s.sihua ? '<i class="sihua">' + s.sihua + '</i>' : '') + '</span>';
     });
     zh += '</div></div>';
   });
@@ -2999,19 +1867,6 @@ function renderPaipanSystem(d) {
   });
   zh += '</div>';
   $("#ppZiwei").innerHTML = zh;
-  // 辅星 / 杂曜 显隐切换（默认显示辅星，杂曜默认隐藏）
-  const ppz = $("#ppZiwei");
-  const bm = $("#btnMinor"), ba = $("#btnAdj");
-  ppz.classList.add("show-minor");
-  if (bm) bm.classList.add("on");
-  if (bm) bm.onclick = function () {
-    const on = ppz.classList.toggle("show-minor");
-    bm.classList.toggle("on", on);
-  };
-  if (ba) ba.onclick = function () {
-    const on = ppz.classList.toggle("show-adj");
-    ba.classList.toggle("on", on);
-  };
   // ---- 八字盘 ----
   let bh = '<div class="pp-summary">' +
     '<span>日主 <b>' + esc(b.ri_gan) + '（' + esc(b.ri_wx) + '）</b></span>' +
@@ -3050,26 +1905,6 @@ function renderDujie(d) {
     '<span>五行局 <b>' + esc(z.ju) + '</b></span></div>';
   h += '<div class="sec-h">格局分析</div><div class="sec-b">' + esc(a.pattern) + '</div>';
   h += '<div class="sec-h">大运走势</div><div class="sec-b">' + esc(a.dayun_note) + '</div>';
-  // 五行·性格提醒（传统文化参考，非命理定论）
-  if (a.wx_reminder && a.wx_reminder.elements && a.wx_reminder.elements.length) {
-    h += '<div class="sec-h">五行·性格提醒（传统文化参考）</div><div class="wx-remind">';
-    a.wx_reminder.elements.forEach(function (it) {
-      const hi = (it.status === "缺" || it.status === "偏弱") ? " hi" : "";
-      let flag = "";
-      if (it.status === "缺") flag = '<span class="wxr-flag lack">缺</span>';
-      else if (it.status === "偏弱") flag = '<span class="wxr-flag weak">偏弱</span>';
-      h += '<div class="wxr-item' + hi + '">';
-      h += '<div class="wxr-head"><span class="wxr-el">' + esc(it.element) + '</span>' + flag +
-        '<span class="wxr-trait">代表：' + esc(it.trait) + '</span>' +
-        '<span class="wxr-score">五行得分 ' + it.score.toFixed(2) + '</span></div>';
-      h += '<div class="wxr-body">';
-      h += '<div class="wxr-mean">' + esc(it.meaning) + '</div>';
-      h += '<div class="wxr-mis">误区：说你「缺' + esc(it.element) + '」不是让你' + esc(it.mis) + '。</div>';
-      h += '</div></div>';
-    });
-    h += '<div class="wxr-closing">' + esc(a.wx_reminder.closing) + '</div>';
-    h += '</div>';
-  }
   h += '<div class="sec-h">四柱十神</div><div class="tag-row">';
   const labels = ["年", "月", "日", "时"];
   b.pillars.forEach((p, i) => { h += '<span class="tag">' + labels[i] + '·' + esc(p.gan) + '→' + esc(p.gan_shi) + '</span>'; });
@@ -3131,15 +1966,6 @@ function exportDujie() {
   });
   t += "\n【格局分析】\n" + a.pattern + "\n";
   t += "\n【大运】" + a.dayun_note + "\n";
-  if (a.wx_reminder && a.wx_reminder.elements && a.wx_reminder.elements.length) {
-    t += "\n【五行·性格提醒（传统文化参考）】\n";
-    a.wx_reminder.elements.forEach(function (it) {
-      const tag = it.status === "正常" ? "" : ("（" + it.status + "）");
-      t += "· 缺" + it.element + tag + " → " + it.trait + "：" + it.meaning +
-        "　误区：不是让你" + it.mis + "。\n";
-    });
-    t += a.wx_reminder.closing + "\n";
-  }
   t += "\n【六亲】\n";
   a.liuqin.forEach(q => { t += q.from + " " + q.gan + " " + q.shi + "：" + q.meaning + "\n"; });
   t += "\n【本命卦】" + d.gua.ben + "（" + d.gua.up + "上" + d.gua.down + "下），动第" + d.gua.dong_yao + "爻，变卦 " + d.gua.bian + "\n";

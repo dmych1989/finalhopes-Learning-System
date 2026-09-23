@@ -98,14 +98,12 @@ def _build_tables(Z):
     najia_map = {}
     for row in najia["rows"]:
         rec = {ncols[i]: (row[i] or "").strip() for i in range(len(ncols))}
-        najia_map[rec[ncols[0]]] = rec              # 首列「时辰」（子…亥）
+        najia_map[rec["时辰"]] = rec
     zcols = nazi["cols"]
     nazi_map = {}
     for row in nazi["rows"]:
         rec = {zcols[i]: (row[i] or "").strip() for i in range(len(zcols))}
-        # 首列表头经 _normalize_ziwwu 规范化后是「日干支」（甲子…癸亥），
-        # 不能再硬编码 rec["时辰"]（否则 KeyError → /api/renji/lbg_compute 400）。
-        nazi_map[rec[zcols[0]]] = rec
+        nazi_map[rec["时辰"]] = rec
     lcols = lingui["cols"]  # ['时辰','子','丑',...,'亥']
     lingui_map = {}
     for row in lingui["rows"]:
