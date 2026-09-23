@@ -15,6 +15,8 @@ import common
 import renji_db
 # 灵龟八法 / 子午流注 时间计算（干支时、开穴、万年历）
 import lbg_calc
+# 人纪「云端算法」（干支/万年历、子午流注盘、灵龟八法代数法）——仅在服务端执行
+import renji_alg
 # 天纪学习系统：三个独立数据库（LILUN/CollData/MasterData，密码各不相同），易经/紫微/天文/命理。
 import tianji_db
 # 天纪目录树（按 列表.txt 重组，每叶带 src/idx，复用 /api/tianji/item 渲染）
@@ -980,6 +982,40 @@ def api_renji_lbg_calendar(y: int, m: int):
         raise HTTPException(400, "计算失败: " + str(e))
 
 
+# ---- 人纪·云端算法（算法只在服务端执行，前端仅渲染；防逆向/AI 采集） ----
+@app.get("/api/renji/wanianli")
+def api_renji_wanianli(y: int, m: int, d: int):
+    """万年历：年/月/日柱 + 生肖 + 日干支序。"""
+    try:
+        return renji_alg.wanianli(y, m, d)
+    except Exception as e:
+        raise HTTPException(400, "计算失败: " + str(e))
+
+
+@app.get("/api/renji/lingui_alg")
+def api_renji_lingui_alg(y: int, m: int, d: int, h: int, mi: int = 0, gender: str = "男"):
+    """灵龟八法·代数法实时开穴（含算式明细，服务端计算）。"""
+    try:
+        return renji_alg.lingui_alg(y, m, d, h, mi, gender)
+    except Exception as e:
+        raise HTTPException(400, "计算失败: " + str(e))
+
+
+@app.get("/api/renji/tool_compute")
+def api_renji_tool_compute(tool: str, y: int = 0, m: int = 0, d: int = 0, hb: int = -1):
+    """子午流注盘 / 圆形灵龟盘：服务端按年月日+时辰算四柱与开穴。"""
+    if not y or not m or not d:
+        y, m, d, _dh = renji_alg.now_tool_defaults()
+        if hb < 0:
+            hb = _dh
+    if hb < 0:
+        hb = 0
+    try:
+        return renji_alg.tool_compute(tool, y, m, d, hb)
+    except Exception as e:
+        raise HTTPException(400, "计算失败: " + str(e))
+
+
 @app.get("/renji/img")
 def renji_img(name: str = ""):
     idx = IMG_INDEX.get("renji", {})
@@ -1455,3 +1491,43 @@ async def _ensure_data_middleware(request, call_next):
         except Exception as _e:
             print("WARN: cases lazy load failed:", repr(_e))
     return await call_next(request)
+
+
+# ---- 安全 / 反采集响应头（对所有响应生效，含静态资源） ----
+_SECURITY_HEADERS = {
+    "X-Robots-Tag": "noai, noimageai, noindex, nofollow, noarchive, nosnippet, notranslate",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "Referrer-Policy": "no-referrer",
+    "Permissions-Policy": "geolocation=(), microphone=(), camera=(), magnetometer=()",
+}
+
+
+@app.middleware("http")
+async def _security_headers_middleware(request, call_next):
+    resp = await call_next(request)
+    for _k, _v in _SECURITY_HEADERS.items():
+        resp.headers.setdefault(_k, _v)
+    return resp
+
+
+# ---- 反 AI 采集：robots.txt 明确拒绝常见大模型 / 采集爬虫 ----
+_AI_BOTS = [
+    "GPTBot", "ChatGPT-User", "OAI-SearchBot", "Google-Extended", "Applebot-Extended",
+    "anthropic-ai", "ClaudeBot", "Claude-Web", "cohere-ai", "CCBot", "Bytespider",
+    "PerplexityBot", "Amazonbot", "Meta-ExternalAgent", "FacebookBot", "Diffbot",
+    "YouBot", "ImagesiftBot", "omgili", "TimpiBot", "PetalBot", "AhrefsBot",
+    "SemrushBot", "MJ12bot", "DotBot", "DataForSeoBot", "Baiduspider",
+]
+_ROBOTS_TXT = (
+    "# 本作品受著作权保护。禁止用于人工智能训练、数据采集与再分发。\n"
+    "# AI training / crawling / scraping prohibited (noai, noimageai).\n"
+    "User-agent: *\n"
+    "Disallow: /api/\n"
+    + "".join("User-agent: %s\nDisallow: /\n" % _b for _b in _AI_BOTS)
+)
+
+
+@app.get("/robots.txt")
+def robots_txt():
+    return Response(_ROBOTS_TXT, media_type="text/plain")
