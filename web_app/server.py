@@ -989,6 +989,48 @@ def renji_img(name: str = ""):
     return RedirectResponse("/api/img/renji/%s" % fn, status_code=302)
 
 
+# ---- 金匮要略（人纪经方）：226 首经方 × 各篇 --------------------------------
+try:
+    import jingui_db
+except Exception as _e:
+    print("WARN: jingui_db 导入失败：", repr(_e))
+    jingui_db = None
+
+
+@app.get("/api/renji/jingui/chapters")
+def api_jingui_chapters():
+    return {"items": jingui_db.chapters() if jingui_db else []}
+
+
+@app.get("/api/renji/jingui/all")
+def api_jingui_all():
+    items = jingui_db.list_all() if jingui_db else []
+    return {"total": len(items), "items": items}
+
+
+@app.get("/api/renji/jingui/chapter/{no}")
+def api_jingui_chapter(no: int):
+    d = jingui_db.chapter(no) if jingui_db else None
+    if not d:
+        raise HTTPException(404, "not found")
+    return d
+
+
+@app.get("/api/renji/jingui/item")
+def api_jingui_item(no: int = 0, name: str = ""):
+    it = None
+    if jingui_db:
+        it = jingui_db.item_by_no(no) if no else jingui_db.item(name)
+    if not it:
+        raise HTTPException(404, "not found")
+    return it
+
+
+@app.get("/api/renji/jingui/search")
+def api_jingui_search(q: str = "", limit: int = 150):
+    return {"items": jingui_db.search(q, limit) if jingui_db else []}
+
+
 # ---------------------------------------------------------------------------
 # 天纪学习系统（三库 tianji_db：易经 / 紫微 / 天文 / 八字命例）
 # ---------------------------------------------------------------------------

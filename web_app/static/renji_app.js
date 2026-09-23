@@ -463,6 +463,94 @@
     if (k === "cross") return renderCross(s);
     if (k === "tool") return renderTool(s);
     if (k === "animation") return renderAnimation(s);
+    if (k === "jingui_fangji") return renderJinguiFangji(s);
+  }
+
+  // ---------- 金匮要略（人纪经方） ----------
+  // 「方剂详解」三级布局：filterBar 选篇目（一级）+ resultList 列方剂（二级）+ detailPane 看详解；
+  // 其余 4 项（百病/辨症/脏腑/症状）复用全局 fields 渲染。样式全部复用本页既有类。
+  const nl2br = (s) => (s == null ? "" : String(s).replace(/\r?\n/g, "<br>"));
+  function renderJinguiFangji(s) {
+    filterBar.innerHTML = "<span class='fb-title'>金匮要略 · 篇目</span>";
+    listHint.style.display = "none";
+    resultList.innerHTML = "";
+    detailPane.innerHTML = "<div class='hint'>加载篇目…</div>";
+    getJSON("/api/renji/jingui/chapters").then(d => {
+      const chapters = d.items || [];
+      chapters.forEach((ch, idx) => {
+        const b = el("button", idx === 0 ? "active" : "",
+          "<span class='cn-label'>" + esc(ch.short || ch.name) + "</span>" +
+          "<em class='cn-count'>" + ch.count + "</em>");
+        b.title = "第" + ch.no + "篇 " + ch.name;
+        b.onclick = () => {
+          [...filterBar.querySelectorAll("button")].forEach(x => x.classList.remove("active"));
+          b.classList.add("active");
+          loadJinguiChapter(ch.no);
+        };
+        filterBar.appendChild(b);
+      });
+      if (chapters[0]) loadJinguiChapter(chapters[0].no);
+      else resultList.innerHTML = "<div class='hint'>暂无方剂数据。</div>";
+    }).catch(() => {
+      detailPane.innerHTML = "<div class='hint'>篇目加载失败，请重试。</div>";
+    });
+  }
+  function loadJinguiChapter(no) {
+    getJSON("/api/renji/jingui/chapter/" + no).then(d => {
+      const items = d.items || [];
+      resultList.innerHTML = "";
+      items.forEach(it => {
+        const li = el("li", "result-item", esc(it.name));
+        li.onclick = () => {
+          [...resultList.querySelectorAll(".result-item")].forEach(x => x.classList.remove("active-row"));
+          li.classList.add("active-row");
+          showJinguiFormula(it.no, it.name);
+        };
+        resultList.appendChild(li);
+      });
+      moduleHead.innerHTML = "<h2>金匮要略 · 方剂详解</h2>" +
+        "<p class='brand-sub'>第" + d.no + "篇 " + esc(d.name) + "（" + items.length + " 首方剂）</p>";
+      detailPane.innerHTML = "<div class='hint'>本篇共 " + items.length +
+        " 首方剂。点击中间方剂查看【脉证治方（条文）· 方组与用量 · 煎服法 · 主治 · 方歌 · 方解 · 倪海厦讲解 · 现代医案】。</div>";
+    }).catch(() => {
+      detailPane.innerHTML = "<div class='hint'>章节加载失败，请重试。</div>";
+    });
+  }
+  function showJinguiFormula(no, name) {
+    getJSON("/api/renji/jingui/item?no=" + no).then(rec => {
+      const sec = (label, val) => (val && String(val).trim())
+        ? "<div class='sec'><b>" + label + "：</b><br>" + nl2br(val) + "</div>" : "";
+      let h = "<div class='point-card'><h4>" + esc(rec.name) +
+        "　<span style='opacity:.6;font-size:13px'>【" + esc(rec.chapter) + "】</span></h4>";
+      h += sec("原文篇目", rec.pian);
+      h += sec("脉证治方（条文）", rec.tiaowen);
+      h += sec("方组与用量", rec.zucheng);
+      h += sec("煎服法", rec.jianfu);
+      h += sec("主治", rec.zhuzhi);
+      h += sec("方歌", rec.gejue);
+      h += sec("方解", rec.fangjie);
+      if ((rec.jiangjie || []).length) {
+        h += "<div class='nishi-box'><b style='color:#ffd479'>倪海厦讲解</b>";
+        rec.jiangjie.forEach(t => { h += "<div class='sec'>" + nl2br(t) + "</div>"; });
+        h += "</div>";
+      }
+      if ((rec.yian || []).length) {
+        h += "<div class='nishi-box'><b style='color:#ffd479'>现代医案（" + rec.yian.length + "）</b>";
+        rec.yian.forEach(y => {
+          h += "<div class='sec'><b>" + esc(y.title || "医案") + "</b>" +
+            (y.date ? "　<span style='opacity:.6'>" + esc(y.date) + "</span>" : "") +
+            (y.disease ? "<br><b>病症：</b>" + esc(y.disease) : "") +
+            (y.liujing ? "　<b>六经：</b>" + esc(y.liujing) : "") +
+            "<br>" + nl2br(y.content || "") + "</div>";
+        });
+        h += "</div>";
+      }
+      h += "</div>";
+      detailPane.innerHTML = h;
+      detailPane.scrollTop = 0;
+    }).catch(() => {
+      detailPane.innerHTML = "<div class='hint'>详情加载失败，请重试。</div>";
+    });
   }
 
   // ---------- 穴位详解：十四经络 ----------

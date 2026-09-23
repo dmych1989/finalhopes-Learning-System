@@ -315,6 +315,16 @@ def _ensure_renji():
 #   cross          跨系统复用主系统接口（herbs / yaotu）
 #   tool           交互工具（万年历 / 子午流注盘 / 圆形灵龟八法盘）
 #   animation      SVG 经络走向动画
+
+# ---- 金匮要略（人纪经方）数据 -------------------------------------------------
+try:
+    import jingui_db as _jingui
+    _JG_ST = _jingui.stats()
+except Exception as _e:
+    print("WARN: 金匮要略数据未加载：", repr(_e))
+    _jingui = None
+    _JG_ST = {"formulas": 0, "chapters": 0}
+
 BOARD_STRUCT = [
     {
         "key": "xuewei", "name": "穴位详解",
@@ -372,6 +382,22 @@ BOARD_STRUCT = [
              "desc": "十二正经循行走向（SVG 重建）"},
             {"key": "qijing", "name": "奇经八脉穴位走向动画", "kind": "animation", "group": "qijing",
              "desc": "奇经八脉循行走向（SVG 重建）"},
+        ],
+    },
+    {
+        "key": "jingui", "name": "金匮要略",
+        "subs": [
+            {"key": "fangji", "name": "方剂详解", "kind": "jingui_fangji",
+             "desc": "%d 首经方 × %d 篇 · 左选篇 · 中选方 · 右看详解"
+                     % (_JG_ST["formulas"], _JG_ST["chapters"])},
+            {"key": "bbxx", "name": "百病针灸治疗", "kind": "fields", "src": "bbxx",
+             "desc": "206 条疾病 → 针灸处方"},
+            {"key": "bzdz", "name": "辨症针灸治疗", "kind": "fields", "src": "bzdz",
+             "desc": "50 条症状 → 针灸论治"},
+            {"key": "zfbz", "name": "脏腑辨证论治", "kind": "fields", "src": "zfbz",
+             "desc": "30 条脏腑辨证 + 取穴治疗"},
+            {"key": "zjdcjl", "name": "症状辨证取穴", "kind": "fields", "src": "zjdcjl",
+             "desc": "27 条症候病机 + 针灸治法"},
         ],
     },
 ]
