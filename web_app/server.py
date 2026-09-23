@@ -912,11 +912,20 @@ except Exception as _e:
 def api_renji_hantang(method: str):
     if method == "shoufa":
         sf = _HANTANG_QUXUE["shoufa"]
-        return {"method": method, "name": sf["name"], "chapters": sf.get("chapters", [])}
+        return {"method": method, "name": sf["name"], "items": sf.get("items", []),
+                "overview": sf.get("overview", []), "chapters": sf.get("chapters", [])}
     m = _HANTANG_QUXUE["methods"].get(method)
     if not m:
         raise HTTPException(404, "unknown method")
-    items = [{"name": lf["name"]} for lf in m["leaves"]]
+    # 数据现为文档式分组（groups → children），旧的 leaves 结构已不再使用；
+    # 这里按分组+条文扁平化，供"左目录右正文"之外的老调用点使用。
+    items = []
+    for gp in m.get("groups", []):
+        items.append({"name": gp.get("name", ""), "group": True})
+        for ch in gp.get("children", []):
+            items.append({"name": ch.get("name", "")})
+    if not items:
+        items = [{"name": lf["name"]} for lf in m.get("leaves", [])]
     return {"method": method, "name": m["name"], "total": len(items), "items": items}
 
 
@@ -925,7 +934,8 @@ def api_renji_hantang_all(method: str):
     """汉唐取穴文档式渲染：一次性返回该分类层级（groups: 组→条目，组带 charts）。"""
     if method == "shoufa":
         sf = _HANTANG_QUXUE["shoufa"]
-        return {"method": method, "name": sf["name"], "chapters": sf.get("chapters", [])}
+        return {"method": method, "name": sf["name"], "items": sf.get("items", []),
+                "overview": sf.get("overview", []), "chapters": sf.get("chapters", [])}
     m = _HANTANG_QUXUE["methods"].get(method)
     if not m:
         raise HTTPException(404, "unknown method")
@@ -935,11 +945,21 @@ def api_renji_hantang_all(method: str):
 @app.get("/api/renji/hantang/{method}/item")
 def api_renji_hantang_item(method: str, name: str = ""):
     if method == "shoufa":
+        for it in _HANTANG_QUXUE["shoufa"].get("items", []):
+            if it.get("name") == name:
+                return {"name": it["name"], "text": it.get("text", ""), "charts": it.get("imgs", [])}
         sf = _HANTANG_QUXUE["shoufa"]
-        return {"method": method, "name": sf["name"], "chapters": sf.get("chapters", [])}
+        return {"method": method, "name": sf["name"], "items": sf.get("items", []),
+                "overview": sf.get("overview", []), "chapters": sf.get("chapters", [])}
     m = _HANTANG_QUXUE["methods"].get(method)
     if not m:
         raise HTTPException(404, "unknown method")
+    for gp in m.get("groups", []):
+        if gp.get("name") == name:
+            return {"name": name, "text": "", "charts": gp.get("charts", [])}
+        for ch in gp.get("children", []):
+            if ch.get("name") == name:
+                return {"name": ch["name"], "text": ch.get("text", ""), "charts": ch.get("charts", [])}
     for lf in m.get("leaves", []):
         if lf["name"] == name:
             return {"name": lf["name"], "charts": lf["charts"], "text": lf["text"]}
