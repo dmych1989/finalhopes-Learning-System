@@ -1,0 +1,5 @@
+E:\Soft\倪海夏三套学习系统\finalhopes-Learning-System\win-shell\publish\FinalHopes.pdb
+E:\Soft\倪海夏三套学习系统\finalhopes-Learning-System\win-shell\publish\Microsoft.Web.WebView2.Core.xml
+E:\Soft\倪海夏三套学习系统\finalhopes-Learning-System\win-shell\publish\Microsoft.Web.WebView2.WinForms.xml
+E:\Soft\倪海夏三套学习系统\finalhopes-Learning-System\win-shell\publish\Microsoft.Web.WebView2.Wpf.xml
+E:\Soft\倪海夏三套学习系统\finalhopes-Learning-System\win-shell\publish\FinalHopes.exe

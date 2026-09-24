@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>FinalHopesShell</RootNamespace>
+    <AssemblyName>FinalHopes</AssemblyName>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <LangVersion>latest</LangVersion>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+
+    <Version>1.0.0</Version>
+    <Product>FinalHopes 学习系统</Product>
+    <AssemblyTitle>FinalHopes 学习系统</AssemblyTitle>
+    <Company>finalhopes</Company>
+    <Authors>jileshijie</Authors>
+    <Description>finalhopes.dynv6.net 的 Windows 桌面壳（.NET 8 + WebView2）</Description>
+    <Copyright>Copyright © finalhopes</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4191.47" />
+  </ItemGroup>
+
+</Project>

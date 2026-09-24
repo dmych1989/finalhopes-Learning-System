@@ -6,7 +6,11 @@ import re
 import json
 import sqlite3
 import urllib.parse
+import time
+import hmac
+import hashlib
 from fastapi import FastAPI, HTTPException, Body
+from fastapi.responses import JSONResponse
 from fastapi.responses import HTMLResponse, JSONResponse, Response, FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 import common
@@ -1046,7 +1050,7 @@ def _build_tianji_catalog():
        - 每条目录条目直接对应文章标题，确保 506 篇全部不丢（未命中条目者进「未归类」）。"""
     base = os.path.dirname(os.path.abspath(__file__))
     p1 = os.path.join(base, "tianji_catalog.txt")
-    p2 = r"E:\Soft\倪海夏三套学习系统\QQ频道号talktyph0id\天纪学习系统\列表.txt"
+    p2 = os.environ.get("TIANJI_CATALOG_SRC", r"E:\Soft\倪海夏三套学习系统\QQ频道号talktyph0id\天纪学习系统\列表.txt")
     src = p1 if os.path.exists(p1) else p2
     try:
         lines = open(src, encoding="utf-8").read().splitlines()
@@ -1301,7 +1305,7 @@ def api_tianji_mingli_chart(payload: dict = Body(default={})):
 # Serve images from the external 《中医》 GitHub repo (穴位 diagrams/photos and
 # 中药图片). `p` is a URL-encoded relative path under EXTRA_BASE; we normalize
 # and reject any path that escapes the base directory (directory traversal).
-_EXTIMG_BASE = r"E:/Soft/GitHub/中医"
+_EXTIMG_BASE = os.environ.get("EXTIMG_BASE", r"E:/Soft/GitHub/中医")
 _EXTIMG_MT = {"jpg": "image/jpeg", "jpeg": "image/jpeg", "png": "image/png",
               "gif": "image/gif", "bmp": "image/bmp"}
 
@@ -1354,11 +1358,35 @@ _IMG_MIME = {"jpg": "image/jpeg", "jpeg": "image/jpeg", "png": "image/png",
 _img_db_cache = {}
 
 
+def _maybe_decrypt(path):
+    """若 <path>.enc 存在且配置了 DB_DECRYPT_KEY，则解密到临时文件并返回其路径；否则返回原路径。"""
+    enc = path + ".enc"
+    key = os.environ.get("DB_DECRYPT_KEY", "")
+    if key and os.path.isfile(enc):
+        import base64
+        import tempfile as _tf
+        from cryptography.fernet import Fernet
+        cache = os.path.join(_tf.gettempdir(), "dec_" + os.path.basename(path))
+        if not (os.path.exists(cache) and os.path.getsize(cache) > 1000):
+            k = base64.urlsafe_b64encode(hashlib.sha256(key.encode()).digest())
+            with open(enc, "rb") as f:
+                blob = f.read()
+            try:
+                plain = Fernet(k).decrypt(blob)
+            except Exception as e:
+                print("WARN: 解密失败(密钥不匹配?):", enc, repr(e))
+                return path
+            with open(cache, "wb") as f:
+                f.write(plain)
+        return cache
+    return path
+
+
 def _img_db(sub):
     if sub not in _IMG_SUBS:
         return None
     if sub not in _img_db_cache:
-        p = os.path.join(_IMG_DB_DIR, "images_%s.db" % sub)
+        p = _maybe_decrypt(os.path.join(_IMG_DB_DIR, "images_%s.db" % sub))
         if not os.path.isfile(p):
             return None
         # check_same_thread=False：端点可能在事件循环线程外读取（FastAPI 默认线程池）。
@@ -1398,16 +1426,29 @@ _NO_CACHE = {
     "Expires": "0",
 }
 
+# 静态前端已迁移到仓库根 public/static/（Vercel CDN 直接托管 /static/*）。
+# 函数只在本地开发时兜底服务；页面 HTML 由函数读取并带 no-cache 头返回。
+_STATIC = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "public", "static")
+
+# Vercel 打包器（@vercel/nft）对「经变量拼接/动态后缀」访问的文件无法自动追踪，
+# 这里以字面量显式引用，确保这些文件被收入函数包：
+#   - 3 个页面 HTML（运行时 FileResponse 读取）
+#   - Cython 编译产物 .so（构建期生成，文件名含 ABI 标签；缺失时引用被忽略，回退 .py）
+_NFT_BUNDLED = [
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "public", "static", "index.html"),
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "public", "static", "renji.html"),
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "public", "static", "tianji.html"),
+]
+for _py in ("paipan", "bazi", "ziwei"):
+    _NFT_BUNDLED.append(os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        _py + ".cpython-312-x86_64-linux-gnu.so"))
+
 
 @app.get("/", response_class=HTMLResponse)
 def index():
-    with open(os.path.join(os.path.dirname(__file__), "static", "index.html"),
-              encoding="utf-8") as f:
+    with open(os.path.join(_STATIC, "index.html"), encoding="utf-8") as f:
         return HTMLResponse(f.read(), headers=_NO_CACHE)
-
-
-# 三套学习系统：各自独立页面（顶部系统切换器跳转），互不在对方侧栏出现。
-_STATIC = os.path.join(os.path.dirname(__file__), "static")
 
 
 @app.get("/renji", response_class=HTMLResponse)
@@ -1426,8 +1467,10 @@ def mingli_redirect():
     return RedirectResponse(url="/tianji", status_code=302, headers=_NO_CACHE)
 
 
-app.mount("/static", StaticFiles(directory=os.path.join(os.path.dirname(__file__), "static")),
-          name="static")
+# Vercel 函数包可能不含 public/static（前端资源由 CDN 托管）；
+# 目录缺失时跳过挂载（本地开发仍可用），避免导入期 RuntimeError 导致整个函数 500。
+if os.path.isdir(_STATIC):
+    app.mount("/static", StaticFiles(directory=_STATIC), name="static")
 
 # 本地开发：把 public/img 挂载为 /img（Vercel 上由 CDN 静态托管 public/，函数不会收到 /img 请求）。
 _IMG_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "public", "img")
@@ -1438,6 +1481,62 @@ if os.path.isdir(_IMG_DIR):
 # ---- 懒加载中间件：避免 Vercel 冷启动导入期加载全套数据导致函数初始化超时
 # （FUNCTION_INVOCATION_FAILED）。仅对 /api/ 数据路由在首次请求时触发一次性加载；
 # 首页 / 静态资源不经过此分支，瞬时可用。加载在单个实例内只发生一次（幂等）。 ----
+# ---------------------------------------------------------------------------
+# 安全防护中间件：限流 + 可选 HMAC 签名校验（防 AI 爬虫 / 防他人白嫖后端）
+# - 限流：单 IP 每 60s 最多 API_RATE_MAX 次 /api 请求（内存计数，实例级）。
+# - HMAC：仅当设置了环境变量 API_SIGN_SECRET 才启用（生产）；本地开发不设则跳过，
+#   前端 sysbar.js 对所有 /api 请求自动带 X-Ts / X-Sig。
+# - 媒体端点豁免：<img> 标签发出的请求无法携带签名头（如 /api/img/*、
+#   /api/herb_image/*），必须免 HMAC，否则全部图片 401 不显示；仅做独立宽松限流
+#   （图集一页可能并发几十张，API_RATE_MAX 120 会误伤，媒体单独 600/60s）。
+# ---------------------------------------------------------------------------
+_API_RATE = {}
+_API_MEDIA_RATE = {}
+_API_RATE_WINDOW = 60
+_API_RATE_MAX = int(os.environ.get("API_RATE_MAX", "120"))
+_API_MEDIA_RATE_MAX = int(os.environ.get("API_IMG_RATE_MAX", "600"))
+_API_SIGN_SECRET = os.environ.get("API_SIGN_SECRET", "")
+_API_SIGN_TOLERANCE = 120
+_MEDIA_PREFIXES = ("/api/img/", "/api/herb_image")
+
+
+def _client_ip(request):
+    fwd = request.headers.get("X-Forwarded-For")
+    if fwd:
+        return fwd.split(",")[0].strip()
+    return request.client.host if request.client else "unknown"
+
+
+@app.middleware("http")
+async def _security_middleware(request, call_next):
+    path = request.url.path
+    if path.startswith("/api"):
+        now = time.time()
+        ip = _client_ip(request)
+        media = path.startswith(_MEDIA_PREFIXES)
+        bucket = _API_MEDIA_RATE if media else _API_RATE
+        limit = _API_MEDIA_RATE_MAX if media else _API_RATE_MAX
+        hist = [t for t in bucket.get(ip, []) if now - t < _API_RATE_WINDOW]
+        if len(hist) >= limit:
+            return JSONResponse(status_code=429, content={"error": "请求过于频繁，请稍后再试"})
+        hist.append(now)
+        bucket[ip] = hist
+        if _API_SIGN_SECRET and not media:
+            ts = request.headers.get("X-Ts", "")
+            sig = request.headers.get("X-Sig", "")
+            try:
+                ts_i = int(ts)
+            except Exception:
+                return JSONResponse(status_code=401, content={"error": "missing signature"})
+            if abs(now - ts_i) > _API_SIGN_TOLERANCE:
+                return JSONResponse(status_code=401, content={"error": "signature expired"})
+            exp = hmac.new(_API_SIGN_SECRET.encode(), (ts + path).encode(),
+                           hashlib.sha256).hexdigest()
+            if not hmac.compare_digest(exp, sig):
+                return JSONResponse(status_code=401, content={"error": "bad signature"})
+    return await call_next(request)
+
+
 @app.middleware("http")
 async def _ensure_data_middleware(request, call_next):
     path = request.url.path

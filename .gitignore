@@ -18,9 +18,12 @@ env/
 .workbuddy/
 
 # Original Access MDB databases are NOT committed (huge, licensed, Windows-only).
-# The app instead uses web_app/data.db (SQLite), which IS committed.
+# Since 2026-09 the plaintext SQLite DBs are no longer committed either: only the
+# AES-encrypted *.db.enc copies ship (decrypted at runtime via DB_DECRYPT_KEY).
 *.mdb
 Data/
+web_app/data.db
+web_app/images_*.db
 
 # Dev/diagnostic scratch inside web_app (not part of the running app).
 web_app/_*.py
@@ -51,9 +54,23 @@ tools/verify_decrypt.py
 web_app/data_full.db
 
 # Static images are deployed via vercel_deploy.py (reads public/img/** from disk),
-# never committed to git.
-public/
+# never committed to git. public/static IS deployed (frontend assets, Vercel CDN).
+public/img/
 _diag/
+web_app/*.c
+web_app/*.so
+web_app/*.srcbak
 
 # Local deploy-state (records last deployed commit + file shas for change detection).
 .vercel_deploy_state.json
+.env*
+node_modules/
+package-lock.json
+win-shell-tauri/src-tauri/target/
+win-shell/bin/
+win-shell/publish/
+/_*.cjs
+/_*.txt
+/_*.js
+win-shell-tauri/*.exe
+win-shell-tauri/dist/

@@ -1,3 +1,7 @@
 fastapi
 uvicorn
 cnlunar
+cryptography
+# 构建期把 web_app/{paipan,bazi,ziwei}.py 编译为 C 扩展（.so），
+# 失败自动回退 .py 源码，不影响部署（见 buildtools/setup.py）。
+-e ./buildtools

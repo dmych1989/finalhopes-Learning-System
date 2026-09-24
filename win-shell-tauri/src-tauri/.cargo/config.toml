@@ -1,0 +1,3 @@
+# 静态链接 MSVC 运行时（CRT），使 exe 完全独立：不再依赖 VCRUNTIME140.dll / VC++ 运行库
+[target.x86_64-pc-windows-msvc]
+rustflags = ["-C", "target-feature=+crt-static"]

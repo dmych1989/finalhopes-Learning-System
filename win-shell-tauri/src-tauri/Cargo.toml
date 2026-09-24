@@ -1,0 +1,21 @@
+[package]
+name = "finalhopes-shell"
+version = "1.0.0"
+description = "finalhopes.dynv6.net 的 Windows 桌面壳（Tauri 2）"
+authors = ["jileshijie"]
+edition = "2021"
+rust-version = "1.82"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+incremental = false

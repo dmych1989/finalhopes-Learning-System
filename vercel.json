@@ -6,6 +6,9 @@
     }
   },
   "rewrites": [
+    { "source": "/", "destination": "/static/index.html" },
+    { "source": "/tianji", "destination": "/static/tianji.html" },
+    { "source": "/renji", "destination": "/static/renji.html" },
     { "source": "/(.*)", "destination": "/api/index.py" }
   ]
 }

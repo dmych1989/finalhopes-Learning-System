@@ -1,0 +1,125 @@
+﻿<Window x:Class="FinalHopesShell.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        Title="FinalHopes 学习系统"
+        Height="820" Width="1280"
+        MinHeight="480" MinWidth="720"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Microsoft YaHei UI, Segoe UI, sans-serif"
+        Background="#111318"
+        UseLayoutRounding="True">
+
+    <Window.Resources>
+        <Style x:Key="ToolButton" TargetType="Button">
+            <Setter Property="Width" Value="34" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Margin" Value="0,0,6,0" />
+            <Setter Property="Background" Value="#222833" />
+            <Setter Property="Foreground" Value="#E6EAF2" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#2F3947" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.35" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- 顶部工具栏 -->
+        <Border Grid.Row="0" Background="#171B22" Padding="10,8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="BtnBack" Grid.Column="0" Style="{StaticResource ToolButton}"
+                        Content="&#x2039;" Click="BtnBack_Click" ToolTip="后退" />
+                <Button x:Name="BtnForward" Grid.Column="1" Style="{StaticResource ToolButton}"
+                        Content="&#x203A;" Click="BtnForward_Click" ToolTip="前进" />
+                <Button x:Name="BtnRefresh" Grid.Column="2" Style="{StaticResource ToolButton}"
+                        Content="&#x21BB;" Click="BtnRefresh_Click" ToolTip="刷新" />
+                <Button x:Name="BtnHome" Grid.Column="3" Style="{StaticResource ToolButton}"
+                        Content="&#x2302;" Click="BtnHome_Click" ToolTip="回到首页" />
+
+                <Border Grid.Column="4" Background="#0F1218" CornerRadius="6" Padding="10,0">
+                    <TextBox x:Name="AddressBar" Background="Transparent" Foreground="#C7D0DE"
+                             BorderThickness="0" VerticalContentAlignment="Center"
+                             FontSize="12.5" KeyDown="AddressBar_KeyDown" />
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- 内容区 -->
+        <Grid Grid.Row="1">
+            <wv2:WebView2 x:Name="Web" />
+
+            <!-- 加载中 -->
+            <Border x:Name="LoadingPanel" Background="#111318" Visibility="Collapsed">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <ProgressBar IsIndeterminate="True" Width="220" Height="4"
+                                 Foreground="#4C8DFF" Background="#222B38" BorderThickness="0" />
+                    <TextBlock Text="正在加载…" Foreground="#8C97A8" Margin="0,14,0,0"
+                               HorizontalAlignment="Center" FontSize="13" />
+                </StackPanel>
+            </Border>
+
+            <!-- 错误提示 -->
+            <Border x:Name="ErrorPanel" Background="#111318" Visibility="Collapsed">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="440">
+                    <TextBlock Text="&#x26A0;" FontSize="40" Foreground="#E0603F"
+                               HorizontalAlignment="Center" />
+                    <TextBlock x:Name="ErrorText" Text="页面加载失败" Foreground="#E6EAF2"
+                               FontSize="15" TextWrapping="Wrap" TextAlignment="Center"
+                               Margin="0,10,0,0" />
+                    <Button Content="重新加载" Click="Retry_Click" Margin="0,18,0,0" Padding="18,8"
+                            Background="#2E6BE6" Foreground="White" BorderThickness="0" Cursor="Hand">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="8"
+                                        Padding="{TemplateBinding Padding}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- 底部状态栏 -->
+        <Border Grid.Row="2" Background="#171B22" Padding="12,4">
+            <Grid>
+                <TextBlock x:Name="FootText" Foreground="#7C8698" FontSize="11.5"
+                           HorizontalAlignment="Left" Text="就绪" />
+                <TextBlock Foreground="#4C5666" FontSize="11.5" HorizontalAlignment="Right"
+                           Text="FinalHopes · .NET 8 · WebView2" />
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

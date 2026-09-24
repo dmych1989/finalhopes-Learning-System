@@ -15,32 +15,73 @@ import re
 import json
 import sqlite3
 import tempfile
+import hashlib
 
 HERE = os.path.dirname(os.path.abspath(__file__))          # web_app dir
 DEFAULT_DB = os.path.join(HERE, "data.db")
 # 原始 .mdb 仍保留在「原始文件目录」下（保持原始文件目录），仅转换期回退用。
-BASE = r"E:\Soft\倪海夏三套学习系统\QQ频道号talktyph0id\医学论文医案查询系统"
+BASE = os.environ.get("LILUN_MDB_BASE", r"E:\Soft\倪海夏三套学习系统\QQ频道号talktyph0id\医学论文医案查询系统")
 DB = os.path.join(BASE, "Data", "LILUN.mdb")
 KEY = 0x0F
 PWD = "JiSkS92A30"
 
 # On platforms where the large SQLite blob is NOT bundled (e.g. Vercel), fetch it
 # once into a writable cache at import time. Override via env DATA_DB_URL.
-REMOTE_DB_URL = os.environ.get(
-    "DATA_DB_URL",
-    "https://raw.githubusercontent.com/dmych1989/finalhopes-Learning-System/main/web_app/data.db",
-)
+# 远程 data.db 仅允许私有地址（PRIVATE_DB_URL）。默认不再指向任何公开仓库，
+# 避免核心数据被公开抓取。未配置时 _download_db 直接跳过（需随包 data.db / .enc）。
+REMOTE_DB_URL = os.environ.get("PRIVATE_DB_URL", "")
+
+# Vercel 打包器（@vercel/nft）无法追踪运行时的 DEFAULT_DB + ".enc" 动态拼接，
+# 这里以字面量显式引用加密库，确保 *.db.enc 被收入函数包（明文 *.db 不随包）。
+_NFT_ENC_REFS = [
+    os.path.join(HERE, "data.db.enc"),
+    os.path.join(HERE, "images_renji.db.enc"),
+    os.path.join(HERE, "images_shoufa.db.enc"),
+    os.path.join(HERE, "images_tianji.db.enc"),
+    os.path.join(HERE, "images_xuewei.db.enc"),
+    os.path.join(HERE, "images_yaotu_list.db.enc"),
+    os.path.join(HERE, "images_yaotu.db.enc"),
+    os.path.join(HERE, "images_zhongyi.db.enc"),
+]
+
+
+def _decrypt_to(enc_path, dest):
+    """若 enc_path 存在且配置了 DB_DECRYPT_KEY，则 AES(Fernet) 解密到 dest（已解密则跳过）。
+    返回解密后的路径；无密钥或无加密文件时返回 None。与 encrypt_dbs.py 配套。"""
+    import base64
+    from cryptography.fernet import Fernet
+    key = os.environ.get("DB_DECRYPT_KEY", "")
+    if not key or not os.path.isfile(enc_path):
+        return None
+    if os.path.exists(dest) and os.path.getsize(dest) > 1_000_000:
+        return dest
+    k = base64.urlsafe_b64encode(hashlib.sha256(key.encode("utf-8")).digest())
+    with open(enc_path, "rb") as f:
+        blob = f.read()
+    try:
+        plain = Fernet(k).decrypt(blob)
+    except Exception as e:
+        # 密钥不匹配/文件损坏：回退明文或无数据分支，不让端点 500
+        print("WARN: 解密失败(密钥不匹配?):", enc_path, repr(e))
+        return None
+    with open(dest, "wb") as f:
+        f.write(plain)
+    print("Decrypted %s -> %s (%d KB)" % (enc_path, dest, len(plain) // 1024))
+    return dest
 
 
 def _resolve_db_path():
     """Return a usable SQLite path if a local copy exists; else None (no network).
 
-    仅做本地判定，绝不在导入期发起网络下载 —— Vercel 冷启动预算极小，92MB 下载
-    会阻塞导入并导致 FUNCTION_INVOCATION_FAILED。本地开发 / 已随部署打包 data.db
-    的实例走 DEFAULT_DB 分支，瞬时返回；否则返回 None，由调用方降级（USE_SQLITE=False）。
-    真正的下载在 _ensure_db() 中按需、懒触发（首次访问数据时），不阻塞导入。
+    优先使用加密副本 data.db.enc（需 DB_DECRYPT_KEY）：Vercel 部署仅随包 *.db.enc，
+    运行时解密到 /tmp，明文从不落部署包。本地开发 / 已随包明文 data.db 的实例走
+    DEFAULT_DB 分支（瞬时返回，仅拷贝到 /tmp 以绕过只读 FS）。
+    真正的下载在 _ensure_db() 中按需、懒触发，且只走私有地址（PRIVATE_DB_URL）。
     """
     cache = os.path.join(tempfile.gettempdir(), "finalhopes_data.db")
+    dec = _decrypt_to(DEFAULT_DB + ".enc", cache)
+    if dec:
+        return dec
     if os.path.exists(DEFAULT_DB):
         # Vercel's function FS (/var/task) is read-only; copy to writable /tmp
         # so sqlite3 can open read-write. Local dev keeps using web_app/data.db.
@@ -57,21 +98,18 @@ def _resolve_db_path():
 
 
 def _download_db(dest, timeout=55):
-    """Lazily download data.db from the runtime host. Returns True on success.
-
-    优先从「同源部署静态文件」(PUBLIC_DB_URL) 拉取 —— Vercel 函数访问自身部署
-    域名走内网，快且稳定；公网 GitHub raw / jsDelivr 在 Vercel 出网常被阻塞或挂起，
-    仅作兜底。调用方需处理失败（返回 False）。
+    """仅从私有地址（PRIVATE_DB_URL / PUBLIC_DB_URL 环境变量）下载 data.db；
+    不再使用任何公开 GitHub / jsDelivr 地址，避免核心数据被公开抓取。
+    未配置私有地址时直接返回 False（请随部署打包 data.db 或 data.db.enc）。
     """
     import urllib.request as _urllib
     urls = []
-    pub = os.environ.get("PUBLIC_DB_URL") or "https://finalhopes.dynv6.net/data.db"
-    urls.append(pub)
-    if REMOTE_DB_URL not in urls:
-        urls.append(REMOTE_DB_URL)
-    jsd = "https://cdn.jsdelivr.net/gh/dmych1989/finalhopes-Learning-System@main/web_app/data.db"
-    if jsd not in urls:
-        urls.append(jsd)
+    priv = os.environ.get("PRIVATE_DB_URL") or os.environ.get("PUBLIC_DB_URL")
+    if priv:
+        urls.append(priv)
+    if not urls:
+        print("WARN: 未配置 PRIVATE_DB_URL，跳过 data.db 远程下载（请随部署打包 data.db / data.db.enc）")
+        return False
     last = None
     for url in urls:
         try:
@@ -81,7 +119,7 @@ def _download_db(dest, timeout=55):
             last = "too small (%d)" % os.path.getsize(dest)
         except Exception as e:
             last = repr(e)
-    print("WARN: data.db 懒下载失败：", last)
+    print("WARN: data.db 下载失败：", last)
     return False
 
 

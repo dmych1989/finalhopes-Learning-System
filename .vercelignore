@@ -1,13 +1,26 @@
 # Vercel upload ignores .gitignore automatically; this trims a few more MB and
 # keeps the 92MB leftovers / scratch out of the deployment.
-tools/exe_strings.txt
+tools/
+win-shell/
+win-shell-tauri/
+web_app/js_src/
 web_app/.uvicorn.log
 web_app/_*.py
 web_app/_carved/
 web_app/_verify/
 web_app/_uv*
 web_app/data_full.db
+# 明文 SQLite 库不进部署包；仅加密副本 *.db.enc 随包（运行时 DB_DECRYPT_KEY 解密）。
+web_app/data.db
+web_app/images_*.db
 public/data.db
+public/img/
+_shot*.png
+_*.cjs
+_*.txt
+_vercel_login_*
+_vlogin*
+.vercel_deploy_state.json
 *.log
 .workbuddy/
 .vercel/
